@@ -1,0 +1,12 @@
+name: pulumi-yaml
+runtime: yaml
+description: A minimal Pulumi YAML program
+outputs:
+  registryEndpoint:
+    value: ${registry.endpoint}
+resources:
+  registry:
+    type: scaleway:RegistryNamespace
+    properties:
+      name: pulumi-scaleway-dirien
+      isPublic: true

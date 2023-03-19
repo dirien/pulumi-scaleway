@@ -8,7 +8,7 @@ import (
 func main() {
 	pulumi.Run(func(ctx *pulumi.Context) error {
 
-		registryNamespace, err := scaleway.NewRegistryNamespace(ctx, "test", &scaleway.RegistryNamespaceArgs{
+		registry, err := scaleway.NewRegistryNamespace(ctx, "test", &scaleway.RegistryNamespaceArgs{
 			Name:     pulumi.String("pulumi-scaleway-dirien"),
 			IsPublic: pulumi.Bool(true),
 		})
@@ -16,7 +16,7 @@ func main() {
 			return err
 		}
 
-		ctx.Export("registryNamespace", registryNamespace.Endpoint)
+		ctx.Export("endpoint", registry.Endpoint)
 
 		return nil
 	})
