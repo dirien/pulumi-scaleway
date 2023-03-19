@@ -3,11 +3,9 @@ module scaleway-go-example
 go 1.20
 
 require (
-	github.com/dirien/pulumi-scaleway/sdk/v2 v2.0.0
+	github.com/dirien/pulumi-scaleway/sdk/v2 v2.13.1
 	github.com/pulumi/pulumi/sdk/v3 v3.58.0
 )
-
-replace github.com/dirien/pulumi-scaleway/sdk/v2 => ../../sdk
 
 require (
 	github.com/Microsoft/go-winio v0.5.2 // indirect
