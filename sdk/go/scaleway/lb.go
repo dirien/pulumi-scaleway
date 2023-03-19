@@ -23,7 +23,7 @@ import (
 //
 // import (
 //
-//	"github.com/dirien/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -125,7 +125,7 @@ import (
 //
 // import (
 //
-//	"github.com/dirien/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -152,7 +152,7 @@ import (
 //
 // import (
 //
-//	"github.com/dirien/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
