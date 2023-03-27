@@ -60,7 +60,7 @@ namespace ediri.Scaleway
     ///         Timeout = 600,
     ///         MaxConcurrency = 80,
     ///         Privacy = "public",
-    ///         Protocol = "h2c",
+    ///         Protocol = "http1",
     ///         Deploy = true,
     ///     });
     /// 

@@ -5,7 +5,6 @@ package io.dirien.scaleway.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -83,13 +82,13 @@ public final class SecretVersionState extends com.pulumi.resources.ResourceArgs 
      * 
      */
     @Import(name="revision")
-    private @Nullable Output<Integer> revision;
+    private @Nullable Output<String> revision;
 
     /**
      * @return The revision for this Secret Version.
      * 
      */
-    public Optional<Output<Integer>> revision() {
+    public Optional<Output<String>> revision() {
         return Optional.ofNullable(this.revision);
     }
 
@@ -261,7 +260,7 @@ public final class SecretVersionState extends com.pulumi.resources.ResourceArgs 
          * @return builder
          * 
          */
-        public Builder revision(@Nullable Output<Integer> revision) {
+        public Builder revision(@Nullable Output<String> revision) {
             $.revision = revision;
             return this;
         }
@@ -272,7 +271,7 @@ public final class SecretVersionState extends com.pulumi.resources.ResourceArgs 
          * @return builder
          * 
          */
-        public Builder revision(Integer revision) {
+        public Builder revision(String revision) {
             return revision(Output.of(revision));
         }
 

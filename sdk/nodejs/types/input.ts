@@ -1017,7 +1017,8 @@ export interface RdbReadReplicaPrivateNetwork {
      */
     privateNetworkId: pulumi.Input<string>;
     /**
-     * Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+     * Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+     * limitations. (IP network).
      */
     serviceIp: pulumi.Input<string>;
     zone?: pulumi.Input<string>;

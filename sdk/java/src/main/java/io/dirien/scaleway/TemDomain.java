@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import io.dirien.scaleway.TemDomainArgs;
 import io.dirien.scaleway.Utilities;
 import io.dirien.scaleway.inputs.TemDomainState;
+import java.lang.Boolean;
 import java.lang.String;
 import javax.annotation.Nullable;
 
@@ -57,6 +58,20 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="scaleway:index/temDomain:TemDomain")
 public class TemDomain extends com.pulumi.resources.CustomResource {
+    /**
+     * Accept the Scaleway Terms of Service
+     * 
+     */
+    @Export(name="acceptTos", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> acceptTos;
+
+    /**
+     * @return Accept the Scaleway Terms of Service
+     * 
+     */
+    public Output<Boolean> acceptTos() {
+        return this.acceptTos;
+    }
     /**
      * The date and time of the Transaction Email Domain&#39;s creation (RFC 3339 format).
      * 
@@ -226,7 +241,7 @@ public class TemDomain extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public TemDomain(String name, @Nullable TemDomainArgs args) {
+    public TemDomain(String name, TemDomainArgs args) {
         this(name, args, null);
     }
     /**
@@ -235,7 +250,7 @@ public class TemDomain extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public TemDomain(String name, @Nullable TemDomainArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public TemDomain(String name, TemDomainArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("scaleway:index/temDomain:TemDomain", name, args == null ? TemDomainArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
     }
 

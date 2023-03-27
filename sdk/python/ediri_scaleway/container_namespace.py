@@ -313,7 +313,7 @@ class ContainerNamespace(pulumi.CustomResource):
                  secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Container Namespace.
+        Creates and manages Scaleway Serverless Container Namespace.
         For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#namespaces-cdce79).
 
         ## Examples
@@ -352,7 +352,7 @@ class ContainerNamespace(pulumi.CustomResource):
                  args: Optional[ContainerNamespaceArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Container Namespace.
+        Creates and manages Scaleway Serverless Container Namespace.
         For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#namespaces-cdce79).
 
         ## Examples

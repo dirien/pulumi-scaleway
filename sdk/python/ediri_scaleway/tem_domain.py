@@ -14,22 +14,37 @@ __all__ = ['TemDomainArgs', 'TemDomain']
 @pulumi.input_type
 class TemDomainArgs:
     def __init__(__self__, *,
+                 accept_tos: pulumi.Input[bool],
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a TemDomain resource.
+        :param pulumi.Input[bool] accept_tos: Accept the Scaleway Terms of Service
         :param pulumi.Input[str] name: The domain name, must not be used in another Transactional Email Domain.
                > **Important** Updates to `name` will recreate the domain.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the domain should be created.
         """
+        pulumi.set(__self__, "accept_tos", accept_tos)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="acceptTos")
+    def accept_tos(self) -> pulumi.Input[bool]:
+        """
+        Accept the Scaleway Terms of Service
+        """
+        return pulumi.get(self, "accept_tos")
+
+    @accept_tos.setter
+    def accept_tos(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "accept_tos", value)
 
     @property
     @pulumi.getter
@@ -72,6 +87,7 @@ class TemDomainArgs:
 @pulumi.input_type
 class _TemDomainState:
     def __init__(__self__, *,
+                 accept_tos: Optional[pulumi.Input[bool]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  dkim_config: Optional[pulumi.Input[str]] = None,
                  last_error: Optional[pulumi.Input[str]] = None,
@@ -85,6 +101,7 @@ class _TemDomainState:
                  status: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering TemDomain resources.
+        :param pulumi.Input[bool] accept_tos: Accept the Scaleway Terms of Service
         :param pulumi.Input[str] created_at: The date and time of the Transaction Email Domain's creation (RFC 3339 format).
         :param pulumi.Input[str] dkim_config: The DKIM public key, as should be recorded in the DNS zone.
         :param pulumi.Input[str] last_error: The error message if the last check failed.
@@ -98,6 +115,8 @@ class _TemDomainState:
         :param pulumi.Input[str] spf_config: The snippet of the SPF record that should be registered in the DNS zone.
         :param pulumi.Input[str] status: The status of the Transaction Email Domain.
         """
+        if accept_tos is not None:
+            pulumi.set(__self__, "accept_tos", accept_tos)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if dkim_config is not None:
@@ -120,6 +139,18 @@ class _TemDomainState:
             pulumi.set(__self__, "spf_config", spf_config)
         if status is not None:
             pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="acceptTos")
+    def accept_tos(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Accept the Scaleway Terms of Service
+        """
+        return pulumi.get(self, "accept_tos")
+
+    @accept_tos.setter
+    def accept_tos(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "accept_tos", value)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -260,6 +291,7 @@ class TemDomain(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 accept_tos: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -289,6 +321,7 @@ class TemDomain(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] accept_tos: Accept the Scaleway Terms of Service
         :param pulumi.Input[str] name: The domain name, must not be used in another Transactional Email Domain.
                > **Important** Updates to `name` will recreate the domain.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
@@ -298,7 +331,7 @@ class TemDomain(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[TemDomainArgs] = None,
+                 args: TemDomainArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Transactional Email Domains.
@@ -338,6 +371,7 @@ class TemDomain(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 accept_tos: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -350,6 +384,9 @@ class TemDomain(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = TemDomainArgs.__new__(TemDomainArgs)
 
+            if accept_tos is None and not opts.urn:
+                raise TypeError("Missing required property 'accept_tos'")
+            __props__.__dict__["accept_tos"] = accept_tos
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
@@ -371,6 +408,7 @@ class TemDomain(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            accept_tos: Optional[pulumi.Input[bool]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             dkim_config: Optional[pulumi.Input[str]] = None,
             last_error: Optional[pulumi.Input[str]] = None,
@@ -389,6 +427,7 @@ class TemDomain(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] accept_tos: Accept the Scaleway Terms of Service
         :param pulumi.Input[str] created_at: The date and time of the Transaction Email Domain's creation (RFC 3339 format).
         :param pulumi.Input[str] dkim_config: The DKIM public key, as should be recorded in the DNS zone.
         :param pulumi.Input[str] last_error: The error message if the last check failed.
@@ -406,6 +445,7 @@ class TemDomain(pulumi.CustomResource):
 
         __props__ = _TemDomainState.__new__(_TemDomainState)
 
+        __props__.__dict__["accept_tos"] = accept_tos
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["dkim_config"] = dkim_config
         __props__.__dict__["last_error"] = last_error
@@ -418,6 +458,14 @@ class TemDomain(pulumi.CustomResource):
         __props__.__dict__["spf_config"] = spf_config
         __props__.__dict__["status"] = status
         return TemDomain(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="acceptTos")
+    def accept_tos(self) -> pulumi.Output[bool]:
+        """
+        Accept the Scaleway Terms of Service
+        """
+        return pulumi.get(self, "accept_tos")
 
     @property
     @pulumi.getter(name="createdAt")

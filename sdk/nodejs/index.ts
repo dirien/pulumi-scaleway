@@ -370,6 +370,16 @@ export const getRegistryNamespace: typeof import("./getRegistryNamespace").getRe
 export const getRegistryNamespaceOutput: typeof import("./getRegistryNamespace").getRegistryNamespaceOutput = null as any;
 utilities.lazyLoad(exports, ["getRegistryNamespace","getRegistryNamespaceOutput"], () => require("./getRegistryNamespace"));
 
+export { GetSecretArgs, GetSecretResult, GetSecretOutputArgs } from "./getSecret";
+export const getSecret: typeof import("./getSecret").getSecret = null as any;
+export const getSecretOutput: typeof import("./getSecret").getSecretOutput = null as any;
+utilities.lazyLoad(exports, ["getSecret","getSecretOutput"], () => require("./getSecret"));
+
+export { GetSecretVersionArgs, GetSecretVersionResult, GetSecretVersionOutputArgs } from "./getSecretVersion";
+export const getSecretVersion: typeof import("./getSecretVersion").getSecretVersion = null as any;
+export const getSecretVersionOutput: typeof import("./getSecretVersion").getSecretVersionOutput = null as any;
+utilities.lazyLoad(exports, ["getSecretVersion","getSecretVersionOutput"], () => require("./getSecretVersion"));
+
 export { GetTemDomainArgs, GetTemDomainResult, GetTemDomainOutputArgs } from "./getTemDomain";
 export const getTemDomain: typeof import("./getTemDomain").getTemDomain = null as any;
 export const getTemDomainOutput: typeof import("./getTemDomain").getTemDomainOutput = null as any;
@@ -409,6 +419,11 @@ export { GetVpcPublicGatewayPatRuleArgs, GetVpcPublicGatewayPatRuleResult, GetVp
 export const getVpcPublicGatewayPatRule: typeof import("./getVpcPublicGatewayPatRule").getVpcPublicGatewayPatRule = null as any;
 export const getVpcPublicGatewayPatRuleOutput: typeof import("./getVpcPublicGatewayPatRule").getVpcPublicGatewayPatRuleOutput = null as any;
 utilities.lazyLoad(exports, ["getVpcPublicGatewayPatRule","getVpcPublicGatewayPatRuleOutput"], () => require("./getVpcPublicGatewayPatRule"));
+
+export { GetWebHostOfferArgs, GetWebHostOfferResult, GetWebHostOfferOutputArgs } from "./getWebHostOffer";
+export const getWebHostOffer: typeof import("./getWebHostOffer").getWebHostOffer = null as any;
+export const getWebHostOfferOutput: typeof import("./getWebHostOffer").getWebHostOfferOutput = null as any;
+utilities.lazyLoad(exports, ["getWebHostOffer","getWebHostOfferOutput"], () => require("./getWebHostOffer"));
 
 export { IamApiKeyArgs, IamApiKeyState } from "./iamApiKey";
 export type IamApiKey = import("./iamApiKey").IamApiKey;

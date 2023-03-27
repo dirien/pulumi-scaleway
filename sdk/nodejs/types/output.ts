@@ -1208,6 +1208,45 @@ export interface GetRedisClusterPublicNetwork {
     port: number;
 }
 
+export interface GetWebHostOfferProduct {
+    /**
+     * The quota of databases.
+     */
+    databasesQuota: number;
+    /**
+     * The quota of email accounts.
+     */
+    emailAccountsQuota: number;
+    /**
+     * The quota of email storage.
+     */
+    emailStorageQuota: number;
+    /**
+     * The quota of hosting storage.
+     */
+    hostingStorageQuota: number;
+    /**
+     * The offer name. Only one of `name` and `offerId` should be specified.
+     */
+    name: string;
+    /**
+     * The product option.
+     */
+    option: boolean;
+    /**
+     * The capacity of the memory in GB.
+     */
+    ram: number;
+    /**
+     * If support is included.
+     */
+    supportIncluded: boolean;
+    /**
+     * The number of cores.
+     */
+    vCpu: number;
+}
+
 export interface IamPolicyRule {
     /**
      * ID of organization scoped to the rule.
@@ -2046,7 +2085,8 @@ export interface RdbReadReplicaPrivateNetwork {
      */
     privateNetworkId: string;
     /**
-     * Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+     * Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+     * limitations. (IP network).
      */
     serviceIp: string;
     zone: string;

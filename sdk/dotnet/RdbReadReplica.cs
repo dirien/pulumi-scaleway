@@ -114,7 +114,8 @@ namespace ediri.Scaleway
         public Output<Outputs.RdbReadReplicaPrivateNetwork?> PrivateNetwork { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the Database read replica should be created.
+        /// `region`) The region
+        /// in which the Database read replica should be created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -185,7 +186,8 @@ namespace ediri.Scaleway
         public Input<Inputs.RdbReadReplicaPrivateNetworkArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the Database read replica should be created.
+        /// `region`) The region
+        /// in which the Database read replica should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -217,7 +219,8 @@ namespace ediri.Scaleway
         public Input<Inputs.RdbReadReplicaPrivateNetworkGetArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the Database read replica should be created.
+        /// `region`) The region
+        /// in which the Database read replica should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Container Namespace.
+ * Creates and manages Scaleway Serverless Container Namespace.
  * For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#namespaces-cdce79).
  *
  * ## Examples

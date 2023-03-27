@@ -56,6 +56,10 @@ export class TemDomain extends pulumi.CustomResource {
     }
 
     /**
+     * Accept the Scaleway Terms of Service
+     */
+    public readonly acceptTos!: pulumi.Output<boolean>;
+    /**
      * The date and time of the Transaction Email Domain's creation (RFC 3339 format).
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
@@ -108,12 +112,13 @@ export class TemDomain extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: TemDomainArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args: TemDomainArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: TemDomainArgs | TemDomainState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TemDomainState | undefined;
+            resourceInputs["acceptTos"] = state ? state.acceptTos : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["dkimConfig"] = state ? state.dkimConfig : undefined;
             resourceInputs["lastError"] = state ? state.lastError : undefined;
@@ -127,6 +132,10 @@ export class TemDomain extends pulumi.CustomResource {
             resourceInputs["status"] = state ? state.status : undefined;
         } else {
             const args = argsOrState as TemDomainArgs | undefined;
+            if ((!args || args.acceptTos === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'acceptTos'");
+            }
+            resourceInputs["acceptTos"] = args ? args.acceptTos : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
@@ -148,6 +157,10 @@ export class TemDomain extends pulumi.CustomResource {
  * Input properties used for looking up and filtering TemDomain resources.
  */
 export interface TemDomainState {
+    /**
+     * Accept the Scaleway Terms of Service
+     */
+    acceptTos?: pulumi.Input<boolean>;
     /**
      * The date and time of the Transaction Email Domain's creation (RFC 3339 format).
      */
@@ -199,6 +212,10 @@ export interface TemDomainState {
  * The set of arguments for constructing a TemDomain resource.
  */
 export interface TemDomainArgs {
+    /**
+     * Accept the Scaleway Terms of Service
+     */
+    acceptTos: pulumi.Input<boolean>;
     /**
      * The domain name, must not be used in another Transactional Email Domain.
      * > **Important** Updates to `name` will recreate the domain.

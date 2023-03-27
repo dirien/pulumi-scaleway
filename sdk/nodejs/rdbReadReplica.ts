@@ -110,7 +110,8 @@ export class RdbReadReplica extends pulumi.CustomResource {
      */
     public readonly privateNetwork!: pulumi.Output<outputs.RdbReadReplicaPrivateNetwork | undefined>;
     /**
-     * `region`) The region in which the Database read replica should be created.
+     * `region`) The region
+     * in which the Database read replica should be created.
      */
     public readonly region!: pulumi.Output<string>;
 
@@ -163,7 +164,8 @@ export interface RdbReadReplicaState {
      */
     privateNetwork?: pulumi.Input<inputs.RdbReadReplicaPrivateNetwork>;
     /**
-     * `region`) The region in which the Database read replica should be created.
+     * `region`) The region
+     * in which the Database read replica should be created.
      */
     region?: pulumi.Input<string>;
 }
@@ -185,7 +187,8 @@ export interface RdbReadReplicaArgs {
      */
     privateNetwork?: pulumi.Input<inputs.RdbReadReplicaPrivateNetwork>;
     /**
-     * `region`) The region in which the Database read replica should be created.
+     * `region`) The region
+     * in which the Database read replica should be created.
      */
     region?: pulumi.Input<string>;
 }
