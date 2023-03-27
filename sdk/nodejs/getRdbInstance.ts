@@ -7,18 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about an RDB instance.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myInstance = scaleway.getRdbInstance({
- *     instanceId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
+ * Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
  */
 export function getRdbInstance(args?: GetRdbInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetRdbInstanceResult> {
     args = args || {};
@@ -86,18 +75,7 @@ export interface GetRdbInstanceResult {
     readonly volumeType: string;
 }
 /**
- * Gets information about an RDB instance.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const myInstance = scaleway.getRdbInstance({
- *     instanceId: "11111111-1111-1111-1111-111111111111",
- * });
- * ```
+ * Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
  */
 export function getRdbInstanceOutput(args?: GetRdbInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRdbInstanceResult> {
     return pulumi.output(args).apply((a: any) => getRdbInstance(a, opts))

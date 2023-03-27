@@ -172,14 +172,16 @@ public class RdbReadReplica extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.privateNetwork);
     }
     /**
-     * `region`) The region in which the Database read replica should be created.
+     * `region`) The region
+     * in which the Database read replica should be created.
      * 
      */
     @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
-     * @return `region`) The region in which the Database read replica should be created.
+     * @return `region`) The region
+     * in which the Database read replica should be created.
      * 
      */
     public Output<String> region() {

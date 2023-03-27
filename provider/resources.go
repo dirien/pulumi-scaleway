@@ -259,6 +259,8 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_redis_cluster":                       {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getRedisCluster")},
 			"scaleway_registry_image":                      {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getRegistryImage")},
 			"scaleway_registry_namespace":                  {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getRegistryNamespace")},
+			"scaleway_secret":                              {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getSecret")},
+			"scaleway_secret_version":                      {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getSecretVersion")},
 			"scaleway_tem_domain":                          {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getTemDomain")},
 			"scaleway_vpc_gateway_network":                 {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getVpcGatewayNetwork")},
 			"scaleway_vpc_private_network":                 {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getVpcPrivateNetwork")},
@@ -267,6 +269,7 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_vpc_public_gateway_dhcp_reservation": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getVpcPublicGatewayDhcpReservation")},
 			"scaleway_vpc_public_gateway_ip":               {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getVpcPublicGatewayIp")},
 			"scaleway_vpc_public_gateway_pat_rule":         {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getVpcPublicGatewayPatRule")},
+			"scaleway_webhosting_offer":                    {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getWebHostOffer")},
 		},
 		TFProviderModuleVersion: "v2",
 		JavaScript: &tfbridge.JavaScriptInfo{

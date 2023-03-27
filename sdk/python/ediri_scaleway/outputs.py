@@ -137,6 +137,7 @@ __all__ = [
     'GetRedisClusterAclResult',
     'GetRedisClusterPrivateNetworkResult',
     'GetRedisClusterPublicNetworkResult',
+    'GetWebHostOfferProductResult',
 ]
 
 @pulumi.output_type
@@ -3839,7 +3840,8 @@ class RdbReadReplicaPrivateNetwork(dict):
                  zone: Optional[str] = None):
         """
         :param str private_network_id: UUID of the private network to be connected to the read replica.
-        :param str service_ip: Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+        :param str service_ip: Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+               limitations. (IP network).
         :param str endpoint_id: The ID of the endpoint of the read replica.
         :param str hostname: Hostname of the endpoint. Only one of ip and hostname may be set.
         :param str ip: IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
@@ -3873,7 +3875,8 @@ class RdbReadReplicaPrivateNetwork(dict):
     @pulumi.getter(name="serviceIp")
     def service_ip(self) -> str:
         """
-        Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+        Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+        limitations. (IP network).
         """
         return pulumi.get(self, "service_ip")
 
@@ -7244,5 +7247,111 @@ class GetRedisClusterPublicNetworkResult(dict):
     @pulumi.getter
     def port(self) -> int:
         return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class GetWebHostOfferProductResult(dict):
+    def __init__(__self__, *,
+                 databases_quota: int,
+                 email_accounts_quota: int,
+                 email_storage_quota: int,
+                 hosting_storage_quota: int,
+                 name: str,
+                 option: bool,
+                 ram: int,
+                 support_included: bool,
+                 v_cpu: int):
+        """
+        :param int databases_quota: The quota of databases.
+        :param int email_accounts_quota: The quota of email accounts.
+        :param int email_storage_quota: The quota of email storage.
+        :param int hosting_storage_quota: The quota of hosting storage.
+        :param str name: The offer name. Only one of `name` and `offer_id` should be specified.
+        :param bool option: The product option.
+        :param int ram: The capacity of the memory in GB.
+        :param bool support_included: If support is included.
+        :param int v_cpu: The number of cores.
+        """
+        pulumi.set(__self__, "databases_quota", databases_quota)
+        pulumi.set(__self__, "email_accounts_quota", email_accounts_quota)
+        pulumi.set(__self__, "email_storage_quota", email_storage_quota)
+        pulumi.set(__self__, "hosting_storage_quota", hosting_storage_quota)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "option", option)
+        pulumi.set(__self__, "ram", ram)
+        pulumi.set(__self__, "support_included", support_included)
+        pulumi.set(__self__, "v_cpu", v_cpu)
+
+    @property
+    @pulumi.getter(name="databasesQuota")
+    def databases_quota(self) -> int:
+        """
+        The quota of databases.
+        """
+        return pulumi.get(self, "databases_quota")
+
+    @property
+    @pulumi.getter(name="emailAccountsQuota")
+    def email_accounts_quota(self) -> int:
+        """
+        The quota of email accounts.
+        """
+        return pulumi.get(self, "email_accounts_quota")
+
+    @property
+    @pulumi.getter(name="emailStorageQuota")
+    def email_storage_quota(self) -> int:
+        """
+        The quota of email storage.
+        """
+        return pulumi.get(self, "email_storage_quota")
+
+    @property
+    @pulumi.getter(name="hostingStorageQuota")
+    def hosting_storage_quota(self) -> int:
+        """
+        The quota of hosting storage.
+        """
+        return pulumi.get(self, "hosting_storage_quota")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The offer name. Only one of `name` and `offer_id` should be specified.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def option(self) -> bool:
+        """
+        The product option.
+        """
+        return pulumi.get(self, "option")
+
+    @property
+    @pulumi.getter
+    def ram(self) -> int:
+        """
+        The capacity of the memory in GB.
+        """
+        return pulumi.get(self, "ram")
+
+    @property
+    @pulumi.getter(name="supportIncluded")
+    def support_included(self) -> bool:
+        """
+        If support is included.
+        """
+        return pulumi.get(self, "support_included")
+
+    @property
+    @pulumi.getter(name="vCpu")
+    def v_cpu(self) -> int:
+        """
+        The number of cores.
+        """
+        return pulumi.get(self, "v_cpu")
 
 

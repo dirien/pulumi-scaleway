@@ -25,7 +25,8 @@ class RdbReadReplicaArgs:
         :param pulumi.Input[str] instance_id: UUID of the rdb instance.
         :param pulumi.Input['RdbReadReplicaDirectAccessArgs'] direct_access: Creates a direct access endpoint to rdb replica.
         :param pulumi.Input['RdbReadReplicaPrivateNetworkArgs'] private_network: Create an endpoint in a private network.
-        :param pulumi.Input[str] region: `region`) The region in which the Database read replica should be created.
+        :param pulumi.Input[str] region: `region`) The region
+               in which the Database read replica should be created.
         """
         pulumi.set(__self__, "instance_id", instance_id)
         if direct_access is not None:
@@ -75,7 +76,8 @@ class RdbReadReplicaArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`) The region in which the Database read replica should be created.
+        `region`) The region
+        in which the Database read replica should be created.
         """
         return pulumi.get(self, "region")
 
@@ -96,7 +98,8 @@ class _RdbReadReplicaState:
         :param pulumi.Input['RdbReadReplicaDirectAccessArgs'] direct_access: Creates a direct access endpoint to rdb replica.
         :param pulumi.Input[str] instance_id: UUID of the rdb instance.
         :param pulumi.Input['RdbReadReplicaPrivateNetworkArgs'] private_network: Create an endpoint in a private network.
-        :param pulumi.Input[str] region: `region`) The region in which the Database read replica should be created.
+        :param pulumi.Input[str] region: `region`) The region
+               in which the Database read replica should be created.
         """
         if direct_access is not None:
             pulumi.set(__self__, "direct_access", direct_access)
@@ -147,7 +150,8 @@ class _RdbReadReplicaState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`) The region in which the Database read replica should be created.
+        `region`) The region
+        in which the Database read replica should be created.
         """
         return pulumi.get(self, "region")
 
@@ -230,7 +234,8 @@ class RdbReadReplica(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['RdbReadReplicaDirectAccessArgs']] direct_access: Creates a direct access endpoint to rdb replica.
         :param pulumi.Input[str] instance_id: UUID of the rdb instance.
         :param pulumi.Input[pulumi.InputType['RdbReadReplicaPrivateNetworkArgs']] private_network: Create an endpoint in a private network.
-        :param pulumi.Input[str] region: `region`) The region in which the Database read replica should be created.
+        :param pulumi.Input[str] region: `region`) The region
+               in which the Database read replica should be created.
         """
         ...
     @overload
@@ -355,7 +360,8 @@ class RdbReadReplica(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['RdbReadReplicaDirectAccessArgs']] direct_access: Creates a direct access endpoint to rdb replica.
         :param pulumi.Input[str] instance_id: UUID of the rdb instance.
         :param pulumi.Input[pulumi.InputType['RdbReadReplicaPrivateNetworkArgs']] private_network: Create an endpoint in a private network.
-        :param pulumi.Input[str] region: `region`) The region in which the Database read replica should be created.
+        :param pulumi.Input[str] region: `region`) The region
+               in which the Database read replica should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -395,7 +401,8 @@ class RdbReadReplica(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        `region`) The region in which the Database read replica should be created.
+        `region`) The region
+        in which the Database read replica should be created.
         """
         return pulumi.get(self, "region")
 

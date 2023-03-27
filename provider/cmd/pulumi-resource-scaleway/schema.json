@@ -2962,7 +2962,7 @@
                 },
                 "serviceIp": {
                     "type": "string",
-                    "description": "Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).\n",
+                    "description": "Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet\nlimitations. (IP network).\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -6752,6 +6752,108 @@
                     "requiredInputs": []
                 }
             }
+        },
+        "scaleway:index/getWebHostOfferProduct:getWebHostOfferProduct": {
+            "properties": {
+                "databasesQuota": {
+                    "type": "integer",
+                    "description": "The quota of databases.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "emailAccountsQuota": {
+                    "type": "integer",
+                    "description": "The quota of email accounts.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "emailStorageQuota": {
+                    "type": "integer",
+                    "description": "The quota of email storage.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "hostingStorageQuota": {
+                    "type": "integer",
+                    "description": "The quota of hosting storage.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The offer name. Only one of `name` and `offer_id` should be specified.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "option": {
+                    "type": "boolean",
+                    "description": "The product option.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "ram": {
+                    "type": "integer",
+                    "description": "The capacity of the memory in GB.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "supportIncluded": {
+                    "type": "boolean",
+                    "description": "If support is included.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "vCpu": {
+                    "type": "integer",
+                    "description": "The number of cores.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "databasesQuota",
+                "emailAccountsQuota",
+                "emailStorageQuota",
+                "hostingStorageQuota",
+                "name",
+                "option",
+                "ram",
+                "supportIncluded",
+                "vCpu"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         }
     },
     "provider": {
@@ -8055,7 +8157,7 @@
             }
         },
         "scaleway:index/containerDomain:ContainerDomain": {
-            "description": "Creates and manages Scaleway Container domain name bindings.\nYou can check our [containers guide](https://www.scaleway.com/en/docs/compute/containers/how-to/add-a-custom-domain-to-a-container/) for further information.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Simple\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst appContainer = new scaleway.Container(\"appContainer\", {});\nconst appContainerDomain = new scaleway.ContainerDomain(\"appContainerDomain\", {\n    containerId: appContainer.id,\n    hostname: \"container.domain.tld\",\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\napp_container = scaleway.Container(\"appContainer\")\napp_container_domain = scaleway.ContainerDomain(\"appContainerDomain\",\n    container_id=app_container.id,\n    hostname=\"container.domain.tld\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var appContainer = new Scaleway.Container(\"appContainer\");\n\n    var appContainerDomain = new Scaleway.ContainerDomain(\"appContainerDomain\", new()\n    {\n        ContainerId = appContainer.Id,\n        Hostname = \"container.domain.tld\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tappContainer, err := scaleway.NewContainer(ctx, \"appContainer\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewContainerDomain(ctx, \"appContainerDomain\", \u0026scaleway.ContainerDomainArgs{\n\t\t\tContainerId: appContainer.ID(),\n\t\t\tHostname:    pulumi.String(\"container.domain.tld\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.Container;\nimport com.pulumi.scaleway.ContainerDomain;\nimport com.pulumi.scaleway.ContainerDomainArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var appContainer = new Container(\"appContainer\");\n\n        var appContainerDomain = new ContainerDomain(\"appContainerDomain\", ContainerDomainArgs.builder()        \n            .containerId(appContainer.id())\n            .hostname(\"container.domain.tld\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  appContainer:\n    type: scaleway:Container\n  appContainerDomain:\n    type: scaleway:ContainerDomain\n    properties:\n      containerId: ${appContainer.id}\n      hostname: container.domain.tld\n```\n{{% /example %}}\n{{% example %}}\n### Complete example with domain\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst main = new scaleway.ContainerNamespace(\"main\", {description: \"test container\"});\nconst appContainer = new scaleway.Container(\"appContainer\", {\n    namespaceId: main.id,\n    registryImage: pulumi.interpolate`${main.registryEndpoint}/nginx:alpine`,\n    port: 80,\n    cpuLimit: 140,\n    memoryLimit: 256,\n    minScale: 1,\n    maxScale: 1,\n    timeout: 600,\n    maxConcurrency: 80,\n    privacy: \"public\",\n    protocol: \"h2c\",\n    deploy: true,\n});\nconst appDomainRecord = new scaleway.DomainRecord(\"appDomainRecord\", {\n    dnsZone: \"domain.tld\",\n    type: \"CNAME\",\n    data: pulumi.interpolate`${appContainer.domainName}.`,\n    ttl: 3600,\n});\nconst appContainerDomain = new scaleway.ContainerDomain(\"appContainerDomain\", {\n    containerId: appContainer.id,\n    hostname: pulumi.interpolate`${appDomainRecord.name}.${appDomainRecord.dnsZone}`,\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain = scaleway.ContainerNamespace(\"main\", description=\"test container\")\napp_container = scaleway.Container(\"appContainer\",\n    namespace_id=main.id,\n    registry_image=main.registry_endpoint.apply(lambda registry_endpoint: f\"{registry_endpoint}/nginx:alpine\"),\n    port=80,\n    cpu_limit=140,\n    memory_limit=256,\n    min_scale=1,\n    max_scale=1,\n    timeout=600,\n    max_concurrency=80,\n    privacy=\"public\",\n    protocol=\"h2c\",\n    deploy=True)\napp_domain_record = scaleway.DomainRecord(\"appDomainRecord\",\n    dns_zone=\"domain.tld\",\n    type=\"CNAME\",\n    data=app_container.domain_name.apply(lambda domain_name: f\"{domain_name}.\"),\n    ttl=3600)\napp_container_domain = scaleway.ContainerDomain(\"appContainerDomain\",\n    container_id=app_container.id,\n    hostname=pulumi.Output.all(app_domain_record.name, app_domain_record.dns_zone).apply(lambda name, dns_zone: f\"{name}.{dns_zone}\"))\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.ContainerNamespace(\"main\", new()\n    {\n        Description = \"test container\",\n    });\n\n    var appContainer = new Scaleway.Container(\"appContainer\", new()\n    {\n        NamespaceId = main.Id,\n        RegistryImage = main.RegistryEndpoint.Apply(registryEndpoint =\u003e $\"{registryEndpoint}/nginx:alpine\"),\n        Port = 80,\n        CpuLimit = 140,\n        MemoryLimit = 256,\n        MinScale = 1,\n        MaxScale = 1,\n        Timeout = 600,\n        MaxConcurrency = 80,\n        Privacy = \"public\",\n        Protocol = \"h2c\",\n        Deploy = true,\n    });\n\n    var appDomainRecord = new Scaleway.DomainRecord(\"appDomainRecord\", new()\n    {\n        DnsZone = \"domain.tld\",\n        Type = \"CNAME\",\n        Data = appContainer.DomainName.Apply(domainName =\u003e $\"{domainName}.\"),\n        Ttl = 3600,\n    });\n\n    var appContainerDomain = new Scaleway.ContainerDomain(\"appContainerDomain\", new()\n    {\n        ContainerId = appContainer.Id,\n        Hostname = Output.Tuple(appDomainRecord.Name, appDomainRecord.DnsZone).Apply(values =\u003e\n        {\n            var name = values.Item1;\n            var dnsZone = values.Item2;\n            return $\"{name}.{dnsZone}\";\n        }),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := scaleway.NewContainerNamespace(ctx, \"main\", \u0026scaleway.ContainerNamespaceArgs{\n\t\t\tDescription: pulumi.String(\"test container\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tappContainer, err := scaleway.NewContainer(ctx, \"appContainer\", \u0026scaleway.ContainerArgs{\n\t\t\tNamespaceId: main.ID(),\n\t\t\tRegistryImage: main.RegistryEndpoint.ApplyT(func(registryEndpoint string) (string, error) {\n\t\t\t\treturn fmt.Sprintf(\"%v/nginx:alpine\", registryEndpoint), nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t\tPort:           pulumi.Int(80),\n\t\t\tCpuLimit:       pulumi.Int(140),\n\t\t\tMemoryLimit:    pulumi.Int(256),\n\t\t\tMinScale:       pulumi.Int(1),\n\t\t\tMaxScale:       pulumi.Int(1),\n\t\t\tTimeout:        pulumi.Int(600),\n\t\t\tMaxConcurrency: pulumi.Int(80),\n\t\t\tPrivacy:        pulumi.String(\"public\"),\n\t\t\tProtocol:       pulumi.String(\"h2c\"),\n\t\t\tDeploy:         pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tappDomainRecord, err := scaleway.NewDomainRecord(ctx, \"appDomainRecord\", \u0026scaleway.DomainRecordArgs{\n\t\t\tDnsZone: pulumi.String(\"domain.tld\"),\n\t\t\tType:    pulumi.String(\"CNAME\"),\n\t\t\tData: appContainer.DomainName.ApplyT(func(domainName string) (string, error) {\n\t\t\t\treturn fmt.Sprintf(\"%v.\", domainName), nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t\tTtl: pulumi.Int(3600),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewContainerDomain(ctx, \"appContainerDomain\", \u0026scaleway.ContainerDomainArgs{\n\t\t\tContainerId: appContainer.ID(),\n\t\t\tHostname: pulumi.All(appDomainRecord.Name, appDomainRecord.DnsZone).ApplyT(func(_args []interface{}) (string, error) {\n\t\t\t\tname := _args[0].(string)\n\t\t\t\tdnsZone := _args[1].(string)\n\t\t\t\treturn fmt.Sprintf(\"%v.%v\", name, dnsZone), nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ContainerNamespace;\nimport com.pulumi.scaleway.ContainerNamespaceArgs;\nimport com.pulumi.scaleway.Container;\nimport com.pulumi.scaleway.ContainerArgs;\nimport com.pulumi.scaleway.DomainRecord;\nimport com.pulumi.scaleway.DomainRecordArgs;\nimport com.pulumi.scaleway.ContainerDomain;\nimport com.pulumi.scaleway.ContainerDomainArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new ContainerNamespace(\"main\", ContainerNamespaceArgs.builder()        \n            .description(\"test container\")\n            .build());\n\n        var appContainer = new Container(\"appContainer\", ContainerArgs.builder()        \n            .namespaceId(main.id())\n            .registryImage(main.registryEndpoint().applyValue(registryEndpoint -\u003e String.format(\"%s/nginx:alpine\", registryEndpoint)))\n            .port(80)\n            .cpuLimit(140)\n            .memoryLimit(256)\n            .minScale(1)\n            .maxScale(1)\n            .timeout(600)\n            .maxConcurrency(80)\n            .privacy(\"public\")\n            .protocol(\"h2c\")\n            .deploy(true)\n            .build());\n\n        var appDomainRecord = new DomainRecord(\"appDomainRecord\", DomainRecordArgs.builder()        \n            .dnsZone(\"domain.tld\")\n            .type(\"CNAME\")\n            .data(appContainer.domainName().applyValue(domainName -\u003e String.format(\"%s.\", domainName)))\n            .ttl(3600)\n            .build());\n\n        var appContainerDomain = new ContainerDomain(\"appContainerDomain\", ContainerDomainArgs.builder()        \n            .containerId(appContainer.id())\n            .hostname(Output.tuple(appDomainRecord.name(), appDomainRecord.dnsZone()).applyValue(values -\u003e {\n                var name = values.t1;\n                var dnsZone = values.t2;\n                return String.format(\"%s.%s\", name,dnsZone);\n            }))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:ContainerNamespace\n    properties:\n      description: test container\n  appContainer:\n    type: scaleway:Container\n    properties:\n      namespaceId: ${main.id}\n      registryImage: ${main.registryEndpoint}/nginx:alpine\n      port: 80\n      cpuLimit: 140\n      memoryLimit: 256\n      minScale: 1\n      maxScale: 1\n      timeout: 600\n      maxConcurrency: 80\n      privacy: public\n      protocol: h2c\n      deploy: true\n  appDomainRecord:\n    type: scaleway:DomainRecord\n    properties:\n      dnsZone: domain.tld\n      type: CNAME\n      data: ${appContainer.domainName}.\n      # Trailing dot is important in CNAME\n      ttl: 3600\n  appContainerDomain:\n    type: scaleway:ContainerDomain\n    properties:\n      containerId: ${appContainer.id}\n      hostname: ${appDomainRecord.name}.${appDomainRecord.dnsZone}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nContainer domain binding can be imported using the `{region}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/containerDomain:ContainerDomain main fr-par/11111111-1111-1111-1111-111111111111\n```\n\n ",
+            "description": "Creates and manages Scaleway Container domain name bindings.\nYou can check our [containers guide](https://www.scaleway.com/en/docs/compute/containers/how-to/add-a-custom-domain-to-a-container/) for further information.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Simple\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst appContainer = new scaleway.Container(\"appContainer\", {});\nconst appContainerDomain = new scaleway.ContainerDomain(\"appContainerDomain\", {\n    containerId: appContainer.id,\n    hostname: \"container.domain.tld\",\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\napp_container = scaleway.Container(\"appContainer\")\napp_container_domain = scaleway.ContainerDomain(\"appContainerDomain\",\n    container_id=app_container.id,\n    hostname=\"container.domain.tld\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var appContainer = new Scaleway.Container(\"appContainer\");\n\n    var appContainerDomain = new Scaleway.ContainerDomain(\"appContainerDomain\", new()\n    {\n        ContainerId = appContainer.Id,\n        Hostname = \"container.domain.tld\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tappContainer, err := scaleway.NewContainer(ctx, \"appContainer\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewContainerDomain(ctx, \"appContainerDomain\", \u0026scaleway.ContainerDomainArgs{\n\t\t\tContainerId: appContainer.ID(),\n\t\t\tHostname:    pulumi.String(\"container.domain.tld\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.Container;\nimport com.pulumi.scaleway.ContainerDomain;\nimport com.pulumi.scaleway.ContainerDomainArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var appContainer = new Container(\"appContainer\");\n\n        var appContainerDomain = new ContainerDomain(\"appContainerDomain\", ContainerDomainArgs.builder()        \n            .containerId(appContainer.id())\n            .hostname(\"container.domain.tld\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  appContainer:\n    type: scaleway:Container\n  appContainerDomain:\n    type: scaleway:ContainerDomain\n    properties:\n      containerId: ${appContainer.id}\n      hostname: container.domain.tld\n```\n{{% /example %}}\n{{% example %}}\n### Complete example with domain\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst main = new scaleway.ContainerNamespace(\"main\", {description: \"test container\"});\nconst appContainer = new scaleway.Container(\"appContainer\", {\n    namespaceId: main.id,\n    registryImage: pulumi.interpolate`${main.registryEndpoint}/nginx:alpine`,\n    port: 80,\n    cpuLimit: 140,\n    memoryLimit: 256,\n    minScale: 1,\n    maxScale: 1,\n    timeout: 600,\n    maxConcurrency: 80,\n    privacy: \"public\",\n    protocol: \"http1\",\n    deploy: true,\n});\nconst appDomainRecord = new scaleway.DomainRecord(\"appDomainRecord\", {\n    dnsZone: \"domain.tld\",\n    type: \"CNAME\",\n    data: pulumi.interpolate`${appContainer.domainName}.`,\n    ttl: 3600,\n});\nconst appContainerDomain = new scaleway.ContainerDomain(\"appContainerDomain\", {\n    containerId: appContainer.id,\n    hostname: pulumi.interpolate`${appDomainRecord.name}.${appDomainRecord.dnsZone}`,\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain = scaleway.ContainerNamespace(\"main\", description=\"test container\")\napp_container = scaleway.Container(\"appContainer\",\n    namespace_id=main.id,\n    registry_image=main.registry_endpoint.apply(lambda registry_endpoint: f\"{registry_endpoint}/nginx:alpine\"),\n    port=80,\n    cpu_limit=140,\n    memory_limit=256,\n    min_scale=1,\n    max_scale=1,\n    timeout=600,\n    max_concurrency=80,\n    privacy=\"public\",\n    protocol=\"http1\",\n    deploy=True)\napp_domain_record = scaleway.DomainRecord(\"appDomainRecord\",\n    dns_zone=\"domain.tld\",\n    type=\"CNAME\",\n    data=app_container.domain_name.apply(lambda domain_name: f\"{domain_name}.\"),\n    ttl=3600)\napp_container_domain = scaleway.ContainerDomain(\"appContainerDomain\",\n    container_id=app_container.id,\n    hostname=pulumi.Output.all(app_domain_record.name, app_domain_record.dns_zone).apply(lambda name, dns_zone: f\"{name}.{dns_zone}\"))\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.ContainerNamespace(\"main\", new()\n    {\n        Description = \"test container\",\n    });\n\n    var appContainer = new Scaleway.Container(\"appContainer\", new()\n    {\n        NamespaceId = main.Id,\n        RegistryImage = main.RegistryEndpoint.Apply(registryEndpoint =\u003e $\"{registryEndpoint}/nginx:alpine\"),\n        Port = 80,\n        CpuLimit = 140,\n        MemoryLimit = 256,\n        MinScale = 1,\n        MaxScale = 1,\n        Timeout = 600,\n        MaxConcurrency = 80,\n        Privacy = \"public\",\n        Protocol = \"http1\",\n        Deploy = true,\n    });\n\n    var appDomainRecord = new Scaleway.DomainRecord(\"appDomainRecord\", new()\n    {\n        DnsZone = \"domain.tld\",\n        Type = \"CNAME\",\n        Data = appContainer.DomainName.Apply(domainName =\u003e $\"{domainName}.\"),\n        Ttl = 3600,\n    });\n\n    var appContainerDomain = new Scaleway.ContainerDomain(\"appContainerDomain\", new()\n    {\n        ContainerId = appContainer.Id,\n        Hostname = Output.Tuple(appDomainRecord.Name, appDomainRecord.DnsZone).Apply(values =\u003e\n        {\n            var name = values.Item1;\n            var dnsZone = values.Item2;\n            return $\"{name}.{dnsZone}\";\n        }),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := scaleway.NewContainerNamespace(ctx, \"main\", \u0026scaleway.ContainerNamespaceArgs{\n\t\t\tDescription: pulumi.String(\"test container\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tappContainer, err := scaleway.NewContainer(ctx, \"appContainer\", \u0026scaleway.ContainerArgs{\n\t\t\tNamespaceId: main.ID(),\n\t\t\tRegistryImage: main.RegistryEndpoint.ApplyT(func(registryEndpoint string) (string, error) {\n\t\t\t\treturn fmt.Sprintf(\"%v/nginx:alpine\", registryEndpoint), nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t\tPort:           pulumi.Int(80),\n\t\t\tCpuLimit:       pulumi.Int(140),\n\t\t\tMemoryLimit:    pulumi.Int(256),\n\t\t\tMinScale:       pulumi.Int(1),\n\t\t\tMaxScale:       pulumi.Int(1),\n\t\t\tTimeout:        pulumi.Int(600),\n\t\t\tMaxConcurrency: pulumi.Int(80),\n\t\t\tPrivacy:        pulumi.String(\"public\"),\n\t\t\tProtocol:       pulumi.String(\"http1\"),\n\t\t\tDeploy:         pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tappDomainRecord, err := scaleway.NewDomainRecord(ctx, \"appDomainRecord\", \u0026scaleway.DomainRecordArgs{\n\t\t\tDnsZone: pulumi.String(\"domain.tld\"),\n\t\t\tType:    pulumi.String(\"CNAME\"),\n\t\t\tData: appContainer.DomainName.ApplyT(func(domainName string) (string, error) {\n\t\t\t\treturn fmt.Sprintf(\"%v.\", domainName), nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t\tTtl: pulumi.Int(3600),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewContainerDomain(ctx, \"appContainerDomain\", \u0026scaleway.ContainerDomainArgs{\n\t\t\tContainerId: appContainer.ID(),\n\t\t\tHostname: pulumi.All(appDomainRecord.Name, appDomainRecord.DnsZone).ApplyT(func(_args []interface{}) (string, error) {\n\t\t\t\tname := _args[0].(string)\n\t\t\t\tdnsZone := _args[1].(string)\n\t\t\t\treturn fmt.Sprintf(\"%v.%v\", name, dnsZone), nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ContainerNamespace;\nimport com.pulumi.scaleway.ContainerNamespaceArgs;\nimport com.pulumi.scaleway.Container;\nimport com.pulumi.scaleway.ContainerArgs;\nimport com.pulumi.scaleway.DomainRecord;\nimport com.pulumi.scaleway.DomainRecordArgs;\nimport com.pulumi.scaleway.ContainerDomain;\nimport com.pulumi.scaleway.ContainerDomainArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new ContainerNamespace(\"main\", ContainerNamespaceArgs.builder()        \n            .description(\"test container\")\n            .build());\n\n        var appContainer = new Container(\"appContainer\", ContainerArgs.builder()        \n            .namespaceId(main.id())\n            .registryImage(main.registryEndpoint().applyValue(registryEndpoint -\u003e String.format(\"%s/nginx:alpine\", registryEndpoint)))\n            .port(80)\n            .cpuLimit(140)\n            .memoryLimit(256)\n            .minScale(1)\n            .maxScale(1)\n            .timeout(600)\n            .maxConcurrency(80)\n            .privacy(\"public\")\n            .protocol(\"http1\")\n            .deploy(true)\n            .build());\n\n        var appDomainRecord = new DomainRecord(\"appDomainRecord\", DomainRecordArgs.builder()        \n            .dnsZone(\"domain.tld\")\n            .type(\"CNAME\")\n            .data(appContainer.domainName().applyValue(domainName -\u003e String.format(\"%s.\", domainName)))\n            .ttl(3600)\n            .build());\n\n        var appContainerDomain = new ContainerDomain(\"appContainerDomain\", ContainerDomainArgs.builder()        \n            .containerId(appContainer.id())\n            .hostname(Output.tuple(appDomainRecord.name(), appDomainRecord.dnsZone()).applyValue(values -\u003e {\n                var name = values.t1;\n                var dnsZone = values.t2;\n                return String.format(\"%s.%s\", name,dnsZone);\n            }))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:ContainerNamespace\n    properties:\n      description: test container\n  appContainer:\n    type: scaleway:Container\n    properties:\n      namespaceId: ${main.id}\n      registryImage: ${main.registryEndpoint}/nginx:alpine\n      port: 80\n      cpuLimit: 140\n      memoryLimit: 256\n      minScale: 1\n      maxScale: 1\n      timeout: 600\n      maxConcurrency: 80\n      privacy: public\n      protocol: http1\n      deploy: true\n  appDomainRecord:\n    type: scaleway:DomainRecord\n    properties:\n      dnsZone: domain.tld\n      type: CNAME\n      data: ${appContainer.domainName}.\n      # Trailing dot is important in CNAME\n      ttl: 3600\n  appContainerDomain:\n    type: scaleway:ContainerDomain\n    properties:\n      containerId: ${appContainer.id}\n      hostname: ${appDomainRecord.name}.${appDomainRecord.dnsZone}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nContainer domain binding can be imported using the `{region}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/containerDomain:ContainerDomain main fr-par/11111111-1111-1111-1111-111111111111\n```\n\n ",
             "properties": {
                 "containerId": {
                     "type": "string",
@@ -8128,7 +8230,7 @@
             }
         },
         "scaleway:index/containerNamespace:ContainerNamespace": {
-            "description": "Creates and manages Scaleway Container Namespace.\nFor more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#namespaces-cdce79).\n\n## Examples\n\n### Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst main = new scaleway.ContainerNamespace(\"main\", {description: \"Main container namespace\"});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain = scaleway.ContainerNamespace(\"main\", description=\"Main container namespace\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.ContainerNamespace(\"main\", new()\n    {\n        Description = \"Main container namespace\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewContainerNamespace(ctx, \"main\", \u0026scaleway.ContainerNamespaceArgs{\n\t\t\tDescription: pulumi.String(\"Main container namespace\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ContainerNamespace;\nimport com.pulumi.scaleway.ContainerNamespaceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new ContainerNamespace(\"main\", ContainerNamespaceArgs.builder()        \n            .description(\"Main container namespace\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:ContainerNamespace\n    properties:\n      description: Main container namespace\n```\n\n\n## Import\n\nNamespaces can be imported using the `{region}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/containerNamespace:ContainerNamespace main fr-par/11111111-1111-1111-1111-111111111111\n```\n\n ",
+            "description": "Creates and manages Scaleway Serverless Container Namespace.\nFor more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#namespaces-cdce79).\n\n## Examples\n\n### Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst main = new scaleway.ContainerNamespace(\"main\", {description: \"Main container namespace\"});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain = scaleway.ContainerNamespace(\"main\", description=\"Main container namespace\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.ContainerNamespace(\"main\", new()\n    {\n        Description = \"Main container namespace\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewContainerNamespace(ctx, \"main\", \u0026scaleway.ContainerNamespaceArgs{\n\t\t\tDescription: pulumi.String(\"Main container namespace\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ContainerNamespace;\nimport com.pulumi.scaleway.ContainerNamespaceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new ContainerNamespace(\"main\", ContainerNamespaceArgs.builder()        \n            .description(\"Main container namespace\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:ContainerNamespace\n    properties:\n      description: Main container namespace\n```\n\n\n## Import\n\nNamespaces can be imported using the `{region}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/containerNamespace:ContainerNamespace main fr-par/11111111-1111-1111-1111-111111111111\n```\n\n ",
             "properties": {
                 "description": {
                     "type": "string",
@@ -15675,7 +15777,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "`region`) The region in which the Database read replica should be created.\n"
+                    "description": "`region`) The region\nin which the Database read replica should be created.\n"
                 }
             },
             "required": [
@@ -15697,7 +15799,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "`region`) The region in which the Database read replica should be created.\n",
+                    "description": "`region`) The region\nin which the Database read replica should be created.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -15721,7 +15823,7 @@
                     },
                     "region": {
                         "type": "string",
-                        "description": "`region`) The region in which the Database read replica should be created.\n",
+                        "description": "`region`) The region\nin which the Database read replica should be created.\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -16340,7 +16442,7 @@
                     "description": "`region`) The region\nin which the resource exists.\n"
                 },
                 "revision": {
-                    "type": "integer",
+                    "type": "string",
                     "description": "The revision for this Secret Version.\n"
                 },
                 "secretId": {
@@ -16413,7 +16515,7 @@
                         "willReplaceOnChanges": true
                     },
                     "revision": {
-                        "type": "integer",
+                        "type": "string",
                         "description": "The revision for this Secret Version.\n"
                     },
                     "secretId": {
@@ -16435,6 +16537,10 @@
         "scaleway:index/temDomain:TemDomain": {
             "description": "Creates and manages Scaleway Transactional Email Domains.\nFor more information see [the documentation](https://developers.scaleway.com/en/products/transactional_email/api/).\n\n## Examples\n\n### Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst main = new scaleway.TemDomain(\"main\", {});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain = scaleway.TemDomain(\"main\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.TemDomain(\"main\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewTemDomain(ctx, \"main\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.TemDomain;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new TemDomain(\"main\");\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:TemDomain\n```\n\n\n## Import\n\nDomains can be imported using the `{region}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/temDomain:TemDomain main fr-par/11111111-1111-1111-1111-111111111111\n```\n\n ",
             "properties": {
+                "acceptTos": {
+                    "type": "boolean",
+                    "description": "Accept the Scaleway Terms of Service\n"
+                },
                 "createdAt": {
                     "type": "string",
                     "description": "The date and time of the Transaction Email Domain's creation (RFC 3339 format).\n"
@@ -16481,6 +16587,7 @@
                 }
             },
             "required": [
+                "acceptTos",
                 "createdAt",
                 "dkimConfig",
                 "lastError",
@@ -16494,6 +16601,11 @@
                 "status"
             ],
             "inputProperties": {
+                "acceptTos": {
+                    "type": "boolean",
+                    "description": "Accept the Scaleway Terms of Service\n",
+                    "willReplaceOnChanges": true
+                },
                 "name": {
                     "type": "string",
                     "description": "The domain name, must not be used in another Transactional Email Domain.\n\u003e **Important** Updates to `name` will recreate the domain.\n",
@@ -16510,9 +16622,17 @@
                     "willReplaceOnChanges": true
                 }
             },
+            "requiredInputs": [
+                "acceptTos"
+            ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering TemDomain resources.\n",
                 "properties": {
+                    "acceptTos": {
+                        "type": "boolean",
+                        "description": "Accept the Scaleway Terms of Service\n",
+                        "willReplaceOnChanges": true
+                    },
                     "createdAt": {
                         "type": "string",
                         "description": "The date and time of the Transaction Email Domain's creation (RFC 3339 format).\n"
@@ -21730,7 +21850,7 @@
             }
         },
         "scaleway:index/getRdbInstance:getRdbInstance": {
-            "description": "Gets information about an RDB instance.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst myInstance = scaleway.getRdbInstance({\n    instanceId: \"11111111-1111-1111-1111-111111111111\",\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\n\nmy_instance = scaleway.get_rdb_instance(instance_id=\"11111111-1111-1111-1111-111111111111\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myInstance = Scaleway.GetRdbInstance.Invoke(new()\n    {\n        InstanceId = \"11111111-1111-1111-1111-111111111111\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.LookupRdbInstance(ctx, \u0026scaleway.LookupRdbInstanceArgs{\n\t\t\tInstanceId: pulumi.StringRef(\"11111111-1111-1111-1111-111111111111\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetRdbInstanceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myInstance = ScalewayFunctions.getRdbInstance(GetRdbInstanceArgs.builder()\n            .instanceId(\"11111111-1111-1111-1111-111111111111\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  myInstance:\n    fn::invoke:\n      Function: scaleway:getRdbInstance\n      Arguments:\n        instanceId: 11111111-1111-1111-1111-111111111111\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getRdbInstance.\n",
                 "properties": {
@@ -22217,6 +22337,165 @@
                 ]
             }
         },
+        "scaleway:index/getSecret:getSecret": {
+            "description": "Gets information about Scaleway Secrets.\nFor more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/).\n\n## Examples\n\n### Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst main = new scaleway.Secret(\"main\", {description: \"barr\"});\nconst mySecret = scaleway.getSecret({\n    secretId: \"11111111-1111-1111-1111-111111111111\",\n});\nconst byName = scaleway.getSecret({\n    name: \"your_secret_name\",\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\nimport pulumi_scaleway as scaleway\n\nmain = scaleway.Secret(\"main\", description=\"barr\")\nmy_secret = scaleway.get_secret(secret_id=\"11111111-1111-1111-1111-111111111111\")\nby_name = scaleway.get_secret(name=\"your_secret_name\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.Secret(\"main\", new()\n    {\n        Description = \"barr\",\n    });\n\n    var mySecret = Scaleway.GetSecret.Invoke(new()\n    {\n        SecretId = \"11111111-1111-1111-1111-111111111111\",\n    });\n\n    var byName = Scaleway.GetSecret.Invoke(new()\n    {\n        Name = \"your_secret_name\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewSecret(ctx, \"main\", \u0026scaleway.SecretArgs{\n\t\t\tDescription: pulumi.String(\"barr\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.LookupSecret(ctx, \u0026scaleway.LookupSecretArgs{\n\t\t\tSecretId: pulumi.StringRef(\"11111111-1111-1111-1111-111111111111\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.LookupSecret(ctx, \u0026scaleway.LookupSecretArgs{\n\t\t\tName: pulumi.StringRef(\"your_secret_name\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.Secret;\nimport com.pulumi.scaleway.SecretArgs;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetSecretArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new Secret(\"main\", SecretArgs.builder()        \n            .description(\"barr\")\n            .build());\n\n        final var mySecret = ScalewayFunctions.getSecret(GetSecretArgs.builder()\n            .secretId(\"11111111-1111-1111-1111-111111111111\")\n            .build());\n\n        final var byName = ScalewayFunctions.getSecret(GetSecretArgs.builder()\n            .name(\"your_secret_name\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:Secret\n    properties:\n      description: barr\nvariables:\n  mySecret:\n    fn::invoke:\n      Function: scaleway:getSecret\n      Arguments:\n        secretId: 11111111-1111-1111-1111-111111111111\n  byName:\n    fn::invoke:\n      Function: scaleway:getSecret\n      Arguments:\n        name: your_secret_name\n```\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getSecret.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The secret name.\nOnly one of `name` and `secret_id` should be specified.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The organization ID the Project is associated with.\nIf no default organization_id is set, one must be set explicitly in this datasource\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "`project_id`) The ID of the\nproject the secret is associated with.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "`region`) The region in which the secret exists.\n"
+                    },
+                    "secretId": {
+                        "type": "string",
+                        "description": "The secret id.\nOnly one of `name` and `secret_id` should be specified.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getSecret.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "organizationId": {
+                        "type": "string"
+                    },
+                    "projectId": {
+                        "type": "string"
+                    },
+                    "region": {
+                        "type": "string"
+                    },
+                    "secretId": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "updatedAt": {
+                        "type": "string"
+                    },
+                    "versionCount": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "createdAt",
+                    "description",
+                    "organizationId",
+                    "status",
+                    "tags",
+                    "updatedAt",
+                    "versionCount",
+                    "id"
+                ]
+            }
+        },
+        "scaleway:index/getSecretVersion:getSecretVersion": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getSecretVersion.\n",
+                "properties": {
+                    "region": {
+                        "type": "string",
+                        "description": "`region`) The region\nin which the resource exists.\n"
+                    },
+                    "revision": {
+                        "type": "string",
+                        "description": "The revision for this Secret Version.\n"
+                    },
+                    "secretId": {
+                        "type": "string",
+                        "description": "The Secret ID associated wit the secret version.\nOnly one of `secret_id` and `secret_name` should be specified.\n"
+                    },
+                    "secretName": {
+                        "type": "string",
+                        "description": "The Name of Secret associated wit the secret version.\nOnly one of `secret_id` and `secret_name` should be specified.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getSecretVersion.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Date and time of secret version's creation (RFC 3339 format).\n"
+                    },
+                    "data": {
+                        "type": "string",
+                        "description": "The data payload of the secret version. more on the data section\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "(Optional) Description of the secret version (e.g. `my-new-description`).\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "region": {
+                        "type": "string"
+                    },
+                    "revision": {
+                        "type": "string"
+                    },
+                    "secretId": {
+                        "type": "string"
+                    },
+                    "secretName": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the Secret Version.\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "Date and time of secret version's last update (RFC 3339 format).\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "createdAt",
+                    "data",
+                    "description",
+                    "status",
+                    "updatedAt",
+                    "id"
+                ]
+            }
+        },
         "scaleway:index/getTemDomain:getTemDomain": {
             "description": "Gets information about a transactional email domain.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetTemDomainArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myDomain = ScalewayFunctions.getTemDomain(GetTemDomainArgs.builder()\n            .id(\"11111111-1111-1111-1111-111111111111\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  myDomain:\n    fn::invoke:\n      Function: scaleway:getTemDomain\n      Arguments:\n        id: 11111111-1111-1111-1111-111111111111\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
@@ -22239,6 +22518,9 @@
             "outputs": {
                 "description": "A collection of values returned by getTemDomain.\n",
                 "properties": {
+                    "acceptTos": {
+                        "type": "boolean"
+                    },
                     "createdAt": {
                         "type": "string",
                         "description": "The date and time of the Transaction Email Domain's creation (RFC 3339 format).\n"
@@ -22290,6 +22572,7 @@
                 },
                 "type": "object",
                 "required": [
+                    "acceptTos",
                     "createdAt",
                     "dkimConfig",
                     "lastError",
@@ -22871,6 +23154,69 @@
                     "protocol",
                     "publicPort",
                     "updatedAt",
+                    "id"
+                ]
+            }
+        },
+        "scaleway:index/getWebHostOffer:getWebHostOffer": {
+            "description": "Gets information about a webhosting offer.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst byName = scaleway.getWebHostOffer({\n    name: \"performance\",\n});\nconst byId = scaleway.getWebHostOffer({\n    offerId: \"de2426b4-a9e9-11ec-b909-0242ac120002\",\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\n\nby_name = scaleway.get_web_host_offer(name=\"performance\")\nby_id = scaleway.get_web_host_offer(offer_id=\"de2426b4-a9e9-11ec-b909-0242ac120002\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var byName = Scaleway.GetWebHostOffer.Invoke(new()\n    {\n        Name = \"performance\",\n    });\n\n    var byId = Scaleway.GetWebHostOffer.Invoke(new()\n    {\n        OfferId = \"de2426b4-a9e9-11ec-b909-0242ac120002\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.GetWebHostOffer(ctx, \u0026scaleway.GetWebHostOfferArgs{\n\t\t\tName: pulumi.StringRef(\"performance\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.GetWebHostOffer(ctx, \u0026scaleway.GetWebHostOfferArgs{\n\t\t\tOfferId: pulumi.StringRef(\"de2426b4-a9e9-11ec-b909-0242ac120002\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetWebHostOfferArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var byName = ScalewayFunctions.getWebHostOffer(GetWebHostOfferArgs.builder()\n            .name(\"performance\")\n            .build());\n\n        final var byId = ScalewayFunctions.getWebHostOffer(GetWebHostOfferArgs.builder()\n            .offerId(\"de2426b4-a9e9-11ec-b909-0242ac120002\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  byName:\n    fn::invoke:\n      Function: scaleway:getWebHostOffer\n      Arguments:\n        name: performance\n  byId:\n    fn::invoke:\n      Function: scaleway:getWebHostOffer\n      Arguments:\n        offerId: de2426b4-a9e9-11ec-b909-0242ac120002\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getWebHostOffer.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The offer name. Only one of `name` and `offer_id` should be specified.\n"
+                    },
+                    "offerId": {
+                        "type": "string",
+                        "description": "The offer id. Only one of `name` and `offer_id` should be specified.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "`region`) The region in which offer exists.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getWebHostOffer.\n",
+                "properties": {
+                    "billingOperationPath": {
+                        "type": "string",
+                        "description": "The unique identifier used for billing.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "offerId": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "string",
+                        "description": "The offer price.\n"
+                    },
+                    "products": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/scaleway:index/getWebHostOfferProduct:getWebHostOfferProduct"
+                        },
+                        "description": "The offer product.\n"
+                    },
+                    "region": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "billingOperationPath",
+                    "price",
+                    "products",
+                    "region",
                     "id"
                 ]
             }

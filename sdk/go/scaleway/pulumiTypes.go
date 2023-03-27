@@ -9492,7 +9492,8 @@ type RdbReadReplicaPrivateNetwork struct {
 	Port *int `pulumi:"port"`
 	// UUID of the private network to be connected to the read replica.
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
-	// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+	// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+	// limitations. (IP network).
 	ServiceIp string  `pulumi:"serviceIp"`
 	Zone      *string `pulumi:"zone"`
 }
@@ -9521,7 +9522,8 @@ type RdbReadReplicaPrivateNetworkArgs struct {
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// UUID of the private network to be connected to the read replica.
 	PrivateNetworkId pulumi.StringInput `pulumi:"privateNetworkId"`
-	// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+	// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+	// limitations. (IP network).
 	ServiceIp pulumi.StringInput    `pulumi:"serviceIp"`
 	Zone      pulumi.StringPtrInput `pulumi:"zone"`
 }
@@ -9633,7 +9635,8 @@ func (o RdbReadReplicaPrivateNetworkOutput) PrivateNetworkId() pulumi.StringOutp
 	return o.ApplyT(func(v RdbReadReplicaPrivateNetwork) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
-// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+// limitations. (IP network).
 func (o RdbReadReplicaPrivateNetworkOutput) ServiceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v RdbReadReplicaPrivateNetwork) string { return v.ServiceIp }).(pulumi.StringOutput)
 }
@@ -9726,7 +9729,8 @@ func (o RdbReadReplicaPrivateNetworkPtrOutput) PrivateNetworkId() pulumi.StringP
 	}).(pulumi.StringPtrOutput)
 }
 
-// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+// limitations. (IP network).
 func (o RdbReadReplicaPrivateNetworkPtrOutput) ServiceIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RdbReadReplicaPrivateNetwork) *string {
 		if v == nil {
@@ -17767,6 +17771,175 @@ func (o GetRedisClusterPublicNetworkArrayOutput) Index(i pulumi.IntInput) GetRed
 	}).(GetRedisClusterPublicNetworkOutput)
 }
 
+type GetWebHostOfferProduct struct {
+	// The quota of databases.
+	DatabasesQuota int `pulumi:"databasesQuota"`
+	// The quota of email accounts.
+	EmailAccountsQuota int `pulumi:"emailAccountsQuota"`
+	// The quota of email storage.
+	EmailStorageQuota int `pulumi:"emailStorageQuota"`
+	// The quota of hosting storage.
+	HostingStorageQuota int `pulumi:"hostingStorageQuota"`
+	// The offer name. Only one of `name` and `offerId` should be specified.
+	Name string `pulumi:"name"`
+	// The product option.
+	Option bool `pulumi:"option"`
+	// The capacity of the memory in GB.
+	Ram int `pulumi:"ram"`
+	// If support is included.
+	SupportIncluded bool `pulumi:"supportIncluded"`
+	// The number of cores.
+	VCpu int `pulumi:"vCpu"`
+}
+
+// GetWebHostOfferProductInput is an input type that accepts GetWebHostOfferProductArgs and GetWebHostOfferProductOutput values.
+// You can construct a concrete instance of `GetWebHostOfferProductInput` via:
+//
+//	GetWebHostOfferProductArgs{...}
+type GetWebHostOfferProductInput interface {
+	pulumi.Input
+
+	ToGetWebHostOfferProductOutput() GetWebHostOfferProductOutput
+	ToGetWebHostOfferProductOutputWithContext(context.Context) GetWebHostOfferProductOutput
+}
+
+type GetWebHostOfferProductArgs struct {
+	// The quota of databases.
+	DatabasesQuota pulumi.IntInput `pulumi:"databasesQuota"`
+	// The quota of email accounts.
+	EmailAccountsQuota pulumi.IntInput `pulumi:"emailAccountsQuota"`
+	// The quota of email storage.
+	EmailStorageQuota pulumi.IntInput `pulumi:"emailStorageQuota"`
+	// The quota of hosting storage.
+	HostingStorageQuota pulumi.IntInput `pulumi:"hostingStorageQuota"`
+	// The offer name. Only one of `name` and `offerId` should be specified.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The product option.
+	Option pulumi.BoolInput `pulumi:"option"`
+	// The capacity of the memory in GB.
+	Ram pulumi.IntInput `pulumi:"ram"`
+	// If support is included.
+	SupportIncluded pulumi.BoolInput `pulumi:"supportIncluded"`
+	// The number of cores.
+	VCpu pulumi.IntInput `pulumi:"vCpu"`
+}
+
+func (GetWebHostOfferProductArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebHostOfferProduct)(nil)).Elem()
+}
+
+func (i GetWebHostOfferProductArgs) ToGetWebHostOfferProductOutput() GetWebHostOfferProductOutput {
+	return i.ToGetWebHostOfferProductOutputWithContext(context.Background())
+}
+
+func (i GetWebHostOfferProductArgs) ToGetWebHostOfferProductOutputWithContext(ctx context.Context) GetWebHostOfferProductOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebHostOfferProductOutput)
+}
+
+// GetWebHostOfferProductArrayInput is an input type that accepts GetWebHostOfferProductArray and GetWebHostOfferProductArrayOutput values.
+// You can construct a concrete instance of `GetWebHostOfferProductArrayInput` via:
+//
+//	GetWebHostOfferProductArray{ GetWebHostOfferProductArgs{...} }
+type GetWebHostOfferProductArrayInput interface {
+	pulumi.Input
+
+	ToGetWebHostOfferProductArrayOutput() GetWebHostOfferProductArrayOutput
+	ToGetWebHostOfferProductArrayOutputWithContext(context.Context) GetWebHostOfferProductArrayOutput
+}
+
+type GetWebHostOfferProductArray []GetWebHostOfferProductInput
+
+func (GetWebHostOfferProductArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWebHostOfferProduct)(nil)).Elem()
+}
+
+func (i GetWebHostOfferProductArray) ToGetWebHostOfferProductArrayOutput() GetWebHostOfferProductArrayOutput {
+	return i.ToGetWebHostOfferProductArrayOutputWithContext(context.Background())
+}
+
+func (i GetWebHostOfferProductArray) ToGetWebHostOfferProductArrayOutputWithContext(ctx context.Context) GetWebHostOfferProductArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebHostOfferProductArrayOutput)
+}
+
+type GetWebHostOfferProductOutput struct{ *pulumi.OutputState }
+
+func (GetWebHostOfferProductOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebHostOfferProduct)(nil)).Elem()
+}
+
+func (o GetWebHostOfferProductOutput) ToGetWebHostOfferProductOutput() GetWebHostOfferProductOutput {
+	return o
+}
+
+func (o GetWebHostOfferProductOutput) ToGetWebHostOfferProductOutputWithContext(ctx context.Context) GetWebHostOfferProductOutput {
+	return o
+}
+
+// The quota of databases.
+func (o GetWebHostOfferProductOutput) DatabasesQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWebHostOfferProduct) int { return v.DatabasesQuota }).(pulumi.IntOutput)
+}
+
+// The quota of email accounts.
+func (o GetWebHostOfferProductOutput) EmailAccountsQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWebHostOfferProduct) int { return v.EmailAccountsQuota }).(pulumi.IntOutput)
+}
+
+// The quota of email storage.
+func (o GetWebHostOfferProductOutput) EmailStorageQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWebHostOfferProduct) int { return v.EmailStorageQuota }).(pulumi.IntOutput)
+}
+
+// The quota of hosting storage.
+func (o GetWebHostOfferProductOutput) HostingStorageQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWebHostOfferProduct) int { return v.HostingStorageQuota }).(pulumi.IntOutput)
+}
+
+// The offer name. Only one of `name` and `offerId` should be specified.
+func (o GetWebHostOfferProductOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebHostOfferProduct) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The product option.
+func (o GetWebHostOfferProductOutput) Option() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetWebHostOfferProduct) bool { return v.Option }).(pulumi.BoolOutput)
+}
+
+// The capacity of the memory in GB.
+func (o GetWebHostOfferProductOutput) Ram() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWebHostOfferProduct) int { return v.Ram }).(pulumi.IntOutput)
+}
+
+// If support is included.
+func (o GetWebHostOfferProductOutput) SupportIncluded() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetWebHostOfferProduct) bool { return v.SupportIncluded }).(pulumi.BoolOutput)
+}
+
+// The number of cores.
+func (o GetWebHostOfferProductOutput) VCpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetWebHostOfferProduct) int { return v.VCpu }).(pulumi.IntOutput)
+}
+
+type GetWebHostOfferProductArrayOutput struct{ *pulumi.OutputState }
+
+func (GetWebHostOfferProductArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWebHostOfferProduct)(nil)).Elem()
+}
+
+func (o GetWebHostOfferProductArrayOutput) ToGetWebHostOfferProductArrayOutput() GetWebHostOfferProductArrayOutput {
+	return o
+}
+
+func (o GetWebHostOfferProductArrayOutput) ToGetWebHostOfferProductArrayOutputWithContext(ctx context.Context) GetWebHostOfferProductArrayOutput {
+	return o
+}
+
+func (o GetWebHostOfferProductArrayOutput) Index(i pulumi.IntInput) GetWebHostOfferProductOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetWebHostOfferProduct {
+		return vs[0].([]GetWebHostOfferProduct)[vs[1].(int)]
+	}).(GetWebHostOfferProductOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerIpInput)(nil)).Elem(), BaremetalServerIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerIpArrayInput)(nil)).Elem(), BaremetalServerIpArray{})
@@ -18018,6 +18191,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPrivateNetworkArrayInput)(nil)).Elem(), GetRedisClusterPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPublicNetworkInput)(nil)).Elem(), GetRedisClusterPublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPublicNetworkArrayInput)(nil)).Elem(), GetRedisClusterPublicNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWebHostOfferProductInput)(nil)).Elem(), GetWebHostOfferProductArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWebHostOfferProductArrayInput)(nil)).Elem(), GetWebHostOfferProductArray{})
 	pulumi.RegisterOutputType(BaremetalServerIpOutput{})
 	pulumi.RegisterOutputType(BaremetalServerIpArrayOutput{})
 	pulumi.RegisterOutputType(BaremetalServerOptionOutput{})
@@ -18268,4 +18443,6 @@ func init() {
 	pulumi.RegisterOutputType(GetRedisClusterPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetRedisClusterPublicNetworkOutput{})
 	pulumi.RegisterOutputType(GetRedisClusterPublicNetworkArrayOutput{})
+	pulumi.RegisterOutputType(GetWebHostOfferProductOutput{})
+	pulumi.RegisterOutputType(GetWebHostOfferProductArrayOutput{})
 }

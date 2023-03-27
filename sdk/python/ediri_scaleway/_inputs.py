@@ -3928,7 +3928,8 @@ class RdbReadReplicaPrivateNetworkArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] private_network_id: UUID of the private network to be connected to the read replica.
-        :param pulumi.Input[str] service_ip: Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+        :param pulumi.Input[str] service_ip: Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+               limitations. (IP network).
         :param pulumi.Input[str] endpoint_id: The ID of the endpoint of the read replica.
         :param pulumi.Input[str] hostname: Hostname of the endpoint. Only one of ip and hostname may be set.
         :param pulumi.Input[str] ip: IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
@@ -3966,7 +3967,8 @@ class RdbReadReplicaPrivateNetworkArgs:
     @pulumi.getter(name="serviceIp")
     def service_ip(self) -> pulumi.Input[str]:
         """
-        Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+        Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+        limitations. (IP network).
         """
         return pulumi.get(self, "service_ip")
 

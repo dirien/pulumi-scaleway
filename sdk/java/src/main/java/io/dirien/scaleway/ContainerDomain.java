@@ -94,7 +94,7 @@ import javax.annotation.Nullable;
  *             .timeout(600)
  *             .maxConcurrency(80)
  *             .privacy(&#34;public&#34;)
- *             .protocol(&#34;h2c&#34;)
+ *             .protocol(&#34;http1&#34;)
  *             .deploy(true)
  *             .build());
  * 

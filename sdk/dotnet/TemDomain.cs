@@ -42,6 +42,12 @@ namespace ediri.Scaleway
     public partial class TemDomain : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Accept the Scaleway Terms of Service
+        /// </summary>
+        [Output("acceptTos")]
+        public Output<bool> AcceptTos { get; private set; } = null!;
+
+        /// <summary>
         /// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
         /// </summary>
         [Output("createdAt")]
@@ -116,7 +122,7 @@ namespace ediri.Scaleway
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public TemDomain(string name, TemDomainArgs? args = null, CustomResourceOptions? options = null)
+        public TemDomain(string name, TemDomainArgs args, CustomResourceOptions? options = null)
             : base("scaleway:index/temDomain:TemDomain", name, args ?? new TemDomainArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -156,6 +162,12 @@ namespace ediri.Scaleway
     public sealed class TemDomainArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Accept the Scaleway Terms of Service
+        /// </summary>
+        [Input("acceptTos", required: true)]
+        public Input<bool> AcceptTos { get; set; } = null!;
+
+        /// <summary>
         /// The domain name, must not be used in another Transactional Email Domain.
         /// &gt; **Important** Updates to `name` will recreate the domain.
         /// </summary>
@@ -182,6 +194,12 @@ namespace ediri.Scaleway
 
     public sealed class TemDomainState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Accept the Scaleway Terms of Service
+        /// </summary>
+        [Input("acceptTos")]
+        public Input<bool>? AcceptTos { get; set; }
+
         /// <summary>
         /// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
         /// </summary>

@@ -10,7 +10,6 @@ import com.pulumi.core.internal.Codegen;
 import io.dirien.scaleway.SecretVersionArgs;
 import io.dirien.scaleway.Utilities;
 import io.dirien.scaleway.inputs.SecretVersionState;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -90,14 +89,14 @@ public class SecretVersion extends com.pulumi.resources.CustomResource {
      * The revision for this Secret Version.
      * 
      */
-    @Export(name="revision", refs={Integer.class}, tree="[0]")
-    private Output<Integer> revision;
+    @Export(name="revision", refs={String.class}, tree="[0]")
+    private Output<String> revision;
 
     /**
      * @return The revision for this Secret Version.
      * 
      */
-    public Output<Integer> revision() {
+    public Output<String> revision() {
         return this.revision;
     }
     /**

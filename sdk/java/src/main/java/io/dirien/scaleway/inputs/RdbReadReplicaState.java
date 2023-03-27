@@ -63,14 +63,16 @@ public final class RdbReadReplicaState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * `region`) The region in which the Database read replica should be created.
+     * `region`) The region
+     * in which the Database read replica should be created.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return `region`) The region in which the Database read replica should be created.
+     * @return `region`) The region
+     * in which the Database read replica should be created.
      * 
      */
     public Optional<Output<String>> region() {
@@ -168,7 +170,8 @@ public final class RdbReadReplicaState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param region `region`) The region in which the Database read replica should be created.
+         * @param region `region`) The region
+         * in which the Database read replica should be created.
          * 
          * @return builder
          * 
@@ -179,7 +182,8 @@ public final class RdbReadReplicaState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param region `region`) The region in which the Database read replica should be created.
+         * @param region `region`) The region
+         * in which the Database read replica should be created.
          * 
          * @return builder
          * 

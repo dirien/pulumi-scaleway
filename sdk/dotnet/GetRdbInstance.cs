@@ -13,55 +13,13 @@ namespace ediri.Scaleway
     public static class GetRdbInstance
     {
         /// <summary>
-        /// Gets information about an RDB instance.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myInstance = Scaleway.GetRdbInstance.Invoke(new()
-        ///     {
-        ///         InstanceId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
         /// </summary>
         public static Task<GetRdbInstanceResult> InvokeAsync(GetRdbInstanceArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRdbInstanceResult>("scaleway:index/getRdbInstance:getRdbInstance", args ?? new GetRdbInstanceArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about an RDB instance.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myInstance = Scaleway.GetRdbInstance.Invoke(new()
-        ///     {
-        ///         InstanceId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
         /// </summary>
         public static Output<GetRdbInstanceResult> Invoke(GetRdbInstanceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRdbInstanceResult>("scaleway:index/getRdbInstance:getRdbInstance", args ?? new GetRdbInstanceInvokeArgs(), options.WithDefaults());

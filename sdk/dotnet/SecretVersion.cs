@@ -51,7 +51,7 @@ namespace ediri.Scaleway
         /// The revision for this Secret Version.
         /// </summary>
         [Output("revision")]
-        public Output<int> Revision { get; private set; } = null!;
+        public Output<string> Revision { get; private set; } = null!;
 
         /// <summary>
         /// The Secret ID associated wit the secret version.
@@ -204,7 +204,7 @@ namespace ediri.Scaleway
         /// The revision for this Secret Version.
         /// </summary>
         [Input("revision")]
-        public Input<int>? Revision { get; set; }
+        public Input<string>? Revision { get; set; }
 
         /// <summary>
         /// The Secret ID associated wit the secret version.

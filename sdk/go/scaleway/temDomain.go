@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -51,6 +52,8 @@ import (
 type TemDomain struct {
 	pulumi.CustomResourceState
 
+	// Accept the Scaleway Terms of Service
+	AcceptTos pulumi.BoolOutput `pulumi:"acceptTos"`
 	// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The DKIM public key, as should be recorded in the DNS zone.
@@ -80,9 +83,12 @@ type TemDomain struct {
 func NewTemDomain(ctx *pulumi.Context,
 	name string, args *TemDomainArgs, opts ...pulumi.ResourceOption) (*TemDomain, error) {
 	if args == nil {
-		args = &TemDomainArgs{}
+		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.AcceptTos == nil {
+		return nil, errors.New("invalid value for required argument 'AcceptTos'")
+	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource TemDomain
 	err := ctx.RegisterResource("scaleway:index/temDomain:TemDomain", name, args, &resource, opts...)
@@ -106,6 +112,8 @@ func GetTemDomain(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering TemDomain resources.
 type temDomainState struct {
+	// Accept the Scaleway Terms of Service
+	AcceptTos *bool `pulumi:"acceptTos"`
 	// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
 	CreatedAt *string `pulumi:"createdAt"`
 	// The DKIM public key, as should be recorded in the DNS zone.
@@ -132,6 +140,8 @@ type temDomainState struct {
 }
 
 type TemDomainState struct {
+	// Accept the Scaleway Terms of Service
+	AcceptTos pulumi.BoolPtrInput
 	// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
 	CreatedAt pulumi.StringPtrInput
 	// The DKIM public key, as should be recorded in the DNS zone.
@@ -162,6 +172,8 @@ func (TemDomainState) ElementType() reflect.Type {
 }
 
 type temDomainArgs struct {
+	// Accept the Scaleway Terms of Service
+	AcceptTos bool `pulumi:"acceptTos"`
 	// The domain name, must not be used in another Transactional Email Domain.
 	// > **Important** Updates to `name` will recreate the domain.
 	Name *string `pulumi:"name"`
@@ -173,6 +185,8 @@ type temDomainArgs struct {
 
 // The set of arguments for constructing a TemDomain resource.
 type TemDomainArgs struct {
+	// Accept the Scaleway Terms of Service
+	AcceptTos pulumi.BoolInput
 	// The domain name, must not be used in another Transactional Email Domain.
 	// > **Important** Updates to `name` will recreate the domain.
 	Name pulumi.StringPtrInput
@@ -267,6 +281,11 @@ func (o TemDomainOutput) ToTemDomainOutput() TemDomainOutput {
 
 func (o TemDomainOutput) ToTemDomainOutputWithContext(ctx context.Context) TemDomainOutput {
 	return o
+}
+
+// Accept the Scaleway Terms of Service
+func (o TemDomainOutput) AcceptTos() pulumi.BoolOutput {
+	return o.ApplyT(func(v *TemDomain) pulumi.BoolOutput { return v.AcceptTos }).(pulumi.BoolOutput)
 }
 
 // The date and time of the Transaction Email Domain's creation (RFC 3339 format).

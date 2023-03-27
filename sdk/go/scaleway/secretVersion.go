@@ -33,7 +33,7 @@ type SecretVersion struct {
 	// in which the resource exists.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The revision for this Secret Version.
-	Revision pulumi.IntOutput `pulumi:"revision"`
+	Revision pulumi.StringOutput `pulumi:"revision"`
 	// The Secret ID associated wit the secret version.
 	SecretId pulumi.StringOutput `pulumi:"secretId"`
 	// The status of the Secret Version.
@@ -95,7 +95,7 @@ type secretVersionState struct {
 	// in which the resource exists.
 	Region *string `pulumi:"region"`
 	// The revision for this Secret Version.
-	Revision *int `pulumi:"revision"`
+	Revision *string `pulumi:"revision"`
 	// The Secret ID associated wit the secret version.
 	SecretId *string `pulumi:"secretId"`
 	// The status of the Secret Version.
@@ -115,7 +115,7 @@ type SecretVersionState struct {
 	// in which the resource exists.
 	Region pulumi.StringPtrInput
 	// The revision for this Secret Version.
-	Revision pulumi.IntPtrInput
+	Revision pulumi.StringPtrInput
 	// The Secret ID associated wit the secret version.
 	SecretId pulumi.StringPtrInput
 	// The status of the Secret Version.
@@ -262,8 +262,8 @@ func (o SecretVersionOutput) Region() pulumi.StringOutput {
 }
 
 // The revision for this Secret Version.
-func (o SecretVersionOutput) Revision() pulumi.IntOutput {
-	return o.ApplyT(func(v *SecretVersion) pulumi.IntOutput { return v.Revision }).(pulumi.IntOutput)
+func (o SecretVersionOutput) Revision() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretVersion) pulumi.StringOutput { return v.Revision }).(pulumi.StringOutput)
 }
 
 // The Secret ID associated wit the secret version.

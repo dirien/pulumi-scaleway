@@ -78,6 +78,8 @@ from .get_rdb_privilege import *
 from .get_redis_cluster import *
 from .get_registry_image import *
 from .get_registry_namespace import *
+from .get_secret import *
+from .get_secret_version import *
 from .get_tem_domain import *
 from .get_vpc_gateway_network import *
 from .get_vpc_private_network import *
@@ -86,6 +88,7 @@ from .get_vpc_public_gateway_dhcp import *
 from .get_vpc_public_gateway_dhcp_reservation import *
 from .get_vpc_public_gateway_ip import *
 from .get_vpc_public_gateway_pat_rule import *
+from .get_web_host_offer import *
 from .iam_api_key import *
 from .iam_application import *
 from .iam_group import *

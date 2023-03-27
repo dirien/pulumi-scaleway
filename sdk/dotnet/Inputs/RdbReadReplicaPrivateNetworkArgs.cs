@@ -50,7 +50,8 @@ namespace ediri.Scaleway.Inputs
         public Input<string> PrivateNetworkId { get; set; } = null!;
 
         /// <summary>
-        /// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet limitations. (IP network).
+        /// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
+        /// limitations. (IP network).
         /// </summary>
         [Input("serviceIp", required: true)]
         public Input<string> ServiceIp { get; set; } = null!;

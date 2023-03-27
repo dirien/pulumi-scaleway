@@ -5,6 +5,7 @@ package io.dirien.scaleway;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,6 +15,21 @@ import javax.annotation.Nullable;
 public final class TemDomainArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final TemDomainArgs Empty = new TemDomainArgs();
+
+    /**
+     * Accept the Scaleway Terms of Service
+     * 
+     */
+    @Import(name="acceptTos", required=true)
+    private Output<Boolean> acceptTos;
+
+    /**
+     * @return Accept the Scaleway Terms of Service
+     * 
+     */
+    public Output<Boolean> acceptTos() {
+        return this.acceptTos;
+    }
 
     /**
      * The domain name, must not be used in another Transactional Email Domain.
@@ -65,6 +81,7 @@ public final class TemDomainArgs extends com.pulumi.resources.ResourceArgs {
     private TemDomainArgs() {}
 
     private TemDomainArgs(TemDomainArgs $) {
+        this.acceptTos = $.acceptTos;
         this.name = $.name;
         this.projectId = $.projectId;
         this.region = $.region;
@@ -86,6 +103,27 @@ public final class TemDomainArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(TemDomainArgs defaults) {
             $ = new TemDomainArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param acceptTos Accept the Scaleway Terms of Service
+         * 
+         * @return builder
+         * 
+         */
+        public Builder acceptTos(Output<Boolean> acceptTos) {
+            $.acceptTos = acceptTos;
+            return this;
+        }
+
+        /**
+         * @param acceptTos Accept the Scaleway Terms of Service
+         * 
+         * @return builder
+         * 
+         */
+        public Builder acceptTos(Boolean acceptTos) {
+            return acceptTos(Output.of(acceptTos));
         }
 
         /**
@@ -154,6 +192,7 @@ public final class TemDomainArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public TemDomainArgs build() {
+            $.acceptTos = Objects.requireNonNull($.acceptTos, "expected parameter 'acceptTos' to be non-null");
             return $;
         }
     }

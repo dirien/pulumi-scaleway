@@ -122,7 +122,8 @@ type RdbReadReplica struct {
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// Create an endpoint in a private network.
 	PrivateNetwork RdbReadReplicaPrivateNetworkPtrOutput `pulumi:"privateNetwork"`
-	// `region`) The region in which the Database read replica should be created.
+	// `region`) The region
+	// in which the Database read replica should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
 }
 
@@ -165,7 +166,8 @@ type rdbReadReplicaState struct {
 	InstanceId *string `pulumi:"instanceId"`
 	// Create an endpoint in a private network.
 	PrivateNetwork *RdbReadReplicaPrivateNetwork `pulumi:"privateNetwork"`
-	// `region`) The region in which the Database read replica should be created.
+	// `region`) The region
+	// in which the Database read replica should be created.
 	Region *string `pulumi:"region"`
 }
 
@@ -176,7 +178,8 @@ type RdbReadReplicaState struct {
 	InstanceId pulumi.StringPtrInput
 	// Create an endpoint in a private network.
 	PrivateNetwork RdbReadReplicaPrivateNetworkPtrInput
-	// `region`) The region in which the Database read replica should be created.
+	// `region`) The region
+	// in which the Database read replica should be created.
 	Region pulumi.StringPtrInput
 }
 
@@ -191,7 +194,8 @@ type rdbReadReplicaArgs struct {
 	InstanceId string `pulumi:"instanceId"`
 	// Create an endpoint in a private network.
 	PrivateNetwork *RdbReadReplicaPrivateNetwork `pulumi:"privateNetwork"`
-	// `region`) The region in which the Database read replica should be created.
+	// `region`) The region
+	// in which the Database read replica should be created.
 	Region *string `pulumi:"region"`
 }
 
@@ -203,7 +207,8 @@ type RdbReadReplicaArgs struct {
 	InstanceId pulumi.StringInput
 	// Create an endpoint in a private network.
 	PrivateNetwork RdbReadReplicaPrivateNetworkPtrInput
-	// `region`) The region in which the Database read replica should be created.
+	// `region`) The region
+	// in which the Database read replica should be created.
 	Region pulumi.StringPtrInput
 }
 
@@ -309,7 +314,8 @@ func (o RdbReadReplicaOutput) PrivateNetwork() RdbReadReplicaPrivateNetworkPtrOu
 	return o.ApplyT(func(v *RdbReadReplica) RdbReadReplicaPrivateNetworkPtrOutput { return v.PrivateNetwork }).(RdbReadReplicaPrivateNetworkPtrOutput)
 }
 
-// `region`) The region in which the Database read replica should be created.
+// `region`) The region
+// in which the Database read replica should be created.
 func (o RdbReadReplicaOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *RdbReadReplica) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

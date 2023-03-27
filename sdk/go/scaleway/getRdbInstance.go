@@ -10,33 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about an RDB instance.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.LookupRdbInstance(ctx, &scaleway.LookupRdbInstanceArgs{
-//				InstanceId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
+// Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
 func LookupRdbInstance(ctx *pulumi.Context, args *LookupRdbInstanceArgs, opts ...pulumi.InvokeOption) (*LookupRdbInstanceResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRdbInstanceResult

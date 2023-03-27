@@ -90,7 +90,7 @@ class _SecretVersionState:
                  data: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 revision: Optional[pulumi.Input[int]] = None,
+                 revision: Optional[pulumi.Input[str]] = None,
                  secret_id: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None):
@@ -101,7 +101,7 @@ class _SecretVersionState:
         :param pulumi.Input[str] description: Description of the secret version (e.g. `my-new-description`).
         :param pulumi.Input[str] region: `region`) The region
                in which the resource exists.
-        :param pulumi.Input[int] revision: The revision for this Secret Version.
+        :param pulumi.Input[str] revision: The revision for this Secret Version.
         :param pulumi.Input[str] secret_id: The Secret ID associated wit the secret version.
         :param pulumi.Input[str] status: The status of the Secret Version.
         :param pulumi.Input[str] updated_at: Date and time of secret version's last update (RFC 3339 format).
@@ -174,14 +174,14 @@ class _SecretVersionState:
 
     @property
     @pulumi.getter
-    def revision(self) -> Optional[pulumi.Input[int]]:
+    def revision(self) -> Optional[pulumi.Input[str]]:
         """
         The revision for this Secret Version.
         """
         return pulumi.get(self, "revision")
 
     @revision.setter
-    def revision(self, value: Optional[pulumi.Input[int]]):
+    def revision(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "revision", value)
 
     @property
@@ -319,7 +319,7 @@ class SecretVersion(pulumi.CustomResource):
             data: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
-            revision: Optional[pulumi.Input[int]] = None,
+            revision: Optional[pulumi.Input[str]] = None,
             secret_id: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             updated_at: Optional[pulumi.Input[str]] = None) -> 'SecretVersion':
@@ -335,7 +335,7 @@ class SecretVersion(pulumi.CustomResource):
         :param pulumi.Input[str] description: Description of the secret version (e.g. `my-new-description`).
         :param pulumi.Input[str] region: `region`) The region
                in which the resource exists.
-        :param pulumi.Input[int] revision: The revision for this Secret Version.
+        :param pulumi.Input[str] revision: The revision for this Secret Version.
         :param pulumi.Input[str] secret_id: The Secret ID associated wit the secret version.
         :param pulumi.Input[str] status: The status of the Secret Version.
         :param pulumi.Input[str] updated_at: Date and time of secret version's last update (RFC 3339 format).
@@ -389,7 +389,7 @@ class SecretVersion(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def revision(self) -> pulumi.Output[int]:
+    def revision(self) -> pulumi.Output[str]:
         """
         The revision for this Secret Version.
         """

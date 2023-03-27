@@ -61,7 +61,7 @@ export class SecretVersion extends pulumi.CustomResource {
     /**
      * The revision for this Secret Version.
      */
-    public /*out*/ readonly revision!: pulumi.Output<number>;
+    public /*out*/ readonly revision!: pulumi.Output<string>;
     /**
      * The Secret ID associated wit the secret version.
      */
@@ -144,7 +144,7 @@ export interface SecretVersionState {
     /**
      * The revision for this Secret Version.
      */
-    revision?: pulumi.Input<number>;
+    revision?: pulumi.Input<string>;
     /**
      * The Secret ID associated wit the secret version.
      */

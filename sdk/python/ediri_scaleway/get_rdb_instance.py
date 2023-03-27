@@ -275,16 +275,7 @@ def get_rdb_instance(instance_id: Optional[str] = None,
                      region: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRdbInstanceResult:
     """
-    Gets information about an RDB instance.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_instance = scaleway.get_rdb_instance(instance_id="11111111-1111-1111-1111-111111111111")
-    ```
+    Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
 
 
     :param str instance_id: The RDB instance ID.
@@ -335,16 +326,7 @@ def get_rdb_instance_output(instance_id: Optional[pulumi.Input[Optional[str]]] =
                             region: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRdbInstanceResult]:
     """
-    Gets information about an RDB instance.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-
-    my_instance = scaleway.get_rdb_instance(instance_id="11111111-1111-1111-1111-111111111111")
-    ```
+    Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
 
 
     :param str instance_id: The RDB instance ID.
