@@ -4321,8 +4321,20 @@
             }
         },
         "scaleway:index/accountSshKey:AccountSshKey": {
-            "description": "Manages user SSH keys to access servers provisioned on Scaleway.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst main = new scaleway.AccountSshKey(\"main\", {publicKey: \"\u003cYOUR-PUBLIC-SSH-KEY\u003e\"});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain = scaleway.AccountSshKey(\"main\", public_key=\"\u003cYOUR-PUBLIC-SSH-KEY\u003e\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.AccountSshKey(\"main\", new()\n    {\n        PublicKey = \"\u003cYOUR-PUBLIC-SSH-KEY\u003e\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewAccountSshKey(ctx, \"main\", \u0026scaleway.AccountSshKeyArgs{\n\t\t\tPublicKey: pulumi.String(\"\u003cYOUR-PUBLIC-SSH-KEY\u003e\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.AccountSshKey;\nimport com.pulumi.scaleway.AccountSshKeyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new AccountSshKey(\"main\", AccountSshKeyArgs.builder()        \n            .publicKey(\"\u003cYOUR-PUBLIC-SSH-KEY\u003e\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:AccountSshKey\n    properties:\n      publicKey: \u003cYOUR-PUBLIC-SSH-KEY\u003e\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSSH keys can be imported using the `id`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/accountSshKey:AccountSshKey main 11111111-1111-1111-1111-111111111111\n```\n\n ",
+            "description": "Manages user SSH keys to access servers provisioned on Scaleway.\n\n\u003e **Important:**  The resource `scaleway.AccountSshKey` has been deprecated and will no longer be supported. Instead, use `scaleway.IamSshKey`.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst main = new scaleway.AccountSshKey(\"main\", {publicKey: \"\u003cYOUR-PUBLIC-SSH-KEY\u003e\"});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain = scaleway.AccountSshKey(\"main\", public_key=\"\u003cYOUR-PUBLIC-SSH-KEY\u003e\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.AccountSshKey(\"main\", new()\n    {\n        PublicKey = \"\u003cYOUR-PUBLIC-SSH-KEY\u003e\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewAccountSshKey(ctx, \"main\", \u0026scaleway.AccountSshKeyArgs{\n\t\t\tPublicKey: pulumi.String(\"\u003cYOUR-PUBLIC-SSH-KEY\u003e\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.AccountSshKey;\nimport com.pulumi.scaleway.AccountSshKeyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new AccountSshKey(\"main\", AccountSshKeyArgs.builder()        \n            .publicKey(\"\u003cYOUR-PUBLIC-SSH-KEY\u003e\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:AccountSshKey\n    properties:\n      publicKey: \u003cYOUR-PUBLIC-SSH-KEY\u003e\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nSSH keys can be imported using the `id`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/accountSshKey:AccountSshKey main 11111111-1111-1111-1111-111111111111\n```\n\n ",
             "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "The date and time of the creation of the iam SSH Key\n"
+                },
+                "disabled": {
+                    "type": "boolean",
+                    "description": "The SSH key status\n"
+                },
+                "fingerprint": {
+                    "type": "string",
+                    "description": "The fingerprint of the iam SSH key\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "The name of the SSH key.\n"
@@ -4338,15 +4350,26 @@
                 "publicKey": {
                     "type": "string",
                     "description": "The public SSH key to be added.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "The date and time of the last update of the iam SSH Key\n"
                 }
             },
             "required": [
+                "createdAt",
+                "fingerprint",
                 "name",
                 "organizationId",
                 "projectId",
-                "publicKey"
+                "publicKey",
+                "updatedAt"
             ],
             "inputProperties": {
+                "disabled": {
+                    "type": "boolean",
+                    "description": "The SSH key status\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "The name of the SSH key.\n"
@@ -4368,6 +4391,18 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering AccountSshKey resources.\n",
                 "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The date and time of the creation of the iam SSH Key\n"
+                    },
+                    "disabled": {
+                        "type": "boolean",
+                        "description": "The SSH key status\n"
+                    },
+                    "fingerprint": {
+                        "type": "string",
+                        "description": "The fingerprint of the iam SSH key\n"
+                    },
                     "name": {
                         "type": "string",
                         "description": "The name of the SSH key.\n"
@@ -4385,6 +4420,10 @@
                         "type": "string",
                         "description": "The public SSH key to be added.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "The date and time of the last update of the iam SSH Key\n"
                     }
                 },
                 "type": "object"
@@ -6166,6 +6205,7 @@
                 "macAddress",
                 "organizationId",
                 "projectId",
+                "reverse",
                 "updatedAt",
                 "zone"
             ],
@@ -11437,7 +11477,7 @@
                 },
                 "natsCredentials": {
                     "$ref": "#/types/scaleway:index/MnqCredentialNatsCredentials:MnqCredentialNatsCredentials",
-                    "description": "Credentials file used to connect to the NATS service. Only one of `nats_credentials` and `sqs_sns_credentials` may be set.\n"
+                    "description": "Credentials file used to connect to the NATS service.\n"
                 },
                 "protocol": {
                     "type": "string",
@@ -11449,7 +11489,7 @@
                 },
                 "sqsSnsCredentials": {
                     "$ref": "#/types/scaleway:index/MnqCredentialSqsSnsCredentials:MnqCredentialSqsSnsCredentials",
-                    "description": "Credential used to connect to the SQS/SNS service. Only one of `nats_credentials`\nand `sqs_sns_credentials` may be set.\n"
+                    "description": "Credential used to connect to the SQS/SNS service.\n"
                 }
             },
             "required": [
@@ -11471,7 +11511,7 @@
                 },
                 "natsCredentials": {
                     "$ref": "#/types/scaleway:index/MnqCredentialNatsCredentials:MnqCredentialNatsCredentials",
-                    "description": "Credentials file used to connect to the NATS service. Only one of `nats_credentials` and `sqs_sns_credentials` may be set.\n"
+                    "description": "Credentials file used to connect to the NATS service.\n"
                 },
                 "region": {
                     "type": "string",
@@ -11480,7 +11520,7 @@
                 },
                 "sqsSnsCredentials": {
                     "$ref": "#/types/scaleway:index/MnqCredentialSqsSnsCredentials:MnqCredentialSqsSnsCredentials",
-                    "description": "Credential used to connect to the SQS/SNS service. Only one of `nats_credentials`\nand `sqs_sns_credentials` may be set.\n"
+                    "description": "Credential used to connect to the SQS/SNS service.\n"
                 }
             },
             "requiredInputs": [
@@ -11500,7 +11540,7 @@
                     },
                     "natsCredentials": {
                         "$ref": "#/types/scaleway:index/MnqCredentialNatsCredentials:MnqCredentialNatsCredentials",
-                        "description": "Credentials file used to connect to the NATS service. Only one of `nats_credentials` and `sqs_sns_credentials` may be set.\n"
+                        "description": "Credentials file used to connect to the NATS service.\n"
                     },
                     "protocol": {
                         "type": "string",
@@ -11513,7 +11553,7 @@
                     },
                     "sqsSnsCredentials": {
                         "$ref": "#/types/scaleway:index/MnqCredentialSqsSnsCredentials:MnqCredentialSqsSnsCredentials",
-                        "description": "Credential used to connect to the SQS/SNS service. Only one of `nats_credentials`\nand `sqs_sns_credentials` may be set.\n"
+                        "description": "Credential used to connect to the SQS/SNS service.\n"
                     }
                 },
                 "type": "object"
@@ -15186,6 +15226,15 @@
             "outputs": {
                 "description": "A collection of values returned by getAccountSshKey.\n",
                 "properties": {
+                    "createdAt": {
+                        "type": "string"
+                    },
+                    "disabled": {
+                        "type": "boolean"
+                    },
+                    "fingerprint": {
+                        "type": "string"
+                    },
                     "id": {
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
@@ -15206,13 +15255,20 @@
                     },
                     "sshKeyId": {
                         "type": "string"
+                    },
+                    "updatedAt": {
+                        "type": "string"
                     }
                 },
                 "type": "object",
                 "required": [
+                    "createdAt",
+                    "disabled",
+                    "fingerprint",
                     "organizationId",
                     "projectId",
                     "publicKey",
+                    "updatedAt",
                     "id"
                 ]
             }

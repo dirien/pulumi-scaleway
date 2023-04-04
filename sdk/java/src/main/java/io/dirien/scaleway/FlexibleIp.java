@@ -241,14 +241,14 @@ public class FlexibleIp extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="reverse", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> reverse;
+    private Output<String> reverse;
 
     /**
      * @return The reverse domain associated with this flexible IP.
      * 
      */
-    public Output<Optional<String>> reverse() {
-        return Codegen.optional(this.reverse);
+    public Output<String> reverse() {
+        return this.reverse;
     }
     /**
      * The ID of the associated server

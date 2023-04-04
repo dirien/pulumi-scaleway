@@ -10,11 +10,15 @@ import com.pulumi.core.internal.Codegen;
 import io.dirien.scaleway.AccountSshKeyArgs;
 import io.dirien.scaleway.Utilities;
 import io.dirien.scaleway.inputs.AccountSshKeyState;
+import java.lang.Boolean;
 import java.lang.String;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
  * Manages user SSH keys to access servers provisioned on Scaleway.
+ * 
+ * &gt; **Important:**  The resource `scaleway.AccountSshKey` has been deprecated and will no longer be supported. Instead, use `scaleway.IamSshKey`.
  * 
  * ## Example Usage
  * ```java
@@ -57,6 +61,48 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="scaleway:index/accountSshKey:AccountSshKey")
 public class AccountSshKey extends com.pulumi.resources.CustomResource {
+    /**
+     * The date and time of the creation of the iam SSH Key
+     * 
+     */
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
+    private Output<String> createdAt;
+
+    /**
+     * @return The date and time of the creation of the iam SSH Key
+     * 
+     */
+    public Output<String> createdAt() {
+        return this.createdAt;
+    }
+    /**
+     * The SSH key status
+     * 
+     */
+    @Export(name="disabled", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> disabled;
+
+    /**
+     * @return The SSH key status
+     * 
+     */
+    public Output<Optional<Boolean>> disabled() {
+        return Codegen.optional(this.disabled);
+    }
+    /**
+     * The fingerprint of the iam SSH key
+     * 
+     */
+    @Export(name="fingerprint", refs={String.class}, tree="[0]")
+    private Output<String> fingerprint;
+
+    /**
+     * @return The fingerprint of the iam SSH key
+     * 
+     */
+    public Output<String> fingerprint() {
+        return this.fingerprint;
+    }
     /**
      * The name of the SSH key.
      * 
@@ -112,6 +158,20 @@ public class AccountSshKey extends com.pulumi.resources.CustomResource {
      */
     public Output<String> publicKey() {
         return this.publicKey;
+    }
+    /**
+     * The date and time of the last update of the iam SSH Key
+     * 
+     */
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
+    private Output<String> updatedAt;
+
+    /**
+     * @return The date and time of the last update of the iam SSH Key
+     * 
+     */
+    public Output<String> updatedAt() {
+        return this.updatedAt;
     }
 
     /**
