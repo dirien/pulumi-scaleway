@@ -17,14 +17,16 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
     public static final TemDomainState Empty = new TemDomainState();
 
     /**
-     * Accept the Scaleway Terms of Service
+     * Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+     * &gt; **Important:**  This attribute must be set to `true`.
      * 
      */
     @Import(name="acceptTos")
     private @Nullable Output<Boolean> acceptTos;
 
     /**
-     * @return Accept the Scaleway Terms of Service
+     * @return Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+     * &gt; **Important:**  This attribute must be set to `true`.
      * 
      */
     public Optional<Output<Boolean>> acceptTos() {
@@ -93,7 +95,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * The domain name, must not be used in another Transactional Email Domain.
-     * &gt; **Important** Updates to `name` will recreate the domain.
+     * &gt; **Important:** Updates to `name` will recreate the domain.
      * 
      */
     @Import(name="name")
@@ -101,7 +103,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return The domain name, must not be used in another Transactional Email Domain.
-     * &gt; **Important** Updates to `name` will recreate the domain.
+     * &gt; **Important:** Updates to `name` will recreate the domain.
      * 
      */
     public Optional<Output<String>> name() {
@@ -234,7 +236,8 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param acceptTos Accept the Scaleway Terms of Service
+         * @param acceptTos Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+         * &gt; **Important:**  This attribute must be set to `true`.
          * 
          * @return builder
          * 
@@ -245,7 +248,8 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param acceptTos Accept the Scaleway Terms of Service
+         * @param acceptTos Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+         * &gt; **Important:**  This attribute must be set to `true`.
          * 
          * @return builder
          * 
@@ -340,7 +344,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param name The domain name, must not be used in another Transactional Email Domain.
-         * &gt; **Important** Updates to `name` will recreate the domain.
+         * &gt; **Important:** Updates to `name` will recreate the domain.
          * 
          * @return builder
          * 
@@ -352,7 +356,7 @@ public final class TemDomainState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param name The domain name, must not be used in another Transactional Email Domain.
-         * &gt; **Important** Updates to `name` will recreate the domain.
+         * &gt; **Important:** Updates to `name` will recreate the domain.
          * 
          * @return builder
          * 

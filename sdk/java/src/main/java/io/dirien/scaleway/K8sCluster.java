@@ -235,6 +235,20 @@ public class K8sCluster extends com.pulumi.resources.CustomResource {
         return this.organizationId;
     }
     /**
+     * The ID of the private network of the cluster.
+     * 
+     */
+    @Export(name="privateNetworkId", refs={String.class}, tree="[0]")
+    private Output<String> privateNetworkId;
+
+    /**
+     * @return The ID of the private network of the cluster.
+     * 
+     */
+    public Output<String> privateNetworkId() {
+        return this.privateNetworkId;
+    }
+    /**
      * `project_id`) The ID of the project the cluster is associated with.
      * 
      */

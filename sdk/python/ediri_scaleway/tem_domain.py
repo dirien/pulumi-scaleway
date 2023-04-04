@@ -20,9 +20,10 @@ class TemDomainArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a TemDomain resource.
-        :param pulumi.Input[bool] accept_tos: Accept the Scaleway Terms of Service
+        :param pulumi.Input[bool] accept_tos: Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+               > **Important:**  This attribute must be set to `true`.
         :param pulumi.Input[str] name: The domain name, must not be used in another Transactional Email Domain.
-               > **Important** Updates to `name` will recreate the domain.
+               > **Important:** Updates to `name` will recreate the domain.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the domain should be created.
         """
@@ -38,7 +39,8 @@ class TemDomainArgs:
     @pulumi.getter(name="acceptTos")
     def accept_tos(self) -> pulumi.Input[bool]:
         """
-        Accept the Scaleway Terms of Service
+        Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+        > **Important:**  This attribute must be set to `true`.
         """
         return pulumi.get(self, "accept_tos")
 
@@ -51,7 +53,7 @@ class TemDomainArgs:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         The domain name, must not be used in another Transactional Email Domain.
-        > **Important** Updates to `name` will recreate the domain.
+        > **Important:** Updates to `name` will recreate the domain.
         """
         return pulumi.get(self, "name")
 
@@ -101,13 +103,14 @@ class _TemDomainState:
                  status: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering TemDomain resources.
-        :param pulumi.Input[bool] accept_tos: Accept the Scaleway Terms of Service
+        :param pulumi.Input[bool] accept_tos: Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+               > **Important:**  This attribute must be set to `true`.
         :param pulumi.Input[str] created_at: The date and time of the Transaction Email Domain's creation (RFC 3339 format).
         :param pulumi.Input[str] dkim_config: The DKIM public key, as should be recorded in the DNS zone.
         :param pulumi.Input[str] last_error: The error message if the last check failed.
         :param pulumi.Input[str] last_valid_at: The date and time the domain was last found to be valid (RFC 3339 format).
         :param pulumi.Input[str] name: The domain name, must not be used in another Transactional Email Domain.
-               > **Important** Updates to `name` will recreate the domain.
+               > **Important:** Updates to `name` will recreate the domain.
         :param pulumi.Input[str] next_check_at: The date and time of the next scheduled check (RFC 3339 format).
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the domain should be created.
@@ -144,7 +147,8 @@ class _TemDomainState:
     @pulumi.getter(name="acceptTos")
     def accept_tos(self) -> Optional[pulumi.Input[bool]]:
         """
-        Accept the Scaleway Terms of Service
+        Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+        > **Important:**  This attribute must be set to `true`.
         """
         return pulumi.get(self, "accept_tos")
 
@@ -205,7 +209,7 @@ class _TemDomainState:
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         The domain name, must not be used in another Transactional Email Domain.
-        > **Important** Updates to `name` will recreate the domain.
+        > **Important:** Updates to `name` will recreate the domain.
         """
         return pulumi.get(self, "name")
 
@@ -308,7 +312,7 @@ class TemDomain(pulumi.CustomResource):
         import pulumi
         import ediri_scaleway as scaleway
 
-        main = scaleway.TemDomain("main")
+        main = scaleway.TemDomain("main", accept_tos=True)
         ```
 
         ## Import
@@ -321,9 +325,10 @@ class TemDomain(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] accept_tos: Accept the Scaleway Terms of Service
+        :param pulumi.Input[bool] accept_tos: Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+               > **Important:**  This attribute must be set to `true`.
         :param pulumi.Input[str] name: The domain name, must not be used in another Transactional Email Domain.
-               > **Important** Updates to `name` will recreate the domain.
+               > **Important:** Updates to `name` will recreate the domain.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the domain should be created.
         """
@@ -345,7 +350,7 @@ class TemDomain(pulumi.CustomResource):
         import pulumi
         import ediri_scaleway as scaleway
 
-        main = scaleway.TemDomain("main")
+        main = scaleway.TemDomain("main", accept_tos=True)
         ```
 
         ## Import
@@ -427,13 +432,14 @@ class TemDomain(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] accept_tos: Accept the Scaleway Terms of Service
+        :param pulumi.Input[bool] accept_tos: Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+               > **Important:**  This attribute must be set to `true`.
         :param pulumi.Input[str] created_at: The date and time of the Transaction Email Domain's creation (RFC 3339 format).
         :param pulumi.Input[str] dkim_config: The DKIM public key, as should be recorded in the DNS zone.
         :param pulumi.Input[str] last_error: The error message if the last check failed.
         :param pulumi.Input[str] last_valid_at: The date and time the domain was last found to be valid (RFC 3339 format).
         :param pulumi.Input[str] name: The domain name, must not be used in another Transactional Email Domain.
-               > **Important** Updates to `name` will recreate the domain.
+               > **Important:** Updates to `name` will recreate the domain.
         :param pulumi.Input[str] next_check_at: The date and time of the next scheduled check (RFC 3339 format).
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the domain should be created.
@@ -463,7 +469,8 @@ class TemDomain(pulumi.CustomResource):
     @pulumi.getter(name="acceptTos")
     def accept_tos(self) -> pulumi.Output[bool]:
         """
-        Accept the Scaleway Terms of Service
+        Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+        > **Important:**  This attribute must be set to `true`.
         """
         return pulumi.get(self, "accept_tos")
 
@@ -504,7 +511,7 @@ class TemDomain(pulumi.CustomResource):
     def name(self) -> pulumi.Output[str]:
         """
         The domain name, must not be used in another Transactional Email Domain.
-        > **Important** Updates to `name` will recreate the domain.
+        > **Important:** Updates to `name` will recreate the domain.
         """
         return pulumi.get(self, "name")
 

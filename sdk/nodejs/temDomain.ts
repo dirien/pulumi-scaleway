@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@ediri/scaleway";
  *
- * const main = new scaleway.TemDomain("main", {});
+ * const main = new scaleway.TemDomain("main", {acceptTos: true});
  * ```
  *
  * ## Import
@@ -56,7 +56,8 @@ export class TemDomain extends pulumi.CustomResource {
     }
 
     /**
-     * Accept the Scaleway Terms of Service
+     * Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+     * > **Important:**  This attribute must be set to `true`.
      */
     public readonly acceptTos!: pulumi.Output<boolean>;
     /**
@@ -77,7 +78,7 @@ export class TemDomain extends pulumi.CustomResource {
     public /*out*/ readonly lastValidAt!: pulumi.Output<string>;
     /**
      * The domain name, must not be used in another Transactional Email Domain.
-     * > **Important** Updates to `name` will recreate the domain.
+     * > **Important:** Updates to `name` will recreate the domain.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -158,7 +159,8 @@ export class TemDomain extends pulumi.CustomResource {
  */
 export interface TemDomainState {
     /**
-     * Accept the Scaleway Terms of Service
+     * Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+     * > **Important:**  This attribute must be set to `true`.
      */
     acceptTos?: pulumi.Input<boolean>;
     /**
@@ -179,7 +181,7 @@ export interface TemDomainState {
     lastValidAt?: pulumi.Input<string>;
     /**
      * The domain name, must not be used in another Transactional Email Domain.
-     * > **Important** Updates to `name` will recreate the domain.
+     * > **Important:** Updates to `name` will recreate the domain.
      */
     name?: pulumi.Input<string>;
     /**
@@ -213,12 +215,13 @@ export interface TemDomainState {
  */
 export interface TemDomainArgs {
     /**
-     * Accept the Scaleway Terms of Service
+     * Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+     * > **Important:**  This attribute must be set to `true`.
      */
     acceptTos: pulumi.Input<boolean>;
     /**
      * The domain name, must not be used in another Transactional Email Domain.
-     * > **Important** Updates to `name` will recreate the domain.
+     * > **Important:** Updates to `name` will recreate the domain.
      */
     name?: pulumi.Input<string>;
     /**

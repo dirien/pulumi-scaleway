@@ -20,12 +20,16 @@ namespace ediri.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = ediri.Scaleway;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.TemDomain("main");
+    ///     var main = new Scaleway.TemDomain("main", new()
+    ///     {
+    ///         AcceptTos = true,
+    ///     });
     /// 
     /// });
     /// ```
@@ -42,7 +46,8 @@ namespace ediri.Scaleway
     public partial class TemDomain : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Accept the Scaleway Terms of Service
+        /// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+        /// &gt; **Important:**  This attribute must be set to `true`.
         /// </summary>
         [Output("acceptTos")]
         public Output<bool> AcceptTos { get; private set; } = null!;
@@ -73,7 +78,7 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// The domain name, must not be used in another Transactional Email Domain.
-        /// &gt; **Important** Updates to `name` will recreate the domain.
+        /// &gt; **Important:** Updates to `name` will recreate the domain.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -162,14 +167,15 @@ namespace ediri.Scaleway
     public sealed class TemDomainArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Accept the Scaleway Terms of Service
+        /// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+        /// &gt; **Important:**  This attribute must be set to `true`.
         /// </summary>
         [Input("acceptTos", required: true)]
         public Input<bool> AcceptTos { get; set; } = null!;
 
         /// <summary>
         /// The domain name, must not be used in another Transactional Email Domain.
-        /// &gt; **Important** Updates to `name` will recreate the domain.
+        /// &gt; **Important:** Updates to `name` will recreate the domain.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -195,7 +201,8 @@ namespace ediri.Scaleway
     public sealed class TemDomainState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Accept the Scaleway Terms of Service
+        /// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+        /// &gt; **Important:**  This attribute must be set to `true`.
         /// </summary>
         [Input("acceptTos")]
         public Input<bool>? AcceptTos { get; set; }
@@ -226,7 +233,7 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// The domain name, must not be used in another Transactional Email Domain.
-        /// &gt; **Important** Updates to `name` will recreate the domain.
+        /// &gt; **Important:** Updates to `name` will recreate the domain.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

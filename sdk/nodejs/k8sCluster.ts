@@ -103,6 +103,10 @@ export class K8sCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
+     * The ID of the private network of the cluster.
+     */
+    public readonly privateNetworkId!: pulumi.Output<string>;
+    /**
      * `projectId`) The ID of the project the cluster is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
@@ -166,6 +170,7 @@ export class K8sCluster extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["openIdConnectConfig"] = state ? state.openIdConnectConfig : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["privateNetworkId"] = state ? state.privateNetworkId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -196,6 +201,7 @@ export class K8sCluster extends pulumi.CustomResource {
             resourceInputs["featureGates"] = args ? args.featureGates : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["openIdConnectConfig"] = args ? args.openIdConnectConfig : undefined;
+            resourceInputs["privateNetworkId"] = args ? args.privateNetworkId : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
@@ -281,6 +287,10 @@ export interface K8sClusterState {
      */
     organizationId?: pulumi.Input<string>;
     /**
+     * The ID of the private network of the cluster.
+     */
+    privateNetworkId?: pulumi.Input<string>;
+    /**
      * `projectId`) The ID of the project the cluster is associated with.
      */
     projectId?: pulumi.Input<string>;
@@ -365,6 +375,10 @@ export interface K8sClusterArgs {
      * The OpenID Connect configuration of the cluster
      */
     openIdConnectConfig?: pulumi.Input<inputs.K8sClusterOpenIdConnectConfig>;
+    /**
+     * The ID of the private network of the cluster.
+     */
+    privateNetworkId?: pulumi.Input<string>;
     /**
      * `projectId`) The ID of the project the cluster is associated with.
      */

@@ -11,41 +11,6 @@ using Pulumi;
 namespace ediri.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Cockpit.
-    /// 
-    /// For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/).
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Scaleway = ediri.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // Create the cockpit in the default project
-    ///     var main = new Scaleway.Cockpit("main");
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Scaleway = ediri.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     // Create the cockpit in a specific project
-    ///     var main = new Scaleway.Cockpit("main", new()
-    ///     {
-    ///         ProjectId = "11111111-1111-1111-1111-111111111111",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Cockpits can be imported using the `{project_id}`, e.g. bash

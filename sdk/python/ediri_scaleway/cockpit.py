@@ -85,28 +85,6 @@ class Cockpit(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Cockpit.
-
-        For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/).
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import ediri_scaleway as scaleway
-
-        # Create the cockpit in the default project
-        main = scaleway.Cockpit("main")
-        ```
-
-        ```python
-        import pulumi
-        import ediri_scaleway as scaleway
-
-        # Create the cockpit in a specific project
-        main = scaleway.Cockpit("main", project_id="11111111-1111-1111-1111-111111111111")
-        ```
-
         ## Import
 
         Cockpits can be imported using the `{project_id}`, e.g. bash
@@ -126,28 +104,6 @@ class Cockpit(pulumi.CustomResource):
                  args: Optional[CockpitArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Cockpit.
-
-        For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/).
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import ediri_scaleway as scaleway
-
-        # Create the cockpit in the default project
-        main = scaleway.Cockpit("main")
-        ```
-
-        ```python
-        import pulumi
-        import ediri_scaleway as scaleway
-
-        # Create the cockpit in a specific project
-        main = scaleway.Cockpit("main", project_id="11111111-1111-1111-1111-111111111111")
-        ```
-
         ## Import
 
         Cockpits can be imported using the `{project_id}`, e.g. bash
