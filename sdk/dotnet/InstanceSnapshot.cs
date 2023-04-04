@@ -19,6 +19,7 @@ namespace ediri.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = ediri.Scaleway;
     /// 
@@ -36,6 +37,7 @@ namespace ediri.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = ediri.Scaleway;
     /// 
@@ -81,6 +83,7 @@ namespace ediri.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = ediri.Scaleway;
     /// 

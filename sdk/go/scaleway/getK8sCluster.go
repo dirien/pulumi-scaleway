@@ -84,6 +84,8 @@ type LookupK8sClusterResult struct {
 	OpenIdConnectConfigs []GetK8sClusterOpenIdConnectConfig `pulumi:"openIdConnectConfigs"`
 	// The ID of the organization the cluster is associated with.
 	OrganizationId string `pulumi:"organizationId"`
+	// The ID of the private network of the cluster.
+	PrivateNetworkId string `pulumi:"privateNetworkId"`
 	// The ID of the project the cluster is associated with.
 	ProjectId string `pulumi:"projectId"`
 	// The region in which the cluster is.
@@ -214,6 +216,11 @@ func (o LookupK8sClusterResultOutput) OpenIdConnectConfigs() GetK8sClusterOpenId
 // The ID of the organization the cluster is associated with.
 func (o LookupK8sClusterResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupK8sClusterResult) string { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
+// The ID of the private network of the cluster.
+func (o LookupK8sClusterResultOutput) PrivateNetworkId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupK8sClusterResult) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
 // The ID of the project the cluster is associated with.

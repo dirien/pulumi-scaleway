@@ -54,6 +54,8 @@ type K8sCluster struct {
 	OpenIdConnectConfig K8sClusterOpenIdConnectConfigOutput `pulumi:"openIdConnectConfig"`
 	// The organization ID the cluster is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
+	// The ID of the private network of the cluster.
+	PrivateNetworkId pulumi.StringOutput `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region in which the cluster should be created.
@@ -148,6 +150,8 @@ type k8sClusterState struct {
 	OpenIdConnectConfig *K8sClusterOpenIdConnectConfig `pulumi:"openIdConnectConfig"`
 	// The organization ID the cluster is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The ID of the private network of the cluster.
+	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the cluster should be created.
@@ -200,6 +204,8 @@ type K8sClusterState struct {
 	OpenIdConnectConfig K8sClusterOpenIdConnectConfigPtrInput
 	// The organization ID the cluster is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// The ID of the private network of the cluster.
+	PrivateNetworkId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region in which the cluster should be created.
@@ -248,6 +254,8 @@ type k8sClusterArgs struct {
 	Name *string `pulumi:"name"`
 	// The OpenID Connect configuration of the cluster
 	OpenIdConnectConfig *K8sClusterOpenIdConnectConfig `pulumi:"openIdConnectConfig"`
+	// The ID of the private network of the cluster.
+	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the cluster should be created.
@@ -285,6 +293,8 @@ type K8sClusterArgs struct {
 	Name pulumi.StringPtrInput
 	// The OpenID Connect configuration of the cluster
 	OpenIdConnectConfig K8sClusterOpenIdConnectConfigPtrInput
+	// The ID of the private network of the cluster.
+	PrivateNetworkId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region in which the cluster should be created.
@@ -455,6 +465,11 @@ func (o K8sClusterOutput) OpenIdConnectConfig() K8sClusterOpenIdConnectConfigOut
 // The organization ID the cluster is associated with.
 func (o K8sClusterOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *K8sCluster) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
+// The ID of the private network of the cluster.
+func (o K8sClusterOutput) PrivateNetworkId() pulumi.StringOutput {
+	return o.ApplyT(func(v *K8sCluster) pulumi.StringOutput { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
 // `projectId`) The ID of the project the cluster is associated with.

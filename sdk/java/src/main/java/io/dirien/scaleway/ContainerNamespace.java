@@ -79,14 +79,18 @@ public class ContainerNamespace extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.description);
     }
     /**
-     * . Destroy linked container registry on deletion.
+     * Destroy registry on deletion
+     * 
+     * @deprecated
+     * Registry namespace is automatically destroyed with namespace
      * 
      */
+    @Deprecated /* Registry namespace is automatically destroyed with namespace */
     @Export(name="destroyRegistry", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> destroyRegistry;
 
     /**
-     * @return . Destroy linked container registry on deletion.
+     * @return Destroy registry on deletion
      * 
      */
     public Output<Optional<Boolean>> destroyRegistry() {

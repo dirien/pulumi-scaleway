@@ -21,6 +21,7 @@ namespace ediri.Scaleway
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Scaleway = Pulumi.Scaleway;
         /// 
@@ -48,6 +49,7 @@ namespace ediri.Scaleway
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Scaleway = Pulumi.Scaleway;
         /// 
@@ -170,6 +172,10 @@ namespace ediri.Scaleway
         /// </summary>
         public readonly string OrganizationId;
         /// <summary>
+        /// The ID of the private network of the cluster.
+        /// </summary>
+        public readonly string PrivateNetworkId;
+        /// <summary>
         /// The ID of the project the cluster is associated with.
         /// </summary>
         public readonly string ProjectId;
@@ -238,6 +244,8 @@ namespace ediri.Scaleway
 
             string organizationId,
 
+            string privateNetworkId,
+
             string projectId,
 
             string? region,
@@ -271,6 +279,7 @@ namespace ediri.Scaleway
             Name = name;
             OpenIdConnectConfigs = openIdConnectConfigs;
             OrganizationId = organizationId;
+            PrivateNetworkId = privateNetworkId;
             ProjectId = projectId;
             Region = region;
             Status = status;

@@ -16,65 +16,6 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * Creates and manages Scaleway Cockpit.
- * 
- * For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/).
- * 
- * ## Example Usage
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.scaleway.Cockpit;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var main = new Cockpit(&#34;main&#34;);
- * 
- *     }
- * }
- * ```
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.scaleway.Cockpit;
- * import com.pulumi.scaleway.CockpitArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var main = new Cockpit(&#34;main&#34;, CockpitArgs.builder()        
- *             .projectId(&#34;11111111-1111-1111-1111-111111111111&#34;)
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
  * ## Import
  * 
  * Cockpits can be imported using the `{project_id}`, e.g. bash

@@ -55,7 +55,9 @@ type ContainerNamespace struct {
 
 	// The description of the namespace.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// . Destroy linked container registry on deletion.
+	// Destroy registry on deletion
+	//
+	// Deprecated: Registry namespace is automatically destroyed with namespace
 	DestroyRegistry pulumi.BoolPtrOutput `pulumi:"destroyRegistry"`
 	// The environment variables of the namespace.
 	EnvironmentVariables pulumi.StringMapOutput `pulumi:"environmentVariables"`
@@ -114,7 +116,9 @@ func GetContainerNamespace(ctx *pulumi.Context,
 type containerNamespaceState struct {
 	// The description of the namespace.
 	Description *string `pulumi:"description"`
-	// . Destroy linked container registry on deletion.
+	// Destroy registry on deletion
+	//
+	// Deprecated: Registry namespace is automatically destroyed with namespace
 	DestroyRegistry *bool `pulumi:"destroyRegistry"`
 	// The environment variables of the namespace.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
@@ -137,7 +141,9 @@ type containerNamespaceState struct {
 type ContainerNamespaceState struct {
 	// The description of the namespace.
 	Description pulumi.StringPtrInput
-	// . Destroy linked container registry on deletion.
+	// Destroy registry on deletion
+	//
+	// Deprecated: Registry namespace is automatically destroyed with namespace
 	DestroyRegistry pulumi.BoolPtrInput
 	// The environment variables of the namespace.
 	EnvironmentVariables pulumi.StringMapInput
@@ -164,7 +170,9 @@ func (ContainerNamespaceState) ElementType() reflect.Type {
 type containerNamespaceArgs struct {
 	// The description of the namespace.
 	Description *string `pulumi:"description"`
-	// . Destroy linked container registry on deletion.
+	// Destroy registry on deletion
+	//
+	// Deprecated: Registry namespace is automatically destroyed with namespace
 	DestroyRegistry *bool `pulumi:"destroyRegistry"`
 	// The environment variables of the namespace.
 	EnvironmentVariables map[string]string `pulumi:"environmentVariables"`
@@ -182,7 +190,9 @@ type containerNamespaceArgs struct {
 type ContainerNamespaceArgs struct {
 	// The description of the namespace.
 	Description pulumi.StringPtrInput
-	// . Destroy linked container registry on deletion.
+	// Destroy registry on deletion
+	//
+	// Deprecated: Registry namespace is automatically destroyed with namespace
 	DestroyRegistry pulumi.BoolPtrInput
 	// The environment variables of the namespace.
 	EnvironmentVariables pulumi.StringMapInput
@@ -288,7 +298,9 @@ func (o ContainerNamespaceOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// . Destroy linked container registry on deletion.
+// Destroy registry on deletion
+//
+// Deprecated: Registry namespace is automatically destroyed with namespace
 func (o ContainerNamespaceOutput) DestroyRegistry() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ContainerNamespace) pulumi.BoolPtrOutput { return v.DestroyRegistry }).(pulumi.BoolPtrOutput)
 }

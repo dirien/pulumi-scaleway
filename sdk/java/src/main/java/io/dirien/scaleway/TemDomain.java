@@ -28,6 +28,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.scaleway.TemDomain;
+ * import com.pulumi.scaleway.TemDomainArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -41,7 +42,9 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var main = new TemDomain(&#34;main&#34;);
+ *         var main = new TemDomain(&#34;main&#34;, TemDomainArgs.builder()        
+ *             .acceptTos(true)
+ *             .build());
  * 
  *     }
  * }
@@ -59,14 +62,16 @@ import javax.annotation.Nullable;
 @ResourceType(type="scaleway:index/temDomain:TemDomain")
 public class TemDomain extends com.pulumi.resources.CustomResource {
     /**
-     * Accept the Scaleway Terms of Service
+     * Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+     * &gt; **Important:**  This attribute must be set to `true`.
      * 
      */
     @Export(name="acceptTos", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> acceptTos;
 
     /**
-     * @return Accept the Scaleway Terms of Service
+     * @return Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
+     * &gt; **Important:**  This attribute must be set to `true`.
      * 
      */
     public Output<Boolean> acceptTos() {
@@ -130,7 +135,7 @@ public class TemDomain extends com.pulumi.resources.CustomResource {
     }
     /**
      * The domain name, must not be used in another Transactional Email Domain.
-     * &gt; **Important** Updates to `name` will recreate the domain.
+     * &gt; **Important:** Updates to `name` will recreate the domain.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
@@ -138,7 +143,7 @@ public class TemDomain extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The domain name, must not be used in another Transactional Email Domain.
-     * &gt; **Important** Updates to `name` will recreate the domain.
+     * &gt; **Important:** Updates to `name` will recreate the domain.
      * 
      */
     public Output<String> name() {

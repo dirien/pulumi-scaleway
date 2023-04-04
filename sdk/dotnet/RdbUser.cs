@@ -20,6 +20,7 @@ namespace ediri.Scaleway
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Random = Pulumi.Random;
     /// using Scaleway = ediri.Scaleway;

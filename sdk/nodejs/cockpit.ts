@@ -7,28 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Cockpit.
- *
- * For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/).
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@ediri/scaleway";
- *
- * // Create the cockpit in the default project
- * const main = new scaleway.Cockpit("main", {});
- * ```
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@ediri/scaleway";
- *
- * // Create the cockpit in a specific project
- * const main = new scaleway.Cockpit("main", {projectId: "11111111-1111-1111-1111-111111111111"});
- * ```
- *
  * ## Import
  *
  * Cockpits can be imported using the `{project_id}`, e.g. bash

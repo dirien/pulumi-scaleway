@@ -110,6 +110,12 @@ namespace ediri.Scaleway
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
+        /// The ID of the private network of the cluster.
+        /// </summary>
+        [Output("privateNetworkId")]
+        public Output<string> PrivateNetworkId { get; private set; } = null!;
+
+        /// <summary>
         /// `project_id`) The ID of the project the cluster is associated with.
         /// </summary>
         [Output("projectId")]
@@ -296,6 +302,12 @@ namespace ediri.Scaleway
         public Input<Inputs.K8sClusterOpenIdConnectConfigArgs>? OpenIdConnectConfig { get; set; }
 
         /// <summary>
+        /// The ID of the private network of the cluster.
+        /// </summary>
+        [Input("privateNetworkId")]
+        public Input<string>? PrivateNetworkId { get; set; }
+
+        /// <summary>
         /// `project_id`) The ID of the project the cluster is associated with.
         /// </summary>
         [Input("projectId")]
@@ -453,6 +465,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
+
+        /// <summary>
+        /// The ID of the private network of the cluster.
+        /// </summary>
+        [Input("privateNetworkId")]
+        public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
         /// `project_id`) The ID of the project the cluster is associated with.
