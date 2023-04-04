@@ -13,6 +13,8 @@ namespace ediri.Scaleway
     /// <summary>
     /// Manages user SSH keys to access servers provisioned on Scaleway.
     /// 
+    /// &gt; **Important:**  The resource `scaleway.AccountSshKey` has been deprecated and will no longer be supported. Instead, use `scaleway.IamSshKey`.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -43,6 +45,24 @@ namespace ediri.Scaleway
     public partial class AccountSshKey : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The date and time of the creation of the iam SSH Key
+        /// </summary>
+        [Output("createdAt")]
+        public Output<string> CreatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// The SSH key status
+        /// </summary>
+        [Output("disabled")]
+        public Output<bool?> Disabled { get; private set; } = null!;
+
+        /// <summary>
+        /// The fingerprint of the iam SSH key
+        /// </summary>
+        [Output("fingerprint")]
+        public Output<string> Fingerprint { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the SSH key.
         /// </summary>
         [Output("name")]
@@ -65,6 +85,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Output("publicKey")]
         public Output<string> PublicKey { get; private set; } = null!;
+
+        /// <summary>
+        /// The date and time of the last update of the iam SSH Key
+        /// </summary>
+        [Output("updatedAt")]
+        public Output<string> UpdatedAt { get; private set; } = null!;
 
 
         /// <summary>
@@ -114,6 +140,12 @@ namespace ediri.Scaleway
     public sealed class AccountSshKeyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The SSH key status
+        /// </summary>
+        [Input("disabled")]
+        public Input<bool>? Disabled { get; set; }
+
+        /// <summary>
         /// The name of the SSH key.
         /// </summary>
         [Input("name")]
@@ -140,6 +172,24 @@ namespace ediri.Scaleway
     public sealed class AccountSshKeyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The date and time of the creation of the iam SSH Key
+        /// </summary>
+        [Input("createdAt")]
+        public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
+        /// The SSH key status
+        /// </summary>
+        [Input("disabled")]
+        public Input<bool>? Disabled { get; set; }
+
+        /// <summary>
+        /// The fingerprint of the iam SSH key
+        /// </summary>
+        [Input("fingerprint")]
+        public Input<string>? Fingerprint { get; set; }
+
+        /// <summary>
         /// The name of the SSH key.
         /// </summary>
         [Input("name")]
@@ -162,6 +212,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }
+
+        /// <summary>
+        /// The date and time of the last update of the iam SSH Key
+        /// </summary>
+        [Input("updatedAt")]
+        public Input<string>? UpdatedAt { get; set; }
 
         public AccountSshKeyState()
         {

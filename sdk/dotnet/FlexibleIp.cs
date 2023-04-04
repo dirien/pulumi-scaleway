@@ -149,7 +149,7 @@ namespace ediri.Scaleway
         /// The reverse domain associated with this flexible IP.
         /// </summary>
         [Output("reverse")]
-        public Output<string?> Reverse { get; private set; } = null!;
+        public Output<string> Reverse { get; private set; } = null!;
 
         /// <summary>
         /// The ID of the associated server

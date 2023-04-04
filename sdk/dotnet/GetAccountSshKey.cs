@@ -114,6 +114,9 @@ namespace ediri.Scaleway
     [OutputType]
     public sealed class GetAccountSshKeyResult
     {
+        public readonly string CreatedAt;
+        public readonly bool Disabled;
+        public readonly string Fingerprint;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -129,9 +132,16 @@ namespace ediri.Scaleway
         /// </summary>
         public readonly string PublicKey;
         public readonly string? SshKeyId;
+        public readonly string UpdatedAt;
 
         [OutputConstructor]
         private GetAccountSshKeyResult(
+            string createdAt,
+
+            bool disabled,
+
+            string fingerprint,
+
             string id,
 
             string? name,
@@ -142,14 +152,20 @@ namespace ediri.Scaleway
 
             string publicKey,
 
-            string? sshKeyId)
+            string? sshKeyId,
+
+            string updatedAt)
         {
+            CreatedAt = createdAt;
+            Disabled = disabled;
+            Fingerprint = fingerprint;
             Id = id;
             Name = name;
             OrganizationId = organizationId;
             ProjectId = projectId;
             PublicKey = publicKey;
             SshKeyId = sshKeyId;
+            UpdatedAt = updatedAt;
         }
     }
 }

@@ -57,14 +57,14 @@ public class MnqCredential extends com.pulumi.resources.CustomResource {
         return this.namespaceId;
     }
     /**
-     * Credentials file used to connect to the NATS service. Only one of `nats_credentials` and `sqs_sns_credentials` may be set.
+     * Credentials file used to connect to the NATS service.
      * 
      */
     @Export(name="natsCredentials", refs={MnqCredentialNatsCredentials.class}, tree="[0]")
     private Output<MnqCredentialNatsCredentials> natsCredentials;
 
     /**
-     * @return Credentials file used to connect to the NATS service. Only one of `nats_credentials` and `sqs_sns_credentials` may be set.
+     * @return Credentials file used to connect to the NATS service.
      * 
      */
     public Output<MnqCredentialNatsCredentials> natsCredentials() {
@@ -101,16 +101,14 @@ public class MnqCredential extends com.pulumi.resources.CustomResource {
         return this.region;
     }
     /**
-     * Credential used to connect to the SQS/SNS service. Only one of `nats_credentials`
-     * and `sqs_sns_credentials` may be set.
+     * Credential used to connect to the SQS/SNS service.
      * 
      */
     @Export(name="sqsSnsCredentials", refs={MnqCredentialSqsSnsCredentials.class}, tree="[0]")
     private Output</* @Nullable */ MnqCredentialSqsSnsCredentials> sqsSnsCredentials;
 
     /**
-     * @return Credential used to connect to the SQS/SNS service. Only one of `nats_credentials`
-     * and `sqs_sns_credentials` may be set.
+     * @return Credential used to connect to the SQS/SNS service.
      * 
      */
     public Output<Optional<MnqCredentialSqsSnsCredentials>> sqsSnsCredentials() {

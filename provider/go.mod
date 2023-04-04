@@ -10,7 +10,7 @@ replace (
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.43.0
 	github.com/pulumi/pulumi/sdk/v3 v3.61.0
-	github.com/scaleway/terraform-provider-scaleway/v2 v2.15.0
+	github.com/scaleway/terraform-provider-scaleway/v2 v2.16.0
 )
 
 require (
@@ -51,7 +51,7 @@ require (
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
 	github.com/armon/go-metrics v0.4.0 // indirect
 	github.com/armon/go-radix v1.0.0 // indirect
-	github.com/aws/aws-sdk-go v1.44.235 // indirect
+	github.com/aws/aws-sdk-go v1.44.236 // indirect
 	github.com/aws/aws-sdk-go-v2 v1.17.3 // indirect
 	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.4.3 // indirect
 	github.com/aws/aws-sdk-go-v2/config v1.15.15 // indirect
