@@ -150,7 +150,7 @@ namespace ediri.Scaleway
         public readonly string Id;
         public readonly string? Name;
         public readonly string? OrganizationId;
-        public readonly string? ProjectId;
+        public readonly string ProjectId;
         public readonly string UpdatedAt;
 
         [OutputConstructor]
@@ -165,7 +165,7 @@ namespace ediri.Scaleway
 
             string? organizationId,
 
-            string? projectId,
+            string projectId,
 
             string updatedAt)
         {
