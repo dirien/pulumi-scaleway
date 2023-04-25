@@ -8,7 +8,7 @@ replace (
 )
 
 require (
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.43.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.44.3
 	github.com/pulumi/pulumi/sdk/v3 v3.64.0
 	github.com/scaleway/terraform-provider-scaleway/v2 v2.16.3
 )
@@ -183,6 +183,7 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/posener/complete v1.2.3 // indirect
 	github.com/pulumi/pulumi-java/pkg v0.9.0 // indirect
+	github.com/pulumi/pulumi-terraform-bridge/x/muxer v0.0.3 // indirect
 	github.com/pulumi/pulumi-yaml v1.1.0 // indirect
 	github.com/pulumi/pulumi/pkg/v3 v3.62.0 // indirect
 	github.com/pulumi/schema-tools v0.1.2 // indirect
