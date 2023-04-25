@@ -1747,8 +1747,8 @@ github.com/samuel/go-zookeeper v0.0.0-20190923202752-2cc03de413da/go.mod h1:gi+0
 github.com/santhosh-tekuri/jsonschema/v5 v5.3.0 h1:uIkTLo0AGRc8l7h5l9r+GcYi9qfVPt6lD4/bhmzfiKo=
 github.com/santhosh-tekuri/jsonschema/v5 v5.3.0/go.mod h1:FKdcjfQW6rpZSnxxUvEA5H/cDPdvJ/SZJQLWWXWGrZ0=
 github.com/satori/go.uuid v1.2.0/go.mod h1:dA0hQrYB0VpLJoorglMZABFdXlWrHn1NEOzdhQKdks0=
-github.com/scaleway/scaleway-sdk-go v1.0.0-beta.15.0.20230330162401-14ed2c90a334 h1:inIaZ6yJnpAbkfxzSaOelPFyEfhFoXZ3srp+kEPhG6o=
-github.com/scaleway/scaleway-sdk-go v1.0.0-beta.15.0.20230330162401-14ed2c90a334/go.mod h1:fCa7OJZ/9DRTnOKmxvT6pn+LPWUptQAmHF/SBJUGEcg=
+github.com/scaleway/scaleway-sdk-go v1.0.0-beta.16 h1:Ted1/3BGV1d0c7J+69N+brveAgJNWZlWnI8iYP3dZMs=
+github.com/scaleway/scaleway-sdk-go v1.0.0-beta.16/go.mod h1:fCa7OJZ/9DRTnOKmxvT6pn+LPWUptQAmHF/SBJUGEcg=
 github.com/scaleway/terraform-provider-scaleway/v2 v2.17.0 h1:p0nk0I6xFORotQaVvEObAZjg1zgeTe+LqUyyMceNKa4=
 github.com/scaleway/terraform-provider-scaleway/v2 v2.17.0/go.mod h1:3JhdUnfvNZaY5S7Bo7CclFE0q+DJdCjftc0Pp86wEUw=
 github.com/sclevine/agouti v3.0.0+incompatible/go.mod h1:b4WX9W9L1sfQKXeJf1mUTLZKJ48R1S7H23Ji7oFO5Bw=

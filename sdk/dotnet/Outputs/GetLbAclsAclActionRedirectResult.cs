@@ -12,24 +12,31 @@ namespace ediri.Scaleway.Outputs
 {
 
     [OutputType]
-    public sealed class LbFrontendAclAction
+    public sealed class GetLbAclsAclActionRedirectResult
     {
         /// <summary>
-        /// Redirect parameters when using an ACL with `redirect` action.
+        /// The HTTP redirect code used.
         /// </summary>
-        public readonly ImmutableArray<Outputs.LbFrontendAclActionRedirect> Redirects;
+        public readonly int Code;
         /// <summary>
-        /// The redirect type. Possible values are: `location` or `scheme`.
+        /// The URL used in case of a location redirect or the scheme name that replaces the request's original scheme.
+        /// </summary>
+        public readonly string Target;
+        /// <summary>
+        /// The redirect type.
         /// </summary>
         public readonly string Type;
 
         [OutputConstructor]
-        private LbFrontendAclAction(
-            ImmutableArray<Outputs.LbFrontendAclActionRedirect> redirects,
+        private GetLbAclsAclActionRedirectResult(
+            int code,
+
+            string target,
 
             string type)
         {
-            Redirects = redirects;
+            Code = code;
+            Target = target;
             Type = type;
         }
     }

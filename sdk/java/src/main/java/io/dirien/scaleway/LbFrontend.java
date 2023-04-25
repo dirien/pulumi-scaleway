@@ -138,6 +138,23 @@ import javax.annotation.Nullable;
  *                         .httpFilterValues(&#34;foo&#34;)
  *                         .httpValueOption(&#34;bar&#34;)
  *                         .build())
+ *                     .build(),
+ *                 LbFrontendAclArgs.builder()
+ *                     .action(LbFrontendAclActionArgs.builder()
+ *                         .type(&#34;redirect&#34;)
+ *                         .redirects(LbFrontendAclActionRedirectArgs.builder()
+ *                             .type(&#34;location&#34;)
+ *                             .target(&#34;https://example.com&#34;)
+ *                             .code(307)
+ *                             .build())
+ *                         .build())
+ *                     .match(LbFrontendAclMatchArgs.builder()
+ *                         .ipSubnets(&#34;10.0.0.10&#34;)
+ *                         .httpFilter(&#34;path_begin&#34;)
+ *                         .httpFilterValues(                        
+ *                             &#34;foo&#34;,
+ *                             &#34;bar&#34;)
+ *                         .build())
  *                     .build())
  *             .build());
  * 

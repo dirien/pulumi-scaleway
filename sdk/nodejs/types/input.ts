@@ -684,9 +684,28 @@ export interface LbFrontendAcl {
 
 export interface LbFrontendAclAction {
     /**
-     * The action type. Possible values are: `allow` or `deny`.
+     * Redirect parameters when using an ACL with `redirect` action.
+     */
+    redirects?: pulumi.Input<pulumi.Input<inputs.LbFrontendAclActionRedirect>[]>;
+    /**
+     * The redirect type. Possible values are: `location` or `scheme`.
      */
     type: pulumi.Input<string>;
+}
+
+export interface LbFrontendAclActionRedirect {
+    /**
+     * The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+     */
+    code?: pulumi.Input<number>;
+    /**
+     * An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+     */
+    target?: pulumi.Input<string>;
+    /**
+     * The redirect type. Possible values are: `location` or `scheme`.
+     */
+    type?: pulumi.Input<string>;
 }
 
 export interface LbFrontendAclMatch {

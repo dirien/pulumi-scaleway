@@ -13,8 +13,20 @@ namespace ediri.Scaleway.Inputs
 
     public sealed class LbFrontendAclActionGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("redirects")]
+        private InputList<Inputs.LbFrontendAclActionRedirectGetArgs>? _redirects;
+
         /// <summary>
-        /// The action type. Possible values are: `allow` or `deny`.
+        /// Redirect parameters when using an ACL with `redirect` action.
+        /// </summary>
+        public InputList<Inputs.LbFrontendAclActionRedirectGetArgs> Redirects
+        {
+            get => _redirects ?? (_redirects = new InputList<Inputs.LbFrontendAclActionRedirectGetArgs>());
+            set => _redirects = value;
+        }
+
+        /// <summary>
+        /// The redirect type. Possible values are: `location` or `scheme`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

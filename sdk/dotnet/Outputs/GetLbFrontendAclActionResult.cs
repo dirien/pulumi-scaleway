@@ -14,11 +14,16 @@ namespace ediri.Scaleway.Outputs
     [OutputType]
     public sealed class GetLbFrontendAclActionResult
     {
+        public readonly ImmutableArray<Outputs.GetLbFrontendAclActionRedirectResult> Redirects;
         public readonly string Type;
 
         [OutputConstructor]
-        private GetLbFrontendAclActionResult(string type)
+        private GetLbFrontendAclActionResult(
+            ImmutableArray<Outputs.GetLbFrontendAclActionRedirectResult> redirects,
+
+            string type)
         {
+            Redirects = redirects;
             Type = type;
         }
     }

@@ -50,6 +50,7 @@ __all__ = [
     'LbCertificateLetsencrypt',
     'LbFrontendAcl',
     'LbFrontendAclAction',
+    'LbFrontendAclActionRedirect',
     'LbFrontendAclMatch',
     'LbPrivateNetwork',
     'MnqCredentialNatsCredentials',
@@ -107,6 +108,7 @@ __all__ = [
     'GetK8sPoolUpgradePolicyResult',
     'GetLbAclsAclResult',
     'GetLbAclsAclActionResult',
+    'GetLbAclsAclActionRedirectResult',
     'GetLbAclsAclMatchResult',
     'GetLbBackendHealthCheckHttpResult',
     'GetLbBackendHealthCheckTcpResult',
@@ -117,6 +119,7 @@ __all__ = [
     'GetLbCertificateLetsencryptResult',
     'GetLbFrontendAclResult',
     'GetLbFrontendAclActionResult',
+    'GetLbFrontendAclActionRedirectResult',
     'GetLbFrontendAclMatchResult',
     'GetLbFrontendsFrontendResult',
     'GetLbIpsIpResult',
@@ -2625,17 +2628,72 @@ class LbFrontendAcl(dict):
 @pulumi.output_type
 class LbFrontendAclAction(dict):
     def __init__(__self__, *,
-                 type: str):
+                 type: str,
+                 redirects: Optional[Sequence['outputs.LbFrontendAclActionRedirect']] = None):
         """
-        :param str type: The action type. Possible values are: `allow` or `deny`.
+        :param str type: The redirect type. Possible values are: `location` or `scheme`.
+        :param Sequence['LbFrontendAclActionRedirectArgs'] redirects: Redirect parameters when using an ACL with `redirect` action.
         """
         pulumi.set(__self__, "type", type)
+        if redirects is not None:
+            pulumi.set(__self__, "redirects", redirects)
 
     @property
     @pulumi.getter
     def type(self) -> str:
         """
-        The action type. Possible values are: `allow` or `deny`.
+        The redirect type. Possible values are: `location` or `scheme`.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def redirects(self) -> Optional[Sequence['outputs.LbFrontendAclActionRedirect']]:
+        """
+        Redirect parameters when using an ACL with `redirect` action.
+        """
+        return pulumi.get(self, "redirects")
+
+
+@pulumi.output_type
+class LbFrontendAclActionRedirect(dict):
+    def __init__(__self__, *,
+                 code: Optional[int] = None,
+                 target: Optional[str] = None,
+                 type: Optional[str] = None):
+        """
+        :param int code: The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+        :param str target: An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+        :param str type: The redirect type. Possible values are: `location` or `scheme`.
+        """
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+        if target is not None:
+            pulumi.set(__self__, "target", target)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def code(self) -> Optional[int]:
+        """
+        The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+        """
+        return pulumi.get(self, "code")
+
+    @property
+    @pulumi.getter
+    def target(self) -> Optional[str]:
+        """
+        An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+        """
+        return pulumi.get(self, "target")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        The redirect type. Possible values are: `location` or `scheme`.
         """
         return pulumi.get(self, "type")
 
@@ -5530,17 +5588,68 @@ class GetLbAclsAclResult(dict):
 @pulumi.output_type
 class GetLbAclsAclActionResult(dict):
     def __init__(__self__, *,
+                 redirects: Sequence['outputs.GetLbAclsAclActionRedirectResult'],
                  type: str):
         """
-        :param str type: The action type.
+        :param Sequence['GetLbAclsAclActionRedirectArgs'] redirects: Redirect parameters when using an ACL with `redirect` action.
+        :param str type: The redirect type.
         """
+        pulumi.set(__self__, "redirects", redirects)
         pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def redirects(self) -> Sequence['outputs.GetLbAclsAclActionRedirectResult']:
+        """
+        Redirect parameters when using an ACL with `redirect` action.
+        """
+        return pulumi.get(self, "redirects")
 
     @property
     @pulumi.getter
     def type(self) -> str:
         """
-        The action type.
+        The redirect type.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetLbAclsAclActionRedirectResult(dict):
+    def __init__(__self__, *,
+                 code: int,
+                 target: str,
+                 type: str):
+        """
+        :param int code: The HTTP redirect code used.
+        :param str target: The URL used in case of a location redirect or the scheme name that replaces the request's original scheme.
+        :param str type: The redirect type.
+        """
+        pulumi.set(__self__, "code", code)
+        pulumi.set(__self__, "target", target)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def code(self) -> int:
+        """
+        The HTTP redirect code used.
+        """
+        return pulumi.get(self, "code")
+
+    @property
+    @pulumi.getter
+    def target(self) -> str:
+        """
+        The URL used in case of a location redirect or the scheme name that replaces the request's original scheme.
+        """
+        return pulumi.get(self, "target")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The redirect type.
         """
         return pulumi.get(self, "type")
 
@@ -6078,8 +6187,41 @@ class GetLbFrontendAclResult(dict):
 @pulumi.output_type
 class GetLbFrontendAclActionResult(dict):
     def __init__(__self__, *,
+                 redirects: Sequence['outputs.GetLbFrontendAclActionRedirectResult'],
                  type: str):
+        pulumi.set(__self__, "redirects", redirects)
         pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def redirects(self) -> Sequence['outputs.GetLbFrontendAclActionRedirectResult']:
+        return pulumi.get(self, "redirects")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetLbFrontendAclActionRedirectResult(dict):
+    def __init__(__self__, *,
+                 code: int,
+                 target: str,
+                 type: str):
+        pulumi.set(__self__, "code", code)
+        pulumi.set(__self__, "target", target)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def code(self) -> int:
+        return pulumi.get(self, "code")
+
+    @property
+    @pulumi.getter
+    def target(self) -> str:
+        return pulumi.get(self, "target")
 
     @property
     @pulumi.getter
