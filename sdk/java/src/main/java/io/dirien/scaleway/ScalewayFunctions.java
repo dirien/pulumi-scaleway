@@ -12,6 +12,8 @@ import io.dirien.scaleway.inputs.GetAccountProjectArgs;
 import io.dirien.scaleway.inputs.GetAccountProjectPlainArgs;
 import io.dirien.scaleway.inputs.GetAccountSshKeyArgs;
 import io.dirien.scaleway.inputs.GetAccountSshKeyPlainArgs;
+import io.dirien.scaleway.inputs.GetAvailabilityZonesArgs;
+import io.dirien.scaleway.inputs.GetAvailabilityZonesPlainArgs;
 import io.dirien.scaleway.inputs.GetBaremetalOfferArgs;
 import io.dirien.scaleway.inputs.GetBaremetalOfferPlainArgs;
 import io.dirien.scaleway.inputs.GetBaremetalOptionArgs;
@@ -138,6 +140,7 @@ import io.dirien.scaleway.inputs.GetWebHostOfferArgs;
 import io.dirien.scaleway.inputs.GetWebHostOfferPlainArgs;
 import io.dirien.scaleway.outputs.GetAccountProjectResult;
 import io.dirien.scaleway.outputs.GetAccountSshKeyResult;
+import io.dirien.scaleway.outputs.GetAvailabilityZonesResult;
 import io.dirien.scaleway.outputs.GetBaremetalOfferResult;
 import io.dirien.scaleway.outputs.GetBaremetalOptionResult;
 import io.dirien.scaleway.outputs.GetBaremetalOsResult;
@@ -670,6 +673,246 @@ public final class ScalewayFunctions {
      */
     public static CompletableFuture<GetAccountSshKeyResult> getAccountSshKeyPlain(GetAccountSshKeyPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("scaleway:index/getAccountSshKey:getAccountSshKey", TypeShape.of(GetAccountSshKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the available zones information based on its Region.
+     * 
+     * For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
+     * you can choose the location that better fits your need (country, latency, …).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetAvailabilityZonesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getAvailabilityZones(GetAvailabilityZonesArgs.builder()
+     *             .region(&#34;nl-ams&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetAvailabilityZonesResult> getAvailabilityZones() {
+        return getAvailabilityZones(GetAvailabilityZonesArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the available zones information based on its Region.
+     * 
+     * For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
+     * you can choose the location that better fits your need (country, latency, …).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetAvailabilityZonesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getAvailabilityZones(GetAvailabilityZonesArgs.builder()
+     *             .region(&#34;nl-ams&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetAvailabilityZonesResult> getAvailabilityZonesPlain() {
+        return getAvailabilityZonesPlain(GetAvailabilityZonesPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the available zones information based on its Region.
+     * 
+     * For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
+     * you can choose the location that better fits your need (country, latency, …).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetAvailabilityZonesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getAvailabilityZones(GetAvailabilityZonesArgs.builder()
+     *             .region(&#34;nl-ams&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetAvailabilityZonesResult> getAvailabilityZones(GetAvailabilityZonesArgs args) {
+        return getAvailabilityZones(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the available zones information based on its Region.
+     * 
+     * For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
+     * you can choose the location that better fits your need (country, latency, …).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetAvailabilityZonesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getAvailabilityZones(GetAvailabilityZonesArgs.builder()
+     *             .region(&#34;nl-ams&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetAvailabilityZonesResult> getAvailabilityZonesPlain(GetAvailabilityZonesPlainArgs args) {
+        return getAvailabilityZonesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the available zones information based on its Region.
+     * 
+     * For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
+     * you can choose the location that better fits your need (country, latency, …).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetAvailabilityZonesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getAvailabilityZones(GetAvailabilityZonesArgs.builder()
+     *             .region(&#34;nl-ams&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetAvailabilityZonesResult> getAvailabilityZones(GetAvailabilityZonesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getAvailabilityZones:getAvailabilityZones", TypeShape.of(GetAvailabilityZonesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the available zones information based on its Region.
+     * 
+     * For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
+     * you can choose the location that better fits your need (country, latency, …).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetAvailabilityZonesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getAvailabilityZones(GetAvailabilityZonesArgs.builder()
+     *             .region(&#34;nl-ams&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetAvailabilityZonesResult> getAvailabilityZonesPlain(GetAvailabilityZonesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getAvailabilityZones:getAvailabilityZones", TypeShape.of(GetAvailabilityZonesResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Gets information about a baremetal offer. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).

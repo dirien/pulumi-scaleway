@@ -27,6 +27,7 @@ from .function_namespace import *
 from .function_token import *
 from .get_account_project import *
 from .get_account_ssh_key import *
+from .get_availability_zones import *
 from .get_baremetal_offer import *
 from .get_baremetal_option import *
 from .get_baremetal_os import *

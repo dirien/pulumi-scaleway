@@ -271,14 +271,16 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * `project_id`) The ID of the project the Database Instance is associated with.
+     * `project_id`) The ID of the project the Database
+     * Instance is associated with.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return `project_id`) The ID of the project the Database Instance is associated with.
+     * @return `project_id`) The ID of the project the Database
+     * Instance is associated with.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -301,14 +303,16 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * `region`) The region in which the Database Instance should be created.
+     * `region`) The region
+     * in which the Database Instance should be created.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return `region`) The region in which the Database Instance should be created.
+     * @return `region`) The region
+     * in which the Database Instance should be created.
      * 
      */
     public Optional<Output<String>> region() {
@@ -361,14 +365,14 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+     * Volume size (in GB) when `volume_type` is set to `bssd`.
      * 
      */
     @Import(name="volumeSizeInGb")
     private @Nullable Output<Integer> volumeSizeInGb;
 
     /**
-     * @return Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+     * @return Volume size (in GB) when `volume_type` is set to `bssd`.
      * 
      */
     public Optional<Output<Integer>> volumeSizeInGb() {
@@ -792,7 +796,8 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param projectId `project_id`) The ID of the project the Database Instance is associated with.
+         * @param projectId `project_id`) The ID of the project the Database
+         * Instance is associated with.
          * 
          * @return builder
          * 
@@ -803,7 +808,8 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param projectId `project_id`) The ID of the project the Database Instance is associated with.
+         * @param projectId `project_id`) The ID of the project the Database
+         * Instance is associated with.
          * 
          * @return builder
          * 
@@ -844,7 +850,8 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region `region`) The region in which the Database Instance should be created.
+         * @param region `region`) The region
+         * in which the Database Instance should be created.
          * 
          * @return builder
          * 
@@ -855,7 +862,8 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region `region`) The region in which the Database Instance should be created.
+         * @param region `region`) The region
+         * in which the Database Instance should be created.
          * 
          * @return builder
          * 
@@ -938,7 +946,7 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param volumeSizeInGb Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+         * @param volumeSizeInGb Volume size (in GB) when `volume_type` is set to `bssd`.
          * 
          * @return builder
          * 
@@ -949,7 +957,7 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param volumeSizeInGb Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+         * @param volumeSizeInGb Volume size (in GB) when `volume_type` is set to `bssd`.
          * 
          * @return builder
          * 

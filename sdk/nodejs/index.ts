@@ -115,6 +115,11 @@ export const getAccountSshKey: typeof import("./getAccountSshKey").getAccountSsh
 export const getAccountSshKeyOutput: typeof import("./getAccountSshKey").getAccountSshKeyOutput = null as any;
 utilities.lazyLoad(exports, ["getAccountSshKey","getAccountSshKeyOutput"], () => require("./getAccountSshKey"));
 
+export { GetAvailabilityZonesArgs, GetAvailabilityZonesResult, GetAvailabilityZonesOutputArgs } from "./getAvailabilityZones";
+export const getAvailabilityZones: typeof import("./getAvailabilityZones").getAvailabilityZones = null as any;
+export const getAvailabilityZonesOutput: typeof import("./getAvailabilityZones").getAvailabilityZonesOutput = null as any;
+utilities.lazyLoad(exports, ["getAvailabilityZones","getAvailabilityZonesOutput"], () => require("./getAvailabilityZones"));
+
 export { GetBaremetalOfferArgs, GetBaremetalOfferResult, GetBaremetalOfferOutputArgs } from "./getBaremetalOffer";
 export const getBaremetalOffer: typeof import("./getBaremetalOffer").getBaremetalOffer = null as any;
 export const getBaremetalOfferOutput: typeof import("./getBaremetalOffer").getBaremetalOfferOutput = null as any;

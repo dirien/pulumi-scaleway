@@ -959,7 +959,7 @@ export interface RdbInstancePrivateNetwork {
      * IP of the endpoint.
      */
     ip?: pulumi.Input<string>;
-    ipNet: pulumi.Input<string>;
+    ipNet?: pulumi.Input<string>;
     /**
      * The name of the Database Instance.
      */
@@ -1036,10 +1036,11 @@ export interface RdbReadReplicaPrivateNetwork {
      */
     privateNetworkId: pulumi.Input<string>;
     /**
-     * Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
-     * limitations. (IP network).
+     * The IP network address within the private subnet. This must be an IPv4 address with a
+     * CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+     * service if not set.
      */
-    serviceIp: pulumi.Input<string>;
+    serviceIp?: pulumi.Input<string>;
     zone?: pulumi.Input<string>;
 }
 

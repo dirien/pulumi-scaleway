@@ -47,6 +47,44 @@ import (
 //
 // ```
 //
+// ### Example With IPAM
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewRdbInstance(ctx, "main", &scaleway.RdbInstanceArgs{
+//				NodeType:      pulumi.String("DB-DEV-S"),
+//				Engine:        pulumi.String("PostgreSQL-11"),
+//				IsHaCluster:   pulumi.Bool(true),
+//				DisableBackup: pulumi.Bool(true),
+//				UserName:      pulumi.String("my_initial_user"),
+//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
+//				PrivateNetwork: &scaleway.RdbInstancePrivateNetworkArgs{
+//					PnId: pn.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Example with Settings
 //
 // ```go
@@ -211,19 +249,24 @@ import (
 //
 // ## Settings
 //
-// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` on your `nodeType` of your convenient.
+// Please consult
+// the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all
+// available `settings` and `initSettings` on your `nodeType` of your convenient.
 //
 // ## Private Network
 //
 // > **Important:** Updates to `privateNetwork` will recreate the attachment Instance.
 //
-// - `ipNet` - (Required) The IP network where to con.
-// - `pnId` - (Required) The ID of the private network. If not provided it will be randomly generated.
+//   - `ipNet` - (Optional) The IP network address within the private subnet. This must be an IPv4 address with a
+//     CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+//     service if not set.
+//   - `pnId` - (Required) The ID of the private network.
 //
 // ## Limitations
 //
 // The Managed Database product is only compliant with the private network in the default availability zone (AZ).
-// i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
+// i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
+// section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
 //
 // ## Import
 //
@@ -271,11 +314,13 @@ type RdbInstance struct {
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// List of private networks endpoints of the database instance.
 	PrivateNetwork RdbInstancePrivateNetworkPtrOutput `pulumi:"privateNetwork"`
-	// `projectId`) The ID of the project the Database Instance is associated with.
+	// `projectId`) The ID of the project the Database
+	// Instance is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// List of read replicas of the database instance.
 	ReadReplicas RdbInstanceReadReplicaArrayOutput `pulumi:"readReplicas"`
-	// `region`) The region in which the Database Instance should be created.
+	// `region`) The region
+	// in which the Database Instance should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Map of engine settings to be set. Using this option will override default config.
 	Settings pulumi.StringMapOutput `pulumi:"settings"`
@@ -283,7 +328,7 @@ type RdbInstance struct {
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// Identifier for the first user of the database instance.
 	UserName pulumi.StringPtrOutput `pulumi:"userName"`
-	// Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
+	// Volume size (in GB) when `volumeType` is set to `bssd`.
 	VolumeSizeInGb pulumi.IntOutput `pulumi:"volumeSizeInGb"`
 	// Type of volume where data are stored (`bssd` or `lssd`).
 	VolumeType pulumi.StringPtrOutput `pulumi:"volumeType"`
@@ -366,11 +411,13 @@ type rdbInstanceState struct {
 	Password *string `pulumi:"password"`
 	// List of private networks endpoints of the database instance.
 	PrivateNetwork *RdbInstancePrivateNetwork `pulumi:"privateNetwork"`
-	// `projectId`) The ID of the project the Database Instance is associated with.
+	// `projectId`) The ID of the project the Database
+	// Instance is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// List of read replicas of the database instance.
 	ReadReplicas []RdbInstanceReadReplica `pulumi:"readReplicas"`
-	// `region`) The region in which the Database Instance should be created.
+	// `region`) The region
+	// in which the Database Instance should be created.
 	Region *string `pulumi:"region"`
 	// Map of engine settings to be set. Using this option will override default config.
 	Settings map[string]string `pulumi:"settings"`
@@ -378,7 +425,7 @@ type rdbInstanceState struct {
 	Tags []string `pulumi:"tags"`
 	// Identifier for the first user of the database instance.
 	UserName *string `pulumi:"userName"`
-	// Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
+	// Volume size (in GB) when `volumeType` is set to `bssd`.
 	VolumeSizeInGb *int `pulumi:"volumeSizeInGb"`
 	// Type of volume where data are stored (`bssd` or `lssd`).
 	VolumeType *string `pulumi:"volumeType"`
@@ -419,11 +466,13 @@ type RdbInstanceState struct {
 	Password pulumi.StringPtrInput
 	// List of private networks endpoints of the database instance.
 	PrivateNetwork RdbInstancePrivateNetworkPtrInput
-	// `projectId`) The ID of the project the Database Instance is associated with.
+	// `projectId`) The ID of the project the Database
+	// Instance is associated with.
 	ProjectId pulumi.StringPtrInput
 	// List of read replicas of the database instance.
 	ReadReplicas RdbInstanceReadReplicaArrayInput
-	// `region`) The region in which the Database Instance should be created.
+	// `region`) The region
+	// in which the Database Instance should be created.
 	Region pulumi.StringPtrInput
 	// Map of engine settings to be set. Using this option will override default config.
 	Settings pulumi.StringMapInput
@@ -431,7 +480,7 @@ type RdbInstanceState struct {
 	Tags pulumi.StringArrayInput
 	// Identifier for the first user of the database instance.
 	UserName pulumi.StringPtrInput
-	// Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
+	// Volume size (in GB) when `volumeType` is set to `bssd`.
 	VolumeSizeInGb pulumi.IntPtrInput
 	// Type of volume where data are stored (`bssd` or `lssd`).
 	VolumeType pulumi.StringPtrInput
@@ -464,9 +513,11 @@ type rdbInstanceArgs struct {
 	Password *string `pulumi:"password"`
 	// List of private networks endpoints of the database instance.
 	PrivateNetwork *RdbInstancePrivateNetwork `pulumi:"privateNetwork"`
-	// `projectId`) The ID of the project the Database Instance is associated with.
+	// `projectId`) The ID of the project the Database
+	// Instance is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`) The region in which the Database Instance should be created.
+	// `region`) The region
+	// in which the Database Instance should be created.
 	Region *string `pulumi:"region"`
 	// Map of engine settings to be set. Using this option will override default config.
 	Settings map[string]string `pulumi:"settings"`
@@ -474,7 +525,7 @@ type rdbInstanceArgs struct {
 	Tags []string `pulumi:"tags"`
 	// Identifier for the first user of the database instance.
 	UserName *string `pulumi:"userName"`
-	// Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
+	// Volume size (in GB) when `volumeType` is set to `bssd`.
 	VolumeSizeInGb *int `pulumi:"volumeSizeInGb"`
 	// Type of volume where data are stored (`bssd` or `lssd`).
 	VolumeType *string `pulumi:"volumeType"`
@@ -504,9 +555,11 @@ type RdbInstanceArgs struct {
 	Password pulumi.StringPtrInput
 	// List of private networks endpoints of the database instance.
 	PrivateNetwork RdbInstancePrivateNetworkPtrInput
-	// `projectId`) The ID of the project the Database Instance is associated with.
+	// `projectId`) The ID of the project the Database
+	// Instance is associated with.
 	ProjectId pulumi.StringPtrInput
-	// `region`) The region in which the Database Instance should be created.
+	// `region`) The region
+	// in which the Database Instance should be created.
 	Region pulumi.StringPtrInput
 	// Map of engine settings to be set. Using this option will override default config.
 	Settings pulumi.StringMapInput
@@ -514,7 +567,7 @@ type RdbInstanceArgs struct {
 	Tags pulumi.StringArrayInput
 	// Identifier for the first user of the database instance.
 	UserName pulumi.StringPtrInput
-	// Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
+	// Volume size (in GB) when `volumeType` is set to `bssd`.
 	VolumeSizeInGb pulumi.IntPtrInput
 	// Type of volume where data are stored (`bssd` or `lssd`).
 	VolumeType pulumi.StringPtrInput
@@ -689,7 +742,8 @@ func (o RdbInstanceOutput) PrivateNetwork() RdbInstancePrivateNetworkPtrOutput {
 	return o.ApplyT(func(v *RdbInstance) RdbInstancePrivateNetworkPtrOutput { return v.PrivateNetwork }).(RdbInstancePrivateNetworkPtrOutput)
 }
 
-// `projectId`) The ID of the project the Database Instance is associated with.
+// `projectId`) The ID of the project the Database
+// Instance is associated with.
 func (o RdbInstanceOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -699,7 +753,8 @@ func (o RdbInstanceOutput) ReadReplicas() RdbInstanceReadReplicaArrayOutput {
 	return o.ApplyT(func(v *RdbInstance) RdbInstanceReadReplicaArrayOutput { return v.ReadReplicas }).(RdbInstanceReadReplicaArrayOutput)
 }
 
-// `region`) The region in which the Database Instance should be created.
+// `region`) The region
+// in which the Database Instance should be created.
 func (o RdbInstanceOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
@@ -719,7 +774,7 @@ func (o RdbInstanceOutput) UserName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.StringPtrOutput { return v.UserName }).(pulumi.StringPtrOutput)
 }
 
-// Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
+// Volume size (in GB) when `volumeType` is set to `bssd`.
 func (o RdbInstanceOutput) VolumeSizeInGb() pulumi.IntOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.IntOutput { return v.VolumeSizeInGb }).(pulumi.IntOutput)
 }
