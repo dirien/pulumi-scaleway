@@ -270,6 +270,7 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_vpc_public_gateway_ip":               {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getVpcPublicGatewayIp")},
 			"scaleway_vpc_public_gateway_pat_rule":         {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getVpcPublicGatewayPatRule")},
 			"scaleway_webhosting_offer":                    {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getWebHostOffer")},
+			"scaleway_availability_zones":                  {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAvailabilityZones")},
 		},
 		TFProviderModuleVersion: "v2",
 		JavaScript: &tfbridge.JavaScriptInfo{

@@ -9024,7 +9024,7 @@ type RdbInstancePrivateNetwork struct {
 	Hostname *string `pulumi:"hostname"`
 	// IP of the endpoint.
 	Ip    *string `pulumi:"ip"`
-	IpNet string  `pulumi:"ipNet"`
+	IpNet *string `pulumi:"ipNet"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
 	PnId string  `pulumi:"pnId"`
@@ -9051,7 +9051,7 @@ type RdbInstancePrivateNetworkArgs struct {
 	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
 	// IP of the endpoint.
 	Ip    pulumi.StringPtrInput `pulumi:"ip"`
-	IpNet pulumi.StringInput    `pulumi:"ipNet"`
+	IpNet pulumi.StringPtrInput `pulumi:"ipNet"`
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	PnId pulumi.StringInput    `pulumi:"pnId"`
@@ -9152,8 +9152,8 @@ func (o RdbInstancePrivateNetworkOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RdbInstancePrivateNetwork) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
 
-func (o RdbInstancePrivateNetworkOutput) IpNet() pulumi.StringOutput {
-	return o.ApplyT(func(v RdbInstancePrivateNetwork) string { return v.IpNet }).(pulumi.StringOutput)
+func (o RdbInstancePrivateNetworkOutput) IpNet() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RdbInstancePrivateNetwork) *string { return v.IpNet }).(pulumi.StringPtrOutput)
 }
 
 // The name of the Database Instance.
@@ -9233,7 +9233,7 @@ func (o RdbInstancePrivateNetworkPtrOutput) IpNet() pulumi.StringPtrOutput {
 		if v == nil {
 			return nil
 		}
-		return &v.IpNet
+		return v.IpNet
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -9616,9 +9616,10 @@ type RdbReadReplicaPrivateNetwork struct {
 	Port *int `pulumi:"port"`
 	// UUID of the private network to be connected to the read replica.
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
-	// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
-	// limitations. (IP network).
-	ServiceIp string  `pulumi:"serviceIp"`
+	// The IP network address within the private subnet. This must be an IPv4 address with a
+	// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+	// service if not set.
+	ServiceIp *string `pulumi:"serviceIp"`
 	Zone      *string `pulumi:"zone"`
 }
 
@@ -9646,9 +9647,10 @@ type RdbReadReplicaPrivateNetworkArgs struct {
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// UUID of the private network to be connected to the read replica.
 	PrivateNetworkId pulumi.StringInput `pulumi:"privateNetworkId"`
-	// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
-	// limitations. (IP network).
-	ServiceIp pulumi.StringInput    `pulumi:"serviceIp"`
+	// The IP network address within the private subnet. This must be an IPv4 address with a
+	// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+	// service if not set.
+	ServiceIp pulumi.StringPtrInput `pulumi:"serviceIp"`
 	Zone      pulumi.StringPtrInput `pulumi:"zone"`
 }
 
@@ -9759,10 +9761,11 @@ func (o RdbReadReplicaPrivateNetworkOutput) PrivateNetworkId() pulumi.StringOutp
 	return o.ApplyT(func(v RdbReadReplicaPrivateNetwork) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
-// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
-// limitations. (IP network).
-func (o RdbReadReplicaPrivateNetworkOutput) ServiceIp() pulumi.StringOutput {
-	return o.ApplyT(func(v RdbReadReplicaPrivateNetwork) string { return v.ServiceIp }).(pulumi.StringOutput)
+// The IP network address within the private subnet. This must be an IPv4 address with a
+// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+// service if not set.
+func (o RdbReadReplicaPrivateNetworkOutput) ServiceIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RdbReadReplicaPrivateNetwork) *string { return v.ServiceIp }).(pulumi.StringPtrOutput)
 }
 
 func (o RdbReadReplicaPrivateNetworkOutput) Zone() pulumi.StringPtrOutput {
@@ -9853,14 +9856,15 @@ func (o RdbReadReplicaPrivateNetworkPtrOutput) PrivateNetworkId() pulumi.StringP
 	}).(pulumi.StringPtrOutput)
 }
 
-// Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
-// limitations. (IP network).
+// The IP network address within the private subnet. This must be an IPv4 address with a
+// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+// service if not set.
 func (o RdbReadReplicaPrivateNetworkPtrOutput) ServiceIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RdbReadReplicaPrivateNetwork) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.ServiceIp
+		return v.ServiceIp
 	}).(pulumi.StringPtrOutput)
 }
 

@@ -37,6 +37,7 @@
         "functionToken.ts",
         "getAccountProject.ts",
         "getAccountSshKey.ts",
+        "getAvailabilityZones.ts",
         "getBaremetalOffer.ts",
         "getBaremetalOption.ts",
         "getBaremetalOs.ts",

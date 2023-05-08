@@ -47,12 +47,14 @@ class RdbInstanceArgs:
         :param pulumi.Input[str] name: The name of the Database Instance.
         :param pulumi.Input[str] password: Password for the first user of the database instance.
         :param pulumi.Input['RdbInstancePrivateNetworkArgs'] private_network: List of private networks endpoints of the database instance.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database Instance is associated with.
-        :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database
+               Instance is associated with.
+        :param pulumi.Input[str] region: `region`) The region
+               in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set. Using this option will override default config.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
         :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
-        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`.
         :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd` or `lssd`).
         """
         pulumi.set(__self__, "engine", engine)
@@ -226,7 +228,8 @@ class RdbInstanceArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the Database Instance is associated with.
+        `project_id`) The ID of the project the Database
+        Instance is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -238,7 +241,8 @@ class RdbInstanceArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`) The region in which the Database Instance should be created.
+        `region`) The region
+        in which the Database Instance should be created.
         """
         return pulumi.get(self, "region")
 
@@ -286,7 +290,7 @@ class RdbInstanceArgs:
     @pulumi.getter(name="volumeSizeInGb")
     def volume_size_in_gb(self) -> Optional[pulumi.Input[int]]:
         """
-        Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+        Volume size (in GB) when `volume_type` is set to `bssd`.
         """
         return pulumi.get(self, "volume_size_in_gb")
 
@@ -352,13 +356,15 @@ class _RdbInstanceState:
         :param pulumi.Input[str] organization_id: The organization ID the Database Instance is associated with.
         :param pulumi.Input[str] password: Password for the first user of the database instance.
         :param pulumi.Input['RdbInstancePrivateNetworkArgs'] private_network: List of private networks endpoints of the database instance.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database Instance is associated with.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database
+               Instance is associated with.
         :param pulumi.Input[Sequence[pulumi.Input['RdbInstanceReadReplicaArgs']]] read_replicas: List of read replicas of the database instance.
-        :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
+        :param pulumi.Input[str] region: `region`) The region
+               in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set. Using this option will override default config.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
         :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
-        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`.
         :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd` or `lssd`).
         """
         if backup_same_region is not None:
@@ -609,7 +615,8 @@ class _RdbInstanceState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the Database Instance is associated with.
+        `project_id`) The ID of the project the Database
+        Instance is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -633,7 +640,8 @@ class _RdbInstanceState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`) The region in which the Database Instance should be created.
+        `region`) The region
+        in which the Database Instance should be created.
         """
         return pulumi.get(self, "region")
 
@@ -681,7 +689,7 @@ class _RdbInstanceState:
     @pulumi.getter(name="volumeSizeInGb")
     def volume_size_in_gb(self) -> Optional[pulumi.Input[int]]:
         """
-        Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+        Volume size (in GB) when `volume_type` is set to `bssd`.
         """
         return pulumi.get(self, "volume_size_in_gb")
 
@@ -747,6 +755,25 @@ class RdbInstance(pulumi.CustomResource):
             user_name="my_initial_user")
         ```
 
+        ### Example With IPAM
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        pn = scaleway.VpcPrivateNetwork("pn")
+        main = scaleway.RdbInstance("main",
+            node_type="DB-DEV-S",
+            engine="PostgreSQL-11",
+            is_ha_cluster=True,
+            disable_backup=True,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret",
+            private_network=scaleway.RdbInstancePrivateNetworkArgs(
+                pn_id=pn.id,
+            ))
+        ```
+
         ### Example with Settings
 
         ```python
@@ -840,19 +867,24 @@ class RdbInstance(pulumi.CustomResource):
 
         ## Settings
 
-        Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` on your `node_type` of your convenient.
+        Please consult
+        the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all
+        available `settings` and `init_settings` on your `node_type` of your convenient.
 
         ## Private Network
 
         > **Important:** Updates to `private_network` will recreate the attachment Instance.
 
-        - `ip_net` - (Required) The IP network where to con.
-        - `pn_id` - (Required) The ID of the private network. If not provided it will be randomly generated.
+        - `ip_net` - (Optional) The IP network address within the private subnet. This must be an IPv4 address with a
+          CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+          service if not set.
+        - `pn_id` - (Required) The ID of the private network.
 
         ## Limitations
 
         The Managed Database product is only compliant with the private network in the default availability zone (AZ).
-        i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
+        i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
+        section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
 
         ## Import
 
@@ -875,12 +907,14 @@ class RdbInstance(pulumi.CustomResource):
         :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
         :param pulumi.Input[str] password: Password for the first user of the database instance.
         :param pulumi.Input[pulumi.InputType['RdbInstancePrivateNetworkArgs']] private_network: List of private networks endpoints of the database instance.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database Instance is associated with.
-        :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database
+               Instance is associated with.
+        :param pulumi.Input[str] region: `region`) The region
+               in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set. Using this option will override default config.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
         :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
-        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`.
         :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd` or `lssd`).
         """
         ...
@@ -910,6 +944,25 @@ class RdbInstance(pulumi.CustomResource):
             user_name="my_initial_user")
         ```
 
+        ### Example With IPAM
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        pn = scaleway.VpcPrivateNetwork("pn")
+        main = scaleway.RdbInstance("main",
+            node_type="DB-DEV-S",
+            engine="PostgreSQL-11",
+            is_ha_cluster=True,
+            disable_backup=True,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret",
+            private_network=scaleway.RdbInstancePrivateNetworkArgs(
+                pn_id=pn.id,
+            ))
+        ```
+
         ### Example with Settings
 
         ```python
@@ -1003,19 +1056,24 @@ class RdbInstance(pulumi.CustomResource):
 
         ## Settings
 
-        Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` on your `node_type` of your convenient.
+        Please consult
+        the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all
+        available `settings` and `init_settings` on your `node_type` of your convenient.
 
         ## Private Network
 
         > **Important:** Updates to `private_network` will recreate the attachment Instance.
 
-        - `ip_net` - (Required) The IP network where to con.
-        - `pn_id` - (Required) The ID of the private network. If not provided it will be randomly generated.
+        - `ip_net` - (Optional) The IP network address within the private subnet. This must be an IPv4 address with a
+          CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+          service if not set.
+        - `pn_id` - (Required) The ID of the private network.
 
         ## Limitations
 
         The Managed Database product is only compliant with the private network in the default availability zone (AZ).
-        i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
+        i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
+        section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
 
         ## Import
 
@@ -1154,13 +1212,15 @@ class RdbInstance(pulumi.CustomResource):
         :param pulumi.Input[str] organization_id: The organization ID the Database Instance is associated with.
         :param pulumi.Input[str] password: Password for the first user of the database instance.
         :param pulumi.Input[pulumi.InputType['RdbInstancePrivateNetworkArgs']] private_network: List of private networks endpoints of the database instance.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database Instance is associated with.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database
+               Instance is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbInstanceReadReplicaArgs']]]] read_replicas: List of read replicas of the database instance.
-        :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
+        :param pulumi.Input[str] region: `region`) The region
+               in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set. Using this option will override default config.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
         :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
-        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`.
         :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd` or `lssd`).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1325,7 +1385,8 @@ class RdbInstance(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the Database Instance is associated with.
+        `project_id`) The ID of the project the Database
+        Instance is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -1341,7 +1402,8 @@ class RdbInstance(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        `region`) The region in which the Database Instance should be created.
+        `region`) The region
+        in which the Database Instance should be created.
         """
         return pulumi.get(self, "region")
 
@@ -1373,7 +1435,7 @@ class RdbInstance(pulumi.CustomResource):
     @pulumi.getter(name="volumeSizeInGb")
     def volume_size_in_gb(self) -> pulumi.Output[int]:
         """
-        Volume size (in GB) when `volume_type` is set to `bssd`. Must be a multiple of 5000000000.
+        Volume size (in GB) when `volume_type` is set to `bssd`.
         """
         return pulumi.get(self, "volume_size_in_gb")
 

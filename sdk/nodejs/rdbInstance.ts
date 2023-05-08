@@ -28,6 +28,26 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Example With IPAM
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@ediri/scaleway";
+ *
+ * const pn = new scaleway.VpcPrivateNetwork("pn", {});
+ * const main = new scaleway.RdbInstance("main", {
+ *     nodeType: "DB-DEV-S",
+ *     engine: "PostgreSQL-11",
+ *     isHaCluster: true,
+ *     disableBackup: true,
+ *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     privateNetwork: {
+ *         pnId: pn.id,
+ *     },
+ * });
+ * ```
+ *
  * ### Example with Settings
  *
  * ```typescript
@@ -129,19 +149,24 @@ import * as utilities from "./utilities";
  *
  * ## Settings
  *
- * Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` on your `nodeType` of your convenient.
+ * Please consult
+ * the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all
+ * available `settings` and `initSettings` on your `nodeType` of your convenient.
  *
  * ## Private Network
  *
  * > **Important:** Updates to `privateNetwork` will recreate the attachment Instance.
  *
- * - `ipNet` - (Required) The IP network where to con.
- * - `pnId` - (Required) The ID of the private network. If not provided it will be randomly generated.
+ * - `ipNet` - (Optional) The IP network address within the private subnet. This must be an IPv4 address with a
+ *   CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+ *   service if not set.
+ * - `pnId` - (Required) The ID of the private network.
  *
  * ## Limitations
  *
  * The Managed Database product is only compliant with the private network in the default availability zone (AZ).
- * i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
+ * i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
+ * section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
  *
  * ## Import
  *
@@ -246,7 +271,8 @@ export class RdbInstance extends pulumi.CustomResource {
      */
     public readonly privateNetwork!: pulumi.Output<outputs.RdbInstancePrivateNetwork | undefined>;
     /**
-     * `projectId`) The ID of the project the Database Instance is associated with.
+     * `projectId`) The ID of the project the Database
+     * Instance is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -254,7 +280,8 @@ export class RdbInstance extends pulumi.CustomResource {
      */
     public /*out*/ readonly readReplicas!: pulumi.Output<outputs.RdbInstanceReadReplica[]>;
     /**
-     * `region`) The region in which the Database Instance should be created.
+     * `region`) The region
+     * in which the Database Instance should be created.
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -270,7 +297,7 @@ export class RdbInstance extends pulumi.CustomResource {
      */
     public readonly userName!: pulumi.Output<string | undefined>;
     /**
-     * Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
+     * Volume size (in GB) when `volumeType` is set to `bssd`.
      */
     public readonly volumeSizeInGb!: pulumi.Output<number>;
     /**
@@ -426,7 +453,8 @@ export interface RdbInstanceState {
      */
     privateNetwork?: pulumi.Input<inputs.RdbInstancePrivateNetwork>;
     /**
-     * `projectId`) The ID of the project the Database Instance is associated with.
+     * `projectId`) The ID of the project the Database
+     * Instance is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -434,7 +462,8 @@ export interface RdbInstanceState {
      */
     readReplicas?: pulumi.Input<pulumi.Input<inputs.RdbInstanceReadReplica>[]>;
     /**
-     * `region`) The region in which the Database Instance should be created.
+     * `region`) The region
+     * in which the Database Instance should be created.
      */
     region?: pulumi.Input<string>;
     /**
@@ -450,7 +479,7 @@ export interface RdbInstanceState {
      */
     userName?: pulumi.Input<string>;
     /**
-     * Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
+     * Volume size (in GB) when `volumeType` is set to `bssd`.
      */
     volumeSizeInGb?: pulumi.Input<number>;
     /**
@@ -508,11 +537,13 @@ export interface RdbInstanceArgs {
      */
     privateNetwork?: pulumi.Input<inputs.RdbInstancePrivateNetwork>;
     /**
-     * `projectId`) The ID of the project the Database Instance is associated with.
+     * `projectId`) The ID of the project the Database
+     * Instance is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`) The region in which the Database Instance should be created.
+     * `region`) The region
+     * in which the Database Instance should be created.
      */
     region?: pulumi.Input<string>;
     /**
@@ -528,7 +559,7 @@ export interface RdbInstanceArgs {
      */
     userName?: pulumi.Input<string>;
     /**
-     * Volume size (in GB) when `volumeType` is set to `bssd`. Must be a multiple of 5000000000.
+     * Volume size (in GB) when `volumeType` is set to `bssd`.
      */
     volumeSizeInGb?: pulumi.Input<number>;
     /**

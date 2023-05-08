@@ -61,11 +61,11 @@ public final class RdbInstancePrivateNetworkArgs extends com.pulumi.resources.Re
         return Optional.ofNullable(this.ip);
     }
 
-    @Import(name="ipNet", required=true)
-    private Output<String> ipNet;
+    @Import(name="ipNet")
+    private @Nullable Output<String> ipNet;
 
-    public Output<String> ipNet() {
-        return this.ipNet;
+    public Optional<Output<String>> ipNet() {
+        return Optional.ofNullable(this.ipNet);
     }
 
     /**
@@ -206,7 +206,7 @@ public final class RdbInstancePrivateNetworkArgs extends com.pulumi.resources.Re
             return ip(Output.of(ip));
         }
 
-        public Builder ipNet(Output<String> ipNet) {
+        public Builder ipNet(@Nullable Output<String> ipNet) {
             $.ipNet = ipNet;
             return this;
         }
@@ -276,7 +276,6 @@ public final class RdbInstancePrivateNetworkArgs extends com.pulumi.resources.Re
         }
 
         public RdbInstancePrivateNetworkArgs build() {
-            $.ipNet = Objects.requireNonNull($.ipNet, "expected parameter 'ipNet' to be non-null");
             $.pnId = Objects.requireNonNull($.pnId, "expected parameter 'pnId' to be non-null");
             return $;
         }

@@ -3632,12 +3632,12 @@ class RdbInstancePrivateNetwork(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "ipNet":
-            suggest = "ip_net"
-        elif key == "pnId":
+        if key == "pnId":
             suggest = "pn_id"
         elif key == "endpointId":
             suggest = "endpoint_id"
+        elif key == "ipNet":
+            suggest = "ip_net"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in RdbInstancePrivateNetwork. Access the value via the '{suggest}' property getter instead.")
@@ -3651,11 +3651,11 @@ class RdbInstancePrivateNetwork(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 ip_net: str,
                  pn_id: str,
                  endpoint_id: Optional[str] = None,
                  hostname: Optional[str] = None,
                  ip: Optional[str] = None,
+                 ip_net: Optional[str] = None,
                  name: Optional[str] = None,
                  port: Optional[int] = None,
                  zone: Optional[str] = None):
@@ -3666,7 +3666,6 @@ class RdbInstancePrivateNetwork(dict):
         :param str name: The name of the Database Instance.
         :param int port: Port of the endpoint.
         """
-        pulumi.set(__self__, "ip_net", ip_net)
         pulumi.set(__self__, "pn_id", pn_id)
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -3674,17 +3673,14 @@ class RdbInstancePrivateNetwork(dict):
             pulumi.set(__self__, "hostname", hostname)
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
+        if ip_net is not None:
+            pulumi.set(__self__, "ip_net", ip_net)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
-
-    @property
-    @pulumi.getter(name="ipNet")
-    def ip_net(self) -> str:
-        return pulumi.get(self, "ip_net")
 
     @property
     @pulumi.getter(name="pnId")
@@ -3714,6 +3710,11 @@ class RdbInstancePrivateNetwork(dict):
         IP of the endpoint.
         """
         return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter(name="ipNet")
+    def ip_net(self) -> Optional[str]:
+        return pulumi.get(self, "ip_net")
 
     @property
     @pulumi.getter
@@ -3871,10 +3872,10 @@ class RdbReadReplicaPrivateNetwork(dict):
         suggest = None
         if key == "privateNetworkId":
             suggest = "private_network_id"
-        elif key == "serviceIp":
-            suggest = "service_ip"
         elif key == "endpointId":
             suggest = "endpoint_id"
+        elif key == "serviceIp":
+            suggest = "service_ip"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in RdbReadReplicaPrivateNetwork. Access the value via the '{suggest}' property getter instead.")
@@ -3889,25 +3890,25 @@ class RdbReadReplicaPrivateNetwork(dict):
 
     def __init__(__self__, *,
                  private_network_id: str,
-                 service_ip: str,
                  endpoint_id: Optional[str] = None,
                  hostname: Optional[str] = None,
                  ip: Optional[str] = None,
                  name: Optional[str] = None,
                  port: Optional[int] = None,
+                 service_ip: Optional[str] = None,
                  zone: Optional[str] = None):
         """
         :param str private_network_id: UUID of the private network to be connected to the read replica.
-        :param str service_ip: Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
-               limitations. (IP network).
         :param str endpoint_id: The ID of the endpoint of the read replica.
         :param str hostname: Hostname of the endpoint. Only one of ip and hostname may be set.
         :param str ip: IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
         :param str name: Name of the endpoint.
         :param int port: TCP port of the endpoint.
+        :param str service_ip: The IP network address within the private subnet. This must be an IPv4 address with a
+               CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+               service if not set.
         """
         pulumi.set(__self__, "private_network_id", private_network_id)
-        pulumi.set(__self__, "service_ip", service_ip)
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
         if hostname is not None:
@@ -3918,6 +3919,8 @@ class RdbReadReplicaPrivateNetwork(dict):
             pulumi.set(__self__, "name", name)
         if port is not None:
             pulumi.set(__self__, "port", port)
+        if service_ip is not None:
+            pulumi.set(__self__, "service_ip", service_ip)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
 
@@ -3928,15 +3931,6 @@ class RdbReadReplicaPrivateNetwork(dict):
         UUID of the private network to be connected to the read replica.
         """
         return pulumi.get(self, "private_network_id")
-
-    @property
-    @pulumi.getter(name="serviceIp")
-    def service_ip(self) -> str:
-        """
-        Endpoint IPv4 address with a CIDR notation. Check documentation about IP and subnet
-        limitations. (IP network).
-        """
-        return pulumi.get(self, "service_ip")
 
     @property
     @pulumi.getter(name="endpointId")
@@ -3977,6 +3971,16 @@ class RdbReadReplicaPrivateNetwork(dict):
         TCP port of the endpoint.
         """
         return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="serviceIp")
+    def service_ip(self) -> Optional[str]:
+        """
+        The IP network address within the private subnet. This must be an IPv4 address with a
+        CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+        service if not set.
+        """
+        return pulumi.get(self, "service_ip")
 
     @property
     @pulumi.getter
