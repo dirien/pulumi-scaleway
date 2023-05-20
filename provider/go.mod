@@ -10,7 +10,7 @@ replace (
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.47.2
 	github.com/pulumi/pulumi/sdk/v3 v3.66.0
-	github.com/scaleway/terraform-provider-scaleway/v2 v2.18.0
+	github.com/scaleway/terraform-provider-scaleway/v2 v2.19.0
 )
 
 require (
@@ -158,6 +158,7 @@ require (
 	github.com/mattn/go-isatty v0.0.18 // indirect
 	github.com/mattn/go-runewidth v0.0.14 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b // indirect
+	github.com/minio/highwayhash v1.0.2 // indirect
 	github.com/mitchellh/cli v1.1.5 // indirect
 	github.com/mitchellh/copystructure v1.2.0 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
@@ -171,6 +172,10 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/muesli/cancelreader v0.2.2 // indirect
 	github.com/natefinch/atomic v1.0.1 // indirect
+	github.com/nats-io/jwt/v2 v2.4.1 // indirect
+	github.com/nats-io/nats.go v1.25.0 // indirect
+	github.com/nats-io/nkeys v0.4.4 // indirect
+	github.com/nats-io/nuid v1.0.1 // indirect
 	github.com/oklog/run v1.1.0 // indirect
 	github.com/opentracing/basictracer-go v1.1.0 // indirect
 	github.com/opentracing/opentracing-go v1.2.0 // indirect
@@ -224,7 +229,6 @@ require (
 	gocloud.dev v0.27.0 // indirect
 	gocloud.dev/secrets/hashivault v0.27.0 // indirect
 	golang.org/x/crypto v0.8.0 // indirect
-	golang.org/x/exp v0.0.0-20230321023759-10a507213a29 // indirect
 	golang.org/x/mod v0.10.0 // indirect
 	golang.org/x/net v0.9.0 // indirect
 	golang.org/x/oauth2 v0.6.0 // indirect

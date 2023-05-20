@@ -16,6 +16,8 @@ namespace ediri.Scaleway.Outputs
     {
         /// <summary>
         /// Specifies the number of days after object creation when the specific rule action takes effect.
+        /// 
+        /// &gt; **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
         /// </summary>
         public readonly int Days;
 

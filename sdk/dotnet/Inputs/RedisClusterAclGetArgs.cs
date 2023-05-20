@@ -15,6 +15,8 @@ namespace ediri.Scaleway.Inputs
     {
         /// <summary>
         /// A text describing this rule. Default description: `Allow IP`
+        /// 
+        /// &gt; The `acl` conflict with `private_network`. Only one should be specified.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }

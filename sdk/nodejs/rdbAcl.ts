@@ -69,6 +69,8 @@ export class RdbAcl extends pulumi.CustomResource {
     public readonly aclRules!: pulumi.Output<outputs.RdbAclAclRule[]>;
     /**
      * UUID of the rdb instance.
+     *
+     * > **Important:** Updates to `instanceId` will recreate the Database ACL.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
@@ -119,6 +121,8 @@ export interface RdbAclState {
     aclRules?: pulumi.Input<pulumi.Input<inputs.RdbAclAclRule>[]>;
     /**
      * UUID of the rdb instance.
+     *
+     * > **Important:** Updates to `instanceId` will recreate the Database ACL.
      */
     instanceId?: pulumi.Input<string>;
     /**
@@ -137,6 +141,8 @@ export interface RdbAclArgs {
     aclRules: pulumi.Input<pulumi.Input<inputs.RdbAclAclRule>[]>;
     /**
      * UUID of the rdb instance.
+     *
+     * > **Important:** Updates to `instanceId` will recreate the Database ACL.
      */
     instanceId: pulumi.Input<string>;
     /**

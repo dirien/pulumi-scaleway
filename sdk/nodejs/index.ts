@@ -335,6 +335,11 @@ export const getObjectBucket: typeof import("./getObjectBucket").getObjectBucket
 export const getObjectBucketOutput: typeof import("./getObjectBucket").getObjectBucketOutput = null as any;
 utilities.lazyLoad(exports, ["getObjectBucket","getObjectBucketOutput"], () => require("./getObjectBucket"));
 
+export { GetObjectBucketPolicyArgs, GetObjectBucketPolicyResult, GetObjectBucketPolicyOutputArgs } from "./getObjectBucketPolicy";
+export const getObjectBucketPolicy: typeof import("./getObjectBucketPolicy").getObjectBucketPolicy = null as any;
+export const getObjectBucketPolicyOutput: typeof import("./getObjectBucketPolicy").getObjectBucketPolicyOutput = null as any;
+utilities.lazyLoad(exports, ["getObjectBucketPolicy","getObjectBucketPolicyOutput"], () => require("./getObjectBucketPolicy"));
+
 export { GetRdbAclArgs, GetRdbAclResult, GetRdbAclOutputArgs } from "./getRdbAcl";
 export const getRdbAcl: typeof import("./getRdbAcl").getRdbAcl = null as any;
 export const getRdbAclOutput: typeof import("./getRdbAcl").getRdbAclOutput = null as any;
@@ -579,6 +584,11 @@ export { MnqNamespaceArgs, MnqNamespaceState } from "./mnqNamespace";
 export type MnqNamespace = import("./mnqNamespace").MnqNamespace;
 export const MnqNamespace: typeof import("./mnqNamespace").MnqNamespace = null as any;
 utilities.lazyLoad(exports, ["MnqNamespace"], () => require("./mnqNamespace"));
+
+export { MnqQueueArgs, MnqQueueState } from "./mnqQueue";
+export type MnqQueue = import("./mnqQueue").MnqQueue;
+export const MnqQueue: typeof import("./mnqQueue").MnqQueue = null as any;
+utilities.lazyLoad(exports, ["MnqQueue"], () => require("./mnqQueue"));
 
 export { ObjectBucketArgs, ObjectBucketState } from "./objectBucket";
 export type ObjectBucket = import("./objectBucket").ObjectBucket;
@@ -829,6 +839,8 @@ const _module = {
                 return new MnqCredential(name, <any>undefined, { urn })
             case "scaleway:index/mnqNamespace:MnqNamespace":
                 return new MnqNamespace(name, <any>undefined, { urn })
+            case "scaleway:index/mnqQueue:MnqQueue":
+                return new MnqQueue(name, <any>undefined, { urn })
             case "scaleway:index/objectBucket:ObjectBucket":
                 return new ObjectBucket(name, <any>undefined, { urn })
             case "scaleway:index/objectBucketAcl:ObjectBucketAcl":
@@ -936,6 +948,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/lbIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/lbRoute", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqCredential", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqNamespace", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mnqQueue", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucket", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketAcl", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketLockConfiguration", _module)

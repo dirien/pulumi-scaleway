@@ -49,6 +49,9 @@ class K8sClusterArgs:
         :param pulumi.Input[str] name: The name for the Kubernetes cluster.
         :param pulumi.Input['K8sClusterOpenIdConnectConfigArgs'] open_id_connect_config: The OpenID Connect configuration of the cluster
         :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
+               
+               > **Important:** This field can only be set at cluster creation and cannot be updated later.
+               Changes to this field will cause the cluster to be destroyed then recreated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Kubernetes cluster.
@@ -224,6 +227,9 @@ class K8sClusterArgs:
     def private_network_id(self) -> Optional[pulumi.Input[str]]:
         """
         The ID of the private network of the cluster.
+
+        > **Important:** This field can only be set at cluster creation and cannot be updated later.
+        Changes to this field will cause the cluster to be destroyed then recreated.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -327,6 +333,9 @@ class _K8sClusterState:
         :param pulumi.Input['K8sClusterOpenIdConnectConfigArgs'] open_id_connect_config: The OpenID Connect configuration of the cluster
         :param pulumi.Input[str] organization_id: The organization ID the cluster is associated with.
         :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
+               
+               > **Important:** This field can only be set at cluster creation and cannot be updated later.
+               Changes to this field will cause the cluster to be destroyed then recreated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[str] status: The status of the Kubernetes cluster.
@@ -562,6 +571,9 @@ class _K8sClusterState:
     def private_network_id(self) -> Optional[pulumi.Input[str]]:
         """
         The ID of the private network of the cluster.
+
+        > **Important:** This field can only be set at cluster creation and cannot be updated later.
+        Changes to this field will cause the cluster to be destroyed then recreated.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -701,6 +713,80 @@ class K8sCluster(pulumi.CustomResource):
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        jack = scaleway.K8sCluster("jack",
+            version="1.24.3",
+            cni="cilium",
+            delete_additional_resources=False)
+        john = scaleway.K8sPool("john",
+            cluster_id=jack.id,
+            node_type="DEV1-M",
+            size=1)
+        ```
+
+        ### Multicloud
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        henry = scaleway.K8sCluster("henry",
+            type="multicloud",
+            version="1.24.3",
+            cni="kilo",
+            delete_additional_resources=False)
+        friend_from_outer_space = scaleway.K8sPool("friendFromOuterSpace",
+            cluster_id=henry.id,
+            node_type="external",
+            size=0,
+            min_size=0)
+        ```
+
+        For a detailed example of how to add or run Elastic Metal servers instead of instances on your cluster, please refer to this guide.
+
+        ### With additional configuration
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        john_k8s_cluster = scaleway.K8sCluster("johnK8sCluster",
+            description="my awesome cluster",
+            version="1.24.3",
+            cni="calico",
+            tags=[
+                "i'm an awesome tag",
+                "yay",
+            ],
+            delete_additional_resources=False,
+            autoscaler_config=scaleway.K8sClusterAutoscalerConfigArgs(
+                disable_scale_down=False,
+                scale_down_delay_after_add="5m",
+                estimator="binpacking",
+                expander="random",
+                ignore_daemonsets_utilization=True,
+                balance_similar_node_groups=True,
+                expendable_pods_priority_cutoff=-5,
+            ))
+        john_k8s_pool = scaleway.K8sPool("johnK8sPool",
+            cluster_id=john_k8s_cluster.id,
+            node_type="DEV1-M",
+            size=3,
+            autoscaling=True,
+            autohealing=True,
+            min_size=1,
+            max_size=5)
+        ```
+
         ## Import
 
         Kubernetes clusters can be imported using the `{region}/{id}`, e.g. bash
@@ -725,6 +811,9 @@ class K8sCluster(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name for the Kubernetes cluster.
         :param pulumi.Input[pulumi.InputType['K8sClusterOpenIdConnectConfigArgs']] open_id_connect_config: The OpenID Connect configuration of the cluster
         :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
+               
+               > **Important:** This field can only be set at cluster creation and cannot be updated later.
+               Changes to this field will cause the cluster to be destroyed then recreated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Kubernetes cluster.
@@ -738,6 +827,80 @@ class K8sCluster(pulumi.CustomResource):
                  args: K8sClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        jack = scaleway.K8sCluster("jack",
+            version="1.24.3",
+            cni="cilium",
+            delete_additional_resources=False)
+        john = scaleway.K8sPool("john",
+            cluster_id=jack.id,
+            node_type="DEV1-M",
+            size=1)
+        ```
+
+        ### Multicloud
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        henry = scaleway.K8sCluster("henry",
+            type="multicloud",
+            version="1.24.3",
+            cni="kilo",
+            delete_additional_resources=False)
+        friend_from_outer_space = scaleway.K8sPool("friendFromOuterSpace",
+            cluster_id=henry.id,
+            node_type="external",
+            size=0,
+            min_size=0)
+        ```
+
+        For a detailed example of how to add or run Elastic Metal servers instead of instances on your cluster, please refer to this guide.
+
+        ### With additional configuration
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        john_k8s_cluster = scaleway.K8sCluster("johnK8sCluster",
+            description="my awesome cluster",
+            version="1.24.3",
+            cni="calico",
+            tags=[
+                "i'm an awesome tag",
+                "yay",
+            ],
+            delete_additional_resources=False,
+            autoscaler_config=scaleway.K8sClusterAutoscalerConfigArgs(
+                disable_scale_down=False,
+                scale_down_delay_after_add="5m",
+                estimator="binpacking",
+                expander="random",
+                ignore_daemonsets_utilization=True,
+                balance_similar_node_groups=True,
+                expendable_pods_priority_cutoff=-5,
+            ))
+        john_k8s_pool = scaleway.K8sPool("johnK8sPool",
+            cluster_id=john_k8s_cluster.id,
+            node_type="DEV1-M",
+            size=3,
+            autoscaling=True,
+            autohealing=True,
+            min_size=1,
+            max_size=5)
+        ```
+
         ## Import
 
         Kubernetes clusters can be imported using the `{region}/{id}`, e.g. bash
@@ -877,6 +1040,9 @@ class K8sCluster(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['K8sClusterOpenIdConnectConfigArgs']] open_id_connect_config: The OpenID Connect configuration of the cluster
         :param pulumi.Input[str] organization_id: The organization ID the cluster is associated with.
         :param pulumi.Input[str] private_network_id: The ID of the private network of the cluster.
+               
+               > **Important:** This field can only be set at cluster creation and cannot be updated later.
+               Changes to this field will cause the cluster to be destroyed then recreated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[str] status: The status of the Kubernetes cluster.
@@ -1037,6 +1203,9 @@ class K8sCluster(pulumi.CustomResource):
     def private_network_id(self) -> pulumi.Output[str]:
         """
         The ID of the private network of the cluster.
+
+        > **Important:** This field can only be set at cluster creation and cannot be updated later.
+        Changes to this field will cause the cluster to be destroyed then recreated.
         """
         return pulumi.get(self, "private_network_id")
 

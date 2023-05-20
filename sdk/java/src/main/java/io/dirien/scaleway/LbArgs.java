@@ -36,12 +36,16 @@ public final class LbArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * The ID of the associated LB IP. See below.
      * 
+     * &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
+     * 
      */
     @Import(name="ipId", required=true)
     private Output<String> ipId;
 
     /**
      * @return The ID of the associated LB IP. See below.
+     * 
+     * &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
      * 
      */
     public Output<String> ipId() {
@@ -233,6 +237,8 @@ public final class LbArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param ipId The ID of the associated LB IP. See below.
          * 
+         * &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
+         * 
          * @return builder
          * 
          */
@@ -243,6 +249,8 @@ public final class LbArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param ipId The ID of the associated LB IP. See below.
+         * 
+         * &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
          * 
          * @return builder
          * 

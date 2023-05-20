@@ -27,10 +27,14 @@ class LbFrontendArgs:
         """
         The set of arguments for constructing a LbFrontend resource.
         :param pulumi.Input[str] backend_id: The load-balancer backend ID this frontend is attached to.
+               
+               > **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
         :param pulumi.Input[int] inbound_port: TCP port to listen on the front side.
         :param pulumi.Input[str] lb_id: The load-balancer ID this frontend is attached to.
         :param pulumi.Input[Sequence[pulumi.Input['LbFrontendAclArgs']]] acls: A list of ACL rules to apply to the load-balancer frontend.  Defined below.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: List of Certificate IDs that should be used by the frontend.
+               
+               > **Important:** Certificates are not allowed on port 80.
         :param pulumi.Input[bool] enable_http3: Activates HTTP/3 protocol.
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
         :param pulumi.Input[str] timeout_client: Maximum inactivity time on the client side. (e.g.: `1s`)
@@ -54,6 +58,8 @@ class LbFrontendArgs:
     def backend_id(self) -> pulumi.Input[str]:
         """
         The load-balancer backend ID this frontend is attached to.
+
+        > **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
         """
         return pulumi.get(self, "backend_id")
 
@@ -102,6 +108,8 @@ class LbFrontendArgs:
     def certificate_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         List of Certificate IDs that should be used by the frontend.
+
+        > **Important:** Certificates are not allowed on port 80.
         """
         return pulumi.get(self, "certificate_ids")
 
@@ -162,8 +170,12 @@ class _LbFrontendState:
         Input properties used for looking up and filtering LbFrontend resources.
         :param pulumi.Input[Sequence[pulumi.Input['LbFrontendAclArgs']]] acls: A list of ACL rules to apply to the load-balancer frontend.  Defined below.
         :param pulumi.Input[str] backend_id: The load-balancer backend ID this frontend is attached to.
+               
+               > **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
         :param pulumi.Input[str] certificate_id: (Deprecated) first certificate ID used by the frontend.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: List of Certificate IDs that should be used by the frontend.
+               
+               > **Important:** Certificates are not allowed on port 80.
         :param pulumi.Input[bool] enable_http3: Activates HTTP/3 protocol.
         :param pulumi.Input[int] inbound_port: TCP port to listen on the front side.
         :param pulumi.Input[str] lb_id: The load-balancer ID this frontend is attached to.
@@ -209,6 +221,8 @@ class _LbFrontendState:
     def backend_id(self) -> Optional[pulumi.Input[str]]:
         """
         The load-balancer backend ID this frontend is attached to.
+
+        > **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
         """
         return pulumi.get(self, "backend_id")
 
@@ -233,6 +247,8 @@ class _LbFrontendState:
     def certificate_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         List of Certificate IDs that should be used by the frontend.
+
+        > **Important:** Certificates are not allowed on port 80.
         """
         return pulumi.get(self, "certificate_ids")
 
@@ -344,7 +360,11 @@ class LbFrontend(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbFrontendAclArgs']]]] acls: A list of ACL rules to apply to the load-balancer frontend.  Defined below.
         :param pulumi.Input[str] backend_id: The load-balancer backend ID this frontend is attached to.
+               
+               > **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: List of Certificate IDs that should be used by the frontend.
+               
+               > **Important:** Certificates are not allowed on port 80.
         :param pulumi.Input[bool] enable_http3: Activates HTTP/3 protocol.
         :param pulumi.Input[int] inbound_port: TCP port to listen on the front side.
         :param pulumi.Input[str] lb_id: The load-balancer ID this frontend is attached to.
@@ -457,8 +477,12 @@ class LbFrontend(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbFrontendAclArgs']]]] acls: A list of ACL rules to apply to the load-balancer frontend.  Defined below.
         :param pulumi.Input[str] backend_id: The load-balancer backend ID this frontend is attached to.
+               
+               > **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
         :param pulumi.Input[str] certificate_id: (Deprecated) first certificate ID used by the frontend.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: List of Certificate IDs that should be used by the frontend.
+               
+               > **Important:** Certificates are not allowed on port 80.
         :param pulumi.Input[bool] enable_http3: Activates HTTP/3 protocol.
         :param pulumi.Input[int] inbound_port: TCP port to listen on the front side.
         :param pulumi.Input[str] lb_id: The load-balancer ID this frontend is attached to.
@@ -493,6 +517,8 @@ class LbFrontend(pulumi.CustomResource):
     def backend_id(self) -> pulumi.Output[str]:
         """
         The load-balancer backend ID this frontend is attached to.
+
+        > **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
         """
         return pulumi.get(self, "backend_id")
 
@@ -509,6 +535,8 @@ class LbFrontend(pulumi.CustomResource):
     def certificate_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of Certificate IDs that should be used by the frontend.
+
+        > **Important:** Certificates are not allowed on port 80.
         """
         return pulumi.get(self, "certificate_ids")
 

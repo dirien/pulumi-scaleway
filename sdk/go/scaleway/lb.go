@@ -197,6 +197,8 @@ type Lb struct {
 	// The load-balance public IP Address
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
 	// The ID of the associated LB IP. See below.
+	//
+	// > **Important:** Updates to `ipId` will not recreate the load-balancer.
 	IpId pulumi.StringOutput `pulumi:"ipId"`
 	// The name of the load-balancer.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -263,6 +265,8 @@ type lbState struct {
 	// The load-balance public IP Address
 	IpAddress *string `pulumi:"ipAddress"`
 	// The ID of the associated LB IP. See below.
+	//
+	// > **Important:** Updates to `ipId` will not recreate the load-balancer.
 	IpId *string `pulumi:"ipId"`
 	// The name of the load-balancer.
 	Name *string `pulumi:"name"`
@@ -294,6 +298,8 @@ type LbState struct {
 	// The load-balance public IP Address
 	IpAddress pulumi.StringPtrInput
 	// The ID of the associated LB IP. See below.
+	//
+	// > **Important:** Updates to `ipId` will not recreate the load-balancer.
 	IpId pulumi.StringPtrInput
 	// The name of the load-balancer.
 	Name pulumi.StringPtrInput
@@ -327,6 +333,8 @@ type lbArgs struct {
 	// The description of the load-balancer.
 	Description *string `pulumi:"description"`
 	// The ID of the associated LB IP. See below.
+	//
+	// > **Important:** Updates to `ipId` will not recreate the load-balancer.
 	IpId string `pulumi:"ipId"`
 	// The name of the load-balancer.
 	Name *string `pulumi:"name"`
@@ -353,6 +361,8 @@ type LbArgs struct {
 	// The description of the load-balancer.
 	Description pulumi.StringPtrInput
 	// The ID of the associated LB IP. See below.
+	//
+	// > **Important:** Updates to `ipId` will not recreate the load-balancer.
 	IpId pulumi.StringInput
 	// The name of the load-balancer.
 	Name pulumi.StringPtrInput
@@ -472,6 +482,8 @@ func (o LbOutput) IpAddress() pulumi.StringOutput {
 }
 
 // The ID of the associated LB IP. See below.
+//
+// > **Important:** Updates to `ipId` will not recreate the load-balancer.
 func (o LbOutput) IpId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Lb) pulumi.StringOutput { return v.IpId }).(pulumi.StringOutput)
 }

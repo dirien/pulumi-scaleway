@@ -100,6 +100,8 @@ import io.dirien.scaleway.inputs.GetMarketplaceImageArgs;
 import io.dirien.scaleway.inputs.GetMarketplaceImagePlainArgs;
 import io.dirien.scaleway.inputs.GetObjectBucketArgs;
 import io.dirien.scaleway.inputs.GetObjectBucketPlainArgs;
+import io.dirien.scaleway.inputs.GetObjectBucketPolicyArgs;
+import io.dirien.scaleway.inputs.GetObjectBucketPolicyPlainArgs;
 import io.dirien.scaleway.inputs.GetRdbAclArgs;
 import io.dirien.scaleway.inputs.GetRdbAclPlainArgs;
 import io.dirien.scaleway.inputs.GetRdbDatabaseArgs;
@@ -183,6 +185,7 @@ import io.dirien.scaleway.outputs.GetLbRouteResult;
 import io.dirien.scaleway.outputs.GetLbRoutesResult;
 import io.dirien.scaleway.outputs.GetLbsResult;
 import io.dirien.scaleway.outputs.GetMarketplaceImageResult;
+import io.dirien.scaleway.outputs.GetObjectBucketPolicyResult;
 import io.dirien.scaleway.outputs.GetObjectBucketResult;
 import io.dirien.scaleway.outputs.GetRdbAclResult;
 import io.dirien.scaleway.outputs.GetRdbDatabaseBackupResult;
@@ -11111,6 +11114,158 @@ public final class ScalewayFunctions {
      */
     public static CompletableFuture<GetObjectBucketResult> getObjectBucketPlain(GetObjectBucketPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("scaleway:index/getObjectBucket:getObjectBucket", TypeShape.of(GetObjectBucketResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about the Bucket&#39;s policy.
+     * For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetObjectBucketPolicyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getObjectBucketPolicy(GetObjectBucketPolicyArgs.builder()
+     *             .bucket(&#34;bucket.test.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetObjectBucketPolicyResult> getObjectBucketPolicy(GetObjectBucketPolicyArgs args) {
+        return getObjectBucketPolicy(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about the Bucket&#39;s policy.
+     * For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetObjectBucketPolicyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getObjectBucketPolicy(GetObjectBucketPolicyArgs.builder()
+     *             .bucket(&#34;bucket.test.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetObjectBucketPolicyResult> getObjectBucketPolicyPlain(GetObjectBucketPolicyPlainArgs args) {
+        return getObjectBucketPolicyPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Gets information about the Bucket&#39;s policy.
+     * For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetObjectBucketPolicyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getObjectBucketPolicy(GetObjectBucketPolicyArgs.builder()
+     *             .bucket(&#34;bucket.test.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetObjectBucketPolicyResult> getObjectBucketPolicy(GetObjectBucketPolicyArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy", TypeShape.of(GetObjectBucketPolicyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Gets information about the Bucket&#39;s policy.
+     * For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.scaleway.ScalewayFunctions;
+     * import com.pulumi.scaleway.inputs.GetObjectBucketPolicyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var main = ScalewayFunctions.getObjectBucketPolicy(GetObjectBucketPolicyArgs.builder()
+     *             .bucket(&#34;bucket.test.com&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetObjectBucketPolicyResult> getObjectBucketPolicyPlain(GetObjectBucketPolicyPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy", TypeShape.of(GetObjectBucketPolicyResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Gets information about the RDB instance network Access Control List.

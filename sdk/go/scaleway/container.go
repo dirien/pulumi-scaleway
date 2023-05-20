@@ -125,6 +125,8 @@ type Container struct {
 	// The cron status of the container.
 	CronStatus pulumi.StringOutput `pulumi:"cronStatus"`
 	// Boolean controlling whether the container is on a production environment.
+	//
+	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	Deploy pulumi.BoolPtrOutput `pulumi:"deploy"`
 	// The description of the container.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
@@ -147,6 +149,10 @@ type Container struct {
 	// The unique name of the container name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The container namespace ID of the container.
+	//
+	// > **Important** Updates to `name` will recreate the container.
+	//
+	// The following arguments are optional:
 	NamespaceId pulumi.StringOutput `pulumi:"namespaceId"`
 	// The port to expose the container. Defaults to 8080.
 	Port pulumi.IntOutput `pulumi:"port"`
@@ -213,6 +219,8 @@ type containerState struct {
 	// The cron status of the container.
 	CronStatus *string `pulumi:"cronStatus"`
 	// Boolean controlling whether the container is on a production environment.
+	//
+	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	Deploy *bool `pulumi:"deploy"`
 	// The description of the container.
 	Description *string `pulumi:"description"`
@@ -235,6 +243,10 @@ type containerState struct {
 	// The unique name of the container name.
 	Name *string `pulumi:"name"`
 	// The container namespace ID of the container.
+	//
+	// > **Important** Updates to `name` will recreate the container.
+	//
+	// The following arguments are optional:
 	NamespaceId *string `pulumi:"namespaceId"`
 	// The port to expose the container. Defaults to 8080.
 	Port *int `pulumi:"port"`
@@ -262,6 +274,8 @@ type ContainerState struct {
 	// The cron status of the container.
 	CronStatus pulumi.StringPtrInput
 	// Boolean controlling whether the container is on a production environment.
+	//
+	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	Deploy pulumi.BoolPtrInput
 	// The description of the container.
 	Description pulumi.StringPtrInput
@@ -284,6 +298,10 @@ type ContainerState struct {
 	// The unique name of the container name.
 	Name pulumi.StringPtrInput
 	// The container namespace ID of the container.
+	//
+	// > **Important** Updates to `name` will recreate the container.
+	//
+	// The following arguments are optional:
 	NamespaceId pulumi.StringPtrInput
 	// The port to expose the container. Defaults to 8080.
 	Port pulumi.IntPtrInput
@@ -313,6 +331,8 @@ type containerArgs struct {
 	// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
 	CpuLimit *int `pulumi:"cpuLimit"`
 	// Boolean controlling whether the container is on a production environment.
+	//
+	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	Deploy *bool `pulumi:"deploy"`
 	// The description of the container.
 	Description *string `pulumi:"description"`
@@ -331,6 +351,10 @@ type containerArgs struct {
 	// The unique name of the container name.
 	Name *string `pulumi:"name"`
 	// The container namespace ID of the container.
+	//
+	// > **Important** Updates to `name` will recreate the container.
+	//
+	// The following arguments are optional:
 	NamespaceId string `pulumi:"namespaceId"`
 	// The port to expose the container. Defaults to 8080.
 	Port *int `pulumi:"port"`
@@ -355,6 +379,8 @@ type ContainerArgs struct {
 	// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
 	CpuLimit pulumi.IntPtrInput
 	// Boolean controlling whether the container is on a production environment.
+	//
+	// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
 	Deploy pulumi.BoolPtrInput
 	// The description of the container.
 	Description pulumi.StringPtrInput
@@ -373,6 +399,10 @@ type ContainerArgs struct {
 	// The unique name of the container name.
 	Name pulumi.StringPtrInput
 	// The container namespace ID of the container.
+	//
+	// > **Important** Updates to `name` will recreate the container.
+	//
+	// The following arguments are optional:
 	NamespaceId pulumi.StringInput
 	// The port to expose the container. Defaults to 8080.
 	Port pulumi.IntPtrInput
@@ -490,6 +520,8 @@ func (o ContainerOutput) CronStatus() pulumi.StringOutput {
 }
 
 // Boolean controlling whether the container is on a production environment.
+//
+// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
 func (o ContainerOutput) Deploy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Container) pulumi.BoolPtrOutput { return v.Deploy }).(pulumi.BoolPtrOutput)
 }
@@ -545,6 +577,10 @@ func (o ContainerOutput) Name() pulumi.StringOutput {
 }
 
 // The container namespace ID of the container.
+//
+// > **Important** Updates to `name` will recreate the container.
+//
+// The following arguments are optional:
 func (o ContainerOutput) NamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.NamespaceId }).(pulumi.StringOutput)
 }

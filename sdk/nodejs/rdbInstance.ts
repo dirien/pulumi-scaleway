@@ -236,14 +236,20 @@ export class RdbInstance extends pulumi.CustomResource {
     public /*out*/ readonly endpointPort!: pulumi.Output<number>;
     /**
      * Database Instance's engine version (e.g. `PostgreSQL-11`).
+     *
+     * > **Important:** Updates to `engine` will recreate the Database Instance.
      */
     public readonly engine!: pulumi.Output<string>;
     /**
      * Map of engine settings to be set at database initialisation.
+     *
+     * > **Important:** Updates to `initSettings` will recreate the Database Instance.
      */
     public readonly initSettings!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Enable or disable high availability for the database instance.
+     *
+     * > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
      */
     public readonly isHaCluster!: pulumi.Output<boolean | undefined>;
     /**
@@ -256,6 +262,9 @@ export class RdbInstance extends pulumi.CustomResource {
     public readonly name!: pulumi.Output<string>;
     /**
      * The type of database instance you want to create (e.g. `db-dev-s`).
+     *
+     * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+     * interruption. Keep in mind that you cannot downgrade a Database Instance.
      */
     public readonly nodeType!: pulumi.Output<string>;
     /**
@@ -294,6 +303,8 @@ export class RdbInstance extends pulumi.CustomResource {
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
      * Identifier for the first user of the database instance.
+     *
+     * > **Important:** Updates to `userName` will recreate the Database Instance.
      */
     public readonly userName!: pulumi.Output<string | undefined>;
     /**
@@ -418,14 +429,20 @@ export interface RdbInstanceState {
     endpointPort?: pulumi.Input<number>;
     /**
      * Database Instance's engine version (e.g. `PostgreSQL-11`).
+     *
+     * > **Important:** Updates to `engine` will recreate the Database Instance.
      */
     engine?: pulumi.Input<string>;
     /**
      * Map of engine settings to be set at database initialisation.
+     *
+     * > **Important:** Updates to `initSettings` will recreate the Database Instance.
      */
     initSettings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Enable or disable high availability for the database instance.
+     *
+     * > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
      */
     isHaCluster?: pulumi.Input<boolean>;
     /**
@@ -438,6 +455,9 @@ export interface RdbInstanceState {
     name?: pulumi.Input<string>;
     /**
      * The type of database instance you want to create (e.g. `db-dev-s`).
+     *
+     * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+     * interruption. Keep in mind that you cannot downgrade a Database Instance.
      */
     nodeType?: pulumi.Input<string>;
     /**
@@ -476,6 +496,8 @@ export interface RdbInstanceState {
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Identifier for the first user of the database instance.
+     *
+     * > **Important:** Updates to `userName` will recreate the Database Instance.
      */
     userName?: pulumi.Input<string>;
     /**
@@ -510,14 +532,20 @@ export interface RdbInstanceArgs {
     disableBackup?: pulumi.Input<boolean>;
     /**
      * Database Instance's engine version (e.g. `PostgreSQL-11`).
+     *
+     * > **Important:** Updates to `engine` will recreate the Database Instance.
      */
     engine: pulumi.Input<string>;
     /**
      * Map of engine settings to be set at database initialisation.
+     *
+     * > **Important:** Updates to `initSettings` will recreate the Database Instance.
      */
     initSettings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Enable or disable high availability for the database instance.
+     *
+     * > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
      */
     isHaCluster?: pulumi.Input<boolean>;
     /**
@@ -526,6 +554,9 @@ export interface RdbInstanceArgs {
     name?: pulumi.Input<string>;
     /**
      * The type of database instance you want to create (e.g. `db-dev-s`).
+     *
+     * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+     * interruption. Keep in mind that you cannot downgrade a Database Instance.
      */
     nodeType: pulumi.Input<string>;
     /**
@@ -556,6 +587,8 @@ export interface RdbInstanceArgs {
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Identifier for the first user of the database instance.
+     *
+     * > **Important:** Updates to `userName` will recreate the Database Instance.
      */
     userName?: pulumi.Input<string>;
     /**

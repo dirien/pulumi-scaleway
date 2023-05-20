@@ -51,12 +51,16 @@ public final class ContainerState extends com.pulumi.resources.ResourceArgs {
     /**
      * Boolean controlling whether the container is on a production environment.
      * 
+     * Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
+     * 
      */
     @Import(name="deploy")
     private @Nullable Output<Boolean> deploy;
 
     /**
      * @return Boolean controlling whether the container is on a production environment.
+     * 
+     * Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
      * 
      */
     public Optional<Output<Boolean>> deploy() {
@@ -216,12 +220,20 @@ public final class ContainerState extends com.pulumi.resources.ResourceArgs {
     /**
      * The container namespace ID of the container.
      * 
+     * &gt; **Important** Updates to `name` will recreate the container.
+     * 
+     * The following arguments are optional:
+     * 
      */
     @Import(name="namespaceId")
     private @Nullable Output<String> namespaceId;
 
     /**
      * @return The container namespace ID of the container.
+     * 
+     * &gt; **Important** Updates to `name` will recreate the container.
+     * 
+     * The following arguments are optional:
      * 
      */
     public Optional<Output<String>> namespaceId() {
@@ -454,6 +466,8 @@ public final class ContainerState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param deploy Boolean controlling whether the container is on a production environment.
          * 
+         * Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
+         * 
          * @return builder
          * 
          */
@@ -464,6 +478,8 @@ public final class ContainerState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param deploy Boolean controlling whether the container is on a production environment.
+         * 
+         * Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
          * 
          * @return builder
          * 
@@ -685,6 +701,10 @@ public final class ContainerState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param namespaceId The container namespace ID of the container.
          * 
+         * &gt; **Important** Updates to `name` will recreate the container.
+         * 
+         * The following arguments are optional:
+         * 
          * @return builder
          * 
          */
@@ -695,6 +715,10 @@ public final class ContainerState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param namespaceId The container namespace ID of the container.
+         * 
+         * &gt; **Important** Updates to `name` will recreate the container.
+         * 
+         * The following arguments are optional:
          * 
          * @return builder
          * 

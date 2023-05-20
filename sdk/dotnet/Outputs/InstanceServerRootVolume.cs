@@ -17,6 +17,8 @@ namespace ediri.Scaleway.Outputs
         public readonly bool? Boot;
         /// <summary>
         /// Forces deletion of the root volume on instance termination.
+        /// 
+        /// &gt; **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
         /// </summary>
         public readonly bool? DeleteOnTermination;
         /// <summary>

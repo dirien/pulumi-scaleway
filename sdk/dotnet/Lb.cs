@@ -173,6 +173,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// The ID of the associated LB IP. See below.
+        /// 
+        /// &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
         /// </summary>
         [Output("ipId")]
         public Output<string> IpId { get; private set; } = null!;
@@ -292,6 +294,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// The ID of the associated LB IP. See below.
+        /// 
+        /// &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
         /// </summary>
         [Input("ipId", required: true)]
         public Input<string> IpId { get; set; } = null!;
@@ -378,6 +382,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// The ID of the associated LB IP. See below.
+        /// 
+        /// &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }

@@ -54,6 +54,8 @@ export class ObjectBucketPolicy extends pulumi.CustomResource {
     public readonly policy!: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
+     *
+     * > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -110,6 +112,8 @@ export interface ObjectBucketPolicyState {
     policy?: pulumi.Input<string>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
+     *
+     * > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -132,6 +136,8 @@ export interface ObjectBucketPolicyArgs {
     policy: pulumi.Input<string>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
+     *
+     * > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
      */
     projectId?: pulumi.Input<string>;
     /**

@@ -58,12 +58,16 @@ type LbFrontend struct {
 	// A list of ACL rules to apply to the load-balancer frontend.  Defined below.
 	Acls LbFrontendAclArrayOutput `pulumi:"acls"`
 	// The load-balancer backend ID this frontend is attached to.
+	//
+	// > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
 	BackendId pulumi.StringOutput `pulumi:"backendId"`
 	// (Deprecated) first certificate ID used by the frontend.
 	//
 	// Deprecated: Please use certificate_ids
 	CertificateId pulumi.StringOutput `pulumi:"certificateId"`
 	// List of Certificate IDs that should be used by the frontend.
+	//
+	// > **Important:** Certificates are not allowed on port 80.
 	CertificateIds pulumi.StringArrayOutput `pulumi:"certificateIds"`
 	// Activates HTTP/3 protocol.
 	EnableHttp3 pulumi.BoolPtrOutput `pulumi:"enableHttp3"`
@@ -119,12 +123,16 @@ type lbFrontendState struct {
 	// A list of ACL rules to apply to the load-balancer frontend.  Defined below.
 	Acls []LbFrontendAcl `pulumi:"acls"`
 	// The load-balancer backend ID this frontend is attached to.
+	//
+	// > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
 	BackendId *string `pulumi:"backendId"`
 	// (Deprecated) first certificate ID used by the frontend.
 	//
 	// Deprecated: Please use certificate_ids
 	CertificateId *string `pulumi:"certificateId"`
 	// List of Certificate IDs that should be used by the frontend.
+	//
+	// > **Important:** Certificates are not allowed on port 80.
 	CertificateIds []string `pulumi:"certificateIds"`
 	// Activates HTTP/3 protocol.
 	EnableHttp3 *bool `pulumi:"enableHttp3"`
@@ -142,12 +150,16 @@ type LbFrontendState struct {
 	// A list of ACL rules to apply to the load-balancer frontend.  Defined below.
 	Acls LbFrontendAclArrayInput
 	// The load-balancer backend ID this frontend is attached to.
+	//
+	// > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
 	BackendId pulumi.StringPtrInput
 	// (Deprecated) first certificate ID used by the frontend.
 	//
 	// Deprecated: Please use certificate_ids
 	CertificateId pulumi.StringPtrInput
 	// List of Certificate IDs that should be used by the frontend.
+	//
+	// > **Important:** Certificates are not allowed on port 80.
 	CertificateIds pulumi.StringArrayInput
 	// Activates HTTP/3 protocol.
 	EnableHttp3 pulumi.BoolPtrInput
@@ -169,8 +181,12 @@ type lbFrontendArgs struct {
 	// A list of ACL rules to apply to the load-balancer frontend.  Defined below.
 	Acls []LbFrontendAcl `pulumi:"acls"`
 	// The load-balancer backend ID this frontend is attached to.
+	//
+	// > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
 	BackendId string `pulumi:"backendId"`
 	// List of Certificate IDs that should be used by the frontend.
+	//
+	// > **Important:** Certificates are not allowed on port 80.
 	CertificateIds []string `pulumi:"certificateIds"`
 	// Activates HTTP/3 protocol.
 	EnableHttp3 *bool `pulumi:"enableHttp3"`
@@ -189,8 +205,12 @@ type LbFrontendArgs struct {
 	// A list of ACL rules to apply to the load-balancer frontend.  Defined below.
 	Acls LbFrontendAclArrayInput
 	// The load-balancer backend ID this frontend is attached to.
+	//
+	// > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
 	BackendId pulumi.StringInput
 	// List of Certificate IDs that should be used by the frontend.
+	//
+	// > **Important:** Certificates are not allowed on port 80.
 	CertificateIds pulumi.StringArrayInput
 	// Activates HTTP/3 protocol.
 	EnableHttp3 pulumi.BoolPtrInput
@@ -297,6 +317,8 @@ func (o LbFrontendOutput) Acls() LbFrontendAclArrayOutput {
 }
 
 // The load-balancer backend ID this frontend is attached to.
+//
+// > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
 func (o LbFrontendOutput) BackendId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbFrontend) pulumi.StringOutput { return v.BackendId }).(pulumi.StringOutput)
 }
@@ -309,6 +331,8 @@ func (o LbFrontendOutput) CertificateId() pulumi.StringOutput {
 }
 
 // List of Certificate IDs that should be used by the frontend.
+//
+// > **Important:** Certificates are not allowed on port 80.
 func (o LbFrontendOutput) CertificateIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *LbFrontend) pulumi.StringArrayOutput { return v.CertificateIds }).(pulumi.StringArrayOutput)
 }

@@ -410,12 +410,16 @@ public class RdbInstance extends com.pulumi.resources.CustomResource {
     /**
      * Database Instance&#39;s engine version (e.g. `PostgreSQL-11`).
      * 
+     * &gt; **Important:** Updates to `engine` will recreate the Database Instance.
+     * 
      */
     @Export(name="engine", refs={String.class}, tree="[0]")
     private Output<String> engine;
 
     /**
      * @return Database Instance&#39;s engine version (e.g. `PostgreSQL-11`).
+     * 
+     * &gt; **Important:** Updates to `engine` will recreate the Database Instance.
      * 
      */
     public Output<String> engine() {
@@ -424,12 +428,16 @@ public class RdbInstance extends com.pulumi.resources.CustomResource {
     /**
      * Map of engine settings to be set at database initialisation.
      * 
+     * &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
+     * 
      */
     @Export(name="initSettings", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> initSettings;
 
     /**
      * @return Map of engine settings to be set at database initialisation.
+     * 
+     * &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
      * 
      */
     public Output<Optional<Map<String,String>>> initSettings() {
@@ -438,12 +446,16 @@ public class RdbInstance extends com.pulumi.resources.CustomResource {
     /**
      * Enable or disable high availability for the database instance.
      * 
+     * &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
+     * 
      */
     @Export(name="isHaCluster", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> isHaCluster;
 
     /**
      * @return Enable or disable high availability for the database instance.
+     * 
+     * &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
      * 
      */
     public Output<Optional<Boolean>> isHaCluster() {
@@ -480,12 +492,18 @@ public class RdbInstance extends com.pulumi.resources.CustomResource {
     /**
      * The type of database instance you want to create (e.g. `db-dev-s`).
      * 
+     * &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+     * interruption. Keep in mind that you cannot downgrade a Database Instance.
+     * 
      */
     @Export(name="nodeType", refs={String.class}, tree="[0]")
     private Output<String> nodeType;
 
     /**
      * @return The type of database instance you want to create (e.g. `db-dev-s`).
+     * 
+     * &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+     * interruption. Keep in mind that you cannot downgrade a Database Instance.
      * 
      */
     public Output<String> nodeType() {
@@ -610,12 +628,16 @@ public class RdbInstance extends com.pulumi.resources.CustomResource {
     /**
      * Identifier for the first user of the database instance.
      * 
+     * &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
+     * 
      */
     @Export(name="userName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> userName;
 
     /**
      * @return Identifier for the first user of the database instance.
+     * 
+     * &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
      * 
      */
     public Output<Optional<String>> userName() {

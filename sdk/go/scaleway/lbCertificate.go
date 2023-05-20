@@ -21,6 +21,8 @@ type LbCertificate struct {
 	// The identifier (SHA-1) of the certificate
 	Fingerprint pulumi.StringOutput `pulumi:"fingerprint"`
 	// The load-balancer ID this certificate is attached to.
+	//
+	// > **Important:** Updates to `lbId` will recreate the load-balancer certificate.
 	LbId pulumi.StringOutput `pulumi:"lbId"`
 	// Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `customCertificate` should be specified.
 	Letsencrypt LbCertificateLetsencryptPtrOutput `pulumi:"letsencrypt"`
@@ -33,6 +35,8 @@ type LbCertificate struct {
 	// Certificate status
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Array of alternative domain names.  A new certificate will be created if this field is changed.
+	//
+	// > **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
 	SubjectAlternativeNames pulumi.StringArrayOutput `pulumi:"subjectAlternativeNames"`
 }
 
@@ -76,6 +80,8 @@ type lbCertificateState struct {
 	// The identifier (SHA-1) of the certificate
 	Fingerprint *string `pulumi:"fingerprint"`
 	// The load-balancer ID this certificate is attached to.
+	//
+	// > **Important:** Updates to `lbId` will recreate the load-balancer certificate.
 	LbId *string `pulumi:"lbId"`
 	// Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `customCertificate` should be specified.
 	Letsencrypt *LbCertificateLetsencrypt `pulumi:"letsencrypt"`
@@ -88,6 +94,8 @@ type lbCertificateState struct {
 	// Certificate status
 	Status *string `pulumi:"status"`
 	// Array of alternative domain names.  A new certificate will be created if this field is changed.
+	//
+	// > **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
 	SubjectAlternativeNames []string `pulumi:"subjectAlternativeNames"`
 }
 
@@ -99,6 +107,8 @@ type LbCertificateState struct {
 	// The identifier (SHA-1) of the certificate
 	Fingerprint pulumi.StringPtrInput
 	// The load-balancer ID this certificate is attached to.
+	//
+	// > **Important:** Updates to `lbId` will recreate the load-balancer certificate.
 	LbId pulumi.StringPtrInput
 	// Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `customCertificate` should be specified.
 	Letsencrypt LbCertificateLetsencryptPtrInput
@@ -111,6 +121,8 @@ type LbCertificateState struct {
 	// Certificate status
 	Status pulumi.StringPtrInput
 	// Array of alternative domain names.  A new certificate will be created if this field is changed.
+	//
+	// > **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
 	SubjectAlternativeNames pulumi.StringArrayInput
 }
 
@@ -122,6 +134,8 @@ type lbCertificateArgs struct {
 	// Configuration block for custom certificate chain. Only one of `letsencrypt` and `customCertificate` should be specified.
 	CustomCertificate *LbCertificateCustomCertificate `pulumi:"customCertificate"`
 	// The load-balancer ID this certificate is attached to.
+	//
+	// > **Important:** Updates to `lbId` will recreate the load-balancer certificate.
 	LbId string `pulumi:"lbId"`
 	// Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `customCertificate` should be specified.
 	Letsencrypt *LbCertificateLetsencrypt `pulumi:"letsencrypt"`
@@ -134,6 +148,8 @@ type LbCertificateArgs struct {
 	// Configuration block for custom certificate chain. Only one of `letsencrypt` and `customCertificate` should be specified.
 	CustomCertificate LbCertificateCustomCertificatePtrInput
 	// The load-balancer ID this certificate is attached to.
+	//
+	// > **Important:** Updates to `lbId` will recreate the load-balancer certificate.
 	LbId pulumi.StringInput
 	// Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `customCertificate` should be specified.
 	Letsencrypt LbCertificateLetsencryptPtrInput
@@ -244,6 +260,8 @@ func (o LbCertificateOutput) Fingerprint() pulumi.StringOutput {
 }
 
 // The load-balancer ID this certificate is attached to.
+//
+// > **Important:** Updates to `lbId` will recreate the load-balancer certificate.
 func (o LbCertificateOutput) LbId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbCertificate) pulumi.StringOutput { return v.LbId }).(pulumi.StringOutput)
 }
@@ -274,6 +292,8 @@ func (o LbCertificateOutput) Status() pulumi.StringOutput {
 }
 
 // Array of alternative domain names.  A new certificate will be created if this field is changed.
+//
+// > **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
 func (o LbCertificateOutput) SubjectAlternativeNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *LbCertificate) pulumi.StringArrayOutput { return v.SubjectAlternativeNames }).(pulumi.StringArrayOutput)
 }

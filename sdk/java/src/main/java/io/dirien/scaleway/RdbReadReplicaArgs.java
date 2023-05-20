@@ -35,12 +35,16 @@ public final class RdbReadReplicaArgs extends com.pulumi.resources.ResourceArgs 
     /**
      * UUID of the rdb instance.
      * 
+     * &gt; **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
+     * 
      */
     @Import(name="instanceId", required=true)
     private Output<String> instanceId;
 
     /**
      * @return UUID of the rdb instance.
+     * 
+     * &gt; **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
      * 
      */
     public Output<String> instanceId() {
@@ -130,6 +134,8 @@ public final class RdbReadReplicaArgs extends com.pulumi.resources.ResourceArgs 
         /**
          * @param instanceId UUID of the rdb instance.
          * 
+         * &gt; **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
+         * 
          * @return builder
          * 
          */
@@ -140,6 +146,8 @@ public final class RdbReadReplicaArgs extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param instanceId UUID of the rdb instance.
+         * 
+         * &gt; **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
          * 
          * @return builder
          * 

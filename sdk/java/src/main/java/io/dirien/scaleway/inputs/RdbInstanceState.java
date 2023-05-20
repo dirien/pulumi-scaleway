@@ -138,12 +138,16 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
     /**
      * Database Instance&#39;s engine version (e.g. `PostgreSQL-11`).
      * 
+     * &gt; **Important:** Updates to `engine` will recreate the Database Instance.
+     * 
      */
     @Import(name="engine")
     private @Nullable Output<String> engine;
 
     /**
      * @return Database Instance&#39;s engine version (e.g. `PostgreSQL-11`).
+     * 
+     * &gt; **Important:** Updates to `engine` will recreate the Database Instance.
      * 
      */
     public Optional<Output<String>> engine() {
@@ -153,12 +157,16 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
     /**
      * Map of engine settings to be set at database initialisation.
      * 
+     * &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
+     * 
      */
     @Import(name="initSettings")
     private @Nullable Output<Map<String,String>> initSettings;
 
     /**
      * @return Map of engine settings to be set at database initialisation.
+     * 
+     * &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
      * 
      */
     public Optional<Output<Map<String,String>>> initSettings() {
@@ -168,12 +176,16 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
     /**
      * Enable or disable high availability for the database instance.
      * 
+     * &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
+     * 
      */
     @Import(name="isHaCluster")
     private @Nullable Output<Boolean> isHaCluster;
 
     /**
      * @return Enable or disable high availability for the database instance.
+     * 
+     * &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
      * 
      */
     public Optional<Output<Boolean>> isHaCluster() {
@@ -213,12 +225,18 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
     /**
      * The type of database instance you want to create (e.g. `db-dev-s`).
      * 
+     * &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+     * interruption. Keep in mind that you cannot downgrade a Database Instance.
+     * 
      */
     @Import(name="nodeType")
     private @Nullable Output<String> nodeType;
 
     /**
      * @return The type of database instance you want to create (e.g. `db-dev-s`).
+     * 
+     * &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+     * interruption. Keep in mind that you cannot downgrade a Database Instance.
      * 
      */
     public Optional<Output<String>> nodeType() {
@@ -352,12 +370,16 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
     /**
      * Identifier for the first user of the database instance.
      * 
+     * &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
+     * 
      */
     @Import(name="userName")
     private @Nullable Output<String> userName;
 
     /**
      * @return Identifier for the first user of the database instance.
+     * 
+     * &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
      * 
      */
     public Optional<Output<String>> userName() {
@@ -599,6 +621,8 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param engine Database Instance&#39;s engine version (e.g. `PostgreSQL-11`).
          * 
+         * &gt; **Important:** Updates to `engine` will recreate the Database Instance.
+         * 
          * @return builder
          * 
          */
@@ -610,6 +634,8 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param engine Database Instance&#39;s engine version (e.g. `PostgreSQL-11`).
          * 
+         * &gt; **Important:** Updates to `engine` will recreate the Database Instance.
+         * 
          * @return builder
          * 
          */
@@ -619,6 +645,8 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param initSettings Map of engine settings to be set at database initialisation.
+         * 
+         * &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
          * 
          * @return builder
          * 
@@ -631,6 +659,8 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param initSettings Map of engine settings to be set at database initialisation.
          * 
+         * &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
+         * 
          * @return builder
          * 
          */
@@ -640,6 +670,8 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param isHaCluster Enable or disable high availability for the database instance.
+         * 
+         * &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
          * 
          * @return builder
          * 
@@ -651,6 +683,8 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param isHaCluster Enable or disable high availability for the database instance.
+         * 
+         * &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
          * 
          * @return builder
          * 
@@ -714,6 +748,9 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param nodeType The type of database instance you want to create (e.g. `db-dev-s`).
          * 
+         * &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+         * interruption. Keep in mind that you cannot downgrade a Database Instance.
+         * 
          * @return builder
          * 
          */
@@ -724,6 +761,9 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param nodeType The type of database instance you want to create (e.g. `db-dev-s`).
+         * 
+         * &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+         * interruption. Keep in mind that you cannot downgrade a Database Instance.
          * 
          * @return builder
          * 
@@ -927,6 +967,8 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param userName Identifier for the first user of the database instance.
          * 
+         * &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
+         * 
          * @return builder
          * 
          */
@@ -937,6 +979,8 @@ public final class RdbInstanceState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param userName Identifier for the first user of the database instance.
+         * 
+         * &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
          * 
          * @return builder
          * 

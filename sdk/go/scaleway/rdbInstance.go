@@ -297,16 +297,25 @@ type RdbInstance struct {
 	// (Deprecated) The port of the Database Instance.
 	EndpointPort pulumi.IntOutput `pulumi:"endpointPort"`
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
+	//
+	// > **Important:** Updates to `engine` will recreate the Database Instance.
 	Engine pulumi.StringOutput `pulumi:"engine"`
 	// Map of engine settings to be set at database initialisation.
+	//
+	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
 	InitSettings pulumi.StringMapOutput `pulumi:"initSettings"`
 	// Enable or disable high availability for the database instance.
+	//
+	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster pulumi.BoolPtrOutput `pulumi:"isHaCluster"`
 	// List of load balancer endpoints of the database instance.
 	LoadBalancers RdbInstanceLoadBalancerArrayOutput `pulumi:"loadBalancers"`
 	// The name of the Database Instance.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The type of database instance you want to create (e.g. `db-dev-s`).
+	//
+	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+	// interruption. Keep in mind that you cannot downgrade a Database Instance.
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
 	// The organization ID the Database Instance is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
@@ -327,6 +336,8 @@ type RdbInstance struct {
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// Identifier for the first user of the database instance.
+	//
+	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName pulumi.StringPtrOutput `pulumi:"userName"`
 	// Volume size (in GB) when `volumeType` is set to `bssd`.
 	VolumeSizeInGb pulumi.IntOutput `pulumi:"volumeSizeInGb"`
@@ -394,16 +405,25 @@ type rdbInstanceState struct {
 	// (Deprecated) The port of the Database Instance.
 	EndpointPort *int `pulumi:"endpointPort"`
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
+	//
+	// > **Important:** Updates to `engine` will recreate the Database Instance.
 	Engine *string `pulumi:"engine"`
 	// Map of engine settings to be set at database initialisation.
+	//
+	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
 	InitSettings map[string]string `pulumi:"initSettings"`
 	// Enable or disable high availability for the database instance.
+	//
+	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster *bool `pulumi:"isHaCluster"`
 	// List of load balancer endpoints of the database instance.
 	LoadBalancers []RdbInstanceLoadBalancer `pulumi:"loadBalancers"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
 	// The type of database instance you want to create (e.g. `db-dev-s`).
+	//
+	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+	// interruption. Keep in mind that you cannot downgrade a Database Instance.
 	NodeType *string `pulumi:"nodeType"`
 	// The organization ID the Database Instance is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
@@ -424,6 +444,8 @@ type rdbInstanceState struct {
 	// The tags associated with the Database Instance.
 	Tags []string `pulumi:"tags"`
 	// Identifier for the first user of the database instance.
+	//
+	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName *string `pulumi:"userName"`
 	// Volume size (in GB) when `volumeType` is set to `bssd`.
 	VolumeSizeInGb *int `pulumi:"volumeSizeInGb"`
@@ -449,16 +471,25 @@ type RdbInstanceState struct {
 	// (Deprecated) The port of the Database Instance.
 	EndpointPort pulumi.IntPtrInput
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
+	//
+	// > **Important:** Updates to `engine` will recreate the Database Instance.
 	Engine pulumi.StringPtrInput
 	// Map of engine settings to be set at database initialisation.
+	//
+	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
 	InitSettings pulumi.StringMapInput
 	// Enable or disable high availability for the database instance.
+	//
+	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster pulumi.BoolPtrInput
 	// List of load balancer endpoints of the database instance.
 	LoadBalancers RdbInstanceLoadBalancerArrayInput
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput
 	// The type of database instance you want to create (e.g. `db-dev-s`).
+	//
+	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+	// interruption. Keep in mind that you cannot downgrade a Database Instance.
 	NodeType pulumi.StringPtrInput
 	// The organization ID the Database Instance is associated with.
 	OrganizationId pulumi.StringPtrInput
@@ -479,6 +510,8 @@ type RdbInstanceState struct {
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayInput
 	// Identifier for the first user of the database instance.
+	//
+	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName pulumi.StringPtrInput
 	// Volume size (in GB) when `volumeType` is set to `bssd`.
 	VolumeSizeInGb pulumi.IntPtrInput
@@ -500,14 +533,23 @@ type rdbInstanceArgs struct {
 	// Disable automated backup for the database instance.
 	DisableBackup *bool `pulumi:"disableBackup"`
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
+	//
+	// > **Important:** Updates to `engine` will recreate the Database Instance.
 	Engine string `pulumi:"engine"`
 	// Map of engine settings to be set at database initialisation.
+	//
+	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
 	InitSettings map[string]string `pulumi:"initSettings"`
 	// Enable or disable high availability for the database instance.
+	//
+	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster *bool `pulumi:"isHaCluster"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
 	// The type of database instance you want to create (e.g. `db-dev-s`).
+	//
+	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+	// interruption. Keep in mind that you cannot downgrade a Database Instance.
 	NodeType string `pulumi:"nodeType"`
 	// Password for the first user of the database instance.
 	Password *string `pulumi:"password"`
@@ -524,6 +566,8 @@ type rdbInstanceArgs struct {
 	// The tags associated with the Database Instance.
 	Tags []string `pulumi:"tags"`
 	// Identifier for the first user of the database instance.
+	//
+	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName *string `pulumi:"userName"`
 	// Volume size (in GB) when `volumeType` is set to `bssd`.
 	VolumeSizeInGb *int `pulumi:"volumeSizeInGb"`
@@ -542,14 +586,23 @@ type RdbInstanceArgs struct {
 	// Disable automated backup for the database instance.
 	DisableBackup pulumi.BoolPtrInput
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
+	//
+	// > **Important:** Updates to `engine` will recreate the Database Instance.
 	Engine pulumi.StringInput
 	// Map of engine settings to be set at database initialisation.
+	//
+	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
 	InitSettings pulumi.StringMapInput
 	// Enable or disable high availability for the database instance.
+	//
+	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster pulumi.BoolPtrInput
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput
 	// The type of database instance you want to create (e.g. `db-dev-s`).
+	//
+	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+	// interruption. Keep in mind that you cannot downgrade a Database Instance.
 	NodeType pulumi.StringInput
 	// Password for the first user of the database instance.
 	Password pulumi.StringPtrInput
@@ -566,6 +619,8 @@ type RdbInstanceArgs struct {
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayInput
 	// Identifier for the first user of the database instance.
+	//
+	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName pulumi.StringPtrInput
 	// Volume size (in GB) when `volumeType` is set to `bssd`.
 	VolumeSizeInGb pulumi.IntPtrInput
@@ -698,16 +753,22 @@ func (o RdbInstanceOutput) EndpointPort() pulumi.IntOutput {
 }
 
 // Database Instance's engine version (e.g. `PostgreSQL-11`).
+//
+// > **Important:** Updates to `engine` will recreate the Database Instance.
 func (o RdbInstanceOutput) Engine() pulumi.StringOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.StringOutput { return v.Engine }).(pulumi.StringOutput)
 }
 
 // Map of engine settings to be set at database initialisation.
+//
+// > **Important:** Updates to `initSettings` will recreate the Database Instance.
 func (o RdbInstanceOutput) InitSettings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.StringMapOutput { return v.InitSettings }).(pulumi.StringMapOutput)
 }
 
 // Enable or disable high availability for the database instance.
+//
+// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 func (o RdbInstanceOutput) IsHaCluster() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.BoolPtrOutput { return v.IsHaCluster }).(pulumi.BoolPtrOutput)
 }
@@ -723,6 +784,9 @@ func (o RdbInstanceOutput) Name() pulumi.StringOutput {
 }
 
 // The type of database instance you want to create (e.g. `db-dev-s`).
+//
+// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+// interruption. Keep in mind that you cannot downgrade a Database Instance.
 func (o RdbInstanceOutput) NodeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.StringOutput { return v.NodeType }).(pulumi.StringOutput)
 }
@@ -770,6 +834,8 @@ func (o RdbInstanceOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // Identifier for the first user of the database instance.
+//
+// > **Important:** Updates to `userName` will recreate the Database Instance.
 func (o RdbInstanceOutput) UserName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.StringPtrOutput { return v.UserName }).(pulumi.StringPtrOutput)
 }

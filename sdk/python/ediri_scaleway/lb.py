@@ -29,6 +29,8 @@ class LbArgs:
         """
         The set of arguments for constructing a Lb resource.
         :param pulumi.Input[str] ip_id: The ID of the associated LB IP. See below.
+               
+               > **Important:** Updates to `ip_id` will not recreate the load-balancer.
         :param pulumi.Input[str] type: The type of the load-balancer. Please check the migration section to upgrade the type
         :param pulumi.Input[str] description: The description of the load-balancer.
         :param pulumi.Input[str] name: The name of the load-balancer.
@@ -66,6 +68,8 @@ class LbArgs:
     def ip_id(self) -> pulumi.Input[str]:
         """
         The ID of the associated LB IP. See below.
+
+        > **Important:** Updates to `ip_id` will not recreate the load-balancer.
         """
         return pulumi.get(self, "ip_id")
 
@@ -203,6 +207,8 @@ class _LbState:
         :param pulumi.Input[str] description: The description of the load-balancer.
         :param pulumi.Input[str] ip_address: The load-balance public IP Address
         :param pulumi.Input[str] ip_id: The ID of the associated LB IP. See below.
+               
+               > **Important:** Updates to `ip_id` will not recreate the load-balancer.
         :param pulumi.Input[str] name: The name of the load-balancer.
         :param pulumi.Input[str] organization_id: The organization ID the load-balancer is associated with.
         :param pulumi.Input[Sequence[pulumi.Input['LbPrivateNetworkArgs']]] private_networks: List of private network to connect with your load balancer
@@ -273,6 +279,8 @@ class _LbState:
     def ip_id(self) -> Optional[pulumi.Input[str]]:
         """
         The ID of the associated LB IP. See below.
+
+        > **Important:** Updates to `ip_id` will not recreate the load-balancer.
         """
         return pulumi.get(self, "ip_id")
 
@@ -538,6 +546,8 @@ class Lb(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the load-balancer.
         :param pulumi.Input[str] ip_id: The ID of the associated LB IP. See below.
+               
+               > **Important:** Updates to `ip_id` will not recreate the load-balancer.
         :param pulumi.Input[str] name: The name of the load-balancer.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbPrivateNetworkArgs']]]] private_networks: List of private network to connect with your load balancer
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the load-balancer is associated with.
@@ -757,6 +767,8 @@ class Lb(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the load-balancer.
         :param pulumi.Input[str] ip_address: The load-balance public IP Address
         :param pulumi.Input[str] ip_id: The ID of the associated LB IP. See below.
+               
+               > **Important:** Updates to `ip_id` will not recreate the load-balancer.
         :param pulumi.Input[str] name: The name of the load-balancer.
         :param pulumi.Input[str] organization_id: The organization ID the load-balancer is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbPrivateNetworkArgs']]]] private_networks: List of private network to connect with your load balancer
@@ -808,6 +820,8 @@ class Lb(pulumi.CustomResource):
     def ip_id(self) -> pulumi.Output[str]:
         """
         The ID of the associated LB IP. See below.
+
+        > **Important:** Updates to `ip_id` will not recreate the load-balancer.
         """
         return pulumi.get(self, "ip_id")
 
