@@ -54,6 +54,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// The load-balancer backend ID this frontend is attached to.
+        /// 
+        /// &gt; **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
         /// </summary>
         [Output("backendId")]
         public Output<string> BackendId { get; private set; } = null!;
@@ -66,6 +68,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// List of Certificate IDs that should be used by the frontend.
+        /// 
+        /// &gt; **Important:** Certificates are not allowed on port 80.
         /// </summary>
         [Output("certificateIds")]
         public Output<ImmutableArray<string>> CertificateIds { get; private set; } = null!;
@@ -161,6 +165,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// The load-balancer backend ID this frontend is attached to.
+        /// 
+        /// &gt; **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
         /// </summary>
         [Input("backendId", required: true)]
         public Input<string> BackendId { get; set; } = null!;
@@ -170,6 +176,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// List of Certificate IDs that should be used by the frontend.
+        /// 
+        /// &gt; **Important:** Certificates are not allowed on port 80.
         /// </summary>
         public InputList<string> CertificateIds
         {
@@ -229,6 +237,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// The load-balancer backend ID this frontend is attached to.
+        /// 
+        /// &gt; **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
         /// </summary>
         [Input("backendId")]
         public Input<string>? BackendId { get; set; }
@@ -244,6 +254,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// List of Certificate IDs that should be used by the frontend.
+        /// 
+        /// &gt; **Important:** Certificates are not allowed on port 80.
         /// </summary>
         public InputList<string> CertificateIds
         {

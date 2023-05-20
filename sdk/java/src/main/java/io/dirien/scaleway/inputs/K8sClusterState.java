@@ -240,12 +240,18 @@ public final class K8sClusterState extends com.pulumi.resources.ResourceArgs {
     /**
      * The ID of the private network of the cluster.
      * 
+     * &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
+     * Changes to this field will cause the cluster to be destroyed then recreated.
+     * 
      */
     @Import(name="privateNetworkId")
     private @Nullable Output<String> privateNetworkId;
 
     /**
      * @return The ID of the private network of the cluster.
+     * 
+     * &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
+     * Changes to this field will cause the cluster to be destroyed then recreated.
      * 
      */
     public Optional<Output<String>> privateNetworkId() {
@@ -777,6 +783,9 @@ public final class K8sClusterState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param privateNetworkId The ID of the private network of the cluster.
          * 
+         * &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
+         * Changes to this field will cause the cluster to be destroyed then recreated.
+         * 
          * @return builder
          * 
          */
@@ -787,6 +796,9 @@ public final class K8sClusterState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param privateNetworkId The ID of the private network of the cluster.
+         * 
+         * &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
+         * Changes to this field will cause the cluster to be destroyed then recreated.
          * 
          * @return builder
          * 

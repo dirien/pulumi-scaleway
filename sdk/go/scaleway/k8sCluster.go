@@ -11,6 +11,140 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
+//
+// ## Examples
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			jack, err := scaleway.NewK8sCluster(ctx, "jack", &scaleway.K8sClusterArgs{
+//				Version:                   pulumi.String("1.24.3"),
+//				Cni:                       pulumi.String("cilium"),
+//				DeleteAdditionalResources: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewK8sPool(ctx, "john", &scaleway.K8sPoolArgs{
+//				ClusterId: jack.ID(),
+//				NodeType:  pulumi.String("DEV1-M"),
+//				Size:      pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Multicloud
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			henry, err := scaleway.NewK8sCluster(ctx, "henry", &scaleway.K8sClusterArgs{
+//				Type:                      pulumi.String("multicloud"),
+//				Version:                   pulumi.String("1.24.3"),
+//				Cni:                       pulumi.String("kilo"),
+//				DeleteAdditionalResources: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewK8sPool(ctx, "friendFromOuterSpace", &scaleway.K8sPoolArgs{
+//				ClusterId: henry.ID(),
+//				NodeType:  pulumi.String("external"),
+//				Size:      pulumi.Int(0),
+//				MinSize:   pulumi.Int(0),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// For a detailed example of how to add or run Elastic Metal servers instead of instances on your cluster, please refer to this guide.
+//
+// ### With additional configuration
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			johnK8sCluster, err := scaleway.NewK8sCluster(ctx, "johnK8sCluster", &scaleway.K8sClusterArgs{
+//				Description: pulumi.String("my awesome cluster"),
+//				Version:     pulumi.String("1.24.3"),
+//				Cni:         pulumi.String("calico"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("i'm an awesome tag"),
+//					pulumi.String("yay"),
+//				},
+//				DeleteAdditionalResources: pulumi.Bool(false),
+//				AutoscalerConfig: &scaleway.K8sClusterAutoscalerConfigArgs{
+//					DisableScaleDown:             pulumi.Bool(false),
+//					ScaleDownDelayAfterAdd:       pulumi.String("5m"),
+//					Estimator:                    pulumi.String("binpacking"),
+//					Expander:                     pulumi.String("random"),
+//					IgnoreDaemonsetsUtilization:  pulumi.Bool(true),
+//					BalanceSimilarNodeGroups:     pulumi.Bool(true),
+//					ExpendablePodsPriorityCutoff: -5,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewK8sPool(ctx, "johnK8sPool", &scaleway.K8sPoolArgs{
+//				ClusterId:   johnK8sCluster.ID(),
+//				NodeType:    pulumi.String("DEV1-M"),
+//				Size:        pulumi.Int(3),
+//				Autoscaling: pulumi.Bool(true),
+//				Autohealing: pulumi.Bool(true),
+//				MinSize:     pulumi.Int(1),
+//				MaxSize:     pulumi.Int(5),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Kubernetes clusters can be imported using the `{region}/{id}`, e.g. bash
@@ -55,6 +189,9 @@ type K8sCluster struct {
 	// The organization ID the cluster is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// The ID of the private network of the cluster.
+	//
+	// > **Important:** This field can only be set at cluster creation and cannot be updated later.
+	// Changes to this field will cause the cluster to be destroyed then recreated.
 	PrivateNetworkId pulumi.StringOutput `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -151,6 +288,9 @@ type k8sClusterState struct {
 	// The organization ID the cluster is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
 	// The ID of the private network of the cluster.
+	//
+	// > **Important:** This field can only be set at cluster creation and cannot be updated later.
+	// Changes to this field will cause the cluster to be destroyed then recreated.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -205,6 +345,9 @@ type K8sClusterState struct {
 	// The organization ID the cluster is associated with.
 	OrganizationId pulumi.StringPtrInput
 	// The ID of the private network of the cluster.
+	//
+	// > **Important:** This field can only be set at cluster creation and cannot be updated later.
+	// Changes to this field will cause the cluster to be destroyed then recreated.
 	PrivateNetworkId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -255,6 +398,9 @@ type k8sClusterArgs struct {
 	// The OpenID Connect configuration of the cluster
 	OpenIdConnectConfig *K8sClusterOpenIdConnectConfig `pulumi:"openIdConnectConfig"`
 	// The ID of the private network of the cluster.
+	//
+	// > **Important:** This field can only be set at cluster creation and cannot be updated later.
+	// Changes to this field will cause the cluster to be destroyed then recreated.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -294,6 +440,9 @@ type K8sClusterArgs struct {
 	// The OpenID Connect configuration of the cluster
 	OpenIdConnectConfig K8sClusterOpenIdConnectConfigPtrInput
 	// The ID of the private network of the cluster.
+	//
+	// > **Important:** This field can only be set at cluster creation and cannot be updated later.
+	// Changes to this field will cause the cluster to be destroyed then recreated.
 	PrivateNetworkId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -468,6 +617,9 @@ func (o K8sClusterOutput) OrganizationId() pulumi.StringOutput {
 }
 
 // The ID of the private network of the cluster.
+//
+// > **Important:** This field can only be set at cluster creation and cannot be updated later.
+// Changes to this field will cause the cluster to be destroyed then recreated.
 func (o K8sClusterOutput) PrivateNetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v *K8sCluster) pulumi.StringOutput { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }

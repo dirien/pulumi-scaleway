@@ -154,12 +154,16 @@ public class Container extends com.pulumi.resources.CustomResource {
     /**
      * Boolean controlling whether the container is on a production environment.
      * 
+     * Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
+     * 
      */
     @Export(name="deploy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> deploy;
 
     /**
      * @return Boolean controlling whether the container is on a production environment.
+     * 
+     * Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
      * 
      */
     public Output<Optional<Boolean>> deploy() {
@@ -308,12 +312,20 @@ public class Container extends com.pulumi.resources.CustomResource {
     /**
      * The container namespace ID of the container.
      * 
+     * &gt; **Important** Updates to `name` will recreate the container.
+     * 
+     * The following arguments are optional:
+     * 
      */
     @Export(name="namespaceId", refs={String.class}, tree="[0]")
     private Output<String> namespaceId;
 
     /**
      * @return The container namespace ID of the container.
+     * 
+     * &gt; **Important** Updates to `name` will recreate the container.
+     * 
+     * The following arguments are optional:
      * 
      */
     public Output<String> namespaceId() {

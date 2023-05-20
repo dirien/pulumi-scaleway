@@ -284,18 +284,24 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// Database Instance's engine version (e.g. `PostgreSQL-11`).
+        /// 
+        /// &gt; **Important:** Updates to `engine` will recreate the Database Instance.
         /// </summary>
         [Output("engine")]
         public Output<string> Engine { get; private set; } = null!;
 
         /// <summary>
         /// Map of engine settings to be set at database initialisation.
+        /// 
+        /// &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
         /// </summary>
         [Output("initSettings")]
         public Output<ImmutableDictionary<string, string>?> InitSettings { get; private set; } = null!;
 
         /// <summary>
         /// Enable or disable high availability for the database instance.
+        /// 
+        /// &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
         /// </summary>
         [Output("isHaCluster")]
         public Output<bool?> IsHaCluster { get; private set; } = null!;
@@ -314,6 +320,9 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// The type of database instance you want to create (e.g. `db-dev-s`).
+        /// 
+        /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+        /// interruption. Keep in mind that you cannot downgrade a Database Instance.
         /// </summary>
         [Output("nodeType")]
         public Output<string> NodeType { get; private set; } = null!;
@@ -370,6 +379,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// Identifier for the first user of the database instance.
+        /// 
+        /// &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
         /// </summary>
         [Output("userName")]
         public Output<string?> UserName { get; private set; } = null!;
@@ -463,6 +474,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// Database Instance's engine version (e.g. `PostgreSQL-11`).
+        /// 
+        /// &gt; **Important:** Updates to `engine` will recreate the Database Instance.
         /// </summary>
         [Input("engine", required: true)]
         public Input<string> Engine { get; set; } = null!;
@@ -472,6 +485,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// Map of engine settings to be set at database initialisation.
+        /// 
+        /// &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
         /// </summary>
         public InputMap<string> InitSettings
         {
@@ -481,6 +496,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// Enable or disable high availability for the database instance.
+        /// 
+        /// &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
         /// </summary>
         [Input("isHaCluster")]
         public Input<bool>? IsHaCluster { get; set; }
@@ -493,6 +510,9 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// The type of database instance you want to create (e.g. `db-dev-s`).
+        /// 
+        /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+        /// interruption. Keep in mind that you cannot downgrade a Database Instance.
         /// </summary>
         [Input("nodeType", required: true)]
         public Input<string> NodeType { get; set; } = null!;
@@ -559,6 +579,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// Identifier for the first user of the database instance.
+        /// 
+        /// &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
         /// </summary>
         [Input("userName")]
         public Input<string>? UserName { get; set; }
@@ -627,6 +649,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// Database Instance's engine version (e.g. `PostgreSQL-11`).
+        /// 
+        /// &gt; **Important:** Updates to `engine` will recreate the Database Instance.
         /// </summary>
         [Input("engine")]
         public Input<string>? Engine { get; set; }
@@ -636,6 +660,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// Map of engine settings to be set at database initialisation.
+        /// 
+        /// &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
         /// </summary>
         public InputMap<string> InitSettings
         {
@@ -645,6 +671,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// Enable or disable high availability for the database instance.
+        /// 
+        /// &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
         /// </summary>
         [Input("isHaCluster")]
         public Input<bool>? IsHaCluster { get; set; }
@@ -669,6 +697,9 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// The type of database instance you want to create (e.g. `db-dev-s`).
+        /// 
+        /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+        /// interruption. Keep in mind that you cannot downgrade a Database Instance.
         /// </summary>
         [Input("nodeType")]
         public Input<string>? NodeType { get; set; }
@@ -753,6 +784,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// Identifier for the first user of the database instance.
+        /// 
+        /// &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
         /// </summary>
         [Input("userName")]
         public Input<string>? UserName { get; set; }

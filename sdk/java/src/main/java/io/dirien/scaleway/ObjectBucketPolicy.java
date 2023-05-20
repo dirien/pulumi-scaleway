@@ -72,60 +72,6 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
- * ## Example with aws provider
- * 
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.scaleway.ObjectBucketPolicy;
- * import com.pulumi.scaleway.ObjectBucketPolicyArgs;
- * import com.pulumi.aws.iam.IamFunctions;
- * import com.pulumi.aws.iam.inputs.GetPolicyDocumentArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var bucket = new ObjectBucketPolicy(&#34;bucket&#34;, ObjectBucketPolicyArgs.builder()        
- *             .name(&#34;some-unique-name&#34;)
- *             .build());
- * 
- *         final var policy = IamFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()
- *             .version(&#34;2012-10-17&#34;)
- *             .statements(GetPolicyDocumentStatementArgs.builder()
- *                 .sid(&#34;MyPolicy&#34;)
- *                 .principals(GetPolicyDocumentStatementPrincipalArgs.builder()
- *                     .type(&#34;SCW&#34;)
- *                     .identifiers(&#34;project_id:&lt;project_id&gt;&#34;)
- *                     .build())
- *                 .actions(                
- *                     &#34;s3:GetObject&#34;,
- *                     &#34;s3:ListBucket&#34;)
- *                 .resources(                
- *                     &#34;some-unique-name&#34;,
- *                     &#34;some-unique-name/*&#34;)
- *                 .build())
- *             .build());
- * 
- *         var main = new ObjectBucketPolicy(&#34;main&#34;, ObjectBucketPolicyArgs.builder()        
- *             .bucket(scaleway_object_bucket.bucket().name())
- *             .policy(policy.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.json()))
- *             .build());
- * 
- *     }
- * }
- * ```
  * 
  * ## Import
  * 
@@ -169,12 +115,16 @@ public class ObjectBucketPolicy extends com.pulumi.resources.CustomResource {
     /**
      * `project_id`) The ID of the project the bucket is associated with.
      * 
+     * &gt; **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
+     * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
      * @return `project_id`) The ID of the project the bucket is associated with.
+     * 
+     * &gt; **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
      * 
      */
     public Output<String> projectId() {

@@ -164,6 +164,8 @@ export class Lb extends pulumi.CustomResource {
     public /*out*/ readonly ipAddress!: pulumi.Output<string>;
     /**
      * The ID of the associated LB IP. See below.
+     *
+     * > **Important:** Updates to `ipId` will not recreate the load-balancer.
      */
     public readonly ipId!: pulumi.Output<string>;
     /**
@@ -276,6 +278,8 @@ export interface LbState {
     ipAddress?: pulumi.Input<string>;
     /**
      * The ID of the associated LB IP. See below.
+     *
+     * > **Important:** Updates to `ipId` will not recreate the load-balancer.
      */
     ipId?: pulumi.Input<string>;
     /**
@@ -332,6 +336,8 @@ export interface LbArgs {
     description?: pulumi.Input<string>;
     /**
      * The ID of the associated LB IP. See below.
+     *
+     * > **Important:** Updates to `ipId` will not recreate the load-balancer.
      */
     ipId: pulumi.Input<string>;
     /**

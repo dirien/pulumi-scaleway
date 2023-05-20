@@ -71,6 +71,7 @@ from .get_lb_routes import *
 from .get_lbs import *
 from .get_marketplace_image import *
 from .get_object_bucket import *
+from .get_object_bucket_policy import *
 from .get_rdb_acl import *
 from .get_rdb_database import *
 from .get_rdb_database_backup import *
@@ -120,6 +121,7 @@ from .lb_ip import *
 from .lb_route import *
 from .mnq_credential import *
 from .mnq_namespace import *
+from .mnq_queue import *
 from .object_bucket import *
 from .object_bucket_acl import *
 from .object_bucket_lock_configuration import *
@@ -558,6 +560,14 @@ _utilities.register(
   "fqn": "ediri_scaleway",
   "classes": {
    "scaleway:index/mnqNamespace:MnqNamespace": "MnqNamespace"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mnqQueue",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/mnqQueue:MnqQueue": "MnqQueue"
   }
  },
  {

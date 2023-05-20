@@ -190,12 +190,16 @@ public class LbFrontend extends com.pulumi.resources.CustomResource {
     /**
      * The load-balancer backend ID this frontend is attached to.
      * 
+     * &gt; **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
+     * 
      */
     @Export(name="backendId", refs={String.class}, tree="[0]")
     private Output<String> backendId;
 
     /**
      * @return The load-balancer backend ID this frontend is attached to.
+     * 
+     * &gt; **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
      * 
      */
     public Output<String> backendId() {
@@ -222,12 +226,16 @@ public class LbFrontend extends com.pulumi.resources.CustomResource {
     /**
      * List of Certificate IDs that should be used by the frontend.
      * 
+     * &gt; **Important:** Certificates are not allowed on port 80.
+     * 
      */
     @Export(name="certificateIds", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> certificateIds;
 
     /**
      * @return List of Certificate IDs that should be used by the frontend.
+     * 
+     * &gt; **Important:** Certificates are not allowed on port 80.
      * 
      */
     public Output<Optional<List<String>>> certificateIds() {

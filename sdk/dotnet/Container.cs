@@ -122,6 +122,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// Boolean controlling whether the container is on a production environment.
+        /// 
+        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
         [Output("deploy")]
         public Output<bool?> Deploy { get; private set; } = null!;
@@ -188,6 +190,10 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// The container namespace ID of the container.
+        /// 
+        /// &gt; **Important** Updates to `name` will recreate the container.
+        /// 
+        /// The following arguments are optional:
         /// </summary>
         [Output("namespaceId")]
         public Output<string> NamespaceId { get; private set; } = null!;
@@ -305,6 +311,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// Boolean controlling whether the container is on a production environment.
+        /// 
+        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
         [Input("deploy")]
         public Input<bool>? Deploy { get; set; }
@@ -365,6 +373,10 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// The container namespace ID of the container.
+        /// 
+        /// &gt; **Important** Updates to `name` will recreate the container.
+        /// 
+        /// The following arguments are optional:
         /// </summary>
         [Input("namespaceId", required: true)]
         public Input<string> NamespaceId { get; set; } = null!;
@@ -449,6 +461,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// Boolean controlling whether the container is on a production environment.
+        /// 
+        /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
         [Input("deploy")]
         public Input<bool>? Deploy { get; set; }
@@ -521,6 +535,10 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// The container namespace ID of the container.
+        /// 
+        /// &gt; **Important** Updates to `name` will recreate the container.
+        /// 
+        /// The following arguments are optional:
         /// </summary>
         [Input("namespaceId")]
         public Input<string>? NamespaceId { get; set; }

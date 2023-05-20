@@ -37,12 +37,16 @@ public final class LbFrontendState extends com.pulumi.resources.ResourceArgs {
     /**
      * The load-balancer backend ID this frontend is attached to.
      * 
+     * &gt; **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
+     * 
      */
     @Import(name="backendId")
     private @Nullable Output<String> backendId;
 
     /**
      * @return The load-balancer backend ID this frontend is attached to.
+     * 
+     * &gt; **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
      * 
      */
     public Optional<Output<String>> backendId() {
@@ -75,12 +79,16 @@ public final class LbFrontendState extends com.pulumi.resources.ResourceArgs {
     /**
      * List of Certificate IDs that should be used by the frontend.
      * 
+     * &gt; **Important:** Certificates are not allowed on port 80.
+     * 
      */
     @Import(name="certificateIds")
     private @Nullable Output<List<String>> certificateIds;
 
     /**
      * @return List of Certificate IDs that should be used by the frontend.
+     * 
+     * &gt; **Important:** Certificates are not allowed on port 80.
      * 
      */
     public Optional<Output<List<String>>> certificateIds() {
@@ -228,6 +236,8 @@ public final class LbFrontendState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param backendId The load-balancer backend ID this frontend is attached to.
          * 
+         * &gt; **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
+         * 
          * @return builder
          * 
          */
@@ -238,6 +248,8 @@ public final class LbFrontendState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param backendId The load-balancer backend ID this frontend is attached to.
+         * 
+         * &gt; **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
          * 
          * @return builder
          * 
@@ -278,6 +290,8 @@ public final class LbFrontendState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param certificateIds List of Certificate IDs that should be used by the frontend.
          * 
+         * &gt; **Important:** Certificates are not allowed on port 80.
+         * 
          * @return builder
          * 
          */
@@ -289,6 +303,8 @@ public final class LbFrontendState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param certificateIds List of Certificate IDs that should be used by the frontend.
          * 
+         * &gt; **Important:** Certificates are not allowed on port 80.
+         * 
          * @return builder
          * 
          */
@@ -298,6 +314,8 @@ public final class LbFrontendState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param certificateIds List of Certificate IDs that should be used by the frontend.
+         * 
+         * &gt; **Important:** Certificates are not allowed on port 80.
          * 
          * @return builder
          * 

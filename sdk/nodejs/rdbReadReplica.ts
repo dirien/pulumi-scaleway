@@ -103,6 +103,8 @@ export class RdbReadReplica extends pulumi.CustomResource {
     public readonly directAccess!: pulumi.Output<outputs.RdbReadReplicaDirectAccess | undefined>;
     /**
      * UUID of the rdb instance.
+     *
+     * > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
@@ -157,6 +159,8 @@ export interface RdbReadReplicaState {
     directAccess?: pulumi.Input<inputs.RdbReadReplicaDirectAccess>;
     /**
      * UUID of the rdb instance.
+     *
+     * > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
      */
     instanceId?: pulumi.Input<string>;
     /**
@@ -180,6 +184,8 @@ export interface RdbReadReplicaArgs {
     directAccess?: pulumi.Input<inputs.RdbReadReplicaDirectAccess>;
     /**
      * UUID of the rdb instance.
+     *
+     * > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
      */
     instanceId: pulumi.Input<string>;
     /**

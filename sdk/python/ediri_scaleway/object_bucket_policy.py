@@ -23,6 +23,8 @@ class ObjectBucketPolicyArgs:
         :param pulumi.Input[str] bucket: The name of the bucket.
         :param pulumi.Input[str] policy: The text of the policy.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         """
         pulumi.set(__self__, "bucket", bucket)
@@ -61,6 +63,8 @@ class ObjectBucketPolicyArgs:
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
         `project_id`) The ID of the project the bucket is associated with.
+
+        > **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
         """
         return pulumi.get(self, "project_id")
 
@@ -93,6 +97,8 @@ class _ObjectBucketPolicyState:
         :param pulumi.Input[str] bucket: The name of the bucket.
         :param pulumi.Input[str] policy: The text of the policy.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         """
         if bucket is not None:
@@ -133,6 +139,8 @@ class _ObjectBucketPolicyState:
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
         `project_id`) The ID of the project the bucket is associated with.
+
+        > **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
         """
         return pulumi.get(self, "project_id")
 
@@ -180,6 +188,8 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] bucket: The name of the bucket.
         :param pulumi.Input[str] policy: The text of the policy.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         """
         ...
@@ -260,6 +270,8 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] bucket: The name of the bucket.
         :param pulumi.Input[str] policy: The text of the policy.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
+               
+               > **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -293,6 +305,8 @@ class ObjectBucketPolicy(pulumi.CustomResource):
     def project_id(self) -> pulumi.Output[str]:
         """
         `project_id`) The ID of the project the bucket is associated with.
+
+        > **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
         """
         return pulumi.get(self, "project_id")
 

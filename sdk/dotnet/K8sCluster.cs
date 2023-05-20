@@ -11,6 +11,115 @@ using Pulumi;
 namespace ediri.Scaleway
 {
     /// <summary>
+    /// Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
+    /// 
+    /// ## Examples
+    /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var jack = new Scaleway.K8sCluster("jack", new()
+    ///     {
+    ///         Version = "1.24.3",
+    ///         Cni = "cilium",
+    ///         DeleteAdditionalResources = false,
+    ///     });
+    /// 
+    ///     var john = new Scaleway.K8sPool("john", new()
+    ///     {
+    ///         ClusterId = jack.Id,
+    ///         NodeType = "DEV1-M",
+    ///         Size = 1,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Multicloud
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var henry = new Scaleway.K8sCluster("henry", new()
+    ///     {
+    ///         Type = "multicloud",
+    ///         Version = "1.24.3",
+    ///         Cni = "kilo",
+    ///         DeleteAdditionalResources = false,
+    ///     });
+    /// 
+    ///     var friendFromOuterSpace = new Scaleway.K8sPool("friendFromOuterSpace", new()
+    ///     {
+    ///         ClusterId = henry.Id,
+    ///         NodeType = "external",
+    ///         Size = 0,
+    ///         MinSize = 0,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// For a detailed example of how to add or run Elastic Metal servers instead of instances on your cluster, please refer to this guide.
+    /// 
+    /// ### With additional configuration
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var johnK8sCluster = new Scaleway.K8sCluster("johnK8sCluster", new()
+    ///     {
+    ///         Description = "my awesome cluster",
+    ///         Version = "1.24.3",
+    ///         Cni = "calico",
+    ///         Tags = new[]
+    ///         {
+    ///             "i'm an awesome tag",
+    ///             "yay",
+    ///         },
+    ///         DeleteAdditionalResources = false,
+    ///         AutoscalerConfig = new Scaleway.Inputs.K8sClusterAutoscalerConfigArgs
+    ///         {
+    ///             DisableScaleDown = false,
+    ///             ScaleDownDelayAfterAdd = "5m",
+    ///             Estimator = "binpacking",
+    ///             Expander = "random",
+    ///             IgnoreDaemonsetsUtilization = true,
+    ///             BalanceSimilarNodeGroups = true,
+    ///             ExpendablePodsPriorityCutoff = -5,
+    ///         },
+    ///     });
+    /// 
+    ///     var johnK8sPool = new Scaleway.K8sPool("johnK8sPool", new()
+    ///     {
+    ///         ClusterId = johnK8sCluster.Id,
+    ///         NodeType = "DEV1-M",
+    ///         Size = 3,
+    ///         Autoscaling = true,
+    ///         Autohealing = true,
+    ///         MinSize = 1,
+    ///         MaxSize = 5,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Kubernetes clusters can be imported using the `{region}/{id}`, e.g. bash
@@ -111,6 +220,9 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// The ID of the private network of the cluster.
+        /// 
+        /// &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
+        /// Changes to this field will cause the cluster to be destroyed then recreated.
         /// </summary>
         [Output("privateNetworkId")]
         public Output<string> PrivateNetworkId { get; private set; } = null!;
@@ -303,6 +415,9 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// The ID of the private network of the cluster.
+        /// 
+        /// &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
+        /// Changes to this field will cause the cluster to be destroyed then recreated.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
@@ -468,6 +583,9 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// The ID of the private network of the cluster.
+        /// 
+        /// &gt; **Important:** This field can only be set at cluster creation and cannot be updated later.
+        /// Changes to this field will cause the cluster to be destroyed then recreated.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }

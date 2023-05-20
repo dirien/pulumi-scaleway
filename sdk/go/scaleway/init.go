@@ -120,6 +120,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &MnqCredential{}
 	case "scaleway:index/mnqNamespace:MnqNamespace":
 		r = &MnqNamespace{}
+	case "scaleway:index/mnqQueue:MnqQueue":
+		r = &MnqQueue{}
 	case "scaleway:index/objectBucket:ObjectBucket":
 		r = &ObjectBucket{}
 	case "scaleway:index/objectBucketAcl:ObjectBucketAcl":
@@ -448,6 +450,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/mnqNamespace",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mnqQueue",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

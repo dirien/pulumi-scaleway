@@ -279,12 +279,16 @@ public class Lb extends com.pulumi.resources.CustomResource {
     /**
      * The ID of the associated LB IP. See below.
      * 
+     * &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
+     * 
      */
     @Export(name="ipId", refs={String.class}, tree="[0]")
     private Output<String> ipId;
 
     /**
      * @return The ID of the associated LB IP. See below.
+     * 
+     * &gt; **Important:** Updates to `ip_id` will not recreate the load-balancer.
      * 
      */
     public Output<String> ipId() {

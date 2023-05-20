@@ -66,6 +66,8 @@ export class LbFrontend extends pulumi.CustomResource {
     public readonly acls!: pulumi.Output<outputs.LbFrontendAcl[] | undefined>;
     /**
      * The load-balancer backend ID this frontend is attached to.
+     *
+     * > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
      */
     public readonly backendId!: pulumi.Output<string>;
     /**
@@ -76,6 +78,8 @@ export class LbFrontend extends pulumi.CustomResource {
     public /*out*/ readonly certificateId!: pulumi.Output<string>;
     /**
      * List of Certificate IDs that should be used by the frontend.
+     *
+     * > **Important:** Certificates are not allowed on port 80.
      */
     public readonly certificateIds!: pulumi.Output<string[] | undefined>;
     /**
@@ -157,6 +161,8 @@ export interface LbFrontendState {
     acls?: pulumi.Input<pulumi.Input<inputs.LbFrontendAcl>[]>;
     /**
      * The load-balancer backend ID this frontend is attached to.
+     *
+     * > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
      */
     backendId?: pulumi.Input<string>;
     /**
@@ -167,6 +173,8 @@ export interface LbFrontendState {
     certificateId?: pulumi.Input<string>;
     /**
      * List of Certificate IDs that should be used by the frontend.
+     *
+     * > **Important:** Certificates are not allowed on port 80.
      */
     certificateIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -201,10 +209,14 @@ export interface LbFrontendArgs {
     acls?: pulumi.Input<pulumi.Input<inputs.LbFrontendAcl>[]>;
     /**
      * The load-balancer backend ID this frontend is attached to.
+     *
+     * > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
      */
     backendId: pulumi.Input<string>;
     /**
      * List of Certificate IDs that should be used by the frontend.
+     *
+     * > **Important:** Certificates are not allowed on port 80.
      */
     certificateIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**

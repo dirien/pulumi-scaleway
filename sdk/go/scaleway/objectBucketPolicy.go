@@ -31,6 +31,8 @@ type ObjectBucketPolicy struct {
 	// The text of the policy.
 	Policy pulumi.StringOutput `pulumi:"policy"`
 	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The Scaleway region this bucket resides in.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -77,6 +79,8 @@ type objectBucketPolicyState struct {
 	// The text of the policy.
 	Policy *string `pulumi:"policy"`
 	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
 	ProjectId *string `pulumi:"projectId"`
 	// The Scaleway region this bucket resides in.
 	Region *string `pulumi:"region"`
@@ -88,6 +92,8 @@ type ObjectBucketPolicyState struct {
 	// The text of the policy.
 	Policy pulumi.StringPtrInput
 	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
 	ProjectId pulumi.StringPtrInput
 	// The Scaleway region this bucket resides in.
 	Region pulumi.StringPtrInput
@@ -103,6 +109,8 @@ type objectBucketPolicyArgs struct {
 	// The text of the policy.
 	Policy string `pulumi:"policy"`
 	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
 	ProjectId *string `pulumi:"projectId"`
 	// The Scaleway region this bucket resides in.
 	Region *string `pulumi:"region"`
@@ -115,6 +123,8 @@ type ObjectBucketPolicyArgs struct {
 	// The text of the policy.
 	Policy pulumi.StringInput
 	// `projectId`) The ID of the project the bucket is associated with.
+	//
+	// > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
 	ProjectId pulumi.StringPtrInput
 	// The Scaleway region this bucket resides in.
 	Region pulumi.StringPtrInput
@@ -218,6 +228,8 @@ func (o ObjectBucketPolicyOutput) Policy() pulumi.StringOutput {
 }
 
 // `projectId`) The ID of the project the bucket is associated with.
+//
+// > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
 func (o ObjectBucketPolicyOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucketPolicy) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

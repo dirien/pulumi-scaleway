@@ -184,6 +184,8 @@ def get_vpc_gateway_network(dhcp_id: Optional[str] = None,
     :param bool enable_masquerade: If masquerade is enabled on requested network
     :param str gateway_id: ID of the public gateway the gateway network is linked to
     :param str gateway_network_id: ID of the gateway network.
+           
+           > Only one of `gateway_network_id` or filters should be specified. You can use all the filters you want.
     :param str private_network_id: ID of the private network the gateway network is linked to
     """
     __args__ = dict()
@@ -244,6 +246,8 @@ def get_vpc_gateway_network_output(dhcp_id: Optional[pulumi.Input[Optional[str]]
     :param bool enable_masquerade: If masquerade is enabled on requested network
     :param str gateway_id: ID of the public gateway the gateway network is linked to
     :param str gateway_network_id: ID of the gateway network.
+           
+           > Only one of `gateway_network_id` or filters should be specified. You can use all the filters you want.
     :param str private_network_id: ID of the private network the gateway network is linked to
     """
     ...

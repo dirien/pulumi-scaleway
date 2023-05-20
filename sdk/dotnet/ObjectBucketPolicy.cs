@@ -39,6 +39,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// `project_id`) The ID of the project the bucket is associated with.
+        /// 
+        /// &gt; **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -110,6 +112,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// `project_id`) The ID of the project the bucket is associated with.
+        /// 
+        /// &gt; **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -142,6 +146,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// `project_id`) The ID of the project the bucket is associated with.
+        /// 
+        /// &gt; **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
