@@ -12,7 +12,7 @@ import (
 )
 
 // Creates and manages Scaleway Load-Balancers.
-// For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api).
 //
 // ## Examples
 //
@@ -110,7 +110,7 @@ import (
 // In order to migrate to other types you can check the migration up or down via our CLI `scw lb lb-types list`.
 // this change will not recreate your Load Balancer.
 //
-// Please check our [documentation](https://developers.scaleway.com/en/products/lb/zoned_api/#post-355592) for further details
+// Please check our [documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-migrate-a-load-balancer) for further details
 //
 // ## IP ID
 //
@@ -214,7 +214,7 @@ type Lb struct {
 	//
 	// Deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`
 	ReleaseIp pulumi.BoolPtrOutput `pulumi:"releaseIp"`
-	// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+	// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
 	SslCompatibilityLevel pulumi.StringPtrOutput `pulumi:"sslCompatibilityLevel"`
 	// The tags associated with the load-balancers.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
@@ -282,7 +282,7 @@ type lbState struct {
 	//
 	// Deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`
 	ReleaseIp *bool `pulumi:"releaseIp"`
-	// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+	// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
 	SslCompatibilityLevel *string `pulumi:"sslCompatibilityLevel"`
 	// The tags associated with the load-balancers.
 	Tags []string `pulumi:"tags"`
@@ -315,7 +315,7 @@ type LbState struct {
 	//
 	// Deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`
 	ReleaseIp pulumi.BoolPtrInput
-	// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+	// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
 	SslCompatibilityLevel pulumi.StringPtrInput
 	// The tags associated with the load-balancers.
 	Tags pulumi.StringArrayInput
@@ -346,7 +346,7 @@ type lbArgs struct {
 	//
 	// Deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`
 	ReleaseIp *bool `pulumi:"releaseIp"`
-	// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+	// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
 	SslCompatibilityLevel *string `pulumi:"sslCompatibilityLevel"`
 	// The tags associated with the load-balancers.
 	Tags []string `pulumi:"tags"`
@@ -374,7 +374,7 @@ type LbArgs struct {
 	//
 	// Deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`
 	ReleaseIp pulumi.BoolPtrInput
-	// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+	// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
 	SslCompatibilityLevel pulumi.StringPtrInput
 	// The tags associated with the load-balancers.
 	Tags pulumi.StringArrayInput
@@ -520,7 +520,7 @@ func (o LbOutput) ReleaseIp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Lb) pulumi.BoolPtrOutput { return v.ReleaseIp }).(pulumi.BoolPtrOutput)
 }
 
-// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://developers.scaleway.com/en/products/lb/zoned_api/#ssl-compatibility-level-442f99).
+// Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
 func (o LbOutput) SslCompatibilityLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Lb) pulumi.StringPtrOutput { return v.SslCompatibilityLevel }).(pulumi.StringPtrOutput)
 }

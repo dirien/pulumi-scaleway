@@ -179,6 +179,25 @@ export interface DomainRecordWeighted {
     weight: pulumi.Input<number>;
 }
 
+export interface FunctionTriggerSqs {
+    /**
+     * ID of the mnq namespace
+     */
+    namespaceId: pulumi.Input<string>;
+    /**
+     * ID of the project that contain the mnq namespace, defaults to provider's project
+     */
+    projectId?: pulumi.Input<string>;
+    /**
+     * Name of the queue
+     */
+    queue: pulumi.Input<string>;
+    /**
+     * `region`). The region in which the namespace should be created.
+     */
+    region?: pulumi.Input<string>;
+}
+
 export interface IamPolicyRule {
     /**
      * ID of organization scoped to the rule.
@@ -620,6 +639,55 @@ export interface K8sPoolUpgradePolicy {
     maxUnavailable?: pulumi.Input<number>;
 }
 
+export interface LbAclAction {
+    /**
+     * Redirect parameters when using an ACL with `redirect` action.
+     */
+    redirects?: pulumi.Input<pulumi.Input<inputs.LbAclActionRedirect>[]>;
+    /**
+     * The redirect type. Possible values are: `location` or `scheme`.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface LbAclActionRedirect {
+    /**
+     * The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+     */
+    code?: pulumi.Input<number>;
+    /**
+     * An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+     */
+    target?: pulumi.Input<string>;
+    /**
+     * The redirect type. Possible values are: `location` or `scheme`.
+     */
+    type?: pulumi.Input<string>;
+}
+
+export interface LbAclMatch {
+    /**
+     * The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
+     * It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
+     * Possible values are: `aclHttpFilterNone`, `pathBegin`, `pathEnd`, `httpHeaderMatch` or `regex`.
+     */
+    httpFilter?: pulumi.Input<string>;
+    httpFilterOption?: pulumi.Input<string>;
+    /**
+     * A list of possible values to match for the given HTTP filter.
+     * Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case-insensitive.
+     */
+    httpFilterValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * If set to `true`, the condition will be of type "unless".
+     */
+    invert?: pulumi.Input<boolean>;
+    /**
+     * A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+     */
+    ipSubnets?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
 export interface LbBackendHealthCheckHttp {
     /**
      * The expected HTTP status code.
@@ -692,6 +760,8 @@ export interface LbFrontendAcl {
      * Action to undertake when an ACL filter matches.
      */
     action: pulumi.Input<inputs.LbFrontendAclAction>;
+    createdAt?: pulumi.Input<string>;
+    description?: pulumi.Input<string>;
     /**
      * The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
      */
@@ -700,6 +770,7 @@ export interface LbFrontendAcl {
      * The ACL name. If not provided it will be randomly generated.
      */
     name?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string>;
 }
 
 export interface LbFrontendAclAction {

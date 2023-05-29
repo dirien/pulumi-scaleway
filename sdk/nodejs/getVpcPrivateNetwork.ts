@@ -26,9 +26,12 @@ export function getVpcPrivateNetwork(args?: GetVpcPrivateNetworkArgs, opts?: pul
  */
 export interface GetVpcPrivateNetworkArgs {
     /**
-     * Exact name of the private network.
+     * Name of the private network. One of `name` and `privateNetworkId` should be specified.
      */
     name?: string;
+    /**
+     * ID of the private network. One of `name` and `privateNetworkId` should be specified.
+     */
     privateNetworkId?: string;
 }
 
@@ -45,6 +48,10 @@ export interface GetVpcPrivateNetworkResult {
     readonly organizationId: string;
     readonly privateNetworkId?: string;
     readonly projectId: string;
+    /**
+     * The subnets CIDR associated with private network.
+     */
+    readonly subnets: string[];
     readonly tags: string[];
     readonly updatedAt: string;
     readonly zone: string;
@@ -65,8 +72,11 @@ export function getVpcPrivateNetworkOutput(args?: GetVpcPrivateNetworkOutputArgs
  */
 export interface GetVpcPrivateNetworkOutputArgs {
     /**
-     * Exact name of the private network.
+     * Name of the private network. One of `name` and `privateNetworkId` should be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the private network. One of `name` and `privateNetworkId` should be specified.
+     */
     privateNetworkId?: pulumi.Input<string>;
 }

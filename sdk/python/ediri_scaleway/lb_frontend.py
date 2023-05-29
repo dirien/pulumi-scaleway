@@ -22,6 +22,7 @@ class LbFrontendArgs:
                  acls: Optional[pulumi.Input[Sequence[pulumi.Input['LbFrontendAclArgs']]]] = None,
                  certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  enable_http3: Optional[pulumi.Input[bool]] = None,
+                 external_acls: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  timeout_client: Optional[pulumi.Input[str]] = None):
         """
@@ -36,6 +37,8 @@ class LbFrontendArgs:
                
                > **Important:** Certificates are not allowed on port 80.
         :param pulumi.Input[bool] enable_http3: Activates HTTP/3 protocol.
+        :param pulumi.Input[bool] external_acls: A boolean to specify whether to use lb_acl.
+               If `external_acls` is set to `true`, `acl` can not be set directly in the lb frontend.
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
         :param pulumi.Input[str] timeout_client: Maximum inactivity time on the client side. (e.g.: `1s`)
         """
@@ -48,6 +51,8 @@ class LbFrontendArgs:
             pulumi.set(__self__, "certificate_ids", certificate_ids)
         if enable_http3 is not None:
             pulumi.set(__self__, "enable_http3", enable_http3)
+        if external_acls is not None:
+            pulumi.set(__self__, "external_acls", external_acls)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if timeout_client is not None:
@@ -130,6 +135,19 @@ class LbFrontendArgs:
         pulumi.set(self, "enable_http3", value)
 
     @property
+    @pulumi.getter(name="externalAcls")
+    def external_acls(self) -> Optional[pulumi.Input[bool]]:
+        """
+        A boolean to specify whether to use lb_acl.
+        If `external_acls` is set to `true`, `acl` can not be set directly in the lb frontend.
+        """
+        return pulumi.get(self, "external_acls")
+
+    @external_acls.setter
+    def external_acls(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "external_acls", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -162,6 +180,7 @@ class _LbFrontendState:
                  certificate_id: Optional[pulumi.Input[str]] = None,
                  certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  enable_http3: Optional[pulumi.Input[bool]] = None,
+                 external_acls: Optional[pulumi.Input[bool]] = None,
                  inbound_port: Optional[pulumi.Input[int]] = None,
                  lb_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -177,6 +196,8 @@ class _LbFrontendState:
                
                > **Important:** Certificates are not allowed on port 80.
         :param pulumi.Input[bool] enable_http3: Activates HTTP/3 protocol.
+        :param pulumi.Input[bool] external_acls: A boolean to specify whether to use lb_acl.
+               If `external_acls` is set to `true`, `acl` can not be set directly in the lb frontend.
         :param pulumi.Input[int] inbound_port: TCP port to listen on the front side.
         :param pulumi.Input[str] lb_id: The load-balancer ID this frontend is attached to.
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
@@ -195,6 +216,8 @@ class _LbFrontendState:
             pulumi.set(__self__, "certificate_ids", certificate_ids)
         if enable_http3 is not None:
             pulumi.set(__self__, "enable_http3", enable_http3)
+        if external_acls is not None:
+            pulumi.set(__self__, "external_acls", external_acls)
         if inbound_port is not None:
             pulumi.set(__self__, "inbound_port", inbound_port)
         if lb_id is not None:
@@ -269,6 +292,19 @@ class _LbFrontendState:
         pulumi.set(self, "enable_http3", value)
 
     @property
+    @pulumi.getter(name="externalAcls")
+    def external_acls(self) -> Optional[pulumi.Input[bool]]:
+        """
+        A boolean to specify whether to use lb_acl.
+        If `external_acls` is set to `true`, `acl` can not be set directly in the lb frontend.
+        """
+        return pulumi.get(self, "external_acls")
+
+    @external_acls.setter
+    def external_acls(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "external_acls", value)
+
+    @property
     @pulumi.getter(name="inboundPort")
     def inbound_port(self) -> Optional[pulumi.Input[int]]:
         """
@@ -326,13 +362,14 @@ class LbFrontend(pulumi.CustomResource):
                  backend_id: Optional[pulumi.Input[str]] = None,
                  certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  enable_http3: Optional[pulumi.Input[bool]] = None,
+                 external_acls: Optional[pulumi.Input[bool]] = None,
                  inbound_port: Optional[pulumi.Input[int]] = None,
                  lb_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  timeout_client: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Load-Balancer Frontends. For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+        Creates and manages Scaleway Load-Balancer Frontends. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
 
         ## Examples Usage
 
@@ -366,6 +403,8 @@ class LbFrontend(pulumi.CustomResource):
                
                > **Important:** Certificates are not allowed on port 80.
         :param pulumi.Input[bool] enable_http3: Activates HTTP/3 protocol.
+        :param pulumi.Input[bool] external_acls: A boolean to specify whether to use lb_acl.
+               If `external_acls` is set to `true`, `acl` can not be set directly in the lb frontend.
         :param pulumi.Input[int] inbound_port: TCP port to listen on the front side.
         :param pulumi.Input[str] lb_id: The load-balancer ID this frontend is attached to.
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
@@ -378,7 +417,7 @@ class LbFrontend(pulumi.CustomResource):
                  args: LbFrontendArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Load-Balancer Frontends. For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+        Creates and manages Scaleway Load-Balancer Frontends. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
 
         ## Examples Usage
 
@@ -421,6 +460,7 @@ class LbFrontend(pulumi.CustomResource):
                  backend_id: Optional[pulumi.Input[str]] = None,
                  certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  enable_http3: Optional[pulumi.Input[bool]] = None,
+                 external_acls: Optional[pulumi.Input[bool]] = None,
                  inbound_port: Optional[pulumi.Input[int]] = None,
                  lb_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -440,6 +480,7 @@ class LbFrontend(pulumi.CustomResource):
             __props__.__dict__["backend_id"] = backend_id
             __props__.__dict__["certificate_ids"] = certificate_ids
             __props__.__dict__["enable_http3"] = enable_http3
+            __props__.__dict__["external_acls"] = external_acls
             if inbound_port is None and not opts.urn:
                 raise TypeError("Missing required property 'inbound_port'")
             __props__.__dict__["inbound_port"] = inbound_port
@@ -464,6 +505,7 @@ class LbFrontend(pulumi.CustomResource):
             certificate_id: Optional[pulumi.Input[str]] = None,
             certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             enable_http3: Optional[pulumi.Input[bool]] = None,
+            external_acls: Optional[pulumi.Input[bool]] = None,
             inbound_port: Optional[pulumi.Input[int]] = None,
             lb_id: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -484,6 +526,8 @@ class LbFrontend(pulumi.CustomResource):
                
                > **Important:** Certificates are not allowed on port 80.
         :param pulumi.Input[bool] enable_http3: Activates HTTP/3 protocol.
+        :param pulumi.Input[bool] external_acls: A boolean to specify whether to use lb_acl.
+               If `external_acls` is set to `true`, `acl` can not be set directly in the lb frontend.
         :param pulumi.Input[int] inbound_port: TCP port to listen on the front side.
         :param pulumi.Input[str] lb_id: The load-balancer ID this frontend is attached to.
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
@@ -498,6 +542,7 @@ class LbFrontend(pulumi.CustomResource):
         __props__.__dict__["certificate_id"] = certificate_id
         __props__.__dict__["certificate_ids"] = certificate_ids
         __props__.__dict__["enable_http3"] = enable_http3
+        __props__.__dict__["external_acls"] = external_acls
         __props__.__dict__["inbound_port"] = inbound_port
         __props__.__dict__["lb_id"] = lb_id
         __props__.__dict__["name"] = name
@@ -547,6 +592,15 @@ class LbFrontend(pulumi.CustomResource):
         Activates HTTP/3 protocol.
         """
         return pulumi.get(self, "enable_http3")
+
+    @property
+    @pulumi.getter(name="externalAcls")
+    def external_acls(self) -> pulumi.Output[Optional[bool]]:
+        """
+        A boolean to specify whether to use lb_acl.
+        If `external_acls` is set to `true`, `acl` can not be set directly in the lb frontend.
+        """
+        return pulumi.get(self, "external_acls")
 
     @property
     @pulumi.getter(name="inboundPort")

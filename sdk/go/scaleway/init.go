@@ -60,6 +60,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &FunctionNamespace{}
 	case "scaleway:index/functionToken:FunctionToken":
 		r = &FunctionToken{}
+	case "scaleway:index/functionTrigger:FunctionTrigger":
+		r = &FunctionTrigger{}
 	case "scaleway:index/iamApiKey:IamApiKey":
 		r = &IamApiKey{}
 	case "scaleway:index/iamApplication:IamApplication":
@@ -106,6 +108,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &K8sPool{}
 	case "scaleway:index/lb:Lb":
 		r = &Lb{}
+	case "scaleway:index/lbAcl:LbAcl":
+		r = &LbAcl{}
 	case "scaleway:index/lbBackend:LbBackend":
 		r = &LbBackend{}
 	case "scaleway:index/lbCertificate:LbCertificate":
@@ -304,6 +308,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/functionTrigger",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/iamApiKey",
 		&module{version},
 	)
@@ -415,6 +424,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/lb",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/lbAcl",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

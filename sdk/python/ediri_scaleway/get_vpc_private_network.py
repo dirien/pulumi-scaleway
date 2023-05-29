@@ -21,7 +21,7 @@ class GetVpcPrivateNetworkResult:
     """
     A collection of values returned by getVpcPrivateNetwork.
     """
-    def __init__(__self__, created_at=None, id=None, name=None, organization_id=None, private_network_id=None, project_id=None, tags=None, updated_at=None, zone=None):
+    def __init__(__self__, created_at=None, id=None, name=None, organization_id=None, private_network_id=None, project_id=None, subnets=None, tags=None, updated_at=None, zone=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -40,6 +40,9 @@ class GetVpcPrivateNetworkResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if subnets and not isinstance(subnets, list):
+            raise TypeError("Expected argument 'subnets' to be a list")
+        pulumi.set(__self__, "subnets", subnets)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -85,6 +88,14 @@ class GetVpcPrivateNetworkResult:
 
     @property
     @pulumi.getter
+    def subnets(self) -> Sequence[str]:
+        """
+        The subnets CIDR associated with private network.
+        """
+        return pulumi.get(self, "subnets")
+
+    @property
+    @pulumi.getter
     def tags(self) -> Sequence[str]:
         return pulumi.get(self, "tags")
 
@@ -111,6 +122,7 @@ class AwaitableGetVpcPrivateNetworkResult(GetVpcPrivateNetworkResult):
             organization_id=self.organization_id,
             private_network_id=self.private_network_id,
             project_id=self.project_id,
+            subnets=self.subnets,
             tags=self.tags,
             updated_at=self.updated_at,
             zone=self.zone)
@@ -127,7 +139,8 @@ def get_vpc_private_network(name: Optional[str] = None,
     N/A, the usage will be meaningful in the next releases of VPC.
 
 
-    :param str name: Exact name of the private network.
+    :param str name: Name of the private network. One of `name` and `private_network_id` should be specified.
+    :param str private_network_id: ID of the private network. One of `name` and `private_network_id` should be specified.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -142,6 +155,7 @@ def get_vpc_private_network(name: Optional[str] = None,
         organization_id=__ret__.organization_id,
         private_network_id=__ret__.private_network_id,
         project_id=__ret__.project_id,
+        subnets=__ret__.subnets,
         tags=__ret__.tags,
         updated_at=__ret__.updated_at,
         zone=__ret__.zone)
@@ -159,6 +173,7 @@ def get_vpc_private_network_output(name: Optional[pulumi.Input[Optional[str]]] =
     N/A, the usage will be meaningful in the next releases of VPC.
 
 
-    :param str name: Exact name of the private network.
+    :param str name: Name of the private network. One of `name` and `private_network_id` should be specified.
+    :param str private_network_id: ID of the private network. One of `name` and `private_network_id` should be specified.
     """
     ...

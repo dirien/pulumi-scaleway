@@ -105,6 +105,11 @@ export type FunctionToken = import("./functionToken").FunctionToken;
 export const FunctionToken: typeof import("./functionToken").FunctionToken = null as any;
 utilities.lazyLoad(exports, ["FunctionToken"], () => require("./functionToken"));
 
+export { FunctionTriggerArgs, FunctionTriggerState } from "./functionTrigger";
+export type FunctionTrigger = import("./functionTrigger").FunctionTrigger;
+export const FunctionTrigger: typeof import("./functionTrigger").FunctionTrigger = null as any;
+utilities.lazyLoad(exports, ["FunctionTrigger"], () => require("./functionTrigger"));
+
 export { GetAccountProjectArgs, GetAccountProjectResult, GetAccountProjectOutputArgs } from "./getAccountProject";
 export const getAccountProject: typeof import("./getAccountProject").getAccountProject = null as any;
 export const getAccountProjectOutput: typeof import("./getAccountProject").getAccountProjectOutput = null as any;
@@ -144,6 +149,11 @@ export { GetCockpitArgs, GetCockpitResult, GetCockpitOutputArgs } from "./getCoc
 export const getCockpit: typeof import("./getCockpit").getCockpit = null as any;
 export const getCockpitOutput: typeof import("./getCockpit").getCockpitOutput = null as any;
 utilities.lazyLoad(exports, ["getCockpit","getCockpitOutput"], () => require("./getCockpit"));
+
+export { GetCockpitPlanArgs, GetCockpitPlanResult, GetCockpitPlanOutputArgs } from "./getCockpitPlan";
+export const getCockpitPlan: typeof import("./getCockpitPlan").getCockpitPlan = null as any;
+export const getCockpitPlanOutput: typeof import("./getCockpitPlan").getCockpitPlanOutput = null as any;
+utilities.lazyLoad(exports, ["getCockpitPlan","getCockpitPlanOutput"], () => require("./getCockpitPlan"));
 
 export { GetContainerArgs, GetContainerResult, GetContainerOutputArgs } from "./getContainer";
 export const getContainer: typeof import("./getContainer").getContainer = null as any;
@@ -550,6 +560,11 @@ export type Lb = import("./lb").Lb;
 export const Lb: typeof import("./lb").Lb = null as any;
 utilities.lazyLoad(exports, ["Lb"], () => require("./lb"));
 
+export { LbAclArgs, LbAclState } from "./lbAcl";
+export type LbAcl = import("./lbAcl").LbAcl;
+export const LbAcl: typeof import("./lbAcl").LbAcl = null as any;
+utilities.lazyLoad(exports, ["LbAcl"], () => require("./lbAcl"));
+
 export { LbBackendArgs, LbBackendState } from "./lbBackend";
 export type LbBackend = import("./lbBackend").LbBackend;
 export const LbBackend: typeof import("./lbBackend").LbBackend = null as any;
@@ -779,6 +794,8 @@ const _module = {
                 return new FunctionNamespace(name, <any>undefined, { urn })
             case "scaleway:index/functionToken:FunctionToken":
                 return new FunctionToken(name, <any>undefined, { urn })
+            case "scaleway:index/functionTrigger:FunctionTrigger":
+                return new FunctionTrigger(name, <any>undefined, { urn })
             case "scaleway:index/iamApiKey:IamApiKey":
                 return new IamApiKey(name, <any>undefined, { urn })
             case "scaleway:index/iamApplication:IamApplication":
@@ -825,6 +842,8 @@ const _module = {
                 return new K8sPool(name, <any>undefined, { urn })
             case "scaleway:index/lb:Lb":
                 return new Lb(name, <any>undefined, { urn })
+            case "scaleway:index/lbAcl:LbAcl":
+                return new LbAcl(name, <any>undefined, { urn })
             case "scaleway:index/lbBackend:LbBackend":
                 return new LbBackend(name, <any>undefined, { urn })
             case "scaleway:index/lbCertificate:LbCertificate":
@@ -918,6 +937,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/functionCron", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/functionDomain", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/functionNamespace", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/functionToken", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/functionTrigger", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamApiKey", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamApplication", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamGroup", _module)
@@ -941,6 +961,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/iotRoute", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/k8sCluster", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/k8sPool", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/lb", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/lbAcl", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/lbBackend", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/lbCertificate", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/lbFrontend", _module)

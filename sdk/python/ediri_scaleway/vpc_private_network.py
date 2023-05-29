@@ -16,12 +16,14 @@ class VpcPrivateNetworkArgs:
     def __init__(__self__, *,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 subnets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpcPrivateNetwork resource.
         :param pulumi.Input[str] name: The name of the private network. If not provided it will be randomly generated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the private network is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] subnets: The subnets CIDR associated with private network.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the private network.
         :param pulumi.Input[str] zone: `zone`) The zone in which the private network should be created.
         """
@@ -29,6 +31,8 @@ class VpcPrivateNetworkArgs:
             pulumi.set(__self__, "name", name)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if subnets is not None:
+            pulumi.set(__self__, "subnets", subnets)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if zone is not None:
@@ -57,6 +61,18 @@ class VpcPrivateNetworkArgs:
     @project_id.setter
     def project_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter
+    def subnets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The subnets CIDR associated with private network.
+        """
+        return pulumi.get(self, "subnets")
+
+    @subnets.setter
+    def subnets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "subnets", value)
 
     @property
     @pulumi.getter
@@ -90,6 +106,7 @@ class _VpcPrivateNetworkState:
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 subnets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
@@ -99,6 +116,7 @@ class _VpcPrivateNetworkState:
         :param pulumi.Input[str] name: The name of the private network. If not provided it will be randomly generated.
         :param pulumi.Input[str] organization_id: The organization ID the private network is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the private network is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] subnets: The subnets CIDR associated with private network.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the private network.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the private network
         :param pulumi.Input[str] zone: `zone`) The zone in which the private network should be created.
@@ -111,6 +129,8 @@ class _VpcPrivateNetworkState:
             pulumi.set(__self__, "organization_id", organization_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if subnets is not None:
+            pulumi.set(__self__, "subnets", subnets)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if updated_at is not None:
@@ -168,6 +188,18 @@ class _VpcPrivateNetworkState:
 
     @property
     @pulumi.getter
+    def subnets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The subnets CIDR associated with private network.
+        """
+        return pulumi.get(self, "subnets")
+
+    @subnets.setter
+    def subnets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "subnets", value)
+
+    @property
+    @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The tags associated with the private network.
@@ -210,6 +242,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 subnets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -241,6 +274,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the private network. If not provided it will be randomly generated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the private network is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] subnets: The subnets CIDR associated with private network.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the private network.
         :param pulumi.Input[str] zone: `zone`) The zone in which the private network should be created.
         """
@@ -291,6 +325,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 subnets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -304,6 +339,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
 
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["subnets"] = subnets
             __props__.__dict__["tags"] = tags
             __props__.__dict__["zone"] = zone
             __props__.__dict__["created_at"] = None
@@ -323,6 +359,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
+            subnets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
             zone: Optional[pulumi.Input[str]] = None) -> 'VpcPrivateNetwork':
@@ -337,6 +374,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the private network. If not provided it will be randomly generated.
         :param pulumi.Input[str] organization_id: The organization ID the private network is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the private network is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] subnets: The subnets CIDR associated with private network.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the private network.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the private network
         :param pulumi.Input[str] zone: `zone`) The zone in which the private network should be created.
@@ -349,6 +387,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["subnets"] = subnets
         __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["zone"] = zone
@@ -385,6 +424,14 @@ class VpcPrivateNetwork(pulumi.CustomResource):
         `project_id`) The ID of the project the private network is associated with.
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def subnets(self) -> pulumi.Output[Sequence[str]]:
+        """
+        The subnets CIDR associated with private network.
+        """
+        return pulumi.get(self, "subnets")
 
     @property
     @pulumi.getter

@@ -21,6 +21,7 @@ __all__ = [
     'DomainRecordHttpService',
     'DomainRecordView',
     'DomainRecordWeighted',
+    'FunctionTriggerSqs',
     'IamPolicyRule',
     'InstanceImageAdditionalVolume',
     'InstanceSecurityGroupInboundRule',
@@ -43,6 +44,9 @@ __all__ = [
     'K8sClusterOpenIdConnectConfig',
     'K8sPoolNode',
     'K8sPoolUpgradePolicy',
+    'LbAclAction',
+    'LbAclActionRedirect',
+    'LbAclMatch',
     'LbBackendHealthCheckHttp',
     'LbBackendHealthCheckHttps',
     'LbBackendHealthCheckTcp',
@@ -740,6 +744,78 @@ class DomainRecordWeighted(dict):
         The weight of the IP as an integer UInt32.
         """
         return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class FunctionTriggerSqs(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "namespaceId":
+            suggest = "namespace_id"
+        elif key == "projectId":
+            suggest = "project_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FunctionTriggerSqs. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FunctionTriggerSqs.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FunctionTriggerSqs.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 namespace_id: str,
+                 queue: str,
+                 project_id: Optional[str] = None,
+                 region: Optional[str] = None):
+        """
+        :param str namespace_id: ID of the mnq namespace
+        :param str queue: Name of the queue
+        :param str project_id: ID of the project that contain the mnq namespace, defaults to provider's project
+        :param str region: `region`). The region in which the namespace should be created.
+        """
+        pulumi.set(__self__, "namespace_id", namespace_id)
+        pulumi.set(__self__, "queue", queue)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="namespaceId")
+    def namespace_id(self) -> str:
+        """
+        ID of the mnq namespace
+        """
+        return pulumi.get(self, "namespace_id")
+
+    @property
+    @pulumi.getter
+    def queue(self) -> str:
+        """
+        Name of the queue
+        """
+        return pulumi.get(self, "queue")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[str]:
+        """
+        ID of the project that contain the mnq namespace, defaults to provider's project
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        """
+        `region`). The region in which the namespace should be created.
+        """
+        return pulumi.get(self, "region")
 
 
 @pulumi.output_type
@@ -2375,6 +2451,171 @@ class K8sPoolUpgradePolicy(dict):
 
 
 @pulumi.output_type
+class LbAclAction(dict):
+    def __init__(__self__, *,
+                 type: str,
+                 redirects: Optional[Sequence['outputs.LbAclActionRedirect']] = None):
+        """
+        :param str type: The redirect type. Possible values are: `location` or `scheme`.
+        :param Sequence['LbAclActionRedirectArgs'] redirects: Redirect parameters when using an ACL with `redirect` action.
+        """
+        pulumi.set(__self__, "type", type)
+        if redirects is not None:
+            pulumi.set(__self__, "redirects", redirects)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The redirect type. Possible values are: `location` or `scheme`.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def redirects(self) -> Optional[Sequence['outputs.LbAclActionRedirect']]:
+        """
+        Redirect parameters when using an ACL with `redirect` action.
+        """
+        return pulumi.get(self, "redirects")
+
+
+@pulumi.output_type
+class LbAclActionRedirect(dict):
+    def __init__(__self__, *,
+                 code: Optional[int] = None,
+                 target: Optional[str] = None,
+                 type: Optional[str] = None):
+        """
+        :param int code: The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+        :param str target: An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+        :param str type: The redirect type. Possible values are: `location` or `scheme`.
+        """
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+        if target is not None:
+            pulumi.set(__self__, "target", target)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def code(self) -> Optional[int]:
+        """
+        The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+        """
+        return pulumi.get(self, "code")
+
+    @property
+    @pulumi.getter
+    def target(self) -> Optional[str]:
+        """
+        An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+        """
+        return pulumi.get(self, "target")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        The redirect type. Possible values are: `location` or `scheme`.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class LbAclMatch(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "httpFilter":
+            suggest = "http_filter"
+        elif key == "httpFilterOption":
+            suggest = "http_filter_option"
+        elif key == "httpFilterValues":
+            suggest = "http_filter_values"
+        elif key == "ipSubnets":
+            suggest = "ip_subnets"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LbAclMatch. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LbAclMatch.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LbAclMatch.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 http_filter: Optional[str] = None,
+                 http_filter_option: Optional[str] = None,
+                 http_filter_values: Optional[Sequence[str]] = None,
+                 invert: Optional[bool] = None,
+                 ip_subnets: Optional[Sequence[str]] = None):
+        """
+        :param str http_filter: The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
+               It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
+               Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
+        :param Sequence[str] http_filter_values: A list of possible values to match for the given HTTP filter.
+               Keep in mind that in the case of `http_header_match` the HTTP header field name is case-insensitive.
+        :param bool invert: If set to `true`, the condition will be of type "unless".
+        :param Sequence[str] ip_subnets: A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+        """
+        if http_filter is not None:
+            pulumi.set(__self__, "http_filter", http_filter)
+        if http_filter_option is not None:
+            pulumi.set(__self__, "http_filter_option", http_filter_option)
+        if http_filter_values is not None:
+            pulumi.set(__self__, "http_filter_values", http_filter_values)
+        if invert is not None:
+            pulumi.set(__self__, "invert", invert)
+        if ip_subnets is not None:
+            pulumi.set(__self__, "ip_subnets", ip_subnets)
+
+    @property
+    @pulumi.getter(name="httpFilter")
+    def http_filter(self) -> Optional[str]:
+        """
+        The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
+        It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
+        Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
+        """
+        return pulumi.get(self, "http_filter")
+
+    @property
+    @pulumi.getter(name="httpFilterOption")
+    def http_filter_option(self) -> Optional[str]:
+        return pulumi.get(self, "http_filter_option")
+
+    @property
+    @pulumi.getter(name="httpFilterValues")
+    def http_filter_values(self) -> Optional[Sequence[str]]:
+        """
+        A list of possible values to match for the given HTTP filter.
+        Keep in mind that in the case of `http_header_match` the HTTP header field name is case-insensitive.
+        """
+        return pulumi.get(self, "http_filter_values")
+
+    @property
+    @pulumi.getter
+    def invert(self) -> Optional[bool]:
+        """
+        If set to `true`, the condition will be of type "unless".
+        """
+        return pulumi.get(self, "invert")
+
+    @property
+    @pulumi.getter(name="ipSubnets")
+    def ip_subnets(self) -> Optional[Sequence[str]]:
+        """
+        A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+        """
+        return pulumi.get(self, "ip_subnets")
+
+
+@pulumi.output_type
 class LbBackendHealthCheckHttp(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -2628,10 +2869,32 @@ class LbCertificateLetsencrypt(dict):
 
 @pulumi.output_type
 class LbFrontendAcl(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "createdAt":
+            suggest = "created_at"
+        elif key == "updatedAt":
+            suggest = "updated_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LbFrontendAcl. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LbFrontendAcl.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LbFrontendAcl.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  action: 'outputs.LbFrontendAclAction',
                  match: 'outputs.LbFrontendAclMatch',
-                 name: Optional[str] = None):
+                 created_at: Optional[str] = None,
+                 description: Optional[str] = None,
+                 name: Optional[str] = None,
+                 updated_at: Optional[str] = None):
         """
         :param 'LbFrontendAclActionArgs' action: Action to undertake when an ACL filter matches.
         :param 'LbFrontendAclMatchArgs' match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
@@ -2639,8 +2902,14 @@ class LbFrontendAcl(dict):
         """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "match", match)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter
@@ -2659,12 +2928,27 @@ class LbFrontendAcl(dict):
         return pulumi.get(self, "match")
 
     @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[str]:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
         The ACL name. If not provided it will be randomly generated.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[str]:
+        return pulumi.get(self, "updated_at")
 
 
 @pulumi.output_type
@@ -6366,20 +6650,36 @@ class GetLbCertificateLetsencryptResult(dict):
 class GetLbFrontendAclResult(dict):
     def __init__(__self__, *,
                  actions: Sequence['outputs.GetLbFrontendAclActionResult'],
+                 created_at: str,
+                 description: str,
                  matches: Sequence['outputs.GetLbFrontendAclMatchResult'],
-                 name: str):
+                 name: str,
+                 updated_at: str):
         """
         :param str name: The name of the frontend.
                - When using the `name` you should specify the `lb-id`
         """
         pulumi.set(__self__, "actions", actions)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "matches", matches)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter
     def actions(self) -> Sequence['outputs.GetLbFrontendAclActionResult']:
         return pulumi.get(self, "actions")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -6394,6 +6694,11 @@ class GetLbFrontendAclResult(dict):
         - When using the `name` you should specify the `lb-id`
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        return pulumi.get(self, "updated_at")
 
 
 @pulumi.output_type

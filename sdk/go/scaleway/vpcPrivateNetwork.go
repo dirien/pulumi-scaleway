@@ -62,6 +62,8 @@ type VpcPrivateNetwork struct {
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// `projectId`) The ID of the project the private network is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// The subnets CIDR associated with private network.
+	Subnets pulumi.StringArrayOutput `pulumi:"subnets"`
 	// The tags associated with the private network.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the last update of the private network
@@ -108,6 +110,8 @@ type vpcPrivateNetworkState struct {
 	OrganizationId *string `pulumi:"organizationId"`
 	// `projectId`) The ID of the project the private network is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// The subnets CIDR associated with private network.
+	Subnets []string `pulumi:"subnets"`
 	// The tags associated with the private network.
 	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the private network
@@ -125,6 +129,8 @@ type VpcPrivateNetworkState struct {
 	OrganizationId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the private network is associated with.
 	ProjectId pulumi.StringPtrInput
+	// The subnets CIDR associated with private network.
+	Subnets pulumi.StringArrayInput
 	// The tags associated with the private network.
 	Tags pulumi.StringArrayInput
 	// The date and time of the last update of the private network
@@ -142,6 +148,8 @@ type vpcPrivateNetworkArgs struct {
 	Name *string `pulumi:"name"`
 	// `projectId`) The ID of the project the private network is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// The subnets CIDR associated with private network.
+	Subnets []string `pulumi:"subnets"`
 	// The tags associated with the private network.
 	Tags []string `pulumi:"tags"`
 	// `zone`) The zone in which the private network should be created.
@@ -154,6 +162,8 @@ type VpcPrivateNetworkArgs struct {
 	Name pulumi.StringPtrInput
 	// `projectId`) The ID of the project the private network is associated with.
 	ProjectId pulumi.StringPtrInput
+	// The subnets CIDR associated with private network.
+	Subnets pulumi.StringArrayInput
 	// The tags associated with the private network.
 	Tags pulumi.StringArrayInput
 	// `zone`) The zone in which the private network should be created.
@@ -265,6 +275,11 @@ func (o VpcPrivateNetworkOutput) OrganizationId() pulumi.StringOutput {
 // `projectId`) The ID of the project the private network is associated with.
 func (o VpcPrivateNetworkOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPrivateNetwork) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The subnets CIDR associated with private network.
+func (o VpcPrivateNetworkOutput) Subnets() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *VpcPrivateNetwork) pulumi.StringArrayOutput { return v.Subnets }).(pulumi.StringArrayOutput)
 }
 
 // The tags associated with the private network.

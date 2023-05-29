@@ -175,8 +175,8 @@ def get_vpc_gateway_network(dhcp_id: Optional[str] = None,
         cleanup_dhcp=True,
         enable_masquerade=True)
     by_id = scaleway.get_vpc_gateway_network_output(gateway_network_id=main.id)
-    by_gateway_and_pn = scaleway.get_vpc_gateway_network(gateway_id=scaleway_vpc_public_gateway["pg01"]["id"],
-        private_network_id=scaleway_vpc_private_network["pn01"]["id"])
+    by_gateway_and_pn = scaleway.get_vpc_gateway_network(gateway_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+        private_network_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
     ```
 
 
@@ -237,8 +237,8 @@ def get_vpc_gateway_network_output(dhcp_id: Optional[pulumi.Input[Optional[str]]
         cleanup_dhcp=True,
         enable_masquerade=True)
     by_id = scaleway.get_vpc_gateway_network_output(gateway_network_id=main.id)
-    by_gateway_and_pn = scaleway.get_vpc_gateway_network(gateway_id=scaleway_vpc_public_gateway["pg01"]["id"],
-        private_network_id=scaleway_vpc_private_network["pn01"]["id"])
+    by_gateway_and_pn = scaleway.get_vpc_gateway_network(gateway_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+        private_network_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))
     ```
 
 

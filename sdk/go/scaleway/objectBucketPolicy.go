@@ -14,6 +14,64 @@ import (
 // Creates and manages Scaleway object storage bucket policy.
 // For more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/using-bucket-policies/).
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			bucket, err := scaleway.NewObjectBucket(ctx, "bucket", nil)
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"Id": "MyPolicy",
+//				"Statement": []map[string]interface{}{
+//					map[string]interface{}{
+//						"Action": []string{
+//							"s3:ListBucket",
+//							"s3:GetObject",
+//						},
+//						"Effect": "Allow",
+//						"Principal": map[string]interface{}{
+//							"SCW": "*",
+//						},
+//						"Resource": []string{
+//							"some-unique-name",
+//							"some-unique-name/*",
+//						},
+//						"Sid": "GrantToEveryone",
+//					},
+//				},
+//				"Version": "2012-10-17",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			_, err = scaleway.NewObjectBucketPolicy(ctx, "policy", &scaleway.ObjectBucketPolicyArgs{
+//				Bucket: bucket.Name,
+//				Policy: pulumi.String(json0),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash

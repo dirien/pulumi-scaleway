@@ -175,7 +175,7 @@ namespace ediri.Scaleway
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+        /// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
         /// &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
         /// If you prefer keeping it, you should instead set it as `false`.
         /// </summary>
@@ -376,7 +376,7 @@ namespace ediri.Scaleway
         public Input<string> Cni { get; set; } = null!;
 
         /// <summary>
-        /// Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+        /// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
         /// &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
         /// If you prefer keeping it, you should instead set it as `false`.
         /// </summary>
@@ -522,7 +522,7 @@ namespace ediri.Scaleway
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+        /// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
         /// &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
         /// If you prefer keeping it, you should instead set it as `false`.
         /// </summary>

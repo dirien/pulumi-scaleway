@@ -11,7 +11,7 @@ using Pulumi;
 namespace ediri.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Load-Balancer Frontends. For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+    /// Creates and manages Scaleway Load-Balancer Frontends. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
     /// 
     /// ## Examples Usage
     /// 
@@ -79,6 +79,13 @@ namespace ediri.Scaleway
         /// </summary>
         [Output("enableHttp3")]
         public Output<bool?> EnableHttp3 { get; private set; } = null!;
+
+        /// <summary>
+        /// A boolean to specify whether to use lb_acl.
+        /// If `external_acls` is set to `true`, `acl` can not be set directly in the lb frontend.
+        /// </summary>
+        [Output("externalAcls")]
+        public Output<bool?> ExternalAcls { get; private set; } = null!;
 
         /// <summary>
         /// TCP port to listen on the front side.
@@ -192,6 +199,13 @@ namespace ediri.Scaleway
         public Input<bool>? EnableHttp3 { get; set; }
 
         /// <summary>
+        /// A boolean to specify whether to use lb_acl.
+        /// If `external_acls` is set to `true`, `acl` can not be set directly in the lb frontend.
+        /// </summary>
+        [Input("externalAcls")]
+        public Input<bool>? ExternalAcls { get; set; }
+
+        /// <summary>
         /// TCP port to listen on the front side.
         /// </summary>
         [Input("inboundPort", required: true)]
@@ -268,6 +282,13 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("enableHttp3")]
         public Input<bool>? EnableHttp3 { get; set; }
+
+        /// <summary>
+        /// A boolean to specify whether to use lb_acl.
+        /// If `external_acls` is set to `true`, `acl` can not be set directly in the lb frontend.
+        /// </summary>
+        [Input("externalAcls")]
+        public Input<bool>? ExternalAcls { get; set; }
 
         /// <summary>
         /// TCP port to listen on the front side.
