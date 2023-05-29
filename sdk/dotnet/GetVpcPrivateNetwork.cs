@@ -41,11 +41,14 @@ namespace ediri.Scaleway
     public sealed class GetVpcPrivateNetworkArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Exact name of the private network.
+        /// Name of the private network. One of `name` and `private_network_id` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// ID of the private network. One of `name` and `private_network_id` should be specified.
+        /// </summary>
         [Input("privateNetworkId")]
         public string? PrivateNetworkId { get; set; }
 
@@ -58,11 +61,14 @@ namespace ediri.Scaleway
     public sealed class GetVpcPrivateNetworkInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Exact name of the private network.
+        /// Name of the private network. One of `name` and `private_network_id` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// ID of the private network. One of `name` and `private_network_id` should be specified.
+        /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
 
@@ -85,6 +91,10 @@ namespace ediri.Scaleway
         public readonly string OrganizationId;
         public readonly string? PrivateNetworkId;
         public readonly string ProjectId;
+        /// <summary>
+        /// The subnets CIDR associated with private network.
+        /// </summary>
+        public readonly ImmutableArray<string> Subnets;
         public readonly ImmutableArray<string> Tags;
         public readonly string UpdatedAt;
         public readonly string Zone;
@@ -103,6 +113,8 @@ namespace ediri.Scaleway
 
             string projectId,
 
+            ImmutableArray<string> subnets,
+
             ImmutableArray<string> tags,
 
             string updatedAt,
@@ -115,6 +127,7 @@ namespace ediri.Scaleway
             OrganizationId = organizationId;
             PrivateNetworkId = privateNetworkId;
             ProjectId = projectId;
+            Subnets = subnets;
             Tags = tags;
             UpdatedAt = updatedAt;
             Zone = zone;

@@ -73,6 +73,10 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
+     * The subnets CIDR associated with private network.
+     */
+    public readonly subnets!: pulumi.Output<string[]>;
+    /**
      * The tags associated with the private network.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
@@ -102,6 +106,7 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["subnets"] = state ? state.subnets : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["zone"] = state ? state.zone : undefined;
@@ -109,6 +114,7 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
             const args = argsOrState as VpcPrivateNetworkArgs | undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["subnets"] = args ? args.subnets : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -141,6 +147,10 @@ export interface VpcPrivateNetworkState {
      */
     projectId?: pulumi.Input<string>;
     /**
+     * The subnets CIDR associated with private network.
+     */
+    subnets?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The tags associated with the private network.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
@@ -166,6 +176,10 @@ export interface VpcPrivateNetworkArgs {
      * `projectId`) The ID of the project the private network is associated with.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * The subnets CIDR associated with private network.
+     */
+    subnets?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The tags associated with the private network.
      */

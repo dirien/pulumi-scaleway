@@ -153,7 +153,7 @@ export class K8sCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+     * Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
      * > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
      * If you prefer keeping it, you should instead set it as `false`.
      */
@@ -340,7 +340,7 @@ export interface K8sClusterState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+     * Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
      * > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
      * If you prefer keeping it, you should instead set it as `false`.
      */
@@ -440,7 +440,7 @@ export interface K8sClusterArgs {
      */
     cni: pulumi.Input<string>;
     /**
-     * Delete additional resources like block volumes, IPs and loadbalancers that were created in Kubernetes on cluster deletion.
+     * Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
      * > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
      * If you prefer keeping it, you should instead set it as `false`.
      */

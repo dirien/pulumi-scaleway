@@ -1434,6 +1434,200 @@ func (o DomainRecordWeightedArrayOutput) Index(i pulumi.IntInput) DomainRecordWe
 	}).(DomainRecordWeightedOutput)
 }
 
+type FunctionTriggerSqs struct {
+	// ID of the mnq namespace
+	NamespaceId string `pulumi:"namespaceId"`
+	// ID of the project that contain the mnq namespace, defaults to provider's project
+	ProjectId *string `pulumi:"projectId"`
+	// Name of the queue
+	Queue string `pulumi:"queue"`
+	// `region`). The region in which the namespace should be created.
+	Region *string `pulumi:"region"`
+}
+
+// FunctionTriggerSqsInput is an input type that accepts FunctionTriggerSqsArgs and FunctionTriggerSqsOutput values.
+// You can construct a concrete instance of `FunctionTriggerSqsInput` via:
+//
+//	FunctionTriggerSqsArgs{...}
+type FunctionTriggerSqsInput interface {
+	pulumi.Input
+
+	ToFunctionTriggerSqsOutput() FunctionTriggerSqsOutput
+	ToFunctionTriggerSqsOutputWithContext(context.Context) FunctionTriggerSqsOutput
+}
+
+type FunctionTriggerSqsArgs struct {
+	// ID of the mnq namespace
+	NamespaceId pulumi.StringInput `pulumi:"namespaceId"`
+	// ID of the project that contain the mnq namespace, defaults to provider's project
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// Name of the queue
+	Queue pulumi.StringInput `pulumi:"queue"`
+	// `region`). The region in which the namespace should be created.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+}
+
+func (FunctionTriggerSqsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FunctionTriggerSqs)(nil)).Elem()
+}
+
+func (i FunctionTriggerSqsArgs) ToFunctionTriggerSqsOutput() FunctionTriggerSqsOutput {
+	return i.ToFunctionTriggerSqsOutputWithContext(context.Background())
+}
+
+func (i FunctionTriggerSqsArgs) ToFunctionTriggerSqsOutputWithContext(ctx context.Context) FunctionTriggerSqsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionTriggerSqsOutput)
+}
+
+func (i FunctionTriggerSqsArgs) ToFunctionTriggerSqsPtrOutput() FunctionTriggerSqsPtrOutput {
+	return i.ToFunctionTriggerSqsPtrOutputWithContext(context.Background())
+}
+
+func (i FunctionTriggerSqsArgs) ToFunctionTriggerSqsPtrOutputWithContext(ctx context.Context) FunctionTriggerSqsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionTriggerSqsOutput).ToFunctionTriggerSqsPtrOutputWithContext(ctx)
+}
+
+// FunctionTriggerSqsPtrInput is an input type that accepts FunctionTriggerSqsArgs, FunctionTriggerSqsPtr and FunctionTriggerSqsPtrOutput values.
+// You can construct a concrete instance of `FunctionTriggerSqsPtrInput` via:
+//
+//	        FunctionTriggerSqsArgs{...}
+//
+//	or:
+//
+//	        nil
+type FunctionTriggerSqsPtrInput interface {
+	pulumi.Input
+
+	ToFunctionTriggerSqsPtrOutput() FunctionTriggerSqsPtrOutput
+	ToFunctionTriggerSqsPtrOutputWithContext(context.Context) FunctionTriggerSqsPtrOutput
+}
+
+type functionTriggerSqsPtrType FunctionTriggerSqsArgs
+
+func FunctionTriggerSqsPtr(v *FunctionTriggerSqsArgs) FunctionTriggerSqsPtrInput {
+	return (*functionTriggerSqsPtrType)(v)
+}
+
+func (*functionTriggerSqsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**FunctionTriggerSqs)(nil)).Elem()
+}
+
+func (i *functionTriggerSqsPtrType) ToFunctionTriggerSqsPtrOutput() FunctionTriggerSqsPtrOutput {
+	return i.ToFunctionTriggerSqsPtrOutputWithContext(context.Background())
+}
+
+func (i *functionTriggerSqsPtrType) ToFunctionTriggerSqsPtrOutputWithContext(ctx context.Context) FunctionTriggerSqsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionTriggerSqsPtrOutput)
+}
+
+type FunctionTriggerSqsOutput struct{ *pulumi.OutputState }
+
+func (FunctionTriggerSqsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FunctionTriggerSqs)(nil)).Elem()
+}
+
+func (o FunctionTriggerSqsOutput) ToFunctionTriggerSqsOutput() FunctionTriggerSqsOutput {
+	return o
+}
+
+func (o FunctionTriggerSqsOutput) ToFunctionTriggerSqsOutputWithContext(ctx context.Context) FunctionTriggerSqsOutput {
+	return o
+}
+
+func (o FunctionTriggerSqsOutput) ToFunctionTriggerSqsPtrOutput() FunctionTriggerSqsPtrOutput {
+	return o.ToFunctionTriggerSqsPtrOutputWithContext(context.Background())
+}
+
+func (o FunctionTriggerSqsOutput) ToFunctionTriggerSqsPtrOutputWithContext(ctx context.Context) FunctionTriggerSqsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v FunctionTriggerSqs) *FunctionTriggerSqs {
+		return &v
+	}).(FunctionTriggerSqsPtrOutput)
+}
+
+// ID of the mnq namespace
+func (o FunctionTriggerSqsOutput) NamespaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v FunctionTriggerSqs) string { return v.NamespaceId }).(pulumi.StringOutput)
+}
+
+// ID of the project that contain the mnq namespace, defaults to provider's project
+func (o FunctionTriggerSqsOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FunctionTriggerSqs) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
+}
+
+// Name of the queue
+func (o FunctionTriggerSqsOutput) Queue() pulumi.StringOutput {
+	return o.ApplyT(func(v FunctionTriggerSqs) string { return v.Queue }).(pulumi.StringOutput)
+}
+
+// `region`). The region in which the namespace should be created.
+func (o FunctionTriggerSqsOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FunctionTriggerSqs) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+type FunctionTriggerSqsPtrOutput struct{ *pulumi.OutputState }
+
+func (FunctionTriggerSqsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FunctionTriggerSqs)(nil)).Elem()
+}
+
+func (o FunctionTriggerSqsPtrOutput) ToFunctionTriggerSqsPtrOutput() FunctionTriggerSqsPtrOutput {
+	return o
+}
+
+func (o FunctionTriggerSqsPtrOutput) ToFunctionTriggerSqsPtrOutputWithContext(ctx context.Context) FunctionTriggerSqsPtrOutput {
+	return o
+}
+
+func (o FunctionTriggerSqsPtrOutput) Elem() FunctionTriggerSqsOutput {
+	return o.ApplyT(func(v *FunctionTriggerSqs) FunctionTriggerSqs {
+		if v != nil {
+			return *v
+		}
+		var ret FunctionTriggerSqs
+		return ret
+	}).(FunctionTriggerSqsOutput)
+}
+
+// ID of the mnq namespace
+func (o FunctionTriggerSqsPtrOutput) NamespaceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FunctionTriggerSqs) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.NamespaceId
+	}).(pulumi.StringPtrOutput)
+}
+
+// ID of the project that contain the mnq namespace, defaults to provider's project
+func (o FunctionTriggerSqsPtrOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FunctionTriggerSqs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ProjectId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Name of the queue
+func (o FunctionTriggerSqsPtrOutput) Queue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FunctionTriggerSqs) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Queue
+	}).(pulumi.StringPtrOutput)
+}
+
+// `region`). The region in which the namespace should be created.
+func (o FunctionTriggerSqsPtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FunctionTriggerSqs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
 type IamPolicyRule struct {
 	// ID of organization scoped to the rule.
 	OrganizationId *string `pulumi:"organizationId"`
@@ -5219,6 +5413,498 @@ func (o K8sPoolUpgradePolicyPtrOutput) MaxUnavailable() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+type LbAclAction struct {
+	// Redirect parameters when using an ACL with `redirect` action.
+	Redirects []LbAclActionRedirect `pulumi:"redirects"`
+	// The redirect type. Possible values are: `location` or `scheme`.
+	Type string `pulumi:"type"`
+}
+
+// LbAclActionInput is an input type that accepts LbAclActionArgs and LbAclActionOutput values.
+// You can construct a concrete instance of `LbAclActionInput` via:
+//
+//	LbAclActionArgs{...}
+type LbAclActionInput interface {
+	pulumi.Input
+
+	ToLbAclActionOutput() LbAclActionOutput
+	ToLbAclActionOutputWithContext(context.Context) LbAclActionOutput
+}
+
+type LbAclActionArgs struct {
+	// Redirect parameters when using an ACL with `redirect` action.
+	Redirects LbAclActionRedirectArrayInput `pulumi:"redirects"`
+	// The redirect type. Possible values are: `location` or `scheme`.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (LbAclActionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LbAclAction)(nil)).Elem()
+}
+
+func (i LbAclActionArgs) ToLbAclActionOutput() LbAclActionOutput {
+	return i.ToLbAclActionOutputWithContext(context.Background())
+}
+
+func (i LbAclActionArgs) ToLbAclActionOutputWithContext(ctx context.Context) LbAclActionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LbAclActionOutput)
+}
+
+func (i LbAclActionArgs) ToLbAclActionPtrOutput() LbAclActionPtrOutput {
+	return i.ToLbAclActionPtrOutputWithContext(context.Background())
+}
+
+func (i LbAclActionArgs) ToLbAclActionPtrOutputWithContext(ctx context.Context) LbAclActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LbAclActionOutput).ToLbAclActionPtrOutputWithContext(ctx)
+}
+
+// LbAclActionPtrInput is an input type that accepts LbAclActionArgs, LbAclActionPtr and LbAclActionPtrOutput values.
+// You can construct a concrete instance of `LbAclActionPtrInput` via:
+//
+//	        LbAclActionArgs{...}
+//
+//	or:
+//
+//	        nil
+type LbAclActionPtrInput interface {
+	pulumi.Input
+
+	ToLbAclActionPtrOutput() LbAclActionPtrOutput
+	ToLbAclActionPtrOutputWithContext(context.Context) LbAclActionPtrOutput
+}
+
+type lbAclActionPtrType LbAclActionArgs
+
+func LbAclActionPtr(v *LbAclActionArgs) LbAclActionPtrInput {
+	return (*lbAclActionPtrType)(v)
+}
+
+func (*lbAclActionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LbAclAction)(nil)).Elem()
+}
+
+func (i *lbAclActionPtrType) ToLbAclActionPtrOutput() LbAclActionPtrOutput {
+	return i.ToLbAclActionPtrOutputWithContext(context.Background())
+}
+
+func (i *lbAclActionPtrType) ToLbAclActionPtrOutputWithContext(ctx context.Context) LbAclActionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LbAclActionPtrOutput)
+}
+
+type LbAclActionOutput struct{ *pulumi.OutputState }
+
+func (LbAclActionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LbAclAction)(nil)).Elem()
+}
+
+func (o LbAclActionOutput) ToLbAclActionOutput() LbAclActionOutput {
+	return o
+}
+
+func (o LbAclActionOutput) ToLbAclActionOutputWithContext(ctx context.Context) LbAclActionOutput {
+	return o
+}
+
+func (o LbAclActionOutput) ToLbAclActionPtrOutput() LbAclActionPtrOutput {
+	return o.ToLbAclActionPtrOutputWithContext(context.Background())
+}
+
+func (o LbAclActionOutput) ToLbAclActionPtrOutputWithContext(ctx context.Context) LbAclActionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LbAclAction) *LbAclAction {
+		return &v
+	}).(LbAclActionPtrOutput)
+}
+
+// Redirect parameters when using an ACL with `redirect` action.
+func (o LbAclActionOutput) Redirects() LbAclActionRedirectArrayOutput {
+	return o.ApplyT(func(v LbAclAction) []LbAclActionRedirect { return v.Redirects }).(LbAclActionRedirectArrayOutput)
+}
+
+// The redirect type. Possible values are: `location` or `scheme`.
+func (o LbAclActionOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LbAclAction) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type LbAclActionPtrOutput struct{ *pulumi.OutputState }
+
+func (LbAclActionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LbAclAction)(nil)).Elem()
+}
+
+func (o LbAclActionPtrOutput) ToLbAclActionPtrOutput() LbAclActionPtrOutput {
+	return o
+}
+
+func (o LbAclActionPtrOutput) ToLbAclActionPtrOutputWithContext(ctx context.Context) LbAclActionPtrOutput {
+	return o
+}
+
+func (o LbAclActionPtrOutput) Elem() LbAclActionOutput {
+	return o.ApplyT(func(v *LbAclAction) LbAclAction {
+		if v != nil {
+			return *v
+		}
+		var ret LbAclAction
+		return ret
+	}).(LbAclActionOutput)
+}
+
+// Redirect parameters when using an ACL with `redirect` action.
+func (o LbAclActionPtrOutput) Redirects() LbAclActionRedirectArrayOutput {
+	return o.ApplyT(func(v *LbAclAction) []LbAclActionRedirect {
+		if v == nil {
+			return nil
+		}
+		return v.Redirects
+	}).(LbAclActionRedirectArrayOutput)
+}
+
+// The redirect type. Possible values are: `location` or `scheme`.
+func (o LbAclActionPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LbAclAction) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+type LbAclActionRedirect struct {
+	// The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+	Code *int `pulumi:"code"`
+	// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+	Target *string `pulumi:"target"`
+	// The redirect type. Possible values are: `location` or `scheme`.
+	Type *string `pulumi:"type"`
+}
+
+// LbAclActionRedirectInput is an input type that accepts LbAclActionRedirectArgs and LbAclActionRedirectOutput values.
+// You can construct a concrete instance of `LbAclActionRedirectInput` via:
+//
+//	LbAclActionRedirectArgs{...}
+type LbAclActionRedirectInput interface {
+	pulumi.Input
+
+	ToLbAclActionRedirectOutput() LbAclActionRedirectOutput
+	ToLbAclActionRedirectOutputWithContext(context.Context) LbAclActionRedirectOutput
+}
+
+type LbAclActionRedirectArgs struct {
+	// The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+	Code pulumi.IntPtrInput `pulumi:"code"`
+	// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+	Target pulumi.StringPtrInput `pulumi:"target"`
+	// The redirect type. Possible values are: `location` or `scheme`.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (LbAclActionRedirectArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LbAclActionRedirect)(nil)).Elem()
+}
+
+func (i LbAclActionRedirectArgs) ToLbAclActionRedirectOutput() LbAclActionRedirectOutput {
+	return i.ToLbAclActionRedirectOutputWithContext(context.Background())
+}
+
+func (i LbAclActionRedirectArgs) ToLbAclActionRedirectOutputWithContext(ctx context.Context) LbAclActionRedirectOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LbAclActionRedirectOutput)
+}
+
+// LbAclActionRedirectArrayInput is an input type that accepts LbAclActionRedirectArray and LbAclActionRedirectArrayOutput values.
+// You can construct a concrete instance of `LbAclActionRedirectArrayInput` via:
+//
+//	LbAclActionRedirectArray{ LbAclActionRedirectArgs{...} }
+type LbAclActionRedirectArrayInput interface {
+	pulumi.Input
+
+	ToLbAclActionRedirectArrayOutput() LbAclActionRedirectArrayOutput
+	ToLbAclActionRedirectArrayOutputWithContext(context.Context) LbAclActionRedirectArrayOutput
+}
+
+type LbAclActionRedirectArray []LbAclActionRedirectInput
+
+func (LbAclActionRedirectArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LbAclActionRedirect)(nil)).Elem()
+}
+
+func (i LbAclActionRedirectArray) ToLbAclActionRedirectArrayOutput() LbAclActionRedirectArrayOutput {
+	return i.ToLbAclActionRedirectArrayOutputWithContext(context.Background())
+}
+
+func (i LbAclActionRedirectArray) ToLbAclActionRedirectArrayOutputWithContext(ctx context.Context) LbAclActionRedirectArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LbAclActionRedirectArrayOutput)
+}
+
+type LbAclActionRedirectOutput struct{ *pulumi.OutputState }
+
+func (LbAclActionRedirectOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LbAclActionRedirect)(nil)).Elem()
+}
+
+func (o LbAclActionRedirectOutput) ToLbAclActionRedirectOutput() LbAclActionRedirectOutput {
+	return o
+}
+
+func (o LbAclActionRedirectOutput) ToLbAclActionRedirectOutputWithContext(ctx context.Context) LbAclActionRedirectOutput {
+	return o
+}
+
+// The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+func (o LbAclActionRedirectOutput) Code() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v LbAclActionRedirect) *int { return v.Code }).(pulumi.IntPtrOutput)
+}
+
+// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+func (o LbAclActionRedirectOutput) Target() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LbAclActionRedirect) *string { return v.Target }).(pulumi.StringPtrOutput)
+}
+
+// The redirect type. Possible values are: `location` or `scheme`.
+func (o LbAclActionRedirectOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LbAclActionRedirect) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type LbAclActionRedirectArrayOutput struct{ *pulumi.OutputState }
+
+func (LbAclActionRedirectArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LbAclActionRedirect)(nil)).Elem()
+}
+
+func (o LbAclActionRedirectArrayOutput) ToLbAclActionRedirectArrayOutput() LbAclActionRedirectArrayOutput {
+	return o
+}
+
+func (o LbAclActionRedirectArrayOutput) ToLbAclActionRedirectArrayOutputWithContext(ctx context.Context) LbAclActionRedirectArrayOutput {
+	return o
+}
+
+func (o LbAclActionRedirectArrayOutput) Index(i pulumi.IntInput) LbAclActionRedirectOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LbAclActionRedirect {
+		return vs[0].([]LbAclActionRedirect)[vs[1].(int)]
+	}).(LbAclActionRedirectOutput)
+}
+
+type LbAclMatch struct {
+	// The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
+	// It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
+	// Possible values are: `aclHttpFilterNone`, `pathBegin`, `pathEnd`, `httpHeaderMatch` or `regex`.
+	HttpFilter       *string `pulumi:"httpFilter"`
+	HttpFilterOption *string `pulumi:"httpFilterOption"`
+	// A list of possible values to match for the given HTTP filter.
+	// Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case-insensitive.
+	HttpFilterValues []string `pulumi:"httpFilterValues"`
+	// If set to `true`, the condition will be of type "unless".
+	Invert *bool `pulumi:"invert"`
+	// A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+	IpSubnets []string `pulumi:"ipSubnets"`
+}
+
+// LbAclMatchInput is an input type that accepts LbAclMatchArgs and LbAclMatchOutput values.
+// You can construct a concrete instance of `LbAclMatchInput` via:
+//
+//	LbAclMatchArgs{...}
+type LbAclMatchInput interface {
+	pulumi.Input
+
+	ToLbAclMatchOutput() LbAclMatchOutput
+	ToLbAclMatchOutputWithContext(context.Context) LbAclMatchOutput
+}
+
+type LbAclMatchArgs struct {
+	// The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
+	// It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
+	// Possible values are: `aclHttpFilterNone`, `pathBegin`, `pathEnd`, `httpHeaderMatch` or `regex`.
+	HttpFilter       pulumi.StringPtrInput `pulumi:"httpFilter"`
+	HttpFilterOption pulumi.StringPtrInput `pulumi:"httpFilterOption"`
+	// A list of possible values to match for the given HTTP filter.
+	// Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case-insensitive.
+	HttpFilterValues pulumi.StringArrayInput `pulumi:"httpFilterValues"`
+	// If set to `true`, the condition will be of type "unless".
+	Invert pulumi.BoolPtrInput `pulumi:"invert"`
+	// A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+	IpSubnets pulumi.StringArrayInput `pulumi:"ipSubnets"`
+}
+
+func (LbAclMatchArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LbAclMatch)(nil)).Elem()
+}
+
+func (i LbAclMatchArgs) ToLbAclMatchOutput() LbAclMatchOutput {
+	return i.ToLbAclMatchOutputWithContext(context.Background())
+}
+
+func (i LbAclMatchArgs) ToLbAclMatchOutputWithContext(ctx context.Context) LbAclMatchOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LbAclMatchOutput)
+}
+
+func (i LbAclMatchArgs) ToLbAclMatchPtrOutput() LbAclMatchPtrOutput {
+	return i.ToLbAclMatchPtrOutputWithContext(context.Background())
+}
+
+func (i LbAclMatchArgs) ToLbAclMatchPtrOutputWithContext(ctx context.Context) LbAclMatchPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LbAclMatchOutput).ToLbAclMatchPtrOutputWithContext(ctx)
+}
+
+// LbAclMatchPtrInput is an input type that accepts LbAclMatchArgs, LbAclMatchPtr and LbAclMatchPtrOutput values.
+// You can construct a concrete instance of `LbAclMatchPtrInput` via:
+//
+//	        LbAclMatchArgs{...}
+//
+//	or:
+//
+//	        nil
+type LbAclMatchPtrInput interface {
+	pulumi.Input
+
+	ToLbAclMatchPtrOutput() LbAclMatchPtrOutput
+	ToLbAclMatchPtrOutputWithContext(context.Context) LbAclMatchPtrOutput
+}
+
+type lbAclMatchPtrType LbAclMatchArgs
+
+func LbAclMatchPtr(v *LbAclMatchArgs) LbAclMatchPtrInput {
+	return (*lbAclMatchPtrType)(v)
+}
+
+func (*lbAclMatchPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LbAclMatch)(nil)).Elem()
+}
+
+func (i *lbAclMatchPtrType) ToLbAclMatchPtrOutput() LbAclMatchPtrOutput {
+	return i.ToLbAclMatchPtrOutputWithContext(context.Background())
+}
+
+func (i *lbAclMatchPtrType) ToLbAclMatchPtrOutputWithContext(ctx context.Context) LbAclMatchPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LbAclMatchPtrOutput)
+}
+
+type LbAclMatchOutput struct{ *pulumi.OutputState }
+
+func (LbAclMatchOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LbAclMatch)(nil)).Elem()
+}
+
+func (o LbAclMatchOutput) ToLbAclMatchOutput() LbAclMatchOutput {
+	return o
+}
+
+func (o LbAclMatchOutput) ToLbAclMatchOutputWithContext(ctx context.Context) LbAclMatchOutput {
+	return o
+}
+
+func (o LbAclMatchOutput) ToLbAclMatchPtrOutput() LbAclMatchPtrOutput {
+	return o.ToLbAclMatchPtrOutputWithContext(context.Background())
+}
+
+func (o LbAclMatchOutput) ToLbAclMatchPtrOutputWithContext(ctx context.Context) LbAclMatchPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LbAclMatch) *LbAclMatch {
+		return &v
+	}).(LbAclMatchPtrOutput)
+}
+
+// The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
+// It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
+// Possible values are: `aclHttpFilterNone`, `pathBegin`, `pathEnd`, `httpHeaderMatch` or `regex`.
+func (o LbAclMatchOutput) HttpFilter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LbAclMatch) *string { return v.HttpFilter }).(pulumi.StringPtrOutput)
+}
+
+func (o LbAclMatchOutput) HttpFilterOption() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LbAclMatch) *string { return v.HttpFilterOption }).(pulumi.StringPtrOutput)
+}
+
+// A list of possible values to match for the given HTTP filter.
+// Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case-insensitive.
+func (o LbAclMatchOutput) HttpFilterValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LbAclMatch) []string { return v.HttpFilterValues }).(pulumi.StringArrayOutput)
+}
+
+// If set to `true`, the condition will be of type "unless".
+func (o LbAclMatchOutput) Invert() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LbAclMatch) *bool { return v.Invert }).(pulumi.BoolPtrOutput)
+}
+
+// A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+func (o LbAclMatchOutput) IpSubnets() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LbAclMatch) []string { return v.IpSubnets }).(pulumi.StringArrayOutput)
+}
+
+type LbAclMatchPtrOutput struct{ *pulumi.OutputState }
+
+func (LbAclMatchPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LbAclMatch)(nil)).Elem()
+}
+
+func (o LbAclMatchPtrOutput) ToLbAclMatchPtrOutput() LbAclMatchPtrOutput {
+	return o
+}
+
+func (o LbAclMatchPtrOutput) ToLbAclMatchPtrOutputWithContext(ctx context.Context) LbAclMatchPtrOutput {
+	return o
+}
+
+func (o LbAclMatchPtrOutput) Elem() LbAclMatchOutput {
+	return o.ApplyT(func(v *LbAclMatch) LbAclMatch {
+		if v != nil {
+			return *v
+		}
+		var ret LbAclMatch
+		return ret
+	}).(LbAclMatchOutput)
+}
+
+// The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
+// It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
+// Possible values are: `aclHttpFilterNone`, `pathBegin`, `pathEnd`, `httpHeaderMatch` or `regex`.
+func (o LbAclMatchPtrOutput) HttpFilter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LbAclMatch) *string {
+		if v == nil {
+			return nil
+		}
+		return v.HttpFilter
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o LbAclMatchPtrOutput) HttpFilterOption() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LbAclMatch) *string {
+		if v == nil {
+			return nil
+		}
+		return v.HttpFilterOption
+	}).(pulumi.StringPtrOutput)
+}
+
+// A list of possible values to match for the given HTTP filter.
+// Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case-insensitive.
+func (o LbAclMatchPtrOutput) HttpFilterValues() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *LbAclMatch) []string {
+		if v == nil {
+			return nil
+		}
+		return v.HttpFilterValues
+	}).(pulumi.StringArrayOutput)
+}
+
+// If set to `true`, the condition will be of type "unless".
+func (o LbAclMatchPtrOutput) Invert() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LbAclMatch) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Invert
+	}).(pulumi.BoolPtrOutput)
+}
+
+// A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+func (o LbAclMatchPtrOutput) IpSubnets() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *LbAclMatch) []string {
+		if v == nil {
+			return nil
+		}
+		return v.IpSubnets
+	}).(pulumi.StringArrayOutput)
+}
+
 type LbBackendHealthCheckHttp struct {
 	// The expected HTTP status code.
 	Code *int `pulumi:"code"`
@@ -6055,11 +6741,14 @@ func (o LbCertificateLetsencryptPtrOutput) SubjectAlternativeNames() pulumi.Stri
 
 type LbFrontendAcl struct {
 	// Action to undertake when an ACL filter matches.
-	Action LbFrontendAclAction `pulumi:"action"`
+	Action      LbFrontendAclAction `pulumi:"action"`
+	CreatedAt   *string             `pulumi:"createdAt"`
+	Description *string             `pulumi:"description"`
 	// The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
 	Match LbFrontendAclMatch `pulumi:"match"`
 	// The ACL name. If not provided it will be randomly generated.
-	Name *string `pulumi:"name"`
+	Name      *string `pulumi:"name"`
+	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
 // LbFrontendAclInput is an input type that accepts LbFrontendAclArgs and LbFrontendAclOutput values.
@@ -6075,11 +6764,14 @@ type LbFrontendAclInput interface {
 
 type LbFrontendAclArgs struct {
 	// Action to undertake when an ACL filter matches.
-	Action LbFrontendAclActionInput `pulumi:"action"`
+	Action      LbFrontendAclActionInput `pulumi:"action"`
+	CreatedAt   pulumi.StringPtrInput    `pulumi:"createdAt"`
+	Description pulumi.StringPtrInput    `pulumi:"description"`
 	// The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
 	Match LbFrontendAclMatchInput `pulumi:"match"`
 	// The ACL name. If not provided it will be randomly generated.
-	Name pulumi.StringPtrInput `pulumi:"name"`
+	Name      pulumi.StringPtrInput `pulumi:"name"`
+	UpdatedAt pulumi.StringPtrInput `pulumi:"updatedAt"`
 }
 
 func (LbFrontendAclArgs) ElementType() reflect.Type {
@@ -6138,6 +6830,14 @@ func (o LbFrontendAclOutput) Action() LbFrontendAclActionOutput {
 	return o.ApplyT(func(v LbFrontendAcl) LbFrontendAclAction { return v.Action }).(LbFrontendAclActionOutput)
 }
 
+func (o LbFrontendAclOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LbFrontendAcl) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+func (o LbFrontendAclOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LbFrontendAcl) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
 // The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
 func (o LbFrontendAclOutput) Match() LbFrontendAclMatchOutput {
 	return o.ApplyT(func(v LbFrontendAcl) LbFrontendAclMatch { return v.Match }).(LbFrontendAclMatchOutput)
@@ -6146,6 +6846,10 @@ func (o LbFrontendAclOutput) Match() LbFrontendAclMatchOutput {
 // The ACL name. If not provided it will be randomly generated.
 func (o LbFrontendAclOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LbFrontendAcl) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o LbFrontendAclOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LbFrontendAcl) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
 }
 
 type LbFrontendAclArrayOutput struct{ *pulumi.OutputState }
@@ -15712,11 +16416,14 @@ func (o GetLbCertificateLetsencryptArrayOutput) Index(i pulumi.IntInput) GetLbCe
 }
 
 type GetLbFrontendAcl struct {
-	Actions []GetLbFrontendAclAction `pulumi:"actions"`
-	Matches []GetLbFrontendAclMatch  `pulumi:"matches"`
+	Actions     []GetLbFrontendAclAction `pulumi:"actions"`
+	CreatedAt   string                   `pulumi:"createdAt"`
+	Description string                   `pulumi:"description"`
+	Matches     []GetLbFrontendAclMatch  `pulumi:"matches"`
 	// The name of the frontend.
 	// - When using the `name` you should specify the `lb-id`
-	Name string `pulumi:"name"`
+	Name      string `pulumi:"name"`
+	UpdatedAt string `pulumi:"updatedAt"`
 }
 
 // GetLbFrontendAclInput is an input type that accepts GetLbFrontendAclArgs and GetLbFrontendAclOutput values.
@@ -15731,11 +16438,14 @@ type GetLbFrontendAclInput interface {
 }
 
 type GetLbFrontendAclArgs struct {
-	Actions GetLbFrontendAclActionArrayInput `pulumi:"actions"`
-	Matches GetLbFrontendAclMatchArrayInput  `pulumi:"matches"`
+	Actions     GetLbFrontendAclActionArrayInput `pulumi:"actions"`
+	CreatedAt   pulumi.StringInput               `pulumi:"createdAt"`
+	Description pulumi.StringInput               `pulumi:"description"`
+	Matches     GetLbFrontendAclMatchArrayInput  `pulumi:"matches"`
 	// The name of the frontend.
 	// - When using the `name` you should specify the `lb-id`
-	Name pulumi.StringInput `pulumi:"name"`
+	Name      pulumi.StringInput `pulumi:"name"`
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 }
 
 func (GetLbFrontendAclArgs) ElementType() reflect.Type {
@@ -15793,6 +16503,14 @@ func (o GetLbFrontendAclOutput) Actions() GetLbFrontendAclActionArrayOutput {
 	return o.ApplyT(func(v GetLbFrontendAcl) []GetLbFrontendAclAction { return v.Actions }).(GetLbFrontendAclActionArrayOutput)
 }
 
+func (o GetLbFrontendAclOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbFrontendAcl) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o GetLbFrontendAclOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbFrontendAcl) string { return v.Description }).(pulumi.StringOutput)
+}
+
 func (o GetLbFrontendAclOutput) Matches() GetLbFrontendAclMatchArrayOutput {
 	return o.ApplyT(func(v GetLbFrontendAcl) []GetLbFrontendAclMatch { return v.Matches }).(GetLbFrontendAclMatchArrayOutput)
 }
@@ -15801,6 +16519,10 @@ func (o GetLbFrontendAclOutput) Matches() GetLbFrontendAclMatchArrayOutput {
 // - When using the `name` you should specify the `lb-id`
 func (o GetLbFrontendAclOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbFrontendAcl) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetLbFrontendAclOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbFrontendAcl) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 type GetLbFrontendAclArrayOutput struct{ *pulumi.OutputState }
@@ -18843,6 +19565,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordViewArrayInput)(nil)).Elem(), DomainRecordViewArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordWeightedInput)(nil)).Elem(), DomainRecordWeightedArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordWeightedArrayInput)(nil)).Elem(), DomainRecordWeightedArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FunctionTriggerSqsInput)(nil)).Elem(), FunctionTriggerSqsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FunctionTriggerSqsPtrInput)(nil)).Elem(), FunctionTriggerSqsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IamPolicyRuleInput)(nil)).Elem(), IamPolicyRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IamPolicyRuleArrayInput)(nil)).Elem(), IamPolicyRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceImageAdditionalVolumeInput)(nil)).Elem(), InstanceImageAdditionalVolumeArgs{})
@@ -18887,6 +19611,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*K8sPoolNodeArrayInput)(nil)).Elem(), K8sPoolNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*K8sPoolUpgradePolicyInput)(nil)).Elem(), K8sPoolUpgradePolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*K8sPoolUpgradePolicyPtrInput)(nil)).Elem(), K8sPoolUpgradePolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LbAclActionInput)(nil)).Elem(), LbAclActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LbAclActionPtrInput)(nil)).Elem(), LbAclActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LbAclActionRedirectInput)(nil)).Elem(), LbAclActionRedirectArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LbAclActionRedirectArrayInput)(nil)).Elem(), LbAclActionRedirectArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LbAclMatchInput)(nil)).Elem(), LbAclMatchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LbAclMatchPtrInput)(nil)).Elem(), LbAclMatchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LbBackendHealthCheckHttpInput)(nil)).Elem(), LbBackendHealthCheckHttpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LbBackendHealthCheckHttpPtrInput)(nil)).Elem(), LbBackendHealthCheckHttpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LbBackendHealthCheckHttpsInput)(nil)).Elem(), LbBackendHealthCheckHttpsArgs{})
@@ -19105,6 +19835,8 @@ func init() {
 	pulumi.RegisterOutputType(DomainRecordViewArrayOutput{})
 	pulumi.RegisterOutputType(DomainRecordWeightedOutput{})
 	pulumi.RegisterOutputType(DomainRecordWeightedArrayOutput{})
+	pulumi.RegisterOutputType(FunctionTriggerSqsOutput{})
+	pulumi.RegisterOutputType(FunctionTriggerSqsPtrOutput{})
 	pulumi.RegisterOutputType(IamPolicyRuleOutput{})
 	pulumi.RegisterOutputType(IamPolicyRuleArrayOutput{})
 	pulumi.RegisterOutputType(InstanceImageAdditionalVolumeOutput{})
@@ -19149,6 +19881,12 @@ func init() {
 	pulumi.RegisterOutputType(K8sPoolNodeArrayOutput{})
 	pulumi.RegisterOutputType(K8sPoolUpgradePolicyOutput{})
 	pulumi.RegisterOutputType(K8sPoolUpgradePolicyPtrOutput{})
+	pulumi.RegisterOutputType(LbAclActionOutput{})
+	pulumi.RegisterOutputType(LbAclActionPtrOutput{})
+	pulumi.RegisterOutputType(LbAclActionRedirectOutput{})
+	pulumi.RegisterOutputType(LbAclActionRedirectArrayOutput{})
+	pulumi.RegisterOutputType(LbAclMatchOutput{})
+	pulumi.RegisterOutputType(LbAclMatchPtrOutput{})
 	pulumi.RegisterOutputType(LbBackendHealthCheckHttpOutput{})
 	pulumi.RegisterOutputType(LbBackendHealthCheckHttpPtrOutput{})
 	pulumi.RegisterOutputType(LbBackendHealthCheckHttpsOutput{})

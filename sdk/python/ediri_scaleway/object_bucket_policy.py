@@ -175,6 +175,37 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         Creates and manages Scaleway object storage bucket policy.
         For more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/using-bucket-policies/).
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+        import json
+
+        bucket = scaleway.ObjectBucket("bucket")
+        policy = scaleway.ObjectBucketPolicy("policy",
+            bucket=bucket.name,
+            policy=json.dumps({
+                "Id": "MyPolicy",
+                "Statement": [{
+                    "Action": [
+                        "s3:ListBucket",
+                        "s3:GetObject",
+                    ],
+                    "Effect": "Allow",
+                    "Principal": {
+                        "SCW": "*",
+                    },
+                    "Resource": [
+                        "some-unique-name",
+                        "some-unique-name/*",
+                    ],
+                    "Sid": "GrantToEveryone",
+                }],
+                "Version": "2012-10-17",
+            }))
+        ```
+
         ## Import
 
         Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
@@ -201,6 +232,37 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         """
         Creates and manages Scaleway object storage bucket policy.
         For more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/using-bucket-policies/).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+        import json
+
+        bucket = scaleway.ObjectBucket("bucket")
+        policy = scaleway.ObjectBucketPolicy("policy",
+            bucket=bucket.name,
+            policy=json.dumps({
+                "Id": "MyPolicy",
+                "Statement": [{
+                    "Action": [
+                        "s3:ListBucket",
+                        "s3:GetObject",
+                    ],
+                    "Effect": "Allow",
+                    "Principal": {
+                        "SCW": "*",
+                    },
+                    "Resource": [
+                        "some-unique-name",
+                        "some-unique-name/*",
+                    ],
+                    "Sid": "GrantToEveryone",
+                }],
+                "Version": "2012-10-17",
+            }))
+        ```
 
         ## Import
 

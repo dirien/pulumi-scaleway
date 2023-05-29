@@ -25,6 +25,7 @@ from .function_cron import *
 from .function_domain import *
 from .function_namespace import *
 from .function_token import *
+from .function_trigger import *
 from .get_account_project import *
 from .get_account_ssh_key import *
 from .get_availability_zones import *
@@ -33,6 +34,7 @@ from .get_baremetal_option import *
 from .get_baremetal_os import *
 from .get_baremetal_server import *
 from .get_cockpit import *
+from .get_cockpit_plan import *
 from .get_container import *
 from .get_container_namespace import *
 from .get_domain_record import *
@@ -114,6 +116,7 @@ from .iot_route import *
 from .k8s_cluster import *
 from .k8s_pool import *
 from .lb import *
+from .lb_acl import *
 from .lb_backend import *
 from .lb_certificate import *
 from .lb_frontend import *
@@ -324,6 +327,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/functionTrigger",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/functionTrigger:FunctionTrigger": "FunctionTrigger"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/iamApiKey",
   "fqn": "ediri_scaleway",
   "classes": {
@@ -504,6 +515,14 @@ _utilities.register(
   "fqn": "ediri_scaleway",
   "classes": {
    "scaleway:index/lb:Lb": "Lb"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/lbAcl",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/lbAcl:LbAcl": "LbAcl"
   }
  },
  {

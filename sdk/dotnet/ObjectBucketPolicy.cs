@@ -14,6 +14,54 @@ namespace ediri.Scaleway
     /// Creates and manages Scaleway object storage bucket policy.
     /// For more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/using-bucket-policies/).
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var bucket = new Scaleway.ObjectBucket("bucket");
+    /// 
+    ///     var policy = new Scaleway.ObjectBucketPolicy("policy", new()
+    ///     {
+    ///         Bucket = bucket.Name,
+    ///         Policy = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["Id"] = "MyPolicy",
+    ///             ["Statement"] = new[]
+    ///             {
+    ///                 new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["Action"] = new[]
+    ///                     {
+    ///                         "s3:ListBucket",
+    ///                         "s3:GetObject",
+    ///                     },
+    ///                     ["Effect"] = "Allow",
+    ///                     ["Principal"] = new Dictionary&lt;string, object?&gt;
+    ///                     {
+    ///                         ["SCW"] = "*",
+    ///                     },
+    ///                     ["Resource"] = new[]
+    ///                     {
+    ///                         "some-unique-name",
+    ///                         "some-unique-name/*",
+    ///                     },
+    ///                     ["Sid"] = "GrantToEveryone",
+    ///                 },
+    ///             },
+    ///             ["Version"] = "2012-10-17",
+    ///         }),
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash

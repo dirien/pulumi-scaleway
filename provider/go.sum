@@ -682,7 +682,7 @@ github.com/docker/cli v0.0.0-20191017083524-a8ff7f821017/go.mod h1:JLrzqnKDaYBop
 github.com/docker/distribution v0.0.0-20190905152932-14b96e55d84c/go.mod h1:0+TTO4EOBfRPhZXAeF1Vu+W3hHZ8eLp8PgKVZlcvtFY=
 github.com/docker/distribution v2.7.1-0.20190205005809-0d3efadf0154+incompatible/go.mod h1:J2gT2udsDAN96Uj4KfcMRqY0/ypR+oyYUYmja8H+y+w=
 github.com/docker/distribution v2.7.1+incompatible/go.mod h1:J2gT2udsDAN96Uj4KfcMRqY0/ypR+oyYUYmja8H+y+w=
-github.com/docker/distribution v2.8.1+incompatible h1:Q50tZOPR6T/hjNsyc9g8/syEs6bk8XXApsHjKukMl68=
+github.com/docker/distribution v2.8.2+incompatible h1:T3de5rq0dB1j30rp0sA2rER+m322EBzniBPB6ZIzuh8=
 github.com/docker/docker v1.4.2-0.20190924003213-a8608b5b67c7/go.mod h1:eEKB0N0r5NX/I1kEveEz05bcu8tLC/8azJZsviup8Sk=
 github.com/docker/docker v20.10.14+incompatible/go.mod h1:eEKB0N0r5NX/I1kEveEz05bcu8tLC/8azJZsviup8Sk=
 github.com/docker/docker v20.10.17+incompatible/go.mod h1:eEKB0N0r5NX/I1kEveEz05bcu8tLC/8azJZsviup8Sk=
@@ -1712,8 +1712,8 @@ github.com/pulumi/pulumi-terraform-bridge/x/muxer v0.0.4 h1:rIzMmtcVpPX8ynaz6/nW
 github.com/pulumi/pulumi-terraform-bridge/x/muxer v0.0.4/go.mod h1:Kt8RIZWa/N8rW3+0g6NrqCBmF3o+HuIhFaZpssEkG6w=
 github.com/pulumi/pulumi-yaml v1.1.1 h1:8pyBNIU8+ym0wYpjhsCqN+cutygfK1XbhY2YEeNfyXY=
 github.com/pulumi/pulumi-yaml v1.1.1/go.mod h1:GhpdS6rFpwqvUtKdA+fQy8P28iNvncng39IXh5q68vE=
-github.com/pulumi/pulumi/pkg/v3 v3.66.0 h1:S9hvJvxL3cfiBvQ1rK7JMkO6CMyXXZVLrIXAEgujtys=
-github.com/pulumi/pulumi/pkg/v3 v3.66.0/go.mod h1:Ns4GxBLXW8arENazM3gjRA++Gp5cPXFsF9obEEdomLU=
+github.com/pulumi/pulumi/pkg/v3 v3.68.0 h1:JeJAAJiVe6JliNRKI1ABYPfUJ3Fcy72qYoVZJSOjvNE=
+github.com/pulumi/pulumi/pkg/v3 v3.68.0/go.mod h1:4uJVC8hkWk0PxTx/d64da9x3IUJxBGR6RXi8eUv7Rvk=
 github.com/pulumi/pulumi/sdk/v3 v3.68.0 h1:JWn3DGJhzoWL8bNbUdyLSSPeKS2F9mv14/EL9QeVT3w=
 github.com/pulumi/pulumi/sdk/v3 v3.68.0/go.mod h1:A/WHc5MlxU8GpX/sRmfQ9G0/Bxxl4GNdSP7TQmy4yIw=
 github.com/pulumi/schema-tools v0.1.2 h1:Fd9xvUjgck4NA+7/jSk7InqCUT4Kj940+EcnbQKpfZo=
@@ -1758,8 +1758,8 @@ github.com/santhosh-tekuri/jsonschema/v5 v5.3.0/go.mod h1:FKdcjfQW6rpZSnxxUvEA5H
 github.com/satori/go.uuid v1.2.0/go.mod h1:dA0hQrYB0VpLJoorglMZABFdXlWrHn1NEOzdhQKdks0=
 github.com/scaleway/scaleway-sdk-go v1.0.0-beta.16.0.20230425114903-9de7ce5b674f h1:h/skrTv7wKdxr88CjkD2cdVLaWqarBwXRQTE1XCraKg=
 github.com/scaleway/scaleway-sdk-go v1.0.0-beta.16.0.20230425114903-9de7ce5b674f/go.mod h1:fCa7OJZ/9DRTnOKmxvT6pn+LPWUptQAmHF/SBJUGEcg=
-github.com/scaleway/terraform-provider-scaleway/v2 v2.19.0 h1:Gr04aji5jFw0XbAuNujTM/km4VZlhfsRQzgK5SGFmX8=
-github.com/scaleway/terraform-provider-scaleway/v2 v2.19.0/go.mod h1:lth595k0Eh8X7df3A6HWK4qoh+r/GzTU5uJgXVFZShM=
+github.com/scaleway/terraform-provider-scaleway/v2 v2.20.0 h1:rbuY4yg9jyj6YhoDrDHK7rkbZzc1OXx4BbKEiD+UjoY=
+github.com/scaleway/terraform-provider-scaleway/v2 v2.20.0/go.mod h1:L1hEuSfwfViqg22218J4Hn5TOY4BfRuTTb4ZhJlrH3Y=
 github.com/sclevine/agouti v3.0.0+incompatible/go.mod h1:b4WX9W9L1sfQKXeJf1mUTLZKJ48R1S7H23Ji7oFO5Bw=
 github.com/sclevine/spec v1.2.0/go.mod h1:W4J29eT/Kzv7/b9IWLB055Z+qvVC9vt0Arko24q7p+U=
 github.com/sean-/seed v0.0.0-20170313163322-e2103e2c3529/go.mod h1:DxrIzT+xaE7yg65j358z/aeFdxmN0P9QXhEzd20vsDc=

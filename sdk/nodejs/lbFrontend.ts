@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Load-Balancer Frontends. For more information, see [the documentation](https://developers.scaleway.com/en/products/lb/zoned_api).
+ * Creates and manages Scaleway Load-Balancer Frontends. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
  *
  * ## Examples Usage
  *
@@ -87,6 +87,11 @@ export class LbFrontend extends pulumi.CustomResource {
      */
     public readonly enableHttp3!: pulumi.Output<boolean | undefined>;
     /**
+     * A boolean to specify whether to use lb_acl.
+     * If `externalAcls` is set to `true`, `acl` can not be set directly in the lb frontend.
+     */
+    public readonly externalAcls!: pulumi.Output<boolean | undefined>;
+    /**
      * TCP port to listen on the front side.
      */
     public readonly inboundPort!: pulumi.Output<number>;
@@ -121,6 +126,7 @@ export class LbFrontend extends pulumi.CustomResource {
             resourceInputs["certificateId"] = state ? state.certificateId : undefined;
             resourceInputs["certificateIds"] = state ? state.certificateIds : undefined;
             resourceInputs["enableHttp3"] = state ? state.enableHttp3 : undefined;
+            resourceInputs["externalAcls"] = state ? state.externalAcls : undefined;
             resourceInputs["inboundPort"] = state ? state.inboundPort : undefined;
             resourceInputs["lbId"] = state ? state.lbId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -140,6 +146,7 @@ export class LbFrontend extends pulumi.CustomResource {
             resourceInputs["backendId"] = args ? args.backendId : undefined;
             resourceInputs["certificateIds"] = args ? args.certificateIds : undefined;
             resourceInputs["enableHttp3"] = args ? args.enableHttp3 : undefined;
+            resourceInputs["externalAcls"] = args ? args.externalAcls : undefined;
             resourceInputs["inboundPort"] = args ? args.inboundPort : undefined;
             resourceInputs["lbId"] = args ? args.lbId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -182,6 +189,11 @@ export interface LbFrontendState {
      */
     enableHttp3?: pulumi.Input<boolean>;
     /**
+     * A boolean to specify whether to use lb_acl.
+     * If `externalAcls` is set to `true`, `acl` can not be set directly in the lb frontend.
+     */
+    externalAcls?: pulumi.Input<boolean>;
+    /**
      * TCP port to listen on the front side.
      */
     inboundPort?: pulumi.Input<number>;
@@ -223,6 +235,11 @@ export interface LbFrontendArgs {
      * Activates HTTP/3 protocol.
      */
     enableHttp3?: pulumi.Input<boolean>;
+    /**
+     * A boolean to specify whether to use lb_acl.
+     * If `externalAcls` is set to `true`, `acl` can not be set directly in the lb frontend.
+     */
+    externalAcls?: pulumi.Input<boolean>;
     /**
      * TCP port to listen on the front side.
      */

@@ -27,8 +27,9 @@ func LookupVpcPrivateNetwork(ctx *pulumi.Context, args *LookupVpcPrivateNetworkA
 
 // A collection of arguments for invoking getVpcPrivateNetwork.
 type LookupVpcPrivateNetworkArgs struct {
-	// Exact name of the private network.
-	Name             *string `pulumi:"name"`
+	// Name of the private network. One of `name` and `privateNetworkId` should be specified.
+	Name *string `pulumi:"name"`
+	// ID of the private network. One of `name` and `privateNetworkId` should be specified.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 }
 
@@ -36,14 +37,16 @@ type LookupVpcPrivateNetworkArgs struct {
 type LookupVpcPrivateNetworkResult struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// The provider-assigned unique ID for this managed resource.
-	Id               string   `pulumi:"id"`
-	Name             *string  `pulumi:"name"`
-	OrganizationId   string   `pulumi:"organizationId"`
-	PrivateNetworkId *string  `pulumi:"privateNetworkId"`
-	ProjectId        string   `pulumi:"projectId"`
-	Tags             []string `pulumi:"tags"`
-	UpdatedAt        string   `pulumi:"updatedAt"`
-	Zone             string   `pulumi:"zone"`
+	Id               string  `pulumi:"id"`
+	Name             *string `pulumi:"name"`
+	OrganizationId   string  `pulumi:"organizationId"`
+	PrivateNetworkId *string `pulumi:"privateNetworkId"`
+	ProjectId        string  `pulumi:"projectId"`
+	// The subnets CIDR associated with private network.
+	Subnets   []string `pulumi:"subnets"`
+	Tags      []string `pulumi:"tags"`
+	UpdatedAt string   `pulumi:"updatedAt"`
+	Zone      string   `pulumi:"zone"`
 }
 
 func LookupVpcPrivateNetworkOutput(ctx *pulumi.Context, args LookupVpcPrivateNetworkOutputArgs, opts ...pulumi.InvokeOption) LookupVpcPrivateNetworkResultOutput {
@@ -61,8 +64,9 @@ func LookupVpcPrivateNetworkOutput(ctx *pulumi.Context, args LookupVpcPrivateNet
 
 // A collection of arguments for invoking getVpcPrivateNetwork.
 type LookupVpcPrivateNetworkOutputArgs struct {
-	// Exact name of the private network.
-	Name             pulumi.StringPtrInput `pulumi:"name"`
+	// Name of the private network. One of `name` and `privateNetworkId` should be specified.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// ID of the private network. One of `name` and `privateNetworkId` should be specified.
 	PrivateNetworkId pulumi.StringPtrInput `pulumi:"privateNetworkId"`
 }
 
@@ -108,6 +112,11 @@ func (o LookupVpcPrivateNetworkResultOutput) PrivateNetworkId() pulumi.StringPtr
 
 func (o LookupVpcPrivateNetworkResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The subnets CIDR associated with private network.
+func (o LookupVpcPrivateNetworkResultOutput) Subnets() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) []string { return v.Subnets }).(pulumi.StringArrayOutput)
 }
 
 func (o LookupVpcPrivateNetworkResultOutput) Tags() pulumi.StringArrayOutput {

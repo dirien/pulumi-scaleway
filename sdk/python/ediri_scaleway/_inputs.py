@@ -20,6 +20,7 @@ __all__ = [
     'DomainRecordHttpServiceArgs',
     'DomainRecordViewArgs',
     'DomainRecordWeightedArgs',
+    'FunctionTriggerSqsArgs',
     'IamPolicyRuleArgs',
     'InstanceImageAdditionalVolumeArgs',
     'InstanceSecurityGroupInboundRuleArgs',
@@ -42,6 +43,9 @@ __all__ = [
     'K8sClusterOpenIdConnectConfigArgs',
     'K8sPoolNodeArgs',
     'K8sPoolUpgradePolicyArgs',
+    'LbAclActionArgs',
+    'LbAclActionRedirectArgs',
+    'LbAclMatchArgs',
     'LbBackendHealthCheckHttpArgs',
     'LbBackendHealthCheckHttpsArgs',
     'LbBackendHealthCheckTcpArgs',
@@ -713,6 +717,75 @@ class DomainRecordWeightedArgs:
     @weight.setter
     def weight(self, value: pulumi.Input[int]):
         pulumi.set(self, "weight", value)
+
+
+@pulumi.input_type
+class FunctionTriggerSqsArgs:
+    def __init__(__self__, *,
+                 namespace_id: pulumi.Input[str],
+                 queue: pulumi.Input[str],
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] namespace_id: ID of the mnq namespace
+        :param pulumi.Input[str] queue: Name of the queue
+        :param pulumi.Input[str] project_id: ID of the project that contain the mnq namespace, defaults to provider's project
+        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+        """
+        pulumi.set(__self__, "namespace_id", namespace_id)
+        pulumi.set(__self__, "queue", queue)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="namespaceId")
+    def namespace_id(self) -> pulumi.Input[str]:
+        """
+        ID of the mnq namespace
+        """
+        return pulumi.get(self, "namespace_id")
+
+    @namespace_id.setter
+    def namespace_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "namespace_id", value)
+
+    @property
+    @pulumi.getter
+    def queue(self) -> pulumi.Input[str]:
+        """
+        Name of the queue
+        """
+        return pulumi.get(self, "queue")
+
+    @queue.setter
+    def queue(self, value: pulumi.Input[str]):
+        pulumi.set(self, "queue", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the project that contain the mnq namespace, defaults to provider's project
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        `region`). The region in which the namespace should be created.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
 
 
 @pulumi.input_type
@@ -2453,6 +2526,188 @@ class K8sPoolUpgradePolicyArgs:
 
 
 @pulumi.input_type
+class LbAclActionArgs:
+    def __init__(__self__, *,
+                 type: pulumi.Input[str],
+                 redirects: Optional[pulumi.Input[Sequence[pulumi.Input['LbAclActionRedirectArgs']]]] = None):
+        """
+        :param pulumi.Input[str] type: The redirect type. Possible values are: `location` or `scheme`.
+        :param pulumi.Input[Sequence[pulumi.Input['LbAclActionRedirectArgs']]] redirects: Redirect parameters when using an ACL with `redirect` action.
+        """
+        pulumi.set(__self__, "type", type)
+        if redirects is not None:
+            pulumi.set(__self__, "redirects", redirects)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        The redirect type. Possible values are: `location` or `scheme`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def redirects(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LbAclActionRedirectArgs']]]]:
+        """
+        Redirect parameters when using an ACL with `redirect` action.
+        """
+        return pulumi.get(self, "redirects")
+
+    @redirects.setter
+    def redirects(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LbAclActionRedirectArgs']]]]):
+        pulumi.set(self, "redirects", value)
+
+
+@pulumi.input_type
+class LbAclActionRedirectArgs:
+    def __init__(__self__, *,
+                 code: Optional[pulumi.Input[int]] = None,
+                 target: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] code: The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+        :param pulumi.Input[str] target: An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+        :param pulumi.Input[str] type: The redirect type. Possible values are: `location` or `scheme`.
+        """
+        if code is not None:
+            pulumi.set(__self__, "code", code)
+        if target is not None:
+            pulumi.set(__self__, "target", target)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def code(self) -> Optional[pulumi.Input[int]]:
+        """
+        The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+        """
+        return pulumi.get(self, "code")
+
+    @code.setter
+    def code(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "code", value)
+
+    @property
+    @pulumi.getter
+    def target(self) -> Optional[pulumi.Input[str]]:
+        """
+        An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+        """
+        return pulumi.get(self, "target")
+
+    @target.setter
+    def target(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "target", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The redirect type. Possible values are: `location` or `scheme`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class LbAclMatchArgs:
+    def __init__(__self__, *,
+                 http_filter: Optional[pulumi.Input[str]] = None,
+                 http_filter_option: Optional[pulumi.Input[str]] = None,
+                 http_filter_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 invert: Optional[pulumi.Input[bool]] = None,
+                 ip_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] http_filter: The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
+               It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
+               Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] http_filter_values: A list of possible values to match for the given HTTP filter.
+               Keep in mind that in the case of `http_header_match` the HTTP header field name is case-insensitive.
+        :param pulumi.Input[bool] invert: If set to `true`, the condition will be of type "unless".
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_subnets: A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+        """
+        if http_filter is not None:
+            pulumi.set(__self__, "http_filter", http_filter)
+        if http_filter_option is not None:
+            pulumi.set(__self__, "http_filter_option", http_filter_option)
+        if http_filter_values is not None:
+            pulumi.set(__self__, "http_filter_values", http_filter_values)
+        if invert is not None:
+            pulumi.set(__self__, "invert", invert)
+        if ip_subnets is not None:
+            pulumi.set(__self__, "ip_subnets", ip_subnets)
+
+    @property
+    @pulumi.getter(name="httpFilter")
+    def http_filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
+        It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
+        Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
+        """
+        return pulumi.get(self, "http_filter")
+
+    @http_filter.setter
+    def http_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_filter", value)
+
+    @property
+    @pulumi.getter(name="httpFilterOption")
+    def http_filter_option(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "http_filter_option")
+
+    @http_filter_option.setter
+    def http_filter_option(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_filter_option", value)
+
+    @property
+    @pulumi.getter(name="httpFilterValues")
+    def http_filter_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of possible values to match for the given HTTP filter.
+        Keep in mind that in the case of `http_header_match` the HTTP header field name is case-insensitive.
+        """
+        return pulumi.get(self, "http_filter_values")
+
+    @http_filter_values.setter
+    def http_filter_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "http_filter_values", value)
+
+    @property
+    @pulumi.getter
+    def invert(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to `true`, the condition will be of type "unless".
+        """
+        return pulumi.get(self, "invert")
+
+    @invert.setter
+    def invert(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "invert", value)
+
+    @property
+    @pulumi.getter(name="ipSubnets")
+    def ip_subnets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+        """
+        return pulumi.get(self, "ip_subnets")
+
+    @ip_subnets.setter
+    def ip_subnets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ip_subnets", value)
+
+
+@pulumi.input_type
 class LbBackendHealthCheckHttpArgs:
     def __init__(__self__, *,
                  uri: pulumi.Input[str],
@@ -2687,7 +2942,10 @@ class LbFrontendAclArgs:
     def __init__(__self__, *,
                  action: pulumi.Input['LbFrontendAclActionArgs'],
                  match: pulumi.Input['LbFrontendAclMatchArgs'],
-                 name: Optional[pulumi.Input[str]] = None):
+                 created_at: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 updated_at: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input['LbFrontendAclActionArgs'] action: Action to undertake when an ACL filter matches.
         :param pulumi.Input['LbFrontendAclMatchArgs'] match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
@@ -2695,8 +2953,14 @@ class LbFrontendAclArgs:
         """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "match", match)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter
@@ -2723,6 +2987,24 @@ class LbFrontendAclArgs:
         pulumi.set(self, "match", value)
 
     @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "created_at", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2733,6 +3015,15 @@ class LbFrontendAclArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "updated_at")
+
+    @updated_at.setter
+    def updated_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "updated_at", value)
 
 
 @pulumi.input_type

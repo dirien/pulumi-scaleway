@@ -72,6 +72,12 @@ namespace ediri.Scaleway
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
+        /// The subnets CIDR associated with private network.
+        /// </summary>
+        [Output("subnets")]
+        public Output<ImmutableArray<string>> Subnets { get; private set; } = null!;
+
+        /// <summary>
         /// The tags associated with the private network.
         /// </summary>
         [Output("tags")]
@@ -148,6 +154,18 @@ namespace ediri.Scaleway
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        [Input("subnets")]
+        private InputList<string>? _subnets;
+
+        /// <summary>
+        /// The subnets CIDR associated with private network.
+        /// </summary>
+        public InputList<string> Subnets
+        {
+            get => _subnets ?? (_subnets = new InputList<string>());
+            set => _subnets = value;
+        }
+
         [Input("tags")]
         private InputList<string>? _tags;
 
@@ -197,6 +215,18 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        [Input("subnets")]
+        private InputList<string>? _subnets;
+
+        /// <summary>
+        /// The subnets CIDR associated with private network.
+        /// </summary>
+        public InputList<string> Subnets
+        {
+            get => _subnets ?? (_subnets = new InputList<string>());
+            set => _subnets = value;
+        }
 
         [Input("tags")]
         private InputList<string>? _tags;
