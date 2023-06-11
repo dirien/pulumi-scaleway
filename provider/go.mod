@@ -9,7 +9,7 @@ replace (
 
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.49.1
-	github.com/pulumi/pulumi/sdk/v3 v3.69.0
+	github.com/pulumi/pulumi/sdk/v3 v3.70.0
 	github.com/scaleway/terraform-provider-scaleway/v2 v2.21.0
 )
 
