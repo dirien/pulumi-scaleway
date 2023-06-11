@@ -1200,7 +1200,7 @@ class K8sCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="privateNetworkId")
-    def private_network_id(self) -> pulumi.Output[str]:
+    def private_network_id(self) -> pulumi.Output[Optional[str]]:
         """
         The ID of the private network of the cluster.
 

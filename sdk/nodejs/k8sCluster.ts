@@ -188,7 +188,7 @@ export class K8sCluster extends pulumi.CustomResource {
      * > **Important:** This field can only be set at cluster creation and cannot be updated later.
      * Changes to this field will cause the cluster to be destroyed then recreated.
      */
-    public readonly privateNetworkId!: pulumi.Output<string>;
+    public readonly privateNetworkId!: pulumi.Output<string | undefined>;
     /**
      * `projectId`) The ID of the project the cluster is associated with.
      */

@@ -192,7 +192,7 @@ type K8sCluster struct {
 	//
 	// > **Important:** This field can only be set at cluster creation and cannot be updated later.
 	// Changes to this field will cause the cluster to be destroyed then recreated.
-	PrivateNetworkId pulumi.StringOutput `pulumi:"privateNetworkId"`
+	PrivateNetworkId pulumi.StringPtrOutput `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region in which the cluster should be created.
@@ -620,8 +620,8 @@ func (o K8sClusterOutput) OrganizationId() pulumi.StringOutput {
 //
 // > **Important:** This field can only be set at cluster creation and cannot be updated later.
 // Changes to this field will cause the cluster to be destroyed then recreated.
-func (o K8sClusterOutput) PrivateNetworkId() pulumi.StringOutput {
-	return o.ApplyT(func(v *K8sCluster) pulumi.StringOutput { return v.PrivateNetworkId }).(pulumi.StringOutput)
+func (o K8sClusterOutput) PrivateNetworkId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *K8sCluster) pulumi.StringPtrOutput { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
 }
 
 // `projectId`) The ID of the project the cluster is associated with.

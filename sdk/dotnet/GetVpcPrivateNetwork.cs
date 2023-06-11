@@ -14,24 +14,12 @@ namespace ediri.Scaleway
     {
         /// <summary>
         /// Gets information about a private network.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// 
-        /// N/A, the usage will be meaningful in the next releases of VPC.
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetVpcPrivateNetworkResult> InvokeAsync(GetVpcPrivateNetworkArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcPrivateNetworkResult>("scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork", args ?? new GetVpcPrivateNetworkArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a private network.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// 
-        /// N/A, the usage will be meaningful in the next releases of VPC.
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetVpcPrivateNetworkResult> Invoke(GetVpcPrivateNetworkInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcPrivateNetworkResult>("scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork", args ?? new GetVpcPrivateNetworkInvokeArgs(), options.WithDefaults());
@@ -87,16 +75,23 @@ namespace ediri.Scaleway
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// (Optional) The IPv4 subnet associated with the private network.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetVpcPrivateNetworkIpv4SubnetResult> Ipv4Subnets;
+        /// <summary>
+        /// (Optional) The IPv6 subnets associated with the private network.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetVpcPrivateNetworkIpv6SubnetResult> Ipv6Subnets;
+        public readonly bool IsRegional;
         public readonly string? Name;
         public readonly string OrganizationId;
         public readonly string? PrivateNetworkId;
         public readonly string ProjectId;
-        /// <summary>
-        /// The subnets CIDR associated with private network.
-        /// </summary>
-        public readonly ImmutableArray<string> Subnets;
+        public readonly string Region;
         public readonly ImmutableArray<string> Tags;
         public readonly string UpdatedAt;
+        public readonly string VpcId;
         public readonly string Zone;
 
         [OutputConstructor]
@@ -104,6 +99,12 @@ namespace ediri.Scaleway
             string createdAt,
 
             string id,
+
+            ImmutableArray<Outputs.GetVpcPrivateNetworkIpv4SubnetResult> ipv4Subnets,
+
+            ImmutableArray<Outputs.GetVpcPrivateNetworkIpv6SubnetResult> ipv6Subnets,
+
+            bool isRegional,
 
             string? name,
 
@@ -113,23 +114,29 @@ namespace ediri.Scaleway
 
             string projectId,
 
-            ImmutableArray<string> subnets,
+            string region,
 
             ImmutableArray<string> tags,
 
             string updatedAt,
 
+            string vpcId,
+
             string zone)
         {
             CreatedAt = createdAt;
             Id = id;
+            Ipv4Subnets = ipv4Subnets;
+            Ipv6Subnets = ipv6Subnets;
+            IsRegional = isRegional;
             Name = name;
             OrganizationId = organizationId;
             PrivateNetworkId = privateNetworkId;
             ProjectId = projectId;
-            Subnets = subnets;
+            Region = region;
             Tags = tags;
             UpdatedAt = updatedAt;
+            VpcId = vpcId;
             Zone = zone;
         }
     }

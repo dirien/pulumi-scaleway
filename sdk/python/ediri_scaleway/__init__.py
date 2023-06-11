@@ -85,6 +85,7 @@ from .get_registry_namespace import *
 from .get_secret import *
 from .get_secret_version import *
 from .get_tem_domain import *
+from .get_vpc import *
 from .get_vpc_gateway_network import *
 from .get_vpc_private_network import *
 from .get_vpc_public_gateway import *
@@ -144,6 +145,7 @@ from .registry_namespace import *
 from .secret import *
 from .secret_version import *
 from .tem_domain import *
+from .vpc import *
 from .vpc_gateway_network import *
 from .vpc_private_network import *
 from .vpc_public_gateway import *
@@ -731,6 +733,14 @@ _utilities.register(
   "fqn": "ediri_scaleway",
   "classes": {
    "scaleway:index/temDomain:TemDomain": "TemDomain"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/vpc",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/vpc:Vpc": "Vpc"
   }
  },
  {

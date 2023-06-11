@@ -109,7 +109,7 @@ namespace ediri.Scaleway
     public partial class Container : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+        /// The amount of vCPU computing resources to allocate to each container. Defaults to 140.
         /// </summary>
         [Output("cpuLimit")]
         public Output<int> CpuLimit { get; private set; } = null!;
@@ -171,7 +171,7 @@ namespace ediri.Scaleway
         public Output<int> MaxScale { get; private set; } = null!;
 
         /// <summary>
-        /// The memory computing resources in MB to allocate to each container. Defaults to 128.
+        /// The memory computing resources in MB to allocate to each container. Defaults to 256.
         /// </summary>
         [Output("memoryLimit")]
         public Output<int> MemoryLimit { get; private set; } = null!;
@@ -304,7 +304,7 @@ namespace ediri.Scaleway
     public sealed class ContainerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+        /// The amount of vCPU computing resources to allocate to each container. Defaults to 140.
         /// </summary>
         [Input("cpuLimit")]
         public Input<int>? CpuLimit { get; set; }
@@ -354,7 +354,7 @@ namespace ediri.Scaleway
         public Input<int>? MaxScale { get; set; }
 
         /// <summary>
-        /// The memory computing resources in MB to allocate to each container. Defaults to 128.
+        /// The memory computing resources in MB to allocate to each container. Defaults to 256.
         /// </summary>
         [Input("memoryLimit")]
         public Input<int>? MemoryLimit { get; set; }
@@ -448,7 +448,7 @@ namespace ediri.Scaleway
     public sealed class ContainerState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+        /// The amount of vCPU computing resources to allocate to each container. Defaults to 140.
         /// </summary>
         [Input("cpuLimit")]
         public Input<int>? CpuLimit { get; set; }
@@ -516,7 +516,7 @@ namespace ediri.Scaleway
         public Input<int>? MaxScale { get; set; }
 
         /// <summary>
-        /// The memory computing resources in MB to allocate to each container. Defaults to 128.
+        /// The memory computing resources in MB to allocate to each container. Defaults to 256.
         /// </summary>
         [Input("memoryLimit")]
         public Input<int>? MemoryLimit { get; set; }

@@ -405,6 +405,11 @@ export const getTemDomain: typeof import("./getTemDomain").getTemDomain = null a
 export const getTemDomainOutput: typeof import("./getTemDomain").getTemDomainOutput = null as any;
 utilities.lazyLoad(exports, ["getTemDomain","getTemDomainOutput"], () => require("./getTemDomain"));
 
+export { GetVpcArgs, GetVpcResult, GetVpcOutputArgs } from "./getVpc";
+export const getVpc: typeof import("./getVpc").getVpc = null as any;
+export const getVpcOutput: typeof import("./getVpc").getVpcOutput = null as any;
+utilities.lazyLoad(exports, ["getVpc","getVpcOutput"], () => require("./getVpc"));
+
 export { GetVpcGatewayNetworkArgs, GetVpcGatewayNetworkResult, GetVpcGatewayNetworkOutputArgs } from "./getVpcGatewayNetwork";
 export const getVpcGatewayNetwork: typeof import("./getVpcGatewayNetwork").getVpcGatewayNetwork = null as any;
 export const getVpcGatewayNetworkOutput: typeof import("./getVpcGatewayNetwork").getVpcGatewayNetworkOutput = null as any;
@@ -700,6 +705,11 @@ export type TemDomain = import("./temDomain").TemDomain;
 export const TemDomain: typeof import("./temDomain").TemDomain = null as any;
 utilities.lazyLoad(exports, ["TemDomain"], () => require("./temDomain"));
 
+export { VpcArgs, VpcState } from "./vpc";
+export type Vpc = import("./vpc").Vpc;
+export const Vpc: typeof import("./vpc").Vpc = null as any;
+utilities.lazyLoad(exports, ["Vpc"], () => require("./vpc"));
+
 export { VpcGatewayNetworkArgs, VpcGatewayNetworkState } from "./vpcGatewayNetwork";
 export type VpcGatewayNetwork = import("./vpcGatewayNetwork").VpcGatewayNetwork;
 export const VpcGatewayNetwork: typeof import("./vpcGatewayNetwork").VpcGatewayNetwork = null as any;
@@ -896,6 +906,8 @@ const _module = {
                 return new SecretVersion(name, <any>undefined, { urn })
             case "scaleway:index/temDomain:TemDomain":
                 return new TemDomain(name, <any>undefined, { urn })
+            case "scaleway:index/vpc:Vpc":
+                return new Vpc(name, <any>undefined, { urn })
             case "scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork":
                 return new VpcGatewayNetwork(name, <any>undefined, { urn })
             case "scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork":
@@ -988,6 +1000,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/registryNamespace", _mo
 pulumi.runtime.registerResourceModule("scaleway", "index/secret", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/secretVersion", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/temDomain", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/vpc", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcGatewayNetwork", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPrivateNetwork", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGateway", _module)

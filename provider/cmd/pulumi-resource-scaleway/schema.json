@@ -2119,6 +2119,64 @@
                 }
             }
         },
+        "scaleway:index/VpcPrivateNetworkIpv4Subnet:VpcPrivateNetworkIpv4Subnet": {
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the private network.\n"
+                },
+                "subnet": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "createdAt",
+                        "id",
+                        "subnet",
+                        "updatedAt"
+                    ]
+                }
+            }
+        },
+        "scaleway:index/VpcPrivateNetworkIpv6Subnet:VpcPrivateNetworkIpv6Subnet": {
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the private network.\n"
+                },
+                "subnet": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "createdAt",
+                        "id",
+                        "subnet",
+                        "updatedAt"
+                    ]
+                }
+            }
+        },
         "scaleway:index/getBaremetalOfferCpus:getBaremetalOfferCpus": {
             "properties": {
                 "coreCount": {
@@ -4356,6 +4414,64 @@
                 }
             }
         },
+        "scaleway:index/getVpcPrivateNetworkIpv4Subnet:getVpcPrivateNetworkIpv4Subnet": {
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the private network.\n"
+                },
+                "subnet": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdAt",
+                "id",
+                "subnet",
+                "updatedAt"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "scaleway:index/getVpcPrivateNetworkIpv6Subnet:getVpcPrivateNetworkIpv6Subnet": {
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the private network.\n"
+                },
+                "subnet": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdAt",
+                "id",
+                "subnet",
+                "updatedAt"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "scaleway:index/getWebHostOfferProduct:getWebHostOfferProduct": {
             "properties": {
                 "databasesQuota": {
@@ -5386,7 +5502,7 @@
             "properties": {
                 "cpuLimit": {
                     "type": "integer",
-                    "description": "The amount of vCPU computing resources to allocate to each container. Defaults to 70.\n"
+                    "description": "The amount of vCPU computing resources to allocate to each container. Defaults to 140.\n"
                 },
                 "cronStatus": {
                     "type": "string",
@@ -5429,7 +5545,7 @@
                 },
                 "memoryLimit": {
                     "type": "integer",
-                    "description": "The memory computing resources in MB to allocate to each container. Defaults to 128.\n"
+                    "description": "The memory computing resources in MB to allocate to each container. Defaults to 256.\n"
                 },
                 "minScale": {
                     "type": "integer",
@@ -5505,7 +5621,7 @@
             "inputProperties": {
                 "cpuLimit": {
                     "type": "integer",
-                    "description": "The amount of vCPU computing resources to allocate to each container. Defaults to 70.\n"
+                    "description": "The amount of vCPU computing resources to allocate to each container. Defaults to 140.\n"
                 },
                 "deploy": {
                     "type": "boolean",
@@ -5536,7 +5652,7 @@
                 },
                 "memoryLimit": {
                     "type": "integer",
-                    "description": "The memory computing resources in MB to allocate to each container. Defaults to 128.\n"
+                    "description": "The memory computing resources in MB to allocate to each container. Defaults to 256.\n"
                 },
                 "minScale": {
                     "type": "integer",
@@ -5596,7 +5712,7 @@
                 "properties": {
                     "cpuLimit": {
                         "type": "integer",
-                        "description": "The amount of vCPU computing resources to allocate to each container. Defaults to 70.\n"
+                        "description": "The amount of vCPU computing resources to allocate to each container. Defaults to 140.\n"
                     },
                     "cronStatus": {
                         "type": "string",
@@ -5639,7 +5755,7 @@
                     },
                     "memoryLimit": {
                         "type": "integer",
-                        "description": "The memory computing resources in MB to allocate to each container. Defaults to 128.\n"
+                        "description": "The memory computing resources in MB to allocate to each container. Defaults to 256.\n"
                     },
                     "minScale": {
                         "type": "integer",
@@ -10291,7 +10407,6 @@
                 "name",
                 "openIdConnectConfig",
                 "organizationId",
-                "privateNetworkId",
                 "projectId",
                 "region",
                 "status",
@@ -10354,8 +10469,7 @@
                 },
                 "privateNetworkId": {
                     "type": "string",
-                    "description": "The ID of the private network of the cluster.\n\n\u003e **Important:** This field can only be set at cluster creation and cannot be updated later.\nChanges to this field will cause the cluster to be destroyed then recreated.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The ID of the private network of the cluster.\n\n\u003e **Important:** This field can only be set at cluster creation and cannot be updated later.\nChanges to this field will cause the cluster to be destroyed then recreated.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -10464,8 +10578,7 @@
                     },
                     "privateNetworkId": {
                         "type": "string",
-                        "description": "The ID of the private network of the cluster.\n\n\u003e **Important:** This field can only be set at cluster creation and cannot be updated later.\nChanges to this field will cause the cluster to be destroyed then recreated.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The ID of the private network of the cluster.\n\n\u003e **Important:** This field can only be set at cluster creation and cannot be updated later.\nChanges to this field will cause the cluster to be destroyed then recreated.\n"
                     },
                     "projectId": {
                         "type": "string",
@@ -11888,7 +12001,7 @@
             }
         },
         "scaleway:index/lbRoute:LbRoute": {
-            "description": "Creates and manages Scaleway Load-Balancer Routes. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).\nIt is useful to manage the Service Name Indicator (SNI) for a route between a frontend and a backend.\n\n## Examples\n\n### With SNI\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst ip01 = new scaleway.LbIp(\"ip01\", {});\nconst lb01 = new scaleway.Lb(\"lb01\", {\n    ipId: ip01.id,\n    type: \"lb-s\",\n});\nconst bkd01 = new scaleway.LbBackend(\"bkd01\", {\n    lbId: lb01.id,\n    forwardProtocol: \"tcp\",\n    forwardPort: 80,\n    proxyProtocol: \"none\",\n});\nconst frt01 = new scaleway.LbFrontend(\"frt01\", {\n    lbId: lb01.id,\n    backendId: bkd01.id,\n    inboundPort: 80,\n});\nconst rt01 = new scaleway.LbRoute(\"rt01\", {\n    frontendId: frt01.id,\n    backendId: bkd01.id,\n    matchSni: \"sni.scaleway.com\",\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nip01 = scaleway.LbIp(\"ip01\")\nlb01 = scaleway.Lb(\"lb01\",\n    ip_id=ip01.id,\n    type=\"lb-s\")\nbkd01 = scaleway.LbBackend(\"bkd01\",\n    lb_id=lb01.id,\n    forward_protocol=\"tcp\",\n    forward_port=80,\n    proxy_protocol=\"none\")\nfrt01 = scaleway.LbFrontend(\"frt01\",\n    lb_id=lb01.id,\n    backend_id=bkd01.id,\n    inbound_port=80)\nrt01 = scaleway.LbRoute(\"rt01\",\n    frontend_id=frt01.id,\n    backend_id=bkd01.id,\n    match_sni=\"sni.scaleway.com\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ip01 = new Scaleway.LbIp(\"ip01\");\n\n    var lb01 = new Scaleway.Lb(\"lb01\", new()\n    {\n        IpId = ip01.Id,\n        Type = \"lb-s\",\n    });\n\n    var bkd01 = new Scaleway.LbBackend(\"bkd01\", new()\n    {\n        LbId = lb01.Id,\n        ForwardProtocol = \"tcp\",\n        ForwardPort = 80,\n        ProxyProtocol = \"none\",\n    });\n\n    var frt01 = new Scaleway.LbFrontend(\"frt01\", new()\n    {\n        LbId = lb01.Id,\n        BackendId = bkd01.Id,\n        InboundPort = 80,\n    });\n\n    var rt01 = new Scaleway.LbRoute(\"rt01\", new()\n    {\n        FrontendId = frt01.Id,\n        BackendId = bkd01.Id,\n        MatchSni = \"sni.scaleway.com\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tip01, err := scaleway.NewLbIp(ctx, \"ip01\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tlb01, err := scaleway.NewLb(ctx, \"lb01\", \u0026scaleway.LbArgs{\n\t\t\tIpId: ip01.ID(),\n\t\t\tType: pulumi.String(\"lb-s\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tbkd01, err := scaleway.NewLbBackend(ctx, \"bkd01\", \u0026scaleway.LbBackendArgs{\n\t\t\tLbId:            lb01.ID(),\n\t\t\tForwardProtocol: pulumi.String(\"tcp\"),\n\t\t\tForwardPort:     pulumi.Int(80),\n\t\t\tProxyProtocol:   pulumi.String(\"none\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tfrt01, err := scaleway.NewLbFrontend(ctx, \"frt01\", \u0026scaleway.LbFrontendArgs{\n\t\t\tLbId:        lb01.ID(),\n\t\t\tBackendId:   bkd01.ID(),\n\t\t\tInboundPort: pulumi.Int(80),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewLbRoute(ctx, \"rt01\", \u0026scaleway.LbRouteArgs{\n\t\t\tFrontendId: frt01.ID(),\n\t\t\tBackendId:  bkd01.ID(),\n\t\t\tMatchSni:   pulumi.String(\"sni.scaleway.com\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.LbIp;\nimport com.pulumi.scaleway.Lb;\nimport com.pulumi.scaleway.LbArgs;\nimport com.pulumi.scaleway.LbBackend;\nimport com.pulumi.scaleway.LbBackendArgs;\nimport com.pulumi.scaleway.LbFrontend;\nimport com.pulumi.scaleway.LbFrontendArgs;\nimport com.pulumi.scaleway.LbRoute;\nimport com.pulumi.scaleway.LbRouteArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var ip01 = new LbIp(\"ip01\");\n\n        var lb01 = new Lb(\"lb01\", LbArgs.builder()        \n            .ipId(ip01.id())\n            .type(\"lb-s\")\n            .build());\n\n        var bkd01 = new LbBackend(\"bkd01\", LbBackendArgs.builder()        \n            .lbId(lb01.id())\n            .forwardProtocol(\"tcp\")\n            .forwardPort(80)\n            .proxyProtocol(\"none\")\n            .build());\n\n        var frt01 = new LbFrontend(\"frt01\", LbFrontendArgs.builder()        \n            .lbId(lb01.id())\n            .backendId(bkd01.id())\n            .inboundPort(80)\n            .build());\n\n        var rt01 = new LbRoute(\"rt01\", LbRouteArgs.builder()        \n            .frontendId(frt01.id())\n            .backendId(bkd01.id())\n            .matchSni(\"sni.scaleway.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  ip01:\n    type: scaleway:LbIp\n  lb01:\n    type: scaleway:Lb\n    properties:\n      ipId: ${ip01.id}\n      type: lb-s\n  bkd01:\n    type: scaleway:LbBackend\n    properties:\n      lbId: ${lb01.id}\n      forwardProtocol: tcp\n      forwardPort: 80\n      proxyProtocol: none\n  frt01:\n    type: scaleway:LbFrontend\n    properties:\n      lbId: ${lb01.id}\n      backendId: ${bkd01.id}\n      inboundPort: 80\n  rt01:\n    type: scaleway:LbRoute\n    properties:\n      frontendId: ${frt01.id}\n      backendId: ${bkd01.id}\n      matchSni: sni.scaleway.com\n```\n\n### With host-header\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst ip01 = new scaleway.LbIp(\"ip01\", {});\nconst lb01 = new scaleway.Lb(\"lb01\", {\n    ipId: ip01.id,\n    type: \"lb-s\",\n});\nconst bkd01 = new scaleway.LbBackend(\"bkd01\", {\n    lbId: lb01.id,\n    forwardProtocol: \"tcp\",\n    forwardPort: 80,\n    proxyProtocol: \"none\",\n});\nconst frt01 = new scaleway.LbFrontend(\"frt01\", {\n    lbId: lb01.id,\n    backendId: bkd01.id,\n    inboundPort: 80,\n});\nconst rt01 = new scaleway.LbRoute(\"rt01\", {\n    frontendId: frt01.id,\n    backendId: bkd01.id,\n    matchHostHeader: \"host.scaleway.com\",\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nip01 = scaleway.LbIp(\"ip01\")\nlb01 = scaleway.Lb(\"lb01\",\n    ip_id=ip01.id,\n    type=\"lb-s\")\nbkd01 = scaleway.LbBackend(\"bkd01\",\n    lb_id=lb01.id,\n    forward_protocol=\"tcp\",\n    forward_port=80,\n    proxy_protocol=\"none\")\nfrt01 = scaleway.LbFrontend(\"frt01\",\n    lb_id=lb01.id,\n    backend_id=bkd01.id,\n    inbound_port=80)\nrt01 = scaleway.LbRoute(\"rt01\",\n    frontend_id=frt01.id,\n    backend_id=bkd01.id,\n    match_host_header=\"host.scaleway.com\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ip01 = new Scaleway.LbIp(\"ip01\");\n\n    var lb01 = new Scaleway.Lb(\"lb01\", new()\n    {\n        IpId = ip01.Id,\n        Type = \"lb-s\",\n    });\n\n    var bkd01 = new Scaleway.LbBackend(\"bkd01\", new()\n    {\n        LbId = lb01.Id,\n        ForwardProtocol = \"tcp\",\n        ForwardPort = 80,\n        ProxyProtocol = \"none\",\n    });\n\n    var frt01 = new Scaleway.LbFrontend(\"frt01\", new()\n    {\n        LbId = lb01.Id,\n        BackendId = bkd01.Id,\n        InboundPort = 80,\n    });\n\n    var rt01 = new Scaleway.LbRoute(\"rt01\", new()\n    {\n        FrontendId = frt01.Id,\n        BackendId = bkd01.Id,\n        MatchHostHeader = \"host.scaleway.com\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tip01, err := scaleway.NewLbIp(ctx, \"ip01\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tlb01, err := scaleway.NewLb(ctx, \"lb01\", \u0026scaleway.LbArgs{\n\t\t\tIpId: ip01.ID(),\n\t\t\tType: pulumi.String(\"lb-s\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tbkd01, err := scaleway.NewLbBackend(ctx, \"bkd01\", \u0026scaleway.LbBackendArgs{\n\t\t\tLbId:            lb01.ID(),\n\t\t\tForwardProtocol: pulumi.String(\"tcp\"),\n\t\t\tForwardPort:     pulumi.Int(80),\n\t\t\tProxyProtocol:   pulumi.String(\"none\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tfrt01, err := scaleway.NewLbFrontend(ctx, \"frt01\", \u0026scaleway.LbFrontendArgs{\n\t\t\tLbId:        lb01.ID(),\n\t\t\tBackendId:   bkd01.ID(),\n\t\t\tInboundPort: pulumi.Int(80),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewLbRoute(ctx, \"rt01\", \u0026scaleway.LbRouteArgs{\n\t\t\tFrontendId:      frt01.ID(),\n\t\t\tBackendId:       bkd01.ID(),\n\t\t\tMatchHostHeader: pulumi.String(\"host.scaleway.com\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.LbIp;\nimport com.pulumi.scaleway.Lb;\nimport com.pulumi.scaleway.LbArgs;\nimport com.pulumi.scaleway.LbBackend;\nimport com.pulumi.scaleway.LbBackendArgs;\nimport com.pulumi.scaleway.LbFrontend;\nimport com.pulumi.scaleway.LbFrontendArgs;\nimport com.pulumi.scaleway.LbRoute;\nimport com.pulumi.scaleway.LbRouteArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var ip01 = new LbIp(\"ip01\");\n\n        var lb01 = new Lb(\"lb01\", LbArgs.builder()        \n            .ipId(ip01.id())\n            .type(\"lb-s\")\n            .build());\n\n        var bkd01 = new LbBackend(\"bkd01\", LbBackendArgs.builder()        \n            .lbId(lb01.id())\n            .forwardProtocol(\"tcp\")\n            .forwardPort(80)\n            .proxyProtocol(\"none\")\n            .build());\n\n        var frt01 = new LbFrontend(\"frt01\", LbFrontendArgs.builder()        \n            .lbId(lb01.id())\n            .backendId(bkd01.id())\n            .inboundPort(80)\n            .build());\n\n        var rt01 = new LbRoute(\"rt01\", LbRouteArgs.builder()        \n            .frontendId(frt01.id())\n            .backendId(bkd01.id())\n            .matchHostHeader(\"host.scaleway.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  ip01:\n    type: scaleway:LbIp\n  lb01:\n    type: scaleway:Lb\n    properties:\n      ipId: ${ip01.id}\n      type: lb-s\n  bkd01:\n    type: scaleway:LbBackend\n    properties:\n      lbId: ${lb01.id}\n      forwardProtocol: tcp\n      forwardPort: 80\n      proxyProtocol: none\n  frt01:\n    type: scaleway:LbFrontend\n    properties:\n      lbId: ${lb01.id}\n      backendId: ${bkd01.id}\n      inboundPort: 80\n  rt01:\n    type: scaleway:LbRoute\n    properties:\n      frontendId: ${frt01.id}\n      backendId: ${bkd01.id}\n      matchHostHeader: host.scaleway.com\n```\n\n\n## Import\n\nLoad-Balancer frontend can be imported using the `{zone}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/lbRoute:LbRoute main fr-par-1/11111111-1111-1111-1111-111111111111\n```\n\n ",
+            "description": "Creates and manages Scaleway Load-Balancer Routes.\nFor more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).\n\n## Examples\n\n### With SNI for direction to TCP backends\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst ip01 = new scaleway.LbIp(\"ip01\", {});\nconst lb01 = new scaleway.Lb(\"lb01\", {\n    ipId: ip01.id,\n    type: \"lb-s\",\n});\nconst bkd01 = new scaleway.LbBackend(\"bkd01\", {\n    lbId: lb01.id,\n    forwardProtocol: \"tcp\",\n    forwardPort: 80,\n    proxyProtocol: \"none\",\n});\nconst frt01 = new scaleway.LbFrontend(\"frt01\", {\n    lbId: lb01.id,\n    backendId: bkd01.id,\n    inboundPort: 80,\n});\nconst rt01 = new scaleway.LbRoute(\"rt01\", {\n    frontendId: frt01.id,\n    backendId: bkd01.id,\n    matchSni: \"sni.scaleway.com\",\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nip01 = scaleway.LbIp(\"ip01\")\nlb01 = scaleway.Lb(\"lb01\",\n    ip_id=ip01.id,\n    type=\"lb-s\")\nbkd01 = scaleway.LbBackend(\"bkd01\",\n    lb_id=lb01.id,\n    forward_protocol=\"tcp\",\n    forward_port=80,\n    proxy_protocol=\"none\")\nfrt01 = scaleway.LbFrontend(\"frt01\",\n    lb_id=lb01.id,\n    backend_id=bkd01.id,\n    inbound_port=80)\nrt01 = scaleway.LbRoute(\"rt01\",\n    frontend_id=frt01.id,\n    backend_id=bkd01.id,\n    match_sni=\"sni.scaleway.com\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ip01 = new Scaleway.LbIp(\"ip01\");\n\n    var lb01 = new Scaleway.Lb(\"lb01\", new()\n    {\n        IpId = ip01.Id,\n        Type = \"lb-s\",\n    });\n\n    var bkd01 = new Scaleway.LbBackend(\"bkd01\", new()\n    {\n        LbId = lb01.Id,\n        ForwardProtocol = \"tcp\",\n        ForwardPort = 80,\n        ProxyProtocol = \"none\",\n    });\n\n    var frt01 = new Scaleway.LbFrontend(\"frt01\", new()\n    {\n        LbId = lb01.Id,\n        BackendId = bkd01.Id,\n        InboundPort = 80,\n    });\n\n    var rt01 = new Scaleway.LbRoute(\"rt01\", new()\n    {\n        FrontendId = frt01.Id,\n        BackendId = bkd01.Id,\n        MatchSni = \"sni.scaleway.com\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tip01, err := scaleway.NewLbIp(ctx, \"ip01\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tlb01, err := scaleway.NewLb(ctx, \"lb01\", \u0026scaleway.LbArgs{\n\t\t\tIpId: ip01.ID(),\n\t\t\tType: pulumi.String(\"lb-s\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tbkd01, err := scaleway.NewLbBackend(ctx, \"bkd01\", \u0026scaleway.LbBackendArgs{\n\t\t\tLbId:            lb01.ID(),\n\t\t\tForwardProtocol: pulumi.String(\"tcp\"),\n\t\t\tForwardPort:     pulumi.Int(80),\n\t\t\tProxyProtocol:   pulumi.String(\"none\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tfrt01, err := scaleway.NewLbFrontend(ctx, \"frt01\", \u0026scaleway.LbFrontendArgs{\n\t\t\tLbId:        lb01.ID(),\n\t\t\tBackendId:   bkd01.ID(),\n\t\t\tInboundPort: pulumi.Int(80),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewLbRoute(ctx, \"rt01\", \u0026scaleway.LbRouteArgs{\n\t\t\tFrontendId: frt01.ID(),\n\t\t\tBackendId:  bkd01.ID(),\n\t\t\tMatchSni:   pulumi.String(\"sni.scaleway.com\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.LbIp;\nimport com.pulumi.scaleway.Lb;\nimport com.pulumi.scaleway.LbArgs;\nimport com.pulumi.scaleway.LbBackend;\nimport com.pulumi.scaleway.LbBackendArgs;\nimport com.pulumi.scaleway.LbFrontend;\nimport com.pulumi.scaleway.LbFrontendArgs;\nimport com.pulumi.scaleway.LbRoute;\nimport com.pulumi.scaleway.LbRouteArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var ip01 = new LbIp(\"ip01\");\n\n        var lb01 = new Lb(\"lb01\", LbArgs.builder()        \n            .ipId(ip01.id())\n            .type(\"lb-s\")\n            .build());\n\n        var bkd01 = new LbBackend(\"bkd01\", LbBackendArgs.builder()        \n            .lbId(lb01.id())\n            .forwardProtocol(\"tcp\")\n            .forwardPort(80)\n            .proxyProtocol(\"none\")\n            .build());\n\n        var frt01 = new LbFrontend(\"frt01\", LbFrontendArgs.builder()        \n            .lbId(lb01.id())\n            .backendId(bkd01.id())\n            .inboundPort(80)\n            .build());\n\n        var rt01 = new LbRoute(\"rt01\", LbRouteArgs.builder()        \n            .frontendId(frt01.id())\n            .backendId(bkd01.id())\n            .matchSni(\"sni.scaleway.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  ip01:\n    type: scaleway:LbIp\n  lb01:\n    type: scaleway:Lb\n    properties:\n      ipId: ${ip01.id}\n      type: lb-s\n  bkd01:\n    type: scaleway:LbBackend\n    properties:\n      lbId: ${lb01.id}\n      forwardProtocol: tcp\n      forwardPort: 80\n      proxyProtocol: none\n  frt01:\n    type: scaleway:LbFrontend\n    properties:\n      lbId: ${lb01.id}\n      backendId: ${bkd01.id}\n      inboundPort: 80\n  rt01:\n    type: scaleway:LbRoute\n    properties:\n      frontendId: ${frt01.id}\n      backendId: ${bkd01.id}\n      matchSni: sni.scaleway.com\n```\n\n### With host-header for direction to HTTP backends\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst ip01 = new scaleway.LbIp(\"ip01\", {});\nconst lb01 = new scaleway.Lb(\"lb01\", {\n    ipId: ip01.id,\n    type: \"lb-s\",\n});\nconst bkd01 = new scaleway.LbBackend(\"bkd01\", {\n    lbId: lb01.id,\n    forwardProtocol: \"http\",\n    forwardPort: 80,\n    proxyProtocol: \"none\",\n});\nconst frt01 = new scaleway.LbFrontend(\"frt01\", {\n    lbId: lb01.id,\n    backendId: bkd01.id,\n    inboundPort: 80,\n});\nconst rt01 = new scaleway.LbRoute(\"rt01\", {\n    frontendId: frt01.id,\n    backendId: bkd01.id,\n    matchHostHeader: \"host.scaleway.com\",\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nip01 = scaleway.LbIp(\"ip01\")\nlb01 = scaleway.Lb(\"lb01\",\n    ip_id=ip01.id,\n    type=\"lb-s\")\nbkd01 = scaleway.LbBackend(\"bkd01\",\n    lb_id=lb01.id,\n    forward_protocol=\"http\",\n    forward_port=80,\n    proxy_protocol=\"none\")\nfrt01 = scaleway.LbFrontend(\"frt01\",\n    lb_id=lb01.id,\n    backend_id=bkd01.id,\n    inbound_port=80)\nrt01 = scaleway.LbRoute(\"rt01\",\n    frontend_id=frt01.id,\n    backend_id=bkd01.id,\n    match_host_header=\"host.scaleway.com\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ip01 = new Scaleway.LbIp(\"ip01\");\n\n    var lb01 = new Scaleway.Lb(\"lb01\", new()\n    {\n        IpId = ip01.Id,\n        Type = \"lb-s\",\n    });\n\n    var bkd01 = new Scaleway.LbBackend(\"bkd01\", new()\n    {\n        LbId = lb01.Id,\n        ForwardProtocol = \"http\",\n        ForwardPort = 80,\n        ProxyProtocol = \"none\",\n    });\n\n    var frt01 = new Scaleway.LbFrontend(\"frt01\", new()\n    {\n        LbId = lb01.Id,\n        BackendId = bkd01.Id,\n        InboundPort = 80,\n    });\n\n    var rt01 = new Scaleway.LbRoute(\"rt01\", new()\n    {\n        FrontendId = frt01.Id,\n        BackendId = bkd01.Id,\n        MatchHostHeader = \"host.scaleway.com\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tip01, err := scaleway.NewLbIp(ctx, \"ip01\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tlb01, err := scaleway.NewLb(ctx, \"lb01\", \u0026scaleway.LbArgs{\n\t\t\tIpId: ip01.ID(),\n\t\t\tType: pulumi.String(\"lb-s\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tbkd01, err := scaleway.NewLbBackend(ctx, \"bkd01\", \u0026scaleway.LbBackendArgs{\n\t\t\tLbId:            lb01.ID(),\n\t\t\tForwardProtocol: pulumi.String(\"http\"),\n\t\t\tForwardPort:     pulumi.Int(80),\n\t\t\tProxyProtocol:   pulumi.String(\"none\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tfrt01, err := scaleway.NewLbFrontend(ctx, \"frt01\", \u0026scaleway.LbFrontendArgs{\n\t\t\tLbId:        lb01.ID(),\n\t\t\tBackendId:   bkd01.ID(),\n\t\t\tInboundPort: pulumi.Int(80),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewLbRoute(ctx, \"rt01\", \u0026scaleway.LbRouteArgs{\n\t\t\tFrontendId:      frt01.ID(),\n\t\t\tBackendId:       bkd01.ID(),\n\t\t\tMatchHostHeader: pulumi.String(\"host.scaleway.com\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.LbIp;\nimport com.pulumi.scaleway.Lb;\nimport com.pulumi.scaleway.LbArgs;\nimport com.pulumi.scaleway.LbBackend;\nimport com.pulumi.scaleway.LbBackendArgs;\nimport com.pulumi.scaleway.LbFrontend;\nimport com.pulumi.scaleway.LbFrontendArgs;\nimport com.pulumi.scaleway.LbRoute;\nimport com.pulumi.scaleway.LbRouteArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var ip01 = new LbIp(\"ip01\");\n\n        var lb01 = new Lb(\"lb01\", LbArgs.builder()        \n            .ipId(ip01.id())\n            .type(\"lb-s\")\n            .build());\n\n        var bkd01 = new LbBackend(\"bkd01\", LbBackendArgs.builder()        \n            .lbId(lb01.id())\n            .forwardProtocol(\"http\")\n            .forwardPort(80)\n            .proxyProtocol(\"none\")\n            .build());\n\n        var frt01 = new LbFrontend(\"frt01\", LbFrontendArgs.builder()        \n            .lbId(lb01.id())\n            .backendId(bkd01.id())\n            .inboundPort(80)\n            .build());\n\n        var rt01 = new LbRoute(\"rt01\", LbRouteArgs.builder()        \n            .frontendId(frt01.id())\n            .backendId(bkd01.id())\n            .matchHostHeader(\"host.scaleway.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  ip01:\n    type: scaleway:LbIp\n  lb01:\n    type: scaleway:Lb\n    properties:\n      ipId: ${ip01.id}\n      type: lb-s\n  bkd01:\n    type: scaleway:LbBackend\n    properties:\n      lbId: ${lb01.id}\n      forwardProtocol: http\n      forwardPort: 80\n      proxyProtocol: none\n  frt01:\n    type: scaleway:LbFrontend\n    properties:\n      lbId: ${lb01.id}\n      backendId: ${bkd01.id}\n      inboundPort: 80\n  rt01:\n    type: scaleway:LbRoute\n    properties:\n      frontendId: ${frt01.id}\n      backendId: ${bkd01.id}\n      matchHostHeader: host.scaleway.com\n```\n\n\n## Import\n\nLoad-Balancer frontend can be imported using the `{zone}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/lbRoute:LbRoute main fr-par-1/11111111-1111-1111-1111-111111111111\n```\n\n ",
             "properties": {
                 "backendId": {
                     "type": "string",
@@ -11904,11 +12017,11 @@
                 },
                 "matchHostHeader": {
                     "type": "string",
-                    "description": "The Host request header specifies the host of the server to which the request is being sent.\nOnly one of `match_sni` and `match_host_header` should be specified.\n"
+                    "description": "The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.\nOnly one of `match_sni` and `match_host_header` should be specified.\n\n\u003e **Important:** This field should be set for routes on HTTP Load Balancers.\n"
                 },
                 "matchSni": {
                     "type": "string",
-                    "description": "The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.\nOnly one of `match_sni` and `match_host_header` should be specified.\n"
+                    "description": "The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.\nOnly one of `match_sni` and `match_host_header` should be specified.\n\n\u003e **Important:** This field should be set for routes on TCP Load Balancers.\n"
                 },
                 "updatedAt": {
                     "type": "string",
@@ -11933,11 +12046,11 @@
                 },
                 "matchHostHeader": {
                     "type": "string",
-                    "description": "The Host request header specifies the host of the server to which the request is being sent.\nOnly one of `match_sni` and `match_host_header` should be specified.\n"
+                    "description": "The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.\nOnly one of `match_sni` and `match_host_header` should be specified.\n\n\u003e **Important:** This field should be set for routes on HTTP Load Balancers.\n"
                 },
                 "matchSni": {
                     "type": "string",
-                    "description": "The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.\nOnly one of `match_sni` and `match_host_header` should be specified.\n"
+                    "description": "The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.\nOnly one of `match_sni` and `match_host_header` should be specified.\n\n\u003e **Important:** This field should be set for routes on TCP Load Balancers.\n"
                 }
             },
             "requiredInputs": [
@@ -11962,11 +12075,11 @@
                     },
                     "matchHostHeader": {
                         "type": "string",
-                        "description": "The Host request header specifies the host of the server to which the request is being sent.\nOnly one of `match_sni` and `match_host_header` should be specified.\n"
+                        "description": "The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.\nOnly one of `match_sni` and `match_host_header` should be specified.\n\n\u003e **Important:** This field should be set for routes on HTTP Load Balancers.\n"
                     },
                     "matchSni": {
                         "type": "string",
-                        "description": "The Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.\nOnly one of `match_sni` and `match_host_header` should be specified.\n"
+                        "description": "The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.\nOnly one of `match_sni` and `match_host_header` should be specified.\n\n\u003e **Important:** This field should be set for routes on TCP Load Balancers.\n"
                     },
                     "updatedAt": {
                         "type": "string",
@@ -14702,6 +14815,121 @@
                 "type": "object"
             }
         },
+        "scaleway:index/vpc:Vpc": {
+            "description": "Creates and manages Scaleway Virtual Private Clouds.\nFor more information, see [the documentation](https://www.scaleway.com/en/docs/network/vpc/concepts/).\n\n## Example\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst vpc01 = new scaleway.Vpc(\"vpc01\", {tags: [\n    \"demo\",\n    \"terraform\",\n]});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nvpc01 = scaleway.Vpc(\"vpc01\", tags=[\n    \"demo\",\n    \"terraform\",\n])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var vpc01 = new Scaleway.Vpc(\"vpc01\", new()\n    {\n        Tags = new[]\n        {\n            \"demo\",\n            \"terraform\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewVpc(ctx, \"vpc01\", \u0026scaleway.VpcArgs{\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"demo\"),\n\t\t\t\tpulumi.String(\"terraform\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.Vpc;\nimport com.pulumi.scaleway.VpcArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var vpc01 = new Vpc(\"vpc01\", VpcArgs.builder()        \n            .tags(            \n                \"demo\",\n                \"terraform\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  vpc01:\n    type: scaleway:Vpc\n    properties:\n      tags:\n        - demo\n        - terraform\n```\n\n\n## Import\n\nVPCs can be imported using the `{region}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/vpc:Vpc vpc_demo fr-par/11111111-1111-1111-1111-111111111111\n```\n\n ",
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "Date and time of VPC's creation (RFC 3339 format).\n"
+                },
+                "isDefault": {
+                    "type": "boolean",
+                    "description": "Defines whether the VPC is the default one for its Project.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the VPC. If not provided it will be randomly generated.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "The organization ID the VPC is associated with.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "`project_id`) The ID of the project the VPC is associated with.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "`region`) The region of the VPC.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The tags associated with the VPC.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Date and time of VPC's last update (RFC 3339 format).\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "isDefault",
+                "name",
+                "organizationId",
+                "projectId",
+                "region",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the VPC. If not provided it will be randomly generated.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "`project_id`) The ID of the project the VPC is associated with.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "`region`) The region of the VPC.\n",
+                    "willReplaceOnChanges": true
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The tags associated with the VPC.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Vpc resources.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Date and time of VPC's creation (RFC 3339 format).\n"
+                    },
+                    "isDefault": {
+                        "type": "boolean",
+                        "description": "Defines whether the VPC is the default one for its Project.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the VPC. If not provided it will be randomly generated.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The organization ID the VPC is associated with.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "`project_id`) The ID of the project the VPC is associated with.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "`region`) The region of the VPC.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The tags associated with the VPC.\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "Date and time of VPC's last update (RFC 3339 format).\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork": {
             "description": "Creates and manages Scaleway VPC Public Gateway Network.\nIt allows attaching Private Networks to the VPC Public Gateway and your DHCP config\nFor more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#step-3-attach-private-networks-to-the-vpc-public-gateway).\n\n## Example\n\n### Create a gateway network with DHCP\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst pn01 = new scaleway.VpcPrivateNetwork(\"pn01\", {});\nconst gw01 = new scaleway.VpcPublicGatewayIp(\"gw01\", {});\nconst dhcp01 = new scaleway.VpcPublicGatewayDhcp(\"dhcp01\", {\n    subnet: \"192.168.1.0/24\",\n    pushDefaultRoute: true,\n});\nconst pg01 = new scaleway.VpcPublicGateway(\"pg01\", {\n    type: \"VPC-GW-S\",\n    ipId: gw01.id,\n});\nconst main = new scaleway.VpcGatewayNetwork(\"main\", {\n    gatewayId: pg01.id,\n    privateNetworkId: pn01.id,\n    dhcpId: dhcp01.id,\n    cleanupDhcp: true,\n    enableMasquerade: true,\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\npn01 = scaleway.VpcPrivateNetwork(\"pn01\")\ngw01 = scaleway.VpcPublicGatewayIp(\"gw01\")\ndhcp01 = scaleway.VpcPublicGatewayDhcp(\"dhcp01\",\n    subnet=\"192.168.1.0/24\",\n    push_default_route=True)\npg01 = scaleway.VpcPublicGateway(\"pg01\",\n    type=\"VPC-GW-S\",\n    ip_id=gw01.id)\nmain = scaleway.VpcGatewayNetwork(\"main\",\n    gateway_id=pg01.id,\n    private_network_id=pn01.id,\n    dhcp_id=dhcp01.id,\n    cleanup_dhcp=True,\n    enable_masquerade=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var pn01 = new Scaleway.VpcPrivateNetwork(\"pn01\");\n\n    var gw01 = new Scaleway.VpcPublicGatewayIp(\"gw01\");\n\n    var dhcp01 = new Scaleway.VpcPublicGatewayDhcp(\"dhcp01\", new()\n    {\n        Subnet = \"192.168.1.0/24\",\n        PushDefaultRoute = true,\n    });\n\n    var pg01 = new Scaleway.VpcPublicGateway(\"pg01\", new()\n    {\n        Type = \"VPC-GW-S\",\n        IpId = gw01.Id,\n    });\n\n    var main = new Scaleway.VpcGatewayNetwork(\"main\", new()\n    {\n        GatewayId = pg01.Id,\n        PrivateNetworkId = pn01.Id,\n        DhcpId = dhcp01.Id,\n        CleanupDhcp = true,\n        EnableMasquerade = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tpn01, err := scaleway.NewVpcPrivateNetwork(ctx, \"pn01\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tgw01, err := scaleway.NewVpcPublicGatewayIp(ctx, \"gw01\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tdhcp01, err := scaleway.NewVpcPublicGatewayDhcp(ctx, \"dhcp01\", \u0026scaleway.VpcPublicGatewayDhcpArgs{\n\t\t\tSubnet:           pulumi.String(\"192.168.1.0/24\"),\n\t\t\tPushDefaultRoute: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpg01, err := scaleway.NewVpcPublicGateway(ctx, \"pg01\", \u0026scaleway.VpcPublicGatewayArgs{\n\t\t\tType: pulumi.String(\"VPC-GW-S\"),\n\t\t\tIpId: gw01.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewVpcGatewayNetwork(ctx, \"main\", \u0026scaleway.VpcGatewayNetworkArgs{\n\t\t\tGatewayId:        pg01.ID(),\n\t\t\tPrivateNetworkId: pn01.ID(),\n\t\t\tDhcpId:           dhcp01.ID(),\n\t\t\tCleanupDhcp:      pulumi.Bool(true),\n\t\t\tEnableMasquerade: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.VpcPrivateNetwork;\nimport com.pulumi.scaleway.VpcPublicGatewayIp;\nimport com.pulumi.scaleway.VpcPublicGatewayDhcp;\nimport com.pulumi.scaleway.VpcPublicGatewayDhcpArgs;\nimport com.pulumi.scaleway.VpcPublicGateway;\nimport com.pulumi.scaleway.VpcPublicGatewayArgs;\nimport com.pulumi.scaleway.VpcGatewayNetwork;\nimport com.pulumi.scaleway.VpcGatewayNetworkArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pn01 = new VpcPrivateNetwork(\"pn01\");\n\n        var gw01 = new VpcPublicGatewayIp(\"gw01\");\n\n        var dhcp01 = new VpcPublicGatewayDhcp(\"dhcp01\", VpcPublicGatewayDhcpArgs.builder()        \n            .subnet(\"192.168.1.0/24\")\n            .pushDefaultRoute(true)\n            .build());\n\n        var pg01 = new VpcPublicGateway(\"pg01\", VpcPublicGatewayArgs.builder()        \n            .type(\"VPC-GW-S\")\n            .ipId(gw01.id())\n            .build());\n\n        var main = new VpcGatewayNetwork(\"main\", VpcGatewayNetworkArgs.builder()        \n            .gatewayId(pg01.id())\n            .privateNetworkId(pn01.id())\n            .dhcpId(dhcp01.id())\n            .cleanupDhcp(true)\n            .enableMasquerade(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  pn01:\n    type: scaleway:VpcPrivateNetwork\n  gw01:\n    type: scaleway:VpcPublicGatewayIp\n  dhcp01:\n    type: scaleway:VpcPublicGatewayDhcp\n    properties:\n      subnet: 192.168.1.0/24\n      pushDefaultRoute: true\n  pg01:\n    type: scaleway:VpcPublicGateway\n    properties:\n      type: VPC-GW-S\n      ipId: ${gw01.id}\n  main:\n    type: scaleway:VpcGatewayNetwork\n    properties:\n      gatewayId: ${pg01.id}\n      privateNetworkId: ${pn01.id}\n      dhcpId: ${dhcp01.id}\n      cleanupDhcp: true\n      enableMasquerade: true\n```\n\n### Create a gateway network with a static IP address\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst pn01 = new scaleway.VpcPrivateNetwork(\"pn01\", {});\nconst pg01 = new scaleway.VpcPublicGateway(\"pg01\", {type: \"VPC-GW-S\"});\nconst main = new scaleway.VpcGatewayNetwork(\"main\", {\n    gatewayId: pg01.id,\n    privateNetworkId: pn01.id,\n    enableDhcp: false,\n    enableMasquerade: true,\n    staticAddress: \"192.168.1.42/24\",\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\npn01 = scaleway.VpcPrivateNetwork(\"pn01\")\npg01 = scaleway.VpcPublicGateway(\"pg01\", type=\"VPC-GW-S\")\nmain = scaleway.VpcGatewayNetwork(\"main\",\n    gateway_id=pg01.id,\n    private_network_id=pn01.id,\n    enable_dhcp=False,\n    enable_masquerade=True,\n    static_address=\"192.168.1.42/24\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var pn01 = new Scaleway.VpcPrivateNetwork(\"pn01\");\n\n    var pg01 = new Scaleway.VpcPublicGateway(\"pg01\", new()\n    {\n        Type = \"VPC-GW-S\",\n    });\n\n    var main = new Scaleway.VpcGatewayNetwork(\"main\", new()\n    {\n        GatewayId = pg01.Id,\n        PrivateNetworkId = pn01.Id,\n        EnableDhcp = false,\n        EnableMasquerade = true,\n        StaticAddress = \"192.168.1.42/24\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tpn01, err := scaleway.NewVpcPrivateNetwork(ctx, \"pn01\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpg01, err := scaleway.NewVpcPublicGateway(ctx, \"pg01\", \u0026scaleway.VpcPublicGatewayArgs{\n\t\t\tType: pulumi.String(\"VPC-GW-S\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewVpcGatewayNetwork(ctx, \"main\", \u0026scaleway.VpcGatewayNetworkArgs{\n\t\t\tGatewayId:        pg01.ID(),\n\t\t\tPrivateNetworkId: pn01.ID(),\n\t\t\tEnableDhcp:       pulumi.Bool(false),\n\t\t\tEnableMasquerade: pulumi.Bool(true),\n\t\t\tStaticAddress:    pulumi.String(\"192.168.1.42/24\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.VpcPrivateNetwork;\nimport com.pulumi.scaleway.VpcPublicGateway;\nimport com.pulumi.scaleway.VpcPublicGatewayArgs;\nimport com.pulumi.scaleway.VpcGatewayNetwork;\nimport com.pulumi.scaleway.VpcGatewayNetworkArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pn01 = new VpcPrivateNetwork(\"pn01\");\n\n        var pg01 = new VpcPublicGateway(\"pg01\", VpcPublicGatewayArgs.builder()        \n            .type(\"VPC-GW-S\")\n            .build());\n\n        var main = new VpcGatewayNetwork(\"main\", VpcGatewayNetworkArgs.builder()        \n            .gatewayId(pg01.id())\n            .privateNetworkId(pn01.id())\n            .enableDhcp(false)\n            .enableMasquerade(true)\n            .staticAddress(\"192.168.1.42/24\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  pn01:\n    type: scaleway:VpcPrivateNetwork\n  pg01:\n    type: scaleway:VpcPublicGateway\n    properties:\n      type: VPC-GW-S\n  main:\n    type: scaleway:VpcGatewayNetwork\n    properties:\n      gatewayId: ${pg01.id}\n      privateNetworkId: ${pn01.id}\n      enableDhcp: false\n      enableMasquerade: true\n      staticAddress: 192.168.1.42/24\n```\n\n\n## Import\n\nGateway network can be imported using the `{zone}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork main fr-par-1/11111111-1111-1111-1111-111111111111\n```\n\n ",
             "properties": {
@@ -14850,11 +15078,26 @@
             }
         },
         "scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork": {
-            "description": "Creates and manages Scaleway VPC Private Networks.\nFor more information, see [the documentation](https://developers.scaleway.com/en/products/vpc/api/#private-networks-ac2df4).\n\n## Example\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst pnPriv = new scaleway.VpcPrivateNetwork(\"pnPriv\", {tags: [\n    \"demo\",\n    \"terraform\",\n]});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\npn_priv = scaleway.VpcPrivateNetwork(\"pnPriv\", tags=[\n    \"demo\",\n    \"terraform\",\n])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var pnPriv = new Scaleway.VpcPrivateNetwork(\"pnPriv\", new()\n    {\n        Tags = new[]\n        {\n            \"demo\",\n            \"terraform\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewVpcPrivateNetwork(ctx, \"pnPriv\", \u0026scaleway.VpcPrivateNetworkArgs{\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"demo\"),\n\t\t\t\tpulumi.String(\"terraform\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.VpcPrivateNetwork;\nimport com.pulumi.scaleway.VpcPrivateNetworkArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pnPriv = new VpcPrivateNetwork(\"pnPriv\", VpcPrivateNetworkArgs.builder()        \n            .tags(            \n                \"demo\",\n                \"terraform\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  pnPriv:\n    type: scaleway:VpcPrivateNetwork\n    properties:\n      tags:\n        - demo\n        - terraform\n```\n\n\n## Import\n\nPrivate networks can be imported using the `{zone}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par-1/11111111-1111-1111-1111-111111111111\n```\n\n ",
+            "description": "Creates and manages Scaleway VPC Private Networks.\nFor more information, see [the documentation](https://developers.scaleway.com/en/products/vpc/api/#private-networks-ac2df4).\n\n## Example\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst pnPriv = new scaleway.VpcPrivateNetwork(\"pnPriv\", {tags: [\n    \"demo\",\n    \"terraform\",\n]});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\npn_priv = scaleway.VpcPrivateNetwork(\"pnPriv\", tags=[\n    \"demo\",\n    \"terraform\",\n])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var pnPriv = new Scaleway.VpcPrivateNetwork(\"pnPriv\", new()\n    {\n        Tags = new[]\n        {\n            \"demo\",\n            \"terraform\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewVpcPrivateNetwork(ctx, \"pnPriv\", \u0026scaleway.VpcPrivateNetworkArgs{\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"demo\"),\n\t\t\t\tpulumi.String(\"terraform\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.VpcPrivateNetwork;\nimport com.pulumi.scaleway.VpcPrivateNetworkArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pnPriv = new VpcPrivateNetwork(\"pnPriv\", VpcPrivateNetworkArgs.builder()        \n            .tags(            \n                \"demo\",\n                \"terraform\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  pnPriv:\n    type: scaleway:VpcPrivateNetwork\n    properties:\n      tags:\n        - demo\n        - terraform\n```\n\n\u003e **Note:** Regional Private Network is now in Public Beta. You can create a regional private network directly using this resource by setting `is_regional` to `true`.\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst vpc01 = new scaleway.Vpc(\"vpc01\", {tags: [\n    \"terraform\",\n    \"vpc\",\n]});\nconst regionalPn = new scaleway.VpcPrivateNetwork(\"regionalPn\", {\n    tags: [\n        \"terraform\",\n        \"pn\",\n        \"regional\",\n    ],\n    isRegional: true,\n    vpcId: vpc01.id,\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nvpc01 = scaleway.Vpc(\"vpc01\", tags=[\n    \"terraform\",\n    \"vpc\",\n])\nregional_pn = scaleway.VpcPrivateNetwork(\"regionalPn\",\n    tags=[\n        \"terraform\",\n        \"pn\",\n        \"regional\",\n    ],\n    is_regional=True,\n    vpc_id=vpc01.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var vpc01 = new Scaleway.Vpc(\"vpc01\", new()\n    {\n        Tags = new[]\n        {\n            \"terraform\",\n            \"vpc\",\n        },\n    });\n\n    var regionalPn = new Scaleway.VpcPrivateNetwork(\"regionalPn\", new()\n    {\n        Tags = new[]\n        {\n            \"terraform\",\n            \"pn\",\n            \"regional\",\n        },\n        IsRegional = true,\n        VpcId = vpc01.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tvpc01, err := scaleway.NewVpc(ctx, \"vpc01\", \u0026scaleway.VpcArgs{\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"terraform\"),\n\t\t\t\tpulumi.String(\"vpc\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewVpcPrivateNetwork(ctx, \"regionalPn\", \u0026scaleway.VpcPrivateNetworkArgs{\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"terraform\"),\n\t\t\t\tpulumi.String(\"pn\"),\n\t\t\t\tpulumi.String(\"regional\"),\n\t\t\t},\n\t\t\tIsRegional: pulumi.Bool(true),\n\t\t\tVpcId:      vpc01.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.Vpc;\nimport com.pulumi.scaleway.VpcArgs;\nimport com.pulumi.scaleway.VpcPrivateNetwork;\nimport com.pulumi.scaleway.VpcPrivateNetworkArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var vpc01 = new Vpc(\"vpc01\", VpcArgs.builder()        \n            .tags(            \n                \"terraform\",\n                \"vpc\")\n            .build());\n\n        var regionalPn = new VpcPrivateNetwork(\"regionalPn\", VpcPrivateNetworkArgs.builder()        \n            .tags(            \n                \"terraform\",\n                \"pn\",\n                \"regional\")\n            .isRegional(true)\n            .vpcId(vpc01.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  vpc01:\n    type: scaleway:Vpc\n    properties:\n      tags:\n        - terraform\n        - vpc\n  regionalPn:\n    type: scaleway:VpcPrivateNetwork\n    properties:\n      tags:\n        - terraform\n        - pn\n        - regional\n      isRegional: true\n      vpcId: ${vpc01.id}\n```\n\n\n## Import\n\nPrivate networks can be imported using the `{zone}/{id}` or `{region}/{id}` using beta, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par-1/11111111-1111-1111-1111-111111111111\n```\n\n bash\n\n```sh\n $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par/11111111-1111-1111-1111-111111111111\n```\n\n ",
             "properties": {
                 "createdAt": {
                     "type": "string",
                     "description": "The date and time of the creation of the private network\n"
+                },
+                "ipv4Subnet": {
+                    "$ref": "#/types/scaleway:index/VpcPrivateNetworkIpv4Subnet:VpcPrivateNetworkIpv4Subnet",
+                    "description": "The IPv4 subnet associated with the private network.\n"
+                },
+                "ipv6Subnets": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/scaleway:index/VpcPrivateNetworkIpv6Subnet:VpcPrivateNetworkIpv6Subnet"
+                    },
+                    "description": "The IPv6 subnets associated with the private network.\n\n\u003e **Note:** If using Regional Private Network:\n"
+                },
+                "isRegional": {
+                    "type": "boolean",
+                    "description": "Defines whether the private network is Regional. By default, it will be Zonal.\n"
                 },
                 "name": {
                     "type": "string",
@@ -14868,12 +15111,9 @@
                     "type": "string",
                     "description": "`project_id`) The ID of the project the private network is associated with.\n"
                 },
-                "subnets": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "The subnets CIDR associated with private network.\n"
+                "region": {
+                    "type": "string",
+                    "description": "`region`) The region of the private network.\n"
                 },
                 "tags": {
                     "type": "array",
@@ -14886,6 +15126,10 @@
                     "type": "string",
                     "description": "The date and time of the last update of the private network\n"
                 },
+                "vpcId": {
+                    "type": "string",
+                    "description": "The VPC in which to create the private network.\n"
+                },
                 "zone": {
                     "type": "string",
                     "description": "`zone`) The zone in which the private network should be created.\n"
@@ -14893,14 +15137,34 @@
             },
             "required": [
                 "createdAt",
+                "ipv4Subnet",
+                "ipv6Subnets",
+                "isRegional",
                 "name",
                 "organizationId",
                 "projectId",
-                "subnets",
+                "region",
                 "updatedAt",
+                "vpcId",
                 "zone"
             ],
             "inputProperties": {
+                "ipv4Subnet": {
+                    "$ref": "#/types/scaleway:index/VpcPrivateNetworkIpv4Subnet:VpcPrivateNetworkIpv4Subnet",
+                    "description": "The IPv4 subnet associated with the private network.\n"
+                },
+                "ipv6Subnets": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/scaleway:index/VpcPrivateNetworkIpv6Subnet:VpcPrivateNetworkIpv6Subnet"
+                    },
+                    "description": "The IPv6 subnets associated with the private network.\n\n\u003e **Note:** If using Regional Private Network:\n"
+                },
+                "isRegional": {
+                    "type": "boolean",
+                    "description": "Defines whether the private network is Regional. By default, it will be Zonal.\n",
+                    "willReplaceOnChanges": true
+                },
                 "name": {
                     "type": "string",
                     "description": "The name of the private network. If not provided it will be randomly generated.\n"
@@ -14910,12 +15174,9 @@
                     "description": "`project_id`) The ID of the project the private network is associated with.\n",
                     "willReplaceOnChanges": true
                 },
-                "subnets": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "The subnets CIDR associated with private network.\n",
+                "region": {
+                    "type": "string",
+                    "description": "`region`) The region of the private network.\n",
                     "willReplaceOnChanges": true
                 },
                 "tags": {
@@ -14924,6 +15185,10 @@
                         "type": "string"
                     },
                     "description": "The tags associated with the private network.\n"
+                },
+                "vpcId": {
+                    "type": "string",
+                    "description": "The VPC in which to create the private network.\n"
                 },
                 "zone": {
                     "type": "string",
@@ -14938,6 +15203,22 @@
                         "type": "string",
                         "description": "The date and time of the creation of the private network\n"
                     },
+                    "ipv4Subnet": {
+                        "$ref": "#/types/scaleway:index/VpcPrivateNetworkIpv4Subnet:VpcPrivateNetworkIpv4Subnet",
+                        "description": "The IPv4 subnet associated with the private network.\n"
+                    },
+                    "ipv6Subnets": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/scaleway:index/VpcPrivateNetworkIpv6Subnet:VpcPrivateNetworkIpv6Subnet"
+                        },
+                        "description": "The IPv6 subnets associated with the private network.\n\n\u003e **Note:** If using Regional Private Network:\n"
+                    },
+                    "isRegional": {
+                        "type": "boolean",
+                        "description": "Defines whether the private network is Regional. By default, it will be Zonal.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "name": {
                         "type": "string",
                         "description": "The name of the private network. If not provided it will be randomly generated.\n"
@@ -14951,12 +15232,9 @@
                         "description": "`project_id`) The ID of the project the private network is associated with.\n",
                         "willReplaceOnChanges": true
                     },
-                    "subnets": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "The subnets CIDR associated with private network.\n",
+                    "region": {
+                        "type": "string",
+                        "description": "`region`) The region of the private network.\n",
                         "willReplaceOnChanges": true
                     },
                     "tags": {
@@ -14969,6 +15247,10 @@
                     "updatedAt": {
                         "type": "string",
                         "description": "The date and time of the last update of the private network\n"
+                    },
+                    "vpcId": {
+                        "type": "string",
+                        "description": "The VPC in which to create the private network.\n"
                     },
                     "zone": {
                         "type": "string",
@@ -20811,6 +21093,85 @@
                 ]
             }
         },
+        "scaleway:index/getVpc:getVpc": {
+            "description": "Gets information about a Scaleway Virtual Private Cloud.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst byName = scaleway.getVpc({\n    name: \"foobar\",\n});\nconst byId = scaleway.getVpc({\n    vpcId: \"11111111-1111-1111-1111-111111111111\",\n});\nconst default = scaleway.getVpc({\n    isDefault: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\n\nby_name = scaleway.get_vpc(name=\"foobar\")\nby_id = scaleway.get_vpc(vpc_id=\"11111111-1111-1111-1111-111111111111\")\ndefault = scaleway.get_vpc(is_default=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var byName = Scaleway.GetVpc.Invoke(new()\n    {\n        Name = \"foobar\",\n    });\n\n    var byId = Scaleway.GetVpc.Invoke(new()\n    {\n        VpcId = \"11111111-1111-1111-1111-111111111111\",\n    });\n\n    var @default = Scaleway.GetVpc.Invoke(new()\n    {\n        IsDefault = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.LookupVpc(ctx, \u0026scaleway.LookupVpcArgs{\n\t\t\tName: pulumi.StringRef(\"foobar\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.LookupVpc(ctx, \u0026scaleway.LookupVpcArgs{\n\t\t\tVpcId: pulumi.StringRef(\"11111111-1111-1111-1111-111111111111\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.LookupVpc(ctx, \u0026scaleway.LookupVpcArgs{\n\t\t\tIsDefault: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetVpcArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var byName = ScalewayFunctions.getVpc(GetVpcArgs.builder()\n            .name(\"foobar\")\n            .build());\n\n        final var byId = ScalewayFunctions.getVpc(GetVpcArgs.builder()\n            .vpcId(\"11111111-1111-1111-1111-111111111111\")\n            .build());\n\n        final var default = ScalewayFunctions.getVpc(GetVpcArgs.builder()\n            .isDefault(true)\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  byName:\n    fn::invoke:\n      Function: scaleway:getVpc\n      Arguments:\n        name: foobar\n  byId:\n    fn::invoke:\n      Function: scaleway:getVpc\n      Arguments:\n        vpcId: 11111111-1111-1111-1111-111111111111\n  default:\n    fn::invoke:\n      Function: scaleway:getVpc\n      Arguments:\n        isDefault: true\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getVpc.\n",
+                "properties": {
+                    "isDefault": {
+                        "type": "boolean",
+                        "description": "To get default VPC's information.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the VPC. One of `name` and `vpc_id` should be specified.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the organization the VPC is associated with.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "`project_id`) The ID of the project the VPC is associated with.\n"
+                    },
+                    "region": {
+                        "type": "string"
+                    },
+                    "vpcId": {
+                        "type": "string",
+                        "description": "ID of the VPC. One of `name` and `vpc_id` should be specified.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getVpc.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "isDefault": {
+                        "type": "boolean"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "organizationId": {
+                        "type": "string"
+                    },
+                    "projectId": {
+                        "type": "string"
+                    },
+                    "region": {
+                        "type": "string"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "updatedAt": {
+                        "type": "string"
+                    },
+                    "vpcId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "createdAt",
+                    "organizationId",
+                    "tags",
+                    "updatedAt",
+                    "id"
+                ]
+            }
+        },
         "scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork": {
             "description": "Gets information about a gateway network.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst main = new scaleway.VpcGatewayNetwork(\"main\", {\n    gatewayId: scaleway_vpc_public_gateway.pg01.id,\n    privateNetworkId: scaleway_vpc_private_network.pn01.id,\n    dhcpId: scaleway_vpc_public_gateway_dhcp.dhcp01.id,\n    cleanupDhcp: true,\n    enableMasquerade: true,\n});\nconst byId = scaleway.getVpcGatewayNetworkOutput({\n    gatewayNetworkId: main.id,\n});\nconst byGatewayAndPn = scaleway.getVpcGatewayNetwork({\n    gatewayId: scaleway_vpc_public_gateway.pg01.id,\n    privateNetworkId: scaleway_vpc_private_network.pn01.id,\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\nimport pulumi_scaleway as scaleway\n\nmain = scaleway.VpcGatewayNetwork(\"main\",\n    gateway_id=scaleway_vpc_public_gateway[\"pg01\"][\"id\"],\n    private_network_id=scaleway_vpc_private_network[\"pn01\"][\"id\"],\n    dhcp_id=scaleway_vpc_public_gateway_dhcp[\"dhcp01\"][\"id\"],\n    cleanup_dhcp=True,\n    enable_masquerade=True)\nby_id = scaleway.get_vpc_gateway_network_output(gateway_network_id=main.id)\nby_gateway_and_pn = scaleway.get_vpc_gateway_network(gateway_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),\n    private_network_id=%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.VpcGatewayNetwork(\"main\", new()\n    {\n        GatewayId = scaleway_vpc_public_gateway.Pg01.Id,\n        PrivateNetworkId = scaleway_vpc_private_network.Pn01.Id,\n        DhcpId = scaleway_vpc_public_gateway_dhcp.Dhcp01.Id,\n        CleanupDhcp = true,\n        EnableMasquerade = true,\n    });\n\n    var byId = Scaleway.GetVpcGatewayNetwork.Invoke(new()\n    {\n        GatewayNetworkId = main.Id,\n    });\n\n    var byGatewayAndPn = Scaleway.GetVpcGatewayNetwork.Invoke(new()\n    {\n        GatewayId = scaleway_vpc_public_gateway.Pg01.Id,\n        PrivateNetworkId = scaleway_vpc_private_network.Pn01.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := scaleway.NewVpcGatewayNetwork(ctx, \"main\", \u0026scaleway.VpcGatewayNetworkArgs{\n\t\t\tGatewayId:        pulumi.Any(scaleway_vpc_public_gateway.Pg01.Id),\n\t\t\tPrivateNetworkId: pulumi.Any(scaleway_vpc_private_network.Pn01.Id),\n\t\t\tDhcpId:           pulumi.Any(scaleway_vpc_public_gateway_dhcp.Dhcp01.Id),\n\t\t\tCleanupDhcp:      pulumi.Bool(true),\n\t\t\tEnableMasquerade: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = scaleway.LookupVpcGatewayNetworkOutput(ctx, scaleway.GetVpcGatewayNetworkOutputArgs{\n\t\t\tGatewayNetworkId: main.ID(),\n\t\t}, nil)\n\t\t_, err = scaleway.LookupVpcGatewayNetwork(ctx, \u0026scaleway.LookupVpcGatewayNetworkArgs{\n\t\t\tGatewayId:        pulumi.StringRef(scaleway_vpc_public_gateway.Pg01.Id),\n\t\t\tPrivateNetworkId: pulumi.StringRef(scaleway_vpc_private_network.Pn01.Id),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.VpcGatewayNetwork;\nimport com.pulumi.scaleway.VpcGatewayNetworkArgs;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetVpcGatewayNetworkArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new VpcGatewayNetwork(\"main\", VpcGatewayNetworkArgs.builder()        \n            .gatewayId(scaleway_vpc_public_gateway.pg01().id())\n            .privateNetworkId(scaleway_vpc_private_network.pn01().id())\n            .dhcpId(scaleway_vpc_public_gateway_dhcp.dhcp01().id())\n            .cleanupDhcp(true)\n            .enableMasquerade(true)\n            .build());\n\n        final var byId = ScalewayFunctions.getVpcGatewayNetwork(GetVpcGatewayNetworkArgs.builder()\n            .gatewayNetworkId(main.id())\n            .build());\n\n        final var byGatewayAndPn = ScalewayFunctions.getVpcGatewayNetwork(GetVpcGatewayNetworkArgs.builder()\n            .gatewayId(scaleway_vpc_public_gateway.pg01().id())\n            .privateNetworkId(scaleway_vpc_private_network.pn01().id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:VpcGatewayNetwork\n    properties:\n      gatewayId: ${scaleway_vpc_public_gateway.pg01.id}\n      privateNetworkId: ${scaleway_vpc_private_network.pn01.id}\n      dhcpId: ${scaleway_vpc_public_gateway_dhcp.dhcp01.id}\n      cleanupDhcp: true\n      enableMasquerade: true\nvariables:\n  byId:\n    fn::invoke:\n      Function: scaleway:getVpcGatewayNetwork\n      Arguments:\n        gatewayNetworkId: ${main.id}\n  byGatewayAndPn:\n    fn::invoke:\n      Function: scaleway:getVpcGatewayNetwork\n      Arguments:\n        gatewayId: ${scaleway_vpc_public_gateway.pg01.id}\n        privateNetworkId: ${scaleway_vpc_private_network.pn01.id}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
@@ -20897,7 +21258,7 @@
             }
         },
         "scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork": {
-            "description": "Gets information about a private network.\n\n{{% examples %}}\n## Example Usage\n\nN/A, the usage will be meaningful in the next releases of VPC.\n{{% /examples %}}",
+            "description": "Gets information about a private network.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetVpcPrivateNetworkArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myName = ScalewayFunctions.getVpcPrivateNetwork(GetVpcPrivateNetworkArgs.builder()\n            .name(\"foobar\")\n            .build());\n\n        final var myId = ScalewayFunctions.getVpcPrivateNetwork(GetVpcPrivateNetworkArgs.builder()\n            .privateNetworkIdId(\"11111111-1111-1111-1111-111111111111\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  myName:\n    fn::invoke:\n      Function: scaleway:getVpcPrivateNetwork\n      Arguments:\n        name: foobar\n  myId:\n    fn::invoke:\n      Function: scaleway:getVpcPrivateNetwork\n      Arguments:\n        privateNetworkIdId: 11111111-1111-1111-1111-111111111111\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getVpcPrivateNetwork.\n",
                 "properties": {
@@ -20922,6 +21283,23 @@
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
+                    "ipv4Subnets": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/scaleway:index/getVpcPrivateNetworkIpv4Subnet:getVpcPrivateNetworkIpv4Subnet"
+                        },
+                        "description": "(Optional) The IPv4 subnet associated with the private network.\n"
+                    },
+                    "ipv6Subnets": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/scaleway:index/getVpcPrivateNetworkIpv6Subnet:getVpcPrivateNetworkIpv6Subnet"
+                        },
+                        "description": "(Optional) The IPv6 subnets associated with the private network.\n"
+                    },
+                    "isRegional": {
+                        "type": "boolean"
+                    },
                     "name": {
                         "type": "string"
                     },
@@ -20934,12 +21312,8 @@
                     "projectId": {
                         "type": "string"
                     },
-                    "subnets": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "The subnets CIDR associated with private network.\n"
+                    "region": {
+                        "type": "string"
                     },
                     "tags": {
                         "type": "array",
@@ -20950,6 +21324,9 @@
                     "updatedAt": {
                         "type": "string"
                     },
+                    "vpcId": {
+                        "type": "string"
+                    },
                     "zone": {
                         "type": "string"
                     }
@@ -20957,11 +21334,15 @@
                 "type": "object",
                 "required": [
                     "createdAt",
+                    "ipv4Subnets",
+                    "ipv6Subnets",
+                    "isRegional",
                     "organizationId",
                     "projectId",
-                    "subnets",
+                    "region",
                     "tags",
                     "updatedAt",
+                    "vpcId",
                     "zone",
                     "id"
                 ]
