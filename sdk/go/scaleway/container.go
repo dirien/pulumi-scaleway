@@ -120,7 +120,7 @@ import (
 type Container struct {
 	pulumi.CustomResourceState
 
-	// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+	// The amount of vCPU computing resources to allocate to each container. Defaults to 140.
 	CpuLimit pulumi.IntOutput `pulumi:"cpuLimit"`
 	// The cron status of the container.
 	CronStatus pulumi.StringOutput `pulumi:"cronStatus"`
@@ -142,7 +142,7 @@ type Container struct {
 	MaxConcurrency pulumi.IntOutput `pulumi:"maxConcurrency"`
 	// The maximum of number of instances this container can scale to. Default to 20.
 	MaxScale pulumi.IntOutput `pulumi:"maxScale"`
-	// The memory computing resources in MB to allocate to each container. Defaults to 128.
+	// The memory computing resources in MB to allocate to each container. Defaults to 256.
 	MemoryLimit pulumi.IntOutput `pulumi:"memoryLimit"`
 	// The minimum of running container instances continuously. Defaults to 0.
 	MinScale pulumi.IntOutput `pulumi:"minScale"`
@@ -214,7 +214,7 @@ func GetContainer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Container resources.
 type containerState struct {
-	// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+	// The amount of vCPU computing resources to allocate to each container. Defaults to 140.
 	CpuLimit *int `pulumi:"cpuLimit"`
 	// The cron status of the container.
 	CronStatus *string `pulumi:"cronStatus"`
@@ -236,7 +236,7 @@ type containerState struct {
 	MaxConcurrency *int `pulumi:"maxConcurrency"`
 	// The maximum of number of instances this container can scale to. Default to 20.
 	MaxScale *int `pulumi:"maxScale"`
-	// The memory computing resources in MB to allocate to each container. Defaults to 128.
+	// The memory computing resources in MB to allocate to each container. Defaults to 256.
 	MemoryLimit *int `pulumi:"memoryLimit"`
 	// The minimum of running container instances continuously. Defaults to 0.
 	MinScale *int `pulumi:"minScale"`
@@ -269,7 +269,7 @@ type containerState struct {
 }
 
 type ContainerState struct {
-	// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+	// The amount of vCPU computing resources to allocate to each container. Defaults to 140.
 	CpuLimit pulumi.IntPtrInput
 	// The cron status of the container.
 	CronStatus pulumi.StringPtrInput
@@ -291,7 +291,7 @@ type ContainerState struct {
 	MaxConcurrency pulumi.IntPtrInput
 	// The maximum of number of instances this container can scale to. Default to 20.
 	MaxScale pulumi.IntPtrInput
-	// The memory computing resources in MB to allocate to each container. Defaults to 128.
+	// The memory computing resources in MB to allocate to each container. Defaults to 256.
 	MemoryLimit pulumi.IntPtrInput
 	// The minimum of running container instances continuously. Defaults to 0.
 	MinScale pulumi.IntPtrInput
@@ -328,7 +328,7 @@ func (ContainerState) ElementType() reflect.Type {
 }
 
 type containerArgs struct {
-	// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+	// The amount of vCPU computing resources to allocate to each container. Defaults to 140.
 	CpuLimit *int `pulumi:"cpuLimit"`
 	// Boolean controlling whether the container is on a production environment.
 	//
@@ -344,7 +344,7 @@ type containerArgs struct {
 	MaxConcurrency *int `pulumi:"maxConcurrency"`
 	// The maximum of number of instances this container can scale to. Default to 20.
 	MaxScale *int `pulumi:"maxScale"`
-	// The memory computing resources in MB to allocate to each container. Defaults to 128.
+	// The memory computing resources in MB to allocate to each container. Defaults to 256.
 	MemoryLimit *int `pulumi:"memoryLimit"`
 	// The minimum of running container instances continuously. Defaults to 0.
 	MinScale *int `pulumi:"minScale"`
@@ -376,7 +376,7 @@ type containerArgs struct {
 
 // The set of arguments for constructing a Container resource.
 type ContainerArgs struct {
-	// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+	// The amount of vCPU computing resources to allocate to each container. Defaults to 140.
 	CpuLimit pulumi.IntPtrInput
 	// Boolean controlling whether the container is on a production environment.
 	//
@@ -392,7 +392,7 @@ type ContainerArgs struct {
 	MaxConcurrency pulumi.IntPtrInput
 	// The maximum of number of instances this container can scale to. Default to 20.
 	MaxScale pulumi.IntPtrInput
-	// The memory computing resources in MB to allocate to each container. Defaults to 128.
+	// The memory computing resources in MB to allocate to each container. Defaults to 256.
 	MemoryLimit pulumi.IntPtrInput
 	// The minimum of running container instances continuously. Defaults to 0.
 	MinScale pulumi.IntPtrInput
@@ -509,7 +509,7 @@ func (o ContainerOutput) ToContainerOutputWithContext(ctx context.Context) Conta
 	return o
 }
 
-// The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+// The amount of vCPU computing resources to allocate to each container. Defaults to 140.
 func (o ContainerOutput) CpuLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *Container) pulumi.IntOutput { return v.CpuLimit }).(pulumi.IntOutput)
 }
@@ -561,7 +561,7 @@ func (o ContainerOutput) MaxScale() pulumi.IntOutput {
 	return o.ApplyT(func(v *Container) pulumi.IntOutput { return v.MaxScale }).(pulumi.IntOutput)
 }
 
-// The memory computing resources in MB to allocate to each container. Defaults to 128.
+// The memory computing resources in MB to allocate to each container. Defaults to 256.
 func (o ContainerOutput) MemoryLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *Container) pulumi.IntOutput { return v.MemoryLimit }).(pulumi.IntOutput)
 }

@@ -2,14 +2,12 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
  * Gets information about a private network.
- *
- * ## Example Usage
- *
- * N/A, the usage will be meaningful in the next releases of VPC.
  */
 export function getVpcPrivateNetwork(args?: GetVpcPrivateNetworkArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPrivateNetworkResult> {
     args = args || {};
@@ -44,24 +42,27 @@ export interface GetVpcPrivateNetworkResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * (Optional) The IPv4 subnet associated with the private network.
+     */
+    readonly ipv4Subnets: outputs.GetVpcPrivateNetworkIpv4Subnet[];
+    /**
+     * (Optional) The IPv6 subnets associated with the private network.
+     */
+    readonly ipv6Subnets: outputs.GetVpcPrivateNetworkIpv6Subnet[];
+    readonly isRegional: boolean;
     readonly name?: string;
     readonly organizationId: string;
     readonly privateNetworkId?: string;
     readonly projectId: string;
-    /**
-     * The subnets CIDR associated with private network.
-     */
-    readonly subnets: string[];
+    readonly region: string;
     readonly tags: string[];
     readonly updatedAt: string;
+    readonly vpcId: string;
     readonly zone: string;
 }
 /**
  * Gets information about a private network.
- *
- * ## Example Usage
- *
- * N/A, the usage will be meaningful in the next releases of VPC.
  */
 export function getVpcPrivateNetworkOutput(args?: GetVpcPrivateNetworkOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPrivateNetworkResult> {
     return pulumi.output(args).apply((a: any) => getVpcPrivateNetwork(a, opts))

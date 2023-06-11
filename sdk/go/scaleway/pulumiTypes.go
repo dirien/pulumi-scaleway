@@ -11522,6 +11522,303 @@ func (o RedisClusterPublicNetworkPtrOutput) Port() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+type VpcPrivateNetworkIpv4Subnet struct {
+	CreatedAt *string `pulumi:"createdAt"`
+	// The ID of the private network.
+	Id        *string `pulumi:"id"`
+	Subnet    *string `pulumi:"subnet"`
+	UpdatedAt *string `pulumi:"updatedAt"`
+}
+
+// VpcPrivateNetworkIpv4SubnetInput is an input type that accepts VpcPrivateNetworkIpv4SubnetArgs and VpcPrivateNetworkIpv4SubnetOutput values.
+// You can construct a concrete instance of `VpcPrivateNetworkIpv4SubnetInput` via:
+//
+//	VpcPrivateNetworkIpv4SubnetArgs{...}
+type VpcPrivateNetworkIpv4SubnetInput interface {
+	pulumi.Input
+
+	ToVpcPrivateNetworkIpv4SubnetOutput() VpcPrivateNetworkIpv4SubnetOutput
+	ToVpcPrivateNetworkIpv4SubnetOutputWithContext(context.Context) VpcPrivateNetworkIpv4SubnetOutput
+}
+
+type VpcPrivateNetworkIpv4SubnetArgs struct {
+	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
+	// The ID of the private network.
+	Id        pulumi.StringPtrInput `pulumi:"id"`
+	Subnet    pulumi.StringPtrInput `pulumi:"subnet"`
+	UpdatedAt pulumi.StringPtrInput `pulumi:"updatedAt"`
+}
+
+func (VpcPrivateNetworkIpv4SubnetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpcPrivateNetworkIpv4Subnet)(nil)).Elem()
+}
+
+func (i VpcPrivateNetworkIpv4SubnetArgs) ToVpcPrivateNetworkIpv4SubnetOutput() VpcPrivateNetworkIpv4SubnetOutput {
+	return i.ToVpcPrivateNetworkIpv4SubnetOutputWithContext(context.Background())
+}
+
+func (i VpcPrivateNetworkIpv4SubnetArgs) ToVpcPrivateNetworkIpv4SubnetOutputWithContext(ctx context.Context) VpcPrivateNetworkIpv4SubnetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcPrivateNetworkIpv4SubnetOutput)
+}
+
+func (i VpcPrivateNetworkIpv4SubnetArgs) ToVpcPrivateNetworkIpv4SubnetPtrOutput() VpcPrivateNetworkIpv4SubnetPtrOutput {
+	return i.ToVpcPrivateNetworkIpv4SubnetPtrOutputWithContext(context.Background())
+}
+
+func (i VpcPrivateNetworkIpv4SubnetArgs) ToVpcPrivateNetworkIpv4SubnetPtrOutputWithContext(ctx context.Context) VpcPrivateNetworkIpv4SubnetPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcPrivateNetworkIpv4SubnetOutput).ToVpcPrivateNetworkIpv4SubnetPtrOutputWithContext(ctx)
+}
+
+// VpcPrivateNetworkIpv4SubnetPtrInput is an input type that accepts VpcPrivateNetworkIpv4SubnetArgs, VpcPrivateNetworkIpv4SubnetPtr and VpcPrivateNetworkIpv4SubnetPtrOutput values.
+// You can construct a concrete instance of `VpcPrivateNetworkIpv4SubnetPtrInput` via:
+//
+//	        VpcPrivateNetworkIpv4SubnetArgs{...}
+//
+//	or:
+//
+//	        nil
+type VpcPrivateNetworkIpv4SubnetPtrInput interface {
+	pulumi.Input
+
+	ToVpcPrivateNetworkIpv4SubnetPtrOutput() VpcPrivateNetworkIpv4SubnetPtrOutput
+	ToVpcPrivateNetworkIpv4SubnetPtrOutputWithContext(context.Context) VpcPrivateNetworkIpv4SubnetPtrOutput
+}
+
+type vpcPrivateNetworkIpv4SubnetPtrType VpcPrivateNetworkIpv4SubnetArgs
+
+func VpcPrivateNetworkIpv4SubnetPtr(v *VpcPrivateNetworkIpv4SubnetArgs) VpcPrivateNetworkIpv4SubnetPtrInput {
+	return (*vpcPrivateNetworkIpv4SubnetPtrType)(v)
+}
+
+func (*vpcPrivateNetworkIpv4SubnetPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**VpcPrivateNetworkIpv4Subnet)(nil)).Elem()
+}
+
+func (i *vpcPrivateNetworkIpv4SubnetPtrType) ToVpcPrivateNetworkIpv4SubnetPtrOutput() VpcPrivateNetworkIpv4SubnetPtrOutput {
+	return i.ToVpcPrivateNetworkIpv4SubnetPtrOutputWithContext(context.Background())
+}
+
+func (i *vpcPrivateNetworkIpv4SubnetPtrType) ToVpcPrivateNetworkIpv4SubnetPtrOutputWithContext(ctx context.Context) VpcPrivateNetworkIpv4SubnetPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcPrivateNetworkIpv4SubnetPtrOutput)
+}
+
+type VpcPrivateNetworkIpv4SubnetOutput struct{ *pulumi.OutputState }
+
+func (VpcPrivateNetworkIpv4SubnetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpcPrivateNetworkIpv4Subnet)(nil)).Elem()
+}
+
+func (o VpcPrivateNetworkIpv4SubnetOutput) ToVpcPrivateNetworkIpv4SubnetOutput() VpcPrivateNetworkIpv4SubnetOutput {
+	return o
+}
+
+func (o VpcPrivateNetworkIpv4SubnetOutput) ToVpcPrivateNetworkIpv4SubnetOutputWithContext(ctx context.Context) VpcPrivateNetworkIpv4SubnetOutput {
+	return o
+}
+
+func (o VpcPrivateNetworkIpv4SubnetOutput) ToVpcPrivateNetworkIpv4SubnetPtrOutput() VpcPrivateNetworkIpv4SubnetPtrOutput {
+	return o.ToVpcPrivateNetworkIpv4SubnetPtrOutputWithContext(context.Background())
+}
+
+func (o VpcPrivateNetworkIpv4SubnetOutput) ToVpcPrivateNetworkIpv4SubnetPtrOutputWithContext(ctx context.Context) VpcPrivateNetworkIpv4SubnetPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v VpcPrivateNetworkIpv4Subnet) *VpcPrivateNetworkIpv4Subnet {
+		return &v
+	}).(VpcPrivateNetworkIpv4SubnetPtrOutput)
+}
+
+func (o VpcPrivateNetworkIpv4SubnetOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpcPrivateNetworkIpv4Subnet) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the private network.
+func (o VpcPrivateNetworkIpv4SubnetOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpcPrivateNetworkIpv4Subnet) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o VpcPrivateNetworkIpv4SubnetOutput) Subnet() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpcPrivateNetworkIpv4Subnet) *string { return v.Subnet }).(pulumi.StringPtrOutput)
+}
+
+func (o VpcPrivateNetworkIpv4SubnetOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpcPrivateNetworkIpv4Subnet) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
+}
+
+type VpcPrivateNetworkIpv4SubnetPtrOutput struct{ *pulumi.OutputState }
+
+func (VpcPrivateNetworkIpv4SubnetPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VpcPrivateNetworkIpv4Subnet)(nil)).Elem()
+}
+
+func (o VpcPrivateNetworkIpv4SubnetPtrOutput) ToVpcPrivateNetworkIpv4SubnetPtrOutput() VpcPrivateNetworkIpv4SubnetPtrOutput {
+	return o
+}
+
+func (o VpcPrivateNetworkIpv4SubnetPtrOutput) ToVpcPrivateNetworkIpv4SubnetPtrOutputWithContext(ctx context.Context) VpcPrivateNetworkIpv4SubnetPtrOutput {
+	return o
+}
+
+func (o VpcPrivateNetworkIpv4SubnetPtrOutput) Elem() VpcPrivateNetworkIpv4SubnetOutput {
+	return o.ApplyT(func(v *VpcPrivateNetworkIpv4Subnet) VpcPrivateNetworkIpv4Subnet {
+		if v != nil {
+			return *v
+		}
+		var ret VpcPrivateNetworkIpv4Subnet
+		return ret
+	}).(VpcPrivateNetworkIpv4SubnetOutput)
+}
+
+func (o VpcPrivateNetworkIpv4SubnetPtrOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpcPrivateNetworkIpv4Subnet) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of the private network.
+func (o VpcPrivateNetworkIpv4SubnetPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpcPrivateNetworkIpv4Subnet) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VpcPrivateNetworkIpv4SubnetPtrOutput) Subnet() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpcPrivateNetworkIpv4Subnet) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Subnet
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VpcPrivateNetworkIpv4SubnetPtrOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpcPrivateNetworkIpv4Subnet) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+type VpcPrivateNetworkIpv6Subnet struct {
+	CreatedAt *string `pulumi:"createdAt"`
+	// The ID of the private network.
+	Id        *string `pulumi:"id"`
+	Subnet    *string `pulumi:"subnet"`
+	UpdatedAt *string `pulumi:"updatedAt"`
+}
+
+// VpcPrivateNetworkIpv6SubnetInput is an input type that accepts VpcPrivateNetworkIpv6SubnetArgs and VpcPrivateNetworkIpv6SubnetOutput values.
+// You can construct a concrete instance of `VpcPrivateNetworkIpv6SubnetInput` via:
+//
+//	VpcPrivateNetworkIpv6SubnetArgs{...}
+type VpcPrivateNetworkIpv6SubnetInput interface {
+	pulumi.Input
+
+	ToVpcPrivateNetworkIpv6SubnetOutput() VpcPrivateNetworkIpv6SubnetOutput
+	ToVpcPrivateNetworkIpv6SubnetOutputWithContext(context.Context) VpcPrivateNetworkIpv6SubnetOutput
+}
+
+type VpcPrivateNetworkIpv6SubnetArgs struct {
+	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
+	// The ID of the private network.
+	Id        pulumi.StringPtrInput `pulumi:"id"`
+	Subnet    pulumi.StringPtrInput `pulumi:"subnet"`
+	UpdatedAt pulumi.StringPtrInput `pulumi:"updatedAt"`
+}
+
+func (VpcPrivateNetworkIpv6SubnetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpcPrivateNetworkIpv6Subnet)(nil)).Elem()
+}
+
+func (i VpcPrivateNetworkIpv6SubnetArgs) ToVpcPrivateNetworkIpv6SubnetOutput() VpcPrivateNetworkIpv6SubnetOutput {
+	return i.ToVpcPrivateNetworkIpv6SubnetOutputWithContext(context.Background())
+}
+
+func (i VpcPrivateNetworkIpv6SubnetArgs) ToVpcPrivateNetworkIpv6SubnetOutputWithContext(ctx context.Context) VpcPrivateNetworkIpv6SubnetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcPrivateNetworkIpv6SubnetOutput)
+}
+
+// VpcPrivateNetworkIpv6SubnetArrayInput is an input type that accepts VpcPrivateNetworkIpv6SubnetArray and VpcPrivateNetworkIpv6SubnetArrayOutput values.
+// You can construct a concrete instance of `VpcPrivateNetworkIpv6SubnetArrayInput` via:
+//
+//	VpcPrivateNetworkIpv6SubnetArray{ VpcPrivateNetworkIpv6SubnetArgs{...} }
+type VpcPrivateNetworkIpv6SubnetArrayInput interface {
+	pulumi.Input
+
+	ToVpcPrivateNetworkIpv6SubnetArrayOutput() VpcPrivateNetworkIpv6SubnetArrayOutput
+	ToVpcPrivateNetworkIpv6SubnetArrayOutputWithContext(context.Context) VpcPrivateNetworkIpv6SubnetArrayOutput
+}
+
+type VpcPrivateNetworkIpv6SubnetArray []VpcPrivateNetworkIpv6SubnetInput
+
+func (VpcPrivateNetworkIpv6SubnetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpcPrivateNetworkIpv6Subnet)(nil)).Elem()
+}
+
+func (i VpcPrivateNetworkIpv6SubnetArray) ToVpcPrivateNetworkIpv6SubnetArrayOutput() VpcPrivateNetworkIpv6SubnetArrayOutput {
+	return i.ToVpcPrivateNetworkIpv6SubnetArrayOutputWithContext(context.Background())
+}
+
+func (i VpcPrivateNetworkIpv6SubnetArray) ToVpcPrivateNetworkIpv6SubnetArrayOutputWithContext(ctx context.Context) VpcPrivateNetworkIpv6SubnetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcPrivateNetworkIpv6SubnetArrayOutput)
+}
+
+type VpcPrivateNetworkIpv6SubnetOutput struct{ *pulumi.OutputState }
+
+func (VpcPrivateNetworkIpv6SubnetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpcPrivateNetworkIpv6Subnet)(nil)).Elem()
+}
+
+func (o VpcPrivateNetworkIpv6SubnetOutput) ToVpcPrivateNetworkIpv6SubnetOutput() VpcPrivateNetworkIpv6SubnetOutput {
+	return o
+}
+
+func (o VpcPrivateNetworkIpv6SubnetOutput) ToVpcPrivateNetworkIpv6SubnetOutputWithContext(ctx context.Context) VpcPrivateNetworkIpv6SubnetOutput {
+	return o
+}
+
+func (o VpcPrivateNetworkIpv6SubnetOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpcPrivateNetworkIpv6Subnet) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the private network.
+func (o VpcPrivateNetworkIpv6SubnetOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpcPrivateNetworkIpv6Subnet) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o VpcPrivateNetworkIpv6SubnetOutput) Subnet() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpcPrivateNetworkIpv6Subnet) *string { return v.Subnet }).(pulumi.StringPtrOutput)
+}
+
+func (o VpcPrivateNetworkIpv6SubnetOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpcPrivateNetworkIpv6Subnet) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
+}
+
+type VpcPrivateNetworkIpv6SubnetArrayOutput struct{ *pulumi.OutputState }
+
+func (VpcPrivateNetworkIpv6SubnetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpcPrivateNetworkIpv6Subnet)(nil)).Elem()
+}
+
+func (o VpcPrivateNetworkIpv6SubnetArrayOutput) ToVpcPrivateNetworkIpv6SubnetArrayOutput() VpcPrivateNetworkIpv6SubnetArrayOutput {
+	return o
+}
+
+func (o VpcPrivateNetworkIpv6SubnetArrayOutput) ToVpcPrivateNetworkIpv6SubnetArrayOutputWithContext(ctx context.Context) VpcPrivateNetworkIpv6SubnetArrayOutput {
+	return o
+}
+
+func (o VpcPrivateNetworkIpv6SubnetArrayOutput) Index(i pulumi.IntInput) VpcPrivateNetworkIpv6SubnetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpcPrivateNetworkIpv6Subnet {
+		return vs[0].([]VpcPrivateNetworkIpv6Subnet)[vs[1].(int)]
+	}).(VpcPrivateNetworkIpv6SubnetOutput)
+}
+
 type GetBaremetalOfferCpus struct {
 	// Number of core on this CPU.
 	CoreCount int `pulumi:"coreCount"`
@@ -19375,6 +19672,236 @@ func (o GetRedisClusterPublicNetworkArrayOutput) Index(i pulumi.IntInput) GetRed
 	}).(GetRedisClusterPublicNetworkOutput)
 }
 
+type GetVpcPrivateNetworkIpv4Subnet struct {
+	CreatedAt string `pulumi:"createdAt"`
+	// The ID of the private network.
+	Id        string `pulumi:"id"`
+	Subnet    string `pulumi:"subnet"`
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetVpcPrivateNetworkIpv4SubnetInput is an input type that accepts GetVpcPrivateNetworkIpv4SubnetArgs and GetVpcPrivateNetworkIpv4SubnetOutput values.
+// You can construct a concrete instance of `GetVpcPrivateNetworkIpv4SubnetInput` via:
+//
+//	GetVpcPrivateNetworkIpv4SubnetArgs{...}
+type GetVpcPrivateNetworkIpv4SubnetInput interface {
+	pulumi.Input
+
+	ToGetVpcPrivateNetworkIpv4SubnetOutput() GetVpcPrivateNetworkIpv4SubnetOutput
+	ToGetVpcPrivateNetworkIpv4SubnetOutputWithContext(context.Context) GetVpcPrivateNetworkIpv4SubnetOutput
+}
+
+type GetVpcPrivateNetworkIpv4SubnetArgs struct {
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The ID of the private network.
+	Id        pulumi.StringInput `pulumi:"id"`
+	Subnet    pulumi.StringInput `pulumi:"subnet"`
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetVpcPrivateNetworkIpv4SubnetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcPrivateNetworkIpv4Subnet)(nil)).Elem()
+}
+
+func (i GetVpcPrivateNetworkIpv4SubnetArgs) ToGetVpcPrivateNetworkIpv4SubnetOutput() GetVpcPrivateNetworkIpv4SubnetOutput {
+	return i.ToGetVpcPrivateNetworkIpv4SubnetOutputWithContext(context.Background())
+}
+
+func (i GetVpcPrivateNetworkIpv4SubnetArgs) ToGetVpcPrivateNetworkIpv4SubnetOutputWithContext(ctx context.Context) GetVpcPrivateNetworkIpv4SubnetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcPrivateNetworkIpv4SubnetOutput)
+}
+
+// GetVpcPrivateNetworkIpv4SubnetArrayInput is an input type that accepts GetVpcPrivateNetworkIpv4SubnetArray and GetVpcPrivateNetworkIpv4SubnetArrayOutput values.
+// You can construct a concrete instance of `GetVpcPrivateNetworkIpv4SubnetArrayInput` via:
+//
+//	GetVpcPrivateNetworkIpv4SubnetArray{ GetVpcPrivateNetworkIpv4SubnetArgs{...} }
+type GetVpcPrivateNetworkIpv4SubnetArrayInput interface {
+	pulumi.Input
+
+	ToGetVpcPrivateNetworkIpv4SubnetArrayOutput() GetVpcPrivateNetworkIpv4SubnetArrayOutput
+	ToGetVpcPrivateNetworkIpv4SubnetArrayOutputWithContext(context.Context) GetVpcPrivateNetworkIpv4SubnetArrayOutput
+}
+
+type GetVpcPrivateNetworkIpv4SubnetArray []GetVpcPrivateNetworkIpv4SubnetInput
+
+func (GetVpcPrivateNetworkIpv4SubnetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcPrivateNetworkIpv4Subnet)(nil)).Elem()
+}
+
+func (i GetVpcPrivateNetworkIpv4SubnetArray) ToGetVpcPrivateNetworkIpv4SubnetArrayOutput() GetVpcPrivateNetworkIpv4SubnetArrayOutput {
+	return i.ToGetVpcPrivateNetworkIpv4SubnetArrayOutputWithContext(context.Background())
+}
+
+func (i GetVpcPrivateNetworkIpv4SubnetArray) ToGetVpcPrivateNetworkIpv4SubnetArrayOutputWithContext(ctx context.Context) GetVpcPrivateNetworkIpv4SubnetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcPrivateNetworkIpv4SubnetArrayOutput)
+}
+
+type GetVpcPrivateNetworkIpv4SubnetOutput struct{ *pulumi.OutputState }
+
+func (GetVpcPrivateNetworkIpv4SubnetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcPrivateNetworkIpv4Subnet)(nil)).Elem()
+}
+
+func (o GetVpcPrivateNetworkIpv4SubnetOutput) ToGetVpcPrivateNetworkIpv4SubnetOutput() GetVpcPrivateNetworkIpv4SubnetOutput {
+	return o
+}
+
+func (o GetVpcPrivateNetworkIpv4SubnetOutput) ToGetVpcPrivateNetworkIpv4SubnetOutputWithContext(ctx context.Context) GetVpcPrivateNetworkIpv4SubnetOutput {
+	return o
+}
+
+func (o GetVpcPrivateNetworkIpv4SubnetOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcPrivateNetworkIpv4Subnet) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The ID of the private network.
+func (o GetVpcPrivateNetworkIpv4SubnetOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcPrivateNetworkIpv4Subnet) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetVpcPrivateNetworkIpv4SubnetOutput) Subnet() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcPrivateNetworkIpv4Subnet) string { return v.Subnet }).(pulumi.StringOutput)
+}
+
+func (o GetVpcPrivateNetworkIpv4SubnetOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcPrivateNetworkIpv4Subnet) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetVpcPrivateNetworkIpv4SubnetArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVpcPrivateNetworkIpv4SubnetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcPrivateNetworkIpv4Subnet)(nil)).Elem()
+}
+
+func (o GetVpcPrivateNetworkIpv4SubnetArrayOutput) ToGetVpcPrivateNetworkIpv4SubnetArrayOutput() GetVpcPrivateNetworkIpv4SubnetArrayOutput {
+	return o
+}
+
+func (o GetVpcPrivateNetworkIpv4SubnetArrayOutput) ToGetVpcPrivateNetworkIpv4SubnetArrayOutputWithContext(ctx context.Context) GetVpcPrivateNetworkIpv4SubnetArrayOutput {
+	return o
+}
+
+func (o GetVpcPrivateNetworkIpv4SubnetArrayOutput) Index(i pulumi.IntInput) GetVpcPrivateNetworkIpv4SubnetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVpcPrivateNetworkIpv4Subnet {
+		return vs[0].([]GetVpcPrivateNetworkIpv4Subnet)[vs[1].(int)]
+	}).(GetVpcPrivateNetworkIpv4SubnetOutput)
+}
+
+type GetVpcPrivateNetworkIpv6Subnet struct {
+	CreatedAt string `pulumi:"createdAt"`
+	// The ID of the private network.
+	Id        string `pulumi:"id"`
+	Subnet    string `pulumi:"subnet"`
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetVpcPrivateNetworkIpv6SubnetInput is an input type that accepts GetVpcPrivateNetworkIpv6SubnetArgs and GetVpcPrivateNetworkIpv6SubnetOutput values.
+// You can construct a concrete instance of `GetVpcPrivateNetworkIpv6SubnetInput` via:
+//
+//	GetVpcPrivateNetworkIpv6SubnetArgs{...}
+type GetVpcPrivateNetworkIpv6SubnetInput interface {
+	pulumi.Input
+
+	ToGetVpcPrivateNetworkIpv6SubnetOutput() GetVpcPrivateNetworkIpv6SubnetOutput
+	ToGetVpcPrivateNetworkIpv6SubnetOutputWithContext(context.Context) GetVpcPrivateNetworkIpv6SubnetOutput
+}
+
+type GetVpcPrivateNetworkIpv6SubnetArgs struct {
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The ID of the private network.
+	Id        pulumi.StringInput `pulumi:"id"`
+	Subnet    pulumi.StringInput `pulumi:"subnet"`
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetVpcPrivateNetworkIpv6SubnetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcPrivateNetworkIpv6Subnet)(nil)).Elem()
+}
+
+func (i GetVpcPrivateNetworkIpv6SubnetArgs) ToGetVpcPrivateNetworkIpv6SubnetOutput() GetVpcPrivateNetworkIpv6SubnetOutput {
+	return i.ToGetVpcPrivateNetworkIpv6SubnetOutputWithContext(context.Background())
+}
+
+func (i GetVpcPrivateNetworkIpv6SubnetArgs) ToGetVpcPrivateNetworkIpv6SubnetOutputWithContext(ctx context.Context) GetVpcPrivateNetworkIpv6SubnetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcPrivateNetworkIpv6SubnetOutput)
+}
+
+// GetVpcPrivateNetworkIpv6SubnetArrayInput is an input type that accepts GetVpcPrivateNetworkIpv6SubnetArray and GetVpcPrivateNetworkIpv6SubnetArrayOutput values.
+// You can construct a concrete instance of `GetVpcPrivateNetworkIpv6SubnetArrayInput` via:
+//
+//	GetVpcPrivateNetworkIpv6SubnetArray{ GetVpcPrivateNetworkIpv6SubnetArgs{...} }
+type GetVpcPrivateNetworkIpv6SubnetArrayInput interface {
+	pulumi.Input
+
+	ToGetVpcPrivateNetworkIpv6SubnetArrayOutput() GetVpcPrivateNetworkIpv6SubnetArrayOutput
+	ToGetVpcPrivateNetworkIpv6SubnetArrayOutputWithContext(context.Context) GetVpcPrivateNetworkIpv6SubnetArrayOutput
+}
+
+type GetVpcPrivateNetworkIpv6SubnetArray []GetVpcPrivateNetworkIpv6SubnetInput
+
+func (GetVpcPrivateNetworkIpv6SubnetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcPrivateNetworkIpv6Subnet)(nil)).Elem()
+}
+
+func (i GetVpcPrivateNetworkIpv6SubnetArray) ToGetVpcPrivateNetworkIpv6SubnetArrayOutput() GetVpcPrivateNetworkIpv6SubnetArrayOutput {
+	return i.ToGetVpcPrivateNetworkIpv6SubnetArrayOutputWithContext(context.Background())
+}
+
+func (i GetVpcPrivateNetworkIpv6SubnetArray) ToGetVpcPrivateNetworkIpv6SubnetArrayOutputWithContext(ctx context.Context) GetVpcPrivateNetworkIpv6SubnetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcPrivateNetworkIpv6SubnetArrayOutput)
+}
+
+type GetVpcPrivateNetworkIpv6SubnetOutput struct{ *pulumi.OutputState }
+
+func (GetVpcPrivateNetworkIpv6SubnetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcPrivateNetworkIpv6Subnet)(nil)).Elem()
+}
+
+func (o GetVpcPrivateNetworkIpv6SubnetOutput) ToGetVpcPrivateNetworkIpv6SubnetOutput() GetVpcPrivateNetworkIpv6SubnetOutput {
+	return o
+}
+
+func (o GetVpcPrivateNetworkIpv6SubnetOutput) ToGetVpcPrivateNetworkIpv6SubnetOutputWithContext(ctx context.Context) GetVpcPrivateNetworkIpv6SubnetOutput {
+	return o
+}
+
+func (o GetVpcPrivateNetworkIpv6SubnetOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcPrivateNetworkIpv6Subnet) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The ID of the private network.
+func (o GetVpcPrivateNetworkIpv6SubnetOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcPrivateNetworkIpv6Subnet) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetVpcPrivateNetworkIpv6SubnetOutput) Subnet() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcPrivateNetworkIpv6Subnet) string { return v.Subnet }).(pulumi.StringOutput)
+}
+
+func (o GetVpcPrivateNetworkIpv6SubnetOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcPrivateNetworkIpv6Subnet) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetVpcPrivateNetworkIpv6SubnetArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVpcPrivateNetworkIpv6SubnetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcPrivateNetworkIpv6Subnet)(nil)).Elem()
+}
+
+func (o GetVpcPrivateNetworkIpv6SubnetArrayOutput) ToGetVpcPrivateNetworkIpv6SubnetArrayOutput() GetVpcPrivateNetworkIpv6SubnetArrayOutput {
+	return o
+}
+
+func (o GetVpcPrivateNetworkIpv6SubnetArrayOutput) ToGetVpcPrivateNetworkIpv6SubnetArrayOutputWithContext(ctx context.Context) GetVpcPrivateNetworkIpv6SubnetArrayOutput {
+	return o
+}
+
+func (o GetVpcPrivateNetworkIpv6SubnetArrayOutput) Index(i pulumi.IntInput) GetVpcPrivateNetworkIpv6SubnetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVpcPrivateNetworkIpv6Subnet {
+		return vs[0].([]GetVpcPrivateNetworkIpv6Subnet)[vs[1].(int)]
+	}).(GetVpcPrivateNetworkIpv6SubnetOutput)
+}
+
 type GetWebHostOfferProduct struct {
 	// The quota of databases.
 	DatabasesQuota int `pulumi:"databasesQuota"`
@@ -19689,6 +20216,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPrivateNetworkArrayInput)(nil)).Elem(), RedisClusterPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPublicNetworkInput)(nil)).Elem(), RedisClusterPublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPublicNetworkPtrInput)(nil)).Elem(), RedisClusterPublicNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcPrivateNetworkIpv4SubnetInput)(nil)).Elem(), VpcPrivateNetworkIpv4SubnetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcPrivateNetworkIpv4SubnetPtrInput)(nil)).Elem(), VpcPrivateNetworkIpv4SubnetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcPrivateNetworkIpv6SubnetInput)(nil)).Elem(), VpcPrivateNetworkIpv6SubnetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcPrivateNetworkIpv6SubnetArrayInput)(nil)).Elem(), VpcPrivateNetworkIpv6SubnetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalOfferCpusInput)(nil)).Elem(), GetBaremetalOfferCpusArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalOfferCpusArrayInput)(nil)).Elem(), GetBaremetalOfferCpusArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalOfferDiskInput)(nil)).Elem(), GetBaremetalOfferDiskArgs{})
@@ -19813,6 +20344,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPrivateNetworkArrayInput)(nil)).Elem(), GetRedisClusterPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPublicNetworkInput)(nil)).Elem(), GetRedisClusterPublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPublicNetworkArrayInput)(nil)).Elem(), GetRedisClusterPublicNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcPrivateNetworkIpv4SubnetInput)(nil)).Elem(), GetVpcPrivateNetworkIpv4SubnetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcPrivateNetworkIpv4SubnetArrayInput)(nil)).Elem(), GetVpcPrivateNetworkIpv4SubnetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcPrivateNetworkIpv6SubnetInput)(nil)).Elem(), GetVpcPrivateNetworkIpv6SubnetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcPrivateNetworkIpv6SubnetArrayInput)(nil)).Elem(), GetVpcPrivateNetworkIpv6SubnetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWebHostOfferProductInput)(nil)).Elem(), GetWebHostOfferProductArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWebHostOfferProductArrayInput)(nil)).Elem(), GetWebHostOfferProductArray{})
 	pulumi.RegisterOutputType(BaremetalServerIpOutput{})
@@ -19959,6 +20494,10 @@ func init() {
 	pulumi.RegisterOutputType(RedisClusterPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(RedisClusterPublicNetworkOutput{})
 	pulumi.RegisterOutputType(RedisClusterPublicNetworkPtrOutput{})
+	pulumi.RegisterOutputType(VpcPrivateNetworkIpv4SubnetOutput{})
+	pulumi.RegisterOutputType(VpcPrivateNetworkIpv4SubnetPtrOutput{})
+	pulumi.RegisterOutputType(VpcPrivateNetworkIpv6SubnetOutput{})
+	pulumi.RegisterOutputType(VpcPrivateNetworkIpv6SubnetArrayOutput{})
 	pulumi.RegisterOutputType(GetBaremetalOfferCpusOutput{})
 	pulumi.RegisterOutputType(GetBaremetalOfferCpusArrayOutput{})
 	pulumi.RegisterOutputType(GetBaremetalOfferDiskOutput{})
@@ -20083,6 +20622,10 @@ func init() {
 	pulumi.RegisterOutputType(GetRedisClusterPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetRedisClusterPublicNetworkOutput{})
 	pulumi.RegisterOutputType(GetRedisClusterPublicNetworkArrayOutput{})
+	pulumi.RegisterOutputType(GetVpcPrivateNetworkIpv4SubnetOutput{})
+	pulumi.RegisterOutputType(GetVpcPrivateNetworkIpv4SubnetArrayOutput{})
+	pulumi.RegisterOutputType(GetVpcPrivateNetworkIpv6SubnetOutput{})
+	pulumi.RegisterOutputType(GetVpcPrivateNetworkIpv6SubnetArrayOutput{})
 	pulumi.RegisterOutputType(GetWebHostOfferProductOutput{})
 	pulumi.RegisterOutputType(GetWebHostOfferProductArrayOutput{})
 }

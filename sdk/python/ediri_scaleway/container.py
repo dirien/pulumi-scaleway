@@ -40,7 +40,7 @@ class ContainerArgs:
                > **Important** Updates to `name` will recreate the container.
                
                The following arguments are optional:
-        :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+        :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container. Defaults to 140.
         :param pulumi.Input[bool] deploy: Boolean controlling whether the container is on a production environment.
                
                Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
@@ -49,7 +49,7 @@ class ContainerArgs:
         :param pulumi.Input[str] http_option: HTTP traffic configuration
         :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
         :param pulumi.Input[int] max_scale: The maximum of number of instances this container can scale to. Default to 20.
-        :param pulumi.Input[int] memory_limit: The memory computing resources in MB to allocate to each container. Defaults to 128.
+        :param pulumi.Input[int] memory_limit: The memory computing resources in MB to allocate to each container. Defaults to 256.
         :param pulumi.Input[int] min_scale: The minimum of running container instances continuously. Defaults to 0.
         :param pulumi.Input[str] name: The unique name of the container name.
         :param pulumi.Input[int] port: The port to expose the container. Defaults to 8080.
@@ -119,7 +119,7 @@ class ContainerArgs:
     @pulumi.getter(name="cpuLimit")
     def cpu_limit(self) -> Optional[pulumi.Input[int]]:
         """
-        The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+        The amount of vCPU computing resources to allocate to each container. Defaults to 140.
         """
         return pulumi.get(self, "cpu_limit")
 
@@ -205,7 +205,7 @@ class ContainerArgs:
     @pulumi.getter(name="memoryLimit")
     def memory_limit(self) -> Optional[pulumi.Input[int]]:
         """
-        The memory computing resources in MB to allocate to each container. Defaults to 128.
+        The memory computing resources in MB to allocate to each container. Defaults to 256.
         """
         return pulumi.get(self, "memory_limit")
 
@@ -362,7 +362,7 @@ class _ContainerState:
                  timeout: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering Container resources.
-        :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+        :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container. Defaults to 140.
         :param pulumi.Input[str] cron_status: The cron status of the container.
         :param pulumi.Input[bool] deploy: Boolean controlling whether the container is on a production environment.
                
@@ -374,7 +374,7 @@ class _ContainerState:
         :param pulumi.Input[str] http_option: HTTP traffic configuration
         :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
         :param pulumi.Input[int] max_scale: The maximum of number of instances this container can scale to. Default to 20.
-        :param pulumi.Input[int] memory_limit: The memory computing resources in MB to allocate to each container. Defaults to 128.
+        :param pulumi.Input[int] memory_limit: The memory computing resources in MB to allocate to each container. Defaults to 256.
         :param pulumi.Input[int] min_scale: The minimum of running container instances continuously. Defaults to 0.
         :param pulumi.Input[str] name: The unique name of the container name.
         :param pulumi.Input[str] namespace_id: The container namespace ID of the container.
@@ -443,7 +443,7 @@ class _ContainerState:
     @pulumi.getter(name="cpuLimit")
     def cpu_limit(self) -> Optional[pulumi.Input[int]]:
         """
-        The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+        The amount of vCPU computing resources to allocate to each container. Defaults to 140.
         """
         return pulumi.get(self, "cpu_limit")
 
@@ -565,7 +565,7 @@ class _ContainerState:
     @pulumi.getter(name="memoryLimit")
     def memory_limit(self) -> Optional[pulumi.Input[int]]:
         """
-        The memory computing resources in MB to allocate to each container. Defaults to 128.
+        The memory computing resources in MB to allocate to each container. Defaults to 256.
         """
         return pulumi.get(self, "memory_limit")
 
@@ -830,7 +830,7 @@ class Container(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+        :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container. Defaults to 140.
         :param pulumi.Input[bool] deploy: Boolean controlling whether the container is on a production environment.
                
                Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
@@ -839,7 +839,7 @@ class Container(pulumi.CustomResource):
         :param pulumi.Input[str] http_option: HTTP traffic configuration
         :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
         :param pulumi.Input[int] max_scale: The maximum of number of instances this container can scale to. Default to 20.
-        :param pulumi.Input[int] memory_limit: The memory computing resources in MB to allocate to each container. Defaults to 128.
+        :param pulumi.Input[int] memory_limit: The memory computing resources in MB to allocate to each container. Defaults to 256.
         :param pulumi.Input[int] min_scale: The minimum of running container instances continuously. Defaults to 0.
         :param pulumi.Input[str] name: The unique name of the container name.
         :param pulumi.Input[str] namespace_id: The container namespace ID of the container.
@@ -1053,7 +1053,7 @@ class Container(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+        :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container. Defaults to 140.
         :param pulumi.Input[str] cron_status: The cron status of the container.
         :param pulumi.Input[bool] deploy: Boolean controlling whether the container is on a production environment.
                
@@ -1065,7 +1065,7 @@ class Container(pulumi.CustomResource):
         :param pulumi.Input[str] http_option: HTTP traffic configuration
         :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
         :param pulumi.Input[int] max_scale: The maximum of number of instances this container can scale to. Default to 20.
-        :param pulumi.Input[int] memory_limit: The memory computing resources in MB to allocate to each container. Defaults to 128.
+        :param pulumi.Input[int] memory_limit: The memory computing resources in MB to allocate to each container. Defaults to 256.
         :param pulumi.Input[int] min_scale: The minimum of running container instances continuously. Defaults to 0.
         :param pulumi.Input[str] name: The unique name of the container name.
         :param pulumi.Input[str] namespace_id: The container namespace ID of the container.
@@ -1116,7 +1116,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter(name="cpuLimit")
     def cpu_limit(self) -> pulumi.Output[int]:
         """
-        The amount of vCPU computing resources to allocate to each container. Defaults to 70.
+        The amount of vCPU computing resources to allocate to each container. Defaults to 140.
         """
         return pulumi.get(self, "cpu_limit")
 
@@ -1198,7 +1198,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter(name="memoryLimit")
     def memory_limit(self) -> pulumi.Output[int]:
         """
-        The memory computing resources in MB to allocate to each container. Defaults to 128.
+        The memory computing resources in MB to allocate to each container. Defaults to 256.
         """
         return pulumi.get(self, "memory_limit")
 

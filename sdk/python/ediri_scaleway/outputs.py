@@ -84,6 +84,8 @@ __all__ = [
     'RedisClusterAcl',
     'RedisClusterPrivateNetwork',
     'RedisClusterPublicNetwork',
+    'VpcPrivateNetworkIpv4Subnet',
+    'VpcPrivateNetworkIpv6Subnet',
     'GetBaremetalOfferCpusResult',
     'GetBaremetalOfferDiskResult',
     'GetBaremetalOfferMemoryResult',
@@ -146,6 +148,8 @@ __all__ = [
     'GetRedisClusterAclResult',
     'GetRedisClusterPrivateNetworkResult',
     'GetRedisClusterPublicNetworkResult',
+    'GetVpcPrivateNetworkIpv4SubnetResult',
+    'GetVpcPrivateNetworkIpv6SubnetResult',
     'GetWebHostOfferProductResult',
 ]
 
@@ -4642,6 +4646,130 @@ class RedisClusterPublicNetwork(dict):
 
 
 @pulumi.output_type
+class VpcPrivateNetworkIpv4Subnet(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "createdAt":
+            suggest = "created_at"
+        elif key == "updatedAt":
+            suggest = "updated_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in VpcPrivateNetworkIpv4Subnet. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        VpcPrivateNetworkIpv4Subnet.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        VpcPrivateNetworkIpv4Subnet.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 created_at: Optional[str] = None,
+                 id: Optional[str] = None,
+                 subnet: Optional[str] = None,
+                 updated_at: Optional[str] = None):
+        """
+        :param str id: The ID of the private network.
+        """
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subnet is not None:
+            pulumi.set(__self__, "subnet", subnet)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[str]:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the private network.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def subnet(self) -> Optional[str]:
+        return pulumi.get(self, "subnet")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[str]:
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class VpcPrivateNetworkIpv6Subnet(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "createdAt":
+            suggest = "created_at"
+        elif key == "updatedAt":
+            suggest = "updated_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in VpcPrivateNetworkIpv6Subnet. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        VpcPrivateNetworkIpv6Subnet.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        VpcPrivateNetworkIpv6Subnet.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 created_at: Optional[str] = None,
+                 id: Optional[str] = None,
+                 subnet: Optional[str] = None,
+                 updated_at: Optional[str] = None):
+        """
+        :param str id: The ID of the private network.
+        """
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if subnet is not None:
+            pulumi.set(__self__, "subnet", subnet)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[str]:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the private network.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def subnet(self) -> Optional[str]:
+        return pulumi.get(self, "subnet")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[str]:
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
 class GetBaremetalOfferCpusResult(dict):
     def __init__(__self__, *,
                  core_count: int,
@@ -7906,6 +8034,84 @@ class GetRedisClusterPublicNetworkResult(dict):
     @pulumi.getter
     def port(self) -> int:
         return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class GetVpcPrivateNetworkIpv4SubnetResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 id: str,
+                 subnet: str,
+                 updated_at: str):
+        """
+        :param str id: The ID of the private network.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "subnet", subnet)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the private network.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def subnet(self) -> str:
+        return pulumi.get(self, "subnet")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetVpcPrivateNetworkIpv6SubnetResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 id: str,
+                 subnet: str,
+                 updated_at: str):
+        """
+        :param str id: The ID of the private network.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "subnet", subnet)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the private network.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def subnet(self) -> str:
+        return pulumi.get(self, "subnet")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        return pulumi.get(self, "updated_at")
 
 
 @pulumi.output_type

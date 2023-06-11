@@ -1214,3 +1214,23 @@ export interface RedisClusterPublicNetwork {
      */
     port?: pulumi.Input<number>;
 }
+
+export interface VpcPrivateNetworkIpv4Subnet {
+    createdAt?: pulumi.Input<string>;
+    /**
+     * The ID of the private network.
+     */
+    id?: pulumi.Input<string>;
+    subnet?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string>;
+}
+
+export interface VpcPrivateNetworkIpv6Subnet {
+    createdAt?: pulumi.Input<string>;
+    /**
+     * The ID of the private network.
+     */
+    id?: pulumi.Input<string>;
+    subnet?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string>;
+}

@@ -162,6 +162,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SecretVersion{}
 	case "scaleway:index/temDomain:TemDomain":
 		r = &TemDomain{}
+	case "scaleway:index/vpc:Vpc":
+		r = &Vpc{}
 	case "scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork":
 		r = &VpcGatewayNetwork{}
 	case "scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork":
@@ -559,6 +561,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/temDomain",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/vpc",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

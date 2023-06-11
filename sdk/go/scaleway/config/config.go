@@ -14,7 +14,11 @@ func GetAccessKey(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "SCW_ACCESS_KEY").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "SCW_ACCESS_KEY"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // The Scaleway API URL to use.
@@ -28,7 +32,11 @@ func GetOrganizationId(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "SCW_DEFAULT_ORGANIZATION_ID").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "SCW_DEFAULT_ORGANIZATION_ID"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // The Scaleway profile to use.
@@ -42,7 +50,11 @@ func GetProjectId(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "SCW_DEFAULT_PROJECT_ID").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "SCW_DEFAULT_PROJECT_ID"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // The region you want to attach the resource to
@@ -51,7 +63,11 @@ func GetRegion(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "SCW_DEFAULT_REGION").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "SCW_DEFAULT_REGION"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // The Scaleway secret Key.
@@ -60,7 +76,11 @@ func GetSecretKey(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "SCW_SECRET_KEY").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "SCW_SECRET_KEY"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // The zone you want to attach the resource to
@@ -69,5 +89,9 @@ func GetZone(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "SCW_DEFAULT_ZONE").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "SCW_DEFAULT_ZONE"); d != nil {
+		value = d.(string)
+	}
+	return value
 }

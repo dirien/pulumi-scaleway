@@ -225,7 +225,7 @@ namespace ediri.Scaleway
         /// Changes to this field will cause the cluster to be destroyed then recreated.
         /// </summary>
         [Output("privateNetworkId")]
-        public Output<string> PrivateNetworkId { get; private set; } = null!;
+        public Output<string?> PrivateNetworkId { get; private set; } = null!;
 
         /// <summary>
         /// `project_id`) The ID of the project the cluster is associated with.

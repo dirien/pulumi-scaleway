@@ -1256,6 +1256,26 @@ export interface GetRedisClusterPublicNetwork {
     port: number;
 }
 
+export interface GetVpcPrivateNetworkIpv4Subnet {
+    createdAt: string;
+    /**
+     * The ID of the private network.
+     */
+    id: string;
+    subnet: string;
+    updatedAt: string;
+}
+
+export interface GetVpcPrivateNetworkIpv6Subnet {
+    createdAt: string;
+    /**
+     * The ID of the private network.
+     */
+    id: string;
+    subnet: string;
+    updatedAt: string;
+}
+
 export interface GetWebHostOfferProduct {
     /**
      * The quota of databases.
@@ -2310,5 +2330,25 @@ export interface RedisClusterPublicNetwork {
      * TCP port of the endpoint.
      */
     port: number;
+}
+
+export interface VpcPrivateNetworkIpv4Subnet {
+    createdAt: string;
+    /**
+     * The ID of the private network.
+     */
+    id: string;
+    subnet: string;
+    updatedAt: string;
+}
+
+export interface VpcPrivateNetworkIpv6Subnet {
+    createdAt: string;
+    /**
+     * The ID of the private network.
+     */
+    id: string;
+    subnet: string;
+    updatedAt: string;
 }
 
