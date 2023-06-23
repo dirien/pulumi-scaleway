@@ -190,8 +190,8 @@ type K8sCluster struct {
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// The ID of the private network of the cluster.
 	//
-	// > **Important:** This field can only be set at cluster creation and cannot be updated later.
-	// Changes to this field will cause the cluster to be destroyed then recreated.
+	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+	// Any subsequent change after this field got set will prompt for cluster recreation.
 	PrivateNetworkId pulumi.StringPtrOutput `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -289,8 +289,8 @@ type k8sClusterState struct {
 	OrganizationId *string `pulumi:"organizationId"`
 	// The ID of the private network of the cluster.
 	//
-	// > **Important:** This field can only be set at cluster creation and cannot be updated later.
-	// Changes to this field will cause the cluster to be destroyed then recreated.
+	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+	// Any subsequent change after this field got set will prompt for cluster recreation.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -346,8 +346,8 @@ type K8sClusterState struct {
 	OrganizationId pulumi.StringPtrInput
 	// The ID of the private network of the cluster.
 	//
-	// > **Important:** This field can only be set at cluster creation and cannot be updated later.
-	// Changes to this field will cause the cluster to be destroyed then recreated.
+	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+	// Any subsequent change after this field got set will prompt for cluster recreation.
 	PrivateNetworkId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -399,8 +399,8 @@ type k8sClusterArgs struct {
 	OpenIdConnectConfig *K8sClusterOpenIdConnectConfig `pulumi:"openIdConnectConfig"`
 	// The ID of the private network of the cluster.
 	//
-	// > **Important:** This field can only be set at cluster creation and cannot be updated later.
-	// Changes to this field will cause the cluster to be destroyed then recreated.
+	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+	// Any subsequent change after this field got set will prompt for cluster recreation.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -441,8 +441,8 @@ type K8sClusterArgs struct {
 	OpenIdConnectConfig K8sClusterOpenIdConnectConfigPtrInput
 	// The ID of the private network of the cluster.
 	//
-	// > **Important:** This field can only be set at cluster creation and cannot be updated later.
-	// Changes to this field will cause the cluster to be destroyed then recreated.
+	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+	// Any subsequent change after this field got set will prompt for cluster recreation.
 	PrivateNetworkId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -618,8 +618,8 @@ func (o K8sClusterOutput) OrganizationId() pulumi.StringOutput {
 
 // The ID of the private network of the cluster.
 //
-// > **Important:** This field can only be set at cluster creation and cannot be updated later.
-// Changes to this field will cause the cluster to be destroyed then recreated.
+// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
+// Any subsequent change after this field got set will prompt for cluster recreation.
 func (o K8sClusterOutput) PrivateNetworkId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *K8sCluster) pulumi.StringPtrOutput { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
 }

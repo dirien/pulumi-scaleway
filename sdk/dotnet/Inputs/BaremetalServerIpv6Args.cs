@@ -11,7 +11,7 @@ using Pulumi;
 namespace ediri.Scaleway.Inputs
 {
 
-    public sealed class BaremetalServerIpGetArgs : global::Pulumi.ResourceArgs
+    public sealed class BaremetalServerIpv6Args : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The address of the IPv6.
@@ -37,9 +37,9 @@ namespace ediri.Scaleway.Inputs
         [Input("version")]
         public Input<string>? Version { get; set; }
 
-        public BaremetalServerIpGetArgs()
+        public BaremetalServerIpv6Args()
         {
         }
-        public static new BaremetalServerIpGetArgs Empty => new BaremetalServerIpGetArgs();
+        public static new BaremetalServerIpv6Args Empty => new BaremetalServerIpv6Args();
     }
 }

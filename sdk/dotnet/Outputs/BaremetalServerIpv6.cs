@@ -8,38 +8,43 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace ediri.Scaleway.Inputs
+namespace ediri.Scaleway.Outputs
 {
 
-    public sealed class BaremetalServerIpGetArgs : global::Pulumi.ResourceArgs
+    [OutputType]
+    public sealed class BaremetalServerIpv6
     {
         /// <summary>
         /// The address of the IPv6.
         /// </summary>
-        [Input("address")]
-        public Input<string>? Address { get; set; }
-
+        public readonly string? Address;
         /// <summary>
         /// The id of the private network to attach.
         /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
-
+        public readonly string? Id;
         /// <summary>
         /// The reverse of the IPv6.
         /// </summary>
-        [Input("reverse")]
-        public Input<string>? Reverse { get; set; }
-
+        public readonly string? Reverse;
         /// <summary>
         /// The type of the IPv6.
         /// </summary>
-        [Input("version")]
-        public Input<string>? Version { get; set; }
+        public readonly string? Version;
 
-        public BaremetalServerIpGetArgs()
+        [OutputConstructor]
+        private BaremetalServerIpv6(
+            string? address,
+
+            string? id,
+
+            string? reverse,
+
+            string? version)
         {
+            Address = address;
+            Id = id;
+            Reverse = reverse;
+            Version = version;
         }
-        public static new BaremetalServerIpGetArgs Empty => new BaremetalServerIpGetArgs();
     }
 }

@@ -30,32 +30,33 @@ namespace ediri.Scaleway
     ///     var policy = new Scaleway.ObjectBucketPolicy("policy", new()
     ///     {
     ///         Bucket = bucket.Name,
-    ///         Policy = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         Policy = Output.Tuple(bucket.Name, bucket.Name).Apply(values =&gt;
     ///         {
-    ///             ["Id"] = "MyPolicy",
-    ///             ["Statement"] = new[]
+    ///             var bucketName = values.Item1;
+    ///             var bucketName1 = values.Item2;
+    ///             return JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///             {
-    ///                 new Dictionary&lt;string, object?&gt;
+    ///                 ["Version"] = "2023-04-17",
+    ///                 ["Id"] = "MyBucketPolicy",
+    ///                 ["Statement"] = new[]
     ///                 {
-    ///                     ["Action"] = new[]
+    ///                     new Dictionary&lt;string, object?&gt;
     ///                     {
-    ///                         "s3:ListBucket",
-    ///                         "s3:GetObject",
+    ///                         ["Sid"] = "Delegate access",
+    ///                         ["Effect"] = "Allow",
+    ///                         ["Principal"] = new Dictionary&lt;string, object?&gt;
+    ///                         {
+    ///                             ["SCW"] = "application_id:&lt;APPLICATION_ID&gt;",
+    ///                         },
+    ///                         ["Action"] = "s3:ListBucket",
+    ///                         ["Resources"] = new[]
+    ///                         {
+    ///                             bucketName,
+    ///                             $"{bucketName1}/*",
+    ///                         },
     ///                     },
-    ///                     ["Effect"] = "Allow",
-    ///                     ["Principal"] = new Dictionary&lt;string, object?&gt;
-    ///                     {
-    ///                         ["SCW"] = "*",
-    ///                     },
-    ///                     ["Resource"] = new[]
-    ///                     {
-    ///                         "some-unique-name",
-    ///                         "some-unique-name/*",
-    ///                     },
-    ///                     ["Sid"] = "GrantToEveryone",
     ///                 },
-    ///             },
-    ///             ["Version"] = "2012-10-17",
+    ///             });
     ///         }),
     ///     });
     /// 

@@ -136,13 +136,13 @@ def get_rdb_database(instance_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getRdbDatabase:getRdbDatabase', __args__, opts=opts, typ=GetRdbDatabaseResult).value
 
     return AwaitableGetRdbDatabaseResult(
-        id=__ret__.id,
-        instance_id=__ret__.instance_id,
-        managed=__ret__.managed,
-        name=__ret__.name,
-        owner=__ret__.owner,
-        region=__ret__.region,
-        size=__ret__.size)
+        id=pulumi.get(__ret__, 'id'),
+        instance_id=pulumi.get(__ret__, 'instance_id'),
+        managed=pulumi.get(__ret__, 'managed'),
+        name=pulumi.get(__ret__, 'name'),
+        owner=pulumi.get(__ret__, 'owner'),
+        region=pulumi.get(__ret__, 'region'),
+        size=pulumi.get(__ret__, 'size'))
 
 
 @_utilities.lift_output_func(get_rdb_database)
