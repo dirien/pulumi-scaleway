@@ -127,12 +127,12 @@ def get_rdb_privilege(database_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getRdbPrivilege:getRdbPrivilege', __args__, opts=opts, typ=GetRdbPrivilegeResult).value
 
     return AwaitableGetRdbPrivilegeResult(
-        database_name=__ret__.database_name,
-        id=__ret__.id,
-        instance_id=__ret__.instance_id,
-        permission=__ret__.permission,
-        region=__ret__.region,
-        user_name=__ret__.user_name)
+        database_name=pulumi.get(__ret__, 'database_name'),
+        id=pulumi.get(__ret__, 'id'),
+        instance_id=pulumi.get(__ret__, 'instance_id'),
+        permission=pulumi.get(__ret__, 'permission'),
+        region=pulumi.get(__ret__, 'region'),
+        user_name=pulumi.get(__ret__, 'user_name'))
 
 
 @_utilities.lift_output_func(get_rdb_privilege)

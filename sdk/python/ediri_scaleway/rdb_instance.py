@@ -518,6 +518,9 @@ class _RdbInstanceState:
         """
         (Deprecated) The IP of the Database Instance.
         """
+        warnings.warn("""Please use the private_network or the load_balancer attribute""", DeprecationWarning)
+        pulumi.log.warn("""endpoint_ip is deprecated: Please use the private_network or the load_balancer attribute""")
+
         return pulumi.get(self, "endpoint_ip")
 
     @endpoint_ip.setter
@@ -1365,6 +1368,9 @@ class RdbInstance(pulumi.CustomResource):
         """
         (Deprecated) The IP of the Database Instance.
         """
+        warnings.warn("""Please use the private_network or the load_balancer attribute""", DeprecationWarning)
+        pulumi.log.warn("""endpoint_ip is deprecated: Please use the private_network or the load_balancer attribute""")
+
         return pulumi.get(self, "endpoint_ip")
 
     @property
