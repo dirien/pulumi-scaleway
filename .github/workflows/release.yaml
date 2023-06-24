@@ -36,10 +36,25 @@ jobs:
         uses: actions/setup-go@fac708d6674e30b6ba41289acaab6d4b75aa0753 # tag=v4.0.1
         with:
           go-version: ${{matrix.goversion}}
-      - name: Install pulumictl
-        uses: jaxxstorm/action-install-gh-release@c5ead9a448b4660cf1e7866ee22e4dc56538031a # tag=v1.10.0
+      - uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
         with:
-          repo: pulumi/pulumictl
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+      - name: Install pulumictl
+        run: |
+          wget https://github.com/pulumi/pulumictl/releases/download/v0.0.42/pulumictl-v0.0.42-linux-amd64.tar.gz -O /tmp/pulumictl-v0.0.42-linux-amd64.tar.gz
+          tar -xvf /tmp/pulumictl-v0.0.42-linux-amd64.tar.gz -C /tmp
+          mv /tmp/pulumictl /usr/local/bin
+      # - name: Install pulumictl
+      #   uses: jaxxstorm/action-install-gh-release@c5ead9a448b4660cf1e7866ee22e4dc56538031a # tag=v1.10.0
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     repo: pulumi/pulumictl
       - name: Set PreRelease Version
         run: echo "GORELEASER_CURRENT_TAG=v$(pulumictl get version --language generic)" >> $GITHUB_ENV
       - uses: sigstore/cosign-installer@dd6b2e2b610a11fd73dd187a43d57cc1394e35f9 # v3.0.5
@@ -49,6 +64,8 @@ jobs:
         with:
           args: -p 3 release --rm-dist
           version: latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create tag
         uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # tag=v6.4.1
         with:
