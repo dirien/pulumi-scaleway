@@ -59,6 +59,16 @@ jobs:
         run: echo "GORELEASER_CURRENT_TAG=v$(pulumictl get version --language generic)" >> $GITHUB_ENV
       - uses: sigstore/cosign-installer@d13028333d784fcc802b67ec924bcebe75aa0a5f # v3.1.0
       - uses: anchore/sbom-action/download-syft@78fc58e266e87a38d4194b2137a3d4e9bcaf7ca1 # v0.14.3
+      - name: make tfgen
+        run: |
+          make tfgen
+      - name: check GH rate limit
+        run: |
+          gh api \
+                -H "Accept: application/vnd.github+json" \
+                -H "X-GitHub-Api-Version: 2022-11-28" \
+                /rate_limit | jq
+          sleep 300 # 5 minutes
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@336e29918d653399e599bfca99fadc1d7ffbc9f7 # tag=v4.3.0
         with:
