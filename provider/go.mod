@@ -10,7 +10,7 @@ replace (
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.53.0
 	github.com/pulumi/pulumi/sdk/v3 v3.74.0
-	github.com/scaleway/terraform-provider-scaleway/v2 v2.22.0
+	github.com/scaleway/terraform-provider-scaleway/v2 v2.23.0
 )
 
 require (
@@ -53,7 +53,7 @@ require (
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
 	github.com/armon/go-metrics v0.4.0 // indirect
 	github.com/armon/go-radix v1.0.0 // indirect
-	github.com/aws/aws-sdk-go v1.44.288 // indirect
+	github.com/aws/aws-sdk-go v1.44.294 // indirect
 	github.com/aws/aws-sdk-go-v2 v1.17.3 // indirect
 	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.4.3 // indirect
 	github.com/aws/aws-sdk-go-v2/config v1.15.15 // indirect
@@ -138,7 +138,7 @@ require (
 	github.com/hashicorp/terraform-json v0.17.0 // indirect
 	github.com/hashicorp/terraform-plugin-go v0.16.0 // indirect
 	github.com/hashicorp/terraform-plugin-log v0.9.0 // indirect
-	github.com/hashicorp/terraform-plugin-sdk/v2 v2.26.1 // indirect
+	github.com/hashicorp/terraform-plugin-sdk/v2 v2.27.0 // indirect
 	github.com/hashicorp/terraform-registry-address v0.2.1 // indirect
 	github.com/hashicorp/terraform-svchost v0.1.1 // indirect
 	github.com/hashicorp/vault/api v1.8.2 // indirect
@@ -202,7 +202,7 @@ require (
 	github.com/ryanuber/go-glob v1.0.0 // indirect
 	github.com/sabhiram/go-gitignore v0.0.0-20210923224102-525f6e181f06 // indirect
 	github.com/santhosh-tekuri/jsonschema/v5 v5.3.0 // indirect
-	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.17.0.20230619154501-6a12f2ddaa47 // indirect
+	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.17.0.20230626132518-b0dfa1defaaf // indirect
 	github.com/segmentio/asm v1.2.0 // indirect
 	github.com/segmentio/encoding v0.3.6 // indirect
 	github.com/sergi/go-diff v1.3.1 // indirect
