@@ -12,6 +12,8 @@ import * as utilities from "./utilities";
  *
  * ## Example
  *
+ * ### Basic
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@ediri/scaleway";
@@ -20,6 +22,31 @@ import * as utilities from "./utilities";
  *     "demo",
  *     "terraform",
  * ]});
+ * ```
+ *
+ * ### With subnets
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@ediri/scaleway";
+ *
+ * const pnPriv = new scaleway.VpcPrivateNetwork("pnPriv", {
+ *     ipv4Subnet: {
+ *         subnet: "192.168.0.0/24",
+ *     },
+ *     ipv6Subnets: [
+ *         {
+ *             subnet: "fd46:78ab:30b8:177c::/64",
+ *         },
+ *         {
+ *             subnet: "fd46:78ab:30b8:c7df::/64",
+ *         },
+ *     ],
+ *     tags: [
+ *         "demo",
+ *         "terraform",
+ *     ],
+ * });
  * ```
  *
  * > **Note:** Regional Private Network is now in Public Beta. You can create a regional private network directly using this resource by setting `isRegional` to `true`.
@@ -86,17 +113,15 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
     }
 
     /**
-     * The date and time of the creation of the private network
+     * The date and time of the creation of the subnet.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The IPv4 subnet associated with the private network.
+     * The IPv4 subnet to associate with the private network.
      */
     public readonly ipv4Subnet!: pulumi.Output<outputs.VpcPrivateNetworkIpv4Subnet>;
     /**
-     * The IPv6 subnets associated with the private network.
-     *
-     * > **Note:** If using Regional Private Network:
+     * The IPv6 subnets to associate with the private network.
      */
     public readonly ipv6Subnets!: pulumi.Output<outputs.VpcPrivateNetworkIpv6Subnet[]>;
     /**
@@ -124,7 +149,7 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The date and time of the last update of the private network
+     * The date and time of the last update of the subnet.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
@@ -186,17 +211,15 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
  */
 export interface VpcPrivateNetworkState {
     /**
-     * The date and time of the creation of the private network
+     * The date and time of the creation of the subnet.
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The IPv4 subnet associated with the private network.
+     * The IPv4 subnet to associate with the private network.
      */
     ipv4Subnet?: pulumi.Input<inputs.VpcPrivateNetworkIpv4Subnet>;
     /**
-     * The IPv6 subnets associated with the private network.
-     *
-     * > **Note:** If using Regional Private Network:
+     * The IPv6 subnets to associate with the private network.
      */
     ipv6Subnets?: pulumi.Input<pulumi.Input<inputs.VpcPrivateNetworkIpv6Subnet>[]>;
     /**
@@ -224,7 +247,7 @@ export interface VpcPrivateNetworkState {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The date and time of the last update of the private network
+     * The date and time of the last update of the subnet.
      */
     updatedAt?: pulumi.Input<string>;
     /**
@@ -242,13 +265,11 @@ export interface VpcPrivateNetworkState {
  */
 export interface VpcPrivateNetworkArgs {
     /**
-     * The IPv4 subnet associated with the private network.
+     * The IPv4 subnet to associate with the private network.
      */
     ipv4Subnet?: pulumi.Input<inputs.VpcPrivateNetworkIpv4Subnet>;
     /**
-     * The IPv6 subnets associated with the private network.
-     *
-     * > **Note:** If using Regional Private Network:
+     * The IPv6 subnets to associate with the private network.
      */
     ipv6Subnets?: pulumi.Input<pulumi.Input<inputs.VpcPrivateNetworkIpv6Subnet>[]>;
     /**

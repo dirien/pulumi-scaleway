@@ -27,10 +27,8 @@ class VpcPrivateNetworkArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpcPrivateNetwork resource.
-        :param pulumi.Input['VpcPrivateNetworkIpv4SubnetArgs'] ipv4_subnet: The IPv4 subnet associated with the private network.
-        :param pulumi.Input[Sequence[pulumi.Input['VpcPrivateNetworkIpv6SubnetArgs']]] ipv6_subnets: The IPv6 subnets associated with the private network.
-               
-               > **Note:** If using Regional Private Network:
+        :param pulumi.Input['VpcPrivateNetworkIpv4SubnetArgs'] ipv4_subnet: The IPv4 subnet to associate with the private network.
+        :param pulumi.Input[Sequence[pulumi.Input['VpcPrivateNetworkIpv6SubnetArgs']]] ipv6_subnets: The IPv6 subnets to associate with the private network.
         :param pulumi.Input[bool] is_regional: Defines whether the private network is Regional. By default, it will be Zonal.
         :param pulumi.Input[str] name: The name of the private network. If not provided it will be randomly generated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the private network is associated with.
@@ -62,7 +60,7 @@ class VpcPrivateNetworkArgs:
     @pulumi.getter(name="ipv4Subnet")
     def ipv4_subnet(self) -> Optional[pulumi.Input['VpcPrivateNetworkIpv4SubnetArgs']]:
         """
-        The IPv4 subnet associated with the private network.
+        The IPv4 subnet to associate with the private network.
         """
         return pulumi.get(self, "ipv4_subnet")
 
@@ -74,9 +72,7 @@ class VpcPrivateNetworkArgs:
     @pulumi.getter(name="ipv6Subnets")
     def ipv6_subnets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpcPrivateNetworkIpv6SubnetArgs']]]]:
         """
-        The IPv6 subnets associated with the private network.
-
-        > **Note:** If using Regional Private Network:
+        The IPv6 subnets to associate with the private network.
         """
         return pulumi.get(self, "ipv6_subnets")
 
@@ -186,18 +182,16 @@ class _VpcPrivateNetworkState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering VpcPrivateNetwork resources.
-        :param pulumi.Input[str] created_at: The date and time of the creation of the private network
-        :param pulumi.Input['VpcPrivateNetworkIpv4SubnetArgs'] ipv4_subnet: The IPv4 subnet associated with the private network.
-        :param pulumi.Input[Sequence[pulumi.Input['VpcPrivateNetworkIpv6SubnetArgs']]] ipv6_subnets: The IPv6 subnets associated with the private network.
-               
-               > **Note:** If using Regional Private Network:
+        :param pulumi.Input[str] created_at: The date and time of the creation of the subnet.
+        :param pulumi.Input['VpcPrivateNetworkIpv4SubnetArgs'] ipv4_subnet: The IPv4 subnet to associate with the private network.
+        :param pulumi.Input[Sequence[pulumi.Input['VpcPrivateNetworkIpv6SubnetArgs']]] ipv6_subnets: The IPv6 subnets to associate with the private network.
         :param pulumi.Input[bool] is_regional: Defines whether the private network is Regional. By default, it will be Zonal.
         :param pulumi.Input[str] name: The name of the private network. If not provided it will be randomly generated.
         :param pulumi.Input[str] organization_id: The organization ID the private network is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the private network is associated with.
         :param pulumi.Input[str] region: `region`) The region of the private network.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the private network.
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the private network
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the subnet.
         :param pulumi.Input[str] vpc_id: The VPC in which to create the private network.
         :param pulumi.Input[str] zone: `zone`) The zone in which the private network should be created.
         """
@@ -230,7 +224,7 @@ class _VpcPrivateNetworkState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the creation of the private network
+        The date and time of the creation of the subnet.
         """
         return pulumi.get(self, "created_at")
 
@@ -242,7 +236,7 @@ class _VpcPrivateNetworkState:
     @pulumi.getter(name="ipv4Subnet")
     def ipv4_subnet(self) -> Optional[pulumi.Input['VpcPrivateNetworkIpv4SubnetArgs']]:
         """
-        The IPv4 subnet associated with the private network.
+        The IPv4 subnet to associate with the private network.
         """
         return pulumi.get(self, "ipv4_subnet")
 
@@ -254,9 +248,7 @@ class _VpcPrivateNetworkState:
     @pulumi.getter(name="ipv6Subnets")
     def ipv6_subnets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpcPrivateNetworkIpv6SubnetArgs']]]]:
         """
-        The IPv6 subnets associated with the private network.
-
-        > **Note:** If using Regional Private Network:
+        The IPv6 subnets to associate with the private network.
         """
         return pulumi.get(self, "ipv6_subnets")
 
@@ -340,7 +332,7 @@ class _VpcPrivateNetworkState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date and time of the last update of the private network
+        The date and time of the last update of the subnet.
         """
         return pulumi.get(self, "updated_at")
 
@@ -394,6 +386,8 @@ class VpcPrivateNetwork(pulumi.CustomResource):
 
         ## Example
 
+        ### Basic
+
         ```python
         import pulumi
         import ediri_scaleway as scaleway
@@ -402,6 +396,30 @@ class VpcPrivateNetwork(pulumi.CustomResource):
             "demo",
             "terraform",
         ])
+        ```
+
+        ### With subnets
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        pn_priv = scaleway.VpcPrivateNetwork("pnPriv",
+            ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
+                subnet="192.168.0.0/24",
+            ),
+            ipv6_subnets=[
+                scaleway.VpcPrivateNetworkIpv6SubnetArgs(
+                    subnet="fd46:78ab:30b8:177c::/64",
+                ),
+                scaleway.VpcPrivateNetworkIpv6SubnetArgs(
+                    subnet="fd46:78ab:30b8:c7df::/64",
+                ),
+            ],
+            tags=[
+                "demo",
+                "terraform",
+            ])
         ```
 
         > **Note:** Regional Private Network is now in Public Beta. You can create a regional private network directly using this resource by setting `is_regional` to `true`.
@@ -440,10 +458,8 @@ class VpcPrivateNetwork(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['VpcPrivateNetworkIpv4SubnetArgs']] ipv4_subnet: The IPv4 subnet associated with the private network.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcPrivateNetworkIpv6SubnetArgs']]]] ipv6_subnets: The IPv6 subnets associated with the private network.
-               
-               > **Note:** If using Regional Private Network:
+        :param pulumi.Input[pulumi.InputType['VpcPrivateNetworkIpv4SubnetArgs']] ipv4_subnet: The IPv4 subnet to associate with the private network.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcPrivateNetworkIpv6SubnetArgs']]]] ipv6_subnets: The IPv6 subnets to associate with the private network.
         :param pulumi.Input[bool] is_regional: Defines whether the private network is Regional. By default, it will be Zonal.
         :param pulumi.Input[str] name: The name of the private network. If not provided it will be randomly generated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the private network is associated with.
@@ -464,6 +480,8 @@ class VpcPrivateNetwork(pulumi.CustomResource):
 
         ## Example
 
+        ### Basic
+
         ```python
         import pulumi
         import ediri_scaleway as scaleway
@@ -472,6 +490,30 @@ class VpcPrivateNetwork(pulumi.CustomResource):
             "demo",
             "terraform",
         ])
+        ```
+
+        ### With subnets
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        pn_priv = scaleway.VpcPrivateNetwork("pnPriv",
+            ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
+                subnet="192.168.0.0/24",
+            ),
+            ipv6_subnets=[
+                scaleway.VpcPrivateNetworkIpv6SubnetArgs(
+                    subnet="fd46:78ab:30b8:177c::/64",
+                ),
+                scaleway.VpcPrivateNetworkIpv6SubnetArgs(
+                    subnet="fd46:78ab:30b8:c7df::/64",
+                ),
+            ],
+            tags=[
+                "demo",
+                "terraform",
+            ])
         ```
 
         > **Note:** Regional Private Network is now in Public Beta. You can create a regional private network directly using this resource by setting `is_regional` to `true`.
@@ -582,18 +624,16 @@ class VpcPrivateNetwork(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] created_at: The date and time of the creation of the private network
-        :param pulumi.Input[pulumi.InputType['VpcPrivateNetworkIpv4SubnetArgs']] ipv4_subnet: The IPv4 subnet associated with the private network.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcPrivateNetworkIpv6SubnetArgs']]]] ipv6_subnets: The IPv6 subnets associated with the private network.
-               
-               > **Note:** If using Regional Private Network:
+        :param pulumi.Input[str] created_at: The date and time of the creation of the subnet.
+        :param pulumi.Input[pulumi.InputType['VpcPrivateNetworkIpv4SubnetArgs']] ipv4_subnet: The IPv4 subnet to associate with the private network.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcPrivateNetworkIpv6SubnetArgs']]]] ipv6_subnets: The IPv6 subnets to associate with the private network.
         :param pulumi.Input[bool] is_regional: Defines whether the private network is Regional. By default, it will be Zonal.
         :param pulumi.Input[str] name: The name of the private network. If not provided it will be randomly generated.
         :param pulumi.Input[str] organization_id: The organization ID the private network is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the private network is associated with.
         :param pulumi.Input[str] region: `region`) The region of the private network.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the private network.
-        :param pulumi.Input[str] updated_at: The date and time of the last update of the private network
+        :param pulumi.Input[str] updated_at: The date and time of the last update of the subnet.
         :param pulumi.Input[str] vpc_id: The VPC in which to create the private network.
         :param pulumi.Input[str] zone: `zone`) The zone in which the private network should be created.
         """
@@ -619,7 +659,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the creation of the private network
+        The date and time of the creation of the subnet.
         """
         return pulumi.get(self, "created_at")
 
@@ -627,7 +667,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
     @pulumi.getter(name="ipv4Subnet")
     def ipv4_subnet(self) -> pulumi.Output['outputs.VpcPrivateNetworkIpv4Subnet']:
         """
-        The IPv4 subnet associated with the private network.
+        The IPv4 subnet to associate with the private network.
         """
         return pulumi.get(self, "ipv4_subnet")
 
@@ -635,9 +675,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
     @pulumi.getter(name="ipv6Subnets")
     def ipv6_subnets(self) -> pulumi.Output[Sequence['outputs.VpcPrivateNetworkIpv6Subnet']]:
         """
-        The IPv6 subnets associated with the private network.
-
-        > **Note:** If using Regional Private Network:
+        The IPv6 subnets to associate with the private network.
         """
         return pulumi.get(self, "ipv6_subnets")
 
@@ -693,7 +731,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        The date and time of the last update of the private network
+        The date and time of the last update of the subnet.
         """
         return pulumi.get(self, "updated_at")
 

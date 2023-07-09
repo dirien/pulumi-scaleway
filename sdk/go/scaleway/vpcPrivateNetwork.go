@@ -15,6 +15,8 @@ import (
 //
 // ## Example
 //
+// ### Basic
+//
 // ```go
 // package main
 //
@@ -28,6 +30,46 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewVpcPrivateNetwork(ctx, "pnPriv", &scaleway.VpcPrivateNetworkArgs{
+//				Tags: pulumi.StringArray{
+//					pulumi.String("demo"),
+//					pulumi.String("terraform"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With subnets
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewVpcPrivateNetwork(ctx, "pnPriv", &scaleway.VpcPrivateNetworkArgs{
+//				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
+//					Subnet: pulumi.String("192.168.0.0/24"),
+//				},
+//				Ipv6Subnets: scaleway.VpcPrivateNetworkIpv6SubnetArray{
+//					&scaleway.VpcPrivateNetworkIpv6SubnetArgs{
+//						Subnet: pulumi.String("fd46:78ab:30b8:177c::/64"),
+//					},
+//					&scaleway.VpcPrivateNetworkIpv6SubnetArgs{
+//						Subnet: pulumi.String("fd46:78ab:30b8:c7df::/64"),
+//					},
+//				},
 //				Tags: pulumi.StringArray{
 //					pulumi.String("demo"),
 //					pulumi.String("terraform"),
@@ -103,13 +145,11 @@ import (
 type VpcPrivateNetwork struct {
 	pulumi.CustomResourceState
 
-	// The date and time of the creation of the private network
+	// The date and time of the creation of the subnet.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The IPv4 subnet associated with the private network.
+	// The IPv4 subnet to associate with the private network.
 	Ipv4Subnet VpcPrivateNetworkIpv4SubnetOutput `pulumi:"ipv4Subnet"`
-	// The IPv6 subnets associated with the private network.
-	//
-	// > **Note:** If using Regional Private Network:
+	// The IPv6 subnets to associate with the private network.
 	Ipv6Subnets VpcPrivateNetworkIpv6SubnetArrayOutput `pulumi:"ipv6Subnets"`
 	// Defines whether the private network is Regional. By default, it will be Zonal.
 	IsRegional pulumi.BoolOutput `pulumi:"isRegional"`
@@ -123,7 +163,7 @@ type VpcPrivateNetwork struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The tags associated with the private network.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// The date and time of the last update of the private network
+	// The date and time of the last update of the subnet.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// The VPC in which to create the private network.
 	VpcId pulumi.StringOutput `pulumi:"vpcId"`
@@ -161,13 +201,11 @@ func GetVpcPrivateNetwork(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpcPrivateNetwork resources.
 type vpcPrivateNetworkState struct {
-	// The date and time of the creation of the private network
+	// The date and time of the creation of the subnet.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The IPv4 subnet associated with the private network.
+	// The IPv4 subnet to associate with the private network.
 	Ipv4Subnet *VpcPrivateNetworkIpv4Subnet `pulumi:"ipv4Subnet"`
-	// The IPv6 subnets associated with the private network.
-	//
-	// > **Note:** If using Regional Private Network:
+	// The IPv6 subnets to associate with the private network.
 	Ipv6Subnets []VpcPrivateNetworkIpv6Subnet `pulumi:"ipv6Subnets"`
 	// Defines whether the private network is Regional. By default, it will be Zonal.
 	IsRegional *bool `pulumi:"isRegional"`
@@ -181,7 +219,7 @@ type vpcPrivateNetworkState struct {
 	Region *string `pulumi:"region"`
 	// The tags associated with the private network.
 	Tags []string `pulumi:"tags"`
-	// The date and time of the last update of the private network
+	// The date and time of the last update of the subnet.
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// The VPC in which to create the private network.
 	VpcId *string `pulumi:"vpcId"`
@@ -190,13 +228,11 @@ type vpcPrivateNetworkState struct {
 }
 
 type VpcPrivateNetworkState struct {
-	// The date and time of the creation of the private network
+	// The date and time of the creation of the subnet.
 	CreatedAt pulumi.StringPtrInput
-	// The IPv4 subnet associated with the private network.
+	// The IPv4 subnet to associate with the private network.
 	Ipv4Subnet VpcPrivateNetworkIpv4SubnetPtrInput
-	// The IPv6 subnets associated with the private network.
-	//
-	// > **Note:** If using Regional Private Network:
+	// The IPv6 subnets to associate with the private network.
 	Ipv6Subnets VpcPrivateNetworkIpv6SubnetArrayInput
 	// Defines whether the private network is Regional. By default, it will be Zonal.
 	IsRegional pulumi.BoolPtrInput
@@ -210,7 +246,7 @@ type VpcPrivateNetworkState struct {
 	Region pulumi.StringPtrInput
 	// The tags associated with the private network.
 	Tags pulumi.StringArrayInput
-	// The date and time of the last update of the private network
+	// The date and time of the last update of the subnet.
 	UpdatedAt pulumi.StringPtrInput
 	// The VPC in which to create the private network.
 	VpcId pulumi.StringPtrInput
@@ -223,11 +259,9 @@ func (VpcPrivateNetworkState) ElementType() reflect.Type {
 }
 
 type vpcPrivateNetworkArgs struct {
-	// The IPv4 subnet associated with the private network.
+	// The IPv4 subnet to associate with the private network.
 	Ipv4Subnet *VpcPrivateNetworkIpv4Subnet `pulumi:"ipv4Subnet"`
-	// The IPv6 subnets associated with the private network.
-	//
-	// > **Note:** If using Regional Private Network:
+	// The IPv6 subnets to associate with the private network.
 	Ipv6Subnets []VpcPrivateNetworkIpv6Subnet `pulumi:"ipv6Subnets"`
 	// Defines whether the private network is Regional. By default, it will be Zonal.
 	IsRegional *bool `pulumi:"isRegional"`
@@ -247,11 +281,9 @@ type vpcPrivateNetworkArgs struct {
 
 // The set of arguments for constructing a VpcPrivateNetwork resource.
 type VpcPrivateNetworkArgs struct {
-	// The IPv4 subnet associated with the private network.
+	// The IPv4 subnet to associate with the private network.
 	Ipv4Subnet VpcPrivateNetworkIpv4SubnetPtrInput
-	// The IPv6 subnets associated with the private network.
-	//
-	// > **Note:** If using Regional Private Network:
+	// The IPv6 subnets to associate with the private network.
 	Ipv6Subnets VpcPrivateNetworkIpv6SubnetArrayInput
 	// Defines whether the private network is Regional. By default, it will be Zonal.
 	IsRegional pulumi.BoolPtrInput
@@ -356,19 +388,17 @@ func (o VpcPrivateNetworkOutput) ToVpcPrivateNetworkOutputWithContext(ctx contex
 	return o
 }
 
-// The date and time of the creation of the private network
+// The date and time of the creation of the subnet.
 func (o VpcPrivateNetworkOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPrivateNetwork) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The IPv4 subnet associated with the private network.
+// The IPv4 subnet to associate with the private network.
 func (o VpcPrivateNetworkOutput) Ipv4Subnet() VpcPrivateNetworkIpv4SubnetOutput {
 	return o.ApplyT(func(v *VpcPrivateNetwork) VpcPrivateNetworkIpv4SubnetOutput { return v.Ipv4Subnet }).(VpcPrivateNetworkIpv4SubnetOutput)
 }
 
-// The IPv6 subnets associated with the private network.
-//
-// > **Note:** If using Regional Private Network:
+// The IPv6 subnets to associate with the private network.
 func (o VpcPrivateNetworkOutput) Ipv6Subnets() VpcPrivateNetworkIpv6SubnetArrayOutput {
 	return o.ApplyT(func(v *VpcPrivateNetwork) VpcPrivateNetworkIpv6SubnetArrayOutput { return v.Ipv6Subnets }).(VpcPrivateNetworkIpv6SubnetArrayOutput)
 }
@@ -403,7 +433,7 @@ func (o VpcPrivateNetworkOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *VpcPrivateNetwork) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The date and time of the last update of the private network
+// The date and time of the last update of the subnet.
 func (o VpcPrivateNetworkOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPrivateNetwork) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }

@@ -187,6 +187,8 @@ export class K8sCluster extends pulumi.CustomResource {
      *
      * > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
      * Any subsequent change after this field got set will prompt for cluster recreation.
+     *
+     * > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
      */
     public readonly privateNetworkId!: pulumi.Output<string | undefined>;
     /**
@@ -374,6 +376,8 @@ export interface K8sClusterState {
      *
      * > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
      * Any subsequent change after this field got set will prompt for cluster recreation.
+     *
+     * > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
      */
     privateNetworkId?: pulumi.Input<string>;
     /**
@@ -466,6 +470,8 @@ export interface K8sClusterArgs {
      *
      * > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
      * Any subsequent change after this field got set will prompt for cluster recreation.
+     *
+     * > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
      */
     privateNetworkId?: pulumi.Input<string>;
     /**

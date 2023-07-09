@@ -1315,22 +1315,28 @@ export interface GetRedisClusterPublicNetwork {
 }
 
 export interface GetVpcPrivateNetworkIpv4Subnet {
+    address: string;
     createdAt: string;
     /**
      * The ID of the private network.
      */
     id: string;
+    prefixLength: number;
     subnet: string;
+    subnetMask: string;
     updatedAt: string;
 }
 
 export interface GetVpcPrivateNetworkIpv6Subnet {
+    address: string;
     createdAt: string;
     /**
      * The ID of the private network.
      */
     id: string;
+    prefixLength: number;
     subnet: string;
+    subnetMask: string;
     updatedAt: string;
 }
 
@@ -2216,15 +2222,15 @@ export interface RdbAclAclRule {
 
 export interface RdbInstanceLoadBalancer {
     /**
-     * The ID of the endpoint of the private network.
+     * The ID of the endpoint.
      */
     endpointId: string;
     /**
-     * Name of the endpoint.
+     * Hostname of the endpoint.
      */
     hostname: string;
     /**
-     * IP of the endpoint.
+     * IPv4 address on the network.
      */
     ip: string;
     /**
@@ -2232,22 +2238,22 @@ export interface RdbInstanceLoadBalancer {
      */
     name: string;
     /**
-     * Port of the endpoint.
+     * Port in the Private Network.
      */
     port: number;
 }
 
 export interface RdbInstancePrivateNetwork {
     /**
-     * The ID of the endpoint of the private network.
+     * The ID of the endpoint.
      */
     endpointId: string;
     /**
-     * Name of the endpoint.
+     * Hostname of the endpoint.
      */
     hostname: string;
     /**
-     * IP of the endpoint.
+     * IPv4 address on the network.
      */
     ip: string;
     ipNet: string;
@@ -2257,7 +2263,7 @@ export interface RdbInstancePrivateNetwork {
     name: string;
     pnId: string;
     /**
-     * Port of the endpoint.
+     * Port in the Private Network.
      */
     port: number;
     zone: string;
@@ -2265,7 +2271,7 @@ export interface RdbInstancePrivateNetwork {
 
 export interface RdbInstanceReadReplica {
     /**
-     * IP of the endpoint.
+     * IPv4 address on the network.
      */
     ip: string;
     /**
@@ -2273,7 +2279,7 @@ export interface RdbInstanceReadReplica {
      */
     name: string;
     /**
-     * Port of the endpoint.
+     * Port in the Private Network.
      */
     port: number;
 }
@@ -2391,22 +2397,68 @@ export interface RedisClusterPublicNetwork {
 }
 
 export interface VpcPrivateNetworkIpv4Subnet {
+    /**
+     * The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+     */
+    address: string;
+    /**
+     * The date and time of the creation of the subnet.
+     */
     createdAt: string;
     /**
-     * The ID of the private network.
+     * The subnet ID.
      */
     id: string;
+    /**
+     * The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+     */
+    prefixLength: number;
+    /**
+     * The subnet CIDR.
+     *
+     * > **Note:** If using Regional Private Network:
+     */
     subnet: string;
+    /**
+     * The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+     */
+    subnetMask: string;
+    /**
+     * The date and time of the last update of the subnet.
+     */
     updatedAt: string;
 }
 
 export interface VpcPrivateNetworkIpv6Subnet {
+    /**
+     * The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+     */
+    address: string;
+    /**
+     * The date and time of the creation of the subnet.
+     */
     createdAt: string;
     /**
-     * The ID of the private network.
+     * The subnet ID.
      */
     id: string;
+    /**
+     * The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+     */
+    prefixLength: number;
+    /**
+     * The subnet CIDR.
+     *
+     * > **Note:** If using Regional Private Network:
+     */
     subnet: string;
+    /**
+     * The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+     */
+    subnetMask: string;
+    /**
+     * The date and time of the last update of the subnet.
+     */
     updatedAt: string;
 }
 

@@ -29,15 +29,19 @@ class LbBackendArgs:
                  health_check_tcp: Optional[pulumi.Input['LbBackendHealthCheckTcpArgs']] = None,
                  health_check_timeout: Optional[pulumi.Input[str]] = None,
                  ignore_ssl_server_verify: Optional[pulumi.Input[bool]] = None,
+                 max_connections: Optional[pulumi.Input[int]] = None,
+                 max_retries: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  on_marked_down_action: Optional[pulumi.Input[str]] = None,
                  proxy_protocol: Optional[pulumi.Input[str]] = None,
+                 redispatch_attempt_count: Optional[pulumi.Input[int]] = None,
                  send_proxy_v2: Optional[pulumi.Input[bool]] = None,
                  server_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssl_bridging: Optional[pulumi.Input[bool]] = None,
                  sticky_sessions: Optional[pulumi.Input[str]] = None,
                  sticky_sessions_cookie_name: Optional[pulumi.Input[str]] = None,
                  timeout_connect: Optional[pulumi.Input[str]] = None,
+                 timeout_queue: Optional[pulumi.Input[str]] = None,
                  timeout_server: Optional[pulumi.Input[str]] = None,
                  timeout_tunnel: Optional[pulumi.Input[str]] = None):
         """
@@ -58,15 +62,19 @@ class LbBackendArgs:
         :param pulumi.Input['LbBackendHealthCheckTcpArgs'] health_check_tcp: This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
         :param pulumi.Input[str] health_check_timeout: Timeout before we consider a HC request failed.
         :param pulumi.Input[bool] ignore_ssl_server_verify: Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
+        :param pulumi.Input[int] max_connections: Maximum number of connections allowed per backend server.
+        :param pulumi.Input[int] max_retries: Number of retries when a backend server connection failed.
         :param pulumi.Input[str] name: The name of the load-balancer backend.
         :param pulumi.Input[str] on_marked_down_action: Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdown_sessions`.
         :param pulumi.Input[str] proxy_protocol: Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2_ssl`, `v2_ssl_cn`)
+        :param pulumi.Input[int] redispatch_attempt_count: Whether to use another backend server on each attempt.
         :param pulumi.Input[bool] send_proxy_v2: DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
         :param pulumi.Input[bool] ssl_bridging: Enables SSL between load balancer and backend servers.
         :param pulumi.Input[str] sticky_sessions: The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
         :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time. (e.g.: `1s`)
+        :param pulumi.Input[str] timeout_queue: Maximum time for a request to be left pending in queue when `max_connections` is reached. (e.g.: `1s`)
         :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time. (e.g.: `1s`)
         :param pulumi.Input[str] timeout_tunnel: Maximum tunnel inactivity time. (e.g.: `1s`)
         """
@@ -93,12 +101,18 @@ class LbBackendArgs:
             pulumi.set(__self__, "health_check_timeout", health_check_timeout)
         if ignore_ssl_server_verify is not None:
             pulumi.set(__self__, "ignore_ssl_server_verify", ignore_ssl_server_verify)
+        if max_connections is not None:
+            pulumi.set(__self__, "max_connections", max_connections)
+        if max_retries is not None:
+            pulumi.set(__self__, "max_retries", max_retries)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if on_marked_down_action is not None:
             pulumi.set(__self__, "on_marked_down_action", on_marked_down_action)
         if proxy_protocol is not None:
             pulumi.set(__self__, "proxy_protocol", proxy_protocol)
+        if redispatch_attempt_count is not None:
+            pulumi.set(__self__, "redispatch_attempt_count", redispatch_attempt_count)
         if send_proxy_v2 is not None:
             warnings.warn("""Please use proxy_protocol instead""", DeprecationWarning)
             pulumi.log.warn("""send_proxy_v2 is deprecated: Please use proxy_protocol instead""")
@@ -114,6 +128,8 @@ class LbBackendArgs:
             pulumi.set(__self__, "sticky_sessions_cookie_name", sticky_sessions_cookie_name)
         if timeout_connect is not None:
             pulumi.set(__self__, "timeout_connect", timeout_connect)
+        if timeout_queue is not None:
+            pulumi.set(__self__, "timeout_queue", timeout_queue)
         if timeout_server is not None:
             pulumi.set(__self__, "timeout_server", timeout_server)
         if timeout_tunnel is not None:
@@ -279,6 +295,30 @@ class LbBackendArgs:
         pulumi.set(self, "ignore_ssl_server_verify", value)
 
     @property
+    @pulumi.getter(name="maxConnections")
+    def max_connections(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of connections allowed per backend server.
+        """
+        return pulumi.get(self, "max_connections")
+
+    @max_connections.setter
+    def max_connections(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_connections", value)
+
+    @property
+    @pulumi.getter(name="maxRetries")
+    def max_retries(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of retries when a backend server connection failed.
+        """
+        return pulumi.get(self, "max_retries")
+
+    @max_retries.setter
+    def max_retries(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_retries", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -313,6 +353,18 @@ class LbBackendArgs:
     @proxy_protocol.setter
     def proxy_protocol(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "proxy_protocol", value)
+
+    @property
+    @pulumi.getter(name="redispatchAttemptCount")
+    def redispatch_attempt_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        Whether to use another backend server on each attempt.
+        """
+        return pulumi.get(self, "redispatch_attempt_count")
+
+    @redispatch_attempt_count.setter
+    def redispatch_attempt_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "redispatch_attempt_count", value)
 
     @property
     @pulumi.getter(name="sendProxyV2")
@@ -390,6 +442,18 @@ class LbBackendArgs:
         pulumi.set(self, "timeout_connect", value)
 
     @property
+    @pulumi.getter(name="timeoutQueue")
+    def timeout_queue(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum time for a request to be left pending in queue when `max_connections` is reached. (e.g.: `1s`)
+        """
+        return pulumi.get(self, "timeout_queue")
+
+    @timeout_queue.setter
+    def timeout_queue(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "timeout_queue", value)
+
+    @property
     @pulumi.getter(name="timeoutServer")
     def timeout_server(self) -> Optional[pulumi.Input[str]]:
         """
@@ -430,15 +494,19 @@ class _LbBackendState:
                  health_check_timeout: Optional[pulumi.Input[str]] = None,
                  ignore_ssl_server_verify: Optional[pulumi.Input[bool]] = None,
                  lb_id: Optional[pulumi.Input[str]] = None,
+                 max_connections: Optional[pulumi.Input[int]] = None,
+                 max_retries: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  on_marked_down_action: Optional[pulumi.Input[str]] = None,
                  proxy_protocol: Optional[pulumi.Input[str]] = None,
+                 redispatch_attempt_count: Optional[pulumi.Input[int]] = None,
                  send_proxy_v2: Optional[pulumi.Input[bool]] = None,
                  server_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssl_bridging: Optional[pulumi.Input[bool]] = None,
                  sticky_sessions: Optional[pulumi.Input[str]] = None,
                  sticky_sessions_cookie_name: Optional[pulumi.Input[str]] = None,
                  timeout_connect: Optional[pulumi.Input[str]] = None,
+                 timeout_queue: Optional[pulumi.Input[str]] = None,
                  timeout_server: Optional[pulumi.Input[str]] = None,
                  timeout_tunnel: Optional[pulumi.Input[str]] = None):
         """
@@ -459,15 +527,19 @@ class _LbBackendState:
         :param pulumi.Input[bool] ignore_ssl_server_verify: Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
         :param pulumi.Input[str] lb_id: The load-balancer ID this backend is attached to.
                > **Important:** Updates to `lb_id` will recreate the backend.
+        :param pulumi.Input[int] max_connections: Maximum number of connections allowed per backend server.
+        :param pulumi.Input[int] max_retries: Number of retries when a backend server connection failed.
         :param pulumi.Input[str] name: The name of the load-balancer backend.
         :param pulumi.Input[str] on_marked_down_action: Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdown_sessions`.
         :param pulumi.Input[str] proxy_protocol: Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2_ssl`, `v2_ssl_cn`)
+        :param pulumi.Input[int] redispatch_attempt_count: Whether to use another backend server on each attempt.
         :param pulumi.Input[bool] send_proxy_v2: DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
         :param pulumi.Input[bool] ssl_bridging: Enables SSL between load balancer and backend servers.
         :param pulumi.Input[str] sticky_sessions: The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
         :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time. (e.g.: `1s`)
+        :param pulumi.Input[str] timeout_queue: Maximum time for a request to be left pending in queue when `max_connections` is reached. (e.g.: `1s`)
         :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time. (e.g.: `1s`)
         :param pulumi.Input[str] timeout_tunnel: Maximum tunnel inactivity time. (e.g.: `1s`)
         """
@@ -497,12 +569,18 @@ class _LbBackendState:
             pulumi.set(__self__, "ignore_ssl_server_verify", ignore_ssl_server_verify)
         if lb_id is not None:
             pulumi.set(__self__, "lb_id", lb_id)
+        if max_connections is not None:
+            pulumi.set(__self__, "max_connections", max_connections)
+        if max_retries is not None:
+            pulumi.set(__self__, "max_retries", max_retries)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if on_marked_down_action is not None:
             pulumi.set(__self__, "on_marked_down_action", on_marked_down_action)
         if proxy_protocol is not None:
             pulumi.set(__self__, "proxy_protocol", proxy_protocol)
+        if redispatch_attempt_count is not None:
+            pulumi.set(__self__, "redispatch_attempt_count", redispatch_attempt_count)
         if send_proxy_v2 is not None:
             warnings.warn("""Please use proxy_protocol instead""", DeprecationWarning)
             pulumi.log.warn("""send_proxy_v2 is deprecated: Please use proxy_protocol instead""")
@@ -518,6 +596,8 @@ class _LbBackendState:
             pulumi.set(__self__, "sticky_sessions_cookie_name", sticky_sessions_cookie_name)
         if timeout_connect is not None:
             pulumi.set(__self__, "timeout_connect", timeout_connect)
+        if timeout_queue is not None:
+            pulumi.set(__self__, "timeout_queue", timeout_queue)
         if timeout_server is not None:
             pulumi.set(__self__, "timeout_server", timeout_server)
         if timeout_tunnel is not None:
@@ -683,6 +763,30 @@ class _LbBackendState:
         pulumi.set(self, "lb_id", value)
 
     @property
+    @pulumi.getter(name="maxConnections")
+    def max_connections(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of connections allowed per backend server.
+        """
+        return pulumi.get(self, "max_connections")
+
+    @max_connections.setter
+    def max_connections(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_connections", value)
+
+    @property
+    @pulumi.getter(name="maxRetries")
+    def max_retries(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of retries when a backend server connection failed.
+        """
+        return pulumi.get(self, "max_retries")
+
+    @max_retries.setter
+    def max_retries(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_retries", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -717,6 +821,18 @@ class _LbBackendState:
     @proxy_protocol.setter
     def proxy_protocol(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "proxy_protocol", value)
+
+    @property
+    @pulumi.getter(name="redispatchAttemptCount")
+    def redispatch_attempt_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        Whether to use another backend server on each attempt.
+        """
+        return pulumi.get(self, "redispatch_attempt_count")
+
+    @redispatch_attempt_count.setter
+    def redispatch_attempt_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "redispatch_attempt_count", value)
 
     @property
     @pulumi.getter(name="sendProxyV2")
@@ -794,6 +910,18 @@ class _LbBackendState:
         pulumi.set(self, "timeout_connect", value)
 
     @property
+    @pulumi.getter(name="timeoutQueue")
+    def timeout_queue(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum time for a request to be left pending in queue when `max_connections` is reached. (e.g.: `1s`)
+        """
+        return pulumi.get(self, "timeout_queue")
+
+    @timeout_queue.setter
+    def timeout_queue(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "timeout_queue", value)
+
+    @property
     @pulumi.getter(name="timeoutServer")
     def timeout_server(self) -> Optional[pulumi.Input[str]]:
         """
@@ -836,15 +964,19 @@ class LbBackend(pulumi.CustomResource):
                  health_check_timeout: Optional[pulumi.Input[str]] = None,
                  ignore_ssl_server_verify: Optional[pulumi.Input[bool]] = None,
                  lb_id: Optional[pulumi.Input[str]] = None,
+                 max_connections: Optional[pulumi.Input[int]] = None,
+                 max_retries: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  on_marked_down_action: Optional[pulumi.Input[str]] = None,
                  proxy_protocol: Optional[pulumi.Input[str]] = None,
+                 redispatch_attempt_count: Optional[pulumi.Input[int]] = None,
                  send_proxy_v2: Optional[pulumi.Input[bool]] = None,
                  server_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssl_bridging: Optional[pulumi.Input[bool]] = None,
                  sticky_sessions: Optional[pulumi.Input[str]] = None,
                  sticky_sessions_cookie_name: Optional[pulumi.Input[str]] = None,
                  timeout_connect: Optional[pulumi.Input[str]] = None,
+                 timeout_queue: Optional[pulumi.Input[str]] = None,
                  timeout_server: Optional[pulumi.Input[str]] = None,
                  timeout_tunnel: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -907,15 +1039,19 @@ class LbBackend(pulumi.CustomResource):
         :param pulumi.Input[bool] ignore_ssl_server_verify: Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
         :param pulumi.Input[str] lb_id: The load-balancer ID this backend is attached to.
                > **Important:** Updates to `lb_id` will recreate the backend.
+        :param pulumi.Input[int] max_connections: Maximum number of connections allowed per backend server.
+        :param pulumi.Input[int] max_retries: Number of retries when a backend server connection failed.
         :param pulumi.Input[str] name: The name of the load-balancer backend.
         :param pulumi.Input[str] on_marked_down_action: Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdown_sessions`.
         :param pulumi.Input[str] proxy_protocol: Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2_ssl`, `v2_ssl_cn`)
+        :param pulumi.Input[int] redispatch_attempt_count: Whether to use another backend server on each attempt.
         :param pulumi.Input[bool] send_proxy_v2: DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
         :param pulumi.Input[bool] ssl_bridging: Enables SSL between load balancer and backend servers.
         :param pulumi.Input[str] sticky_sessions: The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
         :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time. (e.g.: `1s`)
+        :param pulumi.Input[str] timeout_queue: Maximum time for a request to be left pending in queue when `max_connections` is reached. (e.g.: `1s`)
         :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time. (e.g.: `1s`)
         :param pulumi.Input[str] timeout_tunnel: Maximum tunnel inactivity time. (e.g.: `1s`)
         """
@@ -994,15 +1130,19 @@ class LbBackend(pulumi.CustomResource):
                  health_check_timeout: Optional[pulumi.Input[str]] = None,
                  ignore_ssl_server_verify: Optional[pulumi.Input[bool]] = None,
                  lb_id: Optional[pulumi.Input[str]] = None,
+                 max_connections: Optional[pulumi.Input[int]] = None,
+                 max_retries: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  on_marked_down_action: Optional[pulumi.Input[str]] = None,
                  proxy_protocol: Optional[pulumi.Input[str]] = None,
+                 redispatch_attempt_count: Optional[pulumi.Input[int]] = None,
                  send_proxy_v2: Optional[pulumi.Input[bool]] = None,
                  server_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssl_bridging: Optional[pulumi.Input[bool]] = None,
                  sticky_sessions: Optional[pulumi.Input[str]] = None,
                  sticky_sessions_cookie_name: Optional[pulumi.Input[str]] = None,
                  timeout_connect: Optional[pulumi.Input[str]] = None,
+                 timeout_queue: Optional[pulumi.Input[str]] = None,
                  timeout_server: Optional[pulumi.Input[str]] = None,
                  timeout_tunnel: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -1033,9 +1173,12 @@ class LbBackend(pulumi.CustomResource):
             if lb_id is None and not opts.urn:
                 raise TypeError("Missing required property 'lb_id'")
             __props__.__dict__["lb_id"] = lb_id
+            __props__.__dict__["max_connections"] = max_connections
+            __props__.__dict__["max_retries"] = max_retries
             __props__.__dict__["name"] = name
             __props__.__dict__["on_marked_down_action"] = on_marked_down_action
             __props__.__dict__["proxy_protocol"] = proxy_protocol
+            __props__.__dict__["redispatch_attempt_count"] = redispatch_attempt_count
             if send_proxy_v2 is not None and not opts.urn:
                 warnings.warn("""Please use proxy_protocol instead""", DeprecationWarning)
                 pulumi.log.warn("""send_proxy_v2 is deprecated: Please use proxy_protocol instead""")
@@ -1045,6 +1188,7 @@ class LbBackend(pulumi.CustomResource):
             __props__.__dict__["sticky_sessions"] = sticky_sessions
             __props__.__dict__["sticky_sessions_cookie_name"] = sticky_sessions_cookie_name
             __props__.__dict__["timeout_connect"] = timeout_connect
+            __props__.__dict__["timeout_queue"] = timeout_queue
             __props__.__dict__["timeout_server"] = timeout_server
             __props__.__dict__["timeout_tunnel"] = timeout_tunnel
         super(LbBackend, __self__).__init__(
@@ -1070,15 +1214,19 @@ class LbBackend(pulumi.CustomResource):
             health_check_timeout: Optional[pulumi.Input[str]] = None,
             ignore_ssl_server_verify: Optional[pulumi.Input[bool]] = None,
             lb_id: Optional[pulumi.Input[str]] = None,
+            max_connections: Optional[pulumi.Input[int]] = None,
+            max_retries: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             on_marked_down_action: Optional[pulumi.Input[str]] = None,
             proxy_protocol: Optional[pulumi.Input[str]] = None,
+            redispatch_attempt_count: Optional[pulumi.Input[int]] = None,
             send_proxy_v2: Optional[pulumi.Input[bool]] = None,
             server_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             ssl_bridging: Optional[pulumi.Input[bool]] = None,
             sticky_sessions: Optional[pulumi.Input[str]] = None,
             sticky_sessions_cookie_name: Optional[pulumi.Input[str]] = None,
             timeout_connect: Optional[pulumi.Input[str]] = None,
+            timeout_queue: Optional[pulumi.Input[str]] = None,
             timeout_server: Optional[pulumi.Input[str]] = None,
             timeout_tunnel: Optional[pulumi.Input[str]] = None) -> 'LbBackend':
         """
@@ -1104,15 +1252,19 @@ class LbBackend(pulumi.CustomResource):
         :param pulumi.Input[bool] ignore_ssl_server_verify: Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
         :param pulumi.Input[str] lb_id: The load-balancer ID this backend is attached to.
                > **Important:** Updates to `lb_id` will recreate the backend.
+        :param pulumi.Input[int] max_connections: Maximum number of connections allowed per backend server.
+        :param pulumi.Input[int] max_retries: Number of retries when a backend server connection failed.
         :param pulumi.Input[str] name: The name of the load-balancer backend.
         :param pulumi.Input[str] on_marked_down_action: Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdown_sessions`.
         :param pulumi.Input[str] proxy_protocol: Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2_ssl`, `v2_ssl_cn`)
+        :param pulumi.Input[int] redispatch_attempt_count: Whether to use another backend server on each attempt.
         :param pulumi.Input[bool] send_proxy_v2: DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: List of backend server IP addresses. Addresses can be either IPv4 or IPv6.
         :param pulumi.Input[bool] ssl_bridging: Enables SSL between load balancer and backend servers.
         :param pulumi.Input[str] sticky_sessions: The type of sticky sessions. The only current possible values are: `none`, `cookie` and `table`.
         :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for sticky sessions. Only applicable when sticky_sessions is set to `cookie`.
         :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time. (e.g.: `1s`)
+        :param pulumi.Input[str] timeout_queue: Maximum time for a request to be left pending in queue when `max_connections` is reached. (e.g.: `1s`)
         :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time. (e.g.: `1s`)
         :param pulumi.Input[str] timeout_tunnel: Maximum tunnel inactivity time. (e.g.: `1s`)
         """
@@ -1133,15 +1285,19 @@ class LbBackend(pulumi.CustomResource):
         __props__.__dict__["health_check_timeout"] = health_check_timeout
         __props__.__dict__["ignore_ssl_server_verify"] = ignore_ssl_server_verify
         __props__.__dict__["lb_id"] = lb_id
+        __props__.__dict__["max_connections"] = max_connections
+        __props__.__dict__["max_retries"] = max_retries
         __props__.__dict__["name"] = name
         __props__.__dict__["on_marked_down_action"] = on_marked_down_action
         __props__.__dict__["proxy_protocol"] = proxy_protocol
+        __props__.__dict__["redispatch_attempt_count"] = redispatch_attempt_count
         __props__.__dict__["send_proxy_v2"] = send_proxy_v2
         __props__.__dict__["server_ips"] = server_ips
         __props__.__dict__["ssl_bridging"] = ssl_bridging
         __props__.__dict__["sticky_sessions"] = sticky_sessions
         __props__.__dict__["sticky_sessions_cookie_name"] = sticky_sessions_cookie_name
         __props__.__dict__["timeout_connect"] = timeout_connect
+        __props__.__dict__["timeout_queue"] = timeout_queue
         __props__.__dict__["timeout_server"] = timeout_server
         __props__.__dict__["timeout_tunnel"] = timeout_tunnel
         return LbBackend(resource_name, opts=opts, __props__=__props__)
@@ -1254,6 +1410,22 @@ class LbBackend(pulumi.CustomResource):
         return pulumi.get(self, "lb_id")
 
     @property
+    @pulumi.getter(name="maxConnections")
+    def max_connections(self) -> pulumi.Output[Optional[int]]:
+        """
+        Maximum number of connections allowed per backend server.
+        """
+        return pulumi.get(self, "max_connections")
+
+    @property
+    @pulumi.getter(name="maxRetries")
+    def max_retries(self) -> pulumi.Output[Optional[int]]:
+        """
+        Number of retries when a backend server connection failed.
+        """
+        return pulumi.get(self, "max_retries")
+
+    @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
@@ -1276,6 +1448,14 @@ class LbBackend(pulumi.CustomResource):
         Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2_ssl`, `v2_ssl_cn`)
         """
         return pulumi.get(self, "proxy_protocol")
+
+    @property
+    @pulumi.getter(name="redispatchAttemptCount")
+    def redispatch_attempt_count(self) -> pulumi.Output[Optional[int]]:
+        """
+        Whether to use another backend server on each attempt.
+        """
+        return pulumi.get(self, "redispatch_attempt_count")
 
     @property
     @pulumi.getter(name="sendProxyV2")
@@ -1327,6 +1507,14 @@ class LbBackend(pulumi.CustomResource):
         Maximum initial server connection establishment time. (e.g.: `1s`)
         """
         return pulumi.get(self, "timeout_connect")
+
+    @property
+    @pulumi.getter(name="timeoutQueue")
+    def timeout_queue(self) -> pulumi.Output[Optional[str]]:
+        """
+        Maximum time for a request to be left pending in queue when `max_connections` is reached. (e.g.: `1s`)
+        """
+        return pulumi.get(self, "timeout_queue")
 
     @property
     @pulumi.getter(name="timeoutServer")

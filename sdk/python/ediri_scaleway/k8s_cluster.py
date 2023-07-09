@@ -52,6 +52,8 @@ class K8sClusterArgs:
                
                > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
                Any subsequent change after this field got set will prompt for cluster recreation.
+               
+               > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Kubernetes cluster.
@@ -230,6 +232,8 @@ class K8sClusterArgs:
 
         > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
         Any subsequent change after this field got set will prompt for cluster recreation.
+
+        > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -336,6 +340,8 @@ class _K8sClusterState:
                
                > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
                Any subsequent change after this field got set will prompt for cluster recreation.
+               
+               > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[str] status: The status of the Kubernetes cluster.
@@ -574,6 +580,8 @@ class _K8sClusterState:
 
         > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
         Any subsequent change after this field got set will prompt for cluster recreation.
+
+        > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -814,6 +822,8 @@ class K8sCluster(pulumi.CustomResource):
                
                > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
                Any subsequent change after this field got set will prompt for cluster recreation.
+               
+               > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Kubernetes cluster.
@@ -1043,6 +1053,8 @@ class K8sCluster(pulumi.CustomResource):
                
                > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
                Any subsequent change after this field got set will prompt for cluster recreation.
+               
+               > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[str] status: The status of the Kubernetes cluster.
@@ -1206,6 +1218,8 @@ class K8sCluster(pulumi.CustomResource):
 
         > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
         Any subsequent change after this field got set will prompt for cluster recreation.
+
+        > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
         """
         return pulumi.get(self, "private_network_id")
 

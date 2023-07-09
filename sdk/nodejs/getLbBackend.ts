@@ -89,15 +89,19 @@ export interface GetLbBackendResult {
     readonly id: string;
     readonly ignoreSslServerVerify: boolean;
     readonly lbId?: string;
+    readonly maxConnections: number;
+    readonly maxRetries: number;
     readonly name?: string;
     readonly onMarkedDownAction: string;
     readonly proxyProtocol: string;
+    readonly redispatchAttemptCount: number;
     readonly sendProxyV2: boolean;
     readonly serverIps: string[];
     readonly sslBridging: boolean;
     readonly stickySessions: string;
     readonly stickySessionsCookieName: string;
     readonly timeoutConnect: string;
+    readonly timeoutQueue: string;
     readonly timeoutServer: string;
     readonly timeoutTunnel: string;
 }

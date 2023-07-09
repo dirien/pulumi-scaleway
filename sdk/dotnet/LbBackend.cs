@@ -153,6 +153,18 @@ namespace ediri.Scaleway
         public Output<string> LbId { get; private set; } = null!;
 
         /// <summary>
+        /// Maximum number of connections allowed per backend server.
+        /// </summary>
+        [Output("maxConnections")]
+        public Output<int?> MaxConnections { get; private set; } = null!;
+
+        /// <summary>
+        /// Number of retries when a backend server connection failed.
+        /// </summary>
+        [Output("maxRetries")]
+        public Output<int?> MaxRetries { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the load-balancer backend.
         /// </summary>
         [Output("name")]
@@ -169,6 +181,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Output("proxyProtocol")]
         public Output<string?> ProxyProtocol { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to use another backend server on each attempt.
+        /// </summary>
+        [Output("redispatchAttemptCount")]
+        public Output<int?> RedispatchAttemptCount { get; private set; } = null!;
 
         /// <summary>
         /// DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
@@ -205,6 +223,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Output("timeoutConnect")]
         public Output<string?> TimeoutConnect { get; private set; } = null!;
+
+        /// <summary>
+        /// Maximum time for a request to be left pending in queue when `max_connections` is reached. (e.g.: `1s`)
+        /// </summary>
+        [Output("timeoutQueue")]
+        public Output<string?> TimeoutQueue { get; private set; } = null!;
 
         /// <summary>
         /// Maximum server connection inactivity time. (e.g.: `1s`)
@@ -347,6 +371,18 @@ namespace ediri.Scaleway
         public Input<string> LbId { get; set; } = null!;
 
         /// <summary>
+        /// Maximum number of connections allowed per backend server.
+        /// </summary>
+        [Input("maxConnections")]
+        public Input<int>? MaxConnections { get; set; }
+
+        /// <summary>
+        /// Number of retries when a backend server connection failed.
+        /// </summary>
+        [Input("maxRetries")]
+        public Input<int>? MaxRetries { get; set; }
+
+        /// <summary>
         /// The name of the load-balancer backend.
         /// </summary>
         [Input("name")]
@@ -363,6 +399,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("proxyProtocol")]
         public Input<string>? ProxyProtocol { get; set; }
+
+        /// <summary>
+        /// Whether to use another backend server on each attempt.
+        /// </summary>
+        [Input("redispatchAttemptCount")]
+        public Input<int>? RedispatchAttemptCount { get; set; }
 
         /// <summary>
         /// DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
@@ -405,6 +447,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("timeoutConnect")]
         public Input<string>? TimeoutConnect { get; set; }
+
+        /// <summary>
+        /// Maximum time for a request to be left pending in queue when `max_connections` is reached. (e.g.: `1s`)
+        /// </summary>
+        [Input("timeoutQueue")]
+        public Input<string>? TimeoutQueue { get; set; }
 
         /// <summary>
         /// Maximum server connection inactivity time. (e.g.: `1s`)
@@ -508,6 +556,18 @@ namespace ediri.Scaleway
         public Input<string>? LbId { get; set; }
 
         /// <summary>
+        /// Maximum number of connections allowed per backend server.
+        /// </summary>
+        [Input("maxConnections")]
+        public Input<int>? MaxConnections { get; set; }
+
+        /// <summary>
+        /// Number of retries when a backend server connection failed.
+        /// </summary>
+        [Input("maxRetries")]
+        public Input<int>? MaxRetries { get; set; }
+
+        /// <summary>
         /// The name of the load-balancer backend.
         /// </summary>
         [Input("name")]
@@ -524,6 +584,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("proxyProtocol")]
         public Input<string>? ProxyProtocol { get; set; }
+
+        /// <summary>
+        /// Whether to use another backend server on each attempt.
+        /// </summary>
+        [Input("redispatchAttemptCount")]
+        public Input<int>? RedispatchAttemptCount { get; set; }
 
         /// <summary>
         /// DEPRECATED please use `proxy_protocol` instead - (Default: `false`) Enables PROXY protocol version 2.
@@ -566,6 +632,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("timeoutConnect")]
         public Input<string>? TimeoutConnect { get; set; }
+
+        /// <summary>
+        /// Maximum time for a request to be left pending in queue when `max_connections` is reached. (e.g.: `1s`)
+        /// </summary>
+        [Input("timeoutQueue")]
+        public Input<string>? TimeoutQueue { get; set; }
 
         /// <summary>
         /// Maximum server connection inactivity time. (e.g.: `1s`)

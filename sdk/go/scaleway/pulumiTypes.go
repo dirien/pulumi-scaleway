@@ -10340,15 +10340,15 @@ func (o RdbAclAclRuleArrayOutput) Index(i pulumi.IntInput) RdbAclAclRuleOutput {
 }
 
 type RdbInstanceLoadBalancer struct {
-	// The ID of the endpoint of the private network.
+	// The ID of the endpoint.
 	EndpointId *string `pulumi:"endpointId"`
-	// Name of the endpoint.
+	// Hostname of the endpoint.
 	Hostname *string `pulumi:"hostname"`
-	// IP of the endpoint.
+	// IPv4 address on the network.
 	Ip *string `pulumi:"ip"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
-	// Port of the endpoint.
+	// Port in the Private Network.
 	Port *int `pulumi:"port"`
 }
 
@@ -10364,15 +10364,15 @@ type RdbInstanceLoadBalancerInput interface {
 }
 
 type RdbInstanceLoadBalancerArgs struct {
-	// The ID of the endpoint of the private network.
+	// The ID of the endpoint.
 	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
-	// Name of the endpoint.
+	// Hostname of the endpoint.
 	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
-	// IP of the endpoint.
+	// IPv4 address on the network.
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// Port of the endpoint.
+	// Port in the Private Network.
 	Port pulumi.IntPtrInput `pulumi:"port"`
 }
 
@@ -10427,17 +10427,17 @@ func (o RdbInstanceLoadBalancerOutput) ToRdbInstanceLoadBalancerOutputWithContex
 	return o
 }
 
-// The ID of the endpoint of the private network.
+// The ID of the endpoint.
 func (o RdbInstanceLoadBalancerOutput) EndpointId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RdbInstanceLoadBalancer) *string { return v.EndpointId }).(pulumi.StringPtrOutput)
 }
 
-// Name of the endpoint.
+// Hostname of the endpoint.
 func (o RdbInstanceLoadBalancerOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RdbInstanceLoadBalancer) *string { return v.Hostname }).(pulumi.StringPtrOutput)
 }
 
-// IP of the endpoint.
+// IPv4 address on the network.
 func (o RdbInstanceLoadBalancerOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RdbInstanceLoadBalancer) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
@@ -10447,7 +10447,7 @@ func (o RdbInstanceLoadBalancerOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RdbInstanceLoadBalancer) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// Port of the endpoint.
+// Port in the Private Network.
 func (o RdbInstanceLoadBalancerOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RdbInstanceLoadBalancer) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
@@ -10473,17 +10473,17 @@ func (o RdbInstanceLoadBalancerArrayOutput) Index(i pulumi.IntInput) RdbInstance
 }
 
 type RdbInstancePrivateNetwork struct {
-	// The ID of the endpoint of the private network.
+	// The ID of the endpoint.
 	EndpointId *string `pulumi:"endpointId"`
-	// Name of the endpoint.
+	// Hostname of the endpoint.
 	Hostname *string `pulumi:"hostname"`
-	// IP of the endpoint.
+	// IPv4 address on the network.
 	Ip    *string `pulumi:"ip"`
 	IpNet *string `pulumi:"ipNet"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
 	PnId string  `pulumi:"pnId"`
-	// Port of the endpoint.
+	// Port in the Private Network.
 	Port *int    `pulumi:"port"`
 	Zone *string `pulumi:"zone"`
 }
@@ -10500,17 +10500,17 @@ type RdbInstancePrivateNetworkInput interface {
 }
 
 type RdbInstancePrivateNetworkArgs struct {
-	// The ID of the endpoint of the private network.
+	// The ID of the endpoint.
 	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
-	// Name of the endpoint.
+	// Hostname of the endpoint.
 	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
-	// IP of the endpoint.
+	// IPv4 address on the network.
 	Ip    pulumi.StringPtrInput `pulumi:"ip"`
 	IpNet pulumi.StringPtrInput `pulumi:"ipNet"`
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	PnId pulumi.StringInput    `pulumi:"pnId"`
-	// Port of the endpoint.
+	// Port in the Private Network.
 	Port pulumi.IntPtrInput    `pulumi:"port"`
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
@@ -10592,17 +10592,17 @@ func (o RdbInstancePrivateNetworkOutput) ToRdbInstancePrivateNetworkPtrOutputWit
 	}).(RdbInstancePrivateNetworkPtrOutput)
 }
 
-// The ID of the endpoint of the private network.
+// The ID of the endpoint.
 func (o RdbInstancePrivateNetworkOutput) EndpointId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RdbInstancePrivateNetwork) *string { return v.EndpointId }).(pulumi.StringPtrOutput)
 }
 
-// Name of the endpoint.
+// Hostname of the endpoint.
 func (o RdbInstancePrivateNetworkOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RdbInstancePrivateNetwork) *string { return v.Hostname }).(pulumi.StringPtrOutput)
 }
 
-// IP of the endpoint.
+// IPv4 address on the network.
 func (o RdbInstancePrivateNetworkOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RdbInstancePrivateNetwork) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
@@ -10620,7 +10620,7 @@ func (o RdbInstancePrivateNetworkOutput) PnId() pulumi.StringOutput {
 	return o.ApplyT(func(v RdbInstancePrivateNetwork) string { return v.PnId }).(pulumi.StringOutput)
 }
 
-// Port of the endpoint.
+// Port in the Private Network.
 func (o RdbInstancePrivateNetworkOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RdbInstancePrivateNetwork) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
@@ -10653,7 +10653,7 @@ func (o RdbInstancePrivateNetworkPtrOutput) Elem() RdbInstancePrivateNetworkOutp
 	}).(RdbInstancePrivateNetworkOutput)
 }
 
-// The ID of the endpoint of the private network.
+// The ID of the endpoint.
 func (o RdbInstancePrivateNetworkPtrOutput) EndpointId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RdbInstancePrivateNetwork) *string {
 		if v == nil {
@@ -10663,7 +10663,7 @@ func (o RdbInstancePrivateNetworkPtrOutput) EndpointId() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Name of the endpoint.
+// Hostname of the endpoint.
 func (o RdbInstancePrivateNetworkPtrOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RdbInstancePrivateNetwork) *string {
 		if v == nil {
@@ -10673,7 +10673,7 @@ func (o RdbInstancePrivateNetworkPtrOutput) Hostname() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// IP of the endpoint.
+// IPv4 address on the network.
 func (o RdbInstancePrivateNetworkPtrOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RdbInstancePrivateNetwork) *string {
 		if v == nil {
@@ -10711,7 +10711,7 @@ func (o RdbInstancePrivateNetworkPtrOutput) PnId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Port of the endpoint.
+// Port in the Private Network.
 func (o RdbInstancePrivateNetworkPtrOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *RdbInstancePrivateNetwork) *int {
 		if v == nil {
@@ -10731,11 +10731,11 @@ func (o RdbInstancePrivateNetworkPtrOutput) Zone() pulumi.StringPtrOutput {
 }
 
 type RdbInstanceReadReplica struct {
-	// IP of the endpoint.
+	// IPv4 address on the network.
 	Ip *string `pulumi:"ip"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
-	// Port of the endpoint.
+	// Port in the Private Network.
 	Port *int `pulumi:"port"`
 }
 
@@ -10751,11 +10751,11 @@ type RdbInstanceReadReplicaInput interface {
 }
 
 type RdbInstanceReadReplicaArgs struct {
-	// IP of the endpoint.
+	// IPv4 address on the network.
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// Port of the endpoint.
+	// Port in the Private Network.
 	Port pulumi.IntPtrInput `pulumi:"port"`
 }
 
@@ -10810,7 +10810,7 @@ func (o RdbInstanceReadReplicaOutput) ToRdbInstanceReadReplicaOutputWithContext(
 	return o
 }
 
-// IP of the endpoint.
+// IPv4 address on the network.
 func (o RdbInstanceReadReplicaOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RdbInstanceReadReplica) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
@@ -10820,7 +10820,7 @@ func (o RdbInstanceReadReplicaOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RdbInstanceReadReplica) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// Port of the endpoint.
+// Port in the Private Network.
 func (o RdbInstanceReadReplicaOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RdbInstanceReadReplica) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
@@ -11771,10 +11771,21 @@ func (o RedisClusterPublicNetworkPtrOutput) Port() pulumi.IntPtrOutput {
 }
 
 type VpcPrivateNetworkIpv4Subnet struct {
+	// The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+	Address *string `pulumi:"address"`
+	// The date and time of the creation of the subnet.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The ID of the private network.
-	Id        *string `pulumi:"id"`
-	Subnet    *string `pulumi:"subnet"`
+	// The subnet ID.
+	Id *string `pulumi:"id"`
+	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+	PrefixLength *int `pulumi:"prefixLength"`
+	// The subnet CIDR.
+	//
+	// > **Note:** If using Regional Private Network:
+	Subnet *string `pulumi:"subnet"`
+	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+	SubnetMask *string `pulumi:"subnetMask"`
+	// The date and time of the last update of the subnet.
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
@@ -11790,10 +11801,21 @@ type VpcPrivateNetworkIpv4SubnetInput interface {
 }
 
 type VpcPrivateNetworkIpv4SubnetArgs struct {
+	// The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+	Address pulumi.StringPtrInput `pulumi:"address"`
+	// The date and time of the creation of the subnet.
 	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
-	// The ID of the private network.
-	Id        pulumi.StringPtrInput `pulumi:"id"`
-	Subnet    pulumi.StringPtrInput `pulumi:"subnet"`
+	// The subnet ID.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+	PrefixLength pulumi.IntPtrInput `pulumi:"prefixLength"`
+	// The subnet CIDR.
+	//
+	// > **Note:** If using Regional Private Network:
+	Subnet pulumi.StringPtrInput `pulumi:"subnet"`
+	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+	SubnetMask pulumi.StringPtrInput `pulumi:"subnetMask"`
+	// The date and time of the last update of the subnet.
 	UpdatedAt pulumi.StringPtrInput `pulumi:"updatedAt"`
 }
 
@@ -11874,19 +11896,39 @@ func (o VpcPrivateNetworkIpv4SubnetOutput) ToVpcPrivateNetworkIpv4SubnetPtrOutpu
 	}).(VpcPrivateNetworkIpv4SubnetPtrOutput)
 }
 
+// The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+func (o VpcPrivateNetworkIpv4SubnetOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpcPrivateNetworkIpv4Subnet) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// The date and time of the creation of the subnet.
 func (o VpcPrivateNetworkIpv4SubnetOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpcPrivateNetworkIpv4Subnet) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the private network.
+// The subnet ID.
 func (o VpcPrivateNetworkIpv4SubnetOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpcPrivateNetworkIpv4Subnet) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+func (o VpcPrivateNetworkIpv4SubnetOutput) PrefixLength() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpcPrivateNetworkIpv4Subnet) *int { return v.PrefixLength }).(pulumi.IntPtrOutput)
+}
+
+// The subnet CIDR.
+//
+// > **Note:** If using Regional Private Network:
 func (o VpcPrivateNetworkIpv4SubnetOutput) Subnet() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpcPrivateNetworkIpv4Subnet) *string { return v.Subnet }).(pulumi.StringPtrOutput)
 }
 
+// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+func (o VpcPrivateNetworkIpv4SubnetOutput) SubnetMask() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpcPrivateNetworkIpv4Subnet) *string { return v.SubnetMask }).(pulumi.StringPtrOutput)
+}
+
+// The date and time of the last update of the subnet.
 func (o VpcPrivateNetworkIpv4SubnetOutput) UpdatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpcPrivateNetworkIpv4Subnet) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
 }
@@ -11915,6 +11957,17 @@ func (o VpcPrivateNetworkIpv4SubnetPtrOutput) Elem() VpcPrivateNetworkIpv4Subnet
 	}).(VpcPrivateNetworkIpv4SubnetOutput)
 }
 
+// The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+func (o VpcPrivateNetworkIpv4SubnetPtrOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpcPrivateNetworkIpv4Subnet) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Address
+	}).(pulumi.StringPtrOutput)
+}
+
+// The date and time of the creation of the subnet.
 func (o VpcPrivateNetworkIpv4SubnetPtrOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcPrivateNetworkIpv4Subnet) *string {
 		if v == nil {
@@ -11924,7 +11977,7 @@ func (o VpcPrivateNetworkIpv4SubnetPtrOutput) CreatedAt() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// The ID of the private network.
+// The subnet ID.
 func (o VpcPrivateNetworkIpv4SubnetPtrOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcPrivateNetworkIpv4Subnet) *string {
 		if v == nil {
@@ -11934,6 +11987,19 @@ func (o VpcPrivateNetworkIpv4SubnetPtrOutput) Id() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+func (o VpcPrivateNetworkIpv4SubnetPtrOutput) PrefixLength() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VpcPrivateNetworkIpv4Subnet) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PrefixLength
+	}).(pulumi.IntPtrOutput)
+}
+
+// The subnet CIDR.
+//
+// > **Note:** If using Regional Private Network:
 func (o VpcPrivateNetworkIpv4SubnetPtrOutput) Subnet() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcPrivateNetworkIpv4Subnet) *string {
 		if v == nil {
@@ -11943,6 +12009,17 @@ func (o VpcPrivateNetworkIpv4SubnetPtrOutput) Subnet() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+func (o VpcPrivateNetworkIpv4SubnetPtrOutput) SubnetMask() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpcPrivateNetworkIpv4Subnet) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubnetMask
+	}).(pulumi.StringPtrOutput)
+}
+
+// The date and time of the last update of the subnet.
 func (o VpcPrivateNetworkIpv4SubnetPtrOutput) UpdatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcPrivateNetworkIpv4Subnet) *string {
 		if v == nil {
@@ -11953,10 +12030,21 @@ func (o VpcPrivateNetworkIpv4SubnetPtrOutput) UpdatedAt() pulumi.StringPtrOutput
 }
 
 type VpcPrivateNetworkIpv6Subnet struct {
+	// The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+	Address *string `pulumi:"address"`
+	// The date and time of the creation of the subnet.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The ID of the private network.
-	Id        *string `pulumi:"id"`
-	Subnet    *string `pulumi:"subnet"`
+	// The subnet ID.
+	Id *string `pulumi:"id"`
+	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+	PrefixLength *int `pulumi:"prefixLength"`
+	// The subnet CIDR.
+	//
+	// > **Note:** If using Regional Private Network:
+	Subnet *string `pulumi:"subnet"`
+	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+	SubnetMask *string `pulumi:"subnetMask"`
+	// The date and time of the last update of the subnet.
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
@@ -11972,10 +12060,21 @@ type VpcPrivateNetworkIpv6SubnetInput interface {
 }
 
 type VpcPrivateNetworkIpv6SubnetArgs struct {
+	// The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+	Address pulumi.StringPtrInput `pulumi:"address"`
+	// The date and time of the creation of the subnet.
 	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
-	// The ID of the private network.
-	Id        pulumi.StringPtrInput `pulumi:"id"`
-	Subnet    pulumi.StringPtrInput `pulumi:"subnet"`
+	// The subnet ID.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+	PrefixLength pulumi.IntPtrInput `pulumi:"prefixLength"`
+	// The subnet CIDR.
+	//
+	// > **Note:** If using Regional Private Network:
+	Subnet pulumi.StringPtrInput `pulumi:"subnet"`
+	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+	SubnetMask pulumi.StringPtrInput `pulumi:"subnetMask"`
+	// The date and time of the last update of the subnet.
 	UpdatedAt pulumi.StringPtrInput `pulumi:"updatedAt"`
 }
 
@@ -12030,19 +12129,39 @@ func (o VpcPrivateNetworkIpv6SubnetOutput) ToVpcPrivateNetworkIpv6SubnetOutputWi
 	return o
 }
 
+// The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+func (o VpcPrivateNetworkIpv6SubnetOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpcPrivateNetworkIpv6Subnet) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// The date and time of the creation of the subnet.
 func (o VpcPrivateNetworkIpv6SubnetOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpcPrivateNetworkIpv6Subnet) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the private network.
+// The subnet ID.
 func (o VpcPrivateNetworkIpv6SubnetOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpcPrivateNetworkIpv6Subnet) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+func (o VpcPrivateNetworkIpv6SubnetOutput) PrefixLength() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpcPrivateNetworkIpv6Subnet) *int { return v.PrefixLength }).(pulumi.IntPtrOutput)
+}
+
+// The subnet CIDR.
+//
+// > **Note:** If using Regional Private Network:
 func (o VpcPrivateNetworkIpv6SubnetOutput) Subnet() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpcPrivateNetworkIpv6Subnet) *string { return v.Subnet }).(pulumi.StringPtrOutput)
 }
 
+// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+func (o VpcPrivateNetworkIpv6SubnetOutput) SubnetMask() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpcPrivateNetworkIpv6Subnet) *string { return v.SubnetMask }).(pulumi.StringPtrOutput)
+}
+
+// The date and time of the last update of the subnet.
 func (o VpcPrivateNetworkIpv6SubnetOutput) UpdatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpcPrivateNetworkIpv6Subnet) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
 }
@@ -20151,11 +20270,14 @@ func (o GetRedisClusterPublicNetworkArrayOutput) Index(i pulumi.IntInput) GetRed
 }
 
 type GetVpcPrivateNetworkIpv4Subnet struct {
+	Address   string `pulumi:"address"`
 	CreatedAt string `pulumi:"createdAt"`
 	// The ID of the private network.
-	Id        string `pulumi:"id"`
-	Subnet    string `pulumi:"subnet"`
-	UpdatedAt string `pulumi:"updatedAt"`
+	Id           string `pulumi:"id"`
+	PrefixLength int    `pulumi:"prefixLength"`
+	Subnet       string `pulumi:"subnet"`
+	SubnetMask   string `pulumi:"subnetMask"`
+	UpdatedAt    string `pulumi:"updatedAt"`
 }
 
 // GetVpcPrivateNetworkIpv4SubnetInput is an input type that accepts GetVpcPrivateNetworkIpv4SubnetArgs and GetVpcPrivateNetworkIpv4SubnetOutput values.
@@ -20170,11 +20292,14 @@ type GetVpcPrivateNetworkIpv4SubnetInput interface {
 }
 
 type GetVpcPrivateNetworkIpv4SubnetArgs struct {
+	Address   pulumi.StringInput `pulumi:"address"`
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// The ID of the private network.
-	Id        pulumi.StringInput `pulumi:"id"`
-	Subnet    pulumi.StringInput `pulumi:"subnet"`
-	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	PrefixLength pulumi.IntInput    `pulumi:"prefixLength"`
+	Subnet       pulumi.StringInput `pulumi:"subnet"`
+	SubnetMask   pulumi.StringInput `pulumi:"subnetMask"`
+	UpdatedAt    pulumi.StringInput `pulumi:"updatedAt"`
 }
 
 func (GetVpcPrivateNetworkIpv4SubnetArgs) ElementType() reflect.Type {
@@ -20228,6 +20353,10 @@ func (o GetVpcPrivateNetworkIpv4SubnetOutput) ToGetVpcPrivateNetworkIpv4SubnetOu
 	return o
 }
 
+func (o GetVpcPrivateNetworkIpv4SubnetOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcPrivateNetworkIpv4Subnet) string { return v.Address }).(pulumi.StringOutput)
+}
+
 func (o GetVpcPrivateNetworkIpv4SubnetOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcPrivateNetworkIpv4Subnet) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -20237,8 +20366,16 @@ func (o GetVpcPrivateNetworkIpv4SubnetOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcPrivateNetworkIpv4Subnet) string { return v.Id }).(pulumi.StringOutput)
 }
 
+func (o GetVpcPrivateNetworkIpv4SubnetOutput) PrefixLength() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVpcPrivateNetworkIpv4Subnet) int { return v.PrefixLength }).(pulumi.IntOutput)
+}
+
 func (o GetVpcPrivateNetworkIpv4SubnetOutput) Subnet() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcPrivateNetworkIpv4Subnet) string { return v.Subnet }).(pulumi.StringOutput)
+}
+
+func (o GetVpcPrivateNetworkIpv4SubnetOutput) SubnetMask() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcPrivateNetworkIpv4Subnet) string { return v.SubnetMask }).(pulumi.StringOutput)
 }
 
 func (o GetVpcPrivateNetworkIpv4SubnetOutput) UpdatedAt() pulumi.StringOutput {
@@ -20266,11 +20403,14 @@ func (o GetVpcPrivateNetworkIpv4SubnetArrayOutput) Index(i pulumi.IntInput) GetV
 }
 
 type GetVpcPrivateNetworkIpv6Subnet struct {
+	Address   string `pulumi:"address"`
 	CreatedAt string `pulumi:"createdAt"`
 	// The ID of the private network.
-	Id        string `pulumi:"id"`
-	Subnet    string `pulumi:"subnet"`
-	UpdatedAt string `pulumi:"updatedAt"`
+	Id           string `pulumi:"id"`
+	PrefixLength int    `pulumi:"prefixLength"`
+	Subnet       string `pulumi:"subnet"`
+	SubnetMask   string `pulumi:"subnetMask"`
+	UpdatedAt    string `pulumi:"updatedAt"`
 }
 
 // GetVpcPrivateNetworkIpv6SubnetInput is an input type that accepts GetVpcPrivateNetworkIpv6SubnetArgs and GetVpcPrivateNetworkIpv6SubnetOutput values.
@@ -20285,11 +20425,14 @@ type GetVpcPrivateNetworkIpv6SubnetInput interface {
 }
 
 type GetVpcPrivateNetworkIpv6SubnetArgs struct {
+	Address   pulumi.StringInput `pulumi:"address"`
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// The ID of the private network.
-	Id        pulumi.StringInput `pulumi:"id"`
-	Subnet    pulumi.StringInput `pulumi:"subnet"`
-	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	Id           pulumi.StringInput `pulumi:"id"`
+	PrefixLength pulumi.IntInput    `pulumi:"prefixLength"`
+	Subnet       pulumi.StringInput `pulumi:"subnet"`
+	SubnetMask   pulumi.StringInput `pulumi:"subnetMask"`
+	UpdatedAt    pulumi.StringInput `pulumi:"updatedAt"`
 }
 
 func (GetVpcPrivateNetworkIpv6SubnetArgs) ElementType() reflect.Type {
@@ -20343,6 +20486,10 @@ func (o GetVpcPrivateNetworkIpv6SubnetOutput) ToGetVpcPrivateNetworkIpv6SubnetOu
 	return o
 }
 
+func (o GetVpcPrivateNetworkIpv6SubnetOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcPrivateNetworkIpv6Subnet) string { return v.Address }).(pulumi.StringOutput)
+}
+
 func (o GetVpcPrivateNetworkIpv6SubnetOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcPrivateNetworkIpv6Subnet) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -20352,8 +20499,16 @@ func (o GetVpcPrivateNetworkIpv6SubnetOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcPrivateNetworkIpv6Subnet) string { return v.Id }).(pulumi.StringOutput)
 }
 
+func (o GetVpcPrivateNetworkIpv6SubnetOutput) PrefixLength() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVpcPrivateNetworkIpv6Subnet) int { return v.PrefixLength }).(pulumi.IntOutput)
+}
+
 func (o GetVpcPrivateNetworkIpv6SubnetOutput) Subnet() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcPrivateNetworkIpv6Subnet) string { return v.Subnet }).(pulumi.StringOutput)
+}
+
+func (o GetVpcPrivateNetworkIpv6SubnetOutput) SubnetMask() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcPrivateNetworkIpv6Subnet) string { return v.SubnetMask }).(pulumi.StringOutput)
 }
 
 func (o GetVpcPrivateNetworkIpv6SubnetOutput) UpdatedAt() pulumi.StringOutput {

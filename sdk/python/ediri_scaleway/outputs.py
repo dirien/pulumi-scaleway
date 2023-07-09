@@ -4180,11 +4180,11 @@ class RdbInstanceLoadBalancer(dict):
                  name: Optional[str] = None,
                  port: Optional[int] = None):
         """
-        :param str endpoint_id: The ID of the endpoint of the private network.
-        :param str hostname: Name of the endpoint.
-        :param str ip: IP of the endpoint.
+        :param str endpoint_id: The ID of the endpoint.
+        :param str hostname: Hostname of the endpoint.
+        :param str ip: IPv4 address on the network.
         :param str name: The name of the Database Instance.
-        :param int port: Port of the endpoint.
+        :param int port: Port in the Private Network.
         """
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -4201,7 +4201,7 @@ class RdbInstanceLoadBalancer(dict):
     @pulumi.getter(name="endpointId")
     def endpoint_id(self) -> Optional[str]:
         """
-        The ID of the endpoint of the private network.
+        The ID of the endpoint.
         """
         return pulumi.get(self, "endpoint_id")
 
@@ -4209,7 +4209,7 @@ class RdbInstanceLoadBalancer(dict):
     @pulumi.getter
     def hostname(self) -> Optional[str]:
         """
-        Name of the endpoint.
+        Hostname of the endpoint.
         """
         return pulumi.get(self, "hostname")
 
@@ -4217,7 +4217,7 @@ class RdbInstanceLoadBalancer(dict):
     @pulumi.getter
     def ip(self) -> Optional[str]:
         """
-        IP of the endpoint.
+        IPv4 address on the network.
         """
         return pulumi.get(self, "ip")
 
@@ -4233,7 +4233,7 @@ class RdbInstanceLoadBalancer(dict):
     @pulumi.getter
     def port(self) -> Optional[int]:
         """
-        Port of the endpoint.
+        Port in the Private Network.
         """
         return pulumi.get(self, "port")
 
@@ -4271,11 +4271,11 @@ class RdbInstancePrivateNetwork(dict):
                  port: Optional[int] = None,
                  zone: Optional[str] = None):
         """
-        :param str endpoint_id: The ID of the endpoint of the private network.
-        :param str hostname: Name of the endpoint.
-        :param str ip: IP of the endpoint.
+        :param str endpoint_id: The ID of the endpoint.
+        :param str hostname: Hostname of the endpoint.
+        :param str ip: IPv4 address on the network.
         :param str name: The name of the Database Instance.
-        :param int port: Port of the endpoint.
+        :param int port: Port in the Private Network.
         """
         pulumi.set(__self__, "pn_id", pn_id)
         if endpoint_id is not None:
@@ -4302,7 +4302,7 @@ class RdbInstancePrivateNetwork(dict):
     @pulumi.getter(name="endpointId")
     def endpoint_id(self) -> Optional[str]:
         """
-        The ID of the endpoint of the private network.
+        The ID of the endpoint.
         """
         return pulumi.get(self, "endpoint_id")
 
@@ -4310,7 +4310,7 @@ class RdbInstancePrivateNetwork(dict):
     @pulumi.getter
     def hostname(self) -> Optional[str]:
         """
-        Name of the endpoint.
+        Hostname of the endpoint.
         """
         return pulumi.get(self, "hostname")
 
@@ -4318,7 +4318,7 @@ class RdbInstancePrivateNetwork(dict):
     @pulumi.getter
     def ip(self) -> Optional[str]:
         """
-        IP of the endpoint.
+        IPv4 address on the network.
         """
         return pulumi.get(self, "ip")
 
@@ -4339,7 +4339,7 @@ class RdbInstancePrivateNetwork(dict):
     @pulumi.getter
     def port(self) -> Optional[int]:
         """
-        Port of the endpoint.
+        Port in the Private Network.
         """
         return pulumi.get(self, "port")
 
@@ -4356,9 +4356,9 @@ class RdbInstanceReadReplica(dict):
                  name: Optional[str] = None,
                  port: Optional[int] = None):
         """
-        :param str ip: IP of the endpoint.
+        :param str ip: IPv4 address on the network.
         :param str name: The name of the Database Instance.
-        :param int port: Port of the endpoint.
+        :param int port: Port in the Private Network.
         """
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
@@ -4371,7 +4371,7 @@ class RdbInstanceReadReplica(dict):
     @pulumi.getter
     def ip(self) -> Optional[str]:
         """
-        IP of the endpoint.
+        IPv4 address on the network.
         """
         return pulumi.get(self, "ip")
 
@@ -4387,7 +4387,7 @@ class RdbInstanceReadReplica(dict):
     @pulumi.getter
     def port(self) -> Optional[int]:
         """
-        Port of the endpoint.
+        Port in the Private Network.
         """
         return pulumi.get(self, "port")
 
@@ -4778,6 +4778,10 @@ class VpcPrivateNetworkIpv4Subnet(dict):
         suggest = None
         if key == "createdAt":
             suggest = "created_at"
+        elif key == "prefixLength":
+            suggest = "prefix_length"
+        elif key == "subnetMask":
+            suggest = "subnet_mask"
         elif key == "updatedAt":
             suggest = "updated_at"
 
@@ -4793,43 +4797,95 @@ class VpcPrivateNetworkIpv4Subnet(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 address: Optional[str] = None,
                  created_at: Optional[str] = None,
                  id: Optional[str] = None,
+                 prefix_length: Optional[int] = None,
                  subnet: Optional[str] = None,
+                 subnet_mask: Optional[str] = None,
                  updated_at: Optional[str] = None):
         """
-        :param str id: The ID of the private network.
+        :param str address: The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+        :param str created_at: The date and time of the creation of the subnet.
+        :param str id: The subnet ID.
+        :param int prefix_length: The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+        :param str subnet: The subnet CIDR.
+               
+               > **Note:** If using Regional Private Network:
+        :param str subnet_mask: The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+        :param str updated_at: The date and time of the last update of the subnet.
         """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if id is not None:
             pulumi.set(__self__, "id", id)
+        if prefix_length is not None:
+            pulumi.set(__self__, "prefix_length", prefix_length)
         if subnet is not None:
             pulumi.set(__self__, "subnet", subnet)
+        if subnet_mask is not None:
+            pulumi.set(__self__, "subnet_mask", subnet_mask)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
 
     @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+        """
+        return pulumi.get(self, "address")
+
+    @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[str]:
+        """
+        The date and time of the creation of the subnet.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
         """
-        The ID of the private network.
+        The subnet ID.
         """
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="prefixLength")
+    def prefix_length(self) -> Optional[int]:
+        """
+        The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+        """
+        return pulumi.get(self, "prefix_length")
+
+    @property
     @pulumi.getter
     def subnet(self) -> Optional[str]:
+        """
+        The subnet CIDR.
+
+        > **Note:** If using Regional Private Network:
+        """
         return pulumi.get(self, "subnet")
+
+    @property
+    @pulumi.getter(name="subnetMask")
+    def subnet_mask(self) -> Optional[str]:
+        """
+        The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+        """
+        return pulumi.get(self, "subnet_mask")
 
     @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[str]:
+        """
+        The date and time of the last update of the subnet.
+        """
         return pulumi.get(self, "updated_at")
 
 
@@ -4840,6 +4896,10 @@ class VpcPrivateNetworkIpv6Subnet(dict):
         suggest = None
         if key == "createdAt":
             suggest = "created_at"
+        elif key == "prefixLength":
+            suggest = "prefix_length"
+        elif key == "subnetMask":
+            suggest = "subnet_mask"
         elif key == "updatedAt":
             suggest = "updated_at"
 
@@ -4855,43 +4915,95 @@ class VpcPrivateNetworkIpv6Subnet(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 address: Optional[str] = None,
                  created_at: Optional[str] = None,
                  id: Optional[str] = None,
+                 prefix_length: Optional[int] = None,
                  subnet: Optional[str] = None,
+                 subnet_mask: Optional[str] = None,
                  updated_at: Optional[str] = None):
         """
-        :param str id: The ID of the private network.
+        :param str address: The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+        :param str created_at: The date and time of the creation of the subnet.
+        :param str id: The subnet ID.
+        :param int prefix_length: The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+        :param str subnet: The subnet CIDR.
+               
+               > **Note:** If using Regional Private Network:
+        :param str subnet_mask: The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+        :param str updated_at: The date and time of the last update of the subnet.
         """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if id is not None:
             pulumi.set(__self__, "id", id)
+        if prefix_length is not None:
+            pulumi.set(__self__, "prefix_length", prefix_length)
         if subnet is not None:
             pulumi.set(__self__, "subnet", subnet)
+        if subnet_mask is not None:
+            pulumi.set(__self__, "subnet_mask", subnet_mask)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
 
     @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+        """
+        return pulumi.get(self, "address")
+
+    @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[str]:
+        """
+        The date and time of the creation of the subnet.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
         """
-        The ID of the private network.
+        The subnet ID.
         """
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="prefixLength")
+    def prefix_length(self) -> Optional[int]:
+        """
+        The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+        """
+        return pulumi.get(self, "prefix_length")
+
+    @property
     @pulumi.getter
     def subnet(self) -> Optional[str]:
+        """
+        The subnet CIDR.
+
+        > **Note:** If using Regional Private Network:
+        """
         return pulumi.get(self, "subnet")
+
+    @property
+    @pulumi.getter(name="subnetMask")
+    def subnet_mask(self) -> Optional[str]:
+        """
+        The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+        """
+        return pulumi.get(self, "subnet_mask")
 
     @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[str]:
+        """
+        The date and time of the last update of the subnet.
+        """
         return pulumi.get(self, "updated_at")
 
 
@@ -8243,17 +8355,28 @@ class GetRedisClusterPublicNetworkResult(dict):
 @pulumi.output_type
 class GetVpcPrivateNetworkIpv4SubnetResult(dict):
     def __init__(__self__, *,
+                 address: str,
                  created_at: str,
                  id: str,
+                 prefix_length: int,
                  subnet: str,
+                 subnet_mask: str,
                  updated_at: str):
         """
         :param str id: The ID of the private network.
         """
+        pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "prefix_length", prefix_length)
         pulumi.set(__self__, "subnet", subnet)
+        pulumi.set(__self__, "subnet_mask", subnet_mask)
         pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        return pulumi.get(self, "address")
 
     @property
     @pulumi.getter(name="createdAt")
@@ -8269,9 +8392,19 @@ class GetVpcPrivateNetworkIpv4SubnetResult(dict):
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="prefixLength")
+    def prefix_length(self) -> int:
+        return pulumi.get(self, "prefix_length")
+
+    @property
     @pulumi.getter
     def subnet(self) -> str:
         return pulumi.get(self, "subnet")
+
+    @property
+    @pulumi.getter(name="subnetMask")
+    def subnet_mask(self) -> str:
+        return pulumi.get(self, "subnet_mask")
 
     @property
     @pulumi.getter(name="updatedAt")
@@ -8282,17 +8415,28 @@ class GetVpcPrivateNetworkIpv4SubnetResult(dict):
 @pulumi.output_type
 class GetVpcPrivateNetworkIpv6SubnetResult(dict):
     def __init__(__self__, *,
+                 address: str,
                  created_at: str,
                  id: str,
+                 prefix_length: int,
                  subnet: str,
+                 subnet_mask: str,
                  updated_at: str):
         """
         :param str id: The ID of the private network.
         """
+        pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "prefix_length", prefix_length)
         pulumi.set(__self__, "subnet", subnet)
+        pulumi.set(__self__, "subnet_mask", subnet_mask)
         pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        return pulumi.get(self, "address")
 
     @property
     @pulumi.getter(name="createdAt")
@@ -8308,9 +8452,19 @@ class GetVpcPrivateNetworkIpv6SubnetResult(dict):
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="prefixLength")
+    def prefix_length(self) -> int:
+        return pulumi.get(self, "prefix_length")
+
+    @property
     @pulumi.getter
     def subnet(self) -> str:
         return pulumi.get(self, "subnet")
+
+    @property
+    @pulumi.getter(name="subnetMask")
+    def subnet_mask(self) -> str:
+        return pulumi.get(self, "subnet_mask")
 
     @property
     @pulumi.getter(name="updatedAt")

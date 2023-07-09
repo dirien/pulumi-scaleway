@@ -223,6 +223,8 @@ namespace ediri.Scaleway
         /// 
         /// &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
         /// Any subsequent change after this field got set will prompt for cluster recreation.
+        /// 
+        /// &gt; Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
         /// </summary>
         [Output("privateNetworkId")]
         public Output<string?> PrivateNetworkId { get; private set; } = null!;
@@ -418,6 +420,8 @@ namespace ediri.Scaleway
         /// 
         /// &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
         /// Any subsequent change after this field got set will prompt for cluster recreation.
+        /// 
+        /// &gt; Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
@@ -586,6 +590,8 @@ namespace ediri.Scaleway
         /// 
         /// &gt; **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
         /// Any subsequent change after this field got set will prompt for cluster recreation.
+        /// 
+        /// &gt; Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
