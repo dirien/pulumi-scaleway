@@ -16,6 +16,8 @@ namespace ediri.Scaleway
     /// 
     /// ## Example
     /// 
+    /// ### Basic
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -26,6 +28,43 @@ namespace ediri.Scaleway
     /// {
     ///     var pnPriv = new Scaleway.VpcPrivateNetwork("pnPriv", new()
     ///     {
+    ///         Tags = new[]
+    ///         {
+    ///             "demo",
+    ///             "terraform",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With subnets
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pnPriv = new Scaleway.VpcPrivateNetwork("pnPriv", new()
+    ///     {
+    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+    ///         {
+    ///             Subnet = "192.168.0.0/24",
+    ///         },
+    ///         Ipv6Subnets = new[]
+    ///         {
+    ///             new Scaleway.Inputs.VpcPrivateNetworkIpv6SubnetArgs
+    ///             {
+    ///                 Subnet = "fd46:78ab:30b8:177c::/64",
+    ///             },
+    ///             new Scaleway.Inputs.VpcPrivateNetworkIpv6SubnetArgs
+    ///             {
+    ///                 Subnet = "fd46:78ab:30b8:c7df::/64",
+    ///             },
+    ///         },
     ///         Tags = new[]
     ///         {
     ///             "demo",
@@ -88,21 +127,19 @@ namespace ediri.Scaleway
     public partial class VpcPrivateNetwork : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The date and time of the creation of the private network
+        /// The date and time of the creation of the subnet.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The IPv4 subnet associated with the private network.
+        /// The IPv4 subnet to associate with the private network.
         /// </summary>
         [Output("ipv4Subnet")]
         public Output<Outputs.VpcPrivateNetworkIpv4Subnet> Ipv4Subnet { get; private set; } = null!;
 
         /// <summary>
-        /// The IPv6 subnets associated with the private network.
-        /// 
-        /// &gt; **Note:** If using Regional Private Network:
+        /// The IPv6 subnets to associate with the private network.
         /// </summary>
         [Output("ipv6Subnets")]
         public Output<ImmutableArray<Outputs.VpcPrivateNetworkIpv6Subnet>> Ipv6Subnets { get; private set; } = null!;
@@ -144,7 +181,7 @@ namespace ediri.Scaleway
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the last update of the private network
+        /// The date and time of the last update of the subnet.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
@@ -209,7 +246,7 @@ namespace ediri.Scaleway
     public sealed class VpcPrivateNetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The IPv4 subnet associated with the private network.
+        /// The IPv4 subnet to associate with the private network.
         /// </summary>
         [Input("ipv4Subnet")]
         public Input<Inputs.VpcPrivateNetworkIpv4SubnetArgs>? Ipv4Subnet { get; set; }
@@ -218,9 +255,7 @@ namespace ediri.Scaleway
         private InputList<Inputs.VpcPrivateNetworkIpv6SubnetArgs>? _ipv6Subnets;
 
         /// <summary>
-        /// The IPv6 subnets associated with the private network.
-        /// 
-        /// &gt; **Note:** If using Regional Private Network:
+        /// The IPv6 subnets to associate with the private network.
         /// </summary>
         public InputList<Inputs.VpcPrivateNetworkIpv6SubnetArgs> Ipv6Subnets
         {
@@ -285,13 +320,13 @@ namespace ediri.Scaleway
     public sealed class VpcPrivateNetworkState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The date and time of the creation of the private network
+        /// The date and time of the creation of the subnet.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The IPv4 subnet associated with the private network.
+        /// The IPv4 subnet to associate with the private network.
         /// </summary>
         [Input("ipv4Subnet")]
         public Input<Inputs.VpcPrivateNetworkIpv4SubnetGetArgs>? Ipv4Subnet { get; set; }
@@ -300,9 +335,7 @@ namespace ediri.Scaleway
         private InputList<Inputs.VpcPrivateNetworkIpv6SubnetGetArgs>? _ipv6Subnets;
 
         /// <summary>
-        /// The IPv6 subnets associated with the private network.
-        /// 
-        /// &gt; **Note:** If using Regional Private Network:
+        /// The IPv6 subnets to associate with the private network.
         /// </summary>
         public InputList<Inputs.VpcPrivateNetworkIpv6SubnetGetArgs> Ipv6Subnets
         {
@@ -353,7 +386,7 @@ namespace ediri.Scaleway
         }
 
         /// <summary>
-        /// The date and time of the last update of the private network
+        /// The date and time of the last update of the subnet.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }

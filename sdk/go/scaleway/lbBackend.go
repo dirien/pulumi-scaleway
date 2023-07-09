@@ -116,12 +116,18 @@ type LbBackend struct {
 	// The load-balancer ID this backend is attached to.
 	// > **Important:** Updates to `lbId` will recreate the backend.
 	LbId pulumi.StringOutput `pulumi:"lbId"`
+	// Maximum number of connections allowed per backend server.
+	MaxConnections pulumi.IntPtrOutput `pulumi:"maxConnections"`
+	// Number of retries when a backend server connection failed.
+	MaxRetries pulumi.IntPtrOutput `pulumi:"maxRetries"`
 	// The name of the load-balancer backend.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdownSessions`.
 	OnMarkedDownAction pulumi.StringPtrOutput `pulumi:"onMarkedDownAction"`
 	// Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2Ssl`, `v2SslCn`)
 	ProxyProtocol pulumi.StringPtrOutput `pulumi:"proxyProtocol"`
+	// Whether to use another backend server on each attempt.
+	RedispatchAttemptCount pulumi.IntPtrOutput `pulumi:"redispatchAttemptCount"`
 	// DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
 	//
 	// Deprecated: Please use proxy_protocol instead
@@ -136,6 +142,8 @@ type LbBackend struct {
 	StickySessionsCookieName pulumi.StringPtrOutput `pulumi:"stickySessionsCookieName"`
 	// Maximum initial server connection establishment time. (e.g.: `1s`)
 	TimeoutConnect pulumi.StringPtrOutput `pulumi:"timeoutConnect"`
+	// Maximum time for a request to be left pending in queue when `maxConnections` is reached. (e.g.: `1s`)
+	TimeoutQueue pulumi.StringPtrOutput `pulumi:"timeoutQueue"`
 	// Maximum server connection inactivity time. (e.g.: `1s`)
 	TimeoutServer pulumi.StringPtrOutput `pulumi:"timeoutServer"`
 	// Maximum tunnel inactivity time. (e.g.: `1s`)
@@ -210,12 +218,18 @@ type lbBackendState struct {
 	// The load-balancer ID this backend is attached to.
 	// > **Important:** Updates to `lbId` will recreate the backend.
 	LbId *string `pulumi:"lbId"`
+	// Maximum number of connections allowed per backend server.
+	MaxConnections *int `pulumi:"maxConnections"`
+	// Number of retries when a backend server connection failed.
+	MaxRetries *int `pulumi:"maxRetries"`
 	// The name of the load-balancer backend.
 	Name *string `pulumi:"name"`
 	// Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdownSessions`.
 	OnMarkedDownAction *string `pulumi:"onMarkedDownAction"`
 	// Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2Ssl`, `v2SslCn`)
 	ProxyProtocol *string `pulumi:"proxyProtocol"`
+	// Whether to use another backend server on each attempt.
+	RedispatchAttemptCount *int `pulumi:"redispatchAttemptCount"`
 	// DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
 	//
 	// Deprecated: Please use proxy_protocol instead
@@ -230,6 +244,8 @@ type lbBackendState struct {
 	StickySessionsCookieName *string `pulumi:"stickySessionsCookieName"`
 	// Maximum initial server connection establishment time. (e.g.: `1s`)
 	TimeoutConnect *string `pulumi:"timeoutConnect"`
+	// Maximum time for a request to be left pending in queue when `maxConnections` is reached. (e.g.: `1s`)
+	TimeoutQueue *string `pulumi:"timeoutQueue"`
 	// Maximum server connection inactivity time. (e.g.: `1s`)
 	TimeoutServer *string `pulumi:"timeoutServer"`
 	// Maximum tunnel inactivity time. (e.g.: `1s`)
@@ -266,12 +282,18 @@ type LbBackendState struct {
 	// The load-balancer ID this backend is attached to.
 	// > **Important:** Updates to `lbId` will recreate the backend.
 	LbId pulumi.StringPtrInput
+	// Maximum number of connections allowed per backend server.
+	MaxConnections pulumi.IntPtrInput
+	// Number of retries when a backend server connection failed.
+	MaxRetries pulumi.IntPtrInput
 	// The name of the load-balancer backend.
 	Name pulumi.StringPtrInput
 	// Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdownSessions`.
 	OnMarkedDownAction pulumi.StringPtrInput
 	// Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2Ssl`, `v2SslCn`)
 	ProxyProtocol pulumi.StringPtrInput
+	// Whether to use another backend server on each attempt.
+	RedispatchAttemptCount pulumi.IntPtrInput
 	// DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
 	//
 	// Deprecated: Please use proxy_protocol instead
@@ -286,6 +308,8 @@ type LbBackendState struct {
 	StickySessionsCookieName pulumi.StringPtrInput
 	// Maximum initial server connection establishment time. (e.g.: `1s`)
 	TimeoutConnect pulumi.StringPtrInput
+	// Maximum time for a request to be left pending in queue when `maxConnections` is reached. (e.g.: `1s`)
+	TimeoutQueue pulumi.StringPtrInput
 	// Maximum server connection inactivity time. (e.g.: `1s`)
 	TimeoutServer pulumi.StringPtrInput
 	// Maximum tunnel inactivity time. (e.g.: `1s`)
@@ -326,12 +350,18 @@ type lbBackendArgs struct {
 	// The load-balancer ID this backend is attached to.
 	// > **Important:** Updates to `lbId` will recreate the backend.
 	LbId string `pulumi:"lbId"`
+	// Maximum number of connections allowed per backend server.
+	MaxConnections *int `pulumi:"maxConnections"`
+	// Number of retries when a backend server connection failed.
+	MaxRetries *int `pulumi:"maxRetries"`
 	// The name of the load-balancer backend.
 	Name *string `pulumi:"name"`
 	// Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdownSessions`.
 	OnMarkedDownAction *string `pulumi:"onMarkedDownAction"`
 	// Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2Ssl`, `v2SslCn`)
 	ProxyProtocol *string `pulumi:"proxyProtocol"`
+	// Whether to use another backend server on each attempt.
+	RedispatchAttemptCount *int `pulumi:"redispatchAttemptCount"`
 	// DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
 	//
 	// Deprecated: Please use proxy_protocol instead
@@ -346,6 +376,8 @@ type lbBackendArgs struct {
 	StickySessionsCookieName *string `pulumi:"stickySessionsCookieName"`
 	// Maximum initial server connection establishment time. (e.g.: `1s`)
 	TimeoutConnect *string `pulumi:"timeoutConnect"`
+	// Maximum time for a request to be left pending in queue when `maxConnections` is reached. (e.g.: `1s`)
+	TimeoutQueue *string `pulumi:"timeoutQueue"`
 	// Maximum server connection inactivity time. (e.g.: `1s`)
 	TimeoutServer *string `pulumi:"timeoutServer"`
 	// Maximum tunnel inactivity time. (e.g.: `1s`)
@@ -383,12 +415,18 @@ type LbBackendArgs struct {
 	// The load-balancer ID this backend is attached to.
 	// > **Important:** Updates to `lbId` will recreate the backend.
 	LbId pulumi.StringInput
+	// Maximum number of connections allowed per backend server.
+	MaxConnections pulumi.IntPtrInput
+	// Number of retries when a backend server connection failed.
+	MaxRetries pulumi.IntPtrInput
 	// The name of the load-balancer backend.
 	Name pulumi.StringPtrInput
 	// Modify what occurs when a backend server is marked down. Possible values are: `none` and `shutdownSessions`.
 	OnMarkedDownAction pulumi.StringPtrInput
 	// Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2Ssl`, `v2SslCn`)
 	ProxyProtocol pulumi.StringPtrInput
+	// Whether to use another backend server on each attempt.
+	RedispatchAttemptCount pulumi.IntPtrInput
 	// DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
 	//
 	// Deprecated: Please use proxy_protocol instead
@@ -403,6 +441,8 @@ type LbBackendArgs struct {
 	StickySessionsCookieName pulumi.StringPtrInput
 	// Maximum initial server connection establishment time. (e.g.: `1s`)
 	TimeoutConnect pulumi.StringPtrInput
+	// Maximum time for a request to be left pending in queue when `maxConnections` is reached. (e.g.: `1s`)
+	TimeoutQueue pulumi.StringPtrInput
 	// Maximum server connection inactivity time. (e.g.: `1s`)
 	TimeoutServer pulumi.StringPtrInput
 	// Maximum tunnel inactivity time. (e.g.: `1s`)
@@ -564,6 +604,16 @@ func (o LbBackendOutput) LbId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbBackend) pulumi.StringOutput { return v.LbId }).(pulumi.StringOutput)
 }
 
+// Maximum number of connections allowed per backend server.
+func (o LbBackendOutput) MaxConnections() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *LbBackend) pulumi.IntPtrOutput { return v.MaxConnections }).(pulumi.IntPtrOutput)
+}
+
+// Number of retries when a backend server connection failed.
+func (o LbBackendOutput) MaxRetries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *LbBackend) pulumi.IntPtrOutput { return v.MaxRetries }).(pulumi.IntPtrOutput)
+}
+
 // The name of the load-balancer backend.
 func (o LbBackendOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbBackend) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
@@ -577,6 +627,11 @@ func (o LbBackendOutput) OnMarkedDownAction() pulumi.StringPtrOutput {
 // Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2Ssl`, `v2SslCn`)
 func (o LbBackendOutput) ProxyProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LbBackend) pulumi.StringPtrOutput { return v.ProxyProtocol }).(pulumi.StringPtrOutput)
+}
+
+// Whether to use another backend server on each attempt.
+func (o LbBackendOutput) RedispatchAttemptCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *LbBackend) pulumi.IntPtrOutput { return v.RedispatchAttemptCount }).(pulumi.IntPtrOutput)
 }
 
 // DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
@@ -609,6 +664,11 @@ func (o LbBackendOutput) StickySessionsCookieName() pulumi.StringPtrOutput {
 // Maximum initial server connection establishment time. (e.g.: `1s`)
 func (o LbBackendOutput) TimeoutConnect() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LbBackend) pulumi.StringPtrOutput { return v.TimeoutConnect }).(pulumi.StringPtrOutput)
+}
+
+// Maximum time for a request to be left pending in queue when `maxConnections` is reached. (e.g.: `1s`)
+func (o LbBackendOutput) TimeoutQueue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LbBackend) pulumi.StringPtrOutput { return v.TimeoutQueue }).(pulumi.StringPtrOutput)
 }
 
 // Maximum server connection inactivity time. (e.g.: `1s`)

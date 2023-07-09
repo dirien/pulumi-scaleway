@@ -11,6 +11,38 @@ import (
 )
 
 // Gets information about a private network.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.LookupVpcPrivateNetwork(ctx, &scaleway.LookupVpcPrivateNetworkArgs{
+//				Name: pulumi.StringRef("foobar"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.LookupVpcPrivateNetwork(ctx, &scaleway.LookupVpcPrivateNetworkArgs{
+//				PrivateNetworkId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupVpcPrivateNetwork(ctx *pulumi.Context, args *LookupVpcPrivateNetworkArgs, opts ...pulumi.InvokeOption) (*LookupVpcPrivateNetworkResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPrivateNetworkResult

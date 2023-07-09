@@ -98,15 +98,19 @@ type LookupLbBackendResult struct {
 	Id                       string   `pulumi:"id"`
 	IgnoreSslServerVerify    bool     `pulumi:"ignoreSslServerVerify"`
 	LbId                     *string  `pulumi:"lbId"`
+	MaxConnections           int      `pulumi:"maxConnections"`
+	MaxRetries               int      `pulumi:"maxRetries"`
 	Name                     *string  `pulumi:"name"`
 	OnMarkedDownAction       string   `pulumi:"onMarkedDownAction"`
 	ProxyProtocol            string   `pulumi:"proxyProtocol"`
+	RedispatchAttemptCount   int      `pulumi:"redispatchAttemptCount"`
 	SendProxyV2              bool     `pulumi:"sendProxyV2"`
 	ServerIps                []string `pulumi:"serverIps"`
 	SslBridging              bool     `pulumi:"sslBridging"`
 	StickySessions           string   `pulumi:"stickySessions"`
 	StickySessionsCookieName string   `pulumi:"stickySessionsCookieName"`
 	TimeoutConnect           string   `pulumi:"timeoutConnect"`
+	TimeoutQueue             string   `pulumi:"timeoutQueue"`
 	TimeoutServer            string   `pulumi:"timeoutServer"`
 	TimeoutTunnel            string   `pulumi:"timeoutTunnel"`
 }
@@ -216,6 +220,14 @@ func (o LookupLbBackendResultOutput) LbId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupLbBackendResult) *string { return v.LbId }).(pulumi.StringPtrOutput)
 }
 
+func (o LookupLbBackendResultOutput) MaxConnections() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupLbBackendResult) int { return v.MaxConnections }).(pulumi.IntOutput)
+}
+
+func (o LookupLbBackendResultOutput) MaxRetries() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupLbBackendResult) int { return v.MaxRetries }).(pulumi.IntOutput)
+}
+
 func (o LookupLbBackendResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupLbBackendResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -226,6 +238,10 @@ func (o LookupLbBackendResultOutput) OnMarkedDownAction() pulumi.StringOutput {
 
 func (o LookupLbBackendResultOutput) ProxyProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLbBackendResult) string { return v.ProxyProtocol }).(pulumi.StringOutput)
+}
+
+func (o LookupLbBackendResultOutput) RedispatchAttemptCount() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupLbBackendResult) int { return v.RedispatchAttemptCount }).(pulumi.IntOutput)
 }
 
 func (o LookupLbBackendResultOutput) SendProxyV2() pulumi.BoolOutput {
@@ -250,6 +266,10 @@ func (o LookupLbBackendResultOutput) StickySessionsCookieName() pulumi.StringOut
 
 func (o LookupLbBackendResultOutput) TimeoutConnect() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLbBackendResult) string { return v.TimeoutConnect }).(pulumi.StringOutput)
+}
+
+func (o LookupLbBackendResultOutput) TimeoutQueue() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLbBackendResult) string { return v.TimeoutQueue }).(pulumi.StringOutput)
 }
 
 func (o LookupLbBackendResultOutput) TimeoutServer() pulumi.StringOutput {

@@ -1079,15 +1079,15 @@ export interface RdbAclAclRule {
 
 export interface RdbInstanceLoadBalancer {
     /**
-     * The ID of the endpoint of the private network.
+     * The ID of the endpoint.
      */
     endpointId?: pulumi.Input<string>;
     /**
-     * Name of the endpoint.
+     * Hostname of the endpoint.
      */
     hostname?: pulumi.Input<string>;
     /**
-     * IP of the endpoint.
+     * IPv4 address on the network.
      */
     ip?: pulumi.Input<string>;
     /**
@@ -1095,22 +1095,22 @@ export interface RdbInstanceLoadBalancer {
      */
     name?: pulumi.Input<string>;
     /**
-     * Port of the endpoint.
+     * Port in the Private Network.
      */
     port?: pulumi.Input<number>;
 }
 
 export interface RdbInstancePrivateNetwork {
     /**
-     * The ID of the endpoint of the private network.
+     * The ID of the endpoint.
      */
     endpointId?: pulumi.Input<string>;
     /**
-     * Name of the endpoint.
+     * Hostname of the endpoint.
      */
     hostname?: pulumi.Input<string>;
     /**
-     * IP of the endpoint.
+     * IPv4 address on the network.
      */
     ip?: pulumi.Input<string>;
     ipNet?: pulumi.Input<string>;
@@ -1120,7 +1120,7 @@ export interface RdbInstancePrivateNetwork {
     name?: pulumi.Input<string>;
     pnId: pulumi.Input<string>;
     /**
-     * Port of the endpoint.
+     * Port in the Private Network.
      */
     port?: pulumi.Input<number>;
     zone?: pulumi.Input<string>;
@@ -1128,7 +1128,7 @@ export interface RdbInstancePrivateNetwork {
 
 export interface RdbInstanceReadReplica {
     /**
-     * IP of the endpoint.
+     * IPv4 address on the network.
      */
     ip?: pulumi.Input<string>;
     /**
@@ -1136,7 +1136,7 @@ export interface RdbInstanceReadReplica {
      */
     name?: pulumi.Input<string>;
     /**
-     * Port of the endpoint.
+     * Port in the Private Network.
      */
     port?: pulumi.Input<number>;
 }
@@ -1254,21 +1254,67 @@ export interface RedisClusterPublicNetwork {
 }
 
 export interface VpcPrivateNetworkIpv4Subnet {
+    /**
+     * The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+     */
+    address?: pulumi.Input<string>;
+    /**
+     * The date and time of the creation of the subnet.
+     */
     createdAt?: pulumi.Input<string>;
     /**
-     * The ID of the private network.
+     * The subnet ID.
      */
     id?: pulumi.Input<string>;
+    /**
+     * The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+     */
+    prefixLength?: pulumi.Input<number>;
+    /**
+     * The subnet CIDR.
+     *
+     * > **Note:** If using Regional Private Network:
+     */
     subnet?: pulumi.Input<string>;
+    /**
+     * The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+     */
+    subnetMask?: pulumi.Input<string>;
+    /**
+     * The date and time of the last update of the subnet.
+     */
     updatedAt?: pulumi.Input<string>;
 }
 
 export interface VpcPrivateNetworkIpv6Subnet {
+    /**
+     * The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+     */
+    address?: pulumi.Input<string>;
+    /**
+     * The date and time of the creation of the subnet.
+     */
     createdAt?: pulumi.Input<string>;
     /**
-     * The ID of the private network.
+     * The subnet ID.
      */
     id?: pulumi.Input<string>;
+    /**
+     * The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+     */
+    prefixLength?: pulumi.Input<number>;
+    /**
+     * The subnet CIDR.
+     *
+     * > **Note:** If using Regional Private Network:
+     */
     subnet?: pulumi.Input<string>;
+    /**
+     * The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+     */
+    subnetMask?: pulumi.Input<string>;
+    /**
+     * The date and time of the last update of the subnet.
+     */
     updatedAt?: pulumi.Input<string>;
 }

@@ -22,7 +22,7 @@ class GetLbBackendResult:
     """
     A collection of values returned by getLbBackend.
     """
-    def __init__(__self__, backend_id=None, failover_host=None, forward_port=None, forward_port_algorithm=None, forward_protocol=None, health_check_delay=None, health_check_http=None, health_check_https=None, health_check_max_retries=None, health_check_port=None, health_check_tcps=None, health_check_timeout=None, id=None, ignore_ssl_server_verify=None, lb_id=None, name=None, on_marked_down_action=None, proxy_protocol=None, send_proxy_v2=None, server_ips=None, ssl_bridging=None, sticky_sessions=None, sticky_sessions_cookie_name=None, timeout_connect=None, timeout_server=None, timeout_tunnel=None):
+    def __init__(__self__, backend_id=None, failover_host=None, forward_port=None, forward_port_algorithm=None, forward_protocol=None, health_check_delay=None, health_check_http=None, health_check_https=None, health_check_max_retries=None, health_check_port=None, health_check_tcps=None, health_check_timeout=None, id=None, ignore_ssl_server_verify=None, lb_id=None, max_connections=None, max_retries=None, name=None, on_marked_down_action=None, proxy_protocol=None, redispatch_attempt_count=None, send_proxy_v2=None, server_ips=None, ssl_bridging=None, sticky_sessions=None, sticky_sessions_cookie_name=None, timeout_connect=None, timeout_queue=None, timeout_server=None, timeout_tunnel=None):
         if backend_id and not isinstance(backend_id, str):
             raise TypeError("Expected argument 'backend_id' to be a str")
         pulumi.set(__self__, "backend_id", backend_id)
@@ -68,6 +68,12 @@ class GetLbBackendResult:
         if lb_id and not isinstance(lb_id, str):
             raise TypeError("Expected argument 'lb_id' to be a str")
         pulumi.set(__self__, "lb_id", lb_id)
+        if max_connections and not isinstance(max_connections, int):
+            raise TypeError("Expected argument 'max_connections' to be a int")
+        pulumi.set(__self__, "max_connections", max_connections)
+        if max_retries and not isinstance(max_retries, int):
+            raise TypeError("Expected argument 'max_retries' to be a int")
+        pulumi.set(__self__, "max_retries", max_retries)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -77,6 +83,9 @@ class GetLbBackendResult:
         if proxy_protocol and not isinstance(proxy_protocol, str):
             raise TypeError("Expected argument 'proxy_protocol' to be a str")
         pulumi.set(__self__, "proxy_protocol", proxy_protocol)
+        if redispatch_attempt_count and not isinstance(redispatch_attempt_count, int):
+            raise TypeError("Expected argument 'redispatch_attempt_count' to be a int")
+        pulumi.set(__self__, "redispatch_attempt_count", redispatch_attempt_count)
         if send_proxy_v2 and not isinstance(send_proxy_v2, bool):
             raise TypeError("Expected argument 'send_proxy_v2' to be a bool")
         pulumi.set(__self__, "send_proxy_v2", send_proxy_v2)
@@ -95,6 +104,9 @@ class GetLbBackendResult:
         if timeout_connect and not isinstance(timeout_connect, str):
             raise TypeError("Expected argument 'timeout_connect' to be a str")
         pulumi.set(__self__, "timeout_connect", timeout_connect)
+        if timeout_queue and not isinstance(timeout_queue, str):
+            raise TypeError("Expected argument 'timeout_queue' to be a str")
+        pulumi.set(__self__, "timeout_queue", timeout_queue)
         if timeout_server and not isinstance(timeout_server, str):
             raise TypeError("Expected argument 'timeout_server' to be a str")
         pulumi.set(__self__, "timeout_server", timeout_server)
@@ -181,6 +193,16 @@ class GetLbBackendResult:
         return pulumi.get(self, "lb_id")
 
     @property
+    @pulumi.getter(name="maxConnections")
+    def max_connections(self) -> int:
+        return pulumi.get(self, "max_connections")
+
+    @property
+    @pulumi.getter(name="maxRetries")
+    def max_retries(self) -> int:
+        return pulumi.get(self, "max_retries")
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[str]:
         return pulumi.get(self, "name")
@@ -194,6 +216,11 @@ class GetLbBackendResult:
     @pulumi.getter(name="proxyProtocol")
     def proxy_protocol(self) -> str:
         return pulumi.get(self, "proxy_protocol")
+
+    @property
+    @pulumi.getter(name="redispatchAttemptCount")
+    def redispatch_attempt_count(self) -> int:
+        return pulumi.get(self, "redispatch_attempt_count")
 
     @property
     @pulumi.getter(name="sendProxyV2")
@@ -224,6 +251,11 @@ class GetLbBackendResult:
     @pulumi.getter(name="timeoutConnect")
     def timeout_connect(self) -> str:
         return pulumi.get(self, "timeout_connect")
+
+    @property
+    @pulumi.getter(name="timeoutQueue")
+    def timeout_queue(self) -> str:
+        return pulumi.get(self, "timeout_queue")
 
     @property
     @pulumi.getter(name="timeoutServer")
@@ -257,15 +289,19 @@ class AwaitableGetLbBackendResult(GetLbBackendResult):
             id=self.id,
             ignore_ssl_server_verify=self.ignore_ssl_server_verify,
             lb_id=self.lb_id,
+            max_connections=self.max_connections,
+            max_retries=self.max_retries,
             name=self.name,
             on_marked_down_action=self.on_marked_down_action,
             proxy_protocol=self.proxy_protocol,
+            redispatch_attempt_count=self.redispatch_attempt_count,
             send_proxy_v2=self.send_proxy_v2,
             server_ips=self.server_ips,
             ssl_bridging=self.ssl_bridging,
             sticky_sessions=self.sticky_sessions,
             sticky_sessions_cookie_name=self.sticky_sessions_cookie_name,
             timeout_connect=self.timeout_connect,
+            timeout_queue=self.timeout_queue,
             timeout_server=self.timeout_server,
             timeout_tunnel=self.timeout_tunnel)
 
@@ -328,15 +364,19 @@ def get_lb_backend(backend_id: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         ignore_ssl_server_verify=pulumi.get(__ret__, 'ignore_ssl_server_verify'),
         lb_id=pulumi.get(__ret__, 'lb_id'),
+        max_connections=pulumi.get(__ret__, 'max_connections'),
+        max_retries=pulumi.get(__ret__, 'max_retries'),
         name=pulumi.get(__ret__, 'name'),
         on_marked_down_action=pulumi.get(__ret__, 'on_marked_down_action'),
         proxy_protocol=pulumi.get(__ret__, 'proxy_protocol'),
+        redispatch_attempt_count=pulumi.get(__ret__, 'redispatch_attempt_count'),
         send_proxy_v2=pulumi.get(__ret__, 'send_proxy_v2'),
         server_ips=pulumi.get(__ret__, 'server_ips'),
         ssl_bridging=pulumi.get(__ret__, 'ssl_bridging'),
         sticky_sessions=pulumi.get(__ret__, 'sticky_sessions'),
         sticky_sessions_cookie_name=pulumi.get(__ret__, 'sticky_sessions_cookie_name'),
         timeout_connect=pulumi.get(__ret__, 'timeout_connect'),
+        timeout_queue=pulumi.get(__ret__, 'timeout_queue'),
         timeout_server=pulumi.get(__ret__, 'timeout_server'),
         timeout_tunnel=pulumi.get(__ret__, 'timeout_tunnel'))
 

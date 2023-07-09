@@ -133,6 +133,14 @@ export class LbBackend extends pulumi.CustomResource {
      */
     public readonly lbId!: pulumi.Output<string>;
     /**
+     * Maximum number of connections allowed per backend server.
+     */
+    public readonly maxConnections!: pulumi.Output<number | undefined>;
+    /**
+     * Number of retries when a backend server connection failed.
+     */
+    public readonly maxRetries!: pulumi.Output<number | undefined>;
+    /**
      * The name of the load-balancer backend.
      */
     public readonly name!: pulumi.Output<string>;
@@ -144,6 +152,10 @@ export class LbBackend extends pulumi.CustomResource {
      * Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2Ssl`, `v2SslCn`)
      */
     public readonly proxyProtocol!: pulumi.Output<string | undefined>;
+    /**
+     * Whether to use another backend server on each attempt.
+     */
+    public readonly redispatchAttemptCount!: pulumi.Output<number | undefined>;
     /**
      * DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
      *
@@ -170,6 +182,10 @@ export class LbBackend extends pulumi.CustomResource {
      * Maximum initial server connection establishment time. (e.g.: `1s`)
      */
     public readonly timeoutConnect!: pulumi.Output<string | undefined>;
+    /**
+     * Maximum time for a request to be left pending in queue when `maxConnections` is reached. (e.g.: `1s`)
+     */
+    public readonly timeoutQueue!: pulumi.Output<string | undefined>;
     /**
      * Maximum server connection inactivity time. (e.g.: `1s`)
      */
@@ -205,15 +221,19 @@ export class LbBackend extends pulumi.CustomResource {
             resourceInputs["healthCheckTimeout"] = state ? state.healthCheckTimeout : undefined;
             resourceInputs["ignoreSslServerVerify"] = state ? state.ignoreSslServerVerify : undefined;
             resourceInputs["lbId"] = state ? state.lbId : undefined;
+            resourceInputs["maxConnections"] = state ? state.maxConnections : undefined;
+            resourceInputs["maxRetries"] = state ? state.maxRetries : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["onMarkedDownAction"] = state ? state.onMarkedDownAction : undefined;
             resourceInputs["proxyProtocol"] = state ? state.proxyProtocol : undefined;
+            resourceInputs["redispatchAttemptCount"] = state ? state.redispatchAttemptCount : undefined;
             resourceInputs["sendProxyV2"] = state ? state.sendProxyV2 : undefined;
             resourceInputs["serverIps"] = state ? state.serverIps : undefined;
             resourceInputs["sslBridging"] = state ? state.sslBridging : undefined;
             resourceInputs["stickySessions"] = state ? state.stickySessions : undefined;
             resourceInputs["stickySessionsCookieName"] = state ? state.stickySessionsCookieName : undefined;
             resourceInputs["timeoutConnect"] = state ? state.timeoutConnect : undefined;
+            resourceInputs["timeoutQueue"] = state ? state.timeoutQueue : undefined;
             resourceInputs["timeoutServer"] = state ? state.timeoutServer : undefined;
             resourceInputs["timeoutTunnel"] = state ? state.timeoutTunnel : undefined;
         } else {
@@ -240,15 +260,19 @@ export class LbBackend extends pulumi.CustomResource {
             resourceInputs["healthCheckTimeout"] = args ? args.healthCheckTimeout : undefined;
             resourceInputs["ignoreSslServerVerify"] = args ? args.ignoreSslServerVerify : undefined;
             resourceInputs["lbId"] = args ? args.lbId : undefined;
+            resourceInputs["maxConnections"] = args ? args.maxConnections : undefined;
+            resourceInputs["maxRetries"] = args ? args.maxRetries : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["onMarkedDownAction"] = args ? args.onMarkedDownAction : undefined;
             resourceInputs["proxyProtocol"] = args ? args.proxyProtocol : undefined;
+            resourceInputs["redispatchAttemptCount"] = args ? args.redispatchAttemptCount : undefined;
             resourceInputs["sendProxyV2"] = args ? args.sendProxyV2 : undefined;
             resourceInputs["serverIps"] = args ? args.serverIps : undefined;
             resourceInputs["sslBridging"] = args ? args.sslBridging : undefined;
             resourceInputs["stickySessions"] = args ? args.stickySessions : undefined;
             resourceInputs["stickySessionsCookieName"] = args ? args.stickySessionsCookieName : undefined;
             resourceInputs["timeoutConnect"] = args ? args.timeoutConnect : undefined;
+            resourceInputs["timeoutQueue"] = args ? args.timeoutQueue : undefined;
             resourceInputs["timeoutServer"] = args ? args.timeoutServer : undefined;
             resourceInputs["timeoutTunnel"] = args ? args.timeoutTunnel : undefined;
         }
@@ -317,6 +341,14 @@ export interface LbBackendState {
      */
     lbId?: pulumi.Input<string>;
     /**
+     * Maximum number of connections allowed per backend server.
+     */
+    maxConnections?: pulumi.Input<number>;
+    /**
+     * Number of retries when a backend server connection failed.
+     */
+    maxRetries?: pulumi.Input<number>;
+    /**
      * The name of the load-balancer backend.
      */
     name?: pulumi.Input<string>;
@@ -328,6 +360,10 @@ export interface LbBackendState {
      * Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2Ssl`, `v2SslCn`)
      */
     proxyProtocol?: pulumi.Input<string>;
+    /**
+     * Whether to use another backend server on each attempt.
+     */
+    redispatchAttemptCount?: pulumi.Input<number>;
     /**
      * DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
      *
@@ -354,6 +390,10 @@ export interface LbBackendState {
      * Maximum initial server connection establishment time. (e.g.: `1s`)
      */
     timeoutConnect?: pulumi.Input<string>;
+    /**
+     * Maximum time for a request to be left pending in queue when `maxConnections` is reached. (e.g.: `1s`)
+     */
+    timeoutQueue?: pulumi.Input<string>;
     /**
      * Maximum server connection inactivity time. (e.g.: `1s`)
      */
@@ -424,6 +464,14 @@ export interface LbBackendArgs {
      */
     lbId: pulumi.Input<string>;
     /**
+     * Maximum number of connections allowed per backend server.
+     */
+    maxConnections?: pulumi.Input<number>;
+    /**
+     * Number of retries when a backend server connection failed.
+     */
+    maxRetries?: pulumi.Input<number>;
+    /**
      * The name of the load-balancer backend.
      */
     name?: pulumi.Input<string>;
@@ -435,6 +483,10 @@ export interface LbBackendArgs {
      * Choose the type of PROXY protocol to enable (`none`, `v1`, `v2`, `v2Ssl`, `v2SslCn`)
      */
     proxyProtocol?: pulumi.Input<string>;
+    /**
+     * Whether to use another backend server on each attempt.
+     */
+    redispatchAttemptCount?: pulumi.Input<number>;
     /**
      * DEPRECATED please use `proxyProtocol` instead - (Default: `false`) Enables PROXY protocol version 2.
      *
@@ -461,6 +513,10 @@ export interface LbBackendArgs {
      * Maximum initial server connection establishment time. (e.g.: `1s`)
      */
     timeoutConnect?: pulumi.Input<string>;
+    /**
+     * Maximum time for a request to be left pending in queue when `maxConnections` is reached. (e.g.: `1s`)
+     */
+    timeoutQueue?: pulumi.Input<string>;
     /**
      * Maximum server connection inactivity time. (e.g.: `1s`)
      */
