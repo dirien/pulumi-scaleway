@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -62,7 +63,7 @@ func NewSecretVersion(ctx *pulumi.Context,
 		"data",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretVersion
 	err := ctx.RegisterResource("scaleway:index/secretVersion:SecretVersion", name, args, &resource, opts...)
 	if err != nil {

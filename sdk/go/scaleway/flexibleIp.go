@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -167,7 +168,7 @@ func NewFlexibleIp(ctx *pulumi.Context,
 		args = &FlexibleIpArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FlexibleIp
 	err := ctx.RegisterResource("scaleway:index/flexibleIp:FlexibleIp", name, args, &resource, opts...)
 	if err != nil {

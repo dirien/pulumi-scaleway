@@ -124,6 +124,10 @@ export class LbBackend extends pulumi.CustomResource {
      */
     public readonly healthCheckTimeout!: pulumi.Output<string | undefined>;
     /**
+     * The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+     */
+    public readonly healthCheckTransientDelay!: pulumi.Output<string | undefined>;
+    /**
      * Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
      */
     public readonly ignoreSslServerVerify!: pulumi.Output<boolean | undefined>;
@@ -219,6 +223,7 @@ export class LbBackend extends pulumi.CustomResource {
             resourceInputs["healthCheckPort"] = state ? state.healthCheckPort : undefined;
             resourceInputs["healthCheckTcp"] = state ? state.healthCheckTcp : undefined;
             resourceInputs["healthCheckTimeout"] = state ? state.healthCheckTimeout : undefined;
+            resourceInputs["healthCheckTransientDelay"] = state ? state.healthCheckTransientDelay : undefined;
             resourceInputs["ignoreSslServerVerify"] = state ? state.ignoreSslServerVerify : undefined;
             resourceInputs["lbId"] = state ? state.lbId : undefined;
             resourceInputs["maxConnections"] = state ? state.maxConnections : undefined;
@@ -258,6 +263,7 @@ export class LbBackend extends pulumi.CustomResource {
             resourceInputs["healthCheckPort"] = args ? args.healthCheckPort : undefined;
             resourceInputs["healthCheckTcp"] = args ? args.healthCheckTcp : undefined;
             resourceInputs["healthCheckTimeout"] = args ? args.healthCheckTimeout : undefined;
+            resourceInputs["healthCheckTransientDelay"] = args ? args.healthCheckTransientDelay : undefined;
             resourceInputs["ignoreSslServerVerify"] = args ? args.ignoreSslServerVerify : undefined;
             resourceInputs["lbId"] = args ? args.lbId : undefined;
             resourceInputs["maxConnections"] = args ? args.maxConnections : undefined;
@@ -331,6 +337,10 @@ export interface LbBackendState {
      * Timeout before we consider a HC request failed.
      */
     healthCheckTimeout?: pulumi.Input<string>;
+    /**
+     * The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+     */
+    healthCheckTransientDelay?: pulumi.Input<string>;
     /**
      * Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
      */
@@ -454,6 +464,10 @@ export interface LbBackendArgs {
      * Timeout before we consider a HC request failed.
      */
     healthCheckTimeout?: pulumi.Input<string>;
+    /**
+     * The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+     */
+    healthCheckTransientDelay?: pulumi.Input<string>;
     /**
      * Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
      */

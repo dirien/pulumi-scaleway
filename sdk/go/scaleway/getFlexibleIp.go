@@ -7,12 +7,13 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Gets information about a Flexible IP.
 func LookupFlexibleIp(ctx *pulumi.Context, args *LookupFlexibleIpArgs, opts ...pulumi.InvokeOption) (*LookupFlexibleIpResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFlexibleIpResult
 	err := ctx.Invoke("scaleway:index/getFlexibleIp:getFlexibleIp", args, &rv, opts...)
 	if err != nil {

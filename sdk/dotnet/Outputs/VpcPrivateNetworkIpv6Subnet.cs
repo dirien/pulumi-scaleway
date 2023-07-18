@@ -32,8 +32,6 @@ namespace ediri.Scaleway.Outputs
         public readonly int? PrefixLength;
         /// <summary>
         /// The subnet CIDR.
-        /// 
-        /// &gt; **Note:** If using Regional Private Network:
         /// </summary>
         public readonly string? Subnet;
         /// <summary>

@@ -17,6 +17,7 @@ from .container_cron import *
 from .container_domain import *
 from .container_namespace import *
 from .container_token import *
+from .container_trigger import *
 from .domain_record import *
 from .domain_zone import *
 from .flexible_ip import *
@@ -261,6 +262,14 @@ _utilities.register(
   "fqn": "ediri_scaleway",
   "classes": {
    "scaleway:index/containerToken:ContainerToken": "ContainerToken"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/containerTrigger",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/containerTrigger:ContainerTrigger": "ContainerTrigger"
   }
  },
  {

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -158,7 +159,7 @@ func NewVpcGatewayNetwork(ctx *pulumi.Context,
 	if args.PrivateNetworkId == nil {
 		return nil, errors.New("invalid value for required argument 'PrivateNetworkId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpcGatewayNetwork
 	err := ctx.RegisterResource("scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork", name, args, &resource, opts...)
 	if err != nil {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -59,7 +60,7 @@ import (
 //
 // ```
 func LookupLbBackend(ctx *pulumi.Context, args *LookupLbBackendArgs, opts ...pulumi.InvokeOption) (*LookupLbBackendResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupLbBackendResult
 	err := ctx.Invoke("scaleway:index/getLbBackend:getLbBackend", args, &rv, opts...)
 	if err != nil {
@@ -82,18 +83,19 @@ type LookupLbBackendArgs struct {
 
 // A collection of values returned by getLbBackend.
 type LookupLbBackendResult struct {
-	BackendId             *string                       `pulumi:"backendId"`
-	FailoverHost          string                        `pulumi:"failoverHost"`
-	ForwardPort           int                           `pulumi:"forwardPort"`
-	ForwardPortAlgorithm  string                        `pulumi:"forwardPortAlgorithm"`
-	ForwardProtocol       string                        `pulumi:"forwardProtocol"`
-	HealthCheckDelay      string                        `pulumi:"healthCheckDelay"`
-	HealthCheckHttp       []GetLbBackendHealthCheckHttp `pulumi:"healthCheckHttp"`
-	HealthCheckHttps      []GetLbBackendHealthCheckHttp `pulumi:"healthCheckHttps"`
-	HealthCheckMaxRetries int                           `pulumi:"healthCheckMaxRetries"`
-	HealthCheckPort       int                           `pulumi:"healthCheckPort"`
-	HealthCheckTcps       []GetLbBackendHealthCheckTcp  `pulumi:"healthCheckTcps"`
-	HealthCheckTimeout    string                        `pulumi:"healthCheckTimeout"`
+	BackendId                 *string                       `pulumi:"backendId"`
+	FailoverHost              string                        `pulumi:"failoverHost"`
+	ForwardPort               int                           `pulumi:"forwardPort"`
+	ForwardPortAlgorithm      string                        `pulumi:"forwardPortAlgorithm"`
+	ForwardProtocol           string                        `pulumi:"forwardProtocol"`
+	HealthCheckDelay          string                        `pulumi:"healthCheckDelay"`
+	HealthCheckHttp           []GetLbBackendHealthCheckHttp `pulumi:"healthCheckHttp"`
+	HealthCheckHttps          []GetLbBackendHealthCheckHttp `pulumi:"healthCheckHttps"`
+	HealthCheckMaxRetries     int                           `pulumi:"healthCheckMaxRetries"`
+	HealthCheckPort           int                           `pulumi:"healthCheckPort"`
+	HealthCheckTcps           []GetLbBackendHealthCheckTcp  `pulumi:"healthCheckTcps"`
+	HealthCheckTimeout        string                        `pulumi:"healthCheckTimeout"`
+	HealthCheckTransientDelay string                        `pulumi:"healthCheckTransientDelay"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                       string   `pulumi:"id"`
 	IgnoreSslServerVerify    bool     `pulumi:"ignoreSslServerVerify"`
@@ -205,6 +207,10 @@ func (o LookupLbBackendResultOutput) HealthCheckTcps() GetLbBackendHealthCheckTc
 
 func (o LookupLbBackendResultOutput) HealthCheckTimeout() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLbBackendResult) string { return v.HealthCheckTimeout }).(pulumi.StringOutput)
+}
+
+func (o LookupLbBackendResultOutput) HealthCheckTransientDelay() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLbBackendResult) string { return v.HealthCheckTransientDelay }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

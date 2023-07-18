@@ -49,36 +49,9 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * > **Note:** Regional Private Network is now in Public Beta. You can create a regional private network directly using this resource by setting `isRegional` to `true`.
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@ediri/scaleway";
- *
- * const vpc01 = new scaleway.Vpc("vpc01", {tags: [
- *     "terraform",
- *     "vpc",
- * ]});
- * const regionalPn = new scaleway.VpcPrivateNetwork("regionalPn", {
- *     tags: [
- *         "terraform",
- *         "pn",
- *         "regional",
- *     ],
- *     isRegional: true,
- *     vpcId: vpc01.id,
- * });
- * ```
- *
  * ## Import
  *
- * Private networks can be imported using the `{zone}/{id}` or `{region}/{id}` using beta, e.g. bash
- *
- * ```sh
- *  $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par-1/11111111-1111-1111-1111-111111111111
- * ```
- *
- *  bash
+ * Private networks can be imported using the `{region}/{id}`, e.g. bash
  *
  * ```sh
  *  $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par/11111111-1111-1111-1111-111111111111
@@ -125,7 +98,9 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
      */
     public readonly ipv6Subnets!: pulumi.Output<outputs.VpcPrivateNetworkIpv6Subnet[]>;
     /**
-     * Defines whether the private network is Regional. By default, it will be Zonal.
+     * The private networks are necessarily regional now.
+     *
+     * @deprecated This field is deprecated and will be removed in the next major version
      */
     public readonly isRegional!: pulumi.Output<boolean>;
     /**
@@ -157,7 +132,9 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
      */
     public readonly vpcId!: pulumi.Output<string>;
     /**
-     * `zone`) The zone in which the private network should be created.
+     * please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
+     *
+     * @deprecated This field is deprecated and will be removed in the next major version, please use `region` instead
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -223,7 +200,9 @@ export interface VpcPrivateNetworkState {
      */
     ipv6Subnets?: pulumi.Input<pulumi.Input<inputs.VpcPrivateNetworkIpv6Subnet>[]>;
     /**
-     * Defines whether the private network is Regional. By default, it will be Zonal.
+     * The private networks are necessarily regional now.
+     *
+     * @deprecated This field is deprecated and will be removed in the next major version
      */
     isRegional?: pulumi.Input<boolean>;
     /**
@@ -255,7 +234,9 @@ export interface VpcPrivateNetworkState {
      */
     vpcId?: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which the private network should be created.
+     * please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
+     *
+     * @deprecated This field is deprecated and will be removed in the next major version, please use `region` instead
      */
     zone?: pulumi.Input<string>;
 }
@@ -273,7 +254,9 @@ export interface VpcPrivateNetworkArgs {
      */
     ipv6Subnets?: pulumi.Input<pulumi.Input<inputs.VpcPrivateNetworkIpv6Subnet>[]>;
     /**
-     * Defines whether the private network is Regional. By default, it will be Zonal.
+     * The private networks are necessarily regional now.
+     *
+     * @deprecated This field is deprecated and will be removed in the next major version
      */
     isRegional?: pulumi.Input<boolean>;
     /**
@@ -297,7 +280,9 @@ export interface VpcPrivateNetworkArgs {
      */
     vpcId?: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which the private network should be created.
+     * please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
+     *
+     * @deprecated This field is deprecated and will be removed in the next major version, please use `region` instead
      */
     zone?: pulumi.Input<string>;
 }

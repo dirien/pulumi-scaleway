@@ -27,6 +27,7 @@
         "containerDomain.ts",
         "containerNamespace.ts",
         "containerToken.ts",
+        "containerTrigger.ts",
         "domainRecord.ts",
         "domainZone.ts",
         "flexibleIp.ts",

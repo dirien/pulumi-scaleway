@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -45,7 +46,7 @@ import (
 //
 // ```
 func GetLbAcls(ctx *pulumi.Context, args *GetLbAclsArgs, opts ...pulumi.InvokeOption) (*GetLbAclsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetLbAclsResult
 	err := ctx.Invoke("scaleway:index/getLbAcls:getLbAcls", args, &rv, opts...)
 	if err != nil {

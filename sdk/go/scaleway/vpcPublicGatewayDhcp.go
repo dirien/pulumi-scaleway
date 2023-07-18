@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -100,7 +101,7 @@ func NewVpcPublicGatewayDhcp(ctx *pulumi.Context,
 	if args.Subnet == nil {
 		return nil, errors.New("invalid value for required argument 'Subnet'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpcPublicGatewayDhcp
 	err := ctx.RegisterResource("scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp", name, args, &resource, opts...)
 	if err != nil {

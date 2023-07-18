@@ -22,7 +22,7 @@ class GetLbBackendResult:
     """
     A collection of values returned by getLbBackend.
     """
-    def __init__(__self__, backend_id=None, failover_host=None, forward_port=None, forward_port_algorithm=None, forward_protocol=None, health_check_delay=None, health_check_http=None, health_check_https=None, health_check_max_retries=None, health_check_port=None, health_check_tcps=None, health_check_timeout=None, id=None, ignore_ssl_server_verify=None, lb_id=None, max_connections=None, max_retries=None, name=None, on_marked_down_action=None, proxy_protocol=None, redispatch_attempt_count=None, send_proxy_v2=None, server_ips=None, ssl_bridging=None, sticky_sessions=None, sticky_sessions_cookie_name=None, timeout_connect=None, timeout_queue=None, timeout_server=None, timeout_tunnel=None):
+    def __init__(__self__, backend_id=None, failover_host=None, forward_port=None, forward_port_algorithm=None, forward_protocol=None, health_check_delay=None, health_check_http=None, health_check_https=None, health_check_max_retries=None, health_check_port=None, health_check_tcps=None, health_check_timeout=None, health_check_transient_delay=None, id=None, ignore_ssl_server_verify=None, lb_id=None, max_connections=None, max_retries=None, name=None, on_marked_down_action=None, proxy_protocol=None, redispatch_attempt_count=None, send_proxy_v2=None, server_ips=None, ssl_bridging=None, sticky_sessions=None, sticky_sessions_cookie_name=None, timeout_connect=None, timeout_queue=None, timeout_server=None, timeout_tunnel=None):
         if backend_id and not isinstance(backend_id, str):
             raise TypeError("Expected argument 'backend_id' to be a str")
         pulumi.set(__self__, "backend_id", backend_id)
@@ -59,6 +59,9 @@ class GetLbBackendResult:
         if health_check_timeout and not isinstance(health_check_timeout, str):
             raise TypeError("Expected argument 'health_check_timeout' to be a str")
         pulumi.set(__self__, "health_check_timeout", health_check_timeout)
+        if health_check_transient_delay and not isinstance(health_check_transient_delay, str):
+            raise TypeError("Expected argument 'health_check_transient_delay' to be a str")
+        pulumi.set(__self__, "health_check_transient_delay", health_check_transient_delay)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -175,6 +178,11 @@ class GetLbBackendResult:
         return pulumi.get(self, "health_check_timeout")
 
     @property
+    @pulumi.getter(name="healthCheckTransientDelay")
+    def health_check_transient_delay(self) -> str:
+        return pulumi.get(self, "health_check_transient_delay")
+
+    @property
     @pulumi.getter
     def id(self) -> str:
         """
@@ -286,6 +294,7 @@ class AwaitableGetLbBackendResult(GetLbBackendResult):
             health_check_port=self.health_check_port,
             health_check_tcps=self.health_check_tcps,
             health_check_timeout=self.health_check_timeout,
+            health_check_transient_delay=self.health_check_transient_delay,
             id=self.id,
             ignore_ssl_server_verify=self.ignore_ssl_server_verify,
             lb_id=self.lb_id,
@@ -361,6 +370,7 @@ def get_lb_backend(backend_id: Optional[str] = None,
         health_check_port=pulumi.get(__ret__, 'health_check_port'),
         health_check_tcps=pulumi.get(__ret__, 'health_check_tcps'),
         health_check_timeout=pulumi.get(__ret__, 'health_check_timeout'),
+        health_check_transient_delay=pulumi.get(__ret__, 'health_check_transient_delay'),
         id=pulumi.get(__ret__, 'id'),
         ignore_ssl_server_verify=pulumi.get(__ret__, 'ignore_ssl_server_verify'),
         lb_id=pulumi.get(__ret__, 'lb_id'),

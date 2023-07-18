@@ -7,12 +7,13 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
 func LookupRdbInstance(ctx *pulumi.Context, args *LookupRdbInstanceArgs, opts ...pulumi.InvokeOption) (*LookupRdbInstanceResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRdbInstanceResult
 	err := ctx.Invoke("scaleway:index/getRdbInstance:getRdbInstance", args, &rv, opts...)
 	if err != nil {

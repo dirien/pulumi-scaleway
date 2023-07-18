@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -176,7 +177,7 @@ func NewObjectBucketWebsiteConfiguration(ctx *pulumi.Context,
 	if args.IndexDocument == nil {
 		return nil, errors.New("invalid value for required argument 'IndexDocument'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ObjectBucketWebsiteConfiguration
 	err := ctx.RegisterResource("scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration", name, args, &resource, opts...)
 	if err != nil {

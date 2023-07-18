@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -73,7 +74,7 @@ func NewIotHub(ctx *pulumi.Context,
 	if args.ProductPlan == nil {
 		return nil, errors.New("invalid value for required argument 'ProductPlan'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IotHub
 	err := ctx.RegisterResource("scaleway:index/iotHub:IotHub", name, args, &resource, opts...)
 	if err != nil {

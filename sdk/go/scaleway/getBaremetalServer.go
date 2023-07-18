@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -46,7 +47,7 @@ import (
 //
 // ```
 func LookupBaremetalServer(ctx *pulumi.Context, args *LookupBaremetalServerArgs, opts ...pulumi.InvokeOption) (*LookupBaremetalServerResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupBaremetalServerResult
 	err := ctx.Invoke("scaleway:index/getBaremetalServer:getBaremetalServer", args, &rv, opts...)
 	if err != nil {

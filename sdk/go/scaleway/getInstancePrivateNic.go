@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -55,7 +56,7 @@ import (
 //
 // ```
 func LookupInstancePrivateNic(ctx *pulumi.Context, args *LookupInstancePrivateNicArgs, opts ...pulumi.InvokeOption) (*LookupInstancePrivateNicResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstancePrivateNicResult
 	err := ctx.Invoke("scaleway:index/getInstancePrivateNic:getInstancePrivateNic", args, &rv, opts...)
 	if err != nil {

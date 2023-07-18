@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -111,6 +112,8 @@ type LbBackend struct {
 	HealthCheckTcp LbBackendHealthCheckTcpOutput `pulumi:"healthCheckTcp"`
 	// Timeout before we consider a HC request failed.
 	HealthCheckTimeout pulumi.StringPtrOutput `pulumi:"healthCheckTimeout"`
+	// The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+	HealthCheckTransientDelay pulumi.StringPtrOutput `pulumi:"healthCheckTransientDelay"`
 	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
 	IgnoreSslServerVerify pulumi.BoolPtrOutput `pulumi:"ignoreSslServerVerify"`
 	// The load-balancer ID this backend is attached to.
@@ -166,7 +169,7 @@ func NewLbBackend(ctx *pulumi.Context,
 	if args.LbId == nil {
 		return nil, errors.New("invalid value for required argument 'LbId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LbBackend
 	err := ctx.RegisterResource("scaleway:index/lbBackend:LbBackend", name, args, &resource, opts...)
 	if err != nil {
@@ -213,6 +216,8 @@ type lbBackendState struct {
 	HealthCheckTcp *LbBackendHealthCheckTcp `pulumi:"healthCheckTcp"`
 	// Timeout before we consider a HC request failed.
 	HealthCheckTimeout *string `pulumi:"healthCheckTimeout"`
+	// The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+	HealthCheckTransientDelay *string `pulumi:"healthCheckTransientDelay"`
 	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
 	IgnoreSslServerVerify *bool `pulumi:"ignoreSslServerVerify"`
 	// The load-balancer ID this backend is attached to.
@@ -277,6 +282,8 @@ type LbBackendState struct {
 	HealthCheckTcp LbBackendHealthCheckTcpPtrInput
 	// Timeout before we consider a HC request failed.
 	HealthCheckTimeout pulumi.StringPtrInput
+	// The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+	HealthCheckTransientDelay pulumi.StringPtrInput
 	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
 	IgnoreSslServerVerify pulumi.BoolPtrInput
 	// The load-balancer ID this backend is attached to.
@@ -345,6 +352,8 @@ type lbBackendArgs struct {
 	HealthCheckTcp *LbBackendHealthCheckTcp `pulumi:"healthCheckTcp"`
 	// Timeout before we consider a HC request failed.
 	HealthCheckTimeout *string `pulumi:"healthCheckTimeout"`
+	// The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+	HealthCheckTransientDelay *string `pulumi:"healthCheckTransientDelay"`
 	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
 	IgnoreSslServerVerify *bool `pulumi:"ignoreSslServerVerify"`
 	// The load-balancer ID this backend is attached to.
@@ -410,6 +419,8 @@ type LbBackendArgs struct {
 	HealthCheckTcp LbBackendHealthCheckTcpPtrInput
 	// Timeout before we consider a HC request failed.
 	HealthCheckTimeout pulumi.StringPtrInput
+	// The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+	HealthCheckTransientDelay pulumi.StringPtrInput
 	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
 	IgnoreSslServerVerify pulumi.BoolPtrInput
 	// The load-balancer ID this backend is attached to.
@@ -591,6 +602,11 @@ func (o LbBackendOutput) HealthCheckTcp() LbBackendHealthCheckTcpOutput {
 // Timeout before we consider a HC request failed.
 func (o LbBackendOutput) HealthCheckTimeout() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LbBackend) pulumi.StringPtrOutput { return v.HealthCheckTimeout }).(pulumi.StringPtrOutput)
+}
+
+// The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+func (o LbBackendOutput) HealthCheckTransientDelay() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LbBackend) pulumi.StringPtrOutput { return v.HealthCheckTransientDelay }).(pulumi.StringPtrOutput)
 }
 
 // Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.

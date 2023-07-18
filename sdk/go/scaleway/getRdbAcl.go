@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,7 +39,7 @@ import (
 //
 // ```
 func LookupRdbAcl(ctx *pulumi.Context, args *LookupRdbAclArgs, opts ...pulumi.InvokeOption) (*LookupRdbAclResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRdbAclResult
 	err := ctx.Invoke("scaleway:index/getRdbAcl:getRdbAcl", args, &rv, opts...)
 	if err != nil {

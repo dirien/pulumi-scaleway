@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -123,7 +124,7 @@ func NewVpcPublicGatewayPatRule(ctx *pulumi.Context,
 	if args.PublicPort == nil {
 		return nil, errors.New("invalid value for required argument 'PublicPort'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpcPublicGatewayPatRule
 	err := ctx.RegisterResource("scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule", name, args, &resource, opts...)
 	if err != nil {

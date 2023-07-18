@@ -7,12 +7,13 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Gets information about a transactional email domain.
 func LookupTemDomain(ctx *pulumi.Context, args *LookupTemDomainArgs, opts ...pulumi.InvokeOption) (*LookupTemDomainResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupTemDomainResult
 	err := ctx.Invoke("scaleway:index/getTemDomain:getTemDomain", args, &rv, opts...)
 	if err != nil {

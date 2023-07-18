@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -99,7 +100,7 @@ func NewLbAcl(ctx *pulumi.Context,
 	if args.Index == nil {
 		return nil, errors.New("invalid value for required argument 'Index'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LbAcl
 	err := ctx.RegisterResource("scaleway:index/lbAcl:LbAcl", name, args, &resource, opts...)
 	if err != nil {

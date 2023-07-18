@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,7 +39,7 @@ import (
 //
 // ```
 func LookupK8sCluster(ctx *pulumi.Context, args *LookupK8sClusterArgs, opts ...pulumi.InvokeOption) (*LookupK8sClusterResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupK8sClusterResult
 	err := ctx.Invoke("scaleway:index/getK8sCluster:getK8sCluster", args, &rv, opts...)
 	if err != nil {

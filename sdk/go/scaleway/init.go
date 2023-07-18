@@ -7,6 +7,7 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -44,6 +45,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ContainerNamespace{}
 	case "scaleway:index/containerToken:ContainerToken":
 		r = &ContainerToken{}
+	case "scaleway:index/containerTrigger:ContainerTrigger":
+		r = &ContainerTrigger{}
 	case "scaleway:index/domainRecord:DomainRecord":
 		r = &DomainRecord{}
 	case "scaleway:index/domainZone:DomainZone":
@@ -207,7 +210,10 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 }
 
 func init() {
-	version, _ := PkgVersion()
+	version, err := internal.PkgVersion()
+	if err != nil {
+		version = semver.Version{Major: 1}
+	}
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/accountProject",
@@ -266,6 +272,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/containerToken",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/containerTrigger",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

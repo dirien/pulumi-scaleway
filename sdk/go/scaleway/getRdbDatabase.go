@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -39,7 +40,7 @@ import (
 //
 // ```
 func LookupRdbDatabase(ctx *pulumi.Context, args *LookupRdbDatabaseArgs, opts ...pulumi.InvokeOption) (*LookupRdbDatabaseResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRdbDatabaseResult
 	err := ctx.Invoke("scaleway:index/getRdbDatabase:getRdbDatabase", args, &rv, opts...)
 	if err != nil {

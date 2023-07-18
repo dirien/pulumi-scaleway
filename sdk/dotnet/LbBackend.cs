@@ -140,6 +140,12 @@ namespace ediri.Scaleway
         public Output<string?> HealthCheckTimeout { get; private set; } = null!;
 
         /// <summary>
+        /// The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+        /// </summary>
+        [Output("healthCheckTransientDelay")]
+        public Output<string?> HealthCheckTransientDelay { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
         /// </summary>
         [Output("ignoreSslServerVerify")]
@@ -358,6 +364,12 @@ namespace ediri.Scaleway
         public Input<string>? HealthCheckTimeout { get; set; }
 
         /// <summary>
+        /// The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+        /// </summary>
+        [Input("healthCheckTransientDelay")]
+        public Input<string>? HealthCheckTransientDelay { get; set; }
+
+        /// <summary>
         /// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
         /// </summary>
         [Input("ignoreSslServerVerify")]
@@ -541,6 +553,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("healthCheckTimeout")]
         public Input<string>? HealthCheckTimeout { get; set; }
+
+        /// <summary>
+        /// The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+        /// </summary>
+        [Input("healthCheckTransientDelay")]
+        public Input<string>? HealthCheckTransientDelay { get; set; }
 
         /// <summary>
         /// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.

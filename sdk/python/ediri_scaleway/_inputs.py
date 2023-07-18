@@ -17,6 +17,7 @@ __all__ = [
     'BaremetalServerPrivateNetworkArgs',
     'CockpitEndpointArgs',
     'CockpitTokenScopesArgs',
+    'ContainerTriggerSqsArgs',
     'DomainRecordGeoIpArgs',
     'DomainRecordGeoIpMatchArgs',
     'DomainRecordHttpServiceArgs',
@@ -630,6 +631,75 @@ class CockpitTokenScopesArgs:
     @write_metrics.setter
     def write_metrics(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "write_metrics", value)
+
+
+@pulumi.input_type
+class ContainerTriggerSqsArgs:
+    def __init__(__self__, *,
+                 namespace_id: pulumi.Input[str],
+                 queue: pulumi.Input[str],
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] namespace_id: ID of the mnq namespace
+        :param pulumi.Input[str] queue: Name of the queue
+        :param pulumi.Input[str] project_id: ID of the project that contain the mnq namespace, defaults to provider's project
+        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+        """
+        pulumi.set(__self__, "namespace_id", namespace_id)
+        pulumi.set(__self__, "queue", queue)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="namespaceId")
+    def namespace_id(self) -> pulumi.Input[str]:
+        """
+        ID of the mnq namespace
+        """
+        return pulumi.get(self, "namespace_id")
+
+    @namespace_id.setter
+    def namespace_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "namespace_id", value)
+
+    @property
+    @pulumi.getter
+    def queue(self) -> pulumi.Input[str]:
+        """
+        Name of the queue
+        """
+        return pulumi.get(self, "queue")
+
+    @queue.setter
+    def queue(self, value: pulumi.Input[str]):
+        pulumi.set(self, "queue", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the project that contain the mnq namespace, defaults to provider's project
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        `region`). The region in which the namespace should be created.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
 
 
 @pulumi.input_type
@@ -4837,6 +4907,7 @@ class RedisClusterPrivateNetworkArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] id: The UUID of the private network resource.
+        :param pulumi.Input[str] endpoint_id: The ID of the endpoint.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] service_ips: Endpoint IPv4 addresses
                in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
                least one IP per node or The IP network address within the private subnet is determined by the IP Address Management (IPAM)
@@ -4869,6 +4940,9 @@ class RedisClusterPrivateNetworkArgs:
     @property
     @pulumi.getter(name="endpointId")
     def endpoint_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the endpoint.
+        """
         return pulumi.get(self, "endpoint_id")
 
     @endpoint_id.setter
@@ -4977,8 +5051,6 @@ class VpcPrivateNetworkIpv4SubnetArgs:
         :param pulumi.Input[str] id: The subnet ID.
         :param pulumi.Input[int] prefix_length: The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
         :param pulumi.Input[str] subnet: The subnet CIDR.
-               
-               > **Note:** If using Regional Private Network:
         :param pulumi.Input[str] subnet_mask: The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
         :param pulumi.Input[str] updated_at: The date and time of the last update of the subnet.
         """
@@ -5050,8 +5122,6 @@ class VpcPrivateNetworkIpv4SubnetArgs:
     def subnet(self) -> Optional[pulumi.Input[str]]:
         """
         The subnet CIDR.
-
-        > **Note:** If using Regional Private Network:
         """
         return pulumi.get(self, "subnet")
 
@@ -5100,8 +5170,6 @@ class VpcPrivateNetworkIpv6SubnetArgs:
         :param pulumi.Input[str] id: The subnet ID.
         :param pulumi.Input[int] prefix_length: The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
         :param pulumi.Input[str] subnet: The subnet CIDR.
-               
-               > **Note:** If using Regional Private Network:
         :param pulumi.Input[str] subnet_mask: The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
         :param pulumi.Input[str] updated_at: The date and time of the last update of the subnet.
         """
@@ -5173,8 +5241,6 @@ class VpcPrivateNetworkIpv6SubnetArgs:
     def subnet(self) -> Optional[pulumi.Input[str]]:
         """
         The subnet CIDR.
-
-        > **Note:** If using Regional Private Network:
         """
         return pulumi.get(self, "subnet")
 

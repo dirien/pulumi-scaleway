@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -89,7 +90,7 @@ func NewFunctionNamespace(ctx *pulumi.Context,
 		"secretEnvironmentVariables",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FunctionNamespace
 	err := ctx.RegisterResource("scaleway:index/functionNamespace:FunctionNamespace", name, args, &resource, opts...)
 	if err != nil {

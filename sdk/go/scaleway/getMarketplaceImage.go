@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,7 +39,7 @@ import (
 //
 // ```
 func GetMarketplaceImage(ctx *pulumi.Context, args *GetMarketplaceImageArgs, opts ...pulumi.InvokeOption) (*GetMarketplaceImageResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetMarketplaceImageResult
 	err := ctx.Invoke("scaleway:index/getMarketplaceImage:getMarketplaceImage", args, &rv, opts...)
 	if err != nil {

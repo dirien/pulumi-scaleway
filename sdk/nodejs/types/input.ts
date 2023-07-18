@@ -150,6 +150,25 @@ export interface CockpitTokenScopes {
     writeMetrics?: pulumi.Input<boolean>;
 }
 
+export interface ContainerTriggerSqs {
+    /**
+     * ID of the mnq namespace
+     */
+    namespaceId: pulumi.Input<string>;
+    /**
+     * ID of the project that contain the mnq namespace, defaults to provider's project
+     */
+    projectId?: pulumi.Input<string>;
+    /**
+     * Name of the queue
+     */
+    queue: pulumi.Input<string>;
+    /**
+     * `region`). The region in which the namespace should be created.
+     */
+    region?: pulumi.Input<string>;
+}
+
 export interface DomainRecordGeoIp {
     /**
      * The list of matches. *(Can be more than 1)*
@@ -1217,6 +1236,9 @@ export interface RedisClusterAcl {
 }
 
 export interface RedisClusterPrivateNetwork {
+    /**
+     * The ID of the endpoint.
+     */
     endpointId?: pulumi.Input<string>;
     /**
      * The UUID of the private network resource.
@@ -1272,8 +1294,6 @@ export interface VpcPrivateNetworkIpv4Subnet {
     prefixLength?: pulumi.Input<number>;
     /**
      * The subnet CIDR.
-     *
-     * > **Note:** If using Regional Private Network:
      */
     subnet?: pulumi.Input<string>;
     /**
@@ -1305,8 +1325,6 @@ export interface VpcPrivateNetworkIpv6Subnet {
     prefixLength?: pulumi.Input<number>;
     /**
      * The subnet CIDR.
-     *
-     * > **Note:** If using Regional Private Network:
      */
     subnet?: pulumi.Input<string>;
     /**

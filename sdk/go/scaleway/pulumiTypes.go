@@ -7,8 +7,11 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type BaremetalServerIp struct {
 	// The address of the IPv6.
@@ -1003,6 +1006,200 @@ func (o CockpitTokenScopesPtrOutput) WriteMetrics() pulumi.BoolPtrOutput {
 		}
 		return v.WriteMetrics
 	}).(pulumi.BoolPtrOutput)
+}
+
+type ContainerTriggerSqs struct {
+	// ID of the mnq namespace
+	NamespaceId string `pulumi:"namespaceId"`
+	// ID of the project that contain the mnq namespace, defaults to provider's project
+	ProjectId *string `pulumi:"projectId"`
+	// Name of the queue
+	Queue string `pulumi:"queue"`
+	// `region`). The region in which the namespace should be created.
+	Region *string `pulumi:"region"`
+}
+
+// ContainerTriggerSqsInput is an input type that accepts ContainerTriggerSqsArgs and ContainerTriggerSqsOutput values.
+// You can construct a concrete instance of `ContainerTriggerSqsInput` via:
+//
+//	ContainerTriggerSqsArgs{...}
+type ContainerTriggerSqsInput interface {
+	pulumi.Input
+
+	ToContainerTriggerSqsOutput() ContainerTriggerSqsOutput
+	ToContainerTriggerSqsOutputWithContext(context.Context) ContainerTriggerSqsOutput
+}
+
+type ContainerTriggerSqsArgs struct {
+	// ID of the mnq namespace
+	NamespaceId pulumi.StringInput `pulumi:"namespaceId"`
+	// ID of the project that contain the mnq namespace, defaults to provider's project
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// Name of the queue
+	Queue pulumi.StringInput `pulumi:"queue"`
+	// `region`). The region in which the namespace should be created.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+}
+
+func (ContainerTriggerSqsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContainerTriggerSqs)(nil)).Elem()
+}
+
+func (i ContainerTriggerSqsArgs) ToContainerTriggerSqsOutput() ContainerTriggerSqsOutput {
+	return i.ToContainerTriggerSqsOutputWithContext(context.Background())
+}
+
+func (i ContainerTriggerSqsArgs) ToContainerTriggerSqsOutputWithContext(ctx context.Context) ContainerTriggerSqsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerTriggerSqsOutput)
+}
+
+func (i ContainerTriggerSqsArgs) ToContainerTriggerSqsPtrOutput() ContainerTriggerSqsPtrOutput {
+	return i.ToContainerTriggerSqsPtrOutputWithContext(context.Background())
+}
+
+func (i ContainerTriggerSqsArgs) ToContainerTriggerSqsPtrOutputWithContext(ctx context.Context) ContainerTriggerSqsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerTriggerSqsOutput).ToContainerTriggerSqsPtrOutputWithContext(ctx)
+}
+
+// ContainerTriggerSqsPtrInput is an input type that accepts ContainerTriggerSqsArgs, ContainerTriggerSqsPtr and ContainerTriggerSqsPtrOutput values.
+// You can construct a concrete instance of `ContainerTriggerSqsPtrInput` via:
+//
+//	        ContainerTriggerSqsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ContainerTriggerSqsPtrInput interface {
+	pulumi.Input
+
+	ToContainerTriggerSqsPtrOutput() ContainerTriggerSqsPtrOutput
+	ToContainerTriggerSqsPtrOutputWithContext(context.Context) ContainerTriggerSqsPtrOutput
+}
+
+type containerTriggerSqsPtrType ContainerTriggerSqsArgs
+
+func ContainerTriggerSqsPtr(v *ContainerTriggerSqsArgs) ContainerTriggerSqsPtrInput {
+	return (*containerTriggerSqsPtrType)(v)
+}
+
+func (*containerTriggerSqsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContainerTriggerSqs)(nil)).Elem()
+}
+
+func (i *containerTriggerSqsPtrType) ToContainerTriggerSqsPtrOutput() ContainerTriggerSqsPtrOutput {
+	return i.ToContainerTriggerSqsPtrOutputWithContext(context.Background())
+}
+
+func (i *containerTriggerSqsPtrType) ToContainerTriggerSqsPtrOutputWithContext(ctx context.Context) ContainerTriggerSqsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerTriggerSqsPtrOutput)
+}
+
+type ContainerTriggerSqsOutput struct{ *pulumi.OutputState }
+
+func (ContainerTriggerSqsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContainerTriggerSqs)(nil)).Elem()
+}
+
+func (o ContainerTriggerSqsOutput) ToContainerTriggerSqsOutput() ContainerTriggerSqsOutput {
+	return o
+}
+
+func (o ContainerTriggerSqsOutput) ToContainerTriggerSqsOutputWithContext(ctx context.Context) ContainerTriggerSqsOutput {
+	return o
+}
+
+func (o ContainerTriggerSqsOutput) ToContainerTriggerSqsPtrOutput() ContainerTriggerSqsPtrOutput {
+	return o.ToContainerTriggerSqsPtrOutputWithContext(context.Background())
+}
+
+func (o ContainerTriggerSqsOutput) ToContainerTriggerSqsPtrOutputWithContext(ctx context.Context) ContainerTriggerSqsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ContainerTriggerSqs) *ContainerTriggerSqs {
+		return &v
+	}).(ContainerTriggerSqsPtrOutput)
+}
+
+// ID of the mnq namespace
+func (o ContainerTriggerSqsOutput) NamespaceId() pulumi.StringOutput {
+	return o.ApplyT(func(v ContainerTriggerSqs) string { return v.NamespaceId }).(pulumi.StringOutput)
+}
+
+// ID of the project that contain the mnq namespace, defaults to provider's project
+func (o ContainerTriggerSqsOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContainerTriggerSqs) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
+}
+
+// Name of the queue
+func (o ContainerTriggerSqsOutput) Queue() pulumi.StringOutput {
+	return o.ApplyT(func(v ContainerTriggerSqs) string { return v.Queue }).(pulumi.StringOutput)
+}
+
+// `region`). The region in which the namespace should be created.
+func (o ContainerTriggerSqsOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContainerTriggerSqs) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+type ContainerTriggerSqsPtrOutput struct{ *pulumi.OutputState }
+
+func (ContainerTriggerSqsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContainerTriggerSqs)(nil)).Elem()
+}
+
+func (o ContainerTriggerSqsPtrOutput) ToContainerTriggerSqsPtrOutput() ContainerTriggerSqsPtrOutput {
+	return o
+}
+
+func (o ContainerTriggerSqsPtrOutput) ToContainerTriggerSqsPtrOutputWithContext(ctx context.Context) ContainerTriggerSqsPtrOutput {
+	return o
+}
+
+func (o ContainerTriggerSqsPtrOutput) Elem() ContainerTriggerSqsOutput {
+	return o.ApplyT(func(v *ContainerTriggerSqs) ContainerTriggerSqs {
+		if v != nil {
+			return *v
+		}
+		var ret ContainerTriggerSqs
+		return ret
+	}).(ContainerTriggerSqsOutput)
+}
+
+// ID of the mnq namespace
+func (o ContainerTriggerSqsPtrOutput) NamespaceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.NamespaceId
+	}).(pulumi.StringPtrOutput)
+}
+
+// ID of the project that contain the mnq namespace, defaults to provider's project
+func (o ContainerTriggerSqsPtrOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ProjectId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Name of the queue
+func (o ContainerTriggerSqsPtrOutput) Queue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Queue
+	}).(pulumi.StringPtrOutput)
+}
+
+// `region`). The region in which the namespace should be created.
+func (o ContainerTriggerSqsPtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(pulumi.StringPtrOutput)
 }
 
 type DomainRecordGeoIp struct {
@@ -11457,6 +11654,7 @@ func (o RedisClusterAclArrayOutput) Index(i pulumi.IntInput) RedisClusterAclOutp
 }
 
 type RedisClusterPrivateNetwork struct {
+	// The ID of the endpoint.
 	EndpointId *string `pulumi:"endpointId"`
 	// The UUID of the private network resource.
 	Id string `pulumi:"id"`
@@ -11484,6 +11682,7 @@ type RedisClusterPrivateNetworkInput interface {
 }
 
 type RedisClusterPrivateNetworkArgs struct {
+	// The ID of the endpoint.
 	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
 	// The UUID of the private network resource.
 	Id pulumi.StringInput `pulumi:"id"`
@@ -11550,6 +11749,7 @@ func (o RedisClusterPrivateNetworkOutput) ToRedisClusterPrivateNetworkOutputWith
 	return o
 }
 
+// The ID of the endpoint.
 func (o RedisClusterPrivateNetworkOutput) EndpointId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RedisClusterPrivateNetwork) *string { return v.EndpointId }).(pulumi.StringPtrOutput)
 }
@@ -11780,8 +11980,6 @@ type VpcPrivateNetworkIpv4Subnet struct {
 	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
 	PrefixLength *int `pulumi:"prefixLength"`
 	// The subnet CIDR.
-	//
-	// > **Note:** If using Regional Private Network:
 	Subnet *string `pulumi:"subnet"`
 	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
 	SubnetMask *string `pulumi:"subnetMask"`
@@ -11810,8 +12008,6 @@ type VpcPrivateNetworkIpv4SubnetArgs struct {
 	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
 	PrefixLength pulumi.IntPtrInput `pulumi:"prefixLength"`
 	// The subnet CIDR.
-	//
-	// > **Note:** If using Regional Private Network:
 	Subnet pulumi.StringPtrInput `pulumi:"subnet"`
 	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
 	SubnetMask pulumi.StringPtrInput `pulumi:"subnetMask"`
@@ -11917,8 +12113,6 @@ func (o VpcPrivateNetworkIpv4SubnetOutput) PrefixLength() pulumi.IntPtrOutput {
 }
 
 // The subnet CIDR.
-//
-// > **Note:** If using Regional Private Network:
 func (o VpcPrivateNetworkIpv4SubnetOutput) Subnet() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpcPrivateNetworkIpv4Subnet) *string { return v.Subnet }).(pulumi.StringPtrOutput)
 }
@@ -11998,8 +12192,6 @@ func (o VpcPrivateNetworkIpv4SubnetPtrOutput) PrefixLength() pulumi.IntPtrOutput
 }
 
 // The subnet CIDR.
-//
-// > **Note:** If using Regional Private Network:
 func (o VpcPrivateNetworkIpv4SubnetPtrOutput) Subnet() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcPrivateNetworkIpv4Subnet) *string {
 		if v == nil {
@@ -12039,8 +12231,6 @@ type VpcPrivateNetworkIpv6Subnet struct {
 	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
 	PrefixLength *int `pulumi:"prefixLength"`
 	// The subnet CIDR.
-	//
-	// > **Note:** If using Regional Private Network:
 	Subnet *string `pulumi:"subnet"`
 	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
 	SubnetMask *string `pulumi:"subnetMask"`
@@ -12069,8 +12259,6 @@ type VpcPrivateNetworkIpv6SubnetArgs struct {
 	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
 	PrefixLength pulumi.IntPtrInput `pulumi:"prefixLength"`
 	// The subnet CIDR.
-	//
-	// > **Note:** If using Regional Private Network:
 	Subnet pulumi.StringPtrInput `pulumi:"subnet"`
 	// The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
 	SubnetMask pulumi.StringPtrInput `pulumi:"subnetMask"`
@@ -12150,8 +12338,6 @@ func (o VpcPrivateNetworkIpv6SubnetOutput) PrefixLength() pulumi.IntPtrOutput {
 }
 
 // The subnet CIDR.
-//
-// > **Note:** If using Regional Private Network:
 func (o VpcPrivateNetworkIpv6SubnetOutput) Subnet() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpcPrivateNetworkIpv6Subnet) *string { return v.Subnet }).(pulumi.StringPtrOutput)
 }
@@ -20719,6 +20905,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitEndpointArrayInput)(nil)).Elem(), CockpitEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitTokenScopesInput)(nil)).Elem(), CockpitTokenScopesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitTokenScopesPtrInput)(nil)).Elem(), CockpitTokenScopesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerSqsInput)(nil)).Elem(), ContainerTriggerSqsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerSqsPtrInput)(nil)).Elem(), ContainerTriggerSqsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordGeoIpInput)(nil)).Elem(), DomainRecordGeoIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordGeoIpPtrInput)(nil)).Elem(), DomainRecordGeoIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordGeoIpMatchInput)(nil)).Elem(), DomainRecordGeoIpMatchArgs{})
@@ -21005,6 +21193,8 @@ func init() {
 	pulumi.RegisterOutputType(CockpitEndpointArrayOutput{})
 	pulumi.RegisterOutputType(CockpitTokenScopesOutput{})
 	pulumi.RegisterOutputType(CockpitTokenScopesPtrOutput{})
+	pulumi.RegisterOutputType(ContainerTriggerSqsOutput{})
+	pulumi.RegisterOutputType(ContainerTriggerSqsPtrOutput{})
 	pulumi.RegisterOutputType(DomainRecordGeoIpOutput{})
 	pulumi.RegisterOutputType(DomainRecordGeoIpPtrOutput{})
 	pulumi.RegisterOutputType(DomainRecordGeoIpMatchOutput{})
