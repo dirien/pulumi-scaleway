@@ -208,6 +208,7 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_function_trigger":                    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FunctionTrigger")},
 			"scaleway_lb_acl":                              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "LbAcl")},
 			"scaleway_vpc":                                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Vpc")},
+			"scaleway_container_trigger": 					{Tok: tfbridge.MakeResource(mainPkg, mainMod, "ContainerTrigger")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"scaleway_account_project":                     {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAccountProject")},
