@@ -28,6 +28,7 @@ class LbBackendArgs:
                  health_check_port: Optional[pulumi.Input[int]] = None,
                  health_check_tcp: Optional[pulumi.Input['LbBackendHealthCheckTcpArgs']] = None,
                  health_check_timeout: Optional[pulumi.Input[str]] = None,
+                 health_check_transient_delay: Optional[pulumi.Input[str]] = None,
                  ignore_ssl_server_verify: Optional[pulumi.Input[bool]] = None,
                  max_connections: Optional[pulumi.Input[int]] = None,
                  max_retries: Optional[pulumi.Input[int]] = None,
@@ -61,6 +62,7 @@ class LbBackendArgs:
         :param pulumi.Input[int] health_check_port: Port the HC requests will be send to.
         :param pulumi.Input['LbBackendHealthCheckTcpArgs'] health_check_tcp: This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
         :param pulumi.Input[str] health_check_timeout: Timeout before we consider a HC request failed.
+        :param pulumi.Input[str] health_check_transient_delay: The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
         :param pulumi.Input[bool] ignore_ssl_server_verify: Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
         :param pulumi.Input[int] max_connections: Maximum number of connections allowed per backend server.
         :param pulumi.Input[int] max_retries: Number of retries when a backend server connection failed.
@@ -99,6 +101,8 @@ class LbBackendArgs:
             pulumi.set(__self__, "health_check_tcp", health_check_tcp)
         if health_check_timeout is not None:
             pulumi.set(__self__, "health_check_timeout", health_check_timeout)
+        if health_check_transient_delay is not None:
+            pulumi.set(__self__, "health_check_transient_delay", health_check_transient_delay)
         if ignore_ssl_server_verify is not None:
             pulumi.set(__self__, "ignore_ssl_server_verify", ignore_ssl_server_verify)
         if max_connections is not None:
@@ -281,6 +285,18 @@ class LbBackendArgs:
     @health_check_timeout.setter
     def health_check_timeout(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "health_check_timeout", value)
+
+    @property
+    @pulumi.getter(name="healthCheckTransientDelay")
+    def health_check_transient_delay(self) -> Optional[pulumi.Input[str]]:
+        """
+        The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+        """
+        return pulumi.get(self, "health_check_transient_delay")
+
+    @health_check_transient_delay.setter
+    def health_check_transient_delay(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "health_check_transient_delay", value)
 
     @property
     @pulumi.getter(name="ignoreSslServerVerify")
@@ -492,6 +508,7 @@ class _LbBackendState:
                  health_check_port: Optional[pulumi.Input[int]] = None,
                  health_check_tcp: Optional[pulumi.Input['LbBackendHealthCheckTcpArgs']] = None,
                  health_check_timeout: Optional[pulumi.Input[str]] = None,
+                 health_check_transient_delay: Optional[pulumi.Input[str]] = None,
                  ignore_ssl_server_verify: Optional[pulumi.Input[bool]] = None,
                  lb_id: Optional[pulumi.Input[str]] = None,
                  max_connections: Optional[pulumi.Input[int]] = None,
@@ -524,6 +541,7 @@ class _LbBackendState:
         :param pulumi.Input[int] health_check_port: Port the HC requests will be send to.
         :param pulumi.Input['LbBackendHealthCheckTcpArgs'] health_check_tcp: This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
         :param pulumi.Input[str] health_check_timeout: Timeout before we consider a HC request failed.
+        :param pulumi.Input[str] health_check_transient_delay: The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
         :param pulumi.Input[bool] ignore_ssl_server_verify: Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
         :param pulumi.Input[str] lb_id: The load-balancer ID this backend is attached to.
                > **Important:** Updates to `lb_id` will recreate the backend.
@@ -565,6 +583,8 @@ class _LbBackendState:
             pulumi.set(__self__, "health_check_tcp", health_check_tcp)
         if health_check_timeout is not None:
             pulumi.set(__self__, "health_check_timeout", health_check_timeout)
+        if health_check_transient_delay is not None:
+            pulumi.set(__self__, "health_check_transient_delay", health_check_transient_delay)
         if ignore_ssl_server_verify is not None:
             pulumi.set(__self__, "ignore_ssl_server_verify", ignore_ssl_server_verify)
         if lb_id is not None:
@@ -736,6 +756,18 @@ class _LbBackendState:
     @health_check_timeout.setter
     def health_check_timeout(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "health_check_timeout", value)
+
+    @property
+    @pulumi.getter(name="healthCheckTransientDelay")
+    def health_check_transient_delay(self) -> Optional[pulumi.Input[str]]:
+        """
+        The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+        """
+        return pulumi.get(self, "health_check_transient_delay")
+
+    @health_check_transient_delay.setter
+    def health_check_transient_delay(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "health_check_transient_delay", value)
 
     @property
     @pulumi.getter(name="ignoreSslServerVerify")
@@ -962,6 +994,7 @@ class LbBackend(pulumi.CustomResource):
                  health_check_port: Optional[pulumi.Input[int]] = None,
                  health_check_tcp: Optional[pulumi.Input[pulumi.InputType['LbBackendHealthCheckTcpArgs']]] = None,
                  health_check_timeout: Optional[pulumi.Input[str]] = None,
+                 health_check_transient_delay: Optional[pulumi.Input[str]] = None,
                  ignore_ssl_server_verify: Optional[pulumi.Input[bool]] = None,
                  lb_id: Optional[pulumi.Input[str]] = None,
                  max_connections: Optional[pulumi.Input[int]] = None,
@@ -1036,6 +1069,7 @@ class LbBackend(pulumi.CustomResource):
         :param pulumi.Input[int] health_check_port: Port the HC requests will be send to.
         :param pulumi.Input[pulumi.InputType['LbBackendHealthCheckTcpArgs']] health_check_tcp: This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
         :param pulumi.Input[str] health_check_timeout: Timeout before we consider a HC request failed.
+        :param pulumi.Input[str] health_check_transient_delay: The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
         :param pulumi.Input[bool] ignore_ssl_server_verify: Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
         :param pulumi.Input[str] lb_id: The load-balancer ID this backend is attached to.
                > **Important:** Updates to `lb_id` will recreate the backend.
@@ -1128,6 +1162,7 @@ class LbBackend(pulumi.CustomResource):
                  health_check_port: Optional[pulumi.Input[int]] = None,
                  health_check_tcp: Optional[pulumi.Input[pulumi.InputType['LbBackendHealthCheckTcpArgs']]] = None,
                  health_check_timeout: Optional[pulumi.Input[str]] = None,
+                 health_check_transient_delay: Optional[pulumi.Input[str]] = None,
                  ignore_ssl_server_verify: Optional[pulumi.Input[bool]] = None,
                  lb_id: Optional[pulumi.Input[str]] = None,
                  max_connections: Optional[pulumi.Input[int]] = None,
@@ -1169,6 +1204,7 @@ class LbBackend(pulumi.CustomResource):
             __props__.__dict__["health_check_port"] = health_check_port
             __props__.__dict__["health_check_tcp"] = health_check_tcp
             __props__.__dict__["health_check_timeout"] = health_check_timeout
+            __props__.__dict__["health_check_transient_delay"] = health_check_transient_delay
             __props__.__dict__["ignore_ssl_server_verify"] = ignore_ssl_server_verify
             if lb_id is None and not opts.urn:
                 raise TypeError("Missing required property 'lb_id'")
@@ -1212,6 +1248,7 @@ class LbBackend(pulumi.CustomResource):
             health_check_port: Optional[pulumi.Input[int]] = None,
             health_check_tcp: Optional[pulumi.Input[pulumi.InputType['LbBackendHealthCheckTcpArgs']]] = None,
             health_check_timeout: Optional[pulumi.Input[str]] = None,
+            health_check_transient_delay: Optional[pulumi.Input[str]] = None,
             ignore_ssl_server_verify: Optional[pulumi.Input[bool]] = None,
             lb_id: Optional[pulumi.Input[str]] = None,
             max_connections: Optional[pulumi.Input[int]] = None,
@@ -1249,6 +1286,7 @@ class LbBackend(pulumi.CustomResource):
         :param pulumi.Input[int] health_check_port: Port the HC requests will be send to.
         :param pulumi.Input[pulumi.InputType['LbBackendHealthCheckTcpArgs']] health_check_tcp: This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
         :param pulumi.Input[str] health_check_timeout: Timeout before we consider a HC request failed.
+        :param pulumi.Input[str] health_check_transient_delay: The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
         :param pulumi.Input[bool] ignore_ssl_server_verify: Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
         :param pulumi.Input[str] lb_id: The load-balancer ID this backend is attached to.
                > **Important:** Updates to `lb_id` will recreate the backend.
@@ -1283,6 +1321,7 @@ class LbBackend(pulumi.CustomResource):
         __props__.__dict__["health_check_port"] = health_check_port
         __props__.__dict__["health_check_tcp"] = health_check_tcp
         __props__.__dict__["health_check_timeout"] = health_check_timeout
+        __props__.__dict__["health_check_transient_delay"] = health_check_transient_delay
         __props__.__dict__["ignore_ssl_server_verify"] = ignore_ssl_server_verify
         __props__.__dict__["lb_id"] = lb_id
         __props__.__dict__["max_connections"] = max_connections
@@ -1391,6 +1430,14 @@ class LbBackend(pulumi.CustomResource):
         Timeout before we consider a HC request failed.
         """
         return pulumi.get(self, "health_check_timeout")
+
+    @property
+    @pulumi.getter(name="healthCheckTransientDelay")
+    def health_check_transient_delay(self) -> pulumi.Output[Optional[str]]:
+        """
+        The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
+        """
+        return pulumi.get(self, "health_check_transient_delay")
 
     @property
     @pulumi.getter(name="ignoreSslServerVerify")

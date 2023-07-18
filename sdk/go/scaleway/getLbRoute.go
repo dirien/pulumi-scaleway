@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -72,7 +73,7 @@ import (
 //
 // ```
 func LookupLbRoute(ctx *pulumi.Context, args *LookupLbRouteArgs, opts ...pulumi.InvokeOption) (*LookupLbRouteResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupLbRouteResult
 	err := ctx.Invoke("scaleway:index/getLbRoute:getLbRoute", args, &rv, opts...)
 	if err != nil {

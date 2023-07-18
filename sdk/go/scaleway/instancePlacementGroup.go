@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -73,7 +74,7 @@ func NewInstancePlacementGroup(ctx *pulumi.Context,
 		args = &InstancePlacementGroupArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource InstancePlacementGroup
 	err := ctx.RegisterResource("scaleway:index/instancePlacementGroup:InstancePlacementGroup", name, args, &resource, opts...)
 	if err != nil {

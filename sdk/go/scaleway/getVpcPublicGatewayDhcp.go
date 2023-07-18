@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -41,7 +42,7 @@ import (
 //
 // ```
 func LookupVpcPublicGatewayDhcp(ctx *pulumi.Context, args *LookupVpcPublicGatewayDhcpArgs, opts ...pulumi.InvokeOption) (*LookupVpcPublicGatewayDhcpResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPublicGatewayDhcpResult
 	err := ctx.Invoke("scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp", args, &rv, opts...)
 	if err != nil {

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -170,7 +171,7 @@ func NewObjectBucketAcl(ctx *pulumi.Context,
 	if args.Bucket == nil {
 		return nil, errors.New("invalid value for required argument 'Bucket'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ObjectBucketAcl
 	err := ctx.RegisterResource("scaleway:index/objectBucketAcl:ObjectBucketAcl", name, args, &resource, opts...)
 	if err != nil {

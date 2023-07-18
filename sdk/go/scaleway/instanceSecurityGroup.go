@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -58,7 +59,7 @@ func NewInstanceSecurityGroup(ctx *pulumi.Context,
 		args = &InstanceSecurityGroupArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource InstanceSecurityGroup
 	err := ctx.RegisterResource("scaleway:index/instanceSecurityGroup:InstanceSecurityGroup", name, args, &resource, opts...)
 	if err != nil {

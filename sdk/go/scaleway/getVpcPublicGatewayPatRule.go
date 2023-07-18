@@ -7,13 +7,14 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Gets information about a public gateway PAT rule. For further information please check the
 // API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-8faeea)
 func LookupVpcPublicGatewayPatRule(ctx *pulumi.Context, args *LookupVpcPublicGatewayPatRuleArgs, opts ...pulumi.InvokeOption) (*LookupVpcPublicGatewayPatRuleResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPublicGatewayPatRuleResult
 	err := ctx.Invoke("scaleway:index/getVpcPublicGatewayPatRule:getVpcPublicGatewayPatRule", args, &rv, opts...)
 	if err != nil {

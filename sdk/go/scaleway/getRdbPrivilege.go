@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -40,7 +41,7 @@ import (
 //
 // ```
 func LookupRdbPrivilege(ctx *pulumi.Context, args *LookupRdbPrivilegeArgs, opts ...pulumi.InvokeOption) (*LookupRdbPrivilegeResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRdbPrivilegeResult
 	err := ctx.Invoke("scaleway:index/getRdbPrivilege:getRdbPrivilege", args, &rv, opts...)
 	if err != nil {

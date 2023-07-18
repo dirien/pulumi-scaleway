@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -44,7 +45,7 @@ import (
 //
 // ```
 func GetWebHostOffer(ctx *pulumi.Context, args *GetWebHostOfferArgs, opts ...pulumi.InvokeOption) (*GetWebHostOfferResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetWebHostOfferResult
 	err := ctx.Invoke("scaleway:index/getWebHostOffer:getWebHostOffer", args, &rv, opts...)
 	if err != nil {

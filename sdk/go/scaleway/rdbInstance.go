@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -108,7 +109,7 @@ func NewRdbInstance(ctx *pulumi.Context,
 		"password",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RdbInstance
 	err := ctx.RegisterResource("scaleway:index/rdbInstance:RdbInstance", name, args, &resource, opts...)
 	if err != nil {

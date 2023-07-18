@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -121,7 +122,7 @@ func NewContainerCron(ctx *pulumi.Context,
 	if args.Schedule == nil {
 		return nil, errors.New("invalid value for required argument 'Schedule'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ContainerCron
 	err := ctx.RegisterResource("scaleway:index/containerCron:ContainerCron", name, args, &resource, opts...)
 	if err != nil {

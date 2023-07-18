@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -85,7 +86,7 @@ func NewMnqNamespace(ctx *pulumi.Context,
 	if args.Protocol == nil {
 		return nil, errors.New("invalid value for required argument 'Protocol'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MnqNamespace
 	err := ctx.RegisterResource("scaleway:index/mnqNamespace:MnqNamespace", name, args, &resource, opts...)
 	if err != nil {

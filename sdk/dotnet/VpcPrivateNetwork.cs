@@ -75,49 +75,9 @@ namespace ediri.Scaleway
     /// });
     /// ```
     /// 
-    /// &gt; **Note:** Regional Private Network is now in Public Beta. You can create a regional private network directly using this resource by setting `is_regional` to `true`.
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = ediri.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
-    ///     {
-    ///         Tags = new[]
-    ///         {
-    ///             "terraform",
-    ///             "vpc",
-    ///         },
-    ///     });
-    /// 
-    ///     var regionalPn = new Scaleway.VpcPrivateNetwork("regionalPn", new()
-    ///     {
-    ///         Tags = new[]
-    ///         {
-    ///             "terraform",
-    ///             "pn",
-    ///             "regional",
-    ///         },
-    ///         IsRegional = true,
-    ///         VpcId = vpc01.Id,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
-    /// Private networks can be imported using the `{zone}/{id}` or `{region}/{id}` using beta, e.g. bash
-    /// 
-    /// ```sh
-    ///  $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par-1/11111111-1111-1111-1111-111111111111
-    /// ```
-    /// 
-    ///  bash
+    /// Private networks can be imported using the `{region}/{id}`, e.g. bash
     /// 
     /// ```sh
     ///  $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork vpc_demo fr-par/11111111-1111-1111-1111-111111111111
@@ -145,7 +105,7 @@ namespace ediri.Scaleway
         public Output<ImmutableArray<Outputs.VpcPrivateNetworkIpv6Subnet>> Ipv6Subnets { get; private set; } = null!;
 
         /// <summary>
-        /// Defines whether the private network is Regional. By default, it will be Zonal.
+        /// The private networks are necessarily regional now.
         /// </summary>
         [Output("isRegional")]
         public Output<bool> IsRegional { get; private set; } = null!;
@@ -193,7 +153,7 @@ namespace ediri.Scaleway
         public Output<string> VpcId { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the private network should be created.
+        /// please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -264,7 +224,7 @@ namespace ediri.Scaleway
         }
 
         /// <summary>
-        /// Defines whether the private network is Regional. By default, it will be Zonal.
+        /// The private networks are necessarily regional now.
         /// </summary>
         [Input("isRegional")]
         public Input<bool>? IsRegional { get; set; }
@@ -306,7 +266,7 @@ namespace ediri.Scaleway
         public Input<string>? VpcId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the private network should be created.
+        /// please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -344,7 +304,7 @@ namespace ediri.Scaleway
         }
 
         /// <summary>
-        /// Defines whether the private network is Regional. By default, it will be Zonal.
+        /// The private networks are necessarily regional now.
         /// </summary>
         [Input("isRegional")]
         public Input<bool>? IsRegional { get; set; }
@@ -398,7 +358,7 @@ namespace ediri.Scaleway
         public Input<string>? VpcId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the private network should be created.
+        /// please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

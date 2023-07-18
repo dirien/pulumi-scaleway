@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -67,7 +68,7 @@ func NewAccountProject(ctx *pulumi.Context,
 		args = &AccountProjectArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AccountProject
 	err := ctx.RegisterResource("scaleway:index/accountProject:AccountProject", name, args, &resource, opts...)
 	if err != nil {

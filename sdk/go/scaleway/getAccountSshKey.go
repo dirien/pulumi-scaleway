@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,7 +39,7 @@ import (
 //
 // ```
 func LookupAccountSshKey(ctx *pulumi.Context, args *LookupAccountSshKeyArgs, opts ...pulumi.InvokeOption) (*LookupAccountSshKeyResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAccountSshKeyResult
 	err := ctx.Invoke("scaleway:index/getAccountSshKey:getAccountSshKey", args, &rv, opts...)
 	if err != nil {

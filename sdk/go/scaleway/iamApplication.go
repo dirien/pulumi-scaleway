@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -71,7 +72,7 @@ func NewIamApplication(ctx *pulumi.Context,
 		args = &IamApplicationArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IamApplication
 	err := ctx.RegisterResource("scaleway:index/iamApplication:IamApplication", name, args, &resource, opts...)
 	if err != nil {

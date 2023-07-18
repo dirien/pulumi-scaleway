@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -67,7 +68,7 @@ import (
 //
 // ```
 func GetK8sVersion(ctx *pulumi.Context, args *GetK8sVersionArgs, opts ...pulumi.InvokeOption) (*GetK8sVersionResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetK8sVersionResult
 	err := ctx.Invoke("scaleway:index/getK8sVersion:getK8sVersion", args, &rv, opts...)
 	if err != nil {

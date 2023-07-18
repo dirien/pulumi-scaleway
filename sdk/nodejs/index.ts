@@ -65,6 +65,11 @@ export type ContainerToken = import("./containerToken").ContainerToken;
 export const ContainerToken: typeof import("./containerToken").ContainerToken = null as any;
 utilities.lazyLoad(exports, ["ContainerToken"], () => require("./containerToken"));
 
+export { ContainerTriggerArgs, ContainerTriggerState } from "./containerTrigger";
+export type ContainerTrigger = import("./containerTrigger").ContainerTrigger;
+export const ContainerTrigger: typeof import("./containerTrigger").ContainerTrigger = null as any;
+utilities.lazyLoad(exports, ["ContainerTrigger"], () => require("./containerTrigger"));
+
 export { DomainRecordArgs, DomainRecordState } from "./domainRecord";
 export type DomainRecord = import("./domainRecord").DomainRecord;
 export const DomainRecord: typeof import("./domainRecord").DomainRecord = null as any;
@@ -788,6 +793,8 @@ const _module = {
                 return new ContainerNamespace(name, <any>undefined, { urn })
             case "scaleway:index/containerToken:ContainerToken":
                 return new ContainerToken(name, <any>undefined, { urn })
+            case "scaleway:index/containerTrigger:ContainerTrigger":
+                return new ContainerTrigger(name, <any>undefined, { urn })
             case "scaleway:index/domainRecord:DomainRecord":
                 return new DomainRecord(name, <any>undefined, { urn })
             case "scaleway:index/domainZone:DomainZone":
@@ -941,6 +948,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/containerCron", _module
 pulumi.runtime.registerResourceModule("scaleway", "index/containerDomain", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/containerNamespace", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/containerToken", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/containerTrigger", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/domainRecord", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/domainZone", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/flexibleIp", _module)

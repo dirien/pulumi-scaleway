@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -44,7 +45,7 @@ import (
 //
 // ```
 func GetCockpitPlan(ctx *pulumi.Context, args *GetCockpitPlanArgs, opts ...pulumi.InvokeOption) (*GetCockpitPlanResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetCockpitPlanResult
 	err := ctx.Invoke("scaleway:index/getCockpitPlan:getCockpitPlan", args, &rv, opts...)
 	if err != nil {

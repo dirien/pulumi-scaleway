@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -122,7 +123,7 @@ func NewInstancePrivateNic(ctx *pulumi.Context,
 	if args.ServerId == nil {
 		return nil, errors.New("invalid value for required argument 'ServerId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource InstancePrivateNic
 	err := ctx.RegisterResource("scaleway:index/instancePrivateNic:InstancePrivateNic", name, args, &resource, opts...)
 	if err != nil {

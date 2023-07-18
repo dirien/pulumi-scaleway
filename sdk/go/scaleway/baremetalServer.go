@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -148,7 +149,7 @@ func NewBaremetalServer(ctx *pulumi.Context,
 		"servicePassword",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource BaremetalServer
 	err := ctx.RegisterResource("scaleway:index/baremetalServer:BaremetalServer", name, args, &resource, opts...)
 	if err != nil {

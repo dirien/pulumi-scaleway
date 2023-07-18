@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -44,7 +45,7 @@ import (
 //
 // ```
 func LookupAccountProject(ctx *pulumi.Context, args *LookupAccountProjectArgs, opts ...pulumi.InvokeOption) (*LookupAccountProjectResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAccountProjectResult
 	err := ctx.Invoke("scaleway:index/getAccountProject:getAccountProject", args, &rv, opts...)
 	if err != nil {

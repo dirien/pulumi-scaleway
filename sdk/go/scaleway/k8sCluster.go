@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -235,7 +236,7 @@ func NewK8sCluster(ctx *pulumi.Context,
 		"kubeconfigs",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource K8sCluster
 	err := ctx.RegisterResource("scaleway:index/k8sCluster:K8sCluster", name, args, &resource, opts...)
 	if err != nil {

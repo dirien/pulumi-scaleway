@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -45,7 +46,7 @@ import (
 //
 // ```
 func GetBaremetalOption(ctx *pulumi.Context, args *GetBaremetalOptionArgs, opts ...pulumi.InvokeOption) (*GetBaremetalOptionResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetBaremetalOptionResult
 	err := ctx.Invoke("scaleway:index/getBaremetalOption:getBaremetalOption", args, &rv, opts...)
 	if err != nil {

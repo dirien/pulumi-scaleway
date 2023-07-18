@@ -188,6 +188,7 @@ namespace ediri.Scaleway
         public readonly int HealthCheckPort;
         public readonly ImmutableArray<Outputs.GetLbBackendHealthCheckTcpResult> HealthCheckTcps;
         public readonly string HealthCheckTimeout;
+        public readonly string HealthCheckTransientDelay;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -235,6 +236,8 @@ namespace ediri.Scaleway
             ImmutableArray<Outputs.GetLbBackendHealthCheckTcpResult> healthCheckTcps,
 
             string healthCheckTimeout,
+
+            string healthCheckTransientDelay,
 
             string id,
 
@@ -284,6 +287,7 @@ namespace ediri.Scaleway
             HealthCheckPort = healthCheckPort;
             HealthCheckTcps = healthCheckTcps;
             HealthCheckTimeout = healthCheckTimeout;
+            HealthCheckTransientDelay = healthCheckTransientDelay;
             Id = id;
             IgnoreSslServerVerify = ignoreSslServerVerify;
             LbId = lbId;

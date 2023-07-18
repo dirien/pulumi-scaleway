@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -45,7 +46,7 @@ import (
 //
 // ```
 func LookupIamGroup(ctx *pulumi.Context, args *LookupIamGroupArgs, opts ...pulumi.InvokeOption) (*LookupIamGroupResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIamGroupResult
 	err := ctx.Invoke("scaleway:index/getIamGroup:getIamGroup", args, &rv, opts...)
 	if err != nil {

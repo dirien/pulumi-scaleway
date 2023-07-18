@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -44,7 +45,7 @@ import (
 //
 // ```
 func LookupInstanceSnapshot(ctx *pulumi.Context, args *LookupInstanceSnapshotArgs, opts ...pulumi.InvokeOption) (*LookupInstanceSnapshotResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceSnapshotResult
 	err := ctx.Invoke("scaleway:index/getInstanceSnapshot:getInstanceSnapshot", args, &rv, opts...)
 	if err != nil {

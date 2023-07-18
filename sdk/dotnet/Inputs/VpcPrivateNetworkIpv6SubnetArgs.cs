@@ -39,8 +39,6 @@ namespace ediri.Scaleway.Inputs
 
         /// <summary>
         /// The subnet CIDR.
-        /// 
-        /// &gt; **Note:** If using Regional Private Network:
         /// </summary>
         [Input("subnet")]
         public Input<string>? Subnet { get; set; }

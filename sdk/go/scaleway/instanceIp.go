@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -71,7 +72,7 @@ func NewInstanceIp(ctx *pulumi.Context,
 		args = &InstanceIpArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource InstanceIp
 	err := ctx.RegisterResource("scaleway:index/instanceIp:InstanceIp", name, args, &resource, opts...)
 	if err != nil {
