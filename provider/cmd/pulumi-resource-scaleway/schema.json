@@ -2312,6 +2312,48 @@
                 }
             }
         },
+        "scaleway:index/WebHostingCpanelUrl:WebHostingCpanelUrl": {
+            "properties": {
+                "dashboard": {
+                    "type": "string",
+                    "description": "The URL of the Dashboard.\n"
+                },
+                "webmail": {
+                    "type": "string",
+                    "description": "The URL of the Webmail interface.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "dashboard",
+                        "webmail"
+                    ]
+                }
+            }
+        },
+        "scaleway:index/WebHostingOption:WebHostingOption": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The option ID.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The option name.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "id",
+                        "name"
+                    ]
+                }
+            }
+        },
         "scaleway:index/getBaremetalOfferCpus:getBaremetalOfferCpus": {
             "properties": {
                 "coreCount": {
@@ -4682,6 +4724,65 @@
                 "subnet",
                 "subnetMask",
                 "updatedAt"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "scaleway:index/getVpcsVpc:getVpcsVpc": {
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "Date and time of VPC's creation (RFC 3339 format).\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The associated VPC ID.\n\u003e **Important:** VPCs' IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111\n"
+                },
+                "isDefault": {
+                    "type": "boolean",
+                    "description": "Defines whether the VPC is the default one for its Project.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The VPC name used as filter. VPCs with a name like it are listed.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "The organization ID the VPC is associated with.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The ID of the project the VPC is associated with.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "`region`). The region in which vpcs exist.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of tags used as filter. VPCs with these exact tags are listed.\n"
+                },
+                "updateAt": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdAt",
+                "id",
+                "isDefault",
+                "name",
+                "organizationId",
+                "projectId",
+                "region",
+                "tags",
+                "updateAt"
             ],
             "language": {
                 "nodejs": {
@@ -9345,6 +9446,10 @@
                     "type": "string",
                     "description": "The public IPv4 address of the server.\n"
                 },
+                "replaceOnTypeChange": {
+                    "type": "boolean",
+                    "description": "If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.\n"
+                },
                 "rootVolume": {
                     "$ref": "#/types/scaleway:index/InstanceServerRootVolume:InstanceServerRootVolume",
                     "description": "Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.\n"
@@ -9366,7 +9471,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The commercial type of the server.\nYou find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).\nUpdates to this field will recreate a new resource.\n"
+                    "description": "The commercial type of the server.\nYou find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).\nUpdates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).\nUse `replace_on_type_change` to trigger replacement instead of migration.\n\n\u003e **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.\n"
                 },
                 "userData": {
                     "type": "object",
@@ -9455,6 +9560,10 @@
                     "description": "`project_id`) The ID of the project the server is associated with.\n",
                     "willReplaceOnChanges": true
                 },
+                "replaceOnTypeChange": {
+                    "type": "boolean",
+                    "description": "If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.\n"
+                },
                 "rootVolume": {
                     "$ref": "#/types/scaleway:index/InstanceServerRootVolume:InstanceServerRootVolume",
                     "description": "Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.\n"
@@ -9476,8 +9585,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The commercial type of the server.\nYou find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).\nUpdates to this field will recreate a new resource.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The commercial type of the server.\nYou find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).\nUpdates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).\nUse `replace_on_type_change` to trigger replacement instead of migration.\n\n\u003e **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.\n"
                 },
                 "userData": {
                     "type": "object",
@@ -9582,6 +9690,10 @@
                         "type": "string",
                         "description": "The public IPv4 address of the server.\n"
                     },
+                    "replaceOnTypeChange": {
+                        "type": "boolean",
+                        "description": "If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.\n"
+                    },
                     "rootVolume": {
                         "$ref": "#/types/scaleway:index/InstanceServerRootVolume:InstanceServerRootVolume",
                         "description": "Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.\n"
@@ -9603,8 +9715,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "The commercial type of the server.\nYou find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).\nUpdates to this field will recreate a new resource.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The commercial type of the server.\nYou find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).\nUpdates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).\nUse `replace_on_type_change` to trigger replacement instead of migration.\n\n\u003e **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.\n"
                     },
                     "userData": {
                         "type": "object",
@@ -16551,6 +16662,249 @@
                 },
                 "type": "object"
             }
+        },
+        "scaleway:index/webHosting:WebHosting": {
+            "description": "Creates and manages Scaleway Web Hostings.\nFor more information, see [the documentation](https://www.scaleway.com/en/developers/api/webhosting/).\n\n## Example\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst byName = scaleway.getWebHostOffer({\n    name: \"lite\",\n});\nconst main = new scaleway.WebHosting(\"main\", {\n    offerId: byName.then(byName =\u003e byName.offerId),\n    email: \"your@email.com\",\n    domain: \"yourdomain.com\",\n    tags: [\n        \"webhosting\",\n        \"provider\",\n        \"terraform\",\n    ],\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\nimport pulumi_scaleway as scaleway\n\nby_name = scaleway.get_web_host_offer(name=\"lite\")\nmain = scaleway.WebHosting(\"main\",\n    offer_id=by_name.offer_id,\n    email=\"your@email.com\",\n    domain=\"yourdomain.com\",\n    tags=[\n        \"webhosting\",\n        \"provider\",\n        \"terraform\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var byName = Scaleway.GetWebHostOffer.Invoke(new()\n    {\n        Name = \"lite\",\n    });\n\n    var main = new Scaleway.WebHosting(\"main\", new()\n    {\n        OfferId = byName.Apply(getWebHostOfferResult =\u003e getWebHostOfferResult.OfferId),\n        Email = \"your@email.com\",\n        Domain = \"yourdomain.com\",\n        Tags = new[]\n        {\n            \"webhosting\",\n            \"provider\",\n            \"terraform\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tbyName, err := scaleway.GetWebHostOffer(ctx, \u0026scaleway.GetWebHostOfferArgs{\n\t\t\tName: pulumi.StringRef(\"lite\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewWebHosting(ctx, \"main\", \u0026scaleway.WebHostingArgs{\n\t\t\tOfferId: *pulumi.String(byName.OfferId),\n\t\t\tEmail:   pulumi.String(\"your@email.com\"),\n\t\t\tDomain:  pulumi.String(\"yourdomain.com\"),\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"webhosting\"),\n\t\t\t\tpulumi.String(\"provider\"),\n\t\t\t\tpulumi.String(\"terraform\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetWebHostOfferArgs;\nimport com.pulumi.scaleway.WebHosting;\nimport com.pulumi.scaleway.WebHostingArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var byName = ScalewayFunctions.getWebHostOffer(GetWebHostOfferArgs.builder()\n            .name(\"lite\")\n            .build());\n\n        var main = new WebHosting(\"main\", WebHostingArgs.builder()        \n            .offerId(byName.applyValue(getWebHostOfferResult -\u003e getWebHostOfferResult.offerId()))\n            .email(\"your@email.com\")\n            .domain(\"yourdomain.com\")\n            .tags(            \n                \"webhosting\",\n                \"provider\",\n                \"terraform\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:WebHosting\n    properties:\n      offerId: ${byName.offerId}\n      email: your@email.com\n      domain: yourdomain.com\n      tags:\n        - webhosting\n        - provider\n        - terraform\nvariables:\n  byName:\n    fn::invoke:\n      Function: scaleway:getWebHostOffer\n      Arguments:\n        name: lite\n```\n\n\n## Import\n\nHostings can be imported using the `{region}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/webHosting:WebHosting hosting01 fr-par/11111111-1111-1111-1111-111111111111\n```\n\n ",
+            "properties": {
+                "cpanelUrls": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/scaleway:index/WebHostingCpanelUrl:WebHostingCpanelUrl"
+                    },
+                    "description": "The URL to connect to cPanel Dashboard and to Webmail interface.\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "Date and time of hosting's creation (RFC 3339 format).\n"
+                },
+                "dnsStatus": {
+                    "type": "string",
+                    "description": "The DNS status of the hosting.\n"
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "TThe domain name of the hosting.\n"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "The contact email of the client for the hosting.\n"
+                },
+                "offerId": {
+                    "type": "string",
+                    "description": "The ID of the selected offer for the hosting.\n"
+                },
+                "offerName": {
+                    "type": "string",
+                    "description": "The name of the active offer.\n"
+                },
+                "optionIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The IDs of the selected options for the hosting.\n"
+                },
+                "options": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/scaleway:index/WebHostingOption:WebHostingOption"
+                    },
+                    "description": "The active options of the hosting.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "The organization ID the hosting is associated with.\n"
+                },
+                "platformHostname": {
+                    "type": "string",
+                    "description": "The hostname of the host platform.\n"
+                },
+                "platformNumber": {
+                    "type": "integer",
+                    "description": "The number of the host platform.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "`project_id`) The ID of the project the VPC is associated with.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "`region`) The region of the Hosting.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The hosting status.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The tags associated with the hosting.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Date and time of hosting's last update (RFC 3339 format).\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The main hosting cPanel username.\n"
+                }
+            },
+            "required": [
+                "cpanelUrls",
+                "createdAt",
+                "dnsStatus",
+                "domain",
+                "email",
+                "offerId",
+                "offerName",
+                "options",
+                "organizationId",
+                "platformHostname",
+                "platformNumber",
+                "projectId",
+                "region",
+                "status",
+                "tags",
+                "updatedAt",
+                "username"
+            ],
+            "inputProperties": {
+                "domain": {
+                    "type": "string",
+                    "description": "TThe domain name of the hosting.\n"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "The contact email of the client for the hosting.\n"
+                },
+                "offerId": {
+                    "type": "string",
+                    "description": "The ID of the selected offer for the hosting.\n"
+                },
+                "optionIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The IDs of the selected options for the hosting.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "`project_id`) The ID of the project the VPC is associated with.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "`region`) The region of the Hosting.\n",
+                    "willReplaceOnChanges": true
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The tags associated with the hosting.\n"
+                }
+            },
+            "requiredInputs": [
+                "domain",
+                "email",
+                "offerId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering WebHosting resources.\n",
+                "properties": {
+                    "cpanelUrls": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/scaleway:index/WebHostingCpanelUrl:WebHostingCpanelUrl"
+                        },
+                        "description": "The URL to connect to cPanel Dashboard and to Webmail interface.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Date and time of hosting's creation (RFC 3339 format).\n"
+                    },
+                    "dnsStatus": {
+                        "type": "string",
+                        "description": "The DNS status of the hosting.\n"
+                    },
+                    "domain": {
+                        "type": "string",
+                        "description": "TThe domain name of the hosting.\n"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "The contact email of the client for the hosting.\n"
+                    },
+                    "offerId": {
+                        "type": "string",
+                        "description": "The ID of the selected offer for the hosting.\n"
+                    },
+                    "offerName": {
+                        "type": "string",
+                        "description": "The name of the active offer.\n"
+                    },
+                    "optionIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The IDs of the selected options for the hosting.\n"
+                    },
+                    "options": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/scaleway:index/WebHostingOption:WebHostingOption"
+                        },
+                        "description": "The active options of the hosting.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The organization ID the hosting is associated with.\n"
+                    },
+                    "platformHostname": {
+                        "type": "string",
+                        "description": "The hostname of the host platform.\n"
+                    },
+                    "platformNumber": {
+                        "type": "integer",
+                        "description": "The number of the host platform.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "`project_id`) The ID of the project the VPC is associated with.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "`region`) The region of the Hosting.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The hosting status.\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The tags associated with the hosting.\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "Date and time of hosting's last update (RFC 3339 format).\n"
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "The main hosting cPanel username.\n"
+                    }
+                },
+                "type": "object"
+            }
         }
     },
     "functions": {
@@ -18564,6 +18918,9 @@
                         "type": "string",
                         "description": "The public IPv4 address of the server.\n"
                     },
+                    "replaceOnTypeChange": {
+                        "type": "boolean"
+                    },
                     "rootVolumes": {
                         "type": "array",
                         "items": {
@@ -18623,6 +18980,7 @@
                     "privateNetworks",
                     "projectId",
                     "publicIp",
+                    "replaceOnTypeChange",
                     "rootVolumes",
                     "securityGroupId",
                     "state",
@@ -22225,6 +22583,80 @@
                     "protocol",
                     "publicPort",
                     "updatedAt",
+                    "id"
+                ]
+            }
+        },
+        "scaleway:index/getVpcs:getVpcs": {
+            "description": "Gets information about multiple Virtual Private Clouds.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst myKey = scaleway.getVpcs({\n    name: \"tf-vpc-datasource\",\n    region: \"nl-ams\",\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\n\nmy_key = scaleway.get_vpcs(name=\"tf-vpc-datasource\",\n    region=\"nl-ams\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myKey = Scaleway.GetVpcs.Invoke(new()\n    {\n        Name = \"tf-vpc-datasource\",\n        Region = \"nl-ams\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.GetVpcs(ctx, \u0026scaleway.GetVpcsArgs{\n\t\t\tName:   pulumi.StringRef(\"tf-vpc-datasource\"),\n\t\t\tRegion: pulumi.StringRef(\"nl-ams\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetVpcsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myKey = ScalewayFunctions.getVpcs(GetVpcsArgs.builder()\n            .name(\"tf-vpc-datasource\")\n            .region(\"nl-ams\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  myKey:\n    fn::invoke:\n      Function: scaleway:getVpcs\n      Arguments:\n        name: tf-vpc-datasource\n        region: nl-ams\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getVpcs.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The VPC name used as filter. VPCs with a name like it are listed.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the project the VPC is associated with.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "`region`). The region in which vpcs exist.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of tags used as filter. VPCs with these exact tags are listed.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getVpcs.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The organization ID the VPC is associated with.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the project the VPC is associated with.\n"
+                    },
+                    "region": {
+                        "type": "string"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "vpcs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/scaleway:index/getVpcsVpc:getVpcsVpc"
+                        },
+                        "description": "List of found vpcs\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "organizationId",
+                    "projectId",
+                    "region",
+                    "vpcs",
                     "id"
                 ]
             }
