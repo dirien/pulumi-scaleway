@@ -7,7 +7,7 @@ replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraf
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.54.0
 	github.com/pulumi/pulumi/sdk/v3 v3.76.0
-	github.com/scaleway/terraform-provider-scaleway/v2 v2.24.0
+	github.com/scaleway/terraform-provider-scaleway/v2 v2.25.1
 )
 
 require (
@@ -199,7 +199,7 @@ require (
 	github.com/ryanuber/go-glob v1.0.0 // indirect
 	github.com/sabhiram/go-gitignore v0.0.0-20210923224102-525f6e181f06 // indirect
 	github.com/santhosh-tekuri/jsonschema/v5 v5.3.0 // indirect
-	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.18.0.20230707094537-b73e88c770db // indirect
+	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.19.0.20230717114303-9b6e07d6384b // indirect
 	github.com/segmentio/asm v1.2.0 // indirect
 	github.com/segmentio/encoding v0.3.6 // indirect
 	github.com/sergi/go-diff v1.3.1 // indirect

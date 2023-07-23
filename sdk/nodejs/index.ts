@@ -450,6 +450,11 @@ export const getVpcPublicGatewayPatRule: typeof import("./getVpcPublicGatewayPat
 export const getVpcPublicGatewayPatRuleOutput: typeof import("./getVpcPublicGatewayPatRule").getVpcPublicGatewayPatRuleOutput = null as any;
 utilities.lazyLoad(exports, ["getVpcPublicGatewayPatRule","getVpcPublicGatewayPatRuleOutput"], () => require("./getVpcPublicGatewayPatRule"));
 
+export { GetVpcsArgs, GetVpcsResult, GetVpcsOutputArgs } from "./getVpcs";
+export const getVpcs: typeof import("./getVpcs").getVpcs = null as any;
+export const getVpcsOutput: typeof import("./getVpcs").getVpcsOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcs","getVpcsOutput"], () => require("./getVpcs"));
+
 export { GetWebHostOfferArgs, GetWebHostOfferResult, GetWebHostOfferOutputArgs } from "./getWebHostOffer";
 export const getWebHostOffer: typeof import("./getWebHostOffer").getWebHostOffer = null as any;
 export const getWebHostOfferOutput: typeof import("./getWebHostOffer").getWebHostOfferOutput = null as any;
@@ -755,6 +760,11 @@ export type VpcPublicGatewayPatRule = import("./vpcPublicGatewayPatRule").VpcPub
 export const VpcPublicGatewayPatRule: typeof import("./vpcPublicGatewayPatRule").VpcPublicGatewayPatRule = null as any;
 utilities.lazyLoad(exports, ["VpcPublicGatewayPatRule"], () => require("./vpcPublicGatewayPatRule"));
 
+export { WebHostingArgs, WebHostingState } from "./webHosting";
+export type WebHosting = import("./webHosting").WebHosting;
+export const WebHosting: typeof import("./webHosting").WebHosting = null as any;
+utilities.lazyLoad(exports, ["WebHosting"], () => require("./webHosting"));
+
 
 // Export sub-modules:
 import * as config from "./config";
@@ -931,6 +941,8 @@ const _module = {
                 return new VpcPublicGatewayIpReverseDns(name, <any>undefined, { urn })
             case "scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule":
                 return new VpcPublicGatewayPatRule(name, <any>undefined, { urn })
+            case "scaleway:index/webHosting:WebHosting":
+                return new WebHosting(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -1017,6 +1029,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayDhcpRes
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayIpReverseDns", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayPatRule", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/webHosting", _module)
 pulumi.runtime.registerResourcePackage("scaleway", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

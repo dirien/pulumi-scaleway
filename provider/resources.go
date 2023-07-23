@@ -209,6 +209,7 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_lb_acl":                              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "LbAcl")},
 			"scaleway_vpc":                                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Vpc")},
 			"scaleway_container_trigger": 					{Tok: tfbridge.MakeResource(mainPkg, mainMod, "ContainerTrigger")},
+			"scaleway_webhosting":							{Tok: tfbridge.MakeResource(mainPkg, mainMod, "WebHosting")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"scaleway_account_project":                     {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAccountProject")},
@@ -279,6 +280,7 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_availability_zones":                  {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAvailabilityZones")},
 			"scaleway_cockpit_plan":                        {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getCockpitPlan")},
 			"scaleway_vpc":                                 {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getVpc")},
+			"scaleway_vpcs":								{Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getVpcs")},
 		},
 		TFProviderModuleVersion: "v2",
 		JavaScript: &tfbridge.JavaScriptInfo{

@@ -12372,6 +12372,218 @@ func (o VpcPrivateNetworkIpv6SubnetArrayOutput) Index(i pulumi.IntInput) VpcPriv
 	}).(VpcPrivateNetworkIpv6SubnetOutput)
 }
 
+type WebHostingCpanelUrl struct {
+	// The URL of the Dashboard.
+	Dashboard *string `pulumi:"dashboard"`
+	// The URL of the Webmail interface.
+	Webmail *string `pulumi:"webmail"`
+}
+
+// WebHostingCpanelUrlInput is an input type that accepts WebHostingCpanelUrlArgs and WebHostingCpanelUrlOutput values.
+// You can construct a concrete instance of `WebHostingCpanelUrlInput` via:
+//
+//	WebHostingCpanelUrlArgs{...}
+type WebHostingCpanelUrlInput interface {
+	pulumi.Input
+
+	ToWebHostingCpanelUrlOutput() WebHostingCpanelUrlOutput
+	ToWebHostingCpanelUrlOutputWithContext(context.Context) WebHostingCpanelUrlOutput
+}
+
+type WebHostingCpanelUrlArgs struct {
+	// The URL of the Dashboard.
+	Dashboard pulumi.StringPtrInput `pulumi:"dashboard"`
+	// The URL of the Webmail interface.
+	Webmail pulumi.StringPtrInput `pulumi:"webmail"`
+}
+
+func (WebHostingCpanelUrlArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebHostingCpanelUrl)(nil)).Elem()
+}
+
+func (i WebHostingCpanelUrlArgs) ToWebHostingCpanelUrlOutput() WebHostingCpanelUrlOutput {
+	return i.ToWebHostingCpanelUrlOutputWithContext(context.Background())
+}
+
+func (i WebHostingCpanelUrlArgs) ToWebHostingCpanelUrlOutputWithContext(ctx context.Context) WebHostingCpanelUrlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebHostingCpanelUrlOutput)
+}
+
+// WebHostingCpanelUrlArrayInput is an input type that accepts WebHostingCpanelUrlArray and WebHostingCpanelUrlArrayOutput values.
+// You can construct a concrete instance of `WebHostingCpanelUrlArrayInput` via:
+//
+//	WebHostingCpanelUrlArray{ WebHostingCpanelUrlArgs{...} }
+type WebHostingCpanelUrlArrayInput interface {
+	pulumi.Input
+
+	ToWebHostingCpanelUrlArrayOutput() WebHostingCpanelUrlArrayOutput
+	ToWebHostingCpanelUrlArrayOutputWithContext(context.Context) WebHostingCpanelUrlArrayOutput
+}
+
+type WebHostingCpanelUrlArray []WebHostingCpanelUrlInput
+
+func (WebHostingCpanelUrlArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WebHostingCpanelUrl)(nil)).Elem()
+}
+
+func (i WebHostingCpanelUrlArray) ToWebHostingCpanelUrlArrayOutput() WebHostingCpanelUrlArrayOutput {
+	return i.ToWebHostingCpanelUrlArrayOutputWithContext(context.Background())
+}
+
+func (i WebHostingCpanelUrlArray) ToWebHostingCpanelUrlArrayOutputWithContext(ctx context.Context) WebHostingCpanelUrlArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebHostingCpanelUrlArrayOutput)
+}
+
+type WebHostingCpanelUrlOutput struct{ *pulumi.OutputState }
+
+func (WebHostingCpanelUrlOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebHostingCpanelUrl)(nil)).Elem()
+}
+
+func (o WebHostingCpanelUrlOutput) ToWebHostingCpanelUrlOutput() WebHostingCpanelUrlOutput {
+	return o
+}
+
+func (o WebHostingCpanelUrlOutput) ToWebHostingCpanelUrlOutputWithContext(ctx context.Context) WebHostingCpanelUrlOutput {
+	return o
+}
+
+// The URL of the Dashboard.
+func (o WebHostingCpanelUrlOutput) Dashboard() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebHostingCpanelUrl) *string { return v.Dashboard }).(pulumi.StringPtrOutput)
+}
+
+// The URL of the Webmail interface.
+func (o WebHostingCpanelUrlOutput) Webmail() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebHostingCpanelUrl) *string { return v.Webmail }).(pulumi.StringPtrOutput)
+}
+
+type WebHostingCpanelUrlArrayOutput struct{ *pulumi.OutputState }
+
+func (WebHostingCpanelUrlArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WebHostingCpanelUrl)(nil)).Elem()
+}
+
+func (o WebHostingCpanelUrlArrayOutput) ToWebHostingCpanelUrlArrayOutput() WebHostingCpanelUrlArrayOutput {
+	return o
+}
+
+func (o WebHostingCpanelUrlArrayOutput) ToWebHostingCpanelUrlArrayOutputWithContext(ctx context.Context) WebHostingCpanelUrlArrayOutput {
+	return o
+}
+
+func (o WebHostingCpanelUrlArrayOutput) Index(i pulumi.IntInput) WebHostingCpanelUrlOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebHostingCpanelUrl {
+		return vs[0].([]WebHostingCpanelUrl)[vs[1].(int)]
+	}).(WebHostingCpanelUrlOutput)
+}
+
+type WebHostingOption struct {
+	// The option ID.
+	Id *string `pulumi:"id"`
+	// The option name.
+	Name *string `pulumi:"name"`
+}
+
+// WebHostingOptionInput is an input type that accepts WebHostingOptionArgs and WebHostingOptionOutput values.
+// You can construct a concrete instance of `WebHostingOptionInput` via:
+//
+//	WebHostingOptionArgs{...}
+type WebHostingOptionInput interface {
+	pulumi.Input
+
+	ToWebHostingOptionOutput() WebHostingOptionOutput
+	ToWebHostingOptionOutputWithContext(context.Context) WebHostingOptionOutput
+}
+
+type WebHostingOptionArgs struct {
+	// The option ID.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The option name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (WebHostingOptionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebHostingOption)(nil)).Elem()
+}
+
+func (i WebHostingOptionArgs) ToWebHostingOptionOutput() WebHostingOptionOutput {
+	return i.ToWebHostingOptionOutputWithContext(context.Background())
+}
+
+func (i WebHostingOptionArgs) ToWebHostingOptionOutputWithContext(ctx context.Context) WebHostingOptionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebHostingOptionOutput)
+}
+
+// WebHostingOptionArrayInput is an input type that accepts WebHostingOptionArray and WebHostingOptionArrayOutput values.
+// You can construct a concrete instance of `WebHostingOptionArrayInput` via:
+//
+//	WebHostingOptionArray{ WebHostingOptionArgs{...} }
+type WebHostingOptionArrayInput interface {
+	pulumi.Input
+
+	ToWebHostingOptionArrayOutput() WebHostingOptionArrayOutput
+	ToWebHostingOptionArrayOutputWithContext(context.Context) WebHostingOptionArrayOutput
+}
+
+type WebHostingOptionArray []WebHostingOptionInput
+
+func (WebHostingOptionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WebHostingOption)(nil)).Elem()
+}
+
+func (i WebHostingOptionArray) ToWebHostingOptionArrayOutput() WebHostingOptionArrayOutput {
+	return i.ToWebHostingOptionArrayOutputWithContext(context.Background())
+}
+
+func (i WebHostingOptionArray) ToWebHostingOptionArrayOutputWithContext(ctx context.Context) WebHostingOptionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebHostingOptionArrayOutput)
+}
+
+type WebHostingOptionOutput struct{ *pulumi.OutputState }
+
+func (WebHostingOptionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebHostingOption)(nil)).Elem()
+}
+
+func (o WebHostingOptionOutput) ToWebHostingOptionOutput() WebHostingOptionOutput {
+	return o
+}
+
+func (o WebHostingOptionOutput) ToWebHostingOptionOutputWithContext(ctx context.Context) WebHostingOptionOutput {
+	return o
+}
+
+// The option ID.
+func (o WebHostingOptionOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebHostingOption) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The option name.
+func (o WebHostingOptionOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebHostingOption) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type WebHostingOptionArrayOutput struct{ *pulumi.OutputState }
+
+func (WebHostingOptionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WebHostingOption)(nil)).Elem()
+}
+
+func (o WebHostingOptionArrayOutput) ToWebHostingOptionArrayOutput() WebHostingOptionArrayOutput {
+	return o
+}
+
+func (o WebHostingOptionArrayOutput) ToWebHostingOptionArrayOutputWithContext(ctx context.Context) WebHostingOptionArrayOutput {
+	return o
+}
+
+func (o WebHostingOptionArrayOutput) Index(i pulumi.IntInput) WebHostingOptionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebHostingOption {
+		return vs[0].([]WebHostingOption)[vs[1].(int)]
+	}).(WebHostingOptionOutput)
+}
+
 type GetBaremetalOfferCpus struct {
 	// Number of core on this CPU.
 	CoreCount int `pulumi:"coreCount"`
@@ -20721,6 +20933,175 @@ func (o GetVpcPrivateNetworkIpv6SubnetArrayOutput) Index(i pulumi.IntInput) GetV
 	}).(GetVpcPrivateNetworkIpv6SubnetOutput)
 }
 
+type GetVpcsVpc struct {
+	// Date and time of VPC's creation (RFC 3339 format).
+	CreatedAt string `pulumi:"createdAt"`
+	// The associated VPC ID.
+	// > **Important:** VPCs' IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
+	Id string `pulumi:"id"`
+	// Defines whether the VPC is the default one for its Project.
+	IsDefault bool `pulumi:"isDefault"`
+	// The VPC name used as filter. VPCs with a name like it are listed.
+	Name string `pulumi:"name"`
+	// The organization ID the VPC is associated with.
+	OrganizationId string `pulumi:"organizationId"`
+	// The ID of the project the VPC is associated with.
+	ProjectId string `pulumi:"projectId"`
+	// `region`). The region in which vpcs exist.
+	Region string `pulumi:"region"`
+	// List of tags used as filter. VPCs with these exact tags are listed.
+	Tags     []string `pulumi:"tags"`
+	UpdateAt string   `pulumi:"updateAt"`
+}
+
+// GetVpcsVpcInput is an input type that accepts GetVpcsVpcArgs and GetVpcsVpcOutput values.
+// You can construct a concrete instance of `GetVpcsVpcInput` via:
+//
+//	GetVpcsVpcArgs{...}
+type GetVpcsVpcInput interface {
+	pulumi.Input
+
+	ToGetVpcsVpcOutput() GetVpcsVpcOutput
+	ToGetVpcsVpcOutputWithContext(context.Context) GetVpcsVpcOutput
+}
+
+type GetVpcsVpcArgs struct {
+	// Date and time of VPC's creation (RFC 3339 format).
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The associated VPC ID.
+	// > **Important:** VPCs' IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
+	Id pulumi.StringInput `pulumi:"id"`
+	// Defines whether the VPC is the default one for its Project.
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// The VPC name used as filter. VPCs with a name like it are listed.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The organization ID the VPC is associated with.
+	OrganizationId pulumi.StringInput `pulumi:"organizationId"`
+	// The ID of the project the VPC is associated with.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// `region`). The region in which vpcs exist.
+	Region pulumi.StringInput `pulumi:"region"`
+	// List of tags used as filter. VPCs with these exact tags are listed.
+	Tags     pulumi.StringArrayInput `pulumi:"tags"`
+	UpdateAt pulumi.StringInput      `pulumi:"updateAt"`
+}
+
+func (GetVpcsVpcArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcsVpc)(nil)).Elem()
+}
+
+func (i GetVpcsVpcArgs) ToGetVpcsVpcOutput() GetVpcsVpcOutput {
+	return i.ToGetVpcsVpcOutputWithContext(context.Background())
+}
+
+func (i GetVpcsVpcArgs) ToGetVpcsVpcOutputWithContext(ctx context.Context) GetVpcsVpcOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcsVpcOutput)
+}
+
+// GetVpcsVpcArrayInput is an input type that accepts GetVpcsVpcArray and GetVpcsVpcArrayOutput values.
+// You can construct a concrete instance of `GetVpcsVpcArrayInput` via:
+//
+//	GetVpcsVpcArray{ GetVpcsVpcArgs{...} }
+type GetVpcsVpcArrayInput interface {
+	pulumi.Input
+
+	ToGetVpcsVpcArrayOutput() GetVpcsVpcArrayOutput
+	ToGetVpcsVpcArrayOutputWithContext(context.Context) GetVpcsVpcArrayOutput
+}
+
+type GetVpcsVpcArray []GetVpcsVpcInput
+
+func (GetVpcsVpcArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcsVpc)(nil)).Elem()
+}
+
+func (i GetVpcsVpcArray) ToGetVpcsVpcArrayOutput() GetVpcsVpcArrayOutput {
+	return i.ToGetVpcsVpcArrayOutputWithContext(context.Background())
+}
+
+func (i GetVpcsVpcArray) ToGetVpcsVpcArrayOutputWithContext(ctx context.Context) GetVpcsVpcArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcsVpcArrayOutput)
+}
+
+type GetVpcsVpcOutput struct{ *pulumi.OutputState }
+
+func (GetVpcsVpcOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcsVpc)(nil)).Elem()
+}
+
+func (o GetVpcsVpcOutput) ToGetVpcsVpcOutput() GetVpcsVpcOutput {
+	return o
+}
+
+func (o GetVpcsVpcOutput) ToGetVpcsVpcOutputWithContext(ctx context.Context) GetVpcsVpcOutput {
+	return o
+}
+
+// Date and time of VPC's creation (RFC 3339 format).
+func (o GetVpcsVpcOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcsVpc) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The associated VPC ID.
+// > **Important:** VPCs' IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
+func (o GetVpcsVpcOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcsVpc) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Defines whether the VPC is the default one for its Project.
+func (o GetVpcsVpcOutput) IsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetVpcsVpc) bool { return v.IsDefault }).(pulumi.BoolOutput)
+}
+
+// The VPC name used as filter. VPCs with a name like it are listed.
+func (o GetVpcsVpcOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcsVpc) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The organization ID the VPC is associated with.
+func (o GetVpcsVpcOutput) OrganizationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcsVpc) string { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
+// The ID of the project the VPC is associated with.
+func (o GetVpcsVpcOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcsVpc) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// `region`). The region in which vpcs exist.
+func (o GetVpcsVpcOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcsVpc) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// List of tags used as filter. VPCs with these exact tags are listed.
+func (o GetVpcsVpcOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetVpcsVpc) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+func (o GetVpcsVpcOutput) UpdateAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcsVpc) string { return v.UpdateAt }).(pulumi.StringOutput)
+}
+
+type GetVpcsVpcArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVpcsVpcArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcsVpc)(nil)).Elem()
+}
+
+func (o GetVpcsVpcArrayOutput) ToGetVpcsVpcArrayOutput() GetVpcsVpcArrayOutput {
+	return o
+}
+
+func (o GetVpcsVpcArrayOutput) ToGetVpcsVpcArrayOutputWithContext(ctx context.Context) GetVpcsVpcArrayOutput {
+	return o
+}
+
+func (o GetVpcsVpcArrayOutput) Index(i pulumi.IntInput) GetVpcsVpcOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVpcsVpc {
+		return vs[0].([]GetVpcsVpc)[vs[1].(int)]
+	}).(GetVpcsVpcOutput)
+}
+
 type GetWebHostOfferProduct struct {
 	// The quota of databases.
 	DatabasesQuota int `pulumi:"databasesQuota"`
@@ -21045,6 +21426,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcPrivateNetworkIpv4SubnetPtrInput)(nil)).Elem(), VpcPrivateNetworkIpv4SubnetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcPrivateNetworkIpv6SubnetInput)(nil)).Elem(), VpcPrivateNetworkIpv6SubnetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcPrivateNetworkIpv6SubnetArrayInput)(nil)).Elem(), VpcPrivateNetworkIpv6SubnetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebHostingCpanelUrlInput)(nil)).Elem(), WebHostingCpanelUrlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebHostingCpanelUrlArrayInput)(nil)).Elem(), WebHostingCpanelUrlArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebHostingOptionInput)(nil)).Elem(), WebHostingOptionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebHostingOptionArrayInput)(nil)).Elem(), WebHostingOptionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalOfferCpusInput)(nil)).Elem(), GetBaremetalOfferCpusArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalOfferCpusArrayInput)(nil)).Elem(), GetBaremetalOfferCpusArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalOfferDiskInput)(nil)).Elem(), GetBaremetalOfferDiskArgs{})
@@ -21177,6 +21562,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcPrivateNetworkIpv4SubnetArrayInput)(nil)).Elem(), GetVpcPrivateNetworkIpv4SubnetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcPrivateNetworkIpv6SubnetInput)(nil)).Elem(), GetVpcPrivateNetworkIpv6SubnetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcPrivateNetworkIpv6SubnetArrayInput)(nil)).Elem(), GetVpcPrivateNetworkIpv6SubnetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcsVpcInput)(nil)).Elem(), GetVpcsVpcArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcsVpcArrayInput)(nil)).Elem(), GetVpcsVpcArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWebHostOfferProductInput)(nil)).Elem(), GetWebHostOfferProductArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWebHostOfferProductArrayInput)(nil)).Elem(), GetWebHostOfferProductArray{})
 	pulumi.RegisterOutputType(BaremetalServerIpOutput{})
@@ -21333,6 +21720,10 @@ func init() {
 	pulumi.RegisterOutputType(VpcPrivateNetworkIpv4SubnetPtrOutput{})
 	pulumi.RegisterOutputType(VpcPrivateNetworkIpv6SubnetOutput{})
 	pulumi.RegisterOutputType(VpcPrivateNetworkIpv6SubnetArrayOutput{})
+	pulumi.RegisterOutputType(WebHostingCpanelUrlOutput{})
+	pulumi.RegisterOutputType(WebHostingCpanelUrlArrayOutput{})
+	pulumi.RegisterOutputType(WebHostingOptionOutput{})
+	pulumi.RegisterOutputType(WebHostingOptionArrayOutput{})
 	pulumi.RegisterOutputType(GetBaremetalOfferCpusOutput{})
 	pulumi.RegisterOutputType(GetBaremetalOfferCpusArrayOutput{})
 	pulumi.RegisterOutputType(GetBaremetalOfferDiskOutput{})
@@ -21465,6 +21856,8 @@ func init() {
 	pulumi.RegisterOutputType(GetVpcPrivateNetworkIpv4SubnetArrayOutput{})
 	pulumi.RegisterOutputType(GetVpcPrivateNetworkIpv6SubnetOutput{})
 	pulumi.RegisterOutputType(GetVpcPrivateNetworkIpv6SubnetArrayOutput{})
+	pulumi.RegisterOutputType(GetVpcsVpcOutput{})
+	pulumi.RegisterOutputType(GetVpcsVpcArrayOutput{})
 	pulumi.RegisterOutputType(GetWebHostOfferProductOutput{})
 	pulumi.RegisterOutputType(GetWebHostOfferProductArrayOutput{})
 }

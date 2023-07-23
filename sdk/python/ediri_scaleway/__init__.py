@@ -94,6 +94,7 @@ from .get_vpc_public_gateway_dhcp import *
 from .get_vpc_public_gateway_dhcp_reservation import *
 from .get_vpc_public_gateway_ip import *
 from .get_vpc_public_gateway_pat_rule import *
+from .get_vpcs import *
 from .get_web_host_offer import *
 from .iam_api_key import *
 from .iam_application import *
@@ -155,6 +156,7 @@ from .vpc_public_gateway_dhcp_reservation import *
 from .vpc_public_gateway_ip import *
 from .vpc_public_gateway_ip_reverse_dns import *
 from .vpc_public_gateway_pat_rule import *
+from .web_hosting import *
 from ._inputs import *
 from . import outputs
 
@@ -814,6 +816,14 @@ _utilities.register(
   "fqn": "ediri_scaleway",
   "classes": {
    "scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule": "VpcPublicGatewayPatRule"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/webHosting",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/webHosting:WebHosting": "WebHosting"
   }
  }
 ]

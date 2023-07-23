@@ -319,6 +319,10 @@ export class InstanceServer extends pulumi.CustomResource {
      */
     public /*out*/ readonly publicIp!: pulumi.Output<string>;
     /**
+     * If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+     */
+    public readonly replaceOnTypeChange!: pulumi.Output<boolean | undefined>;
+    /**
      * Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
      */
     public readonly rootVolume!: pulumi.Output<outputs.InstanceServerRootVolume>;
@@ -337,7 +341,10 @@ export class InstanceServer extends pulumi.CustomResource {
     /**
      * The commercial type of the server.
      * You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-     * Updates to this field will recreate a new resource.
+     * Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+     * Use `replaceOnTypeChange` to trigger replacement instead of migration.
+     *
+     * > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -386,6 +393,7 @@ export class InstanceServer extends pulumi.CustomResource {
             resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["publicIp"] = state ? state.publicIp : undefined;
+            resourceInputs["replaceOnTypeChange"] = state ? state.replaceOnTypeChange : undefined;
             resourceInputs["rootVolume"] = state ? state.rootVolume : undefined;
             resourceInputs["securityGroupId"] = state ? state.securityGroupId : undefined;
             resourceInputs["state"] = state ? state.state : undefined;
@@ -410,6 +418,7 @@ export class InstanceServer extends pulumi.CustomResource {
             resourceInputs["placementGroupId"] = args ? args.placementGroupId : undefined;
             resourceInputs["privateNetworks"] = args ? args.privateNetworks : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["replaceOnTypeChange"] = args ? args.replaceOnTypeChange : undefined;
             resourceInputs["rootVolume"] = args ? args.rootVolume : undefined;
             resourceInputs["securityGroupId"] = args ? args.securityGroupId : undefined;
             resourceInputs["state"] = args ? args.state : undefined;
@@ -525,6 +534,10 @@ export interface InstanceServerState {
      */
     publicIp?: pulumi.Input<string>;
     /**
+     * If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+     */
+    replaceOnTypeChange?: pulumi.Input<boolean>;
+    /**
      * Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
      */
     rootVolume?: pulumi.Input<inputs.InstanceServerRootVolume>;
@@ -543,7 +556,10 @@ export interface InstanceServerState {
     /**
      * The commercial type of the server.
      * You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-     * Updates to this field will recreate a new resource.
+     * Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+     * Use `replaceOnTypeChange` to trigger replacement instead of migration.
+     *
+     * > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
      */
     type?: pulumi.Input<string>;
     /**
@@ -628,6 +644,10 @@ export interface InstanceServerArgs {
      */
     projectId?: pulumi.Input<string>;
     /**
+     * If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+     */
+    replaceOnTypeChange?: pulumi.Input<boolean>;
+    /**
      * Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
      */
     rootVolume?: pulumi.Input<inputs.InstanceServerRootVolume>;
@@ -646,7 +666,10 @@ export interface InstanceServerArgs {
     /**
      * The commercial type of the server.
      * You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-     * Updates to this field will recreate a new resource.
+     * Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+     * Use `replaceOnTypeChange` to trigger replacement instead of migration.
+     *
+     * > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
      */
     type: pulumi.Input<string>;
     /**

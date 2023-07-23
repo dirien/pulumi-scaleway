@@ -22,7 +22,7 @@ class GetInstanceServerResult:
     """
     A collection of values returned by getInstanceServer.
     """
-    def __init__(__self__, additional_volume_ids=None, boot_type=None, bootscript_id=None, cloud_init=None, enable_dynamic_ip=None, enable_ipv6=None, id=None, image=None, ip_id=None, ipv6_address=None, ipv6_gateway=None, ipv6_prefix_length=None, name=None, organization_id=None, placement_group_id=None, placement_group_policy_respected=None, private_ip=None, private_networks=None, project_id=None, public_ip=None, root_volumes=None, security_group_id=None, server_id=None, state=None, tags=None, type=None, user_data=None, zone=None):
+    def __init__(__self__, additional_volume_ids=None, boot_type=None, bootscript_id=None, cloud_init=None, enable_dynamic_ip=None, enable_ipv6=None, id=None, image=None, ip_id=None, ipv6_address=None, ipv6_gateway=None, ipv6_prefix_length=None, name=None, organization_id=None, placement_group_id=None, placement_group_policy_respected=None, private_ip=None, private_networks=None, project_id=None, public_ip=None, replace_on_type_change=None, root_volumes=None, security_group_id=None, server_id=None, state=None, tags=None, type=None, user_data=None, zone=None):
         if additional_volume_ids and not isinstance(additional_volume_ids, list):
             raise TypeError("Expected argument 'additional_volume_ids' to be a list")
         pulumi.set(__self__, "additional_volume_ids", additional_volume_ids)
@@ -83,6 +83,9 @@ class GetInstanceServerResult:
         if public_ip and not isinstance(public_ip, str):
             raise TypeError("Expected argument 'public_ip' to be a str")
         pulumi.set(__self__, "public_ip", public_ip)
+        if replace_on_type_change and not isinstance(replace_on_type_change, bool):
+            raise TypeError("Expected argument 'replace_on_type_change' to be a bool")
+        pulumi.set(__self__, "replace_on_type_change", replace_on_type_change)
         if root_volumes and not isinstance(root_volumes, list):
             raise TypeError("Expected argument 'root_volumes' to be a list")
         pulumi.set(__self__, "root_volumes", root_volumes)
@@ -255,6 +258,11 @@ class GetInstanceServerResult:
         return pulumi.get(self, "public_ip")
 
     @property
+    @pulumi.getter(name="replaceOnTypeChange")
+    def replace_on_type_change(self) -> bool:
+        return pulumi.get(self, "replace_on_type_change")
+
+    @property
     @pulumi.getter(name="rootVolumes")
     def root_volumes(self) -> Sequence['outputs.GetInstanceServerRootVolumeResult']:
         return pulumi.get(self, "root_volumes")
@@ -337,6 +345,7 @@ class AwaitableGetInstanceServerResult(GetInstanceServerResult):
             private_networks=self.private_networks,
             project_id=self.project_id,
             public_ip=self.public_ip,
+            replace_on_type_change=self.replace_on_type_change,
             root_volumes=self.root_volumes,
             security_group_id=self.security_group_id,
             server_id=self.server_id,
@@ -396,6 +405,7 @@ def get_instance_server(name: Optional[str] = None,
         private_networks=pulumi.get(__ret__, 'private_networks'),
         project_id=pulumi.get(__ret__, 'project_id'),
         public_ip=pulumi.get(__ret__, 'public_ip'),
+        replace_on_type_change=pulumi.get(__ret__, 'replace_on_type_change'),
         root_volumes=pulumi.get(__ret__, 'root_volumes'),
         security_group_id=pulumi.get(__ret__, 'security_group_id'),
         server_id=pulumi.get(__ret__, 'server_id'),
