@@ -192,6 +192,7 @@ namespace ediri.Scaleway
         /// The public IPv4 address of the server.
         /// </summary>
         public readonly string PublicIp;
+        public readonly bool ReplaceOnTypeChange;
         public readonly ImmutableArray<Outputs.GetInstanceServerRootVolumeResult> RootVolumes;
         /// <summary>
         /// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
@@ -259,6 +260,8 @@ namespace ediri.Scaleway
 
             string publicIp,
 
+            bool replaceOnTypeChange,
+
             ImmutableArray<Outputs.GetInstanceServerRootVolumeResult> rootVolumes,
 
             string securityGroupId,
@@ -295,6 +298,7 @@ namespace ediri.Scaleway
             PrivateNetworks = privateNetworks;
             ProjectId = projectId;
             PublicIp = publicIp;
+            ReplaceOnTypeChange = replaceOnTypeChange;
             RootVolumes = rootVolumes;
             SecurityGroupId = securityGroupId;
             ServerId = serverId;

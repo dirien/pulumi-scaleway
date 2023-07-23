@@ -95,8 +95,9 @@ type LookupInstanceServerResult struct {
 	// The ID of the project the server is associated with.
 	ProjectId string `pulumi:"projectId"`
 	// The public IPv4 address of the server.
-	PublicIp    string                        `pulumi:"publicIp"`
-	RootVolumes []GetInstanceServerRootVolume `pulumi:"rootVolumes"`
+	PublicIp            string                        `pulumi:"publicIp"`
+	ReplaceOnTypeChange bool                          `pulumi:"replaceOnTypeChange"`
+	RootVolumes         []GetInstanceServerRootVolume `pulumi:"rootVolumes"`
 	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
 	SecurityGroupId string  `pulumi:"securityGroupId"`
 	ServerId        *string `pulumi:"serverId"`
@@ -248,6 +249,10 @@ func (o LookupInstanceServerResultOutput) ProjectId() pulumi.StringOutput {
 // The public IPv4 address of the server.
 func (o LookupInstanceServerResultOutput) PublicIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceServerResult) string { return v.PublicIp }).(pulumi.StringOutput)
+}
+
+func (o LookupInstanceServerResultOutput) ReplaceOnTypeChange() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupInstanceServerResult) bool { return v.ReplaceOnTypeChange }).(pulumi.BoolOutput)
 }
 
 func (o LookupInstanceServerResultOutput) RootVolumes() GetInstanceServerRootVolumeArrayOutput {

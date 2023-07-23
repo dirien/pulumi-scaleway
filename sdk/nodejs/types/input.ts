@@ -1336,3 +1336,25 @@ export interface VpcPrivateNetworkIpv6Subnet {
      */
     updatedAt?: pulumi.Input<string>;
 }
+
+export interface WebHostingCpanelUrl {
+    /**
+     * The URL of the Dashboard.
+     */
+    dashboard?: pulumi.Input<string>;
+    /**
+     * The URL of the Webmail interface.
+     */
+    webmail?: pulumi.Input<string>;
+}
+
+export interface WebHostingOption {
+    /**
+     * The option ID.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * The option name.
+     */
+    name?: pulumi.Input<string>;
+}

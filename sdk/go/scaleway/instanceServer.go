@@ -416,6 +416,8 @@ type InstanceServer struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The public IPv4 address of the server.
 	PublicIp pulumi.StringOutput `pulumi:"publicIp"`
+	// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+	ReplaceOnTypeChange pulumi.BoolPtrOutput `pulumi:"replaceOnTypeChange"`
 	// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
 	RootVolume InstanceServerRootVolumeOutput `pulumi:"rootVolume"`
 	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
@@ -426,7 +428,10 @@ type InstanceServer struct {
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The commercial type of the server.
 	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-	// Updates to this field will recreate a new resource.
+	// Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+	// Use `replaceOnTypeChange` to trigger replacement instead of migration.
+	//
+	// > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The user data associated with the server.
 	// Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
@@ -523,6 +528,8 @@ type instanceServerState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// The public IPv4 address of the server.
 	PublicIp *string `pulumi:"publicIp"`
+	// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+	ReplaceOnTypeChange *bool `pulumi:"replaceOnTypeChange"`
 	// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
 	RootVolume *InstanceServerRootVolume `pulumi:"rootVolume"`
 	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
@@ -533,7 +540,10 @@ type instanceServerState struct {
 	Tags []string `pulumi:"tags"`
 	// The commercial type of the server.
 	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-	// Updates to this field will recreate a new resource.
+	// Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+	// Use `replaceOnTypeChange` to trigger replacement instead of migration.
+	//
+	// > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
 	Type *string `pulumi:"type"`
 	// The user data associated with the server.
 	// Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
@@ -598,6 +608,8 @@ type InstanceServerState struct {
 	ProjectId pulumi.StringPtrInput
 	// The public IPv4 address of the server.
 	PublicIp pulumi.StringPtrInput
+	// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+	ReplaceOnTypeChange pulumi.BoolPtrInput
 	// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
 	RootVolume InstanceServerRootVolumePtrInput
 	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
@@ -608,7 +620,10 @@ type InstanceServerState struct {
 	Tags pulumi.StringArrayInput
 	// The commercial type of the server.
 	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-	// Updates to this field will recreate a new resource.
+	// Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+	// Use `replaceOnTypeChange` to trigger replacement instead of migration.
+	//
+	// > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
 	Type pulumi.StringPtrInput
 	// The user data associated with the server.
 	// Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
@@ -663,6 +678,8 @@ type instanceServerArgs struct {
 	PrivateNetworks []InstanceServerPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+	ReplaceOnTypeChange *bool `pulumi:"replaceOnTypeChange"`
 	// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
 	RootVolume *InstanceServerRootVolume `pulumi:"rootVolume"`
 	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
@@ -673,7 +690,10 @@ type instanceServerArgs struct {
 	Tags []string `pulumi:"tags"`
 	// The commercial type of the server.
 	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-	// Updates to this field will recreate a new resource.
+	// Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+	// Use `replaceOnTypeChange` to trigger replacement instead of migration.
+	//
+	// > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
 	Type string `pulumi:"type"`
 	// The user data associated with the server.
 	// Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
@@ -725,6 +745,8 @@ type InstanceServerArgs struct {
 	PrivateNetworks InstanceServerPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringPtrInput
+	// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+	ReplaceOnTypeChange pulumi.BoolPtrInput
 	// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
 	RootVolume InstanceServerRootVolumePtrInput
 	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
@@ -735,7 +757,10 @@ type InstanceServerArgs struct {
 	Tags pulumi.StringArrayInput
 	// The commercial type of the server.
 	// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-	// Updates to this field will recreate a new resource.
+	// Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+	// Use `replaceOnTypeChange` to trigger replacement instead of migration.
+	//
+	// > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
 	Type pulumi.StringInput
 	// The user data associated with the server.
 	// Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
@@ -943,6 +968,11 @@ func (o InstanceServerOutput) PublicIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.PublicIp }).(pulumi.StringOutput)
 }
 
+// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+func (o InstanceServerOutput) ReplaceOnTypeChange() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *InstanceServer) pulumi.BoolPtrOutput { return v.ReplaceOnTypeChange }).(pulumi.BoolPtrOutput)
+}
+
 // Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
 func (o InstanceServerOutput) RootVolume() InstanceServerRootVolumeOutput {
 	return o.ApplyT(func(v *InstanceServer) InstanceServerRootVolumeOutput { return v.RootVolume }).(InstanceServerRootVolumeOutput)
@@ -965,7 +995,10 @@ func (o InstanceServerOutput) Tags() pulumi.StringArrayOutput {
 
 // The commercial type of the server.
 // You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-// Updates to this field will recreate a new resource.
+// Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+// Use `replaceOnTypeChange` to trigger replacement instead of migration.
+//
+// > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
 func (o InstanceServerOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

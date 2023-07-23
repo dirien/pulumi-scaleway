@@ -1359,6 +1359,43 @@ export interface GetVpcPrivateNetworkIpv6Subnet {
     updatedAt: string;
 }
 
+export interface GetVpcsVpc {
+    /**
+     * Date and time of VPC's creation (RFC 3339 format).
+     */
+    createdAt: string;
+    /**
+     * The associated VPC ID.
+     * > **Important:** VPCs' IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
+     */
+    id: string;
+    /**
+     * Defines whether the VPC is the default one for its Project.
+     */
+    isDefault: boolean;
+    /**
+     * The VPC name used as filter. VPCs with a name like it are listed.
+     */
+    name: string;
+    /**
+     * The organization ID the VPC is associated with.
+     */
+    organizationId: string;
+    /**
+     * The ID of the project the VPC is associated with.
+     */
+    projectId: string;
+    /**
+     * `region`). The region in which vpcs exist.
+     */
+    region: string;
+    /**
+     * List of tags used as filter. VPCs with these exact tags are listed.
+     */
+    tags: string[];
+    updateAt: string;
+}
+
 export interface GetWebHostOfferProduct {
     /**
      * The quota of databases.
@@ -2478,5 +2515,27 @@ export interface VpcPrivateNetworkIpv6Subnet {
      * The date and time of the last update of the subnet.
      */
     updatedAt: string;
+}
+
+export interface WebHostingCpanelUrl {
+    /**
+     * The URL of the Dashboard.
+     */
+    dashboard: string;
+    /**
+     * The URL of the Webmail interface.
+     */
+    webmail: string;
+}
+
+export interface WebHostingOption {
+    /**
+     * The option ID.
+     */
+    id: string;
+    /**
+     * The option name.
+     */
+    name: string;
 }
 

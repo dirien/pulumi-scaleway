@@ -89,6 +89,8 @@ __all__ = [
     'RedisClusterPublicNetwork',
     'VpcPrivateNetworkIpv4Subnet',
     'VpcPrivateNetworkIpv6Subnet',
+    'WebHostingCpanelUrl',
+    'WebHostingOption',
     'GetBaremetalOfferCpusResult',
     'GetBaremetalOfferDiskResult',
     'GetBaremetalOfferMemoryResult',
@@ -155,6 +157,7 @@ __all__ = [
     'GetRedisClusterPublicNetworkResult',
     'GetVpcPrivateNetworkIpv4SubnetResult',
     'GetVpcPrivateNetworkIpv6SubnetResult',
+    'GetVpcsVpcResult',
     'GetWebHostOfferProductResult',
 ]
 
@@ -5077,6 +5080,68 @@ class VpcPrivateNetworkIpv6Subnet(dict):
 
 
 @pulumi.output_type
+class WebHostingCpanelUrl(dict):
+    def __init__(__self__, *,
+                 dashboard: Optional[str] = None,
+                 webmail: Optional[str] = None):
+        """
+        :param str dashboard: The URL of the Dashboard.
+        :param str webmail: The URL of the Webmail interface.
+        """
+        if dashboard is not None:
+            pulumi.set(__self__, "dashboard", dashboard)
+        if webmail is not None:
+            pulumi.set(__self__, "webmail", webmail)
+
+    @property
+    @pulumi.getter
+    def dashboard(self) -> Optional[str]:
+        """
+        The URL of the Dashboard.
+        """
+        return pulumi.get(self, "dashboard")
+
+    @property
+    @pulumi.getter
+    def webmail(self) -> Optional[str]:
+        """
+        The URL of the Webmail interface.
+        """
+        return pulumi.get(self, "webmail")
+
+
+@pulumi.output_type
+class WebHostingOption(dict):
+    def __init__(__self__, *,
+                 id: Optional[str] = None,
+                 name: Optional[str] = None):
+        """
+        :param str id: The option ID.
+        :param str name: The option name.
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The option ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        The option name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class GetBaremetalOfferCpusResult(dict):
     def __init__(__self__, *,
                  core_count: int,
@@ -8539,6 +8604,110 @@ class GetVpcPrivateNetworkIpv6SubnetResult(dict):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetVpcsVpcResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 id: str,
+                 is_default: bool,
+                 name: str,
+                 organization_id: str,
+                 project_id: str,
+                 region: str,
+                 tags: Sequence[str],
+                 update_at: str):
+        """
+        :param str created_at: Date and time of VPC's creation (RFC 3339 format).
+        :param str id: The associated VPC ID.
+               > **Important:** VPCs' IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
+        :param bool is_default: Defines whether the VPC is the default one for its Project.
+        :param str name: The VPC name used as filter. VPCs with a name like it are listed.
+        :param str organization_id: The organization ID the VPC is associated with.
+        :param str project_id: The ID of the project the VPC is associated with.
+        :param str region: `region`). The region in which vpcs exist.
+        :param Sequence[str] tags: List of tags used as filter. VPCs with these exact tags are listed.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_default", is_default)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "organization_id", organization_id)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "update_at", update_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        Date and time of VPC's creation (RFC 3339 format).
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The associated VPC ID.
+        > **Important:** VPCs' IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="isDefault")
+    def is_default(self) -> bool:
+        """
+        Defines whether the VPC is the default one for its Project.
+        """
+        return pulumi.get(self, "is_default")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The VPC name used as filter. VPCs with a name like it are listed.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> str:
+        """
+        The organization ID the VPC is associated with.
+        """
+        return pulumi.get(self, "organization_id")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        The ID of the project the VPC is associated with.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        `region`). The region in which vpcs exist.
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence[str]:
+        """
+        List of tags used as filter. VPCs with these exact tags are listed.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="updateAt")
+    def update_at(self) -> str:
+        return pulumi.get(self, "update_at")
 
 
 @pulumi.output_type

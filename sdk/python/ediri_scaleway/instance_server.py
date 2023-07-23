@@ -29,6 +29,7 @@ class InstanceServerArgs:
                  placement_group_id: Optional[pulumi.Input[str]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 replace_on_type_change: Optional[pulumi.Input[bool]] = None,
                  root_volume: Optional[pulumi.Input['InstanceServerRootVolumeArgs']] = None,
                  security_group_id: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
@@ -39,7 +40,10 @@ class InstanceServerArgs:
         The set of arguments for constructing a InstanceServer resource.
         :param pulumi.Input[str] type: The commercial type of the server.
                You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-               Updates to this field will recreate a new resource.
+               Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+               Use `replace_on_type_change` to trigger replacement instead of migration.
+               
+               > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] additional_volume_ids: The [additional volumes](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39)
                attached to the server. Updates to this field will trigger a stop/start of the server.
                
@@ -66,6 +70,7 @@ class InstanceServerArgs:
         :param pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateNetworkArgs']]] private_networks: The private network associated with the server.
                Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
+        :param pulumi.Input[bool] replace_on_type_change: If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
         :param pulumi.Input['InstanceServerRootVolumeArgs'] root_volume: Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
         :param pulumi.Input[str] security_group_id: The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
         :param pulumi.Input[str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
@@ -103,6 +108,8 @@ class InstanceServerArgs:
             pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if replace_on_type_change is not None:
+            pulumi.set(__self__, "replace_on_type_change", replace_on_type_change)
         if root_volume is not None:
             pulumi.set(__self__, "root_volume", root_volume)
         if security_group_id is not None:
@@ -122,7 +129,10 @@ class InstanceServerArgs:
         """
         The commercial type of the server.
         You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-        Updates to this field will recreate a new resource.
+        Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+        Use `replace_on_type_change` to trigger replacement instead of migration.
+
+        > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
         """
         return pulumi.get(self, "type")
 
@@ -289,6 +299,18 @@ class InstanceServerArgs:
         pulumi.set(self, "project_id", value)
 
     @property
+    @pulumi.getter(name="replaceOnTypeChange")
+    def replace_on_type_change(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+        """
+        return pulumi.get(self, "replace_on_type_change")
+
+    @replace_on_type_change.setter
+    def replace_on_type_change(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "replace_on_type_change", value)
+
+    @property
     @pulumi.getter(name="rootVolume")
     def root_volume(self) -> Optional[pulumi.Input['InstanceServerRootVolumeArgs']]:
         """
@@ -388,6 +410,7 @@ class _InstanceServerState:
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  public_ip: Optional[pulumi.Input[str]] = None,
+                 replace_on_type_change: Optional[pulumi.Input[bool]] = None,
                  root_volume: Optional[pulumi.Input['InstanceServerRootVolumeArgs']] = None,
                  security_group_id: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
@@ -430,13 +453,17 @@ class _InstanceServerState:
                Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
         :param pulumi.Input[str] public_ip: The public IPv4 address of the server.
+        :param pulumi.Input[bool] replace_on_type_change: If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
         :param pulumi.Input['InstanceServerRootVolumeArgs'] root_volume: Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
         :param pulumi.Input[str] security_group_id: The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
         :param pulumi.Input[str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
         :param pulumi.Input[str] type: The commercial type of the server.
                You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-               Updates to this field will recreate a new resource.
+               Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+               Use `replace_on_type_change` to trigger replacement instead of migration.
+               
+               > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] user_data: The user data associated with the server.
                Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
                You can define values using:
@@ -483,6 +510,8 @@ class _InstanceServerState:
             pulumi.set(__self__, "project_id", project_id)
         if public_ip is not None:
             pulumi.set(__self__, "public_ip", public_ip)
+        if replace_on_type_change is not None:
+            pulumi.set(__self__, "replace_on_type_change", replace_on_type_change)
         if root_volume is not None:
             pulumi.set(__self__, "root_volume", root_volume)
         if security_group_id is not None:
@@ -741,6 +770,18 @@ class _InstanceServerState:
         pulumi.set(self, "public_ip", value)
 
     @property
+    @pulumi.getter(name="replaceOnTypeChange")
+    def replace_on_type_change(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+        """
+        return pulumi.get(self, "replace_on_type_change")
+
+    @replace_on_type_change.setter
+    def replace_on_type_change(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "replace_on_type_change", value)
+
+    @property
     @pulumi.getter(name="rootVolume")
     def root_volume(self) -> Optional[pulumi.Input['InstanceServerRootVolumeArgs']]:
         """
@@ -794,7 +835,10 @@ class _InstanceServerState:
         """
         The commercial type of the server.
         You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-        Updates to this field will recreate a new resource.
+        Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+        Use `replace_on_type_change` to trigger replacement instead of migration.
+
+        > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
         """
         return pulumi.get(self, "type")
 
@@ -849,6 +893,7 @@ class InstanceServer(pulumi.CustomResource):
                  placement_group_id: Optional[pulumi.Input[str]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPrivateNetworkArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 replace_on_type_change: Optional[pulumi.Input[bool]] = None,
                  root_volume: Optional[pulumi.Input[pulumi.InputType['InstanceServerRootVolumeArgs']]] = None,
                  security_group_id: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
@@ -1065,13 +1110,17 @@ class InstanceServer(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPrivateNetworkArgs']]]] private_networks: The private network associated with the server.
                Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
+        :param pulumi.Input[bool] replace_on_type_change: If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
         :param pulumi.Input[pulumi.InputType['InstanceServerRootVolumeArgs']] root_volume: Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
         :param pulumi.Input[str] security_group_id: The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
         :param pulumi.Input[str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
         :param pulumi.Input[str] type: The commercial type of the server.
                You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-               Updates to this field will recreate a new resource.
+               Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+               Use `replace_on_type_change` to trigger replacement instead of migration.
+               
+               > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] user_data: The user data associated with the server.
                Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
                You can define values using:
@@ -1293,6 +1342,7 @@ class InstanceServer(pulumi.CustomResource):
                  placement_group_id: Optional[pulumi.Input[str]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPrivateNetworkArgs']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 replace_on_type_change: Optional[pulumi.Input[bool]] = None,
                  root_volume: Optional[pulumi.Input[pulumi.InputType['InstanceServerRootVolumeArgs']]] = None,
                  security_group_id: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
@@ -1321,6 +1371,7 @@ class InstanceServer(pulumi.CustomResource):
             __props__.__dict__["placement_group_id"] = placement_group_id
             __props__.__dict__["private_networks"] = private_networks
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["replace_on_type_change"] = replace_on_type_change
             __props__.__dict__["root_volume"] = root_volume
             __props__.__dict__["security_group_id"] = security_group_id
             __props__.__dict__["state"] = state
@@ -1366,6 +1417,7 @@ class InstanceServer(pulumi.CustomResource):
             private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceServerPrivateNetworkArgs']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             public_ip: Optional[pulumi.Input[str]] = None,
+            replace_on_type_change: Optional[pulumi.Input[bool]] = None,
             root_volume: Optional[pulumi.Input[pulumi.InputType['InstanceServerRootVolumeArgs']]] = None,
             security_group_id: Optional[pulumi.Input[str]] = None,
             state: Optional[pulumi.Input[str]] = None,
@@ -1413,13 +1465,17 @@ class InstanceServer(pulumi.CustomResource):
                Use the `pn_id` key to attach a [private_network](https://developers.scaleway.com/en/products/instance/api/#private-nics-a42eea) on your instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
         :param pulumi.Input[str] public_ip: The public IPv4 address of the server.
+        :param pulumi.Input[bool] replace_on_type_change: If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
         :param pulumi.Input[pulumi.InputType['InstanceServerRootVolumeArgs']] root_volume: Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
         :param pulumi.Input[str] security_group_id: The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
         :param pulumi.Input[str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
         :param pulumi.Input[str] type: The commercial type of the server.
                You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-               Updates to this field will recreate a new resource.
+               Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+               Use `replace_on_type_change` to trigger replacement instead of migration.
+               
+               > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] user_data: The user data associated with the server.
                Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
                You can define values using:
@@ -1451,6 +1507,7 @@ class InstanceServer(pulumi.CustomResource):
         __props__.__dict__["private_networks"] = private_networks
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["public_ip"] = public_ip
+        __props__.__dict__["replace_on_type_change"] = replace_on_type_change
         __props__.__dict__["root_volume"] = root_volume
         __props__.__dict__["security_group_id"] = security_group_id
         __props__.__dict__["state"] = state
@@ -1627,6 +1684,14 @@ class InstanceServer(pulumi.CustomResource):
         return pulumi.get(self, "public_ip")
 
     @property
+    @pulumi.getter(name="replaceOnTypeChange")
+    def replace_on_type_change(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+        """
+        return pulumi.get(self, "replace_on_type_change")
+
+    @property
     @pulumi.getter(name="rootVolume")
     def root_volume(self) -> pulumi.Output['outputs.InstanceServerRootVolume']:
         """
@@ -1664,7 +1729,10 @@ class InstanceServer(pulumi.CustomResource):
         """
         The commercial type of the server.
         You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-        Updates to this field will recreate a new resource.
+        Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+        Use `replace_on_type_change` to trigger replacement instead of migration.
+
+        > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
         """
         return pulumi.get(self, "type")
 

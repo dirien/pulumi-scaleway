@@ -104,6 +104,7 @@
         "getVpcPublicGatewayDhcpReservation.ts",
         "getVpcPublicGatewayIp.ts",
         "getVpcPublicGatewayPatRule.ts",
+        "getVpcs.ts",
         "getWebHostOffer.ts",
         "iamApiKey.ts",
         "iamApplication.ts",
@@ -169,6 +170,7 @@
         "vpcPublicGatewayDhcpReservation.ts",
         "vpcPublicGatewayIp.ts",
         "vpcPublicGatewayIpReverseDns.ts",
-        "vpcPublicGatewayPatRule.ts"
+        "vpcPublicGatewayPatRule.ts",
+        "webHosting.ts"
     ]
 }

@@ -424,6 +424,12 @@ namespace ediri.Scaleway
         public Output<string> PublicIp { get; private set; } = null!;
 
         /// <summary>
+        /// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+        /// </summary>
+        [Output("replaceOnTypeChange")]
+        public Output<bool?> ReplaceOnTypeChange { get; private set; } = null!;
+
+        /// <summary>
         /// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
         /// </summary>
         [Output("rootVolume")]
@@ -450,7 +456,10 @@ namespace ediri.Scaleway
         /// <summary>
         /// The commercial type of the server.
         /// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-        /// Updates to this field will recreate a new resource.
+        /// Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+        /// Use `replace_on_type_change` to trigger replacement instead of migration.
+        /// 
+        /// &gt; **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -618,6 +627,12 @@ namespace ediri.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
+        /// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+        /// </summary>
+        [Input("replaceOnTypeChange")]
+        public Input<bool>? ReplaceOnTypeChange { get; set; }
+
+        /// <summary>
         /// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
         /// </summary>
         [Input("rootVolume")]
@@ -650,7 +665,10 @@ namespace ediri.Scaleway
         /// <summary>
         /// The commercial type of the server.
         /// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-        /// Updates to this field will recreate a new resource.
+        /// Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+        /// Use `replace_on_type_change` to trigger replacement instead of migration.
+        /// 
+        /// &gt; **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -827,6 +845,12 @@ namespace ediri.Scaleway
         public Input<string>? PublicIp { get; set; }
 
         /// <summary>
+        /// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+        /// </summary>
+        [Input("replaceOnTypeChange")]
+        public Input<bool>? ReplaceOnTypeChange { get; set; }
+
+        /// <summary>
         /// Root [volume](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39) attached to the server on creation.
         /// </summary>
         [Input("rootVolume")]
@@ -859,7 +883,10 @@ namespace ediri.Scaleway
         /// <summary>
         /// The commercial type of the server.
         /// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
-        /// Updates to this field will recreate a new resource.
+        /// Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
+        /// Use `replace_on_type_change` to trigger replacement instead of migration.
+        /// 
+        /// &gt; **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
