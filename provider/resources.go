@@ -16,6 +16,9 @@ package scaleway
 
 import (
 	"fmt"
+	// embed is used to store bridge-metadata.json in the compiled binary
+	_ "embed"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/x"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	"path/filepath"
 
@@ -23,6 +26,7 @@ import (
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 	"github.com/scaleway/terraform-provider-scaleway/v2/scaleway"
 )
 
@@ -208,8 +212,9 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_function_trigger":                    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FunctionTrigger")},
 			"scaleway_lb_acl":                              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "LbAcl")},
 			"scaleway_vpc":                                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Vpc")},
-			"scaleway_container_trigger": 					{Tok: tfbridge.MakeResource(mainPkg, mainMod, "ContainerTrigger")},
-			"scaleway_webhosting":							{Tok: tfbridge.MakeResource(mainPkg, mainMod, "WebHosting")},
+			"scaleway_container_trigger":                   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ContainerTrigger")},
+			"scaleway_webhosting":                          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "WebHosting")},
+			"scaleway_iam_group_membership":                {Tok: tfbridge.MakeResource(mainPkg, mainMod, "IamGroupMembership")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"scaleway_account_project":                     {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAccountProject")},
@@ -280,7 +285,8 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_availability_zones":                  {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAvailabilityZones")},
 			"scaleway_cockpit_plan":                        {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getCockpitPlan")},
 			"scaleway_vpc":                                 {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getVpc")},
-			"scaleway_vpcs":								{Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getVpcs")},
+			"scaleway_vpcs":                                {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getVpcs")},
+			"scaleway_webhosting":                          {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getWebhosting")},
 		},
 		TFProviderModuleVersion: "v2",
 		JavaScript: &tfbridge.JavaScriptInfo{
@@ -322,10 +328,15 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Java: &tfbridge.JavaInfo{
 			BasePackage: "io.dirien",
-		},
+		}, MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 	}
+	err := x.AutoAliasing(&prov, prov.GetMetadata())
+	contract.AssertNoErrorf(err, "auto aliasing apply failed")
 
 	prov.SetAutonaming(255, "-")
 
 	return prov
 }
+
+//go:embed cmd/pulumi-resource-scaleway/bridge-metadata.json
+var metadata []byte
