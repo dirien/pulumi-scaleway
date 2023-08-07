@@ -81,6 +81,7 @@ export interface GetLbBackendResult {
     readonly healthCheckHttps: outputs.GetLbBackendHealthCheckHttp[];
     readonly healthCheckMaxRetries: number;
     readonly healthCheckPort: number;
+    readonly healthCheckSendProxy: boolean;
     readonly healthCheckTcps: outputs.GetLbBackendHealthCheckTcp[];
     readonly healthCheckTimeout: string;
     readonly healthCheckTransientDelay: string;

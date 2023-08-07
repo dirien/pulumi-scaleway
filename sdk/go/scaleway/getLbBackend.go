@@ -93,6 +93,7 @@ type LookupLbBackendResult struct {
 	HealthCheckHttps          []GetLbBackendHealthCheckHttp `pulumi:"healthCheckHttps"`
 	HealthCheckMaxRetries     int                           `pulumi:"healthCheckMaxRetries"`
 	HealthCheckPort           int                           `pulumi:"healthCheckPort"`
+	HealthCheckSendProxy      bool                          `pulumi:"healthCheckSendProxy"`
 	HealthCheckTcps           []GetLbBackendHealthCheckTcp  `pulumi:"healthCheckTcps"`
 	HealthCheckTimeout        string                        `pulumi:"healthCheckTimeout"`
 	HealthCheckTransientDelay string                        `pulumi:"healthCheckTransientDelay"`
@@ -199,6 +200,10 @@ func (o LookupLbBackendResultOutput) HealthCheckMaxRetries() pulumi.IntOutput {
 
 func (o LookupLbBackendResultOutput) HealthCheckPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupLbBackendResult) int { return v.HealthCheckPort }).(pulumi.IntOutput)
+}
+
+func (o LookupLbBackendResultOutput) HealthCheckSendProxy() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupLbBackendResult) bool { return v.HealthCheckSendProxy }).(pulumi.BoolOutput)
 }
 
 func (o LookupLbBackendResultOutput) HealthCheckTcps() GetLbBackendHealthCheckTcpArrayOutput {

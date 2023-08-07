@@ -53,6 +53,41 @@ import (
 //
 // ```
 //
+// ### Without install config
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myOffer, err := scaleway.GetBaremetalOffer(ctx, &scaleway.GetBaremetalOfferArgs{
+//				Zone: pulumi.StringRef("fr-par-2"),
+//				Name: pulumi.StringRef("EM-B112X-SSD"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewBaremetalServer(ctx, "base", &scaleway.BaremetalServerArgs{
+//				Zone:                   pulumi.String("fr-par-2"),
+//				Offer:                  *pulumi.String(myOffer.OfferId),
+//				InstallConfigAfterward: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Baremetal servers can be imported using the `{zone}/{id}`, e.g. bash
@@ -71,6 +106,8 @@ type BaremetalServer struct {
 	Domain pulumi.StringOutput `pulumi:"domain"`
 	// The hostname of the server.
 	Hostname pulumi.StringPtrOutput `pulumi:"hostname"`
+	// If True, this boolean allows to create a server without the install config if you want to provide it later.
+	InstallConfigAfterward pulumi.BoolPtrOutput `pulumi:"installConfigAfterward"`
 	// (List of) The IPs of the server.
 	Ips BaremetalServerIpArrayOutput `pulumi:"ips"`
 	// (List of) The IPv4 addresses of the server.
@@ -96,7 +133,7 @@ type BaremetalServer struct {
 	// The UUID of the os to install on the server.
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
 	// > **Important:** Updates to `os` will reinstall the server.
-	Os pulumi.StringOutput `pulumi:"os"`
+	Os pulumi.StringPtrOutput `pulumi:"os"`
 	// The name of the os.
 	OsName pulumi.StringOutput `pulumi:"osName"`
 	// Password used for the installation. May be required depending on used os.
@@ -131,12 +168,6 @@ func NewBaremetalServer(ctx *pulumi.Context,
 
 	if args.Offer == nil {
 		return nil, errors.New("invalid value for required argument 'Offer'")
-	}
-	if args.Os == nil {
-		return nil, errors.New("invalid value for required argument 'Os'")
-	}
-	if args.SshKeyIds == nil {
-		return nil, errors.New("invalid value for required argument 'SshKeyIds'")
 	}
 	if args.Password != nil {
 		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
@@ -178,6 +209,8 @@ type baremetalServerState struct {
 	Domain *string `pulumi:"domain"`
 	// The hostname of the server.
 	Hostname *string `pulumi:"hostname"`
+	// If True, this boolean allows to create a server without the install config if you want to provide it later.
+	InstallConfigAfterward *bool `pulumi:"installConfigAfterward"`
 	// (List of) The IPs of the server.
 	Ips []BaremetalServerIp `pulumi:"ips"`
 	// (List of) The IPv4 addresses of the server.
@@ -236,6 +269,8 @@ type BaremetalServerState struct {
 	Domain pulumi.StringPtrInput
 	// The hostname of the server.
 	Hostname pulumi.StringPtrInput
+	// If True, this boolean allows to create a server without the install config if you want to provide it later.
+	InstallConfigAfterward pulumi.BoolPtrInput
 	// (List of) The IPs of the server.
 	Ips BaremetalServerIpArrayInput
 	// (List of) The IPv4 addresses of the server.
@@ -296,6 +331,8 @@ type baremetalServerArgs struct {
 	Description *string `pulumi:"description"`
 	// The hostname of the server.
 	Hostname *string `pulumi:"hostname"`
+	// If True, this boolean allows to create a server without the install config if you want to provide it later.
+	InstallConfigAfterward *bool `pulumi:"installConfigAfterward"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
 	// The offer name or UUID of the baremetal server.
@@ -309,7 +346,7 @@ type baremetalServerArgs struct {
 	// The UUID of the os to install on the server.
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
 	// > **Important:** Updates to `os` will reinstall the server.
-	Os string `pulumi:"os"`
+	Os *string `pulumi:"os"`
 	// Password used for the installation. May be required depending on used os.
 	Password *string `pulumi:"password"`
 	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -339,6 +376,8 @@ type BaremetalServerArgs struct {
 	Description pulumi.StringPtrInput
 	// The hostname of the server.
 	Hostname pulumi.StringPtrInput
+	// If True, this boolean allows to create a server without the install config if you want to provide it later.
+	InstallConfigAfterward pulumi.BoolPtrInput
 	// The name of the server.
 	Name pulumi.StringPtrInput
 	// The offer name or UUID of the baremetal server.
@@ -352,7 +391,7 @@ type BaremetalServerArgs struct {
 	// The UUID of the os to install on the server.
 	// Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
 	// > **Important:** Updates to `os` will reinstall the server.
-	Os pulumi.StringInput
+	Os pulumi.StringPtrInput
 	// Password used for the installation. May be required depending on used os.
 	Password pulumi.StringPtrInput
 	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -478,6 +517,11 @@ func (o BaremetalServerOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.StringPtrOutput { return v.Hostname }).(pulumi.StringPtrOutput)
 }
 
+// If True, this boolean allows to create a server without the install config if you want to provide it later.
+func (o BaremetalServerOutput) InstallConfigAfterward() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *BaremetalServer) pulumi.BoolPtrOutput { return v.InstallConfigAfterward }).(pulumi.BoolPtrOutput)
+}
+
 // (List of) The IPs of the server.
 func (o BaremetalServerOutput) Ips() BaremetalServerIpArrayOutput {
 	return o.ApplyT(func(v *BaremetalServer) BaremetalServerIpArrayOutput { return v.Ips }).(BaremetalServerIpArrayOutput)
@@ -530,8 +574,8 @@ func (o BaremetalServerOutput) OrganizationId() pulumi.StringOutput {
 // The UUID of the os to install on the server.
 // Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-87598a) to find the right OS ID.
 // > **Important:** Updates to `os` will reinstall the server.
-func (o BaremetalServerOutput) Os() pulumi.StringOutput {
-	return o.ApplyT(func(v *BaremetalServer) pulumi.StringOutput { return v.Os }).(pulumi.StringOutput)
+func (o BaremetalServerOutput) Os() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BaremetalServer) pulumi.StringPtrOutput { return v.Os }).(pulumi.StringPtrOutput)
 }
 
 // The name of the os.

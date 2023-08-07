@@ -460,6 +460,11 @@ export const getWebHostOffer: typeof import("./getWebHostOffer").getWebHostOffer
 export const getWebHostOfferOutput: typeof import("./getWebHostOffer").getWebHostOfferOutput = null as any;
 utilities.lazyLoad(exports, ["getWebHostOffer","getWebHostOfferOutput"], () => require("./getWebHostOffer"));
 
+export { GetWebhostingArgs, GetWebhostingResult, GetWebhostingOutputArgs } from "./getWebhosting";
+export const getWebhosting: typeof import("./getWebhosting").getWebhosting = null as any;
+export const getWebhostingOutput: typeof import("./getWebhosting").getWebhostingOutput = null as any;
+utilities.lazyLoad(exports, ["getWebhosting","getWebhostingOutput"], () => require("./getWebhosting"));
+
 export { IamApiKeyArgs, IamApiKeyState } from "./iamApiKey";
 export type IamApiKey = import("./iamApiKey").IamApiKey;
 export const IamApiKey: typeof import("./iamApiKey").IamApiKey = null as any;
@@ -474,6 +479,11 @@ export { IamGroupArgs, IamGroupState } from "./iamGroup";
 export type IamGroup = import("./iamGroup").IamGroup;
 export const IamGroup: typeof import("./iamGroup").IamGroup = null as any;
 utilities.lazyLoad(exports, ["IamGroup"], () => require("./iamGroup"));
+
+export { IamGroupMembershipArgs, IamGroupMembershipState } from "./iamGroupMembership";
+export type IamGroupMembership = import("./iamGroupMembership").IamGroupMembership;
+export const IamGroupMembership: typeof import("./iamGroupMembership").IamGroupMembership = null as any;
+utilities.lazyLoad(exports, ["IamGroupMembership"], () => require("./iamGroupMembership"));
 
 export { IamPolicyArgs, IamPolicyState } from "./iamPolicy";
 export type IamPolicy = import("./iamPolicy").IamPolicy;
@@ -829,6 +839,8 @@ const _module = {
                 return new IamApplication(name, <any>undefined, { urn })
             case "scaleway:index/iamGroup:IamGroup":
                 return new IamGroup(name, <any>undefined, { urn })
+            case "scaleway:index/iamGroupMembership:IamGroupMembership":
+                return new IamGroupMembership(name, <any>undefined, { urn })
             case "scaleway:index/iamPolicy:IamPolicy":
                 return new IamPolicy(name, <any>undefined, { urn })
             case "scaleway:index/iamSshKey:IamSshKey":
@@ -973,6 +985,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/functionTrigger", _modu
 pulumi.runtime.registerResourceModule("scaleway", "index/iamApiKey", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamApplication", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamGroup", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/iamGroupMembership", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamPolicy", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamSshKey", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceImage", _module)

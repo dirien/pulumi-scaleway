@@ -108,6 +108,8 @@ type LbBackend struct {
 	HealthCheckMaxRetries pulumi.IntPtrOutput `pulumi:"healthCheckMaxRetries"`
 	// Port the HC requests will be send to.
 	HealthCheckPort pulumi.IntOutput `pulumi:"healthCheckPort"`
+	// Defines whether proxy protocol should be activated for the health check.
+	HealthCheckSendProxy pulumi.BoolPtrOutput `pulumi:"healthCheckSendProxy"`
 	// This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
 	HealthCheckTcp LbBackendHealthCheckTcpOutput `pulumi:"healthCheckTcp"`
 	// Timeout before we consider a HC request failed.
@@ -212,6 +214,8 @@ type lbBackendState struct {
 	HealthCheckMaxRetries *int `pulumi:"healthCheckMaxRetries"`
 	// Port the HC requests will be send to.
 	HealthCheckPort *int `pulumi:"healthCheckPort"`
+	// Defines whether proxy protocol should be activated for the health check.
+	HealthCheckSendProxy *bool `pulumi:"healthCheckSendProxy"`
 	// This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
 	HealthCheckTcp *LbBackendHealthCheckTcp `pulumi:"healthCheckTcp"`
 	// Timeout before we consider a HC request failed.
@@ -278,6 +282,8 @@ type LbBackendState struct {
 	HealthCheckMaxRetries pulumi.IntPtrInput
 	// Port the HC requests will be send to.
 	HealthCheckPort pulumi.IntPtrInput
+	// Defines whether proxy protocol should be activated for the health check.
+	HealthCheckSendProxy pulumi.BoolPtrInput
 	// This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
 	HealthCheckTcp LbBackendHealthCheckTcpPtrInput
 	// Timeout before we consider a HC request failed.
@@ -348,6 +354,8 @@ type lbBackendArgs struct {
 	HealthCheckMaxRetries *int `pulumi:"healthCheckMaxRetries"`
 	// Port the HC requests will be send to.
 	HealthCheckPort *int `pulumi:"healthCheckPort"`
+	// Defines whether proxy protocol should be activated for the health check.
+	HealthCheckSendProxy *bool `pulumi:"healthCheckSendProxy"`
 	// This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
 	HealthCheckTcp *LbBackendHealthCheckTcp `pulumi:"healthCheckTcp"`
 	// Timeout before we consider a HC request failed.
@@ -415,6 +423,8 @@ type LbBackendArgs struct {
 	HealthCheckMaxRetries pulumi.IntPtrInput
 	// Port the HC requests will be send to.
 	HealthCheckPort pulumi.IntPtrInput
+	// Defines whether proxy protocol should be activated for the health check.
+	HealthCheckSendProxy pulumi.BoolPtrInput
 	// This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
 	HealthCheckTcp LbBackendHealthCheckTcpPtrInput
 	// Timeout before we consider a HC request failed.
@@ -592,6 +602,11 @@ func (o LbBackendOutput) HealthCheckMaxRetries() pulumi.IntPtrOutput {
 // Port the HC requests will be send to.
 func (o LbBackendOutput) HealthCheckPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *LbBackend) pulumi.IntOutput { return v.HealthCheckPort }).(pulumi.IntOutput)
+}
+
+// Defines whether proxy protocol should be activated for the health check.
+func (o LbBackendOutput) HealthCheckSendProxy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LbBackend) pulumi.BoolPtrOutput { return v.HealthCheckSendProxy }).(pulumi.BoolPtrOutput)
 }
 
 // This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.

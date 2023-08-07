@@ -186,6 +186,7 @@ namespace ediri.Scaleway
         public readonly ImmutableArray<Outputs.GetLbBackendHealthCheckHttpResult> HealthCheckHttps;
         public readonly int HealthCheckMaxRetries;
         public readonly int HealthCheckPort;
+        public readonly bool HealthCheckSendProxy;
         public readonly ImmutableArray<Outputs.GetLbBackendHealthCheckTcpResult> HealthCheckTcps;
         public readonly string HealthCheckTimeout;
         public readonly string HealthCheckTransientDelay;
@@ -232,6 +233,8 @@ namespace ediri.Scaleway
             int healthCheckMaxRetries,
 
             int healthCheckPort,
+
+            bool healthCheckSendProxy,
 
             ImmutableArray<Outputs.GetLbBackendHealthCheckTcpResult> healthCheckTcps,
 
@@ -285,6 +288,7 @@ namespace ediri.Scaleway
             HealthCheckHttps = healthCheckHttps;
             HealthCheckMaxRetries = healthCheckMaxRetries;
             HealthCheckPort = healthCheckPort;
+            HealthCheckSendProxy = healthCheckSendProxy;
             HealthCheckTcps = healthCheckTcps;
             HealthCheckTimeout = healthCheckTimeout;
             HealthCheckTransientDelay = healthCheckTransientDelay;

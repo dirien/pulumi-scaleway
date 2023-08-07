@@ -95,6 +95,8 @@ type IamGroup struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The description of the IAM group.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Manage membership externally. This make the resource ignore userIds and application_ids. Should be used when using iam_group_membership
+	ExternalMembership pulumi.BoolPtrOutput `pulumi:"externalMembership"`
 	// The name of the IAM group.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// `organizationId`) The ID of the organization the group is associated with.
@@ -141,6 +143,8 @@ type iamGroupState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// The description of the IAM group.
 	Description *string `pulumi:"description"`
+	// Manage membership externally. This make the resource ignore userIds and application_ids. Should be used when using iam_group_membership
+	ExternalMembership *bool `pulumi:"externalMembership"`
 	// The name of the IAM group.
 	Name *string `pulumi:"name"`
 	// `organizationId`) The ID of the organization the group is associated with.
@@ -158,6 +162,8 @@ type IamGroupState struct {
 	CreatedAt pulumi.StringPtrInput
 	// The description of the IAM group.
 	Description pulumi.StringPtrInput
+	// Manage membership externally. This make the resource ignore userIds and application_ids. Should be used when using iam_group_membership
+	ExternalMembership pulumi.BoolPtrInput
 	// The name of the IAM group.
 	Name pulumi.StringPtrInput
 	// `organizationId`) The ID of the organization the group is associated with.
@@ -177,6 +183,8 @@ type iamGroupArgs struct {
 	ApplicationIds []string `pulumi:"applicationIds"`
 	// The description of the IAM group.
 	Description *string `pulumi:"description"`
+	// Manage membership externally. This make the resource ignore userIds and application_ids. Should be used when using iam_group_membership
+	ExternalMembership *bool `pulumi:"externalMembership"`
 	// The name of the IAM group.
 	Name *string `pulumi:"name"`
 	// `organizationId`) The ID of the organization the group is associated with.
@@ -191,6 +199,8 @@ type IamGroupArgs struct {
 	ApplicationIds pulumi.StringArrayInput
 	// The description of the IAM group.
 	Description pulumi.StringPtrInput
+	// Manage membership externally. This make the resource ignore userIds and application_ids. Should be used when using iam_group_membership
+	ExternalMembership pulumi.BoolPtrInput
 	// The name of the IAM group.
 	Name pulumi.StringPtrInput
 	// `organizationId`) The ID of the organization the group is associated with.
@@ -299,6 +309,11 @@ func (o IamGroupOutput) CreatedAt() pulumi.StringOutput {
 // The description of the IAM group.
 func (o IamGroupOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IamGroup) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Manage membership externally. This make the resource ignore userIds and application_ids. Should be used when using iam_group_membership
+func (o IamGroupOutput) ExternalMembership() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IamGroup) pulumi.BoolPtrOutput { return v.ExternalMembership }).(pulumi.BoolPtrOutput)
 }
 
 // The name of the IAM group.

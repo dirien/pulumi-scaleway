@@ -159,6 +159,8 @@ __all__ = [
     'GetVpcPrivateNetworkIpv6SubnetResult',
     'GetVpcsVpcResult',
     'GetWebHostOfferProductResult',
+    'GetWebhostingCpanelUrlResult',
+    'GetWebhostingOptionResult',
 ]
 
 @pulumi.output_type
@@ -8814,5 +8816,43 @@ class GetWebHostOfferProductResult(dict):
         The number of cores.
         """
         return pulumi.get(self, "v_cpu")
+
+
+@pulumi.output_type
+class GetWebhostingCpanelUrlResult(dict):
+    def __init__(__self__, *,
+                 dashboard: str,
+                 webmail: str):
+        pulumi.set(__self__, "dashboard", dashboard)
+        pulumi.set(__self__, "webmail", webmail)
+
+    @property
+    @pulumi.getter
+    def dashboard(self) -> str:
+        return pulumi.get(self, "dashboard")
+
+    @property
+    @pulumi.getter
+    def webmail(self) -> str:
+        return pulumi.get(self, "webmail")
+
+
+@pulumi.output_type
+class GetWebhostingOptionResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 name: str):
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
 
 

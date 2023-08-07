@@ -81,7 +81,7 @@ export class WebHosting extends pulumi.CustomResource {
      */
     public /*out*/ readonly dnsStatus!: pulumi.Output<string>;
     /**
-     * TThe domain name of the hosting.
+     * The domain name of the hosting.
      */
     public readonly domain!: pulumi.Output<string>;
     /**
@@ -224,7 +224,7 @@ export interface WebHostingState {
      */
     dnsStatus?: pulumi.Input<string>;
     /**
-     * TThe domain name of the hosting.
+     * The domain name of the hosting.
      */
     domain?: pulumi.Input<string>;
     /**
@@ -290,7 +290,7 @@ export interface WebHostingState {
  */
 export interface WebHostingArgs {
     /**
-     * TThe domain name of the hosting.
+     * The domain name of the hosting.
      */
     domain: pulumi.Input<string>;
     /**

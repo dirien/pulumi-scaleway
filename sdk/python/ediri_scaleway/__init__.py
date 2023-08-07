@@ -96,9 +96,11 @@ from .get_vpc_public_gateway_ip import *
 from .get_vpc_public_gateway_pat_rule import *
 from .get_vpcs import *
 from .get_web_host_offer import *
+from .get_webhosting import *
 from .iam_api_key import *
 from .iam_application import *
 from .iam_group import *
+from .iam_group_membership import *
 from .iam_policy import *
 from .iam_ssh_key import *
 from .instance_image import *
@@ -368,6 +370,14 @@ _utilities.register(
   "fqn": "ediri_scaleway",
   "classes": {
    "scaleway:index/iamGroup:IamGroup": "IamGroup"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/iamGroupMembership",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/iamGroupMembership:IamGroupMembership": "IamGroupMembership"
   }
  },
  {

@@ -128,6 +128,12 @@ namespace ediri.Scaleway
         public Output<int> HealthCheckPort { get; private set; } = null!;
 
         /// <summary>
+        /// Defines whether proxy protocol should be activated for the health check.
+        /// </summary>
+        [Output("healthCheckSendProxy")]
+        public Output<bool?> HealthCheckSendProxy { get; private set; } = null!;
+
+        /// <summary>
         /// This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
         /// </summary>
         [Output("healthCheckTcp")]
@@ -352,6 +358,12 @@ namespace ediri.Scaleway
         public Input<int>? HealthCheckPort { get; set; }
 
         /// <summary>
+        /// Defines whether proxy protocol should be activated for the health check.
+        /// </summary>
+        [Input("healthCheckSendProxy")]
+        public Input<bool>? HealthCheckSendProxy { get; set; }
+
+        /// <summary>
         /// This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
         /// </summary>
         [Input("healthCheckTcp")]
@@ -541,6 +553,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("healthCheckPort")]
         public Input<int>? HealthCheckPort { get; set; }
+
+        /// <summary>
+        /// Defines whether proxy protocol should be activated for the health check.
+        /// </summary>
+        [Input("healthCheckSendProxy")]
+        public Input<bool>? HealthCheckSendProxy { get; set; }
 
         /// <summary>
         /// This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
