@@ -72,7 +72,7 @@ type WebHosting struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The DNS status of the hosting.
 	DnsStatus pulumi.StringOutput `pulumi:"dnsStatus"`
-	// TThe domain name of the hosting.
+	// The domain name of the hosting.
 	Domain pulumi.StringOutput `pulumi:"domain"`
 	// The contact email of the client for the hosting.
 	Email pulumi.StringOutput `pulumi:"email"`
@@ -149,7 +149,7 @@ type webHostingState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// The DNS status of the hosting.
 	DnsStatus *string `pulumi:"dnsStatus"`
-	// TThe domain name of the hosting.
+	// The domain name of the hosting.
 	Domain *string `pulumi:"domain"`
 	// The contact email of the client for the hosting.
 	Email *string `pulumi:"email"`
@@ -188,7 +188,7 @@ type WebHostingState struct {
 	CreatedAt pulumi.StringPtrInput
 	// The DNS status of the hosting.
 	DnsStatus pulumi.StringPtrInput
-	// TThe domain name of the hosting.
+	// The domain name of the hosting.
 	Domain pulumi.StringPtrInput
 	// The contact email of the client for the hosting.
 	Email pulumi.StringPtrInput
@@ -225,7 +225,7 @@ func (WebHostingState) ElementType() reflect.Type {
 }
 
 type webHostingArgs struct {
-	// TThe domain name of the hosting.
+	// The domain name of the hosting.
 	Domain string `pulumi:"domain"`
 	// The contact email of the client for the hosting.
 	Email string `pulumi:"email"`
@@ -243,7 +243,7 @@ type webHostingArgs struct {
 
 // The set of arguments for constructing a WebHosting resource.
 type WebHostingArgs struct {
-	// TThe domain name of the hosting.
+	// The domain name of the hosting.
 	Domain pulumi.StringInput
 	// The contact email of the client for the hosting.
 	Email pulumi.StringInput
@@ -361,7 +361,7 @@ func (o WebHostingOutput) DnsStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *WebHosting) pulumi.StringOutput { return v.DnsStatus }).(pulumi.StringOutput)
 }
 
-// TThe domain name of the hosting.
+// The domain name of the hosting.
 func (o WebHostingOutput) Domain() pulumi.StringOutput {
 	return o.ApplyT(func(v *WebHosting) pulumi.StringOutput { return v.Domain }).(pulumi.StringOutput)
 }

@@ -72,6 +72,7 @@ type LookupBaremetalServerResult struct {
 	Hostname    string `pulumi:"hostname"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                       string                             `pulumi:"id"`
+	InstallConfigAfterward   bool                               `pulumi:"installConfigAfterward"`
 	Ips                      []GetBaremetalServerIp             `pulumi:"ips"`
 	Ipv4s                    []GetBaremetalServerIpv4           `pulumi:"ipv4s"`
 	Ipv6s                    []GetBaremetalServerIpv6           `pulumi:"ipv6s"`
@@ -152,6 +153,10 @@ func (o LookupBaremetalServerResultOutput) Hostname() pulumi.StringOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o LookupBaremetalServerResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBaremetalServerResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupBaremetalServerResultOutput) InstallConfigAfterward() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupBaremetalServerResult) bool { return v.InstallConfigAfterward }).(pulumi.BoolOutput)
 }
 
 func (o LookupBaremetalServerResultOutput) Ips() GetBaremetalServerIpArrayOutput {

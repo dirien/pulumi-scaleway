@@ -76,7 +76,7 @@ namespace ediri.Scaleway
         public Output<string> DnsStatus { get; private set; } = null!;
 
         /// <summary>
-        /// TThe domain name of the hosting.
+        /// The domain name of the hosting.
         /// </summary>
         [Output("domain")]
         public Output<string> Domain { get; private set; } = null!;
@@ -213,7 +213,7 @@ namespace ediri.Scaleway
     public sealed class WebHostingArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// TThe domain name of the hosting.
+        /// The domain name of the hosting.
         /// </summary>
         [Input("domain", required: true)]
         public Input<string> Domain { get; set; } = null!;
@@ -299,7 +299,7 @@ namespace ediri.Scaleway
         public Input<string>? DnsStatus { get; set; }
 
         /// <summary>
-        /// TThe domain name of the hosting.
+        /// The domain name of the hosting.
         /// </summary>
         [Input("domain")]
         public Input<string>? Domain { get; set; }

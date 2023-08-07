@@ -363,6 +363,8 @@ type containerArgs struct {
 	Privacy *string `pulumi:"privacy"`
 	// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
 	Protocol *string `pulumi:"protocol"`
+	// (Defaults to provider `region`) The region in which the container was created.
+	Region *string `pulumi:"region"`
 	// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
 	RegistryImage *string `pulumi:"registryImage"`
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string
@@ -411,6 +413,8 @@ type ContainerArgs struct {
 	Privacy pulumi.StringPtrInput
 	// The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
 	Protocol pulumi.StringPtrInput
+	// (Defaults to provider `region`) The region in which the container was created.
+	Region pulumi.StringPtrInput
 	// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
 	RegistryImage pulumi.StringPtrInput
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string

@@ -116,6 +116,10 @@ export class LbBackend extends pulumi.CustomResource {
      */
     public readonly healthCheckPort!: pulumi.Output<number>;
     /**
+     * Defines whether proxy protocol should be activated for the health check.
+     */
+    public readonly healthCheckSendProxy!: pulumi.Output<boolean | undefined>;
+    /**
      * This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
      */
     public readonly healthCheckTcp!: pulumi.Output<outputs.LbBackendHealthCheckTcp>;
@@ -221,6 +225,7 @@ export class LbBackend extends pulumi.CustomResource {
             resourceInputs["healthCheckHttps"] = state ? state.healthCheckHttps : undefined;
             resourceInputs["healthCheckMaxRetries"] = state ? state.healthCheckMaxRetries : undefined;
             resourceInputs["healthCheckPort"] = state ? state.healthCheckPort : undefined;
+            resourceInputs["healthCheckSendProxy"] = state ? state.healthCheckSendProxy : undefined;
             resourceInputs["healthCheckTcp"] = state ? state.healthCheckTcp : undefined;
             resourceInputs["healthCheckTimeout"] = state ? state.healthCheckTimeout : undefined;
             resourceInputs["healthCheckTransientDelay"] = state ? state.healthCheckTransientDelay : undefined;
@@ -261,6 +266,7 @@ export class LbBackend extends pulumi.CustomResource {
             resourceInputs["healthCheckHttps"] = args ? args.healthCheckHttps : undefined;
             resourceInputs["healthCheckMaxRetries"] = args ? args.healthCheckMaxRetries : undefined;
             resourceInputs["healthCheckPort"] = args ? args.healthCheckPort : undefined;
+            resourceInputs["healthCheckSendProxy"] = args ? args.healthCheckSendProxy : undefined;
             resourceInputs["healthCheckTcp"] = args ? args.healthCheckTcp : undefined;
             resourceInputs["healthCheckTimeout"] = args ? args.healthCheckTimeout : undefined;
             resourceInputs["healthCheckTransientDelay"] = args ? args.healthCheckTransientDelay : undefined;
@@ -329,6 +335,10 @@ export interface LbBackendState {
      * Port the HC requests will be send to.
      */
     healthCheckPort?: pulumi.Input<number>;
+    /**
+     * Defines whether proxy protocol should be activated for the health check.
+     */
+    healthCheckSendProxy?: pulumi.Input<boolean>;
     /**
      * This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
      */
@@ -456,6 +466,10 @@ export interface LbBackendArgs {
      * Port the HC requests will be send to.
      */
     healthCheckPort?: pulumi.Input<number>;
+    /**
+     * Defines whether proxy protocol should be activated for the health check.
+     */
+    healthCheckSendProxy?: pulumi.Input<boolean>;
     /**
      * This block enable TCP health check. Only one of `healthCheckTcp`, `healthCheckHttp` and `healthCheckHttps` should be specified.
      */

@@ -22,7 +22,7 @@ class GetLbBackendResult:
     """
     A collection of values returned by getLbBackend.
     """
-    def __init__(__self__, backend_id=None, failover_host=None, forward_port=None, forward_port_algorithm=None, forward_protocol=None, health_check_delay=None, health_check_http=None, health_check_https=None, health_check_max_retries=None, health_check_port=None, health_check_tcps=None, health_check_timeout=None, health_check_transient_delay=None, id=None, ignore_ssl_server_verify=None, lb_id=None, max_connections=None, max_retries=None, name=None, on_marked_down_action=None, proxy_protocol=None, redispatch_attempt_count=None, send_proxy_v2=None, server_ips=None, ssl_bridging=None, sticky_sessions=None, sticky_sessions_cookie_name=None, timeout_connect=None, timeout_queue=None, timeout_server=None, timeout_tunnel=None):
+    def __init__(__self__, backend_id=None, failover_host=None, forward_port=None, forward_port_algorithm=None, forward_protocol=None, health_check_delay=None, health_check_http=None, health_check_https=None, health_check_max_retries=None, health_check_port=None, health_check_send_proxy=None, health_check_tcps=None, health_check_timeout=None, health_check_transient_delay=None, id=None, ignore_ssl_server_verify=None, lb_id=None, max_connections=None, max_retries=None, name=None, on_marked_down_action=None, proxy_protocol=None, redispatch_attempt_count=None, send_proxy_v2=None, server_ips=None, ssl_bridging=None, sticky_sessions=None, sticky_sessions_cookie_name=None, timeout_connect=None, timeout_queue=None, timeout_server=None, timeout_tunnel=None):
         if backend_id and not isinstance(backend_id, str):
             raise TypeError("Expected argument 'backend_id' to be a str")
         pulumi.set(__self__, "backend_id", backend_id)
@@ -53,6 +53,9 @@ class GetLbBackendResult:
         if health_check_port and not isinstance(health_check_port, int):
             raise TypeError("Expected argument 'health_check_port' to be a int")
         pulumi.set(__self__, "health_check_port", health_check_port)
+        if health_check_send_proxy and not isinstance(health_check_send_proxy, bool):
+            raise TypeError("Expected argument 'health_check_send_proxy' to be a bool")
+        pulumi.set(__self__, "health_check_send_proxy", health_check_send_proxy)
         if health_check_tcps and not isinstance(health_check_tcps, list):
             raise TypeError("Expected argument 'health_check_tcps' to be a list")
         pulumi.set(__self__, "health_check_tcps", health_check_tcps)
@@ -166,6 +169,11 @@ class GetLbBackendResult:
     @pulumi.getter(name="healthCheckPort")
     def health_check_port(self) -> int:
         return pulumi.get(self, "health_check_port")
+
+    @property
+    @pulumi.getter(name="healthCheckSendProxy")
+    def health_check_send_proxy(self) -> bool:
+        return pulumi.get(self, "health_check_send_proxy")
 
     @property
     @pulumi.getter(name="healthCheckTcps")
@@ -292,6 +300,7 @@ class AwaitableGetLbBackendResult(GetLbBackendResult):
             health_check_https=self.health_check_https,
             health_check_max_retries=self.health_check_max_retries,
             health_check_port=self.health_check_port,
+            health_check_send_proxy=self.health_check_send_proxy,
             health_check_tcps=self.health_check_tcps,
             health_check_timeout=self.health_check_timeout,
             health_check_transient_delay=self.health_check_transient_delay,
@@ -368,6 +377,7 @@ def get_lb_backend(backend_id: Optional[str] = None,
         health_check_https=pulumi.get(__ret__, 'health_check_https'),
         health_check_max_retries=pulumi.get(__ret__, 'health_check_max_retries'),
         health_check_port=pulumi.get(__ret__, 'health_check_port'),
+        health_check_send_proxy=pulumi.get(__ret__, 'health_check_send_proxy'),
         health_check_tcps=pulumi.get(__ret__, 'health_check_tcps'),
         health_check_timeout=pulumi.get(__ret__, 'health_check_timeout'),
         health_check_transient_delay=pulumi.get(__ret__, 'health_check_transient_delay'),

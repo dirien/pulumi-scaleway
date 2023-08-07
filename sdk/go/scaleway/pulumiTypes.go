@@ -21271,6 +21271,206 @@ func (o GetWebHostOfferProductArrayOutput) Index(i pulumi.IntInput) GetWebHostOf
 	}).(GetWebHostOfferProductOutput)
 }
 
+type GetWebhostingCpanelUrl struct {
+	Dashboard string `pulumi:"dashboard"`
+	Webmail   string `pulumi:"webmail"`
+}
+
+// GetWebhostingCpanelUrlInput is an input type that accepts GetWebhostingCpanelUrlArgs and GetWebhostingCpanelUrlOutput values.
+// You can construct a concrete instance of `GetWebhostingCpanelUrlInput` via:
+//
+//	GetWebhostingCpanelUrlArgs{...}
+type GetWebhostingCpanelUrlInput interface {
+	pulumi.Input
+
+	ToGetWebhostingCpanelUrlOutput() GetWebhostingCpanelUrlOutput
+	ToGetWebhostingCpanelUrlOutputWithContext(context.Context) GetWebhostingCpanelUrlOutput
+}
+
+type GetWebhostingCpanelUrlArgs struct {
+	Dashboard pulumi.StringInput `pulumi:"dashboard"`
+	Webmail   pulumi.StringInput `pulumi:"webmail"`
+}
+
+func (GetWebhostingCpanelUrlArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebhostingCpanelUrl)(nil)).Elem()
+}
+
+func (i GetWebhostingCpanelUrlArgs) ToGetWebhostingCpanelUrlOutput() GetWebhostingCpanelUrlOutput {
+	return i.ToGetWebhostingCpanelUrlOutputWithContext(context.Background())
+}
+
+func (i GetWebhostingCpanelUrlArgs) ToGetWebhostingCpanelUrlOutputWithContext(ctx context.Context) GetWebhostingCpanelUrlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebhostingCpanelUrlOutput)
+}
+
+// GetWebhostingCpanelUrlArrayInput is an input type that accepts GetWebhostingCpanelUrlArray and GetWebhostingCpanelUrlArrayOutput values.
+// You can construct a concrete instance of `GetWebhostingCpanelUrlArrayInput` via:
+//
+//	GetWebhostingCpanelUrlArray{ GetWebhostingCpanelUrlArgs{...} }
+type GetWebhostingCpanelUrlArrayInput interface {
+	pulumi.Input
+
+	ToGetWebhostingCpanelUrlArrayOutput() GetWebhostingCpanelUrlArrayOutput
+	ToGetWebhostingCpanelUrlArrayOutputWithContext(context.Context) GetWebhostingCpanelUrlArrayOutput
+}
+
+type GetWebhostingCpanelUrlArray []GetWebhostingCpanelUrlInput
+
+func (GetWebhostingCpanelUrlArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWebhostingCpanelUrl)(nil)).Elem()
+}
+
+func (i GetWebhostingCpanelUrlArray) ToGetWebhostingCpanelUrlArrayOutput() GetWebhostingCpanelUrlArrayOutput {
+	return i.ToGetWebhostingCpanelUrlArrayOutputWithContext(context.Background())
+}
+
+func (i GetWebhostingCpanelUrlArray) ToGetWebhostingCpanelUrlArrayOutputWithContext(ctx context.Context) GetWebhostingCpanelUrlArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebhostingCpanelUrlArrayOutput)
+}
+
+type GetWebhostingCpanelUrlOutput struct{ *pulumi.OutputState }
+
+func (GetWebhostingCpanelUrlOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebhostingCpanelUrl)(nil)).Elem()
+}
+
+func (o GetWebhostingCpanelUrlOutput) ToGetWebhostingCpanelUrlOutput() GetWebhostingCpanelUrlOutput {
+	return o
+}
+
+func (o GetWebhostingCpanelUrlOutput) ToGetWebhostingCpanelUrlOutputWithContext(ctx context.Context) GetWebhostingCpanelUrlOutput {
+	return o
+}
+
+func (o GetWebhostingCpanelUrlOutput) Dashboard() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebhostingCpanelUrl) string { return v.Dashboard }).(pulumi.StringOutput)
+}
+
+func (o GetWebhostingCpanelUrlOutput) Webmail() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebhostingCpanelUrl) string { return v.Webmail }).(pulumi.StringOutput)
+}
+
+type GetWebhostingCpanelUrlArrayOutput struct{ *pulumi.OutputState }
+
+func (GetWebhostingCpanelUrlArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWebhostingCpanelUrl)(nil)).Elem()
+}
+
+func (o GetWebhostingCpanelUrlArrayOutput) ToGetWebhostingCpanelUrlArrayOutput() GetWebhostingCpanelUrlArrayOutput {
+	return o
+}
+
+func (o GetWebhostingCpanelUrlArrayOutput) ToGetWebhostingCpanelUrlArrayOutputWithContext(ctx context.Context) GetWebhostingCpanelUrlArrayOutput {
+	return o
+}
+
+func (o GetWebhostingCpanelUrlArrayOutput) Index(i pulumi.IntInput) GetWebhostingCpanelUrlOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetWebhostingCpanelUrl {
+		return vs[0].([]GetWebhostingCpanelUrl)[vs[1].(int)]
+	}).(GetWebhostingCpanelUrlOutput)
+}
+
+type GetWebhostingOption struct {
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+}
+
+// GetWebhostingOptionInput is an input type that accepts GetWebhostingOptionArgs and GetWebhostingOptionOutput values.
+// You can construct a concrete instance of `GetWebhostingOptionInput` via:
+//
+//	GetWebhostingOptionArgs{...}
+type GetWebhostingOptionInput interface {
+	pulumi.Input
+
+	ToGetWebhostingOptionOutput() GetWebhostingOptionOutput
+	ToGetWebhostingOptionOutputWithContext(context.Context) GetWebhostingOptionOutput
+}
+
+type GetWebhostingOptionArgs struct {
+	Id   pulumi.StringInput `pulumi:"id"`
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetWebhostingOptionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebhostingOption)(nil)).Elem()
+}
+
+func (i GetWebhostingOptionArgs) ToGetWebhostingOptionOutput() GetWebhostingOptionOutput {
+	return i.ToGetWebhostingOptionOutputWithContext(context.Background())
+}
+
+func (i GetWebhostingOptionArgs) ToGetWebhostingOptionOutputWithContext(ctx context.Context) GetWebhostingOptionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebhostingOptionOutput)
+}
+
+// GetWebhostingOptionArrayInput is an input type that accepts GetWebhostingOptionArray and GetWebhostingOptionArrayOutput values.
+// You can construct a concrete instance of `GetWebhostingOptionArrayInput` via:
+//
+//	GetWebhostingOptionArray{ GetWebhostingOptionArgs{...} }
+type GetWebhostingOptionArrayInput interface {
+	pulumi.Input
+
+	ToGetWebhostingOptionArrayOutput() GetWebhostingOptionArrayOutput
+	ToGetWebhostingOptionArrayOutputWithContext(context.Context) GetWebhostingOptionArrayOutput
+}
+
+type GetWebhostingOptionArray []GetWebhostingOptionInput
+
+func (GetWebhostingOptionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWebhostingOption)(nil)).Elem()
+}
+
+func (i GetWebhostingOptionArray) ToGetWebhostingOptionArrayOutput() GetWebhostingOptionArrayOutput {
+	return i.ToGetWebhostingOptionArrayOutputWithContext(context.Background())
+}
+
+func (i GetWebhostingOptionArray) ToGetWebhostingOptionArrayOutputWithContext(ctx context.Context) GetWebhostingOptionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebhostingOptionArrayOutput)
+}
+
+type GetWebhostingOptionOutput struct{ *pulumi.OutputState }
+
+func (GetWebhostingOptionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebhostingOption)(nil)).Elem()
+}
+
+func (o GetWebhostingOptionOutput) ToGetWebhostingOptionOutput() GetWebhostingOptionOutput {
+	return o
+}
+
+func (o GetWebhostingOptionOutput) ToGetWebhostingOptionOutputWithContext(ctx context.Context) GetWebhostingOptionOutput {
+	return o
+}
+
+func (o GetWebhostingOptionOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebhostingOption) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetWebhostingOptionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetWebhostingOption) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetWebhostingOptionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetWebhostingOptionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetWebhostingOption)(nil)).Elem()
+}
+
+func (o GetWebhostingOptionArrayOutput) ToGetWebhostingOptionArrayOutput() GetWebhostingOptionArrayOutput {
+	return o
+}
+
+func (o GetWebhostingOptionArrayOutput) ToGetWebhostingOptionArrayOutputWithContext(ctx context.Context) GetWebhostingOptionArrayOutput {
+	return o
+}
+
+func (o GetWebhostingOptionArrayOutput) Index(i pulumi.IntInput) GetWebhostingOptionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetWebhostingOption {
+		return vs[0].([]GetWebhostingOption)[vs[1].(int)]
+	}).(GetWebhostingOptionOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerIpInput)(nil)).Elem(), BaremetalServerIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerIpArrayInput)(nil)).Elem(), BaremetalServerIpArray{})
@@ -21566,6 +21766,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcsVpcArrayInput)(nil)).Elem(), GetVpcsVpcArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWebHostOfferProductInput)(nil)).Elem(), GetWebHostOfferProductArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetWebHostOfferProductArrayInput)(nil)).Elem(), GetWebHostOfferProductArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWebhostingCpanelUrlInput)(nil)).Elem(), GetWebhostingCpanelUrlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWebhostingCpanelUrlArrayInput)(nil)).Elem(), GetWebhostingCpanelUrlArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWebhostingOptionInput)(nil)).Elem(), GetWebhostingOptionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWebhostingOptionArrayInput)(nil)).Elem(), GetWebhostingOptionArray{})
 	pulumi.RegisterOutputType(BaremetalServerIpOutput{})
 	pulumi.RegisterOutputType(BaremetalServerIpArrayOutput{})
 	pulumi.RegisterOutputType(BaremetalServerIpv4Output{})
@@ -21860,4 +22064,8 @@ func init() {
 	pulumi.RegisterOutputType(GetVpcsVpcArrayOutput{})
 	pulumi.RegisterOutputType(GetWebHostOfferProductOutput{})
 	pulumi.RegisterOutputType(GetWebHostOfferProductArrayOutput{})
+	pulumi.RegisterOutputType(GetWebhostingCpanelUrlOutput{})
+	pulumi.RegisterOutputType(GetWebhostingCpanelUrlArrayOutput{})
+	pulumi.RegisterOutputType(GetWebhostingOptionOutput{})
+	pulumi.RegisterOutputType(GetWebhostingOptionArrayOutput{})
 }

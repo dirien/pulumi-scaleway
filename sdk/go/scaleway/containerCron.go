@@ -186,6 +186,9 @@ type containerCronArgs struct {
 	Args string `pulumi:"args"`
 	// The container ID to link with your cron.
 	ContainerId string `pulumi:"containerId"`
+	// (Defaults to provider `region`) The region
+	// in where the job was created.
+	Region *string `pulumi:"region"`
 	// Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
 	// executed.
 	Schedule string `pulumi:"schedule"`
@@ -198,6 +201,9 @@ type ContainerCronArgs struct {
 	Args pulumi.StringInput
 	// The container ID to link with your cron.
 	ContainerId pulumi.StringInput
+	// (Defaults to provider `region`) The region
+	// in where the job was created.
+	Region pulumi.StringPtrInput
 	// Cron format string, e.g. @hourly, as schedule time of its jobs to be created and
 	// executed.
 	Schedule pulumi.StringInput

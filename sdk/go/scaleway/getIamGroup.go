@@ -70,10 +70,11 @@ type LookupIamGroupArgs struct {
 
 // A collection of values returned by getIamGroup.
 type LookupIamGroupResult struct {
-	ApplicationIds []string `pulumi:"applicationIds"`
-	CreatedAt      string   `pulumi:"createdAt"`
-	Description    string   `pulumi:"description"`
-	GroupId        *string  `pulumi:"groupId"`
+	ApplicationIds     []string `pulumi:"applicationIds"`
+	CreatedAt          string   `pulumi:"createdAt"`
+	Description        string   `pulumi:"description"`
+	ExternalMembership bool     `pulumi:"externalMembership"`
+	GroupId            *string  `pulumi:"groupId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string   `pulumi:"id"`
 	Name           *string  `pulumi:"name"`
@@ -137,6 +138,10 @@ func (o LookupIamGroupResultOutput) CreatedAt() pulumi.StringOutput {
 
 func (o LookupIamGroupResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIamGroupResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o LookupIamGroupResultOutput) ExternalMembership() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupIamGroupResult) bool { return v.ExternalMembership }).(pulumi.BoolOutput)
 }
 
 func (o LookupIamGroupResultOutput) GroupId() pulumi.StringPtrOutput {

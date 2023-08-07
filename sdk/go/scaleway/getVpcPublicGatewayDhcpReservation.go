@@ -25,7 +25,7 @@ func LookupVpcPublicGatewayDhcpReservation(ctx *pulumi.Context, args *LookupVpcP
 
 // A collection of arguments for invoking getVpcPublicGatewayDhcpReservation.
 type LookupVpcPublicGatewayDhcpReservationArgs struct {
-	// The ID of the owning GatewayNetwork.
+	// The ID of the owning GatewayNetwork
 	GatewayNetworkId *string `pulumi:"gatewayNetworkId"`
 	// The MAC address of the reservation to retrieve
 	MacAddress *string `pulumi:"macAddress"`
@@ -75,7 +75,7 @@ func LookupVpcPublicGatewayDhcpReservationOutput(ctx *pulumi.Context, args Looku
 
 // A collection of arguments for invoking getVpcPublicGatewayDhcpReservation.
 type LookupVpcPublicGatewayDhcpReservationOutputArgs struct {
-	// The ID of the owning GatewayNetwork.
+	// The ID of the owning GatewayNetwork
 	GatewayNetworkId pulumi.StringPtrInput `pulumi:"gatewayNetworkId"`
 	// The MAC address of the reservation to retrieve
 	MacAddress pulumi.StringPtrInput `pulumi:"macAddress"`

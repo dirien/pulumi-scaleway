@@ -18,25 +18,27 @@
     },
     "language": {
         "csharp": {
-            "compatibility": "tfbridge20",
-            "namespaces": null,
             "packageReferences": {
                 "Pulumi": "3.*"
             },
+            "compatibility": "tfbridge20",
             "rootNamespace": "ediri"
         },
         "go": {
-            "generateExtraInputTypes": true,
+            "importBasePath": "github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway",
             "generateResourceContainerTypes": true,
-            "importBasePath": "github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+            "generateExtraInputTypes": true
         },
         "java": {
             "basePackage": "io.dirien",
             "buildFiles": "",
-            "gradleNexusPublishPluginVersion": ""
+            "gradleNexusPublishPluginVersion": "",
+            "gradleTest": ""
         },
         "nodejs": {
-            "compatibility": "tfbridge20",
+            "packageName": "@ediri/scaleway",
+            "packageDescription": "A Pulumi package for creating and managing Scaleway resources.",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/scaleway/terraform-provider-scaleway)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-scaleway` repo](https://github.com/dirien/pulumi-scaleway/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-scaleway` repo](https://github.com/scaleway/terraform-provider-scaleway/issues).",
             "dependencies": {
                 "@pulumi/pulumi": "^3.0.0"
             },
@@ -44,21 +46,17 @@
                 "@types/mime": "^2.0.0",
                 "@types/node": "^10.0.0"
             },
-            "disableUnionOutputTypes": true,
-            "packageDescription": "A Pulumi package for creating and managing Scaleway resources.",
-            "packageName": "@ediri/scaleway",
-            "pluginName": "",
-            "pluginVersion": "",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/scaleway/terraform-provider-scaleway)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-scaleway` repo](https://github.com/dirien/pulumi-scaleway/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-scaleway` repo](https://github.com/scaleway/terraform-provider-scaleway/issues).",
-            "typescriptVersion": ""
+            "compatibility": "tfbridge20",
+            "disableUnionOutputTypes": true
         },
         "python": {
-            "compatibility": "tfbridge20",
             "packageName": "ediri_scaleway",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/scaleway/terraform-provider-scaleway)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-scaleway` repo](https://github.com/dirien/pulumi-scaleway/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-scaleway` repo](https://github.com/scaleway/terraform-provider-scaleway/issues).",
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
-            }
+            },
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/scaleway/terraform-provider-scaleway)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-scaleway` repo](https://github.com/dirien/pulumi-scaleway/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-scaleway` repo](https://github.com/scaleway/terraform-provider-scaleway/issues).",
+            "compatibility": "tfbridge20",
+            "pyproject": {}
         }
     },
     "config": {
@@ -2184,6 +2182,7 @@
                     "requiredOutputs": [
                         "endpointId",
                         "id",
+                        "serviceIps",
                         "zone"
                     ]
                 }
@@ -4846,6 +4845,46 @@
                     "requiredInputs": []
                 }
             }
+        },
+        "scaleway:index/getWebhostingCpanelUrl:getWebhostingCpanelUrl": {
+            "properties": {
+                "dashboard": {
+                    "type": "string"
+                },
+                "webmail": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "dashboard",
+                "webmail"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "scaleway:index/getWebhostingOption:getWebhostingOption": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "id",
+                "name"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         }
     },
     "provider": {
@@ -5275,7 +5314,7 @@
             }
         },
         "scaleway:index/baremetalServer:BaremetalServer": {
-            "description": "Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).\n\n## Examples\n\n### Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst main = scaleway.getAccountSshKey({\n    name: \"main\",\n});\nconst base = new scaleway.BaremetalServer(\"base\", {\n    zone: \"fr-par-2\",\n    offer: \"GP-BM1-S\",\n    os: \"d17d6872-0412-45d9-a198-af82c34d3c5c\",\n    sshKeyIds: [main.then(main =\u003e main.id)],\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\nimport pulumi_scaleway as scaleway\n\nmain = scaleway.get_account_ssh_key(name=\"main\")\nbase = scaleway.BaremetalServer(\"base\",\n    zone=\"fr-par-2\",\n    offer=\"GP-BM1-S\",\n    os=\"d17d6872-0412-45d9-a198-af82c34d3c5c\",\n    ssh_key_ids=[main.id])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = Scaleway.GetAccountSshKey.Invoke(new()\n    {\n        Name = \"main\",\n    });\n\n    var @base = new Scaleway.BaremetalServer(\"base\", new()\n    {\n        Zone = \"fr-par-2\",\n        Offer = \"GP-BM1-S\",\n        Os = \"d17d6872-0412-45d9-a198-af82c34d3c5c\",\n        SshKeyIds = new[]\n        {\n            main.Apply(getAccountSshKeyResult =\u003e getAccountSshKeyResult.Id),\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := scaleway.LookupAccountSshKey(ctx, \u0026scaleway.LookupAccountSshKeyArgs{\n\t\t\tName: pulumi.StringRef(\"main\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewBaremetalServer(ctx, \"base\", \u0026scaleway.BaremetalServerArgs{\n\t\t\tZone:  pulumi.String(\"fr-par-2\"),\n\t\t\tOffer: pulumi.String(\"GP-BM1-S\"),\n\t\t\tOs:    pulumi.String(\"d17d6872-0412-45d9-a198-af82c34d3c5c\"),\n\t\t\tSshKeyIds: pulumi.StringArray{\n\t\t\t\t*pulumi.String(main.Id),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetAccountSshKeyArgs;\nimport com.pulumi.scaleway.BaremetalServer;\nimport com.pulumi.scaleway.BaremetalServerArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var main = ScalewayFunctions.getAccountSshKey(GetAccountSshKeyArgs.builder()\n            .name(\"main\")\n            .build());\n\n        var base = new BaremetalServer(\"base\", BaremetalServerArgs.builder()        \n            .zone(\"fr-par-2\")\n            .offer(\"GP-BM1-S\")\n            .os(\"d17d6872-0412-45d9-a198-af82c34d3c5c\")\n            .sshKeyIds(main.applyValue(getAccountSshKeyResult -\u003e getAccountSshKeyResult.id()))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  base:\n    type: scaleway:BaremetalServer\n    properties:\n      zone: fr-par-2\n      offer: GP-BM1-S\n      os: d17d6872-0412-45d9-a198-af82c34d3c5c\n      sshKeyIds:\n        - ${main.id}\nvariables:\n  main:\n    fn::invoke:\n      Function: scaleway:getAccountSshKey\n      Arguments:\n        name: main\n```\n\n\n## Import\n\nBaremetal servers can be imported using the `{zone}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/baremetalServer:BaremetalServer web fr-par-2/11111111-1111-1111-1111-111111111111\n```\n\n ",
+            "description": "Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).\n\n## Examples\n\n### Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst main = scaleway.getAccountSshKey({\n    name: \"main\",\n});\nconst base = new scaleway.BaremetalServer(\"base\", {\n    zone: \"fr-par-2\",\n    offer: \"GP-BM1-S\",\n    os: \"d17d6872-0412-45d9-a198-af82c34d3c5c\",\n    sshKeyIds: [main.then(main =\u003e main.id)],\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\nimport pulumi_scaleway as scaleway\n\nmain = scaleway.get_account_ssh_key(name=\"main\")\nbase = scaleway.BaremetalServer(\"base\",\n    zone=\"fr-par-2\",\n    offer=\"GP-BM1-S\",\n    os=\"d17d6872-0412-45d9-a198-af82c34d3c5c\",\n    ssh_key_ids=[main.id])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = Scaleway.GetAccountSshKey.Invoke(new()\n    {\n        Name = \"main\",\n    });\n\n    var @base = new Scaleway.BaremetalServer(\"base\", new()\n    {\n        Zone = \"fr-par-2\",\n        Offer = \"GP-BM1-S\",\n        Os = \"d17d6872-0412-45d9-a198-af82c34d3c5c\",\n        SshKeyIds = new[]\n        {\n            main.Apply(getAccountSshKeyResult =\u003e getAccountSshKeyResult.Id),\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := scaleway.LookupAccountSshKey(ctx, \u0026scaleway.LookupAccountSshKeyArgs{\n\t\t\tName: pulumi.StringRef(\"main\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewBaremetalServer(ctx, \"base\", \u0026scaleway.BaremetalServerArgs{\n\t\t\tZone:  pulumi.String(\"fr-par-2\"),\n\t\t\tOffer: pulumi.String(\"GP-BM1-S\"),\n\t\t\tOs:    pulumi.String(\"d17d6872-0412-45d9-a198-af82c34d3c5c\"),\n\t\t\tSshKeyIds: pulumi.StringArray{\n\t\t\t\t*pulumi.String(main.Id),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetAccountSshKeyArgs;\nimport com.pulumi.scaleway.BaremetalServer;\nimport com.pulumi.scaleway.BaremetalServerArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var main = ScalewayFunctions.getAccountSshKey(GetAccountSshKeyArgs.builder()\n            .name(\"main\")\n            .build());\n\n        var base = new BaremetalServer(\"base\", BaremetalServerArgs.builder()        \n            .zone(\"fr-par-2\")\n            .offer(\"GP-BM1-S\")\n            .os(\"d17d6872-0412-45d9-a198-af82c34d3c5c\")\n            .sshKeyIds(main.applyValue(getAccountSshKeyResult -\u003e getAccountSshKeyResult.id()))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  base:\n    type: scaleway:BaremetalServer\n    properties:\n      zone: fr-par-2\n      offer: GP-BM1-S\n      os: d17d6872-0412-45d9-a198-af82c34d3c5c\n      sshKeyIds:\n        - ${main.id}\nvariables:\n  main:\n    fn::invoke:\n      Function: scaleway:getAccountSshKey\n      Arguments:\n        name: main\n```\n\n### Without install config\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst myOffer = scaleway.getBaremetalOffer({\n    zone: \"fr-par-2\",\n    name: \"EM-B112X-SSD\",\n});\nconst base = new scaleway.BaremetalServer(\"base\", {\n    zone: \"fr-par-2\",\n    offer: myOffer.then(myOffer =\u003e myOffer.offerId),\n    installConfigAfterward: true,\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\nimport pulumi_scaleway as scaleway\n\nmy_offer = scaleway.get_baremetal_offer(zone=\"fr-par-2\",\n    name=\"EM-B112X-SSD\")\nbase = scaleway.BaremetalServer(\"base\",\n    zone=\"fr-par-2\",\n    offer=my_offer.offer_id,\n    install_config_afterward=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myOffer = Scaleway.GetBaremetalOffer.Invoke(new()\n    {\n        Zone = \"fr-par-2\",\n        Name = \"EM-B112X-SSD\",\n    });\n\n    var @base = new Scaleway.BaremetalServer(\"base\", new()\n    {\n        Zone = \"fr-par-2\",\n        Offer = myOffer.Apply(getBaremetalOfferResult =\u003e getBaremetalOfferResult.OfferId),\n        InstallConfigAfterward = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmyOffer, err := scaleway.GetBaremetalOffer(ctx, \u0026scaleway.GetBaremetalOfferArgs{\n\t\t\tZone: pulumi.StringRef(\"fr-par-2\"),\n\t\t\tName: pulumi.StringRef(\"EM-B112X-SSD\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewBaremetalServer(ctx, \"base\", \u0026scaleway.BaremetalServerArgs{\n\t\t\tZone:                   pulumi.String(\"fr-par-2\"),\n\t\t\tOffer:                  *pulumi.String(myOffer.OfferId),\n\t\t\tInstallConfigAfterward: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetBaremetalOfferArgs;\nimport com.pulumi.scaleway.BaremetalServer;\nimport com.pulumi.scaleway.BaremetalServerArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myOffer = ScalewayFunctions.getBaremetalOffer(GetBaremetalOfferArgs.builder()\n            .zone(\"fr-par-2\")\n            .name(\"EM-B112X-SSD\")\n            .build());\n\n        var base = new BaremetalServer(\"base\", BaremetalServerArgs.builder()        \n            .zone(\"fr-par-2\")\n            .offer(myOffer.applyValue(getBaremetalOfferResult -\u003e getBaremetalOfferResult.offerId()))\n            .installConfigAfterward(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  base:\n    type: scaleway:BaremetalServer\n    properties:\n      zone: fr-par-2\n      offer: ${myOffer.offerId}\n      installConfigAfterward: true\nvariables:\n  myOffer:\n    fn::invoke:\n      Function: scaleway:getBaremetalOffer\n      Arguments:\n        zone: fr-par-2\n        name: EM-B112X-SSD\n```\n\n\n## Import\n\nBaremetal servers can be imported using the `{zone}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/baremetalServer:BaremetalServer web fr-par-2/11111111-1111-1111-1111-111111111111\n```\n\n ",
             "properties": {
                 "description": {
                     "type": "string",
@@ -5288,6 +5327,10 @@
                 "hostname": {
                     "type": "string",
                     "description": "The hostname of the server.\n"
+                },
+                "installConfigAfterward": {
+                    "type": "boolean",
+                    "description": "If True, this boolean allows to create a server without the install config if you want to provide it later.\n"
                 },
                 "ips": {
                     "type": "array",
@@ -5407,11 +5450,9 @@
                 "offerId",
                 "offerName",
                 "organizationId",
-                "os",
                 "osName",
                 "projectId",
                 "serviceUser",
-                "sshKeyIds",
                 "tags",
                 "user",
                 "zone"
@@ -5424,6 +5465,10 @@
                 "hostname": {
                     "type": "string",
                     "description": "The hostname of the server.\n"
+                },
+                "installConfigAfterward": {
+                    "type": "boolean",
+                    "description": "If True, this boolean allows to create a server without the install config if you want to provide it later.\n"
                 },
                 "name": {
                     "type": "string",
@@ -5500,9 +5545,7 @@
                 }
             },
             "requiredInputs": [
-                "offer",
-                "os",
-                "sshKeyIds"
+                "offer"
             ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering BaremetalServer resources.\n",
@@ -5518,6 +5561,10 @@
                     "hostname": {
                         "type": "string",
                         "description": "The hostname of the server.\n"
+                    },
+                    "installConfigAfterward": {
+                        "type": "boolean",
+                        "description": "If True, this boolean allows to create a server without the install config if you want to provide it later.\n"
                     },
                     "ips": {
                         "type": "array",
@@ -6027,6 +6074,11 @@
                     "type": "string",
                     "description": "The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "(Defaults to provider `region`) The region in which the container was created.\n",
+                    "willReplaceOnChanges": true
+                },
                 "registryImage": {
                     "type": "string",
                     "description": "The registry image address. e.g: **\"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE\"**.\n"
@@ -6132,7 +6184,8 @@
                     },
                     "region": {
                         "type": "string",
-                        "description": "(Defaults to provider `region`) The region in which the container was created.\n"
+                        "description": "(Defaults to provider `region`) The region in which the container was created.\n",
+                        "willReplaceOnChanges": true
                     },
                     "registryImage": {
                         "type": "string",
@@ -6202,6 +6255,11 @@
                     "type": "string",
                     "description": "The container ID to link with your cron.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "(Defaults to provider `region`) The region\nin where the job was created.\n",
+                    "willReplaceOnChanges": true
+                },
                 "schedule": {
                     "type": "string",
                     "description": "Cron format string, e.g. @hourly, as schedule time of its jobs to be created and\nexecuted.\n"
@@ -6225,7 +6283,8 @@
                     },
                     "region": {
                         "type": "string",
-                        "description": "(Defaults to provider `region`) The region\nin where the job was created.\n"
+                        "description": "(Defaults to provider `region`) The region\nin where the job was created.\n",
+                        "willReplaceOnChanges": true
                     },
                     "schedule": {
                         "type": "string",
@@ -8159,6 +8218,10 @@
                     "type": "string",
                     "description": "The description of the IAM group.\n"
                 },
+                "externalMembership": {
+                    "type": "boolean",
+                    "description": "Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "The name of the IAM group.\n"
@@ -8197,6 +8260,10 @@
                     "type": "string",
                     "description": "The description of the IAM group.\n"
                 },
+                "externalMembership": {
+                    "type": "boolean",
+                    "description": "Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "The name of the IAM group.\n"
@@ -8231,6 +8298,10 @@
                         "type": "string",
                         "description": "The description of the IAM group.\n"
                     },
+                    "externalMembership": {
+                        "type": "boolean",
+                        "description": "Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership\n"
+                    },
                     "name": {
                         "type": "string",
                         "description": "The name of the IAM group.\n"
@@ -8249,6 +8320,67 @@
                             "type": "string"
                         },
                         "description": "The list of IDs of the users attached to the group.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "scaleway:index/iamGroupMembership:IamGroupMembership": {
+            "description": "Add members to an IAM group.\nFor more information, see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#groups-f592eb).\n\n## Examples\n\n### Application Membership\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst group = new scaleway.IamGroup(\"group\", {externalMembership: true});\nconst app = new scaleway.IamApplication(\"app\", {});\nconst member = new scaleway.IamGroupMembership(\"member\", {\n    groupId: group.id,\n    applicationId: app.id,\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\ngroup = scaleway.IamGroup(\"group\", external_membership=True)\napp = scaleway.IamApplication(\"app\")\nmember = scaleway.IamGroupMembership(\"member\",\n    group_id=group.id,\n    application_id=app.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @group = new Scaleway.IamGroup(\"group\", new()\n    {\n        ExternalMembership = true,\n    });\n\n    var app = new Scaleway.IamApplication(\"app\");\n\n    var member = new Scaleway.IamGroupMembership(\"member\", new()\n    {\n        GroupId = @group.Id,\n        ApplicationId = app.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tgroup, err := scaleway.NewIamGroup(ctx, \"group\", \u0026scaleway.IamGroupArgs{\n\t\t\tExternalMembership: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tapp, err := scaleway.NewIamApplication(ctx, \"app\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewIamGroupMembership(ctx, \"member\", \u0026scaleway.IamGroupMembershipArgs{\n\t\t\tGroupId:       group.ID(),\n\t\t\tApplicationId: app.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.IamGroup;\nimport com.pulumi.scaleway.IamGroupArgs;\nimport com.pulumi.scaleway.IamApplication;\nimport com.pulumi.scaleway.IamGroupMembership;\nimport com.pulumi.scaleway.IamGroupMembershipArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var group = new IamGroup(\"group\", IamGroupArgs.builder()        \n            .externalMembership(true)\n            .build());\n\n        var app = new IamApplication(\"app\");\n\n        var member = new IamGroupMembership(\"member\", IamGroupMembershipArgs.builder()        \n            .groupId(group.id())\n            .applicationId(app.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  group:\n    type: scaleway:IamGroup\n    properties:\n      externalMembership: true\n  app:\n    type: scaleway:IamApplication\n  member:\n    type: scaleway:IamGroupMembership\n    properties:\n      groupId: ${group.id}\n      applicationId: ${app.id}\n```\n\n\n## Import\n\nIAM group memberships can be imported using two format- For user`{group_id}/user/{user_id}` - For application`{group_id}/app/{application_id}` bash\n\n```sh\n $ pulumi import scaleway:index/iamGroupMembership:IamGroupMembership app 11111111-1111-1111-1111-111111111111/app/11111111-1111-1111-1111-111111111111\n```\n\n ",
+            "properties": {
+                "applicationId": {
+                    "type": "string",
+                    "description": "The ID of the application that will be added to the group.\n"
+                },
+                "groupId": {
+                    "type": "string",
+                    "description": "ID of the group to add members to.\n"
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "The ID of the user that will be added to the group\n\n- \u003e Only one of `application_id` or `user_id` must be specified\n"
+                }
+            },
+            "required": [
+                "groupId"
+            ],
+            "inputProperties": {
+                "applicationId": {
+                    "type": "string",
+                    "description": "The ID of the application that will be added to the group.\n",
+                    "willReplaceOnChanges": true
+                },
+                "groupId": {
+                    "type": "string",
+                    "description": "ID of the group to add members to.\n",
+                    "willReplaceOnChanges": true
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "The ID of the user that will be added to the group\n\n- \u003e Only one of `application_id` or `user_id` must be specified\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "groupId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering IamGroupMembership resources.\n",
+                "properties": {
+                    "applicationId": {
+                        "type": "string",
+                        "description": "The ID of the application that will be added to the group.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "groupId": {
+                        "type": "string",
+                        "description": "ID of the group to add members to.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "userId": {
+                        "type": "string",
+                        "description": "The ID of the user that will be added to the group\n\n- \u003e Only one of `application_id` or `user_id` must be specified\n",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
@@ -11764,6 +11896,10 @@
                     "type": "integer",
                     "description": "Port the HC requests will be send to.\n"
                 },
+                "healthCheckSendProxy": {
+                    "type": "boolean",
+                    "description": "Defines whether proxy protocol should be activated for the health check.\n"
+                },
                 "healthCheckTcp": {
                     "$ref": "#/types/scaleway:index/LbBackendHealthCheckTcp:LbBackendHealthCheckTcp",
                     "description": "This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.\n"
@@ -11895,6 +12031,10 @@
                     "type": "integer",
                     "description": "Port the HC requests will be send to.\n"
                 },
+                "healthCheckSendProxy": {
+                    "type": "boolean",
+                    "description": "Defines whether proxy protocol should be activated for the health check.\n"
+                },
                 "healthCheckTcp": {
                     "$ref": "#/types/scaleway:index/LbBackendHealthCheckTcp:LbBackendHealthCheckTcp",
                     "description": "This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.\n"
@@ -12024,6 +12164,10 @@
                     "healthCheckPort": {
                         "type": "integer",
                         "description": "Port the HC requests will be send to.\n"
+                    },
+                    "healthCheckSendProxy": {
+                        "type": "boolean",
+                        "description": "Defines whether proxy protocol should be activated for the health check.\n"
                     },
                     "healthCheckTcp": {
                         "$ref": "#/types/scaleway:index/LbBackendHealthCheckTcp:LbBackendHealthCheckTcp",
@@ -16683,7 +16827,7 @@
                 },
                 "domain": {
                     "type": "string",
-                    "description": "TThe domain name of the hosting.\n"
+                    "description": "The domain name of the hosting.\n"
                 },
                 "email": {
                     "type": "string",
@@ -16773,7 +16917,7 @@
             "inputProperties": {
                 "domain": {
                     "type": "string",
-                    "description": "TThe domain name of the hosting.\n"
+                    "description": "The domain name of the hosting.\n"
                 },
                 "email": {
                     "type": "string",
@@ -16833,7 +16977,7 @@
                     },
                     "domain": {
                         "type": "string",
-                        "description": "TThe domain name of the hosting.\n"
+                        "description": "The domain name of the hosting.\n"
                     },
                     "email": {
                         "type": "string",
@@ -17303,6 +17447,9 @@
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
+                    "installConfigAfterward": {
+                        "type": "boolean"
+                    },
                     "ips": {
                         "type": "array",
                         "items": {
@@ -17396,6 +17543,7 @@
                     "description",
                     "domain",
                     "hostname",
+                    "installConfigAfterward",
                     "ips",
                     "ipv4s",
                     "ipv6s",
@@ -18316,6 +18464,9 @@
                     "description": {
                         "type": "string"
                     },
+                    "externalMembership": {
+                        "type": "boolean"
+                    },
                     "groupId": {
                         "type": "string"
                     },
@@ -18344,6 +18495,7 @@
                     "applicationIds",
                     "createdAt",
                     "description",
+                    "externalMembership",
                     "updatedAt",
                     "userIds",
                     "id"
@@ -20055,6 +20207,9 @@
                     "healthCheckPort": {
                         "type": "integer"
                     },
+                    "healthCheckSendProxy": {
+                        "type": "boolean"
+                    },
                     "healthCheckTcps": {
                         "type": "array",
                         "items": {
@@ -20137,6 +20292,7 @@
                     "healthCheckHttps",
                     "healthCheckMaxRetries",
                     "healthCheckPort",
+                    "healthCheckSendProxy",
                     "healthCheckTcps",
                     "healthCheckTimeout",
                     "healthCheckTransientDelay",
@@ -22371,7 +22527,7 @@
                 "properties": {
                     "gatewayNetworkId": {
                         "type": "string",
-                        "description": "The ID of the owning GatewayNetwork.\n"
+                        "description": "The ID of the owning GatewayNetwork\n"
                     },
                     "macAddress": {
                         "type": "string",
@@ -22720,6 +22876,129 @@
                     "price",
                     "products",
                     "region",
+                    "id"
+                ]
+            }
+        },
+        "scaleway:index/getWebhosting:getWebhosting": {
+            "description": "Gets information about a webhosting.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst byDomain = scaleway.getWebhosting({\n    domain: \"foobar.com\",\n});\nconst byId = scaleway.getWebhosting({\n    webhostingId: \"11111111-1111-1111-1111-111111111111\",\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\n\nby_domain = scaleway.get_webhosting(domain=\"foobar.com\")\nby_id = scaleway.get_webhosting(webhosting_id=\"11111111-1111-1111-1111-111111111111\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var byDomain = Scaleway.GetWebhosting.Invoke(new()\n    {\n        Domain = \"foobar.com\",\n    });\n\n    var byId = Scaleway.GetWebhosting.Invoke(new()\n    {\n        WebhostingId = \"11111111-1111-1111-1111-111111111111\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.GetWebhosting(ctx, \u0026scaleway.GetWebhostingArgs{\n\t\t\tDomain: pulumi.StringRef(\"foobar.com\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.GetWebhosting(ctx, \u0026scaleway.GetWebhostingArgs{\n\t\t\tWebhostingId: pulumi.StringRef(\"11111111-1111-1111-1111-111111111111\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetWebhostingArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var byDomain = ScalewayFunctions.getWebhosting(GetWebhostingArgs.builder()\n            .domain(\"foobar.com\")\n            .build());\n\n        final var byId = ScalewayFunctions.getWebhosting(GetWebhostingArgs.builder()\n            .webhostingId(\"11111111-1111-1111-1111-111111111111\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  byDomain:\n    fn::invoke:\n      Function: scaleway:getWebhosting\n      Arguments:\n        domain: foobar.com\n  byId:\n    fn::invoke:\n      Function: scaleway:getWebhosting\n      Arguments:\n        webhostingId: 11111111-1111-1111-1111-111111111111\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getWebhosting.\n",
+                "properties": {
+                    "domain": {
+                        "type": "string",
+                        "description": "The hosting domain name. Only one of `domain` and `webhosting_id` should be specified.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the organization the hosting is associated with.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "`project_id`) The ID of the project the hosting is associated with.\n"
+                    },
+                    "webhostingId": {
+                        "type": "string",
+                        "description": "The hosting id. Only one of `domain` and `webhosting_id` should be specified.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getWebhosting.\n",
+                "properties": {
+                    "cpanelUrls": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/scaleway:index/getWebhostingCpanelUrl:getWebhostingCpanelUrl"
+                        }
+                    },
+                    "createdAt": {
+                        "type": "string"
+                    },
+                    "dnsStatus": {
+                        "type": "string"
+                    },
+                    "domain": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "offerId": {
+                        "type": "string"
+                    },
+                    "offerName": {
+                        "type": "string"
+                    },
+                    "optionIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "options": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/scaleway:index/getWebhostingOption:getWebhostingOption"
+                        }
+                    },
+                    "organizationId": {
+                        "type": "string"
+                    },
+                    "platformHostname": {
+                        "type": "string"
+                    },
+                    "platformNumber": {
+                        "type": "integer"
+                    },
+                    "projectId": {
+                        "type": "string"
+                    },
+                    "region": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "updatedAt": {
+                        "type": "string"
+                    },
+                    "username": {
+                        "type": "string"
+                    },
+                    "webhostingId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "cpanelUrls",
+                    "createdAt",
+                    "dnsStatus",
+                    "email",
+                    "offerId",
+                    "offerName",
+                    "optionIds",
+                    "options",
+                    "organizationId",
+                    "platformHostname",
+                    "platformNumber",
+                    "region",
+                    "status",
+                    "tags",
+                    "updatedAt",
+                    "username",
                     "id"
                 ]
             }

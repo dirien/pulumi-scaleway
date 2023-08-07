@@ -25,7 +25,7 @@ class WebHostingArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a WebHosting resource.
-        :param pulumi.Input[str] domain: TThe domain name of the hosting.
+        :param pulumi.Input[str] domain: The domain name of the hosting.
         :param pulumi.Input[str] email: The contact email of the client for the hosting.
         :param pulumi.Input[str] offer_id: The ID of the selected offer for the hosting.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] option_ids: The IDs of the selected options for the hosting.
@@ -49,7 +49,7 @@ class WebHostingArgs:
     @pulumi.getter
     def domain(self) -> pulumi.Input[str]:
         """
-        TThe domain name of the hosting.
+        The domain name of the hosting.
         """
         return pulumi.get(self, "domain")
 
@@ -156,7 +156,7 @@ class _WebHostingState:
         :param pulumi.Input[Sequence[pulumi.Input['WebHostingCpanelUrlArgs']]] cpanel_urls: The URL to connect to cPanel Dashboard and to Webmail interface.
         :param pulumi.Input[str] created_at: Date and time of hosting's creation (RFC 3339 format).
         :param pulumi.Input[str] dns_status: The DNS status of the hosting.
-        :param pulumi.Input[str] domain: TThe domain name of the hosting.
+        :param pulumi.Input[str] domain: The domain name of the hosting.
         :param pulumi.Input[str] email: The contact email of the client for the hosting.
         :param pulumi.Input[str] offer_id: The ID of the selected offer for the hosting.
         :param pulumi.Input[str] offer_name: The name of the active offer.
@@ -249,7 +249,7 @@ class _WebHostingState:
     @pulumi.getter
     def domain(self) -> Optional[pulumi.Input[str]]:
         """
-        TThe domain name of the hosting.
+        The domain name of the hosting.
         """
         return pulumi.get(self, "domain")
 
@@ -472,7 +472,7 @@ class WebHosting(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] domain: TThe domain name of the hosting.
+        :param pulumi.Input[str] domain: The domain name of the hosting.
         :param pulumi.Input[str] email: The contact email of the client for the hosting.
         :param pulumi.Input[str] offer_id: The ID of the selected offer for the hosting.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] option_ids: The IDs of the selected options for the hosting.
@@ -610,7 +610,7 @@ class WebHosting(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebHostingCpanelUrlArgs']]]] cpanel_urls: The URL to connect to cPanel Dashboard and to Webmail interface.
         :param pulumi.Input[str] created_at: Date and time of hosting's creation (RFC 3339 format).
         :param pulumi.Input[str] dns_status: The DNS status of the hosting.
-        :param pulumi.Input[str] domain: TThe domain name of the hosting.
+        :param pulumi.Input[str] domain: The domain name of the hosting.
         :param pulumi.Input[str] email: The contact email of the client for the hosting.
         :param pulumi.Input[str] offer_id: The ID of the selected offer for the hosting.
         :param pulumi.Input[str] offer_name: The name of the active offer.
@@ -678,7 +678,7 @@ class WebHosting(pulumi.CustomResource):
     @pulumi.getter
     def domain(self) -> pulumi.Output[str]:
         """
-        TThe domain name of the hosting.
+        The domain name of the hosting.
         """
         return pulumi.get(self, "domain")
 

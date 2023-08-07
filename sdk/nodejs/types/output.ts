@@ -1435,6 +1435,16 @@ export interface GetWebHostOfferProduct {
     vCpu: number;
 }
 
+export interface GetWebhostingCpanelUrl {
+    dashboard: string;
+    webmail: string;
+}
+
+export interface GetWebhostingOption {
+    id: string;
+    name: string;
+}
+
 export interface IamPolicyRule {
     /**
      * ID of organization scoped to the rule.
@@ -2432,7 +2442,7 @@ export interface RedisClusterPrivateNetwork {
      *
      * > The `privateNetwork` conflict with `acl`. Only one should be specified.
      */
-    serviceIps?: string[];
+    serviceIps: string[];
     /**
      * `zone`) The zone in which the
      * Redis Cluster should be created.

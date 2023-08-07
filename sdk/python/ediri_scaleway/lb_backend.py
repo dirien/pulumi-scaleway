@@ -26,6 +26,7 @@ class LbBackendArgs:
                  health_check_https: Optional[pulumi.Input['LbBackendHealthCheckHttpsArgs']] = None,
                  health_check_max_retries: Optional[pulumi.Input[int]] = None,
                  health_check_port: Optional[pulumi.Input[int]] = None,
+                 health_check_send_proxy: Optional[pulumi.Input[bool]] = None,
                  health_check_tcp: Optional[pulumi.Input['LbBackendHealthCheckTcpArgs']] = None,
                  health_check_timeout: Optional[pulumi.Input[str]] = None,
                  health_check_transient_delay: Optional[pulumi.Input[str]] = None,
@@ -60,6 +61,7 @@ class LbBackendArgs:
         :param pulumi.Input['LbBackendHealthCheckHttpsArgs'] health_check_https: This block enable HTTPS health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
         :param pulumi.Input[int] health_check_max_retries: Number of allowed failed HC requests before the backend server is marked down.
         :param pulumi.Input[int] health_check_port: Port the HC requests will be send to.
+        :param pulumi.Input[bool] health_check_send_proxy: Defines whether proxy protocol should be activated for the health check.
         :param pulumi.Input['LbBackendHealthCheckTcpArgs'] health_check_tcp: This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
         :param pulumi.Input[str] health_check_timeout: Timeout before we consider a HC request failed.
         :param pulumi.Input[str] health_check_transient_delay: The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
@@ -97,6 +99,8 @@ class LbBackendArgs:
             pulumi.set(__self__, "health_check_max_retries", health_check_max_retries)
         if health_check_port is not None:
             pulumi.set(__self__, "health_check_port", health_check_port)
+        if health_check_send_proxy is not None:
+            pulumi.set(__self__, "health_check_send_proxy", health_check_send_proxy)
         if health_check_tcp is not None:
             pulumi.set(__self__, "health_check_tcp", health_check_tcp)
         if health_check_timeout is not None:
@@ -261,6 +265,18 @@ class LbBackendArgs:
     @health_check_port.setter
     def health_check_port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "health_check_port", value)
+
+    @property
+    @pulumi.getter(name="healthCheckSendProxy")
+    def health_check_send_proxy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defines whether proxy protocol should be activated for the health check.
+        """
+        return pulumi.get(self, "health_check_send_proxy")
+
+    @health_check_send_proxy.setter
+    def health_check_send_proxy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "health_check_send_proxy", value)
 
     @property
     @pulumi.getter(name="healthCheckTcp")
@@ -506,6 +522,7 @@ class _LbBackendState:
                  health_check_https: Optional[pulumi.Input['LbBackendHealthCheckHttpsArgs']] = None,
                  health_check_max_retries: Optional[pulumi.Input[int]] = None,
                  health_check_port: Optional[pulumi.Input[int]] = None,
+                 health_check_send_proxy: Optional[pulumi.Input[bool]] = None,
                  health_check_tcp: Optional[pulumi.Input['LbBackendHealthCheckTcpArgs']] = None,
                  health_check_timeout: Optional[pulumi.Input[str]] = None,
                  health_check_transient_delay: Optional[pulumi.Input[str]] = None,
@@ -539,6 +556,7 @@ class _LbBackendState:
         :param pulumi.Input['LbBackendHealthCheckHttpsArgs'] health_check_https: This block enable HTTPS health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
         :param pulumi.Input[int] health_check_max_retries: Number of allowed failed HC requests before the backend server is marked down.
         :param pulumi.Input[int] health_check_port: Port the HC requests will be send to.
+        :param pulumi.Input[bool] health_check_send_proxy: Defines whether proxy protocol should be activated for the health check.
         :param pulumi.Input['LbBackendHealthCheckTcpArgs'] health_check_tcp: This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
         :param pulumi.Input[str] health_check_timeout: Timeout before we consider a HC request failed.
         :param pulumi.Input[str] health_check_transient_delay: The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
@@ -579,6 +597,8 @@ class _LbBackendState:
             pulumi.set(__self__, "health_check_max_retries", health_check_max_retries)
         if health_check_port is not None:
             pulumi.set(__self__, "health_check_port", health_check_port)
+        if health_check_send_proxy is not None:
+            pulumi.set(__self__, "health_check_send_proxy", health_check_send_proxy)
         if health_check_tcp is not None:
             pulumi.set(__self__, "health_check_tcp", health_check_tcp)
         if health_check_timeout is not None:
@@ -732,6 +752,18 @@ class _LbBackendState:
     @health_check_port.setter
     def health_check_port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "health_check_port", value)
+
+    @property
+    @pulumi.getter(name="healthCheckSendProxy")
+    def health_check_send_proxy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defines whether proxy protocol should be activated for the health check.
+        """
+        return pulumi.get(self, "health_check_send_proxy")
+
+    @health_check_send_proxy.setter
+    def health_check_send_proxy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "health_check_send_proxy", value)
 
     @property
     @pulumi.getter(name="healthCheckTcp")
@@ -992,6 +1024,7 @@ class LbBackend(pulumi.CustomResource):
                  health_check_https: Optional[pulumi.Input[pulumi.InputType['LbBackendHealthCheckHttpsArgs']]] = None,
                  health_check_max_retries: Optional[pulumi.Input[int]] = None,
                  health_check_port: Optional[pulumi.Input[int]] = None,
+                 health_check_send_proxy: Optional[pulumi.Input[bool]] = None,
                  health_check_tcp: Optional[pulumi.Input[pulumi.InputType['LbBackendHealthCheckTcpArgs']]] = None,
                  health_check_timeout: Optional[pulumi.Input[str]] = None,
                  health_check_transient_delay: Optional[pulumi.Input[str]] = None,
@@ -1067,6 +1100,7 @@ class LbBackend(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['LbBackendHealthCheckHttpsArgs']] health_check_https: This block enable HTTPS health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
         :param pulumi.Input[int] health_check_max_retries: Number of allowed failed HC requests before the backend server is marked down.
         :param pulumi.Input[int] health_check_port: Port the HC requests will be send to.
+        :param pulumi.Input[bool] health_check_send_proxy: Defines whether proxy protocol should be activated for the health check.
         :param pulumi.Input[pulumi.InputType['LbBackendHealthCheckTcpArgs']] health_check_tcp: This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
         :param pulumi.Input[str] health_check_timeout: Timeout before we consider a HC request failed.
         :param pulumi.Input[str] health_check_transient_delay: The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
@@ -1160,6 +1194,7 @@ class LbBackend(pulumi.CustomResource):
                  health_check_https: Optional[pulumi.Input[pulumi.InputType['LbBackendHealthCheckHttpsArgs']]] = None,
                  health_check_max_retries: Optional[pulumi.Input[int]] = None,
                  health_check_port: Optional[pulumi.Input[int]] = None,
+                 health_check_send_proxy: Optional[pulumi.Input[bool]] = None,
                  health_check_tcp: Optional[pulumi.Input[pulumi.InputType['LbBackendHealthCheckTcpArgs']]] = None,
                  health_check_timeout: Optional[pulumi.Input[str]] = None,
                  health_check_transient_delay: Optional[pulumi.Input[str]] = None,
@@ -1202,6 +1237,7 @@ class LbBackend(pulumi.CustomResource):
             __props__.__dict__["health_check_https"] = health_check_https
             __props__.__dict__["health_check_max_retries"] = health_check_max_retries
             __props__.__dict__["health_check_port"] = health_check_port
+            __props__.__dict__["health_check_send_proxy"] = health_check_send_proxy
             __props__.__dict__["health_check_tcp"] = health_check_tcp
             __props__.__dict__["health_check_timeout"] = health_check_timeout
             __props__.__dict__["health_check_transient_delay"] = health_check_transient_delay
@@ -1246,6 +1282,7 @@ class LbBackend(pulumi.CustomResource):
             health_check_https: Optional[pulumi.Input[pulumi.InputType['LbBackendHealthCheckHttpsArgs']]] = None,
             health_check_max_retries: Optional[pulumi.Input[int]] = None,
             health_check_port: Optional[pulumi.Input[int]] = None,
+            health_check_send_proxy: Optional[pulumi.Input[bool]] = None,
             health_check_tcp: Optional[pulumi.Input[pulumi.InputType['LbBackendHealthCheckTcpArgs']]] = None,
             health_check_timeout: Optional[pulumi.Input[str]] = None,
             health_check_transient_delay: Optional[pulumi.Input[str]] = None,
@@ -1284,6 +1321,7 @@ class LbBackend(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['LbBackendHealthCheckHttpsArgs']] health_check_https: This block enable HTTPS health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
         :param pulumi.Input[int] health_check_max_retries: Number of allowed failed HC requests before the backend server is marked down.
         :param pulumi.Input[int] health_check_port: Port the HC requests will be send to.
+        :param pulumi.Input[bool] health_check_send_proxy: Defines whether proxy protocol should be activated for the health check.
         :param pulumi.Input[pulumi.InputType['LbBackendHealthCheckTcpArgs']] health_check_tcp: This block enable TCP health check. Only one of `health_check_tcp`, `health_check_http` and `health_check_https` should be specified.
         :param pulumi.Input[str] health_check_timeout: Timeout before we consider a HC request failed.
         :param pulumi.Input[str] health_check_transient_delay: The time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN).
@@ -1319,6 +1357,7 @@ class LbBackend(pulumi.CustomResource):
         __props__.__dict__["health_check_https"] = health_check_https
         __props__.__dict__["health_check_max_retries"] = health_check_max_retries
         __props__.__dict__["health_check_port"] = health_check_port
+        __props__.__dict__["health_check_send_proxy"] = health_check_send_proxy
         __props__.__dict__["health_check_tcp"] = health_check_tcp
         __props__.__dict__["health_check_timeout"] = health_check_timeout
         __props__.__dict__["health_check_transient_delay"] = health_check_transient_delay
@@ -1414,6 +1453,14 @@ class LbBackend(pulumi.CustomResource):
         Port the HC requests will be send to.
         """
         return pulumi.get(self, "health_check_port")
+
+    @property
+    @pulumi.getter(name="healthCheckSendProxy")
+    def health_check_send_proxy(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Defines whether proxy protocol should be activated for the health check.
+        """
+        return pulumi.get(self, "health_check_send_proxy")
 
     @property
     @pulumi.getter(name="healthCheckTcp")

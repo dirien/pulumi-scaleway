@@ -400,6 +400,12 @@ namespace ediri.Scaleway
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
+        /// (Defaults to provider `region`) The region in which the container was created.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        /// <summary>
         /// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
         /// </summary>
         [Input("registryImage")]
