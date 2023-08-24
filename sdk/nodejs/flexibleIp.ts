@@ -106,10 +106,6 @@ export class FlexibleIp extends pulumi.CustomResource {
      */
     public /*out*/ readonly ipAddress!: pulumi.Output<string>;
     /**
-     * The MAC address of the server associated with this flexible IP
-     */
-    public /*out*/ readonly macAddress!: pulumi.Output<string>;
-    /**
      * The organization of the Flexible IP
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
@@ -154,7 +150,6 @@ export class FlexibleIp extends pulumi.CustomResource {
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["ipAddress"] = state ? state.ipAddress : undefined;
-            resourceInputs["macAddress"] = state ? state.macAddress : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["reverse"] = state ? state.reverse : undefined;
@@ -172,7 +167,6 @@ export class FlexibleIp extends pulumi.CustomResource {
             resourceInputs["zone"] = args ? args.zone : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["ipAddress"] = undefined /*out*/;
-            resourceInputs["macAddress"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -197,10 +191,6 @@ export interface FlexibleIpState {
      * The IPv4 address of the Flexible IP
      */
     ipAddress?: pulumi.Input<string>;
-    /**
-     * The MAC address of the server associated with this flexible IP
-     */
-    macAddress?: pulumi.Input<string>;
     /**
      * The organization of the Flexible IP
      */

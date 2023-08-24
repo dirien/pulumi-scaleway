@@ -143,8 +143,6 @@ type FlexibleIp struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The IPv4 address of the Flexible IP
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
-	// The MAC address of the server associated with this flexible IP
-	MacAddress pulumi.StringOutput `pulumi:"macAddress"`
 	// The organization of the Flexible IP
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// The project of the Flexible IP
@@ -197,8 +195,6 @@ type flexibleIpState struct {
 	Description *string `pulumi:"description"`
 	// The IPv4 address of the Flexible IP
 	IpAddress *string `pulumi:"ipAddress"`
-	// The MAC address of the server associated with this flexible IP
-	MacAddress *string `pulumi:"macAddress"`
 	// The organization of the Flexible IP
 	OrganizationId *string `pulumi:"organizationId"`
 	// The project of the Flexible IP
@@ -222,8 +218,6 @@ type FlexibleIpState struct {
 	Description pulumi.StringPtrInput
 	// The IPv4 address of the Flexible IP
 	IpAddress pulumi.StringPtrInput
-	// The MAC address of the server associated with this flexible IP
-	MacAddress pulumi.StringPtrInput
 	// The organization of the Flexible IP
 	OrganizationId pulumi.StringPtrInput
 	// The project of the Flexible IP
@@ -375,11 +369,6 @@ func (o FlexibleIpOutput) Description() pulumi.StringPtrOutput {
 // The IPv4 address of the Flexible IP
 func (o FlexibleIpOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *FlexibleIp) pulumi.StringOutput { return v.IpAddress }).(pulumi.StringOutput)
-}
-
-// The MAC address of the server associated with this flexible IP
-func (o FlexibleIpOutput) MacAddress() pulumi.StringOutput {
-	return o.ApplyT(func(v *FlexibleIp) pulumi.StringOutput { return v.MacAddress }).(pulumi.StringOutput)
 }
 
 // The organization of the Flexible IP

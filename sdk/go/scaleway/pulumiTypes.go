@@ -14170,6 +14170,350 @@ func (o GetDomainRecordWeightedArrayOutput) Index(i pulumi.IntInput) GetDomainRe
 	}).(GetDomainRecordWeightedOutput)
 }
 
+type GetFlexibleIpsIp struct {
+	// The date on which the flexible IP was created (RFC 3339 format).
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of the flexible IP.
+	Description string `pulumi:"description"`
+	// The MAC address ID.
+	Id        string `pulumi:"id"`
+	IpAddress string `pulumi:"ipAddress"`
+	// The MAC address of the Virtual MAC.
+	MacAddresses []GetFlexibleIpsIpMacAddress `pulumi:"macAddresses"`
+	// (Defaults to provider `organizationId`) The ID of the organization the IP is in.
+	OrganizationId string `pulumi:"organizationId"`
+	// (Defaults to provider `projectId`) The ID of the project the IP is in.
+	ProjectId string `pulumi:"projectId"`
+	// The reverse domain associated with this IP.
+	Reverse string `pulumi:"reverse"`
+	// The status of virtual MAC.
+	Status string `pulumi:"status"`
+	// List of tags used as filter. IPs with these exact tags are listed.
+	Tags []string `pulumi:"tags"`
+	// The date on which the flexible IP was last updated (RFC 3339 format).
+	UpdatedAt string `pulumi:"updatedAt"`
+	// `zone`) The zone in which IPs exist.
+	Zone string `pulumi:"zone"`
+}
+
+// GetFlexibleIpsIpInput is an input type that accepts GetFlexibleIpsIpArgs and GetFlexibleIpsIpOutput values.
+// You can construct a concrete instance of `GetFlexibleIpsIpInput` via:
+//
+//	GetFlexibleIpsIpArgs{...}
+type GetFlexibleIpsIpInput interface {
+	pulumi.Input
+
+	ToGetFlexibleIpsIpOutput() GetFlexibleIpsIpOutput
+	ToGetFlexibleIpsIpOutputWithContext(context.Context) GetFlexibleIpsIpOutput
+}
+
+type GetFlexibleIpsIpArgs struct {
+	// The date on which the flexible IP was created (RFC 3339 format).
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of the flexible IP.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The MAC address ID.
+	Id        pulumi.StringInput `pulumi:"id"`
+	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+	// The MAC address of the Virtual MAC.
+	MacAddresses GetFlexibleIpsIpMacAddressArrayInput `pulumi:"macAddresses"`
+	// (Defaults to provider `organizationId`) The ID of the organization the IP is in.
+	OrganizationId pulumi.StringInput `pulumi:"organizationId"`
+	// (Defaults to provider `projectId`) The ID of the project the IP is in.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// The reverse domain associated with this IP.
+	Reverse pulumi.StringInput `pulumi:"reverse"`
+	// The status of virtual MAC.
+	Status pulumi.StringInput `pulumi:"status"`
+	// List of tags used as filter. IPs with these exact tags are listed.
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
+	// The date on which the flexible IP was last updated (RFC 3339 format).
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// `zone`) The zone in which IPs exist.
+	Zone pulumi.StringInput `pulumi:"zone"`
+}
+
+func (GetFlexibleIpsIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexibleIpsIp)(nil)).Elem()
+}
+
+func (i GetFlexibleIpsIpArgs) ToGetFlexibleIpsIpOutput() GetFlexibleIpsIpOutput {
+	return i.ToGetFlexibleIpsIpOutputWithContext(context.Background())
+}
+
+func (i GetFlexibleIpsIpArgs) ToGetFlexibleIpsIpOutputWithContext(ctx context.Context) GetFlexibleIpsIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexibleIpsIpOutput)
+}
+
+// GetFlexibleIpsIpArrayInput is an input type that accepts GetFlexibleIpsIpArray and GetFlexibleIpsIpArrayOutput values.
+// You can construct a concrete instance of `GetFlexibleIpsIpArrayInput` via:
+//
+//	GetFlexibleIpsIpArray{ GetFlexibleIpsIpArgs{...} }
+type GetFlexibleIpsIpArrayInput interface {
+	pulumi.Input
+
+	ToGetFlexibleIpsIpArrayOutput() GetFlexibleIpsIpArrayOutput
+	ToGetFlexibleIpsIpArrayOutputWithContext(context.Context) GetFlexibleIpsIpArrayOutput
+}
+
+type GetFlexibleIpsIpArray []GetFlexibleIpsIpInput
+
+func (GetFlexibleIpsIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFlexibleIpsIp)(nil)).Elem()
+}
+
+func (i GetFlexibleIpsIpArray) ToGetFlexibleIpsIpArrayOutput() GetFlexibleIpsIpArrayOutput {
+	return i.ToGetFlexibleIpsIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetFlexibleIpsIpArray) ToGetFlexibleIpsIpArrayOutputWithContext(ctx context.Context) GetFlexibleIpsIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexibleIpsIpArrayOutput)
+}
+
+type GetFlexibleIpsIpOutput struct{ *pulumi.OutputState }
+
+func (GetFlexibleIpsIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexibleIpsIp)(nil)).Elem()
+}
+
+func (o GetFlexibleIpsIpOutput) ToGetFlexibleIpsIpOutput() GetFlexibleIpsIpOutput {
+	return o
+}
+
+func (o GetFlexibleIpsIpOutput) ToGetFlexibleIpsIpOutputWithContext(ctx context.Context) GetFlexibleIpsIpOutput {
+	return o
+}
+
+// The date on which the flexible IP was created (RFC 3339 format).
+func (o GetFlexibleIpsIpOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexibleIpsIp) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of the flexible IP.
+func (o GetFlexibleIpsIpOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexibleIpsIp) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The MAC address ID.
+func (o GetFlexibleIpsIpOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexibleIpsIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetFlexibleIpsIpOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexibleIpsIp) string { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+// The MAC address of the Virtual MAC.
+func (o GetFlexibleIpsIpOutput) MacAddresses() GetFlexibleIpsIpMacAddressArrayOutput {
+	return o.ApplyT(func(v GetFlexibleIpsIp) []GetFlexibleIpsIpMacAddress { return v.MacAddresses }).(GetFlexibleIpsIpMacAddressArrayOutput)
+}
+
+// (Defaults to provider `organizationId`) The ID of the organization the IP is in.
+func (o GetFlexibleIpsIpOutput) OrganizationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexibleIpsIp) string { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
+// (Defaults to provider `projectId`) The ID of the project the IP is in.
+func (o GetFlexibleIpsIpOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexibleIpsIp) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The reverse domain associated with this IP.
+func (o GetFlexibleIpsIpOutput) Reverse() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexibleIpsIp) string { return v.Reverse }).(pulumi.StringOutput)
+}
+
+// The status of virtual MAC.
+func (o GetFlexibleIpsIpOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexibleIpsIp) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// List of tags used as filter. IPs with these exact tags are listed.
+func (o GetFlexibleIpsIpOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetFlexibleIpsIp) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+// The date on which the flexible IP was last updated (RFC 3339 format).
+func (o GetFlexibleIpsIpOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexibleIpsIp) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// `zone`) The zone in which IPs exist.
+func (o GetFlexibleIpsIpOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexibleIpsIp) string { return v.Zone }).(pulumi.StringOutput)
+}
+
+type GetFlexibleIpsIpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFlexibleIpsIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFlexibleIpsIp)(nil)).Elem()
+}
+
+func (o GetFlexibleIpsIpArrayOutput) ToGetFlexibleIpsIpArrayOutput() GetFlexibleIpsIpArrayOutput {
+	return o
+}
+
+func (o GetFlexibleIpsIpArrayOutput) ToGetFlexibleIpsIpArrayOutputWithContext(ctx context.Context) GetFlexibleIpsIpArrayOutput {
+	return o
+}
+
+func (o GetFlexibleIpsIpArrayOutput) Index(i pulumi.IntInput) GetFlexibleIpsIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFlexibleIpsIp {
+		return vs[0].([]GetFlexibleIpsIp)[vs[1].(int)]
+	}).(GetFlexibleIpsIpOutput)
+}
+
+type GetFlexibleIpsIpMacAddress struct {
+	// The date on which the flexible IP was created (RFC 3339 format).
+	CreatedAt string `pulumi:"createdAt"`
+	// The MAC address ID.
+	Id string `pulumi:"id"`
+	// The MAC address of the Virtual MAC.
+	MacAddress string `pulumi:"macAddress"`
+	// The type of virtual MAC.
+	MacType string `pulumi:"macType"`
+	// The status of virtual MAC.
+	Status string `pulumi:"status"`
+	// The date on which the flexible IP was last updated (RFC 3339 format).
+	UpdatedAt string `pulumi:"updatedAt"`
+	// `zone`) The zone in which IPs exist.
+	Zone string `pulumi:"zone"`
+}
+
+// GetFlexibleIpsIpMacAddressInput is an input type that accepts GetFlexibleIpsIpMacAddressArgs and GetFlexibleIpsIpMacAddressOutput values.
+// You can construct a concrete instance of `GetFlexibleIpsIpMacAddressInput` via:
+//
+//	GetFlexibleIpsIpMacAddressArgs{...}
+type GetFlexibleIpsIpMacAddressInput interface {
+	pulumi.Input
+
+	ToGetFlexibleIpsIpMacAddressOutput() GetFlexibleIpsIpMacAddressOutput
+	ToGetFlexibleIpsIpMacAddressOutputWithContext(context.Context) GetFlexibleIpsIpMacAddressOutput
+}
+
+type GetFlexibleIpsIpMacAddressArgs struct {
+	// The date on which the flexible IP was created (RFC 3339 format).
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The MAC address ID.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The MAC address of the Virtual MAC.
+	MacAddress pulumi.StringInput `pulumi:"macAddress"`
+	// The type of virtual MAC.
+	MacType pulumi.StringInput `pulumi:"macType"`
+	// The status of virtual MAC.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The date on which the flexible IP was last updated (RFC 3339 format).
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// `zone`) The zone in which IPs exist.
+	Zone pulumi.StringInput `pulumi:"zone"`
+}
+
+func (GetFlexibleIpsIpMacAddressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexibleIpsIpMacAddress)(nil)).Elem()
+}
+
+func (i GetFlexibleIpsIpMacAddressArgs) ToGetFlexibleIpsIpMacAddressOutput() GetFlexibleIpsIpMacAddressOutput {
+	return i.ToGetFlexibleIpsIpMacAddressOutputWithContext(context.Background())
+}
+
+func (i GetFlexibleIpsIpMacAddressArgs) ToGetFlexibleIpsIpMacAddressOutputWithContext(ctx context.Context) GetFlexibleIpsIpMacAddressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexibleIpsIpMacAddressOutput)
+}
+
+// GetFlexibleIpsIpMacAddressArrayInput is an input type that accepts GetFlexibleIpsIpMacAddressArray and GetFlexibleIpsIpMacAddressArrayOutput values.
+// You can construct a concrete instance of `GetFlexibleIpsIpMacAddressArrayInput` via:
+//
+//	GetFlexibleIpsIpMacAddressArray{ GetFlexibleIpsIpMacAddressArgs{...} }
+type GetFlexibleIpsIpMacAddressArrayInput interface {
+	pulumi.Input
+
+	ToGetFlexibleIpsIpMacAddressArrayOutput() GetFlexibleIpsIpMacAddressArrayOutput
+	ToGetFlexibleIpsIpMacAddressArrayOutputWithContext(context.Context) GetFlexibleIpsIpMacAddressArrayOutput
+}
+
+type GetFlexibleIpsIpMacAddressArray []GetFlexibleIpsIpMacAddressInput
+
+func (GetFlexibleIpsIpMacAddressArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFlexibleIpsIpMacAddress)(nil)).Elem()
+}
+
+func (i GetFlexibleIpsIpMacAddressArray) ToGetFlexibleIpsIpMacAddressArrayOutput() GetFlexibleIpsIpMacAddressArrayOutput {
+	return i.ToGetFlexibleIpsIpMacAddressArrayOutputWithContext(context.Background())
+}
+
+func (i GetFlexibleIpsIpMacAddressArray) ToGetFlexibleIpsIpMacAddressArrayOutputWithContext(ctx context.Context) GetFlexibleIpsIpMacAddressArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFlexibleIpsIpMacAddressArrayOutput)
+}
+
+type GetFlexibleIpsIpMacAddressOutput struct{ *pulumi.OutputState }
+
+func (GetFlexibleIpsIpMacAddressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFlexibleIpsIpMacAddress)(nil)).Elem()
+}
+
+func (o GetFlexibleIpsIpMacAddressOutput) ToGetFlexibleIpsIpMacAddressOutput() GetFlexibleIpsIpMacAddressOutput {
+	return o
+}
+
+func (o GetFlexibleIpsIpMacAddressOutput) ToGetFlexibleIpsIpMacAddressOutputWithContext(ctx context.Context) GetFlexibleIpsIpMacAddressOutput {
+	return o
+}
+
+// The date on which the flexible IP was created (RFC 3339 format).
+func (o GetFlexibleIpsIpMacAddressOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexibleIpsIpMacAddress) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The MAC address ID.
+func (o GetFlexibleIpsIpMacAddressOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexibleIpsIpMacAddress) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The MAC address of the Virtual MAC.
+func (o GetFlexibleIpsIpMacAddressOutput) MacAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexibleIpsIpMacAddress) string { return v.MacAddress }).(pulumi.StringOutput)
+}
+
+// The type of virtual MAC.
+func (o GetFlexibleIpsIpMacAddressOutput) MacType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexibleIpsIpMacAddress) string { return v.MacType }).(pulumi.StringOutput)
+}
+
+// The status of virtual MAC.
+func (o GetFlexibleIpsIpMacAddressOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexibleIpsIpMacAddress) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The date on which the flexible IP was last updated (RFC 3339 format).
+func (o GetFlexibleIpsIpMacAddressOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexibleIpsIpMacAddress) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// `zone`) The zone in which IPs exist.
+func (o GetFlexibleIpsIpMacAddressOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFlexibleIpsIpMacAddress) string { return v.Zone }).(pulumi.StringOutput)
+}
+
+type GetFlexibleIpsIpMacAddressArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFlexibleIpsIpMacAddressArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFlexibleIpsIpMacAddress)(nil)).Elem()
+}
+
+func (o GetFlexibleIpsIpMacAddressArrayOutput) ToGetFlexibleIpsIpMacAddressArrayOutput() GetFlexibleIpsIpMacAddressArrayOutput {
+	return o
+}
+
+func (o GetFlexibleIpsIpMacAddressArrayOutput) ToGetFlexibleIpsIpMacAddressArrayOutputWithContext(ctx context.Context) GetFlexibleIpsIpMacAddressArrayOutput {
+	return o
+}
+
+func (o GetFlexibleIpsIpMacAddressArrayOutput) Index(i pulumi.IntInput) GetFlexibleIpsIpMacAddressOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFlexibleIpsIpMacAddress {
+		return vs[0].([]GetFlexibleIpsIpMacAddress)[vs[1].(int)]
+	}).(GetFlexibleIpsIpMacAddressOutput)
+}
+
 type GetInstanceSecurityGroupInboundRule struct {
 	// The action to take when rule match. Possible values are: `accept` or `drop`.
 	Action string `pulumi:"action"`
@@ -15471,6 +15815,162 @@ func (o GetIotDeviceMessageFilterSubscribeArrayOutput) Index(i pulumi.IntInput) 
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetIotDeviceMessageFilterSubscribe {
 		return vs[0].([]GetIotDeviceMessageFilterSubscribe)[vs[1].(int)]
 	}).(GetIotDeviceMessageFilterSubscribeOutput)
+}
+
+type GetIpamIpResource struct {
+	// The ID of the resource that the IP is bound to.
+	Id *string `pulumi:"id"`
+	// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+	Type *string `pulumi:"type"`
+}
+
+// GetIpamIpResourceInput is an input type that accepts GetIpamIpResourceArgs and GetIpamIpResourceOutput values.
+// You can construct a concrete instance of `GetIpamIpResourceInput` via:
+//
+//	GetIpamIpResourceArgs{...}
+type GetIpamIpResourceInput interface {
+	pulumi.Input
+
+	ToGetIpamIpResourceOutput() GetIpamIpResourceOutput
+	ToGetIpamIpResourceOutputWithContext(context.Context) GetIpamIpResourceOutput
+}
+
+type GetIpamIpResourceArgs struct {
+	// The ID of the resource that the IP is bound to.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (GetIpamIpResourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIpamIpResource)(nil)).Elem()
+}
+
+func (i GetIpamIpResourceArgs) ToGetIpamIpResourceOutput() GetIpamIpResourceOutput {
+	return i.ToGetIpamIpResourceOutputWithContext(context.Background())
+}
+
+func (i GetIpamIpResourceArgs) ToGetIpamIpResourceOutputWithContext(ctx context.Context) GetIpamIpResourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIpamIpResourceOutput)
+}
+
+func (i GetIpamIpResourceArgs) ToGetIpamIpResourcePtrOutput() GetIpamIpResourcePtrOutput {
+	return i.ToGetIpamIpResourcePtrOutputWithContext(context.Background())
+}
+
+func (i GetIpamIpResourceArgs) ToGetIpamIpResourcePtrOutputWithContext(ctx context.Context) GetIpamIpResourcePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIpamIpResourceOutput).ToGetIpamIpResourcePtrOutputWithContext(ctx)
+}
+
+// GetIpamIpResourcePtrInput is an input type that accepts GetIpamIpResourceArgs, GetIpamIpResourcePtr and GetIpamIpResourcePtrOutput values.
+// You can construct a concrete instance of `GetIpamIpResourcePtrInput` via:
+//
+//	        GetIpamIpResourceArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetIpamIpResourcePtrInput interface {
+	pulumi.Input
+
+	ToGetIpamIpResourcePtrOutput() GetIpamIpResourcePtrOutput
+	ToGetIpamIpResourcePtrOutputWithContext(context.Context) GetIpamIpResourcePtrOutput
+}
+
+type getIpamIpResourcePtrType GetIpamIpResourceArgs
+
+func GetIpamIpResourcePtr(v *GetIpamIpResourceArgs) GetIpamIpResourcePtrInput {
+	return (*getIpamIpResourcePtrType)(v)
+}
+
+func (*getIpamIpResourcePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetIpamIpResource)(nil)).Elem()
+}
+
+func (i *getIpamIpResourcePtrType) ToGetIpamIpResourcePtrOutput() GetIpamIpResourcePtrOutput {
+	return i.ToGetIpamIpResourcePtrOutputWithContext(context.Background())
+}
+
+func (i *getIpamIpResourcePtrType) ToGetIpamIpResourcePtrOutputWithContext(ctx context.Context) GetIpamIpResourcePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIpamIpResourcePtrOutput)
+}
+
+type GetIpamIpResourceOutput struct{ *pulumi.OutputState }
+
+func (GetIpamIpResourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIpamIpResource)(nil)).Elem()
+}
+
+func (o GetIpamIpResourceOutput) ToGetIpamIpResourceOutput() GetIpamIpResourceOutput {
+	return o
+}
+
+func (o GetIpamIpResourceOutput) ToGetIpamIpResourceOutputWithContext(ctx context.Context) GetIpamIpResourceOutput {
+	return o
+}
+
+func (o GetIpamIpResourceOutput) ToGetIpamIpResourcePtrOutput() GetIpamIpResourcePtrOutput {
+	return o.ToGetIpamIpResourcePtrOutputWithContext(context.Background())
+}
+
+func (o GetIpamIpResourceOutput) ToGetIpamIpResourcePtrOutputWithContext(ctx context.Context) GetIpamIpResourcePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetIpamIpResource) *GetIpamIpResource {
+		return &v
+	}).(GetIpamIpResourcePtrOutput)
+}
+
+// The ID of the resource that the IP is bound to.
+func (o GetIpamIpResourceOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetIpamIpResource) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+func (o GetIpamIpResourceOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetIpamIpResource) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type GetIpamIpResourcePtrOutput struct{ *pulumi.OutputState }
+
+func (GetIpamIpResourcePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetIpamIpResource)(nil)).Elem()
+}
+
+func (o GetIpamIpResourcePtrOutput) ToGetIpamIpResourcePtrOutput() GetIpamIpResourcePtrOutput {
+	return o
+}
+
+func (o GetIpamIpResourcePtrOutput) ToGetIpamIpResourcePtrOutputWithContext(ctx context.Context) GetIpamIpResourcePtrOutput {
+	return o
+}
+
+func (o GetIpamIpResourcePtrOutput) Elem() GetIpamIpResourceOutput {
+	return o.ApplyT(func(v *GetIpamIpResource) GetIpamIpResource {
+		if v != nil {
+			return *v
+		}
+		var ret GetIpamIpResource
+		return ret
+	}).(GetIpamIpResourceOutput)
+}
+
+// The ID of the resource that the IP is bound to.
+func (o GetIpamIpResourcePtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetIpamIpResource) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+func (o GetIpamIpResourcePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetIpamIpResource) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
 }
 
 type GetK8sClusterAutoUpgrade struct {
@@ -21658,6 +22158,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordViewArrayInput)(nil)).Elem(), GetDomainRecordViewArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordWeightedInput)(nil)).Elem(), GetDomainRecordWeightedArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordWeightedArrayInput)(nil)).Elem(), GetDomainRecordWeightedArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexibleIpsIpInput)(nil)).Elem(), GetFlexibleIpsIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexibleIpsIpArrayInput)(nil)).Elem(), GetFlexibleIpsIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexibleIpsIpMacAddressInput)(nil)).Elem(), GetFlexibleIpsIpMacAddressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexibleIpsIpMacAddressArrayInput)(nil)).Elem(), GetFlexibleIpsIpMacAddressArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSecurityGroupInboundRuleInput)(nil)).Elem(), GetInstanceSecurityGroupInboundRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSecurityGroupInboundRuleArrayInput)(nil)).Elem(), GetInstanceSecurityGroupInboundRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSecurityGroupOutboundRuleInput)(nil)).Elem(), GetInstanceSecurityGroupOutboundRuleArgs{})
@@ -21678,6 +22182,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIotDeviceMessageFilterPublishArrayInput)(nil)).Elem(), GetIotDeviceMessageFilterPublishArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIotDeviceMessageFilterSubscribeInput)(nil)).Elem(), GetIotDeviceMessageFilterSubscribeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIotDeviceMessageFilterSubscribeArrayInput)(nil)).Elem(), GetIotDeviceMessageFilterSubscribeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIpamIpResourceInput)(nil)).Elem(), GetIpamIpResourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIpamIpResourcePtrInput)(nil)).Elem(), GetIpamIpResourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sClusterAutoUpgradeInput)(nil)).Elem(), GetK8sClusterAutoUpgradeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sClusterAutoUpgradeArrayInput)(nil)).Elem(), GetK8sClusterAutoUpgradeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetK8sClusterAutoscalerConfigInput)(nil)).Elem(), GetK8sClusterAutoscalerConfigArgs{})
@@ -21956,6 +22462,10 @@ func init() {
 	pulumi.RegisterOutputType(GetDomainRecordViewArrayOutput{})
 	pulumi.RegisterOutputType(GetDomainRecordWeightedOutput{})
 	pulumi.RegisterOutputType(GetDomainRecordWeightedArrayOutput{})
+	pulumi.RegisterOutputType(GetFlexibleIpsIpOutput{})
+	pulumi.RegisterOutputType(GetFlexibleIpsIpArrayOutput{})
+	pulumi.RegisterOutputType(GetFlexibleIpsIpMacAddressOutput{})
+	pulumi.RegisterOutputType(GetFlexibleIpsIpMacAddressArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceSecurityGroupInboundRuleOutput{})
 	pulumi.RegisterOutputType(GetInstanceSecurityGroupInboundRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceSecurityGroupOutboundRuleOutput{})
@@ -21976,6 +22486,8 @@ func init() {
 	pulumi.RegisterOutputType(GetIotDeviceMessageFilterPublishArrayOutput{})
 	pulumi.RegisterOutputType(GetIotDeviceMessageFilterSubscribeOutput{})
 	pulumi.RegisterOutputType(GetIotDeviceMessageFilterSubscribeArrayOutput{})
+	pulumi.RegisterOutputType(GetIpamIpResourceOutput{})
+	pulumi.RegisterOutputType(GetIpamIpResourcePtrOutput{})
 	pulumi.RegisterOutputType(GetK8sClusterAutoUpgradeOutput{})
 	pulumi.RegisterOutputType(GetK8sClusterAutoUpgradeArrayOutput{})
 	pulumi.RegisterOutputType(GetK8sClusterAutoscalerConfigOutput{})

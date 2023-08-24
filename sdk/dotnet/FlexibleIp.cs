@@ -128,12 +128,6 @@ namespace ediri.Scaleway
         public Output<string> IpAddress { get; private set; } = null!;
 
         /// <summary>
-        /// The MAC address of the server associated with this flexible IP
-        /// </summary>
-        [Output("macAddress")]
-        public Output<string> MacAddress { get; private set; } = null!;
-
-        /// <summary>
         /// The organization of the Flexible IP
         /// </summary>
         [Output("organizationId")]
@@ -289,12 +283,6 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
-
-        /// <summary>
-        /// The MAC address of the server associated with this flexible IP
-        /// </summary>
-        [Input("macAddress")]
-        public Input<string>? MacAddress { get; set; }
 
         /// <summary>
         /// The organization of the Flexible IP

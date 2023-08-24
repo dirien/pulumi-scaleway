@@ -38,9 +38,8 @@ type LookupFlexibleIpResult struct {
 	Description  string  `pulumi:"description"`
 	FlexibleIpId *string `pulumi:"flexibleIpId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string  `pulumi:"id"`
-	IpAddress  *string `pulumi:"ipAddress"`
-	MacAddress string  `pulumi:"macAddress"`
+	Id        string  `pulumi:"id"`
+	IpAddress *string `pulumi:"ipAddress"`
 	// (Defaults to provider `organizationId`) The ID of the organization the IP is in.
 	OrganizationId string `pulumi:"organizationId"`
 	// (Defaults to provider `projectId`) The ID of the project the IP is in.
@@ -115,10 +114,6 @@ func (o LookupFlexibleIpResultOutput) Id() pulumi.StringOutput {
 
 func (o LookupFlexibleIpResultOutput) IpAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupFlexibleIpResult) *string { return v.IpAddress }).(pulumi.StringPtrOutput)
-}
-
-func (o LookupFlexibleIpResultOutput) MacAddress() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupFlexibleIpResult) string { return v.MacAddress }).(pulumi.StringOutput)
 }
 
 // (Defaults to provider `organizationId`) The ID of the organization the IP is in.

@@ -46,7 +46,6 @@ export interface GetFlexibleIpResult {
      */
     readonly id: string;
     readonly ipAddress?: string;
-    readonly macAddress: string;
     /**
      * (Defaults to provider `organizationId`) The ID of the organization the IP is in.
      */

@@ -98,6 +98,8 @@ import (
 type InstancePrivateNic struct {
 	pulumi.CustomResourceState
 
+	// IPAM ip list, should be for internal use only
+	IpIds pulumi.StringArrayOutput `pulumi:"ipIds"`
 	// The MAC address of the private NIC.
 	MacAddress pulumi.StringOutput `pulumi:"macAddress"`
 	// The ID of the private network attached to.
@@ -146,6 +148,8 @@ func GetInstancePrivateNic(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering InstancePrivateNic resources.
 type instancePrivateNicState struct {
+	// IPAM ip list, should be for internal use only
+	IpIds []string `pulumi:"ipIds"`
 	// The MAC address of the private NIC.
 	MacAddress *string `pulumi:"macAddress"`
 	// The ID of the private network attached to.
@@ -159,6 +163,8 @@ type instancePrivateNicState struct {
 }
 
 type InstancePrivateNicState struct {
+	// IPAM ip list, should be for internal use only
+	IpIds pulumi.StringArrayInput
 	// The MAC address of the private NIC.
 	MacAddress pulumi.StringPtrInput
 	// The ID of the private network attached to.
@@ -176,6 +182,8 @@ func (InstancePrivateNicState) ElementType() reflect.Type {
 }
 
 type instancePrivateNicArgs struct {
+	// IPAM ip list, should be for internal use only
+	IpIds []string `pulumi:"ipIds"`
 	// The ID of the private network attached to.
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
 	// The ID of the server associated with.
@@ -188,6 +196,8 @@ type instancePrivateNicArgs struct {
 
 // The set of arguments for constructing a InstancePrivateNic resource.
 type InstancePrivateNicArgs struct {
+	// IPAM ip list, should be for internal use only
+	IpIds pulumi.StringArrayInput
 	// The ID of the private network attached to.
 	PrivateNetworkId pulumi.StringInput
 	// The ID of the server associated with.
@@ -283,6 +293,11 @@ func (o InstancePrivateNicOutput) ToInstancePrivateNicOutput() InstancePrivateNi
 
 func (o InstancePrivateNicOutput) ToInstancePrivateNicOutputWithContext(ctx context.Context) InstancePrivateNicOutput {
 	return o
+}
+
+// IPAM ip list, should be for internal use only
+func (o InstancePrivateNicOutput) IpIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *InstancePrivateNic) pulumi.StringArrayOutput { return v.IpIds }).(pulumi.StringArrayOutput)
 }
 
 // The MAC address of the private NIC.

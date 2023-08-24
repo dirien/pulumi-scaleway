@@ -255,6 +255,28 @@ export interface FunctionTriggerSqs {
     region?: pulumi.Input<string>;
 }
 
+export interface GetIpamIpResource {
+    /**
+     * The ID of the resource that the IP is bound to.
+     */
+    id?: string;
+    /**
+     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+     */
+    type?: string;
+}
+
+export interface GetIpamIpResourceArgs {
+    /**
+     * The ID of the resource that the IP is bound to.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+     */
+    type?: pulumi.Input<string>;
+}
+
 export interface IamPolicyRule {
     /**
      * ID of organization scoped to the rule.

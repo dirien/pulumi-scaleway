@@ -85,6 +85,11 @@ export type FlexibleIp = import("./flexibleIp").FlexibleIp;
 export const FlexibleIp: typeof import("./flexibleIp").FlexibleIp = null as any;
 utilities.lazyLoad(exports, ["FlexibleIp"], () => require("./flexibleIp"));
 
+export { FlexibleIpMacAddressArgs, FlexibleIpMacAddressState } from "./flexibleIpMacAddress";
+export type FlexibleIpMacAddress = import("./flexibleIpMacAddress").FlexibleIpMacAddress;
+export const FlexibleIpMacAddress: typeof import("./flexibleIpMacAddress").FlexibleIpMacAddress = null as any;
+utilities.lazyLoad(exports, ["FlexibleIpMacAddress"], () => require("./flexibleIpMacAddress"));
+
 export { FunctionArgs, FunctionState } from "./function";
 export type Function = import("./function").Function;
 export const Function: typeof import("./function").Function = null as any;
@@ -185,6 +190,11 @@ export const getFlexibleIp: typeof import("./getFlexibleIp").getFlexibleIp = nul
 export const getFlexibleIpOutput: typeof import("./getFlexibleIp").getFlexibleIpOutput = null as any;
 utilities.lazyLoad(exports, ["getFlexibleIp","getFlexibleIpOutput"], () => require("./getFlexibleIp"));
 
+export { GetFlexibleIpsArgs, GetFlexibleIpsResult, GetFlexibleIpsOutputArgs } from "./getFlexibleIps";
+export const getFlexibleIps: typeof import("./getFlexibleIps").getFlexibleIps = null as any;
+export const getFlexibleIpsOutput: typeof import("./getFlexibleIps").getFlexibleIpsOutput = null as any;
+utilities.lazyLoad(exports, ["getFlexibleIps","getFlexibleIpsOutput"], () => require("./getFlexibleIps"));
+
 export { GetFunctionArgs, GetFunctionResult, GetFunctionOutputArgs } from "./getFunction";
 export const getFunction: typeof import("./getFunction").getFunction = null as any;
 export const getFunctionOutput: typeof import("./getFunction").getFunctionOutput = null as any;
@@ -264,6 +274,11 @@ export { GetIotHubArgs, GetIotHubResult, GetIotHubOutputArgs } from "./getIotHub
 export const getIotHub: typeof import("./getIotHub").getIotHub = null as any;
 export const getIotHubOutput: typeof import("./getIotHub").getIotHubOutput = null as any;
 utilities.lazyLoad(exports, ["getIotHub","getIotHubOutput"], () => require("./getIotHub"));
+
+export { GetIpamIpArgs, GetIpamIpResult, GetIpamIpOutputArgs } from "./getIpamIp";
+export const getIpamIp: typeof import("./getIpamIp").getIpamIp = null as any;
+export const getIpamIpOutput: typeof import("./getIpamIp").getIpamIpOutput = null as any;
+utilities.lazyLoad(exports, ["getIpamIp","getIpamIpOutput"], () => require("./getIpamIp"));
 
 export { GetK8sClusterArgs, GetK8sClusterResult, GetK8sClusterOutputArgs } from "./getK8sCluster";
 export const getK8sCluster: typeof import("./getK8sCluster").getK8sCluster = null as any;
@@ -821,6 +836,8 @@ const _module = {
                 return new DomainZone(name, <any>undefined, { urn })
             case "scaleway:index/flexibleIp:FlexibleIp":
                 return new FlexibleIp(name, <any>undefined, { urn })
+            case "scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress":
+                return new FlexibleIpMacAddress(name, <any>undefined, { urn })
             case "scaleway:index/function:Function":
                 return new Function(name, <any>undefined, { urn })
             case "scaleway:index/functionCron:FunctionCron":
@@ -976,6 +993,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/containerTrigger", _mod
 pulumi.runtime.registerResourceModule("scaleway", "index/domainRecord", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/domainZone", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/flexibleIp", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/flexibleIpMacAddress", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/function", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/functionCron", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/functionDomain", _module)

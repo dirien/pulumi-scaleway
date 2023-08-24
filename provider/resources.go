@@ -215,6 +215,7 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_container_trigger":                   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ContainerTrigger")},
 			"scaleway_webhosting":                          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "WebHosting")},
 			"scaleway_iam_group_membership":                {Tok: tfbridge.MakeResource(mainPkg, mainMod, "IamGroupMembership")},
+			"scaleway_flexible_ip_mac_address": 			{Tok: tfbridge.MakeResource(mainPkg, mainMod, "FlexibleIpMacAddress")}, 
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"scaleway_account_project":                     {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAccountProject")},
@@ -287,6 +288,8 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_vpc":                                 {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getVpc")},
 			"scaleway_vpcs":                                {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getVpcs")},
 			"scaleway_webhosting":                          {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getWebhosting")},
+			"scaleway_flexible_ips":                        {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getFlexibleIps")},
+			"scaleway_ipam_ip":								{Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getIpamIp")},
 		},
 		TFProviderModuleVersion: "v2",
 		JavaScript: &tfbridge.JavaScriptInfo{

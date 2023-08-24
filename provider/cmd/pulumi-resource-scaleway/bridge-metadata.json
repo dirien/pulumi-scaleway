@@ -141,6 +141,14 @@
                     }
                 }
             },
+            "scaleway_flexible_ip_mac_address": {
+                "current": "scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress",
+                "fields": {
+                    "flexible_ip_ids_to_duplicate": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_function": {
                 "current": "scaleway:index/function:Function"
             },
@@ -248,6 +256,9 @@
             "scaleway_instance_private_nic": {
                 "current": "scaleway:index/instancePrivateNic:InstancePrivateNic",
                 "fields": {
+                    "ip_ids": {
+                        "maxItemsOne": false
+                    },
                     "tags": {
                         "maxItemsOne": false
                     }
@@ -1001,6 +1012,30 @@
                     }
                 }
             },
+            "scaleway_flexible_ips": {
+                "current": "scaleway:index/getFlexibleIps:getFlexibleIps",
+                "fields": {
+                    "ips": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "mac_address": {
+                                    "maxItemsOne": false
+                                },
+                                "tags": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "server_ids": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_function": {
                 "current": "scaleway:index/getFunction:getFunction"
             },
@@ -1046,6 +1081,9 @@
             "scaleway_instance_private_nic": {
                 "current": "scaleway:index/getInstancePrivateNic:getInstancePrivateNic",
                 "fields": {
+                    "ip_ids": {
+                        "maxItemsOne": false
+                    },
                     "tags": {
                         "maxItemsOne": false
                     }
@@ -1156,6 +1194,14 @@
             },
             "scaleway_iot_hub": {
                 "current": "scaleway:index/getIotHub:getIotHub"
+            },
+            "scaleway_ipam_ip": {
+                "current": "scaleway:index/getIpamIp:getIpamIp",
+                "fields": {
+                    "resource": {
+                        "maxItemsOne": true
+                    }
+                }
             },
             "scaleway_k8s_cluster": {
                 "current": "scaleway:index/getK8sCluster:getK8sCluster",
@@ -1695,6 +1741,7 @@
             "scaleway:index/domainRecord:DomainRecord": "scaleway_domain_record",
             "scaleway:index/domainZone:DomainZone": "scaleway_domain_zone",
             "scaleway:index/flexibleIp:FlexibleIp": "scaleway_flexible_ip",
+            "scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress": "scaleway_flexible_ip_mac_address",
             "scaleway:index/function:Function": "scaleway_function",
             "scaleway:index/functionCron:FunctionCron": "scaleway_function_cron",
             "scaleway:index/functionDomain:FunctionDomain": "scaleway_function_domain",
@@ -1778,6 +1825,7 @@
             "scaleway:index/getDomainRecord:getDomainRecord": "scaleway_domain_record",
             "scaleway:index/getDomainZone:getDomainZone": "scaleway_domain_zone",
             "scaleway:index/getFlexibleIp:getFlexibleIp": "scaleway_flexible_ip",
+            "scaleway:index/getFlexibleIps:getFlexibleIps": "scaleway_flexible_ips",
             "scaleway:index/getFunction:getFunction": "scaleway_function",
             "scaleway:index/getFunctionNamespace:getFunctionNamespace": "scaleway_function_namespace",
             "scaleway:index/getIamApplication:getIamApplication": "scaleway_iam_application",
@@ -1794,6 +1842,7 @@
             "scaleway:index/getInstanceVolume:getInstanceVolume": "scaleway_instance_volume",
             "scaleway:index/getIotDevice:getIotDevice": "scaleway_iot_device",
             "scaleway:index/getIotHub:getIotHub": "scaleway_iot_hub",
+            "scaleway:index/getIpamIp:getIpamIp": "scaleway_ipam_ip",
             "scaleway:index/getK8sCluster:getK8sCluster": "scaleway_k8s_cluster",
             "scaleway:index/getK8sPool:getK8sPool": "scaleway_k8s_pool",
             "scaleway:index/getK8sVersion:getK8sVersion": "scaleway_k8s_version",
@@ -2169,10 +2218,15 @@
             "scaleway:index/flexibleIp:FlexibleIp": {
                 "createdAt": "created_at",
                 "ipAddress": "ip_address",
-                "macAddress": "mac_address",
                 "organizationId": "organization_id",
                 "projectId": "project_id",
                 "serverId": "server_id",
+                "updatedAt": "updated_at"
+            },
+            "scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress": {
+                "createdAt": "created_at",
+                "flexibleIpId": "flexible_ip_id",
+                "flexibleIpIdsToDuplicates": "flexible_ip_ids_to_duplicate",
                 "updatedAt": "updated_at"
             },
             "scaleway:index/function:Function": {
@@ -2333,10 +2387,28 @@
                 "createdAt": "created_at",
                 "flexibleIpId": "flexible_ip_id",
                 "ipAddress": "ip_address",
-                "macAddress": "mac_address",
                 "organizationId": "organization_id",
                 "projectId": "project_id",
                 "serverId": "server_id",
+                "updatedAt": "updated_at"
+            },
+            "scaleway:index/getFlexibleIps:getFlexibleIps": {
+                "organizationId": "organization_id",
+                "projectId": "project_id",
+                "serverIds": "server_ids"
+            },
+            "scaleway:index/getFlexibleIpsIp:getFlexibleIpsIp": {
+                "createdAt": "created_at",
+                "ipAddress": "ip_address",
+                "macAddresses": "mac_address",
+                "organizationId": "organization_id",
+                "projectId": "project_id",
+                "updatedAt": "updated_at"
+            },
+            "scaleway:index/getFlexibleIpsIpMacAddress:getFlexibleIpsIpMacAddress": {
+                "createdAt": "created_at",
+                "macAddress": "mac_address",
+                "macType": "mac_type",
                 "updatedAt": "updated_at"
             },
             "scaleway:index/getFunction:getFunction": {
@@ -2408,6 +2480,7 @@
                 "serverId": "server_id"
             },
             "scaleway:index/getInstancePrivateNic:getInstancePrivateNic": {
+                "ipIds": "ip_ids",
                 "macAddress": "mac_address",
                 "privateNetworkId": "private_network_id",
                 "privateNicId": "private_nic_id",
@@ -2534,6 +2607,10 @@
                 "productPlan": "product_plan",
                 "projectId": "project_id",
                 "updatedAt": "updated_at"
+            },
+            "scaleway:index/getIpamIp:getIpamIp": {
+                "macAddress": "mac_address",
+                "privateNetworkId": "private_network_id"
             },
             "scaleway:index/getK8sCluster:getK8sCluster": {
                 "admissionPlugins": "admission_plugins",
@@ -3189,6 +3266,7 @@
                 "projectId": "project_id"
             },
             "scaleway:index/instancePrivateNic:InstancePrivateNic": {
+                "ipIds": "ip_ids",
                 "macAddress": "mac_address",
                 "privateNetworkId": "private_network_id",
                 "serverId": "server_id"
