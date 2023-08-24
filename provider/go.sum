@@ -2180,8 +2180,8 @@ github.com/pulumi/pulumi-yaml v1.1.1 h1:8pyBNIU8+ym0wYpjhsCqN+cutygfK1XbhY2YEeNf
 github.com/pulumi/pulumi-yaml v1.1.1/go.mod h1:GhpdS6rFpwqvUtKdA+fQy8P28iNvncng39IXh5q68vE=
 github.com/pulumi/pulumi/pkg/v3 v3.77.1 h1:PRZBBkAGniJkxtDh6NHIfmlo/wZKXMD50rDfhr5xyDM=
 github.com/pulumi/pulumi/pkg/v3 v3.77.1/go.mod h1:dj+QrN7vtnC2S0VBFiEIl9estr1nZnKB92S0zylQIag=
-github.com/pulumi/pulumi/sdk/v3 v3.78.1 h1:itSfMcILvEq5wOpGEAzeZdpH973yJ4sRn02nx5SCJHM=
-github.com/pulumi/pulumi/sdk/v3 v3.78.1/go.mod h1:FEFictCHoa8CYzKDSc0t9ErrNiaO9n7pChreLQLDH+M=
+github.com/pulumi/pulumi/sdk/v3 v3.77.1 h1:DfMCVjtzaSYqpZmMmRdHA5i1vaD6zYsCkDmcZqojREI=
+github.com/pulumi/pulumi/sdk/v3 v3.77.1/go.mod h1:FEFictCHoa8CYzKDSc0t9ErrNiaO9n7pChreLQLDH+M=
 github.com/pulumi/schema-tools v0.1.2 h1:Fd9xvUjgck4NA+7/jSk7InqCUT4Kj940+EcnbQKpfZo=
 github.com/pulumi/schema-tools v0.1.2/go.mod h1:62lgj52Tzq11eqWTIaKd+EVyYAu5dEcDJxMhTjvMO/k=
 github.com/pulumi/terraform-diff-reader v0.0.2 h1:kTE4nEXU3/SYXESvAIem+wyHMI3abqkI3OhJ0G04LLI=
@@ -2227,10 +2227,10 @@ github.com/santhosh-tekuri/jsonschema/v5 v5.3.0 h1:uIkTLo0AGRc8l7h5l9r+GcYi9qfVP
 github.com/santhosh-tekuri/jsonschema/v5 v5.3.0/go.mod h1:FKdcjfQW6rpZSnxxUvEA5H/cDPdvJ/SZJQLWWXWGrZ0=
 github.com/satori/go.uuid v1.2.0/go.mod h1:dA0hQrYB0VpLJoorglMZABFdXlWrHn1NEOzdhQKdks0=
 github.com/scaleway/scaleway-sdk-go v1.0.0-beta.9/go.mod h1:fCa7OJZ/9DRTnOKmxvT6pn+LPWUptQAmHF/SBJUGEcg=
-github.com/scaleway/scaleway-sdk-go v1.0.0-beta.20 h1:a9hSJdJcd16e0HoMsnFvaHvxB3pxSD+SC7+CISp7xY0=
-github.com/scaleway/scaleway-sdk-go v1.0.0-beta.20/go.mod h1:fCa7OJZ/9DRTnOKmxvT6pn+LPWUptQAmHF/SBJUGEcg=
-github.com/scaleway/terraform-provider-scaleway/v2 v2.26.0 h1:IFtecQyHXk0ekiwqt5hE4+lxpZIKPODxgtAPGfZylmU=
-github.com/scaleway/terraform-provider-scaleway/v2 v2.26.0/go.mod h1:KfKqJPQBugGuQN0j3R5oKMl4SwBm1IhEiCu74L0iR+4=
+github.com/scaleway/scaleway-sdk-go v1.0.0-beta.20.0.20230807090124-eefdeb5d74c7 h1:vdxIGBnCDJLL/r0HjxVaxAA8xoGz3VT2BKxDbpIVXKw=
+github.com/scaleway/scaleway-sdk-go v1.0.0-beta.20.0.20230807090124-eefdeb5d74c7/go.mod h1:fCa7OJZ/9DRTnOKmxvT6pn+LPWUptQAmHF/SBJUGEcg=
+github.com/scaleway/terraform-provider-scaleway/v2 v2.27.0 h1:B99zxa5pac4wScfu3widycc45XnEgiyJXQSiPS0mk8g=
+github.com/scaleway/terraform-provider-scaleway/v2 v2.27.0/go.mod h1:+anY7gUntWDHfxAqNH/+UJznNKEI+LZueJttJWHnzjk=
 github.com/sclevine/agouti v3.0.0+incompatible/go.mod h1:b4WX9W9L1sfQKXeJf1mUTLZKJ48R1S7H23Ji7oFO5Bw=
 github.com/sclevine/spec v1.2.0/go.mod h1:W4J29eT/Kzv7/b9IWLB055Z+qvVC9vt0Arko24q7p+U=
 github.com/sean-/seed v0.0.0-20170313163322-e2103e2c3529/go.mod h1:DxrIzT+xaE7yg65j358z/aeFdxmN0P9QXhEzd20vsDc=
