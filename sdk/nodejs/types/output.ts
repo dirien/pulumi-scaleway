@@ -412,6 +412,85 @@ export interface GetDomainRecordWeighted {
     weight: number;
 }
 
+export interface GetFlexibleIpsIp {
+    /**
+     * The date on which the flexible IP was created (RFC 3339 format).
+     */
+    createdAt: string;
+    /**
+     * The description of the flexible IP.
+     */
+    description: string;
+    /**
+     * The MAC address ID.
+     */
+    id: string;
+    ipAddress: string;
+    /**
+     * The MAC address of the Virtual MAC.
+     */
+    macAddresses: outputs.GetFlexibleIpsIpMacAddress[];
+    /**
+     * (Defaults to provider `organizationId`) The ID of the organization the IP is in.
+     */
+    organizationId: string;
+    /**
+     * (Defaults to provider `projectId`) The ID of the project the IP is in.
+     */
+    projectId: string;
+    /**
+     * The reverse domain associated with this IP.
+     */
+    reverse: string;
+    /**
+     * The status of virtual MAC.
+     */
+    status: string;
+    /**
+     * List of tags used as filter. IPs with these exact tags are listed.
+     */
+    tags: string[];
+    /**
+     * The date on which the flexible IP was last updated (RFC 3339 format).
+     */
+    updatedAt: string;
+    /**
+     * `zone`) The zone in which IPs exist.
+     */
+    zone: string;
+}
+
+export interface GetFlexibleIpsIpMacAddress {
+    /**
+     * The date on which the flexible IP was created (RFC 3339 format).
+     */
+    createdAt: string;
+    /**
+     * The MAC address ID.
+     */
+    id: string;
+    /**
+     * The MAC address of the Virtual MAC.
+     */
+    macAddress: string;
+    /**
+     * The type of virtual MAC.
+     */
+    macType: string;
+    /**
+     * The status of virtual MAC.
+     */
+    status: string;
+    /**
+     * The date on which the flexible IP was last updated (RFC 3339 format).
+     */
+    updatedAt: string;
+    /**
+     * `zone`) The zone in which IPs exist.
+     */
+    zone: string;
+}
+
 export interface GetInstanceSecurityGroupInboundRule {
     /**
      * The action to take when rule match. Possible values are: `accept` or `drop`.
@@ -598,6 +677,17 @@ export interface GetIotDeviceMessageFilterPublish {
 export interface GetIotDeviceMessageFilterSubscribe {
     policy: string;
     topics: string[];
+}
+
+export interface GetIpamIpResource {
+    /**
+     * The ID of the resource that the IP is bound to.
+     */
+    id?: string;
+    /**
+     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+     */
+    type?: string;
 }
 
 export interface GetK8sClusterAutoUpgrade {

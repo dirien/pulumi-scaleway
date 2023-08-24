@@ -121,7 +121,6 @@ class _FlexibleIpState:
                  created_at: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  ip_address: Optional[pulumi.Input[str]] = None,
-                 mac_address: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reverse: Optional[pulumi.Input[str]] = None,
@@ -134,7 +133,6 @@ class _FlexibleIpState:
         :param pulumi.Input[str] created_at: The date and time of the creation of the Flexible IP (Format ISO 8601)
         :param pulumi.Input[str] description: A description of the flexible IP.
         :param pulumi.Input[str] ip_address: The IPv4 address of the Flexible IP
-        :param pulumi.Input[str] mac_address: The MAC address of the server associated with this flexible IP
         :param pulumi.Input[str] organization_id: The organization of the Flexible IP
         :param pulumi.Input[str] project_id: The project of the Flexible IP
         :param pulumi.Input[str] reverse: The reverse domain associated with this flexible IP.
@@ -149,8 +147,6 @@ class _FlexibleIpState:
             pulumi.set(__self__, "description", description)
         if ip_address is not None:
             pulumi.set(__self__, "ip_address", ip_address)
-        if mac_address is not None:
-            pulumi.set(__self__, "mac_address", mac_address)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
         if project_id is not None:
@@ -201,18 +197,6 @@ class _FlexibleIpState:
     @ip_address.setter
     def ip_address(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ip_address", value)
-
-    @property
-    @pulumi.getter(name="macAddress")
-    def mac_address(self) -> Optional[pulumi.Input[str]]:
-        """
-        The MAC address of the server associated with this flexible IP
-        """
-        return pulumi.get(self, "mac_address")
-
-    @mac_address.setter
-    def mac_address(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "mac_address", value)
 
     @property
     @pulumi.getter(name="organizationId")
@@ -474,7 +458,6 @@ class FlexibleIp(pulumi.CustomResource):
             __props__.__dict__["zone"] = zone
             __props__.__dict__["created_at"] = None
             __props__.__dict__["ip_address"] = None
-            __props__.__dict__["mac_address"] = None
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["updated_at"] = None
         super(FlexibleIp, __self__).__init__(
@@ -490,7 +473,6 @@ class FlexibleIp(pulumi.CustomResource):
             created_at: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             ip_address: Optional[pulumi.Input[str]] = None,
-            mac_address: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             reverse: Optional[pulumi.Input[str]] = None,
@@ -508,7 +490,6 @@ class FlexibleIp(pulumi.CustomResource):
         :param pulumi.Input[str] created_at: The date and time of the creation of the Flexible IP (Format ISO 8601)
         :param pulumi.Input[str] description: A description of the flexible IP.
         :param pulumi.Input[str] ip_address: The IPv4 address of the Flexible IP
-        :param pulumi.Input[str] mac_address: The MAC address of the server associated with this flexible IP
         :param pulumi.Input[str] organization_id: The organization of the Flexible IP
         :param pulumi.Input[str] project_id: The project of the Flexible IP
         :param pulumi.Input[str] reverse: The reverse domain associated with this flexible IP.
@@ -524,7 +505,6 @@ class FlexibleIp(pulumi.CustomResource):
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["description"] = description
         __props__.__dict__["ip_address"] = ip_address
-        __props__.__dict__["mac_address"] = mac_address
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["reverse"] = reverse
@@ -557,14 +537,6 @@ class FlexibleIp(pulumi.CustomResource):
         The IPv4 address of the Flexible IP
         """
         return pulumi.get(self, "ip_address")
-
-    @property
-    @pulumi.getter(name="macAddress")
-    def mac_address(self) -> pulumi.Output[str]:
-        """
-        The MAC address of the server associated with this flexible IP
-        """
-        return pulumi.get(self, "mac_address")
 
     @property
     @pulumi.getter(name="organizationId")

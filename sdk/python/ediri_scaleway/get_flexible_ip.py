@@ -21,7 +21,7 @@ class GetFlexibleIpResult:
     """
     A collection of values returned by getFlexibleIp.
     """
-    def __init__(__self__, created_at=None, description=None, flexible_ip_id=None, id=None, ip_address=None, mac_address=None, organization_id=None, project_id=None, reverse=None, server_id=None, tags=None, updated_at=None, zone=None):
+    def __init__(__self__, created_at=None, description=None, flexible_ip_id=None, id=None, ip_address=None, organization_id=None, project_id=None, reverse=None, server_id=None, tags=None, updated_at=None, zone=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -37,9 +37,6 @@ class GetFlexibleIpResult:
         if ip_address and not isinstance(ip_address, str):
             raise TypeError("Expected argument 'ip_address' to be a str")
         pulumi.set(__self__, "ip_address", ip_address)
-        if mac_address and not isinstance(mac_address, str):
-            raise TypeError("Expected argument 'mac_address' to be a str")
-        pulumi.set(__self__, "mac_address", mac_address)
         if organization_id and not isinstance(organization_id, str):
             raise TypeError("Expected argument 'organization_id' to be a str")
         pulumi.set(__self__, "organization_id", organization_id)
@@ -89,11 +86,6 @@ class GetFlexibleIpResult:
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> Optional[str]:
         return pulumi.get(self, "ip_address")
-
-    @property
-    @pulumi.getter(name="macAddress")
-    def mac_address(self) -> str:
-        return pulumi.get(self, "mac_address")
 
     @property
     @pulumi.getter(name="organizationId")
@@ -154,7 +146,6 @@ class AwaitableGetFlexibleIpResult(GetFlexibleIpResult):
             flexible_ip_id=self.flexible_ip_id,
             id=self.id,
             ip_address=self.ip_address,
-            mac_address=self.mac_address,
             organization_id=self.organization_id,
             project_id=self.project_id,
             reverse=self.reverse,
@@ -189,7 +180,6 @@ def get_flexible_ip(flexible_ip_id: Optional[str] = None,
         flexible_ip_id=pulumi.get(__ret__, 'flexible_ip_id'),
         id=pulumi.get(__ret__, 'id'),
         ip_address=pulumi.get(__ret__, 'ip_address'),
-        mac_address=pulumi.get(__ret__, 'mac_address'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         reverse=pulumi.get(__ret__, 'reverse'),

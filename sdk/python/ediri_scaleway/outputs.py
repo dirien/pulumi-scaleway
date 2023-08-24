@@ -105,6 +105,8 @@ __all__ = [
     'GetDomainRecordHttpServiceResult',
     'GetDomainRecordViewResult',
     'GetDomainRecordWeightedResult',
+    'GetFlexibleIpsIpResult',
+    'GetFlexibleIpsIpMacAddressResult',
     'GetInstanceSecurityGroupInboundRuleResult',
     'GetInstanceSecurityGroupOutboundRuleResult',
     'GetInstanceServerPrivateNetworkResult',
@@ -115,6 +117,7 @@ __all__ = [
     'GetIotDeviceMessageFilterResult',
     'GetIotDeviceMessageFilterPublishResult',
     'GetIotDeviceMessageFilterSubscribeResult',
+    'GetIpamIpResourceResult',
     'GetK8sClusterAutoUpgradeResult',
     'GetK8sClusterAutoscalerConfigResult',
     'GetK8sClusterKubeconfigResult',
@@ -5657,6 +5660,225 @@ class GetDomainRecordWeightedResult(dict):
 
 
 @pulumi.output_type
+class GetFlexibleIpsIpResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 description: str,
+                 id: str,
+                 ip_address: str,
+                 mac_addresses: Sequence['outputs.GetFlexibleIpsIpMacAddressResult'],
+                 organization_id: str,
+                 project_id: str,
+                 reverse: str,
+                 status: str,
+                 tags: Sequence[str],
+                 updated_at: str,
+                 zone: str):
+        """
+        :param str created_at: The date on which the flexible IP was created (RFC 3339 format).
+        :param str description: The description of the flexible IP.
+        :param str id: The MAC address ID.
+        :param Sequence['GetFlexibleIpsIpMacAddressArgs'] mac_addresses: The MAC address of the Virtual MAC.
+        :param str organization_id: (Defaults to provider `organization_id`) The ID of the organization the IP is in.
+        :param str project_id: (Defaults to provider `project_id`) The ID of the project the IP is in.
+        :param str reverse: The reverse domain associated with this IP.
+        :param str status: The status of virtual MAC.
+        :param Sequence[str] tags: List of tags used as filter. IPs with these exact tags are listed.
+        :param str updated_at: The date on which the flexible IP was last updated (RFC 3339 format).
+        :param str zone: `zone`) The zone in which IPs exist.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "mac_addresses", mac_addresses)
+        pulumi.set(__self__, "organization_id", organization_id)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "reverse", reverse)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The date on which the flexible IP was created (RFC 3339 format).
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the flexible IP.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The MAC address ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> str:
+        return pulumi.get(self, "ip_address")
+
+    @property
+    @pulumi.getter(name="macAddresses")
+    def mac_addresses(self) -> Sequence['outputs.GetFlexibleIpsIpMacAddressResult']:
+        """
+        The MAC address of the Virtual MAC.
+        """
+        return pulumi.get(self, "mac_addresses")
+
+    @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> str:
+        """
+        (Defaults to provider `organization_id`) The ID of the organization the IP is in.
+        """
+        return pulumi.get(self, "organization_id")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        (Defaults to provider `project_id`) The ID of the project the IP is in.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def reverse(self) -> str:
+        """
+        The reverse domain associated with this IP.
+        """
+        return pulumi.get(self, "reverse")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of virtual MAC.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence[str]:
+        """
+        List of tags used as filter. IPs with these exact tags are listed.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The date on which the flexible IP was last updated (RFC 3339 format).
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter
+    def zone(self) -> str:
+        """
+        `zone`) The zone in which IPs exist.
+        """
+        return pulumi.get(self, "zone")
+
+
+@pulumi.output_type
+class GetFlexibleIpsIpMacAddressResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 id: str,
+                 mac_address: str,
+                 mac_type: str,
+                 status: str,
+                 updated_at: str,
+                 zone: str):
+        """
+        :param str created_at: The date on which the flexible IP was created (RFC 3339 format).
+        :param str id: The MAC address ID.
+        :param str mac_address: The MAC address of the Virtual MAC.
+        :param str mac_type: The type of virtual MAC.
+        :param str status: The status of virtual MAC.
+        :param str updated_at: The date on which the flexible IP was last updated (RFC 3339 format).
+        :param str zone: `zone`) The zone in which IPs exist.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "mac_address", mac_address)
+        pulumi.set(__self__, "mac_type", mac_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The date on which the flexible IP was created (RFC 3339 format).
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The MAC address ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="macAddress")
+    def mac_address(self) -> str:
+        """
+        The MAC address of the Virtual MAC.
+        """
+        return pulumi.get(self, "mac_address")
+
+    @property
+    @pulumi.getter(name="macType")
+    def mac_type(self) -> str:
+        """
+        The type of virtual MAC.
+        """
+        return pulumi.get(self, "mac_type")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of virtual MAC.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The date on which the flexible IP was last updated (RFC 3339 format).
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter
+    def zone(self) -> str:
+        """
+        `zone`) The zone in which IPs exist.
+        """
+        return pulumi.get(self, "zone")
+
+
+@pulumi.output_type
 class GetInstanceSecurityGroupInboundRuleResult(dict):
     def __init__(__self__, *,
                  action: str,
@@ -6225,6 +6447,37 @@ class GetIotDeviceMessageFilterSubscribeResult(dict):
     @pulumi.getter
     def topics(self) -> Sequence[str]:
         return pulumi.get(self, "topics")
+
+
+@pulumi.output_type
+class GetIpamIpResourceResult(dict):
+    def __init__(__self__, *,
+                 id: Optional[str] = None,
+                 type: Optional[str] = None):
+        """
+        :param str id: The ID of the resource that the IP is bound to.
+        :param str type: The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the resource that the IP is bound to.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type

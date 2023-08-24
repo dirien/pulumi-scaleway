@@ -53,6 +53,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DomainZone{}
 	case "scaleway:index/flexibleIp:FlexibleIp":
 		r = &FlexibleIp{}
+	case "scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress":
+		r = &FlexibleIpMacAddress{}
 	case "scaleway:index/function:Function":
 		r = &Function{}
 	case "scaleway:index/functionCron:FunctionCron":
@@ -296,6 +298,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/flexibleIp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/flexibleIpMacAddress",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

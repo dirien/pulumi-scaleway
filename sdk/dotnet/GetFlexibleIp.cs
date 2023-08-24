@@ -86,7 +86,6 @@ namespace ediri.Scaleway
         /// </summary>
         public readonly string Id;
         public readonly string? IpAddress;
-        public readonly string MacAddress;
         /// <summary>
         /// (Defaults to provider `organization_id`) The ID of the organization the IP is in.
         /// </summary>
@@ -119,8 +118,6 @@ namespace ediri.Scaleway
 
             string? ipAddress,
 
-            string macAddress,
-
             string organizationId,
 
             string projectId,
@@ -140,7 +137,6 @@ namespace ediri.Scaleway
             FlexibleIpId = flexibleIpId;
             Id = id;
             IpAddress = ipAddress;
-            MacAddress = macAddress;
             OrganizationId = organizationId;
             ProjectId = projectId;
             Reverse = reverse;

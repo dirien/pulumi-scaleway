@@ -204,6 +204,7 @@ namespace ediri.Scaleway
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly ImmutableArray<string> IpIds;
         public readonly string MacAddress;
         public readonly string? PrivateNetworkId;
         public readonly string? PrivateNicId;
@@ -214,6 +215,8 @@ namespace ediri.Scaleway
         [OutputConstructor]
         private GetInstancePrivateNicResult(
             string id,
+
+            ImmutableArray<string> ipIds,
 
             string macAddress,
 
@@ -228,6 +231,7 @@ namespace ediri.Scaleway
             string? zone)
         {
             Id = id;
+            IpIds = ipIds;
             MacAddress = macAddress;
             PrivateNetworkId = privateNetworkId;
             PrivateNicId = privateNicId;

@@ -21,6 +21,7 @@ from .container_trigger import *
 from .domain_record import *
 from .domain_zone import *
 from .flexible_ip import *
+from .flexible_ip_mac_address import *
 from .function import *
 from .function_cron import *
 from .function_domain import *
@@ -41,6 +42,7 @@ from .get_container_namespace import *
 from .get_domain_record import *
 from .get_domain_zone import *
 from .get_flexible_ip import *
+from .get_flexible_ips import *
 from .get_function import *
 from .get_function_namespace import *
 from .get_iam_application import *
@@ -57,6 +59,7 @@ from .get_instance_snapshot import *
 from .get_instance_volume import *
 from .get_iot_device import *
 from .get_iot_hub import *
+from .get_ipam_ip import *
 from .get_k8s_cluster import *
 from .get_k8s_pool import *
 from .get_k8s_version import *
@@ -298,6 +301,14 @@ _utilities.register(
   "fqn": "ediri_scaleway",
   "classes": {
    "scaleway:index/flexibleIp:FlexibleIp": "FlexibleIp"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/flexibleIpMacAddress",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress": "FlexibleIpMacAddress"
   }
  },
  {
