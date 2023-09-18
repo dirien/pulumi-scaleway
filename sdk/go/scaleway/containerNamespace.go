@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Serverless Container Namespace.
@@ -240,6 +241,12 @@ func (i *ContainerNamespace) ToContainerNamespaceOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(ContainerNamespaceOutput)
 }
 
+func (i *ContainerNamespace) ToOutput(ctx context.Context) pulumix.Output[*ContainerNamespace] {
+	return pulumix.Output[*ContainerNamespace]{
+		OutputState: i.ToContainerNamespaceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ContainerNamespaceArrayInput is an input type that accepts ContainerNamespaceArray and ContainerNamespaceArrayOutput values.
 // You can construct a concrete instance of `ContainerNamespaceArrayInput` via:
 //
@@ -263,6 +270,12 @@ func (i ContainerNamespaceArray) ToContainerNamespaceArrayOutput() ContainerName
 
 func (i ContainerNamespaceArray) ToContainerNamespaceArrayOutputWithContext(ctx context.Context) ContainerNamespaceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ContainerNamespaceArrayOutput)
+}
+
+func (i ContainerNamespaceArray) ToOutput(ctx context.Context) pulumix.Output[[]*ContainerNamespace] {
+	return pulumix.Output[[]*ContainerNamespace]{
+		OutputState: i.ToContainerNamespaceArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ContainerNamespaceMapInput is an input type that accepts ContainerNamespaceMap and ContainerNamespaceMapOutput values.
@@ -290,6 +303,12 @@ func (i ContainerNamespaceMap) ToContainerNamespaceMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(ContainerNamespaceMapOutput)
 }
 
+func (i ContainerNamespaceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ContainerNamespace] {
+	return pulumix.Output[map[string]*ContainerNamespace]{
+		OutputState: i.ToContainerNamespaceMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ContainerNamespaceOutput struct{ *pulumi.OutputState }
 
 func (ContainerNamespaceOutput) ElementType() reflect.Type {
@@ -302,6 +321,12 @@ func (o ContainerNamespaceOutput) ToContainerNamespaceOutput() ContainerNamespac
 
 func (o ContainerNamespaceOutput) ToContainerNamespaceOutputWithContext(ctx context.Context) ContainerNamespaceOutput {
 	return o
+}
+
+func (o ContainerNamespaceOutput) ToOutput(ctx context.Context) pulumix.Output[*ContainerNamespace] {
+	return pulumix.Output[*ContainerNamespace]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The description of the namespace.
@@ -372,6 +397,12 @@ func (o ContainerNamespaceArrayOutput) ToContainerNamespaceArrayOutputWithContex
 	return o
 }
 
+func (o ContainerNamespaceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ContainerNamespace] {
+	return pulumix.Output[[]*ContainerNamespace]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ContainerNamespaceArrayOutput) Index(i pulumi.IntInput) ContainerNamespaceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ContainerNamespace {
 		return vs[0].([]*ContainerNamespace)[vs[1].(int)]
@@ -390,6 +421,12 @@ func (o ContainerNamespaceMapOutput) ToContainerNamespaceMapOutput() ContainerNa
 
 func (o ContainerNamespaceMapOutput) ToContainerNamespaceMapOutputWithContext(ctx context.Context) ContainerNamespaceMapOutput {
 	return o
+}
+
+func (o ContainerNamespaceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ContainerNamespace] {
+	return pulumix.Output[map[string]*ContainerNamespace]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ContainerNamespaceMapOutput) MapIndex(k pulumi.StringInput) ContainerNamespaceOutput {

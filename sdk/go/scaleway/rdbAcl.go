@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Database instance authorized IPs.
@@ -178,6 +179,12 @@ func (i *RdbAcl) ToRdbAclOutputWithContext(ctx context.Context) RdbAclOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RdbAclOutput)
 }
 
+func (i *RdbAcl) ToOutput(ctx context.Context) pulumix.Output[*RdbAcl] {
+	return pulumix.Output[*RdbAcl]{
+		OutputState: i.ToRdbAclOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RdbAclArrayInput is an input type that accepts RdbAclArray and RdbAclArrayOutput values.
 // You can construct a concrete instance of `RdbAclArrayInput` via:
 //
@@ -201,6 +208,12 @@ func (i RdbAclArray) ToRdbAclArrayOutput() RdbAclArrayOutput {
 
 func (i RdbAclArray) ToRdbAclArrayOutputWithContext(ctx context.Context) RdbAclArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RdbAclArrayOutput)
+}
+
+func (i RdbAclArray) ToOutput(ctx context.Context) pulumix.Output[[]*RdbAcl] {
+	return pulumix.Output[[]*RdbAcl]{
+		OutputState: i.ToRdbAclArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RdbAclMapInput is an input type that accepts RdbAclMap and RdbAclMapOutput values.
@@ -228,6 +241,12 @@ func (i RdbAclMap) ToRdbAclMapOutputWithContext(ctx context.Context) RdbAclMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(RdbAclMapOutput)
 }
 
+func (i RdbAclMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RdbAcl] {
+	return pulumix.Output[map[string]*RdbAcl]{
+		OutputState: i.ToRdbAclMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RdbAclOutput struct{ *pulumi.OutputState }
 
 func (RdbAclOutput) ElementType() reflect.Type {
@@ -240,6 +259,12 @@ func (o RdbAclOutput) ToRdbAclOutput() RdbAclOutput {
 
 func (o RdbAclOutput) ToRdbAclOutputWithContext(ctx context.Context) RdbAclOutput {
 	return o
+}
+
+func (o RdbAclOutput) ToOutput(ctx context.Context) pulumix.Output[*RdbAcl] {
+	return pulumix.Output[*RdbAcl]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A list of ACLs (structure is described below)
@@ -273,6 +298,12 @@ func (o RdbAclArrayOutput) ToRdbAclArrayOutputWithContext(ctx context.Context) R
 	return o
 }
 
+func (o RdbAclArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RdbAcl] {
+	return pulumix.Output[[]*RdbAcl]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RdbAclArrayOutput) Index(i pulumi.IntInput) RdbAclOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RdbAcl {
 		return vs[0].([]*RdbAcl)[vs[1].(int)]
@@ -291,6 +322,12 @@ func (o RdbAclMapOutput) ToRdbAclMapOutput() RdbAclMapOutput {
 
 func (o RdbAclMapOutput) ToRdbAclMapOutputWithContext(ctx context.Context) RdbAclMapOutput {
 	return o
+}
+
+func (o RdbAclMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RdbAcl] {
+	return pulumix.Output[map[string]*RdbAcl]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RdbAclMapOutput) MapIndex(k pulumi.StringInput) RdbAclOutput {

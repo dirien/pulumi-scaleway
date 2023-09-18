@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a domain zone.
@@ -116,6 +117,12 @@ func (o LookupDomainZoneResultOutput) ToLookupDomainZoneResultOutput() LookupDom
 
 func (o LookupDomainZoneResultOutput) ToLookupDomainZoneResultOutputWithContext(ctx context.Context) LookupDomainZoneResultOutput {
 	return o
+}
+
+func (o LookupDomainZoneResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDomainZoneResult] {
+	return pulumix.Output[LookupDomainZoneResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupDomainZoneResultOutput) Domain() pulumi.StringPtrOutput {

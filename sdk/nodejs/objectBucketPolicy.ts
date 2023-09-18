@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  *                 SCW: "application_id:<APPLICATION_ID>",
  *             },
  *             Action: "s3:ListBucket",
- *             Resources: [
+ *             Resource: [
  *                 bucketName,
  *                 `${bucketName1}/*`,
  *             ],

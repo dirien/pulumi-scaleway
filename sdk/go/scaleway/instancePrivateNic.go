@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Instance Private NICs. For more information, see
@@ -231,6 +232,12 @@ func (i *InstancePrivateNic) ToInstancePrivateNicOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(InstancePrivateNicOutput)
 }
 
+func (i *InstancePrivateNic) ToOutput(ctx context.Context) pulumix.Output[*InstancePrivateNic] {
+	return pulumix.Output[*InstancePrivateNic]{
+		OutputState: i.ToInstancePrivateNicOutputWithContext(ctx).OutputState,
+	}
+}
+
 // InstancePrivateNicArrayInput is an input type that accepts InstancePrivateNicArray and InstancePrivateNicArrayOutput values.
 // You can construct a concrete instance of `InstancePrivateNicArrayInput` via:
 //
@@ -254,6 +261,12 @@ func (i InstancePrivateNicArray) ToInstancePrivateNicArrayOutput() InstancePriva
 
 func (i InstancePrivateNicArray) ToInstancePrivateNicArrayOutputWithContext(ctx context.Context) InstancePrivateNicArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstancePrivateNicArrayOutput)
+}
+
+func (i InstancePrivateNicArray) ToOutput(ctx context.Context) pulumix.Output[[]*InstancePrivateNic] {
+	return pulumix.Output[[]*InstancePrivateNic]{
+		OutputState: i.ToInstancePrivateNicArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // InstancePrivateNicMapInput is an input type that accepts InstancePrivateNicMap and InstancePrivateNicMapOutput values.
@@ -281,6 +294,12 @@ func (i InstancePrivateNicMap) ToInstancePrivateNicMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(InstancePrivateNicMapOutput)
 }
 
+func (i InstancePrivateNicMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstancePrivateNic] {
+	return pulumix.Output[map[string]*InstancePrivateNic]{
+		OutputState: i.ToInstancePrivateNicMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type InstancePrivateNicOutput struct{ *pulumi.OutputState }
 
 func (InstancePrivateNicOutput) ElementType() reflect.Type {
@@ -293,6 +312,12 @@ func (o InstancePrivateNicOutput) ToInstancePrivateNicOutput() InstancePrivateNi
 
 func (o InstancePrivateNicOutput) ToInstancePrivateNicOutputWithContext(ctx context.Context) InstancePrivateNicOutput {
 	return o
+}
+
+func (o InstancePrivateNicOutput) ToOutput(ctx context.Context) pulumix.Output[*InstancePrivateNic] {
+	return pulumix.Output[*InstancePrivateNic]{
+		OutputState: o.OutputState,
+	}
 }
 
 // IPAM ip list, should be for internal use only
@@ -339,6 +364,12 @@ func (o InstancePrivateNicArrayOutput) ToInstancePrivateNicArrayOutputWithContex
 	return o
 }
 
+func (o InstancePrivateNicArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*InstancePrivateNic] {
+	return pulumix.Output[[]*InstancePrivateNic]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o InstancePrivateNicArrayOutput) Index(i pulumi.IntInput) InstancePrivateNicOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstancePrivateNic {
 		return vs[0].([]*InstancePrivateNic)[vs[1].(int)]
@@ -357,6 +388,12 @@ func (o InstancePrivateNicMapOutput) ToInstancePrivateNicMapOutput() InstancePri
 
 func (o InstancePrivateNicMapOutput) ToInstancePrivateNicMapOutputWithContext(ctx context.Context) InstancePrivateNicMapOutput {
 	return o
+}
+
+func (o InstancePrivateNicMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstancePrivateNic] {
+	return pulumix.Output[map[string]*InstancePrivateNic]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o InstancePrivateNicMapOutput) MapIndex(k pulumi.StringInput) InstancePrivateNicOutput {

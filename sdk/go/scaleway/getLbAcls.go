@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about multiple Load Balancer ACLs.
@@ -122,6 +123,12 @@ func (o GetLbAclsResultOutput) ToGetLbAclsResultOutput() GetLbAclsResultOutput {
 
 func (o GetLbAclsResultOutput) ToGetLbAclsResultOutputWithContext(ctx context.Context) GetLbAclsResultOutput {
 	return o
+}
+
+func (o GetLbAclsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetLbAclsResult] {
+	return pulumix.Output[GetLbAclsResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // List of found ACLs

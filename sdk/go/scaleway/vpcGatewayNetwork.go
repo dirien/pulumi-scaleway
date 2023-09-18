@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway VPC Public Gateway Network.
@@ -297,6 +298,12 @@ func (i *VpcGatewayNetwork) ToVpcGatewayNetworkOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(VpcGatewayNetworkOutput)
 }
 
+func (i *VpcGatewayNetwork) ToOutput(ctx context.Context) pulumix.Output[*VpcGatewayNetwork] {
+	return pulumix.Output[*VpcGatewayNetwork]{
+		OutputState: i.ToVpcGatewayNetworkOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpcGatewayNetworkArrayInput is an input type that accepts VpcGatewayNetworkArray and VpcGatewayNetworkArrayOutput values.
 // You can construct a concrete instance of `VpcGatewayNetworkArrayInput` via:
 //
@@ -320,6 +327,12 @@ func (i VpcGatewayNetworkArray) ToVpcGatewayNetworkArrayOutput() VpcGatewayNetwo
 
 func (i VpcGatewayNetworkArray) ToVpcGatewayNetworkArrayOutputWithContext(ctx context.Context) VpcGatewayNetworkArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpcGatewayNetworkArrayOutput)
+}
+
+func (i VpcGatewayNetworkArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpcGatewayNetwork] {
+	return pulumix.Output[[]*VpcGatewayNetwork]{
+		OutputState: i.ToVpcGatewayNetworkArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // VpcGatewayNetworkMapInput is an input type that accepts VpcGatewayNetworkMap and VpcGatewayNetworkMapOutput values.
@@ -347,6 +360,12 @@ func (i VpcGatewayNetworkMap) ToVpcGatewayNetworkMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(VpcGatewayNetworkMapOutput)
 }
 
+func (i VpcGatewayNetworkMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpcGatewayNetwork] {
+	return pulumix.Output[map[string]*VpcGatewayNetwork]{
+		OutputState: i.ToVpcGatewayNetworkMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpcGatewayNetworkOutput struct{ *pulumi.OutputState }
 
 func (VpcGatewayNetworkOutput) ElementType() reflect.Type {
@@ -359,6 +378,12 @@ func (o VpcGatewayNetworkOutput) ToVpcGatewayNetworkOutput() VpcGatewayNetworkOu
 
 func (o VpcGatewayNetworkOutput) ToVpcGatewayNetworkOutputWithContext(ctx context.Context) VpcGatewayNetworkOutput {
 	return o
+}
+
+func (o VpcGatewayNetworkOutput) ToOutput(ctx context.Context) pulumix.Output[*VpcGatewayNetwork] {
+	return pulumix.Output[*VpcGatewayNetwork]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Remove DHCP config on this network on destroy. It requires DHCP id.
@@ -430,6 +455,12 @@ func (o VpcGatewayNetworkArrayOutput) ToVpcGatewayNetworkArrayOutputWithContext(
 	return o
 }
 
+func (o VpcGatewayNetworkArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpcGatewayNetwork] {
+	return pulumix.Output[[]*VpcGatewayNetwork]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpcGatewayNetworkArrayOutput) Index(i pulumi.IntInput) VpcGatewayNetworkOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpcGatewayNetwork {
 		return vs[0].([]*VpcGatewayNetwork)[vs[1].(int)]
@@ -448,6 +479,12 @@ func (o VpcGatewayNetworkMapOutput) ToVpcGatewayNetworkMapOutput() VpcGatewayNet
 
 func (o VpcGatewayNetworkMapOutput) ToVpcGatewayNetworkMapOutputWithContext(ctx context.Context) VpcGatewayNetworkMapOutput {
 	return o
+}
+
+func (o VpcGatewayNetworkMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpcGatewayNetwork] {
+	return pulumix.Output[map[string]*VpcGatewayNetwork]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpcGatewayNetworkMapOutput) MapIndex(k pulumi.StringInput) VpcGatewayNetworkOutput {

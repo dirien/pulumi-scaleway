@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about the Bucket.
@@ -151,6 +152,12 @@ func (o LookupObjectBucketResultOutput) ToLookupObjectBucketResultOutput() Looku
 
 func (o LookupObjectBucketResultOutput) ToLookupObjectBucketResultOutputWithContext(ctx context.Context) LookupObjectBucketResultOutput {
 	return o
+}
+
+func (o LookupObjectBucketResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupObjectBucketResult] {
+	return pulumix.Output[LookupObjectBucketResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupObjectBucketResultOutput) Acl() pulumi.StringOutput {

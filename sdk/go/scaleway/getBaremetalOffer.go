@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a baremetal offer. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
@@ -129,6 +130,12 @@ func (o GetBaremetalOfferResultOutput) ToGetBaremetalOfferResultOutput() GetBare
 
 func (o GetBaremetalOfferResultOutput) ToGetBaremetalOfferResultOutputWithContext(ctx context.Context) GetBaremetalOfferResultOutput {
 	return o
+}
+
+func (o GetBaremetalOfferResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetBaremetalOfferResult] {
+	return pulumix.Output[GetBaremetalOfferResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Available Bandwidth with the offer.

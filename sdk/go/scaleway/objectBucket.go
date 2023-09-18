@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway object storage buckets.
@@ -367,6 +368,12 @@ func (i *ObjectBucket) ToObjectBucketOutputWithContext(ctx context.Context) Obje
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketOutput)
 }
 
+func (i *ObjectBucket) ToOutput(ctx context.Context) pulumix.Output[*ObjectBucket] {
+	return pulumix.Output[*ObjectBucket]{
+		OutputState: i.ToObjectBucketOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ObjectBucketArrayInput is an input type that accepts ObjectBucketArray and ObjectBucketArrayOutput values.
 // You can construct a concrete instance of `ObjectBucketArrayInput` via:
 //
@@ -390,6 +397,12 @@ func (i ObjectBucketArray) ToObjectBucketArrayOutput() ObjectBucketArrayOutput {
 
 func (i ObjectBucketArray) ToObjectBucketArrayOutputWithContext(ctx context.Context) ObjectBucketArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketArrayOutput)
+}
+
+func (i ObjectBucketArray) ToOutput(ctx context.Context) pulumix.Output[[]*ObjectBucket] {
+	return pulumix.Output[[]*ObjectBucket]{
+		OutputState: i.ToObjectBucketArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ObjectBucketMapInput is an input type that accepts ObjectBucketMap and ObjectBucketMapOutput values.
@@ -417,6 +430,12 @@ func (i ObjectBucketMap) ToObjectBucketMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketMapOutput)
 }
 
+func (i ObjectBucketMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ObjectBucket] {
+	return pulumix.Output[map[string]*ObjectBucket]{
+		OutputState: i.ToObjectBucketMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ObjectBucketOutput struct{ *pulumi.OutputState }
 
 func (ObjectBucketOutput) ElementType() reflect.Type {
@@ -429,6 +448,12 @@ func (o ObjectBucketOutput) ToObjectBucketOutput() ObjectBucketOutput {
 
 func (o ObjectBucketOutput) ToObjectBucketOutputWithContext(ctx context.Context) ObjectBucketOutput {
 	return o
+}
+
+func (o ObjectBucketOutput) ToOutput(ctx context.Context) pulumix.Output[*ObjectBucket] {
+	return pulumix.Output[*ObjectBucket]{
+		OutputState: o.OutputState,
+	}
 }
 
 // (Deprecated) The canned ACL you want to apply to the bucket.
@@ -505,6 +530,12 @@ func (o ObjectBucketArrayOutput) ToObjectBucketArrayOutputWithContext(ctx contex
 	return o
 }
 
+func (o ObjectBucketArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ObjectBucket] {
+	return pulumix.Output[[]*ObjectBucket]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ObjectBucketArrayOutput) Index(i pulumi.IntInput) ObjectBucketOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ObjectBucket {
 		return vs[0].([]*ObjectBucket)[vs[1].(int)]
@@ -523,6 +554,12 @@ func (o ObjectBucketMapOutput) ToObjectBucketMapOutput() ObjectBucketMapOutput {
 
 func (o ObjectBucketMapOutput) ToObjectBucketMapOutputWithContext(ctx context.Context) ObjectBucketMapOutput {
 	return o
+}
+
+func (o ObjectBucketMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ObjectBucket] {
+	return pulumix.Output[map[string]*ObjectBucket]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ObjectBucketMapOutput) MapIndex(k pulumi.StringInput) ObjectBucketOutput {

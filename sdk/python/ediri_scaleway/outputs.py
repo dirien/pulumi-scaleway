@@ -32,6 +32,7 @@ __all__ = [
     'InstanceSecurityGroupRulesInboundRule',
     'InstanceSecurityGroupRulesOutboundRule',
     'InstanceServerPrivateNetwork',
+    'InstanceServerPublicIp',
     'InstanceServerRootVolume',
     'InstanceSnapshotImport',
     'IotDeviceCertificate',
@@ -110,8 +111,10 @@ __all__ = [
     'GetInstanceSecurityGroupInboundRuleResult',
     'GetInstanceSecurityGroupOutboundRuleResult',
     'GetInstanceServerPrivateNetworkResult',
+    'GetInstanceServerPublicIpResult',
     'GetInstanceServerRootVolumeResult',
     'GetInstanceServersServerResult',
+    'GetInstanceServersServerPublicIpResult',
     'GetInstanceSnapshotImportResult',
     'GetIotDeviceCertificateResult',
     'GetIotDeviceMessageFilterResult',
@@ -1717,6 +1720,37 @@ class InstanceServerPrivateNetwork(dict):
         `zone`) The zone in which the server should be created.
         """
         return pulumi.get(self, "zone")
+
+
+@pulumi.output_type
+class InstanceServerPublicIp(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 id: Optional[str] = None):
+        """
+        :param str address: The address of the IP
+        :param str id: The ID of the IP
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        The address of the IP
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the IP
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -6056,6 +6090,35 @@ class GetInstanceServerPrivateNetworkResult(dict):
 
 
 @pulumi.output_type
+class GetInstanceServerPublicIpResult(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 id: str):
+        """
+        :param str address: The address of the IP
+        :param str id: The ID of the IP
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The address of the IP
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the IP
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
 class GetInstanceServerRootVolumeResult(dict):
     def __init__(__self__, *,
                  boot: bool,
@@ -6139,6 +6202,8 @@ class GetInstanceServersServerResult(dict):
                  private_ip: str,
                  project_id: str,
                  public_ip: str,
+                 public_ips: Sequence['outputs.GetInstanceServersServerPublicIpResult'],
+                 routed_ip_enabled: bool,
                  security_group_id: str,
                  state: str,
                  tags: Sequence[str],
@@ -6149,7 +6214,7 @@ class GetInstanceServersServerResult(dict):
         :param str bootscript_id: The ID of the bootscript.
         :param bool enable_dynamic_ip: If true a dynamic IP will be attached to the server.
         :param bool enable_ipv6: Determines if IPv6 is enabled for the server.
-        :param str id: The ID of the server.
+        :param str id: The ID of the IP
         :param str image: The UUID or the label of the base image used by the server.
         :param str ipv6_address: The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
         :param str ipv6_gateway: The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
@@ -6159,7 +6224,9 @@ class GetInstanceServersServerResult(dict):
         :param str placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
         :param str private_ip: The Scaleway internal IP address of the server.
         :param str project_id: The ID of the project the server is associated with.
-        :param str public_ip: The public IPv4 address of the server.
+        :param str public_ip: The public IP address of the server.
+        :param Sequence['GetInstanceServersServerPublicIpArgs'] public_ips: The list of public IPs of the server
+        :param bool routed_ip_enabled: True if the server support routed ip only.
         :param str security_group_id: The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
         :param str state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param Sequence[str] tags: List of tags used as filter. Servers with these exact tags are listed.
@@ -6182,6 +6249,8 @@ class GetInstanceServersServerResult(dict):
         pulumi.set(__self__, "private_ip", private_ip)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "public_ip", public_ip)
+        pulumi.set(__self__, "public_ips", public_ips)
+        pulumi.set(__self__, "routed_ip_enabled", routed_ip_enabled)
         pulumi.set(__self__, "security_group_id", security_group_id)
         pulumi.set(__self__, "state", state)
         pulumi.set(__self__, "tags", tags)
@@ -6224,7 +6293,7 @@ class GetInstanceServersServerResult(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        The ID of the server.
+        The ID of the IP
         """
         return pulumi.get(self, "id")
 
@@ -6309,9 +6378,25 @@ class GetInstanceServersServerResult(dict):
     @pulumi.getter(name="publicIp")
     def public_ip(self) -> str:
         """
-        The public IPv4 address of the server.
+        The public IP address of the server.
         """
         return pulumi.get(self, "public_ip")
+
+    @property
+    @pulumi.getter(name="publicIps")
+    def public_ips(self) -> Sequence['outputs.GetInstanceServersServerPublicIpResult']:
+        """
+        The list of public IPs of the server
+        """
+        return pulumi.get(self, "public_ips")
+
+    @property
+    @pulumi.getter(name="routedIpEnabled")
+    def routed_ip_enabled(self) -> bool:
+        """
+        True if the server support routed ip only.
+        """
+        return pulumi.get(self, "routed_ip_enabled")
 
     @property
     @pulumi.getter(name="securityGroupId")
@@ -6352,6 +6437,35 @@ class GetInstanceServersServerResult(dict):
         `zone`) The zone in which servers exist.
         """
         return pulumi.get(self, "zone")
+
+
+@pulumi.output_type
+class GetInstanceServersServerPublicIpResult(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 id: str):
+        """
+        :param str address: The address of the IP
+        :param str id: The ID of the IP
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The address of the IP
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the IP
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type

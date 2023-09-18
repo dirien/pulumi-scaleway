@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
@@ -438,6 +439,12 @@ func (i *BaremetalServer) ToBaremetalServerOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(BaremetalServerOutput)
 }
 
+func (i *BaremetalServer) ToOutput(ctx context.Context) pulumix.Output[*BaremetalServer] {
+	return pulumix.Output[*BaremetalServer]{
+		OutputState: i.ToBaremetalServerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // BaremetalServerArrayInput is an input type that accepts BaremetalServerArray and BaremetalServerArrayOutput values.
 // You can construct a concrete instance of `BaremetalServerArrayInput` via:
 //
@@ -461,6 +468,12 @@ func (i BaremetalServerArray) ToBaremetalServerArrayOutput() BaremetalServerArra
 
 func (i BaremetalServerArray) ToBaremetalServerArrayOutputWithContext(ctx context.Context) BaremetalServerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(BaremetalServerArrayOutput)
+}
+
+func (i BaremetalServerArray) ToOutput(ctx context.Context) pulumix.Output[[]*BaremetalServer] {
+	return pulumix.Output[[]*BaremetalServer]{
+		OutputState: i.ToBaremetalServerArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // BaremetalServerMapInput is an input type that accepts BaremetalServerMap and BaremetalServerMapOutput values.
@@ -488,6 +501,12 @@ func (i BaremetalServerMap) ToBaremetalServerMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(BaremetalServerMapOutput)
 }
 
+func (i BaremetalServerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*BaremetalServer] {
+	return pulumix.Output[map[string]*BaremetalServer]{
+		OutputState: i.ToBaremetalServerMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type BaremetalServerOutput struct{ *pulumi.OutputState }
 
 func (BaremetalServerOutput) ElementType() reflect.Type {
@@ -500,6 +519,12 @@ func (o BaremetalServerOutput) ToBaremetalServerOutput() BaremetalServerOutput {
 
 func (o BaremetalServerOutput) ToBaremetalServerOutputWithContext(ctx context.Context) BaremetalServerOutput {
 	return o
+}
+
+func (o BaremetalServerOutput) ToOutput(ctx context.Context) pulumix.Output[*BaremetalServer] {
+	return pulumix.Output[*BaremetalServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A description for the server.
@@ -648,6 +673,12 @@ func (o BaremetalServerArrayOutput) ToBaremetalServerArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o BaremetalServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*BaremetalServer] {
+	return pulumix.Output[[]*BaremetalServer]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o BaremetalServerArrayOutput) Index(i pulumi.IntInput) BaremetalServerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *BaremetalServer {
 		return vs[0].([]*BaremetalServer)[vs[1].(int)]
@@ -666,6 +697,12 @@ func (o BaremetalServerMapOutput) ToBaremetalServerMapOutput() BaremetalServerMa
 
 func (o BaremetalServerMapOutput) ToBaremetalServerMapOutputWithContext(ctx context.Context) BaremetalServerMapOutput {
 	return o
+}
+
+func (o BaremetalServerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*BaremetalServer] {
+	return pulumix.Output[map[string]*BaremetalServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o BaremetalServerMapOutput) MapIndex(k pulumi.StringInput) BaremetalServerOutput {

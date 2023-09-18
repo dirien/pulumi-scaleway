@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Load-Balancers IPs.
@@ -179,6 +180,12 @@ func (i *LbIp) ToLbIpOutputWithContext(ctx context.Context) LbIpOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LbIpOutput)
 }
 
+func (i *LbIp) ToOutput(ctx context.Context) pulumix.Output[*LbIp] {
+	return pulumix.Output[*LbIp]{
+		OutputState: i.ToLbIpOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LbIpArrayInput is an input type that accepts LbIpArray and LbIpArrayOutput values.
 // You can construct a concrete instance of `LbIpArrayInput` via:
 //
@@ -202,6 +209,12 @@ func (i LbIpArray) ToLbIpArrayOutput() LbIpArrayOutput {
 
 func (i LbIpArray) ToLbIpArrayOutputWithContext(ctx context.Context) LbIpArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LbIpArrayOutput)
+}
+
+func (i LbIpArray) ToOutput(ctx context.Context) pulumix.Output[[]*LbIp] {
+	return pulumix.Output[[]*LbIp]{
+		OutputState: i.ToLbIpArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LbIpMapInput is an input type that accepts LbIpMap and LbIpMapOutput values.
@@ -229,6 +242,12 @@ func (i LbIpMap) ToLbIpMapOutputWithContext(ctx context.Context) LbIpMapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LbIpMapOutput)
 }
 
+func (i LbIpMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LbIp] {
+	return pulumix.Output[map[string]*LbIp]{
+		OutputState: i.ToLbIpMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LbIpOutput struct{ *pulumi.OutputState }
 
 func (LbIpOutput) ElementType() reflect.Type {
@@ -241,6 +260,12 @@ func (o LbIpOutput) ToLbIpOutput() LbIpOutput {
 
 func (o LbIpOutput) ToLbIpOutputWithContext(ctx context.Context) LbIpOutput {
 	return o
+}
+
+func (o LbIpOutput) ToOutput(ctx context.Context) pulumix.Output[*LbIp] {
+	return pulumix.Output[*LbIp]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The IP Address
@@ -292,6 +317,12 @@ func (o LbIpArrayOutput) ToLbIpArrayOutputWithContext(ctx context.Context) LbIpA
 	return o
 }
 
+func (o LbIpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LbIp] {
+	return pulumix.Output[[]*LbIp]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LbIpArrayOutput) Index(i pulumi.IntInput) LbIpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LbIp {
 		return vs[0].([]*LbIp)[vs[1].(int)]
@@ -310,6 +341,12 @@ func (o LbIpMapOutput) ToLbIpMapOutput() LbIpMapOutput {
 
 func (o LbIpMapOutput) ToLbIpMapOutputWithContext(ctx context.Context) LbIpMapOutput {
 	return o
+}
+
+func (o LbIpMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LbIp] {
+	return pulumix.Output[map[string]*LbIp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LbIpMapOutput) MapIndex(k pulumi.StringInput) LbIpOutput {

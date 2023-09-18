@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -177,6 +178,12 @@ func (i *SecretVersion) ToSecretVersionOutputWithContext(ctx context.Context) Se
 	return pulumi.ToOutputWithContext(ctx, i).(SecretVersionOutput)
 }
 
+func (i *SecretVersion) ToOutput(ctx context.Context) pulumix.Output[*SecretVersion] {
+	return pulumix.Output[*SecretVersion]{
+		OutputState: i.ToSecretVersionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SecretVersionArrayInput is an input type that accepts SecretVersionArray and SecretVersionArrayOutput values.
 // You can construct a concrete instance of `SecretVersionArrayInput` via:
 //
@@ -200,6 +207,12 @@ func (i SecretVersionArray) ToSecretVersionArrayOutput() SecretVersionArrayOutpu
 
 func (i SecretVersionArray) ToSecretVersionArrayOutputWithContext(ctx context.Context) SecretVersionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SecretVersionArrayOutput)
+}
+
+func (i SecretVersionArray) ToOutput(ctx context.Context) pulumix.Output[[]*SecretVersion] {
+	return pulumix.Output[[]*SecretVersion]{
+		OutputState: i.ToSecretVersionArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SecretVersionMapInput is an input type that accepts SecretVersionMap and SecretVersionMapOutput values.
@@ -227,6 +240,12 @@ func (i SecretVersionMap) ToSecretVersionMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SecretVersionMapOutput)
 }
 
+func (i SecretVersionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretVersion] {
+	return pulumix.Output[map[string]*SecretVersion]{
+		OutputState: i.ToSecretVersionMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SecretVersionOutput struct{ *pulumi.OutputState }
 
 func (SecretVersionOutput) ElementType() reflect.Type {
@@ -239,6 +258,12 @@ func (o SecretVersionOutput) ToSecretVersionOutput() SecretVersionOutput {
 
 func (o SecretVersionOutput) ToSecretVersionOutputWithContext(ctx context.Context) SecretVersionOutput {
 	return o
+}
+
+func (o SecretVersionOutput) ToOutput(ctx context.Context) pulumix.Output[*SecretVersion] {
+	return pulumix.Output[*SecretVersion]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Date and time of secret version's creation (RFC 3339 format).
@@ -296,6 +321,12 @@ func (o SecretVersionArrayOutput) ToSecretVersionArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o SecretVersionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SecretVersion] {
+	return pulumix.Output[[]*SecretVersion]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SecretVersionArrayOutput) Index(i pulumi.IntInput) SecretVersionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SecretVersion {
 		return vs[0].([]*SecretVersion)[vs[1].(int)]
@@ -314,6 +345,12 @@ func (o SecretVersionMapOutput) ToSecretVersionMapOutput() SecretVersionMapOutpu
 
 func (o SecretVersionMapOutput) ToSecretVersionMapOutputWithContext(ctx context.Context) SecretVersionMapOutput {
 	return o
+}
+
+func (o SecretVersionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SecretVersion] {
+	return pulumix.Output[map[string]*SecretVersion]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SecretVersionMapOutput) MapIndex(k pulumi.StringInput) SecretVersionOutput {

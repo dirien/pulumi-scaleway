@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a baremetal operating system.
@@ -122,6 +123,12 @@ func (o GetBaremetalOsResultOutput) ToGetBaremetalOsResultOutput() GetBaremetalO
 
 func (o GetBaremetalOsResultOutput) ToGetBaremetalOsResultOutputWithContext(ctx context.Context) GetBaremetalOsResultOutput {
 	return o
+}
+
+func (o GetBaremetalOsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetBaremetalOsResult] {
+	return pulumix.Output[GetBaremetalOsResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

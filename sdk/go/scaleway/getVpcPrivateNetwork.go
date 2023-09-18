@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a private network.
@@ -121,6 +122,12 @@ func (o LookupVpcPrivateNetworkResultOutput) ToLookupVpcPrivateNetworkResultOutp
 
 func (o LookupVpcPrivateNetworkResultOutput) ToLookupVpcPrivateNetworkResultOutputWithContext(ctx context.Context) LookupVpcPrivateNetworkResultOutput {
 	return o
+}
+
+func (o LookupVpcPrivateNetworkResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupVpcPrivateNetworkResult] {
+	return pulumix.Output[LookupVpcPrivateNetworkResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupVpcPrivateNetworkResultOutput) CreatedAt() pulumi.StringOutput {

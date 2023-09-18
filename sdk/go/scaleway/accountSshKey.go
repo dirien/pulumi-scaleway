@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages user SSH keys to access servers provisioned on Scaleway.
@@ -192,6 +193,12 @@ func (i *AccountSshKey) ToAccountSshKeyOutputWithContext(ctx context.Context) Ac
 	return pulumi.ToOutputWithContext(ctx, i).(AccountSshKeyOutput)
 }
 
+func (i *AccountSshKey) ToOutput(ctx context.Context) pulumix.Output[*AccountSshKey] {
+	return pulumix.Output[*AccountSshKey]{
+		OutputState: i.ToAccountSshKeyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AccountSshKeyArrayInput is an input type that accepts AccountSshKeyArray and AccountSshKeyArrayOutput values.
 // You can construct a concrete instance of `AccountSshKeyArrayInput` via:
 //
@@ -215,6 +222,12 @@ func (i AccountSshKeyArray) ToAccountSshKeyArrayOutput() AccountSshKeyArrayOutpu
 
 func (i AccountSshKeyArray) ToAccountSshKeyArrayOutputWithContext(ctx context.Context) AccountSshKeyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AccountSshKeyArrayOutput)
+}
+
+func (i AccountSshKeyArray) ToOutput(ctx context.Context) pulumix.Output[[]*AccountSshKey] {
+	return pulumix.Output[[]*AccountSshKey]{
+		OutputState: i.ToAccountSshKeyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AccountSshKeyMapInput is an input type that accepts AccountSshKeyMap and AccountSshKeyMapOutput values.
@@ -242,6 +255,12 @@ func (i AccountSshKeyMap) ToAccountSshKeyMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(AccountSshKeyMapOutput)
 }
 
+func (i AccountSshKeyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AccountSshKey] {
+	return pulumix.Output[map[string]*AccountSshKey]{
+		OutputState: i.ToAccountSshKeyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AccountSshKeyOutput struct{ *pulumi.OutputState }
 
 func (AccountSshKeyOutput) ElementType() reflect.Type {
@@ -254,6 +273,12 @@ func (o AccountSshKeyOutput) ToAccountSshKeyOutput() AccountSshKeyOutput {
 
 func (o AccountSshKeyOutput) ToAccountSshKeyOutputWithContext(ctx context.Context) AccountSshKeyOutput {
 	return o
+}
+
+func (o AccountSshKeyOutput) ToOutput(ctx context.Context) pulumix.Output[*AccountSshKey] {
+	return pulumix.Output[*AccountSshKey]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The date and time of the creation of the iam SSH Key
@@ -310,6 +335,12 @@ func (o AccountSshKeyArrayOutput) ToAccountSshKeyArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o AccountSshKeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AccountSshKey] {
+	return pulumix.Output[[]*AccountSshKey]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AccountSshKeyArrayOutput) Index(i pulumi.IntInput) AccountSshKeyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AccountSshKey {
 		return vs[0].([]*AccountSshKey)[vs[1].(int)]
@@ -328,6 +359,12 @@ func (o AccountSshKeyMapOutput) ToAccountSshKeyMapOutput() AccountSshKeyMapOutpu
 
 func (o AccountSshKeyMapOutput) ToAccountSshKeyMapOutputWithContext(ctx context.Context) AccountSshKeyMapOutput {
 	return o
+}
+
+func (o AccountSshKeyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AccountSshKey] {
+	return pulumix.Output[map[string]*AccountSshKey]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AccountSshKeyMapOutput) MapIndex(k pulumi.StringInput) AccountSshKeyOutput {

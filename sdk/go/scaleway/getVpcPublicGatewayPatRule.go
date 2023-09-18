@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a public gateway PAT rule. For further information please check the
@@ -92,6 +93,12 @@ func (o LookupVpcPublicGatewayPatRuleResultOutput) ToLookupVpcPublicGatewayPatRu
 
 func (o LookupVpcPublicGatewayPatRuleResultOutput) ToLookupVpcPublicGatewayPatRuleResultOutputWithContext(ctx context.Context) LookupVpcPublicGatewayPatRuleResultOutput {
 	return o
+}
+
+func (o LookupVpcPublicGatewayPatRuleResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupVpcPublicGatewayPatRuleResult] {
+	return pulumix.Output[LookupVpcPublicGatewayPatRuleResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupVpcPublicGatewayPatRuleResultOutput) CreatedAt() pulumi.StringOutput {

@@ -465,6 +465,17 @@ export interface InstanceServerPrivateNetwork {
     zone?: pulumi.Input<string>;
 }
 
+export interface InstanceServerPublicIp {
+    /**
+     * The address of the IP
+     */
+    address?: pulumi.Input<string>;
+    /**
+     * The ID of the IP
+     */
+    id?: pulumi.Input<string>;
+}
+
 export interface InstanceServerRootVolume {
     boot?: pulumi.Input<boolean>;
     /**

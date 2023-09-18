@@ -208,7 +208,13 @@ export class K8sCluster extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+     * The type of Kubernetes cluster. Possible values are:
+     *
+     * - for mutualized clusters: `kapsule` or `multicloud`
+     *
+     * - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+     *
+     * - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -397,7 +403,13 @@ export interface K8sClusterState {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+     * The type of Kubernetes cluster. Possible values are:
+     *
+     * - for mutualized clusters: `kapsule` or `multicloud`
+     *
+     * - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+     *
+     * - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
      */
     type?: pulumi.Input<string>;
     /**
@@ -487,7 +499,13 @@ export interface K8sClusterArgs {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+     * The type of Kubernetes cluster. Possible values are:
+     *
+     * - for mutualized clusters: `kapsule` or `multicloud`
+     *
+     * - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+     *
+     * - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
      */
     type?: pulumi.Input<string>;
     /**

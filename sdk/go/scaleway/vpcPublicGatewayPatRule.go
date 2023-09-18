@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway VPC Public Gateway PAT (Port Address Translation).
@@ -246,6 +247,12 @@ func (i *VpcPublicGatewayPatRule) ToVpcPublicGatewayPatRuleOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayPatRuleOutput)
 }
 
+func (i *VpcPublicGatewayPatRule) ToOutput(ctx context.Context) pulumix.Output[*VpcPublicGatewayPatRule] {
+	return pulumix.Output[*VpcPublicGatewayPatRule]{
+		OutputState: i.ToVpcPublicGatewayPatRuleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpcPublicGatewayPatRuleArrayInput is an input type that accepts VpcPublicGatewayPatRuleArray and VpcPublicGatewayPatRuleArrayOutput values.
 // You can construct a concrete instance of `VpcPublicGatewayPatRuleArrayInput` via:
 //
@@ -269,6 +276,12 @@ func (i VpcPublicGatewayPatRuleArray) ToVpcPublicGatewayPatRuleArrayOutput() Vpc
 
 func (i VpcPublicGatewayPatRuleArray) ToVpcPublicGatewayPatRuleArrayOutputWithContext(ctx context.Context) VpcPublicGatewayPatRuleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayPatRuleArrayOutput)
+}
+
+func (i VpcPublicGatewayPatRuleArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpcPublicGatewayPatRule] {
+	return pulumix.Output[[]*VpcPublicGatewayPatRule]{
+		OutputState: i.ToVpcPublicGatewayPatRuleArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // VpcPublicGatewayPatRuleMapInput is an input type that accepts VpcPublicGatewayPatRuleMap and VpcPublicGatewayPatRuleMapOutput values.
@@ -296,6 +309,12 @@ func (i VpcPublicGatewayPatRuleMap) ToVpcPublicGatewayPatRuleMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayPatRuleMapOutput)
 }
 
+func (i VpcPublicGatewayPatRuleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpcPublicGatewayPatRule] {
+	return pulumix.Output[map[string]*VpcPublicGatewayPatRule]{
+		OutputState: i.ToVpcPublicGatewayPatRuleMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpcPublicGatewayPatRuleOutput struct{ *pulumi.OutputState }
 
 func (VpcPublicGatewayPatRuleOutput) ElementType() reflect.Type {
@@ -308,6 +327,12 @@ func (o VpcPublicGatewayPatRuleOutput) ToVpcPublicGatewayPatRuleOutput() VpcPubl
 
 func (o VpcPublicGatewayPatRuleOutput) ToVpcPublicGatewayPatRuleOutputWithContext(ctx context.Context) VpcPublicGatewayPatRuleOutput {
 	return o
+}
+
+func (o VpcPublicGatewayPatRuleOutput) ToOutput(ctx context.Context) pulumix.Output[*VpcPublicGatewayPatRule] {
+	return pulumix.Output[*VpcPublicGatewayPatRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The date and time of the creation of the pat rule config.
@@ -369,6 +394,12 @@ func (o VpcPublicGatewayPatRuleArrayOutput) ToVpcPublicGatewayPatRuleArrayOutput
 	return o
 }
 
+func (o VpcPublicGatewayPatRuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpcPublicGatewayPatRule] {
+	return pulumix.Output[[]*VpcPublicGatewayPatRule]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpcPublicGatewayPatRuleArrayOutput) Index(i pulumi.IntInput) VpcPublicGatewayPatRuleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpcPublicGatewayPatRule {
 		return vs[0].([]*VpcPublicGatewayPatRule)[vs[1].(int)]
@@ -387,6 +418,12 @@ func (o VpcPublicGatewayPatRuleMapOutput) ToVpcPublicGatewayPatRuleMapOutput() V
 
 func (o VpcPublicGatewayPatRuleMapOutput) ToVpcPublicGatewayPatRuleMapOutputWithContext(ctx context.Context) VpcPublicGatewayPatRuleMapOutput {
 	return o
+}
+
+func (o VpcPublicGatewayPatRuleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpcPublicGatewayPatRule] {
+	return pulumix.Output[map[string]*VpcPublicGatewayPatRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpcPublicGatewayPatRuleMapOutput) MapIndex(k pulumi.StringInput) VpcPublicGatewayPatRuleOutput {

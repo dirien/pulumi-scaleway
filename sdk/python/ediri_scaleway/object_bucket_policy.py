@@ -195,7 +195,7 @@ class ObjectBucketPolicy(pulumi.CustomResource):
                         "SCW": "application_id:<APPLICATION_ID>",
                     },
                     "Action": "s3:ListBucket",
-                    "Resources": [
+                    "Resource": [
                         bucket_name,
                         f"{bucket_name1}/*",
                     ],
@@ -250,7 +250,7 @@ class ObjectBucketPolicy(pulumi.CustomResource):
                         "SCW": "application_id:<APPLICATION_ID>",
                     },
                     "Action": "s3:ListBucket",
-                    "Resources": [
+                    "Resource": [
                         bucket_name,
                         f"{bucket_name1}/*",
                     ],

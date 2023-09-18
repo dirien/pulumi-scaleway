@@ -549,6 +549,17 @@ export interface GetInstanceServerPrivateNetwork {
     zone: string;
 }
 
+export interface GetInstanceServerPublicIp {
+    /**
+     * The address of the IP
+     */
+    address: string;
+    /**
+     * The ID of the IP
+     */
+    id: string;
+}
+
 export interface GetInstanceServerRootVolume {
     boot: boolean;
     /**
@@ -588,7 +599,7 @@ export interface GetInstanceServersServer {
      */
     enableIpv6: boolean;
     /**
-     * The ID of the server.
+     * The ID of the IP
      */
     id: string;
     /**
@@ -629,9 +640,17 @@ export interface GetInstanceServersServer {
      */
     projectId: string;
     /**
-     * The public IPv4 address of the server.
+     * The public IP address of the server.
      */
     publicIp: string;
+    /**
+     * The list of public IPs of the server
+     */
+    publicIps: outputs.GetInstanceServersServerPublicIp[];
+    /**
+     * True if the server support routed ip only.
+     */
+    routedIpEnabled: boolean;
     /**
      * The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
      */
@@ -652,6 +671,17 @@ export interface GetInstanceServersServer {
      * `zone`) The zone in which servers exist.
      */
     zone: string;
+}
+
+export interface GetInstanceServersServerPublicIp {
+    /**
+     * The address of the IP
+     */
+    address: string;
+    /**
+     * The ID of the IP
+     */
+    id: string;
 }
 
 export interface GetInstanceSnapshotImport {
@@ -1721,6 +1751,17 @@ export interface InstanceServerPrivateNetwork {
      * `zone`) The zone in which the server should be created.
      */
     zone: string;
+}
+
+export interface InstanceServerPublicIp {
+    /**
+     * The address of the IP
+     */
+    address: string;
+    /**
+     * The ID of the IP
+     */
+    id: string;
 }
 
 export interface InstanceServerRootVolume {

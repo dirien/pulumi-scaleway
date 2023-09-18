@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Container domain name bindings.
@@ -240,6 +241,12 @@ func (i *ContainerDomain) ToContainerDomainOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(ContainerDomainOutput)
 }
 
+func (i *ContainerDomain) ToOutput(ctx context.Context) pulumix.Output[*ContainerDomain] {
+	return pulumix.Output[*ContainerDomain]{
+		OutputState: i.ToContainerDomainOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ContainerDomainArrayInput is an input type that accepts ContainerDomainArray and ContainerDomainArrayOutput values.
 // You can construct a concrete instance of `ContainerDomainArrayInput` via:
 //
@@ -263,6 +270,12 @@ func (i ContainerDomainArray) ToContainerDomainArrayOutput() ContainerDomainArra
 
 func (i ContainerDomainArray) ToContainerDomainArrayOutputWithContext(ctx context.Context) ContainerDomainArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ContainerDomainArrayOutput)
+}
+
+func (i ContainerDomainArray) ToOutput(ctx context.Context) pulumix.Output[[]*ContainerDomain] {
+	return pulumix.Output[[]*ContainerDomain]{
+		OutputState: i.ToContainerDomainArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ContainerDomainMapInput is an input type that accepts ContainerDomainMap and ContainerDomainMapOutput values.
@@ -290,6 +303,12 @@ func (i ContainerDomainMap) ToContainerDomainMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(ContainerDomainMapOutput)
 }
 
+func (i ContainerDomainMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ContainerDomain] {
+	return pulumix.Output[map[string]*ContainerDomain]{
+		OutputState: i.ToContainerDomainMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ContainerDomainOutput struct{ *pulumi.OutputState }
 
 func (ContainerDomainOutput) ElementType() reflect.Type {
@@ -302,6 +321,12 @@ func (o ContainerDomainOutput) ToContainerDomainOutput() ContainerDomainOutput {
 
 func (o ContainerDomainOutput) ToContainerDomainOutputWithContext(ctx context.Context) ContainerDomainOutput {
 	return o
+}
+
+func (o ContainerDomainOutput) ToOutput(ctx context.Context) pulumix.Output[*ContainerDomain] {
+	return pulumix.Output[*ContainerDomain]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The ID of the container.
@@ -338,6 +363,12 @@ func (o ContainerDomainArrayOutput) ToContainerDomainArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o ContainerDomainArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ContainerDomain] {
+	return pulumix.Output[[]*ContainerDomain]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ContainerDomainArrayOutput) Index(i pulumi.IntInput) ContainerDomainOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ContainerDomain {
 		return vs[0].([]*ContainerDomain)[vs[1].(int)]
@@ -356,6 +387,12 @@ func (o ContainerDomainMapOutput) ToContainerDomainMapOutput() ContainerDomainMa
 
 func (o ContainerDomainMapOutput) ToContainerDomainMapOutputWithContext(ctx context.Context) ContainerDomainMapOutput {
 	return o
+}
+
+func (o ContainerDomainMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ContainerDomain] {
+	return pulumix.Output[map[string]*ContainerDomain]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ContainerDomainMapOutput) MapIndex(k pulumi.StringInput) ContainerDomainOutput {

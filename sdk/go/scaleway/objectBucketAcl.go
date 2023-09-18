@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -281,6 +282,12 @@ func (i *ObjectBucketAcl) ToObjectBucketAclOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketAclOutput)
 }
 
+func (i *ObjectBucketAcl) ToOutput(ctx context.Context) pulumix.Output[*ObjectBucketAcl] {
+	return pulumix.Output[*ObjectBucketAcl]{
+		OutputState: i.ToObjectBucketAclOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ObjectBucketAclArrayInput is an input type that accepts ObjectBucketAclArray and ObjectBucketAclArrayOutput values.
 // You can construct a concrete instance of `ObjectBucketAclArrayInput` via:
 //
@@ -304,6 +311,12 @@ func (i ObjectBucketAclArray) ToObjectBucketAclArrayOutput() ObjectBucketAclArra
 
 func (i ObjectBucketAclArray) ToObjectBucketAclArrayOutputWithContext(ctx context.Context) ObjectBucketAclArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketAclArrayOutput)
+}
+
+func (i ObjectBucketAclArray) ToOutput(ctx context.Context) pulumix.Output[[]*ObjectBucketAcl] {
+	return pulumix.Output[[]*ObjectBucketAcl]{
+		OutputState: i.ToObjectBucketAclArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ObjectBucketAclMapInput is an input type that accepts ObjectBucketAclMap and ObjectBucketAclMapOutput values.
@@ -331,6 +344,12 @@ func (i ObjectBucketAclMap) ToObjectBucketAclMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketAclMapOutput)
 }
 
+func (i ObjectBucketAclMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ObjectBucketAcl] {
+	return pulumix.Output[map[string]*ObjectBucketAcl]{
+		OutputState: i.ToObjectBucketAclMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ObjectBucketAclOutput struct{ *pulumi.OutputState }
 
 func (ObjectBucketAclOutput) ElementType() reflect.Type {
@@ -343,6 +362,12 @@ func (o ObjectBucketAclOutput) ToObjectBucketAclOutput() ObjectBucketAclOutput {
 
 func (o ObjectBucketAclOutput) ToObjectBucketAclOutputWithContext(ctx context.Context) ObjectBucketAclOutput {
 	return o
+}
+
+func (o ObjectBucketAclOutput) ToOutput(ctx context.Context) pulumix.Output[*ObjectBucketAcl] {
+	return pulumix.Output[*ObjectBucketAcl]{
+		OutputState: o.OutputState,
+	}
 }
 
 // A configuration block that sets the ACL permissions for an object per grantee documented below.
@@ -389,6 +414,12 @@ func (o ObjectBucketAclArrayOutput) ToObjectBucketAclArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o ObjectBucketAclArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ObjectBucketAcl] {
+	return pulumix.Output[[]*ObjectBucketAcl]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ObjectBucketAclArrayOutput) Index(i pulumi.IntInput) ObjectBucketAclOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ObjectBucketAcl {
 		return vs[0].([]*ObjectBucketAcl)[vs[1].(int)]
@@ -407,6 +438,12 @@ func (o ObjectBucketAclMapOutput) ToObjectBucketAclMapOutput() ObjectBucketAclMa
 
 func (o ObjectBucketAclMapOutput) ToObjectBucketAclMapOutputWithContext(ctx context.Context) ObjectBucketAclMapOutput {
 	return o
+}
+
+func (o ObjectBucketAclMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ObjectBucketAcl] {
+	return pulumix.Output[map[string]*ObjectBucketAcl]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ObjectBucketAclMapOutput) MapIndex(k pulumi.StringInput) ObjectBucketAclOutput {

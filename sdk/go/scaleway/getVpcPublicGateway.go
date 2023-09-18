@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a public gateway.
@@ -126,6 +127,12 @@ func (o LookupVpcPublicGatewayResultOutput) ToLookupVpcPublicGatewayResultOutput
 
 func (o LookupVpcPublicGatewayResultOutput) ToLookupVpcPublicGatewayResultOutputWithContext(ctx context.Context) LookupVpcPublicGatewayResultOutput {
 	return o
+}
+
+func (o LookupVpcPublicGatewayResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupVpcPublicGatewayResult] {
+	return pulumix.Output[LookupVpcPublicGatewayResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupVpcPublicGatewayResultOutput) BastionEnabled() pulumi.BoolOutput {

@@ -348,10 +348,16 @@ namespace ediri.Scaleway
         public Output<string?> Image { get; private set; } = null!;
 
         /// <summary>
-        /// = (Optional) The ID of the reserved IP that is attached to the server.
+        /// The ID of the reserved IP that is attached to the server.
         /// </summary>
         [Output("ipId")]
         public Output<string?> IpId { get; private set; } = null!;
+
+        /// <summary>
+        /// List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+        /// </summary>
+        [Output("ipIds")]
+        public Output<ImmutableArray<string>> IpIds { get; private set; } = null!;
 
         /// <summary>
         /// The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
@@ -418,10 +424,16 @@ namespace ediri.Scaleway
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The public IPv4 address of the server.
+        /// The public IP address of the server.
         /// </summary>
         [Output("publicIp")]
         public Output<string> PublicIp { get; private set; } = null!;
+
+        /// <summary>
+        /// The list of public IPs of the server.
+        /// </summary>
+        [Output("publicIps")]
+        public Output<ImmutableArray<Outputs.InstanceServerPublicIp>> PublicIps { get; private set; } = null!;
 
         /// <summary>
         /// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
@@ -434,6 +446,14 @@ namespace ediri.Scaleway
         /// </summary>
         [Output("rootVolume")]
         public Output<Outputs.InstanceServerRootVolume> RootVolume { get; private set; } = null!;
+
+        /// <summary>
+        /// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
+        /// 
+        /// &gt; **Important:** Enabling routed ip will restart the server
+        /// </summary>
+        [Output("routedIpEnabled")]
+        public Output<bool> RoutedIpEnabled { get; private set; } = null!;
 
         /// <summary>
         /// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
@@ -587,10 +607,22 @@ namespace ediri.Scaleway
         public Input<string>? Image { get; set; }
 
         /// <summary>
-        /// = (Optional) The ID of the reserved IP that is attached to the server.
+        /// The ID of the reserved IP that is attached to the server.
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
+
+        [Input("ipIds")]
+        private InputList<string>? _ipIds;
+
+        /// <summary>
+        /// List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+        /// </summary>
+        public InputList<string> IpIds
+        {
+            get => _ipIds ?? (_ipIds = new InputList<string>());
+            set => _ipIds = value;
+        }
 
         /// <summary>
         /// The name of the server.
@@ -626,6 +658,18 @@ namespace ediri.Scaleway
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        [Input("publicIps")]
+        private InputList<Inputs.InstanceServerPublicIpArgs>? _publicIps;
+
+        /// <summary>
+        /// The list of public IPs of the server.
+        /// </summary>
+        public InputList<Inputs.InstanceServerPublicIpArgs> PublicIps
+        {
+            get => _publicIps ?? (_publicIps = new InputList<Inputs.InstanceServerPublicIpArgs>());
+            set => _publicIps = value;
+        }
+
         /// <summary>
         /// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
         /// </summary>
@@ -637,6 +681,14 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("rootVolume")]
         public Input<Inputs.InstanceServerRootVolumeArgs>? RootVolume { get; set; }
+
+        /// <summary>
+        /// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
+        /// 
+        /// &gt; **Important:** Enabling routed ip will restart the server
+        /// </summary>
+        [Input("routedIpEnabled")]
+        public Input<bool>? RoutedIpEnabled { get; set; }
 
         /// <summary>
         /// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
@@ -763,10 +815,22 @@ namespace ediri.Scaleway
         public Input<string>? Image { get; set; }
 
         /// <summary>
-        /// = (Optional) The ID of the reserved IP that is attached to the server.
+        /// The ID of the reserved IP that is attached to the server.
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
+
+        [Input("ipIds")]
+        private InputList<string>? _ipIds;
+
+        /// <summary>
+        /// List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+        /// </summary>
+        public InputList<string> IpIds
+        {
+            get => _ipIds ?? (_ipIds = new InputList<string>());
+            set => _ipIds = value;
+        }
 
         /// <summary>
         /// The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
@@ -839,10 +903,22 @@ namespace ediri.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The public IPv4 address of the server.
+        /// The public IP address of the server.
         /// </summary>
         [Input("publicIp")]
         public Input<string>? PublicIp { get; set; }
+
+        [Input("publicIps")]
+        private InputList<Inputs.InstanceServerPublicIpGetArgs>? _publicIps;
+
+        /// <summary>
+        /// The list of public IPs of the server.
+        /// </summary>
+        public InputList<Inputs.InstanceServerPublicIpGetArgs> PublicIps
+        {
+            get => _publicIps ?? (_publicIps = new InputList<Inputs.InstanceServerPublicIpGetArgs>());
+            set => _publicIps = value;
+        }
 
         /// <summary>
         /// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
@@ -855,6 +931,14 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("rootVolume")]
         public Input<Inputs.InstanceServerRootVolumeGetArgs>? RootVolume { get; set; }
+
+        /// <summary>
+        /// If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
+        /// 
+        /// &gt; **Important:** Enabling routed ip will restart the server
+        /// </summary>
+        [Input("routedIpEnabled")]
+        public Input<bool>? RoutedIpEnabled { get; set; }
 
         /// <summary>
         /// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.

@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a baremetal server.
@@ -136,6 +137,12 @@ func (o LookupBaremetalServerResultOutput) ToLookupBaremetalServerResultOutput()
 
 func (o LookupBaremetalServerResultOutput) ToLookupBaremetalServerResultOutputWithContext(ctx context.Context) LookupBaremetalServerResultOutput {
 	return o
+}
+
+func (o LookupBaremetalServerResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupBaremetalServerResult] {
+	return pulumix.Output[LookupBaremetalServerResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupBaremetalServerResultOutput) Description() pulumi.StringOutput {

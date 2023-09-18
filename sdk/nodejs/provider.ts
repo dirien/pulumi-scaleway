@@ -69,16 +69,18 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            resourceInputs["accessKey"] = (args ? args.accessKey : undefined) ?? utilities.getEnv("SCW_ACCESS_KEY");
+            resourceInputs["accessKey"] = (args?.accessKey ? pulumi.secret(args.accessKey) : undefined) ?? utilities.getEnv("SCW_ACCESS_KEY");
             resourceInputs["apiUrl"] = args ? args.apiUrl : undefined;
             resourceInputs["organizationId"] = (args ? args.organizationId : undefined) ?? utilities.getEnv("SCW_DEFAULT_ORGANIZATION_ID");
             resourceInputs["profile"] = args ? args.profile : undefined;
             resourceInputs["projectId"] = (args ? args.projectId : undefined) ?? utilities.getEnv("SCW_DEFAULT_PROJECT_ID");
             resourceInputs["region"] = (args ? args.region : undefined) ?? utilities.getEnv("SCW_DEFAULT_REGION");
-            resourceInputs["secretKey"] = (args ? args.secretKey : undefined) ?? utilities.getEnv("SCW_SECRET_KEY");
+            resourceInputs["secretKey"] = (args?.secretKey ? pulumi.secret(args.secretKey) : undefined) ?? utilities.getEnv("SCW_SECRET_KEY");
             resourceInputs["zone"] = (args ? args.zone : undefined) ?? utilities.getEnv("SCW_DEFAULT_ZONE");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["accessKey", "secretKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }

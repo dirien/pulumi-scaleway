@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a webhosting.
@@ -133,6 +134,12 @@ func (o GetWebhostingResultOutput) ToGetWebhostingResultOutput() GetWebhostingRe
 
 func (o GetWebhostingResultOutput) ToGetWebhostingResultOutputWithContext(ctx context.Context) GetWebhostingResultOutput {
 	return o
+}
+
+func (o GetWebhostingResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetWebhostingResult] {
+	return pulumix.Output[GetWebhostingResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetWebhostingResultOutput) CpanelUrls() GetWebhostingCpanelUrlArrayOutput {

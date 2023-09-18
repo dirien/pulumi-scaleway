@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a public gateway IP.
@@ -106,6 +107,12 @@ func (o LookupVpcPublicGatewayIpResultOutput) ToLookupVpcPublicGatewayIpResultOu
 
 func (o LookupVpcPublicGatewayIpResultOutput) ToLookupVpcPublicGatewayIpResultOutputWithContext(ctx context.Context) LookupVpcPublicGatewayIpResultOutput {
 	return o
+}
+
+func (o LookupVpcPublicGatewayIpResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupVpcPublicGatewayIpResult] {
+	return pulumix.Output[LookupVpcPublicGatewayIpResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupVpcPublicGatewayIpResultOutput) Address() pulumi.StringOutput {

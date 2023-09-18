@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -365,6 +366,12 @@ func (i *K8sPool) ToK8sPoolOutputWithContext(ctx context.Context) K8sPoolOutput 
 	return pulumi.ToOutputWithContext(ctx, i).(K8sPoolOutput)
 }
 
+func (i *K8sPool) ToOutput(ctx context.Context) pulumix.Output[*K8sPool] {
+	return pulumix.Output[*K8sPool]{
+		OutputState: i.ToK8sPoolOutputWithContext(ctx).OutputState,
+	}
+}
+
 // K8sPoolArrayInput is an input type that accepts K8sPoolArray and K8sPoolArrayOutput values.
 // You can construct a concrete instance of `K8sPoolArrayInput` via:
 //
@@ -388,6 +395,12 @@ func (i K8sPoolArray) ToK8sPoolArrayOutput() K8sPoolArrayOutput {
 
 func (i K8sPoolArray) ToK8sPoolArrayOutputWithContext(ctx context.Context) K8sPoolArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(K8sPoolArrayOutput)
+}
+
+func (i K8sPoolArray) ToOutput(ctx context.Context) pulumix.Output[[]*K8sPool] {
+	return pulumix.Output[[]*K8sPool]{
+		OutputState: i.ToK8sPoolArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // K8sPoolMapInput is an input type that accepts K8sPoolMap and K8sPoolMapOutput values.
@@ -415,6 +428,12 @@ func (i K8sPoolMap) ToK8sPoolMapOutputWithContext(ctx context.Context) K8sPoolMa
 	return pulumi.ToOutputWithContext(ctx, i).(K8sPoolMapOutput)
 }
 
+func (i K8sPoolMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*K8sPool] {
+	return pulumix.Output[map[string]*K8sPool]{
+		OutputState: i.ToK8sPoolMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type K8sPoolOutput struct{ *pulumi.OutputState }
 
 func (K8sPoolOutput) ElementType() reflect.Type {
@@ -427,6 +446,12 @@ func (o K8sPoolOutput) ToK8sPoolOutput() K8sPoolOutput {
 
 func (o K8sPoolOutput) ToK8sPoolOutputWithContext(ctx context.Context) K8sPoolOutput {
 	return o
+}
+
+func (o K8sPoolOutput) ToOutput(ctx context.Context) pulumix.Output[*K8sPool] {
+	return pulumix.Output[*K8sPool]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Enables the autohealing feature for this pool.
@@ -572,6 +597,12 @@ func (o K8sPoolArrayOutput) ToK8sPoolArrayOutputWithContext(ctx context.Context)
 	return o
 }
 
+func (o K8sPoolArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*K8sPool] {
+	return pulumix.Output[[]*K8sPool]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o K8sPoolArrayOutput) Index(i pulumi.IntInput) K8sPoolOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *K8sPool {
 		return vs[0].([]*K8sPool)[vs[1].(int)]
@@ -590,6 +621,12 @@ func (o K8sPoolMapOutput) ToK8sPoolMapOutput() K8sPoolMapOutput {
 
 func (o K8sPoolMapOutput) ToK8sPoolMapOutputWithContext(ctx context.Context) K8sPoolMapOutput {
 	return o
+}
+
+func (o K8sPoolMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*K8sPool] {
+	return pulumix.Output[map[string]*K8sPool]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o K8sPoolMapOutput) MapIndex(k pulumi.StringInput) K8sPoolOutput {
