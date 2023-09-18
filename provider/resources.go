@@ -91,11 +91,13 @@ func Provider() tfbridge.ProviderInfo {
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"SCW_ACCESS_KEY"},
 				},
+				Secret: tfbridge.BoolRef(true),
 			},
 			"secret_key": {
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"SCW_SECRET_KEY"},
 				},
+				Secret: tfbridge.BoolRef(true),
 			},
 			"project_id": {
 				Default: &tfbridge.DefaultInfo{
