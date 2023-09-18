@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an RDB backup.
@@ -135,6 +136,12 @@ func (o LookupRdbDatabaseBackupResultOutput) ToLookupRdbDatabaseBackupResultOutp
 
 func (o LookupRdbDatabaseBackupResultOutput) ToLookupRdbDatabaseBackupResultOutputWithContext(ctx context.Context) LookupRdbDatabaseBackupResultOutput {
 	return o
+}
+
+func (o LookupRdbDatabaseBackupResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupRdbDatabaseBackupResult] {
+	return pulumix.Output[LookupRdbDatabaseBackupResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupRdbDatabaseBackupResultOutput) BackupId() pulumi.StringPtrOutput {

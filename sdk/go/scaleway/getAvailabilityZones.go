@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Use this data source to get the available zones information based on its Region.
@@ -102,6 +103,12 @@ func (o GetAvailabilityZonesResultOutput) ToGetAvailabilityZonesResultOutput() G
 
 func (o GetAvailabilityZonesResultOutput) ToGetAvailabilityZonesResultOutputWithContext(ctx context.Context) GetAvailabilityZonesResultOutput {
 	return o
+}
+
+func (o GetAvailabilityZonesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAvailabilityZonesResult] {
+	return pulumix.Output[GetAvailabilityZonesResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

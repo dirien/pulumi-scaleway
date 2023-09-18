@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages organization's projects on Scaleway.
@@ -162,6 +163,12 @@ func (i *AccountProject) ToAccountProjectOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(AccountProjectOutput)
 }
 
+func (i *AccountProject) ToOutput(ctx context.Context) pulumix.Output[*AccountProject] {
+	return pulumix.Output[*AccountProject]{
+		OutputState: i.ToAccountProjectOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AccountProjectArrayInput is an input type that accepts AccountProjectArray and AccountProjectArrayOutput values.
 // You can construct a concrete instance of `AccountProjectArrayInput` via:
 //
@@ -185,6 +192,12 @@ func (i AccountProjectArray) ToAccountProjectArrayOutput() AccountProjectArrayOu
 
 func (i AccountProjectArray) ToAccountProjectArrayOutputWithContext(ctx context.Context) AccountProjectArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AccountProjectArrayOutput)
+}
+
+func (i AccountProjectArray) ToOutput(ctx context.Context) pulumix.Output[[]*AccountProject] {
+	return pulumix.Output[[]*AccountProject]{
+		OutputState: i.ToAccountProjectArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AccountProjectMapInput is an input type that accepts AccountProjectMap and AccountProjectMapOutput values.
@@ -212,6 +225,12 @@ func (i AccountProjectMap) ToAccountProjectMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(AccountProjectMapOutput)
 }
 
+func (i AccountProjectMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AccountProject] {
+	return pulumix.Output[map[string]*AccountProject]{
+		OutputState: i.ToAccountProjectMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AccountProjectOutput struct{ *pulumi.OutputState }
 
 func (AccountProjectOutput) ElementType() reflect.Type {
@@ -224,6 +243,12 @@ func (o AccountProjectOutput) ToAccountProjectOutput() AccountProjectOutput {
 
 func (o AccountProjectOutput) ToAccountProjectOutputWithContext(ctx context.Context) AccountProjectOutput {
 	return o
+}
+
+func (o AccountProjectOutput) ToOutput(ctx context.Context) pulumix.Output[*AccountProject] {
+	return pulumix.Output[*AccountProject]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The Project creation time.
@@ -265,6 +290,12 @@ func (o AccountProjectArrayOutput) ToAccountProjectArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o AccountProjectArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AccountProject] {
+	return pulumix.Output[[]*AccountProject]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AccountProjectArrayOutput) Index(i pulumi.IntInput) AccountProjectOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AccountProject {
 		return vs[0].([]*AccountProject)[vs[1].(int)]
@@ -283,6 +314,12 @@ func (o AccountProjectMapOutput) ToAccountProjectMapOutput() AccountProjectMapOu
 
 func (o AccountProjectMapOutput) ToAccountProjectMapOutputWithContext(ctx context.Context) AccountProjectMapOutput {
 	return o
+}
+
+func (o AccountProjectMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AccountProject] {
+	return pulumix.Output[map[string]*AccountProject]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AccountProjectMapOutput) MapIndex(k pulumi.StringInput) AccountProjectOutput {

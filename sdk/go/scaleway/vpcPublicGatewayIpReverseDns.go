@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages Scaleway VPC Public Gateways IPs reverse DNS.
@@ -175,6 +176,12 @@ func (i *VpcPublicGatewayIpReverseDns) ToVpcPublicGatewayIpReverseDnsOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayIpReverseDnsOutput)
 }
 
+func (i *VpcPublicGatewayIpReverseDns) ToOutput(ctx context.Context) pulumix.Output[*VpcPublicGatewayIpReverseDns] {
+	return pulumix.Output[*VpcPublicGatewayIpReverseDns]{
+		OutputState: i.ToVpcPublicGatewayIpReverseDnsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpcPublicGatewayIpReverseDnsArrayInput is an input type that accepts VpcPublicGatewayIpReverseDnsArray and VpcPublicGatewayIpReverseDnsArrayOutput values.
 // You can construct a concrete instance of `VpcPublicGatewayIpReverseDnsArrayInput` via:
 //
@@ -198,6 +205,12 @@ func (i VpcPublicGatewayIpReverseDnsArray) ToVpcPublicGatewayIpReverseDnsArrayOu
 
 func (i VpcPublicGatewayIpReverseDnsArray) ToVpcPublicGatewayIpReverseDnsArrayOutputWithContext(ctx context.Context) VpcPublicGatewayIpReverseDnsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayIpReverseDnsArrayOutput)
+}
+
+func (i VpcPublicGatewayIpReverseDnsArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpcPublicGatewayIpReverseDns] {
+	return pulumix.Output[[]*VpcPublicGatewayIpReverseDns]{
+		OutputState: i.ToVpcPublicGatewayIpReverseDnsArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // VpcPublicGatewayIpReverseDnsMapInput is an input type that accepts VpcPublicGatewayIpReverseDnsMap and VpcPublicGatewayIpReverseDnsMapOutput values.
@@ -225,6 +238,12 @@ func (i VpcPublicGatewayIpReverseDnsMap) ToVpcPublicGatewayIpReverseDnsMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayIpReverseDnsMapOutput)
 }
 
+func (i VpcPublicGatewayIpReverseDnsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpcPublicGatewayIpReverseDns] {
+	return pulumix.Output[map[string]*VpcPublicGatewayIpReverseDns]{
+		OutputState: i.ToVpcPublicGatewayIpReverseDnsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpcPublicGatewayIpReverseDnsOutput struct{ *pulumi.OutputState }
 
 func (VpcPublicGatewayIpReverseDnsOutput) ElementType() reflect.Type {
@@ -237,6 +256,12 @@ func (o VpcPublicGatewayIpReverseDnsOutput) ToVpcPublicGatewayIpReverseDnsOutput
 
 func (o VpcPublicGatewayIpReverseDnsOutput) ToVpcPublicGatewayIpReverseDnsOutputWithContext(ctx context.Context) VpcPublicGatewayIpReverseDnsOutput {
 	return o
+}
+
+func (o VpcPublicGatewayIpReverseDnsOutput) ToOutput(ctx context.Context) pulumix.Output[*VpcPublicGatewayIpReverseDns] {
+	return pulumix.Output[*VpcPublicGatewayIpReverseDns]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The public gateway IP ID
@@ -268,6 +293,12 @@ func (o VpcPublicGatewayIpReverseDnsArrayOutput) ToVpcPublicGatewayIpReverseDnsA
 	return o
 }
 
+func (o VpcPublicGatewayIpReverseDnsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpcPublicGatewayIpReverseDns] {
+	return pulumix.Output[[]*VpcPublicGatewayIpReverseDns]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpcPublicGatewayIpReverseDnsArrayOutput) Index(i pulumi.IntInput) VpcPublicGatewayIpReverseDnsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpcPublicGatewayIpReverseDns {
 		return vs[0].([]*VpcPublicGatewayIpReverseDns)[vs[1].(int)]
@@ -286,6 +317,12 @@ func (o VpcPublicGatewayIpReverseDnsMapOutput) ToVpcPublicGatewayIpReverseDnsMap
 
 func (o VpcPublicGatewayIpReverseDnsMapOutput) ToVpcPublicGatewayIpReverseDnsMapOutputWithContext(ctx context.Context) VpcPublicGatewayIpReverseDnsMapOutput {
 	return o
+}
+
+func (o VpcPublicGatewayIpReverseDnsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpcPublicGatewayIpReverseDns] {
+	return pulumix.Output[map[string]*VpcPublicGatewayIpReverseDns]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpcPublicGatewayIpReverseDnsMapOutput) MapIndex(k pulumi.StringInput) VpcPublicGatewayIpReverseDnsOutput {

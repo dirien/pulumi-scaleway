@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Load-Balancer Backends.
@@ -493,6 +494,12 @@ func (i *LbBackend) ToLbBackendOutputWithContext(ctx context.Context) LbBackendO
 	return pulumi.ToOutputWithContext(ctx, i).(LbBackendOutput)
 }
 
+func (i *LbBackend) ToOutput(ctx context.Context) pulumix.Output[*LbBackend] {
+	return pulumix.Output[*LbBackend]{
+		OutputState: i.ToLbBackendOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LbBackendArrayInput is an input type that accepts LbBackendArray and LbBackendArrayOutput values.
 // You can construct a concrete instance of `LbBackendArrayInput` via:
 //
@@ -516,6 +523,12 @@ func (i LbBackendArray) ToLbBackendArrayOutput() LbBackendArrayOutput {
 
 func (i LbBackendArray) ToLbBackendArrayOutputWithContext(ctx context.Context) LbBackendArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LbBackendArrayOutput)
+}
+
+func (i LbBackendArray) ToOutput(ctx context.Context) pulumix.Output[[]*LbBackend] {
+	return pulumix.Output[[]*LbBackend]{
+		OutputState: i.ToLbBackendArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LbBackendMapInput is an input type that accepts LbBackendMap and LbBackendMapOutput values.
@@ -543,6 +556,12 @@ func (i LbBackendMap) ToLbBackendMapOutputWithContext(ctx context.Context) LbBac
 	return pulumi.ToOutputWithContext(ctx, i).(LbBackendMapOutput)
 }
 
+func (i LbBackendMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LbBackend] {
+	return pulumix.Output[map[string]*LbBackend]{
+		OutputState: i.ToLbBackendMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LbBackendOutput struct{ *pulumi.OutputState }
 
 func (LbBackendOutput) ElementType() reflect.Type {
@@ -555,6 +574,12 @@ func (o LbBackendOutput) ToLbBackendOutput() LbBackendOutput {
 
 func (o LbBackendOutput) ToLbBackendOutputWithContext(ctx context.Context) LbBackendOutput {
 	return o
+}
+
+func (o LbBackendOutput) ToOutput(ctx context.Context) pulumix.Output[*LbBackend] {
+	return pulumix.Output[*LbBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Scaleway S3 bucket website to be served in case all backend servers are down.
@@ -726,6 +751,12 @@ func (o LbBackendArrayOutput) ToLbBackendArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o LbBackendArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LbBackend] {
+	return pulumix.Output[[]*LbBackend]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LbBackendArrayOutput) Index(i pulumi.IntInput) LbBackendOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LbBackend {
 		return vs[0].([]*LbBackend)[vs[1].(int)]
@@ -744,6 +775,12 @@ func (o LbBackendMapOutput) ToLbBackendMapOutput() LbBackendMapOutput {
 
 func (o LbBackendMapOutput) ToLbBackendMapOutputWithContext(ctx context.Context) LbBackendMapOutput {
 	return o
+}
+
+func (o LbBackendMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LbBackend] {
+	return pulumix.Output[map[string]*LbBackend]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LbBackendMapOutput) MapIndex(k pulumi.StringInput) LbBackendOutput {

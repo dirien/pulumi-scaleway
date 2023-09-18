@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides an Object bucket website configuration resource.
@@ -287,6 +288,12 @@ func (i *ObjectBucketWebsiteConfiguration) ToObjectBucketWebsiteConfigurationOut
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketWebsiteConfigurationOutput)
 }
 
+func (i *ObjectBucketWebsiteConfiguration) ToOutput(ctx context.Context) pulumix.Output[*ObjectBucketWebsiteConfiguration] {
+	return pulumix.Output[*ObjectBucketWebsiteConfiguration]{
+		OutputState: i.ToObjectBucketWebsiteConfigurationOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ObjectBucketWebsiteConfigurationArrayInput is an input type that accepts ObjectBucketWebsiteConfigurationArray and ObjectBucketWebsiteConfigurationArrayOutput values.
 // You can construct a concrete instance of `ObjectBucketWebsiteConfigurationArrayInput` via:
 //
@@ -310,6 +317,12 @@ func (i ObjectBucketWebsiteConfigurationArray) ToObjectBucketWebsiteConfiguratio
 
 func (i ObjectBucketWebsiteConfigurationArray) ToObjectBucketWebsiteConfigurationArrayOutputWithContext(ctx context.Context) ObjectBucketWebsiteConfigurationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketWebsiteConfigurationArrayOutput)
+}
+
+func (i ObjectBucketWebsiteConfigurationArray) ToOutput(ctx context.Context) pulumix.Output[[]*ObjectBucketWebsiteConfiguration] {
+	return pulumix.Output[[]*ObjectBucketWebsiteConfiguration]{
+		OutputState: i.ToObjectBucketWebsiteConfigurationArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ObjectBucketWebsiteConfigurationMapInput is an input type that accepts ObjectBucketWebsiteConfigurationMap and ObjectBucketWebsiteConfigurationMapOutput values.
@@ -337,6 +350,12 @@ func (i ObjectBucketWebsiteConfigurationMap) ToObjectBucketWebsiteConfigurationM
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketWebsiteConfigurationMapOutput)
 }
 
+func (i ObjectBucketWebsiteConfigurationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ObjectBucketWebsiteConfiguration] {
+	return pulumix.Output[map[string]*ObjectBucketWebsiteConfiguration]{
+		OutputState: i.ToObjectBucketWebsiteConfigurationMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ObjectBucketWebsiteConfigurationOutput struct{ *pulumi.OutputState }
 
 func (ObjectBucketWebsiteConfigurationOutput) ElementType() reflect.Type {
@@ -349,6 +368,12 @@ func (o ObjectBucketWebsiteConfigurationOutput) ToObjectBucketWebsiteConfigurati
 
 func (o ObjectBucketWebsiteConfigurationOutput) ToObjectBucketWebsiteConfigurationOutputWithContext(ctx context.Context) ObjectBucketWebsiteConfigurationOutput {
 	return o
+}
+
+func (o ObjectBucketWebsiteConfigurationOutput) ToOutput(ctx context.Context) pulumix.Output[*ObjectBucketWebsiteConfiguration] {
+	return pulumix.Output[*ObjectBucketWebsiteConfiguration]{
+		OutputState: o.OutputState,
+	}
 }
 
 // (Required, Forces new resource) The name of the bucket.
@@ -404,6 +429,12 @@ func (o ObjectBucketWebsiteConfigurationArrayOutput) ToObjectBucketWebsiteConfig
 	return o
 }
 
+func (o ObjectBucketWebsiteConfigurationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ObjectBucketWebsiteConfiguration] {
+	return pulumix.Output[[]*ObjectBucketWebsiteConfiguration]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ObjectBucketWebsiteConfigurationArrayOutput) Index(i pulumi.IntInput) ObjectBucketWebsiteConfigurationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ObjectBucketWebsiteConfiguration {
 		return vs[0].([]*ObjectBucketWebsiteConfiguration)[vs[1].(int)]
@@ -422,6 +453,12 @@ func (o ObjectBucketWebsiteConfigurationMapOutput) ToObjectBucketWebsiteConfigur
 
 func (o ObjectBucketWebsiteConfigurationMapOutput) ToObjectBucketWebsiteConfigurationMapOutputWithContext(ctx context.Context) ObjectBucketWebsiteConfigurationMapOutput {
 	return o
+}
+
+func (o ObjectBucketWebsiteConfigurationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ObjectBucketWebsiteConfiguration] {
+	return pulumix.Output[map[string]*ObjectBucketWebsiteConfiguration]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ObjectBucketWebsiteConfigurationMapOutput) MapIndex(k pulumi.StringInput) ObjectBucketWebsiteConfigurationOutput {

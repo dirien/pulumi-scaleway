@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a function namespace.
@@ -123,6 +124,12 @@ func (o LookupFunctionNamespaceResultOutput) ToLookupFunctionNamespaceResultOutp
 
 func (o LookupFunctionNamespaceResultOutput) ToLookupFunctionNamespaceResultOutputWithContext(ctx context.Context) LookupFunctionNamespaceResultOutput {
 	return o
+}
+
+func (o LookupFunctionNamespaceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFunctionNamespaceResult] {
+	return pulumix.Output[LookupFunctionNamespaceResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The description of the namespace.

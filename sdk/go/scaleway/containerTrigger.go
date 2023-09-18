@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Container Triggers.
@@ -185,6 +186,12 @@ func (i *ContainerTrigger) ToContainerTriggerOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(ContainerTriggerOutput)
 }
 
+func (i *ContainerTrigger) ToOutput(ctx context.Context) pulumix.Output[*ContainerTrigger] {
+	return pulumix.Output[*ContainerTrigger]{
+		OutputState: i.ToContainerTriggerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ContainerTriggerArrayInput is an input type that accepts ContainerTriggerArray and ContainerTriggerArrayOutput values.
 // You can construct a concrete instance of `ContainerTriggerArrayInput` via:
 //
@@ -208,6 +215,12 @@ func (i ContainerTriggerArray) ToContainerTriggerArrayOutput() ContainerTriggerA
 
 func (i ContainerTriggerArray) ToContainerTriggerArrayOutputWithContext(ctx context.Context) ContainerTriggerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ContainerTriggerArrayOutput)
+}
+
+func (i ContainerTriggerArray) ToOutput(ctx context.Context) pulumix.Output[[]*ContainerTrigger] {
+	return pulumix.Output[[]*ContainerTrigger]{
+		OutputState: i.ToContainerTriggerArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ContainerTriggerMapInput is an input type that accepts ContainerTriggerMap and ContainerTriggerMapOutput values.
@@ -235,6 +248,12 @@ func (i ContainerTriggerMap) ToContainerTriggerMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(ContainerTriggerMapOutput)
 }
 
+func (i ContainerTriggerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ContainerTrigger] {
+	return pulumix.Output[map[string]*ContainerTrigger]{
+		OutputState: i.ToContainerTriggerMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ContainerTriggerOutput struct{ *pulumi.OutputState }
 
 func (ContainerTriggerOutput) ElementType() reflect.Type {
@@ -247,6 +266,12 @@ func (o ContainerTriggerOutput) ToContainerTriggerOutput() ContainerTriggerOutpu
 
 func (o ContainerTriggerOutput) ToContainerTriggerOutputWithContext(ctx context.Context) ContainerTriggerOutput {
 	return o
+}
+
+func (o ContainerTriggerOutput) ToOutput(ctx context.Context) pulumix.Output[*ContainerTrigger] {
+	return pulumix.Output[*ContainerTrigger]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The ID of the container to create a trigger for
@@ -288,6 +313,12 @@ func (o ContainerTriggerArrayOutput) ToContainerTriggerArrayOutputWithContext(ct
 	return o
 }
 
+func (o ContainerTriggerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ContainerTrigger] {
+	return pulumix.Output[[]*ContainerTrigger]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ContainerTriggerArrayOutput) Index(i pulumi.IntInput) ContainerTriggerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ContainerTrigger {
 		return vs[0].([]*ContainerTrigger)[vs[1].(int)]
@@ -306,6 +337,12 @@ func (o ContainerTriggerMapOutput) ToContainerTriggerMapOutput() ContainerTrigge
 
 func (o ContainerTriggerMapOutput) ToContainerTriggerMapOutputWithContext(ctx context.Context) ContainerTriggerMapOutput {
 	return o
+}
+
+func (o ContainerTriggerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ContainerTrigger] {
+	return pulumix.Output[map[string]*ContainerTrigger]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ContainerTriggerMapOutput) MapIndex(k pulumi.StringInput) ContainerTriggerOutput {

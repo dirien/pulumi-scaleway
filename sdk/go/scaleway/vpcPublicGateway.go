@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway VPC Public Gateway.
@@ -249,6 +250,12 @@ func (i *VpcPublicGateway) ToVpcPublicGatewayOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayOutput)
 }
 
+func (i *VpcPublicGateway) ToOutput(ctx context.Context) pulumix.Output[*VpcPublicGateway] {
+	return pulumix.Output[*VpcPublicGateway]{
+		OutputState: i.ToVpcPublicGatewayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpcPublicGatewayArrayInput is an input type that accepts VpcPublicGatewayArray and VpcPublicGatewayArrayOutput values.
 // You can construct a concrete instance of `VpcPublicGatewayArrayInput` via:
 //
@@ -272,6 +279,12 @@ func (i VpcPublicGatewayArray) ToVpcPublicGatewayArrayOutput() VpcPublicGatewayA
 
 func (i VpcPublicGatewayArray) ToVpcPublicGatewayArrayOutputWithContext(ctx context.Context) VpcPublicGatewayArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayArrayOutput)
+}
+
+func (i VpcPublicGatewayArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpcPublicGateway] {
+	return pulumix.Output[[]*VpcPublicGateway]{
+		OutputState: i.ToVpcPublicGatewayArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // VpcPublicGatewayMapInput is an input type that accepts VpcPublicGatewayMap and VpcPublicGatewayMapOutput values.
@@ -299,6 +312,12 @@ func (i VpcPublicGatewayMap) ToVpcPublicGatewayMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(VpcPublicGatewayMapOutput)
 }
 
+func (i VpcPublicGatewayMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpcPublicGateway] {
+	return pulumix.Output[map[string]*VpcPublicGateway]{
+		OutputState: i.ToVpcPublicGatewayMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpcPublicGatewayOutput struct{ *pulumi.OutputState }
 
 func (VpcPublicGatewayOutput) ElementType() reflect.Type {
@@ -311,6 +330,12 @@ func (o VpcPublicGatewayOutput) ToVpcPublicGatewayOutput() VpcPublicGatewayOutpu
 
 func (o VpcPublicGatewayOutput) ToVpcPublicGatewayOutputWithContext(ctx context.Context) VpcPublicGatewayOutput {
 	return o
+}
+
+func (o VpcPublicGatewayOutput) ToOutput(ctx context.Context) pulumix.Output[*VpcPublicGateway] {
+	return pulumix.Output[*VpcPublicGateway]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Enable SSH bastion on the gateway
@@ -392,6 +417,12 @@ func (o VpcPublicGatewayArrayOutput) ToVpcPublicGatewayArrayOutputWithContext(ct
 	return o
 }
 
+func (o VpcPublicGatewayArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpcPublicGateway] {
+	return pulumix.Output[[]*VpcPublicGateway]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpcPublicGatewayArrayOutput) Index(i pulumi.IntInput) VpcPublicGatewayOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpcPublicGateway {
 		return vs[0].([]*VpcPublicGateway)[vs[1].(int)]
@@ -410,6 +441,12 @@ func (o VpcPublicGatewayMapOutput) ToVpcPublicGatewayMapOutput() VpcPublicGatewa
 
 func (o VpcPublicGatewayMapOutput) ToVpcPublicGatewayMapOutputWithContext(ctx context.Context) VpcPublicGatewayMapOutput {
 	return o
+}
+
+func (o VpcPublicGatewayMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpcPublicGateway] {
+	return pulumix.Output[map[string]*VpcPublicGateway]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpcPublicGatewayMapOutput) MapIndex(k pulumi.StringInput) VpcPublicGatewayOutput {

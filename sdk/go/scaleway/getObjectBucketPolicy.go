@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about the Bucket's policy.
@@ -110,6 +111,12 @@ func (o LookupObjectBucketPolicyResultOutput) ToLookupObjectBucketPolicyResultOu
 
 func (o LookupObjectBucketPolicyResultOutput) ToLookupObjectBucketPolicyResultOutputWithContext(ctx context.Context) LookupObjectBucketPolicyResultOutput {
 	return o
+}
+
+func (o LookupObjectBucketPolicyResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupObjectBucketPolicyResult] {
+	return pulumix.Output[LookupObjectBucketPolicyResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupObjectBucketPolicyResultOutput) Bucket() pulumi.StringOutput {

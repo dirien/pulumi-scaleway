@@ -31,6 +31,7 @@ __all__ = [
     'InstanceSecurityGroupRulesInboundRuleArgs',
     'InstanceSecurityGroupRulesOutboundRuleArgs',
     'InstanceServerPrivateNetworkArgs',
+    'InstanceServerPublicIpArgs',
     'InstanceServerRootVolumeArgs',
     'InstanceSnapshotImportArgs',
     'IotDeviceCertificateArgs',
@@ -1756,6 +1757,45 @@ class InstanceServerPrivateNetworkArgs:
     @zone.setter
     def zone(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "zone", value)
+
+
+@pulumi.input_type
+class InstanceServerPublicIpArgs:
+    def __init__(__self__, *,
+                 address: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] address: The address of the IP
+        :param pulumi.Input[str] id: The ID of the IP
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The address of the IP
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "address", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the IP
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
 
 
 @pulumi.input_type

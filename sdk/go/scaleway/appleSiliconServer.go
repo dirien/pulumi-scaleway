@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type AppleSiliconServer struct {
@@ -171,6 +172,12 @@ func (i *AppleSiliconServer) ToAppleSiliconServerOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(AppleSiliconServerOutput)
 }
 
+func (i *AppleSiliconServer) ToOutput(ctx context.Context) pulumix.Output[*AppleSiliconServer] {
+	return pulumix.Output[*AppleSiliconServer]{
+		OutputState: i.ToAppleSiliconServerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AppleSiliconServerArrayInput is an input type that accepts AppleSiliconServerArray and AppleSiliconServerArrayOutput values.
 // You can construct a concrete instance of `AppleSiliconServerArrayInput` via:
 //
@@ -194,6 +201,12 @@ func (i AppleSiliconServerArray) ToAppleSiliconServerArrayOutput() AppleSiliconS
 
 func (i AppleSiliconServerArray) ToAppleSiliconServerArrayOutputWithContext(ctx context.Context) AppleSiliconServerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AppleSiliconServerArrayOutput)
+}
+
+func (i AppleSiliconServerArray) ToOutput(ctx context.Context) pulumix.Output[[]*AppleSiliconServer] {
+	return pulumix.Output[[]*AppleSiliconServer]{
+		OutputState: i.ToAppleSiliconServerArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AppleSiliconServerMapInput is an input type that accepts AppleSiliconServerMap and AppleSiliconServerMapOutput values.
@@ -221,6 +234,12 @@ func (i AppleSiliconServerMap) ToAppleSiliconServerMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(AppleSiliconServerMapOutput)
 }
 
+func (i AppleSiliconServerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AppleSiliconServer] {
+	return pulumix.Output[map[string]*AppleSiliconServer]{
+		OutputState: i.ToAppleSiliconServerMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AppleSiliconServerOutput struct{ *pulumi.OutputState }
 
 func (AppleSiliconServerOutput) ElementType() reflect.Type {
@@ -233,6 +252,12 @@ func (o AppleSiliconServerOutput) ToAppleSiliconServerOutput() AppleSiliconServe
 
 func (o AppleSiliconServerOutput) ToAppleSiliconServerOutputWithContext(ctx context.Context) AppleSiliconServerOutput {
 	return o
+}
+
+func (o AppleSiliconServerOutput) ToOutput(ctx context.Context) pulumix.Output[*AppleSiliconServer] {
+	return pulumix.Output[*AppleSiliconServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The date and time of the creation of the server
@@ -304,6 +329,12 @@ func (o AppleSiliconServerArrayOutput) ToAppleSiliconServerArrayOutputWithContex
 	return o
 }
 
+func (o AppleSiliconServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AppleSiliconServer] {
+	return pulumix.Output[[]*AppleSiliconServer]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AppleSiliconServerArrayOutput) Index(i pulumi.IntInput) AppleSiliconServerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AppleSiliconServer {
 		return vs[0].([]*AppleSiliconServer)[vs[1].(int)]
@@ -322,6 +353,12 @@ func (o AppleSiliconServerMapOutput) ToAppleSiliconServerMapOutput() AppleSilico
 
 func (o AppleSiliconServerMapOutput) ToAppleSiliconServerMapOutputWithContext(ctx context.Context) AppleSiliconServerMapOutput {
 	return o
+}
+
+func (o AppleSiliconServerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AppleSiliconServer] {
+	return pulumix.Output[map[string]*AppleSiliconServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AppleSiliconServerMapOutput) MapIndex(k pulumi.StringInput) AppleSiliconServerOutput {

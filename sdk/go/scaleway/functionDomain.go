@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Function Domain bindings.
@@ -201,6 +202,12 @@ func (i *FunctionDomain) ToFunctionDomainOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(FunctionDomainOutput)
 }
 
+func (i *FunctionDomain) ToOutput(ctx context.Context) pulumix.Output[*FunctionDomain] {
+	return pulumix.Output[*FunctionDomain]{
+		OutputState: i.ToFunctionDomainOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FunctionDomainArrayInput is an input type that accepts FunctionDomainArray and FunctionDomainArrayOutput values.
 // You can construct a concrete instance of `FunctionDomainArrayInput` via:
 //
@@ -224,6 +231,12 @@ func (i FunctionDomainArray) ToFunctionDomainArrayOutput() FunctionDomainArrayOu
 
 func (i FunctionDomainArray) ToFunctionDomainArrayOutputWithContext(ctx context.Context) FunctionDomainArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FunctionDomainArrayOutput)
+}
+
+func (i FunctionDomainArray) ToOutput(ctx context.Context) pulumix.Output[[]*FunctionDomain] {
+	return pulumix.Output[[]*FunctionDomain]{
+		OutputState: i.ToFunctionDomainArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FunctionDomainMapInput is an input type that accepts FunctionDomainMap and FunctionDomainMapOutput values.
@@ -251,6 +264,12 @@ func (i FunctionDomainMap) ToFunctionDomainMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(FunctionDomainMapOutput)
 }
 
+func (i FunctionDomainMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FunctionDomain] {
+	return pulumix.Output[map[string]*FunctionDomain]{
+		OutputState: i.ToFunctionDomainMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FunctionDomainOutput struct{ *pulumi.OutputState }
 
 func (FunctionDomainOutput) ElementType() reflect.Type {
@@ -263,6 +282,12 @@ func (o FunctionDomainOutput) ToFunctionDomainOutput() FunctionDomainOutput {
 
 func (o FunctionDomainOutput) ToFunctionDomainOutputWithContext(ctx context.Context) FunctionDomainOutput {
 	return o
+}
+
+func (o FunctionDomainOutput) ToOutput(ctx context.Context) pulumix.Output[*FunctionDomain] {
+	return pulumix.Output[*FunctionDomain]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The ID of the function you want to create a domain with.
@@ -302,6 +327,12 @@ func (o FunctionDomainArrayOutput) ToFunctionDomainArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o FunctionDomainArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FunctionDomain] {
+	return pulumix.Output[[]*FunctionDomain]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FunctionDomainArrayOutput) Index(i pulumi.IntInput) FunctionDomainOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FunctionDomain {
 		return vs[0].([]*FunctionDomain)[vs[1].(int)]
@@ -320,6 +351,12 @@ func (o FunctionDomainMapOutput) ToFunctionDomainMapOutput() FunctionDomainMapOu
 
 func (o FunctionDomainMapOutput) ToFunctionDomainMapOutputWithContext(ctx context.Context) FunctionDomainMapOutput {
 	return o
+}
+
+func (o FunctionDomainMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FunctionDomain] {
+	return pulumix.Output[map[string]*FunctionDomain]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FunctionDomainMapOutput) MapIndex(k pulumi.StringInput) FunctionDomainOutput {

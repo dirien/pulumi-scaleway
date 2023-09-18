@@ -49,7 +49,7 @@ namespace ediri.Scaleway
     ///                             ["SCW"] = "application_id:&lt;APPLICATION_ID&gt;",
     ///                         },
     ///                         ["Action"] = "s3:ListBucket",
-    ///                         ["Resources"] = new[]
+    ///                         ["Resource"] = new[]
     ///                         {
     ///                             bucketName,
     ///                             $"{bucketName1}/*",

@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a Load Balancer.
@@ -129,6 +130,12 @@ func (o LookupLbResultOutput) ToLookupLbResultOutput() LookupLbResultOutput {
 
 func (o LookupLbResultOutput) ToLookupLbResultOutputWithContext(ctx context.Context) LookupLbResultOutput {
 	return o
+}
+
+func (o LookupLbResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupLbResult] {
+	return pulumix.Output[LookupLbResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupLbResultOutput) Description() pulumi.StringOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about the Scaleway Cockpit.
@@ -125,6 +126,12 @@ func (o LookupCockpitResultOutput) ToLookupCockpitResultOutput() LookupCockpitRe
 
 func (o LookupCockpitResultOutput) ToLookupCockpitResultOutputWithContext(ctx context.Context) LookupCockpitResultOutput {
 	return o
+}
+
+func (o LookupCockpitResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupCockpitResult] {
+	return pulumix.Output[LookupCockpitResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Endpoints

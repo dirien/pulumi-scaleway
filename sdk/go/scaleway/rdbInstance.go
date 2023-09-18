@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -395,6 +396,12 @@ func (i *RdbInstance) ToRdbInstanceOutputWithContext(ctx context.Context) RdbIns
 	return pulumi.ToOutputWithContext(ctx, i).(RdbInstanceOutput)
 }
 
+func (i *RdbInstance) ToOutput(ctx context.Context) pulumix.Output[*RdbInstance] {
+	return pulumix.Output[*RdbInstance]{
+		OutputState: i.ToRdbInstanceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RdbInstanceArrayInput is an input type that accepts RdbInstanceArray and RdbInstanceArrayOutput values.
 // You can construct a concrete instance of `RdbInstanceArrayInput` via:
 //
@@ -418,6 +425,12 @@ func (i RdbInstanceArray) ToRdbInstanceArrayOutput() RdbInstanceArrayOutput {
 
 func (i RdbInstanceArray) ToRdbInstanceArrayOutputWithContext(ctx context.Context) RdbInstanceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RdbInstanceArrayOutput)
+}
+
+func (i RdbInstanceArray) ToOutput(ctx context.Context) pulumix.Output[[]*RdbInstance] {
+	return pulumix.Output[[]*RdbInstance]{
+		OutputState: i.ToRdbInstanceArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RdbInstanceMapInput is an input type that accepts RdbInstanceMap and RdbInstanceMapOutput values.
@@ -445,6 +458,12 @@ func (i RdbInstanceMap) ToRdbInstanceMapOutputWithContext(ctx context.Context) R
 	return pulumi.ToOutputWithContext(ctx, i).(RdbInstanceMapOutput)
 }
 
+func (i RdbInstanceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RdbInstance] {
+	return pulumix.Output[map[string]*RdbInstance]{
+		OutputState: i.ToRdbInstanceMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RdbInstanceOutput struct{ *pulumi.OutputState }
 
 func (RdbInstanceOutput) ElementType() reflect.Type {
@@ -457,6 +476,12 @@ func (o RdbInstanceOutput) ToRdbInstanceOutput() RdbInstanceOutput {
 
 func (o RdbInstanceOutput) ToRdbInstanceOutputWithContext(ctx context.Context) RdbInstanceOutput {
 	return o
+}
+
+func (o RdbInstanceOutput) ToOutput(ctx context.Context) pulumix.Output[*RdbInstance] {
+	return pulumix.Output[*RdbInstance]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Boolean to store logical backups in the same region as the database instance.
@@ -608,6 +633,12 @@ func (o RdbInstanceArrayOutput) ToRdbInstanceArrayOutputWithContext(ctx context.
 	return o
 }
 
+func (o RdbInstanceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RdbInstance] {
+	return pulumix.Output[[]*RdbInstance]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RdbInstanceArrayOutput) Index(i pulumi.IntInput) RdbInstanceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RdbInstance {
 		return vs[0].([]*RdbInstance)[vs[1].(int)]
@@ -626,6 +657,12 @@ func (o RdbInstanceMapOutput) ToRdbInstanceMapOutput() RdbInstanceMapOutput {
 
 func (o RdbInstanceMapOutput) ToRdbInstanceMapOutputWithContext(ctx context.Context) RdbInstanceMapOutput {
 	return o
+}
+
+func (o RdbInstanceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RdbInstance] {
+	return pulumix.Output[map[string]*RdbInstance]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RdbInstanceMapOutput) MapIndex(k pulumi.StringInput) RdbInstanceOutput {

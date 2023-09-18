@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Load-Balancer Routes.
@@ -300,6 +301,12 @@ func (i *LbRoute) ToLbRouteOutputWithContext(ctx context.Context) LbRouteOutput 
 	return pulumi.ToOutputWithContext(ctx, i).(LbRouteOutput)
 }
 
+func (i *LbRoute) ToOutput(ctx context.Context) pulumix.Output[*LbRoute] {
+	return pulumix.Output[*LbRoute]{
+		OutputState: i.ToLbRouteOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LbRouteArrayInput is an input type that accepts LbRouteArray and LbRouteArrayOutput values.
 // You can construct a concrete instance of `LbRouteArrayInput` via:
 //
@@ -323,6 +330,12 @@ func (i LbRouteArray) ToLbRouteArrayOutput() LbRouteArrayOutput {
 
 func (i LbRouteArray) ToLbRouteArrayOutputWithContext(ctx context.Context) LbRouteArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LbRouteArrayOutput)
+}
+
+func (i LbRouteArray) ToOutput(ctx context.Context) pulumix.Output[[]*LbRoute] {
+	return pulumix.Output[[]*LbRoute]{
+		OutputState: i.ToLbRouteArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LbRouteMapInput is an input type that accepts LbRouteMap and LbRouteMapOutput values.
@@ -350,6 +363,12 @@ func (i LbRouteMap) ToLbRouteMapOutputWithContext(ctx context.Context) LbRouteMa
 	return pulumi.ToOutputWithContext(ctx, i).(LbRouteMapOutput)
 }
 
+func (i LbRouteMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LbRoute] {
+	return pulumix.Output[map[string]*LbRoute]{
+		OutputState: i.ToLbRouteMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LbRouteOutput struct{ *pulumi.OutputState }
 
 func (LbRouteOutput) ElementType() reflect.Type {
@@ -362,6 +381,12 @@ func (o LbRouteOutput) ToLbRouteOutput() LbRouteOutput {
 
 func (o LbRouteOutput) ToLbRouteOutputWithContext(ctx context.Context) LbRouteOutput {
 	return o
+}
+
+func (o LbRouteOutput) ToOutput(ctx context.Context) pulumix.Output[*LbRoute] {
+	return pulumix.Output[*LbRoute]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The ID of the backend to which the route is associated.
@@ -414,6 +439,12 @@ func (o LbRouteArrayOutput) ToLbRouteArrayOutputWithContext(ctx context.Context)
 	return o
 }
 
+func (o LbRouteArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LbRoute] {
+	return pulumix.Output[[]*LbRoute]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LbRouteArrayOutput) Index(i pulumi.IntInput) LbRouteOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LbRoute {
 		return vs[0].([]*LbRoute)[vs[1].(int)]
@@ -432,6 +463,12 @@ func (o LbRouteMapOutput) ToLbRouteMapOutput() LbRouteMapOutput {
 
 func (o LbRouteMapOutput) ToLbRouteMapOutputWithContext(ctx context.Context) LbRouteMapOutput {
 	return o
+}
+
+func (o LbRouteMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LbRoute] {
+	return pulumix.Output[map[string]*LbRoute]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LbRouteMapOutput) MapIndex(k pulumi.StringInput) LbRouteOutput {

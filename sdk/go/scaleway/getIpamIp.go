@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about IP managed by IPAM service. IPAM service is used for dhcp bundled in VPCs' private networks.
@@ -133,6 +134,12 @@ func (o GetIpamIpResultOutput) ToGetIpamIpResultOutput() GetIpamIpResultOutput {
 
 func (o GetIpamIpResultOutput) ToGetIpamIpResultOutputWithContext(ctx context.Context) GetIpamIpResultOutput {
 	return o
+}
+
+func (o GetIpamIpResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetIpamIpResult] {
+	return pulumix.Output[GetIpamIpResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The IP address

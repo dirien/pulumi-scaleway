@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway object storage bucket policy.
@@ -53,7 +54,7 @@ import (
 //									"SCW": "application_id:<APPLICATION_ID>",
 //								},
 //								"Action": "s3:ListBucket",
-//								"Resources": []string{
+//								"Resource": []string{
 //									bucketName,
 //									fmt.Sprintf("%v/*", bucketName1),
 //								},
@@ -215,6 +216,12 @@ func (i *ObjectBucketPolicy) ToObjectBucketPolicyOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketPolicyOutput)
 }
 
+func (i *ObjectBucketPolicy) ToOutput(ctx context.Context) pulumix.Output[*ObjectBucketPolicy] {
+	return pulumix.Output[*ObjectBucketPolicy]{
+		OutputState: i.ToObjectBucketPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ObjectBucketPolicyArrayInput is an input type that accepts ObjectBucketPolicyArray and ObjectBucketPolicyArrayOutput values.
 // You can construct a concrete instance of `ObjectBucketPolicyArrayInput` via:
 //
@@ -238,6 +245,12 @@ func (i ObjectBucketPolicyArray) ToObjectBucketPolicyArrayOutput() ObjectBucketP
 
 func (i ObjectBucketPolicyArray) ToObjectBucketPolicyArrayOutputWithContext(ctx context.Context) ObjectBucketPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketPolicyArrayOutput)
+}
+
+func (i ObjectBucketPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*ObjectBucketPolicy] {
+	return pulumix.Output[[]*ObjectBucketPolicy]{
+		OutputState: i.ToObjectBucketPolicyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ObjectBucketPolicyMapInput is an input type that accepts ObjectBucketPolicyMap and ObjectBucketPolicyMapOutput values.
@@ -265,6 +278,12 @@ func (i ObjectBucketPolicyMap) ToObjectBucketPolicyMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectBucketPolicyMapOutput)
 }
 
+func (i ObjectBucketPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ObjectBucketPolicy] {
+	return pulumix.Output[map[string]*ObjectBucketPolicy]{
+		OutputState: i.ToObjectBucketPolicyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ObjectBucketPolicyOutput struct{ *pulumi.OutputState }
 
 func (ObjectBucketPolicyOutput) ElementType() reflect.Type {
@@ -277,6 +296,12 @@ func (o ObjectBucketPolicyOutput) ToObjectBucketPolicyOutput() ObjectBucketPolic
 
 func (o ObjectBucketPolicyOutput) ToObjectBucketPolicyOutputWithContext(ctx context.Context) ObjectBucketPolicyOutput {
 	return o
+}
+
+func (o ObjectBucketPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*ObjectBucketPolicy] {
+	return pulumix.Output[*ObjectBucketPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The name of the bucket.
@@ -315,6 +340,12 @@ func (o ObjectBucketPolicyArrayOutput) ToObjectBucketPolicyArrayOutputWithContex
 	return o
 }
 
+func (o ObjectBucketPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ObjectBucketPolicy] {
+	return pulumix.Output[[]*ObjectBucketPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ObjectBucketPolicyArrayOutput) Index(i pulumi.IntInput) ObjectBucketPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ObjectBucketPolicy {
 		return vs[0].([]*ObjectBucketPolicy)[vs[1].(int)]
@@ -333,6 +364,12 @@ func (o ObjectBucketPolicyMapOutput) ToObjectBucketPolicyMapOutput() ObjectBucke
 
 func (o ObjectBucketPolicyMapOutput) ToObjectBucketPolicyMapOutputWithContext(ctx context.Context) ObjectBucketPolicyMapOutput {
 	return o
+}
+
+func (o ObjectBucketPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ObjectBucketPolicy] {
+	return pulumix.Output[map[string]*ObjectBucketPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ObjectBucketPolicyMapOutput) MapIndex(k pulumi.StringInput) ObjectBucketPolicyOutput {

@@ -86,6 +86,7 @@ namespace ediri.Scaleway
         /// </summary>
         public readonly string Id;
         public readonly string? IpAddress;
+        public readonly bool IsIpv6;
         /// <summary>
         /// (Defaults to provider `organization_id`) The ID of the organization the IP is in.
         /// </summary>
@@ -102,6 +103,7 @@ namespace ediri.Scaleway
         /// The associated server ID if any
         /// </summary>
         public readonly string ServerId;
+        public readonly string Status;
         public readonly ImmutableArray<string> Tags;
         public readonly string UpdatedAt;
         public readonly string Zone;
@@ -118,6 +120,8 @@ namespace ediri.Scaleway
 
             string? ipAddress,
 
+            bool isIpv6,
+
             string organizationId,
 
             string projectId,
@@ -125,6 +129,8 @@ namespace ediri.Scaleway
             string reverse,
 
             string serverId,
+
+            string status,
 
             ImmutableArray<string> tags,
 
@@ -137,10 +143,12 @@ namespace ediri.Scaleway
             FlexibleIpId = flexibleIpId;
             Id = id;
             IpAddress = ipAddress;
+            IsIpv6 = isIpv6;
             OrganizationId = organizationId;
             ProjectId = projectId;
             Reverse = reverse;
             ServerId = serverId;
+            Status = status;
             Tags = tags;
             UpdatedAt = updatedAt;
             Zone = zone;

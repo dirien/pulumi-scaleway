@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway RDB database.
@@ -187,6 +188,12 @@ func (i *RdbDatabase) ToRdbDatabaseOutputWithContext(ctx context.Context) RdbDat
 	return pulumi.ToOutputWithContext(ctx, i).(RdbDatabaseOutput)
 }
 
+func (i *RdbDatabase) ToOutput(ctx context.Context) pulumix.Output[*RdbDatabase] {
+	return pulumix.Output[*RdbDatabase]{
+		OutputState: i.ToRdbDatabaseOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RdbDatabaseArrayInput is an input type that accepts RdbDatabaseArray and RdbDatabaseArrayOutput values.
 // You can construct a concrete instance of `RdbDatabaseArrayInput` via:
 //
@@ -210,6 +217,12 @@ func (i RdbDatabaseArray) ToRdbDatabaseArrayOutput() RdbDatabaseArrayOutput {
 
 func (i RdbDatabaseArray) ToRdbDatabaseArrayOutputWithContext(ctx context.Context) RdbDatabaseArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RdbDatabaseArrayOutput)
+}
+
+func (i RdbDatabaseArray) ToOutput(ctx context.Context) pulumix.Output[[]*RdbDatabase] {
+	return pulumix.Output[[]*RdbDatabase]{
+		OutputState: i.ToRdbDatabaseArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RdbDatabaseMapInput is an input type that accepts RdbDatabaseMap and RdbDatabaseMapOutput values.
@@ -237,6 +250,12 @@ func (i RdbDatabaseMap) ToRdbDatabaseMapOutputWithContext(ctx context.Context) R
 	return pulumi.ToOutputWithContext(ctx, i).(RdbDatabaseMapOutput)
 }
 
+func (i RdbDatabaseMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RdbDatabase] {
+	return pulumix.Output[map[string]*RdbDatabase]{
+		OutputState: i.ToRdbDatabaseMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RdbDatabaseOutput struct{ *pulumi.OutputState }
 
 func (RdbDatabaseOutput) ElementType() reflect.Type {
@@ -249,6 +268,12 @@ func (o RdbDatabaseOutput) ToRdbDatabaseOutput() RdbDatabaseOutput {
 
 func (o RdbDatabaseOutput) ToRdbDatabaseOutputWithContext(ctx context.Context) RdbDatabaseOutput {
 	return o
+}
+
+func (o RdbDatabaseOutput) ToOutput(ctx context.Context) pulumix.Output[*RdbDatabase] {
+	return pulumix.Output[*RdbDatabase]{
+		OutputState: o.OutputState,
+	}
 }
 
 // UUID of the rdb instance.
@@ -297,6 +322,12 @@ func (o RdbDatabaseArrayOutput) ToRdbDatabaseArrayOutputWithContext(ctx context.
 	return o
 }
 
+func (o RdbDatabaseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RdbDatabase] {
+	return pulumix.Output[[]*RdbDatabase]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RdbDatabaseArrayOutput) Index(i pulumi.IntInput) RdbDatabaseOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RdbDatabase {
 		return vs[0].([]*RdbDatabase)[vs[1].(int)]
@@ -315,6 +346,12 @@ func (o RdbDatabaseMapOutput) ToRdbDatabaseMapOutput() RdbDatabaseMapOutput {
 
 func (o RdbDatabaseMapOutput) ToRdbDatabaseMapOutputWithContext(ctx context.Context) RdbDatabaseMapOutput {
 	return o
+}
+
+func (o RdbDatabaseMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RdbDatabase] {
+	return pulumix.Output[map[string]*RdbDatabase]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RdbDatabaseMapOutput) MapIndex(k pulumi.StringInput) RdbDatabaseOutput {

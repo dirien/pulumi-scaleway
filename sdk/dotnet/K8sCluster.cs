@@ -254,7 +254,13 @@ namespace ediri.Scaleway
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+        /// The type of Kubernetes cluster. Possible values are:
+        /// 
+        /// - for mutualized clusters: `kapsule` or `multicloud`
+        /// 
+        /// - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+        /// 
+        /// - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -451,7 +457,13 @@ namespace ediri.Scaleway
         }
 
         /// <summary>
-        /// The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+        /// The type of Kubernetes cluster. Possible values are:
+        /// 
+        /// - for mutualized clusters: `kapsule` or `multicloud`
+        /// 
+        /// - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+        /// 
+        /// - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -627,7 +639,13 @@ namespace ediri.Scaleway
         }
 
         /// <summary>
-        /// The type of Kubernetes cluster. Possible values are: `kapsule` or `multicloud`.
+        /// The type of Kubernetes cluster. Possible values are:
+        /// 
+        /// - for mutualized clusters: `kapsule` or `multicloud`
+        /// 
+        /// - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
+        /// 
+        /// - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

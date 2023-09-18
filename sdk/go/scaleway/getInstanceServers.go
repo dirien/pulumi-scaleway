@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about multiple instance servers.
@@ -123,6 +124,12 @@ func (o GetInstanceServersResultOutput) ToGetInstanceServersResultOutput() GetIn
 
 func (o GetInstanceServersResultOutput) ToGetInstanceServersResultOutputWithContext(ctx context.Context) GetInstanceServersResultOutput {
 	return o
+}
+
+func (o GetInstanceServersResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetInstanceServersResult] {
+	return pulumix.Output[GetInstanceServersResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

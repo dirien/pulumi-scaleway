@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a Flexible IP.
@@ -40,6 +41,7 @@ type LookupFlexibleIpResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	IpAddress *string `pulumi:"ipAddress"`
+	IsIpv6    bool    `pulumi:"isIpv6"`
 	// (Defaults to provider `organizationId`) The ID of the organization the IP is in.
 	OrganizationId string `pulumi:"organizationId"`
 	// (Defaults to provider `projectId`) The ID of the project the IP is in.
@@ -48,6 +50,7 @@ type LookupFlexibleIpResult struct {
 	Reverse string `pulumi:"reverse"`
 	// The associated server ID if any
 	ServerId  string   `pulumi:"serverId"`
+	Status    string   `pulumi:"status"`
 	Tags      []string `pulumi:"tags"`
 	UpdatedAt string   `pulumi:"updatedAt"`
 	Zone      string   `pulumi:"zone"`
@@ -95,6 +98,12 @@ func (o LookupFlexibleIpResultOutput) ToLookupFlexibleIpResultOutputWithContext(
 	return o
 }
 
+func (o LookupFlexibleIpResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFlexibleIpResult] {
+	return pulumix.Output[LookupFlexibleIpResult]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LookupFlexibleIpResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFlexibleIpResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -116,6 +125,10 @@ func (o LookupFlexibleIpResultOutput) IpAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupFlexibleIpResult) *string { return v.IpAddress }).(pulumi.StringPtrOutput)
 }
 
+func (o LookupFlexibleIpResultOutput) IsIpv6() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupFlexibleIpResult) bool { return v.IsIpv6 }).(pulumi.BoolOutput)
+}
+
 // (Defaults to provider `organizationId`) The ID of the organization the IP is in.
 func (o LookupFlexibleIpResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFlexibleIpResult) string { return v.OrganizationId }).(pulumi.StringOutput)
@@ -134,6 +147,10 @@ func (o LookupFlexibleIpResultOutput) Reverse() pulumi.StringOutput {
 // The associated server ID if any
 func (o LookupFlexibleIpResultOutput) ServerId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFlexibleIpResult) string { return v.ServerId }).(pulumi.StringOutput)
+}
+
+func (o LookupFlexibleIpResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFlexibleIpResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
 func (o LookupFlexibleIpResultOutput) Tags() pulumi.StringArrayOutput {

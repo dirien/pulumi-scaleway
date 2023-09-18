@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Get information about Scaleway Load-Balancer Certificates.
@@ -99,6 +100,12 @@ func (o LookupLbCertificateResultOutput) ToLookupLbCertificateResultOutput() Loo
 
 func (o LookupLbCertificateResultOutput) ToLookupLbCertificateResultOutputWithContext(ctx context.Context) LookupLbCertificateResultOutput {
 	return o
+}
+
+func (o LookupLbCertificateResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupLbCertificateResult] {
+	return pulumix.Output[LookupLbCertificateResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupLbCertificateResultOutput) CertificateId() pulumi.StringPtrOutput {

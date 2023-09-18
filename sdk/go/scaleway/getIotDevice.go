@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an IOT Device.
@@ -126,6 +127,12 @@ func (o LookupIotDeviceResultOutput) ToLookupIotDeviceResultOutput() LookupIotDe
 
 func (o LookupIotDeviceResultOutput) ToLookupIotDeviceResultOutputWithContext(ctx context.Context) LookupIotDeviceResultOutput {
 	return o
+}
+
+func (o LookupIotDeviceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupIotDeviceResult] {
+	return pulumix.Output[LookupIotDeviceResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupIotDeviceResultOutput) AllowInsecure() pulumi.BoolOutput {

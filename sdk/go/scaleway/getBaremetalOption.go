@@ -9,6 +9,7 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a baremetal option.
@@ -117,6 +118,12 @@ func (o GetBaremetalOptionResultOutput) ToGetBaremetalOptionResultOutput() GetBa
 
 func (o GetBaremetalOptionResultOutput) ToGetBaremetalOptionResultOutputWithContext(ctx context.Context) GetBaremetalOptionResultOutput {
 	return o
+}
+
+func (o GetBaremetalOptionResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetBaremetalOptionResult] {
+	return pulumix.Output[GetBaremetalOptionResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.
