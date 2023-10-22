@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['LbRouteArgs', 'LbRoute']
@@ -31,12 +31,37 @@ class LbRouteArgs:
                
                > **Important:** This field should be set for routes on TCP Load Balancers.
         """
-        pulumi.set(__self__, "backend_id", backend_id)
-        pulumi.set(__self__, "frontend_id", frontend_id)
+        LbRouteArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            backend_id=backend_id,
+            frontend_id=frontend_id,
+            match_host_header=match_host_header,
+            match_sni=match_sni,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             backend_id: pulumi.Input[str],
+             frontend_id: pulumi.Input[str],
+             match_host_header: Optional[pulumi.Input[str]] = None,
+             match_sni: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'backendId' in kwargs:
+            backend_id = kwargs['backendId']
+        if 'frontendId' in kwargs:
+            frontend_id = kwargs['frontendId']
+        if 'matchHostHeader' in kwargs:
+            match_host_header = kwargs['matchHostHeader']
+        if 'matchSni' in kwargs:
+            match_sni = kwargs['matchSni']
+
+        _setter("backend_id", backend_id)
+        _setter("frontend_id", frontend_id)
         if match_host_header is not None:
-            pulumi.set(__self__, "match_host_header", match_host_header)
+            _setter("match_host_header", match_host_header)
         if match_sni is not None:
-            pulumi.set(__self__, "match_sni", match_sni)
+            _setter("match_sni", match_sni)
 
     @property
     @pulumi.getter(name="backendId")
@@ -117,18 +142,51 @@ class _LbRouteState:
                > **Important:** This field should be set for routes on TCP Load Balancers.
         :param pulumi.Input[str] updated_at: The date at which the route was last updated.
         """
+        _LbRouteState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            backend_id=backend_id,
+            created_at=created_at,
+            frontend_id=frontend_id,
+            match_host_header=match_host_header,
+            match_sni=match_sni,
+            updated_at=updated_at,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             backend_id: Optional[pulumi.Input[str]] = None,
+             created_at: Optional[pulumi.Input[str]] = None,
+             frontend_id: Optional[pulumi.Input[str]] = None,
+             match_host_header: Optional[pulumi.Input[str]] = None,
+             match_sni: Optional[pulumi.Input[str]] = None,
+             updated_at: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'backendId' in kwargs:
+            backend_id = kwargs['backendId']
+        if 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if 'frontendId' in kwargs:
+            frontend_id = kwargs['frontendId']
+        if 'matchHostHeader' in kwargs:
+            match_host_header = kwargs['matchHostHeader']
+        if 'matchSni' in kwargs:
+            match_sni = kwargs['matchSni']
+        if 'updatedAt' in kwargs:
+            updated_at = kwargs['updatedAt']
+
         if backend_id is not None:
-            pulumi.set(__self__, "backend_id", backend_id)
+            _setter("backend_id", backend_id)
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if frontend_id is not None:
-            pulumi.set(__self__, "frontend_id", frontend_id)
+            _setter("frontend_id", frontend_id)
         if match_host_header is not None:
-            pulumi.set(__self__, "match_host_header", match_host_header)
+            _setter("match_host_header", match_host_header)
         if match_sni is not None:
-            pulumi.set(__self__, "match_sni", match_sni)
+            _setter("match_sni", match_sni)
         if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
+            _setter("updated_at", updated_at)
 
     @property
     @pulumi.getter(name="backendId")
@@ -376,6 +434,10 @@ class LbRoute(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            LbRouteArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

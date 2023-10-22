@@ -169,6 +169,25 @@ export interface ContainerTriggerSqs {
     region?: pulumi.Input<string>;
 }
 
+export interface DocumentDBReadReplicaDirectAccess {
+    endpointId?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string>;
+    ip?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    port?: pulumi.Input<number>;
+}
+
+export interface DocumentDBReadReplicaPrivateNetwork {
+    endpointId?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string>;
+    ip?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    port?: pulumi.Input<number>;
+    privateNetworkId: pulumi.Input<string>;
+    serviceIp?: pulumi.Input<string>;
+    zone?: pulumi.Input<string>;
+}
+
 export interface DomainRecordGeoIp {
     /**
      * The list of matches. *(Can be more than 1)*
@@ -201,7 +220,7 @@ export interface DomainRecordHttpService {
      */
     mustContain: pulumi.Input<string>;
     /**
-     * Strategy to return an IP from the IPs list. Can be `random` or `hashed`
+     * Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
      */
     strategy: pulumi.Input<string>;
     /**
@@ -792,7 +811,7 @@ export interface LbBackendHealthCheckHttp {
      */
     method?: pulumi.Input<string>;
     /**
-     * The HTTP endpoint URL to call for HC requests.
+     * The HTTPS endpoint URL to call for HC requests.
      */
     uri: pulumi.Input<string>;
 }
@@ -815,7 +834,7 @@ export interface LbBackendHealthCheckHttps {
      */
     sni?: pulumi.Input<string>;
     /**
-     * The HTTP endpoint URL to call for HC requests.
+     * The HTTPS endpoint URL to call for HC requests.
      */
     uri: pulumi.Input<string>;
 }
@@ -1306,6 +1325,13 @@ export interface RedisClusterPublicNetwork {
      * TCP port of the endpoint.
      */
     port?: pulumi.Input<number>;
+}
+
+export interface VpcGatewayNetworkIpamConfig {
+    /**
+     * Defines whether the default route is enabled on that Gateway Network. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+     */
+    pushDefaultRoute?: pulumi.Input<boolean>;
 }
 
 export interface VpcPrivateNetworkIpv4Subnet {

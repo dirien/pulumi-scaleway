@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -80,30 +80,81 @@ class RedisClusterArgs:
         :param pulumi.Input[str] zone: `zone`) The zone in which the
                Redis Cluster should be created.
         """
-        pulumi.set(__self__, "node_type", node_type)
-        pulumi.set(__self__, "password", password)
-        pulumi.set(__self__, "user_name", user_name)
-        pulumi.set(__self__, "version", version)
+        RedisClusterArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            node_type=node_type,
+            password=password,
+            user_name=user_name,
+            version=version,
+            acls=acls,
+            cluster_size=cluster_size,
+            name=name,
+            private_networks=private_networks,
+            project_id=project_id,
+            public_network=public_network,
+            settings=settings,
+            tags=tags,
+            tls_enabled=tls_enabled,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             node_type: pulumi.Input[str],
+             password: pulumi.Input[str],
+             user_name: pulumi.Input[str],
+             version: pulumi.Input[str],
+             acls: Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterAclArgs']]]] = None,
+             cluster_size: Optional[pulumi.Input[int]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             public_network: Optional[pulumi.Input['RedisClusterPublicNetworkArgs']] = None,
+             settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             tls_enabled: Optional[pulumi.Input[bool]] = None,
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'nodeType' in kwargs:
+            node_type = kwargs['nodeType']
+        if 'userName' in kwargs:
+            user_name = kwargs['userName']
+        if 'clusterSize' in kwargs:
+            cluster_size = kwargs['clusterSize']
+        if 'privateNetworks' in kwargs:
+            private_networks = kwargs['privateNetworks']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if 'publicNetwork' in kwargs:
+            public_network = kwargs['publicNetwork']
+        if 'tlsEnabled' in kwargs:
+            tls_enabled = kwargs['tlsEnabled']
+
+        _setter("node_type", node_type)
+        _setter("password", password)
+        _setter("user_name", user_name)
+        _setter("version", version)
         if acls is not None:
-            pulumi.set(__self__, "acls", acls)
+            _setter("acls", acls)
         if cluster_size is not None:
-            pulumi.set(__self__, "cluster_size", cluster_size)
+            _setter("cluster_size", cluster_size)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if private_networks is not None:
-            pulumi.set(__self__, "private_networks", private_networks)
+            _setter("private_networks", private_networks)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if public_network is not None:
-            pulumi.set(__self__, "public_network", public_network)
+            _setter("public_network", public_network)
         if settings is not None:
-            pulumi.set(__self__, "settings", settings)
+            _setter("settings", settings)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if tls_enabled is not None:
-            pulumi.set(__self__, "tls_enabled", tls_enabled)
+            _setter("tls_enabled", tls_enabled)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter(name="nodeType")
@@ -380,40 +431,101 @@ class _RedisClusterState:
         :param pulumi.Input[str] zone: `zone`) The zone in which the
                Redis Cluster should be created.
         """
+        _RedisClusterState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            acls=acls,
+            certificate=certificate,
+            cluster_size=cluster_size,
+            created_at=created_at,
+            name=name,
+            node_type=node_type,
+            password=password,
+            private_networks=private_networks,
+            project_id=project_id,
+            public_network=public_network,
+            settings=settings,
+            tags=tags,
+            tls_enabled=tls_enabled,
+            updated_at=updated_at,
+            user_name=user_name,
+            version=version,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             acls: Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterAclArgs']]]] = None,
+             certificate: Optional[pulumi.Input[str]] = None,
+             cluster_size: Optional[pulumi.Input[int]] = None,
+             created_at: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             node_type: Optional[pulumi.Input[str]] = None,
+             password: Optional[pulumi.Input[str]] = None,
+             private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             public_network: Optional[pulumi.Input['RedisClusterPublicNetworkArgs']] = None,
+             settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             tls_enabled: Optional[pulumi.Input[bool]] = None,
+             updated_at: Optional[pulumi.Input[str]] = None,
+             user_name: Optional[pulumi.Input[str]] = None,
+             version: Optional[pulumi.Input[str]] = None,
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'clusterSize' in kwargs:
+            cluster_size = kwargs['clusterSize']
+        if 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if 'nodeType' in kwargs:
+            node_type = kwargs['nodeType']
+        if 'privateNetworks' in kwargs:
+            private_networks = kwargs['privateNetworks']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if 'publicNetwork' in kwargs:
+            public_network = kwargs['publicNetwork']
+        if 'tlsEnabled' in kwargs:
+            tls_enabled = kwargs['tlsEnabled']
+        if 'updatedAt' in kwargs:
+            updated_at = kwargs['updatedAt']
+        if 'userName' in kwargs:
+            user_name = kwargs['userName']
+
         if acls is not None:
-            pulumi.set(__self__, "acls", acls)
+            _setter("acls", acls)
         if certificate is not None:
-            pulumi.set(__self__, "certificate", certificate)
+            _setter("certificate", certificate)
         if cluster_size is not None:
-            pulumi.set(__self__, "cluster_size", cluster_size)
+            _setter("cluster_size", cluster_size)
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if node_type is not None:
-            pulumi.set(__self__, "node_type", node_type)
+            _setter("node_type", node_type)
         if password is not None:
-            pulumi.set(__self__, "password", password)
+            _setter("password", password)
         if private_networks is not None:
-            pulumi.set(__self__, "private_networks", private_networks)
+            _setter("private_networks", private_networks)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if public_network is not None:
-            pulumi.set(__self__, "public_network", public_network)
+            _setter("public_network", public_network)
         if settings is not None:
-            pulumi.set(__self__, "settings", settings)
+            _setter("settings", settings)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if tls_enabled is not None:
-            pulumi.set(__self__, "tls_enabled", tls_enabled)
+            _setter("tls_enabled", tls_enabled)
         if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
+            _setter("updated_at", updated_at)
         if user_name is not None:
-            pulumi.set(__self__, "user_name", user_name)
+            _setter("user_name", user_name)
         if version is not None:
-            pulumi.set(__self__, "version", version)
+            _setter("version", version)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter
@@ -887,6 +999,10 @@ class RedisCluster(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            RedisClusterArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -926,6 +1042,11 @@ class RedisCluster(pulumi.CustomResource):
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["private_networks"] = private_networks
             __props__.__dict__["project_id"] = project_id
+            if public_network is not None and not isinstance(public_network, RedisClusterPublicNetworkArgs):
+                public_network = public_network or {}
+                def _setter(key, value):
+                    public_network[key] = value
+                RedisClusterPublicNetworkArgs._configure(_setter, **public_network)
             __props__.__dict__["public_network"] = public_network
             __props__.__dict__["settings"] = settings
             __props__.__dict__["tags"] = tags

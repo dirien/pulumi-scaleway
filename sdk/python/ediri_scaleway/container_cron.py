@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ContainerCronArgs', 'ContainerCron']
@@ -28,11 +28,30 @@ class ContainerCronArgs:
         :param pulumi.Input[str] region: (Defaults to provider `region`) The region
                in where the job was created.
         """
-        pulumi.set(__self__, "args", args)
-        pulumi.set(__self__, "container_id", container_id)
-        pulumi.set(__self__, "schedule", schedule)
+        ContainerCronArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            args=args,
+            container_id=container_id,
+            schedule=schedule,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             args: pulumi.Input[str],
+             container_id: pulumi.Input[str],
+             schedule: pulumi.Input[str],
+             region: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'containerId' in kwargs:
+            container_id = kwargs['containerId']
+
+        _setter("args", args)
+        _setter("container_id", container_id)
+        _setter("schedule", schedule)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter
@@ -105,16 +124,37 @@ class _ContainerCronState:
                executed.
         :param pulumi.Input[str] status: The cron status.
         """
+        _ContainerCronState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            args=args,
+            container_id=container_id,
+            region=region,
+            schedule=schedule,
+            status=status,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             args: Optional[pulumi.Input[str]] = None,
+             container_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             schedule: Optional[pulumi.Input[str]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'containerId' in kwargs:
+            container_id = kwargs['containerId']
+
         if args is not None:
-            pulumi.set(__self__, "args", args)
+            _setter("args", args)
         if container_id is not None:
-            pulumi.set(__self__, "container_id", container_id)
+            _setter("container_id", container_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if schedule is not None:
-            pulumi.set(__self__, "schedule", schedule)
+            _setter("schedule", schedule)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
 
     @property
     @pulumi.getter
@@ -308,6 +348,10 @@ class ContainerCron(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ContainerCronArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

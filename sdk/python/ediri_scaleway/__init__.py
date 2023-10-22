@@ -18,6 +18,12 @@ from .container_domain import *
 from .container_namespace import *
 from .container_token import *
 from .container_trigger import *
+from .document_db_database import *
+from .document_db_instance import *
+from .document_db_private_network_endpoint import *
+from .document_db_privilege import *
+from .document_db_read_replica import *
+from .document_dbuser import *
 from .domain_record import *
 from .domain_zone import *
 from .flexible_ip import *
@@ -39,6 +45,9 @@ from .get_cockpit import *
 from .get_cockpit_plan import *
 from .get_container import *
 from .get_container_namespace import *
+from .get_document_db_database import *
+from .get_document_db_instance import *
+from .get_document_db_load_balancer_endpoint import *
 from .get_domain_record import *
 from .get_domain_zone import *
 from .get_flexible_ip import *
@@ -277,6 +286,54 @@ _utilities.register(
   "fqn": "ediri_scaleway",
   "classes": {
    "scaleway:index/containerTrigger:ContainerTrigger": "ContainerTrigger"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/documentDBDatabase",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/documentDBDatabase:DocumentDBDatabase": "DocumentDBDatabase"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/documentDBInstance",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/documentDBInstance:DocumentDBInstance": "DocumentDBInstance"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/documentDBPrivateNetworkEndpoint",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint": "DocumentDBPrivateNetworkEndpoint"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/documentDBPrivilege",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/documentDBPrivilege:DocumentDBPrivilege": "DocumentDBPrivilege"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/documentDBReadReplica",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/documentDBReadReplica:DocumentDBReadReplica": "DocumentDBReadReplica"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/documentDBUser",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/documentDBUser:DocumentDBUser": "DocumentDBUser"
   }
  },
  {

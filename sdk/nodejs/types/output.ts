@@ -169,6 +169,25 @@ export interface ContainerTriggerSqs {
     region: string;
 }
 
+export interface DocumentDBReadReplicaDirectAccess {
+    endpointId: string;
+    hostname: string;
+    ip: string;
+    name: string;
+    port: number;
+}
+
+export interface DocumentDBReadReplicaPrivateNetwork {
+    endpointId: string;
+    hostname: string;
+    ip: string;
+    name: string;
+    port: number;
+    privateNetworkId: string;
+    serviceIp: string;
+    zone: string;
+}
+
 export interface DomainRecordGeoIp {
     /**
      * The list of matches. *(Can be more than 1)*
@@ -201,7 +220,7 @@ export interface DomainRecordHttpService {
      */
     mustContain: string;
     /**
-     * Strategy to return an IP from the IPs list. Can be `random` or `hashed`
+     * Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
      */
     strategy: string;
     /**
@@ -1453,6 +1472,10 @@ export interface GetRedisClusterPublicNetwork {
     port: number;
 }
 
+export interface GetVpcGatewayNetworkIpamConfig {
+    pushDefaultRoute: boolean;
+}
+
 export interface GetVpcPrivateNetworkIpv4Subnet {
     address: string;
     createdAt: string;
@@ -2080,7 +2103,7 @@ export interface LbBackendHealthCheckHttp {
      */
     method?: string;
     /**
-     * The HTTP endpoint URL to call for HC requests.
+     * The HTTPS endpoint URL to call for HC requests.
      */
     uri: string;
 }
@@ -2103,7 +2126,7 @@ export interface LbBackendHealthCheckHttps {
      */
     sni?: string;
     /**
-     * The HTTP endpoint URL to call for HC requests.
+     * The HTTPS endpoint URL to call for HC requests.
      */
     uri: string;
 }
@@ -2594,6 +2617,13 @@ export interface RedisClusterPublicNetwork {
      * TCP port of the endpoint.
      */
     port: number;
+}
+
+export interface VpcGatewayNetworkIpamConfig {
+    /**
+     * Defines whether the default route is enabled on that Gateway Network. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+     */
+    pushDefaultRoute?: boolean;
 }
 
 export interface VpcPrivateNetworkIpv4Subnet {

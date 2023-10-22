@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['FunctionArgs', 'Function']
@@ -55,38 +55,103 @@ class FunctionArgs:
         :param pulumi.Input[str] zip_file: Location of the zip file to upload containing your function sources
         :param pulumi.Input[str] zip_hash: The hash of your source zip file, changing it will re-apply function. Can be any string
         """
-        pulumi.set(__self__, "handler", handler)
-        pulumi.set(__self__, "namespace_id", namespace_id)
-        pulumi.set(__self__, "privacy", privacy)
-        pulumi.set(__self__, "runtime", runtime)
+        FunctionArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            handler=handler,
+            namespace_id=namespace_id,
+            privacy=privacy,
+            runtime=runtime,
+            deploy=deploy,
+            description=description,
+            environment_variables=environment_variables,
+            http_option=http_option,
+            max_scale=max_scale,
+            memory_limit=memory_limit,
+            min_scale=min_scale,
+            name=name,
+            project_id=project_id,
+            region=region,
+            secret_environment_variables=secret_environment_variables,
+            timeout=timeout,
+            zip_file=zip_file,
+            zip_hash=zip_hash,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             handler: pulumi.Input[str],
+             namespace_id: pulumi.Input[str],
+             privacy: pulumi.Input[str],
+             runtime: pulumi.Input[str],
+             deploy: Optional[pulumi.Input[bool]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             http_option: Optional[pulumi.Input[str]] = None,
+             max_scale: Optional[pulumi.Input[int]] = None,
+             memory_limit: Optional[pulumi.Input[int]] = None,
+             min_scale: Optional[pulumi.Input[int]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             timeout: Optional[pulumi.Input[int]] = None,
+             zip_file: Optional[pulumi.Input[str]] = None,
+             zip_hash: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'namespaceId' in kwargs:
+            namespace_id = kwargs['namespaceId']
+        if 'environmentVariables' in kwargs:
+            environment_variables = kwargs['environmentVariables']
+        if 'httpOption' in kwargs:
+            http_option = kwargs['httpOption']
+        if 'maxScale' in kwargs:
+            max_scale = kwargs['maxScale']
+        if 'memoryLimit' in kwargs:
+            memory_limit = kwargs['memoryLimit']
+        if 'minScale' in kwargs:
+            min_scale = kwargs['minScale']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if 'secretEnvironmentVariables' in kwargs:
+            secret_environment_variables = kwargs['secretEnvironmentVariables']
+        if 'zipFile' in kwargs:
+            zip_file = kwargs['zipFile']
+        if 'zipHash' in kwargs:
+            zip_hash = kwargs['zipHash']
+
+        _setter("handler", handler)
+        _setter("namespace_id", namespace_id)
+        _setter("privacy", privacy)
+        _setter("runtime", runtime)
         if deploy is not None:
-            pulumi.set(__self__, "deploy", deploy)
+            _setter("deploy", deploy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if environment_variables is not None:
-            pulumi.set(__self__, "environment_variables", environment_variables)
+            _setter("environment_variables", environment_variables)
         if http_option is not None:
-            pulumi.set(__self__, "http_option", http_option)
+            _setter("http_option", http_option)
         if max_scale is not None:
-            pulumi.set(__self__, "max_scale", max_scale)
+            _setter("max_scale", max_scale)
         if memory_limit is not None:
-            pulumi.set(__self__, "memory_limit", memory_limit)
+            _setter("memory_limit", memory_limit)
         if min_scale is not None:
-            pulumi.set(__self__, "min_scale", min_scale)
+            _setter("min_scale", min_scale)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if secret_environment_variables is not None:
-            pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
+            _setter("secret_environment_variables", secret_environment_variables)
         if timeout is not None:
-            pulumi.set(__self__, "timeout", timeout)
+            _setter("timeout", timeout)
         if zip_file is not None:
-            pulumi.set(__self__, "zip_file", zip_file)
+            _setter("zip_file", zip_file)
         if zip_hash is not None:
-            pulumi.set(__self__, "zip_hash", zip_hash)
+            _setter("zip_hash", zip_hash)
 
     @property
     @pulumi.getter
@@ -357,48 +422,125 @@ class _FunctionState:
         :param pulumi.Input[str] zip_file: Location of the zip file to upload containing your function sources
         :param pulumi.Input[str] zip_hash: The hash of your source zip file, changing it will re-apply function. Can be any string
         """
+        _FunctionState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cpu_limit=cpu_limit,
+            deploy=deploy,
+            description=description,
+            domain_name=domain_name,
+            environment_variables=environment_variables,
+            handler=handler,
+            http_option=http_option,
+            max_scale=max_scale,
+            memory_limit=memory_limit,
+            min_scale=min_scale,
+            name=name,
+            namespace_id=namespace_id,
+            organization_id=organization_id,
+            privacy=privacy,
+            project_id=project_id,
+            region=region,
+            runtime=runtime,
+            secret_environment_variables=secret_environment_variables,
+            timeout=timeout,
+            zip_file=zip_file,
+            zip_hash=zip_hash,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cpu_limit: Optional[pulumi.Input[int]] = None,
+             deploy: Optional[pulumi.Input[bool]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             domain_name: Optional[pulumi.Input[str]] = None,
+             environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             handler: Optional[pulumi.Input[str]] = None,
+             http_option: Optional[pulumi.Input[str]] = None,
+             max_scale: Optional[pulumi.Input[int]] = None,
+             memory_limit: Optional[pulumi.Input[int]] = None,
+             min_scale: Optional[pulumi.Input[int]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             namespace_id: Optional[pulumi.Input[str]] = None,
+             organization_id: Optional[pulumi.Input[str]] = None,
+             privacy: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             runtime: Optional[pulumi.Input[str]] = None,
+             secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             timeout: Optional[pulumi.Input[int]] = None,
+             zip_file: Optional[pulumi.Input[str]] = None,
+             zip_hash: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'cpuLimit' in kwargs:
+            cpu_limit = kwargs['cpuLimit']
+        if 'domainName' in kwargs:
+            domain_name = kwargs['domainName']
+        if 'environmentVariables' in kwargs:
+            environment_variables = kwargs['environmentVariables']
+        if 'httpOption' in kwargs:
+            http_option = kwargs['httpOption']
+        if 'maxScale' in kwargs:
+            max_scale = kwargs['maxScale']
+        if 'memoryLimit' in kwargs:
+            memory_limit = kwargs['memoryLimit']
+        if 'minScale' in kwargs:
+            min_scale = kwargs['minScale']
+        if 'namespaceId' in kwargs:
+            namespace_id = kwargs['namespaceId']
+        if 'organizationId' in kwargs:
+            organization_id = kwargs['organizationId']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if 'secretEnvironmentVariables' in kwargs:
+            secret_environment_variables = kwargs['secretEnvironmentVariables']
+        if 'zipFile' in kwargs:
+            zip_file = kwargs['zipFile']
+        if 'zipHash' in kwargs:
+            zip_hash = kwargs['zipHash']
+
         if cpu_limit is not None:
-            pulumi.set(__self__, "cpu_limit", cpu_limit)
+            _setter("cpu_limit", cpu_limit)
         if deploy is not None:
-            pulumi.set(__self__, "deploy", deploy)
+            _setter("deploy", deploy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if domain_name is not None:
-            pulumi.set(__self__, "domain_name", domain_name)
+            _setter("domain_name", domain_name)
         if environment_variables is not None:
-            pulumi.set(__self__, "environment_variables", environment_variables)
+            _setter("environment_variables", environment_variables)
         if handler is not None:
-            pulumi.set(__self__, "handler", handler)
+            _setter("handler", handler)
         if http_option is not None:
-            pulumi.set(__self__, "http_option", http_option)
+            _setter("http_option", http_option)
         if max_scale is not None:
-            pulumi.set(__self__, "max_scale", max_scale)
+            _setter("max_scale", max_scale)
         if memory_limit is not None:
-            pulumi.set(__self__, "memory_limit", memory_limit)
+            _setter("memory_limit", memory_limit)
         if min_scale is not None:
-            pulumi.set(__self__, "min_scale", min_scale)
+            _setter("min_scale", min_scale)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if namespace_id is not None:
-            pulumi.set(__self__, "namespace_id", namespace_id)
+            _setter("namespace_id", namespace_id)
         if organization_id is not None:
-            pulumi.set(__self__, "organization_id", organization_id)
+            _setter("organization_id", organization_id)
         if privacy is not None:
-            pulumi.set(__self__, "privacy", privacy)
+            _setter("privacy", privacy)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if runtime is not None:
-            pulumi.set(__self__, "runtime", runtime)
+            _setter("runtime", runtime)
         if secret_environment_variables is not None:
-            pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
+            _setter("secret_environment_variables", secret_environment_variables)
         if timeout is not None:
-            pulumi.set(__self__, "timeout", timeout)
+            _setter("timeout", timeout)
         if zip_file is not None:
-            pulumi.set(__self__, "zip_file", zip_file)
+            _setter("zip_file", zip_file)
         if zip_hash is not None:
-            pulumi.set(__self__, "zip_hash", zip_hash)
+            _setter("zip_hash", zip_hash)
 
     @property
     @pulumi.getter(name="cpuLimit")
@@ -774,6 +916,10 @@ class Function(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            FunctionArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -41,21 +41,54 @@ class IotDeviceArgs:
                > **Important:** Updates to `name` will destroy and recreate a new resource.
         :param pulumi.Input[str] region: The region you want to attach the resource to
         """
-        pulumi.set(__self__, "hub_id", hub_id)
+        IotDeviceArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            hub_id=hub_id,
+            allow_insecure=allow_insecure,
+            allow_multiple_connections=allow_multiple_connections,
+            certificate=certificate,
+            description=description,
+            message_filters=message_filters,
+            name=name,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             hub_id: pulumi.Input[str],
+             allow_insecure: Optional[pulumi.Input[bool]] = None,
+             allow_multiple_connections: Optional[pulumi.Input[bool]] = None,
+             certificate: Optional[pulumi.Input['IotDeviceCertificateArgs']] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             message_filters: Optional[pulumi.Input['IotDeviceMessageFiltersArgs']] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'hubId' in kwargs:
+            hub_id = kwargs['hubId']
+        if 'allowInsecure' in kwargs:
+            allow_insecure = kwargs['allowInsecure']
+        if 'allowMultipleConnections' in kwargs:
+            allow_multiple_connections = kwargs['allowMultipleConnections']
+        if 'messageFilters' in kwargs:
+            message_filters = kwargs['messageFilters']
+
+        _setter("hub_id", hub_id)
         if allow_insecure is not None:
-            pulumi.set(__self__, "allow_insecure", allow_insecure)
+            _setter("allow_insecure", allow_insecure)
         if allow_multiple_connections is not None:
-            pulumi.set(__self__, "allow_multiple_connections", allow_multiple_connections)
+            _setter("allow_multiple_connections", allow_multiple_connections)
         if certificate is not None:
-            pulumi.set(__self__, "certificate", certificate)
+            _setter("certificate", certificate)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if message_filters is not None:
-            pulumi.set(__self__, "message_filters", message_filters)
+            _setter("message_filters", message_filters)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter(name="hubId")
@@ -198,32 +231,83 @@ class _IotDeviceState:
         :param pulumi.Input[str] status: The current status of the device.
         :param pulumi.Input[str] updated_at: The date and time the device resource was updated.
         """
+        _IotDeviceState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            allow_insecure=allow_insecure,
+            allow_multiple_connections=allow_multiple_connections,
+            certificate=certificate,
+            created_at=created_at,
+            description=description,
+            hub_id=hub_id,
+            is_connected=is_connected,
+            last_activity_at=last_activity_at,
+            message_filters=message_filters,
+            name=name,
+            region=region,
+            status=status,
+            updated_at=updated_at,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             allow_insecure: Optional[pulumi.Input[bool]] = None,
+             allow_multiple_connections: Optional[pulumi.Input[bool]] = None,
+             certificate: Optional[pulumi.Input['IotDeviceCertificateArgs']] = None,
+             created_at: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             hub_id: Optional[pulumi.Input[str]] = None,
+             is_connected: Optional[pulumi.Input[bool]] = None,
+             last_activity_at: Optional[pulumi.Input[str]] = None,
+             message_filters: Optional[pulumi.Input['IotDeviceMessageFiltersArgs']] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             updated_at: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'allowInsecure' in kwargs:
+            allow_insecure = kwargs['allowInsecure']
+        if 'allowMultipleConnections' in kwargs:
+            allow_multiple_connections = kwargs['allowMultipleConnections']
+        if 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if 'hubId' in kwargs:
+            hub_id = kwargs['hubId']
+        if 'isConnected' in kwargs:
+            is_connected = kwargs['isConnected']
+        if 'lastActivityAt' in kwargs:
+            last_activity_at = kwargs['lastActivityAt']
+        if 'messageFilters' in kwargs:
+            message_filters = kwargs['messageFilters']
+        if 'updatedAt' in kwargs:
+            updated_at = kwargs['updatedAt']
+
         if allow_insecure is not None:
-            pulumi.set(__self__, "allow_insecure", allow_insecure)
+            _setter("allow_insecure", allow_insecure)
         if allow_multiple_connections is not None:
-            pulumi.set(__self__, "allow_multiple_connections", allow_multiple_connections)
+            _setter("allow_multiple_connections", allow_multiple_connections)
         if certificate is not None:
-            pulumi.set(__self__, "certificate", certificate)
+            _setter("certificate", certificate)
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if hub_id is not None:
-            pulumi.set(__self__, "hub_id", hub_id)
+            _setter("hub_id", hub_id)
         if is_connected is not None:
-            pulumi.set(__self__, "is_connected", is_connected)
+            _setter("is_connected", is_connected)
         if last_activity_at is not None:
-            pulumi.set(__self__, "last_activity_at", last_activity_at)
+            _setter("last_activity_at", last_activity_at)
         if message_filters is not None:
-            pulumi.set(__self__, "message_filters", message_filters)
+            _setter("message_filters", message_filters)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
         if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
+            _setter("updated_at", updated_at)
 
     @property
     @pulumi.getter(name="allowInsecure")
@@ -453,6 +537,10 @@ class IotDevice(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            IotDeviceArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -477,11 +565,21 @@ class IotDevice(pulumi.CustomResource):
 
             __props__.__dict__["allow_insecure"] = allow_insecure
             __props__.__dict__["allow_multiple_connections"] = allow_multiple_connections
+            if certificate is not None and not isinstance(certificate, IotDeviceCertificateArgs):
+                certificate = certificate or {}
+                def _setter(key, value):
+                    certificate[key] = value
+                IotDeviceCertificateArgs._configure(_setter, **certificate)
             __props__.__dict__["certificate"] = certificate
             __props__.__dict__["description"] = description
             if hub_id is None and not opts.urn:
                 raise TypeError("Missing required property 'hub_id'")
             __props__.__dict__["hub_id"] = hub_id
+            if message_filters is not None and not isinstance(message_filters, IotDeviceMessageFiltersArgs):
+                message_filters = message_filters or {}
+                def _setter(key, value):
+                    message_filters[key] = value
+                IotDeviceMessageFiltersArgs._configure(_setter, **message_filters)
             __props__.__dict__["message_filters"] = message_filters
             __props__.__dict__["name"] = name
             __props__.__dict__["region"] = region

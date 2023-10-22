@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -29,15 +29,36 @@ class FunctionTriggerArgs:
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input['FunctionTriggerSqsArgs'] sqs: The configuration of the Scaleway's SQS used by the trigger
         """
-        pulumi.set(__self__, "function_id", function_id)
+        FunctionTriggerArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            function_id=function_id,
+            description=description,
+            name=name,
+            region=region,
+            sqs=sqs,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             function_id: pulumi.Input[str],
+             description: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             sqs: Optional[pulumi.Input['FunctionTriggerSqsArgs']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'functionId' in kwargs:
+            function_id = kwargs['functionId']
+
+        _setter("function_id", function_id)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if sqs is not None:
-            pulumi.set(__self__, "sqs", sqs)
+            _setter("sqs", sqs)
 
     @property
     @pulumi.getter(name="functionId")
@@ -116,16 +137,37 @@ class _FunctionTriggerState:
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input['FunctionTriggerSqsArgs'] sqs: The configuration of the Scaleway's SQS used by the trigger
         """
+        _FunctionTriggerState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            function_id=function_id,
+            name=name,
+            region=region,
+            sqs=sqs,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: Optional[pulumi.Input[str]] = None,
+             function_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             sqs: Optional[pulumi.Input['FunctionTriggerSqsArgs']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'functionId' in kwargs:
+            function_id = kwargs['functionId']
+
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if function_id is not None:
-            pulumi.set(__self__, "function_id", function_id)
+            _setter("function_id", function_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if sqs is not None:
-            pulumi.set(__self__, "sqs", sqs)
+            _setter("sqs", sqs)
 
     @property
     @pulumi.getter
@@ -283,6 +325,10 @@ class FunctionTrigger(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            FunctionTriggerArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -308,6 +354,11 @@ class FunctionTrigger(pulumi.CustomResource):
             __props__.__dict__["function_id"] = function_id
             __props__.__dict__["name"] = name
             __props__.__dict__["region"] = region
+            if sqs is not None and not isinstance(sqs, FunctionTriggerSqsArgs):
+                sqs = sqs or {}
+                def _setter(key, value):
+                    sqs[key] = value
+                FunctionTriggerSqsArgs._configure(_setter, **sqs)
             __props__.__dict__["sqs"] = sqs
         super(FunctionTrigger, __self__).__init__(
             'scaleway:index/functionTrigger:FunctionTrigger',

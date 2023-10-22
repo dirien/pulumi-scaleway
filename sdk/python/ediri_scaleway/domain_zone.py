@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['DomainZoneArgs', 'DomainZone']
@@ -23,10 +23,27 @@ class DomainZoneArgs:
         :param pulumi.Input[str] subdomain: The subdomain(zone name) to create in the domain.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
         """
-        pulumi.set(__self__, "domain", domain)
-        pulumi.set(__self__, "subdomain", subdomain)
+        DomainZoneArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            domain=domain,
+            subdomain=subdomain,
+            project_id=project_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             domain: pulumi.Input[str],
+             subdomain: pulumi.Input[str],
+             project_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+
+        _setter("domain", domain)
+        _setter("subdomain", subdomain)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
 
     @property
     @pulumi.getter
@@ -89,24 +106,59 @@ class _DomainZoneState:
         :param pulumi.Input[str] subdomain: The subdomain(zone name) to create in the domain.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the DNS zone.
         """
+        _DomainZoneState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            domain=domain,
+            message=message,
+            ns=ns,
+            ns_defaults=ns_defaults,
+            ns_masters=ns_masters,
+            project_id=project_id,
+            status=status,
+            subdomain=subdomain,
+            updated_at=updated_at,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             domain: Optional[pulumi.Input[str]] = None,
+             message: Optional[pulumi.Input[str]] = None,
+             ns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             ns_defaults: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             ns_masters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             subdomain: Optional[pulumi.Input[str]] = None,
+             updated_at: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'nsDefaults' in kwargs:
+            ns_defaults = kwargs['nsDefaults']
+        if 'nsMasters' in kwargs:
+            ns_masters = kwargs['nsMasters']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if 'updatedAt' in kwargs:
+            updated_at = kwargs['updatedAt']
+
         if domain is not None:
-            pulumi.set(__self__, "domain", domain)
+            _setter("domain", domain)
         if message is not None:
-            pulumi.set(__self__, "message", message)
+            _setter("message", message)
         if ns is not None:
-            pulumi.set(__self__, "ns", ns)
+            _setter("ns", ns)
         if ns_defaults is not None:
-            pulumi.set(__self__, "ns_defaults", ns_defaults)
+            _setter("ns_defaults", ns_defaults)
         if ns_masters is not None:
-            pulumi.set(__self__, "ns_masters", ns_masters)
+            _setter("ns_masters", ns_masters)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
         if subdomain is not None:
-            pulumi.set(__self__, "subdomain", subdomain)
+            _setter("subdomain", subdomain)
         if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
+            _setter("updated_at", updated_at)
 
     @property
     @pulumi.getter
@@ -294,6 +346,10 @@ class DomainZone(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            DomainZoneArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

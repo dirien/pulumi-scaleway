@@ -78,6 +78,37 @@
                     }
                 }
             },
+            "scaleway_document_db_database": {
+                "current": "scaleway:index/documentDBDatabase:DocumentDBDatabase"
+            },
+            "scaleway_document_db_instance": {
+                "current": "scaleway:index/documentDBInstance:DocumentDBInstance",
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_document_db_private_network_endpoint": {
+                "current": "scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint"
+            },
+            "scaleway_document_db_privilege": {
+                "current": "scaleway:index/documentDBPrivilege:DocumentDBPrivilege"
+            },
+            "scaleway_document_db_read_replica": {
+                "current": "scaleway:index/documentDBReadReplica:DocumentDBReadReplica",
+                "fields": {
+                    "direct_access": {
+                        "maxItemsOne": true
+                    },
+                    "private_network": {
+                        "maxItemsOne": true
+                    }
+                }
+            },
+            "scaleway_document_db_user": {
+                "current": "scaleway:index/documentDBUser:DocumentDBUser"
+            },
             "scaleway_domain_record": {
                 "current": "scaleway:index/domainRecord:DomainRecord",
                 "fields": {
@@ -804,7 +835,12 @@
                 }
             },
             "scaleway_vpc_gateway_network": {
-                "current": "scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork"
+                "current": "scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork",
+                "fields": {
+                    "ipam_config": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "scaleway_vpc_private_network": {
                 "current": "scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork",
@@ -954,6 +990,20 @@
             },
             "scaleway_container_namespace": {
                 "current": "scaleway:index/getContainerNamespace:getContainerNamespace"
+            },
+            "scaleway_document_db_database": {
+                "current": "scaleway:index/getDocumentDBDatabase:getDocumentDBDatabase"
+            },
+            "scaleway_document_db_instance": {
+                "current": "scaleway:index/getDocumentDBInstance:getDocumentDBInstance",
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_document_db_load_balancer_endpoint": {
+                "current": "scaleway:index/getDocumentDBLoadBalancerEndpoint:getDocumentDBLoadBalancerEndpoint"
             },
             "scaleway_domain_record": {
                 "current": "scaleway:index/getDomainRecord:getDomainRecord",
@@ -1641,7 +1691,12 @@
                 }
             },
             "scaleway_vpc_gateway_network": {
-                "current": "scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork"
+                "current": "scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork",
+                "fields": {
+                    "ipam_config": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "scaleway_vpc_private_network": {
                 "current": "scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork",
@@ -1753,6 +1808,12 @@
             "scaleway:index/containerNamespace:ContainerNamespace": "scaleway_container_namespace",
             "scaleway:index/containerToken:ContainerToken": "scaleway_container_token",
             "scaleway:index/containerTrigger:ContainerTrigger": "scaleway_container_trigger",
+            "scaleway:index/documentDBDatabase:DocumentDBDatabase": "scaleway_document_db_database",
+            "scaleway:index/documentDBInstance:DocumentDBInstance": "scaleway_document_db_instance",
+            "scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint": "scaleway_document_db_private_network_endpoint",
+            "scaleway:index/documentDBPrivilege:DocumentDBPrivilege": "scaleway_document_db_privilege",
+            "scaleway:index/documentDBReadReplica:DocumentDBReadReplica": "scaleway_document_db_read_replica",
+            "scaleway:index/documentDBUser:DocumentDBUser": "scaleway_document_db_user",
             "scaleway:index/domainRecord:DomainRecord": "scaleway_domain_record",
             "scaleway:index/domainZone:DomainZone": "scaleway_domain_zone",
             "scaleway:index/flexibleIp:FlexibleIp": "scaleway_flexible_ip",
@@ -1837,6 +1898,9 @@
             "scaleway:index/getCockpitPlan:getCockpitPlan": "scaleway_cockpit_plan",
             "scaleway:index/getContainer:getContainer": "scaleway_container",
             "scaleway:index/getContainerNamespace:getContainerNamespace": "scaleway_container_namespace",
+            "scaleway:index/getDocumentDBDatabase:getDocumentDBDatabase": "scaleway_document_db_database",
+            "scaleway:index/getDocumentDBInstance:getDocumentDBInstance": "scaleway_document_db_instance",
+            "scaleway:index/getDocumentDBLoadBalancerEndpoint:getDocumentDBLoadBalancerEndpoint": "scaleway_document_db_load_balancer_endpoint",
             "scaleway:index/getDomainRecord:getDomainRecord": "scaleway_domain_record",
             "scaleway:index/getDomainZone:getDomainZone": "scaleway_domain_zone",
             "scaleway:index/getFlexibleIp:getFlexibleIp": "scaleway_flexible_ip",
@@ -1925,6 +1989,14 @@
             "scaleway:index/ContainerTriggerSqs:ContainerTriggerSqs": {
                 "namespaceId": "namespace_id",
                 "projectId": "project_id"
+            },
+            "scaleway:index/DocumentDBReadReplicaDirectAccess:DocumentDBReadReplicaDirectAccess": {
+                "endpointId": "endpoint_id"
+            },
+            "scaleway:index/DocumentDBReadReplicaPrivateNetwork:DocumentDBReadReplicaPrivateNetwork": {
+                "endpointId": "endpoint_id",
+                "privateNetworkId": "private_network_id",
+                "serviceIp": "service_ip"
             },
             "scaleway:index/DomainRecordHttpService:DomainRecordHttpService": {
                 "mustContain": "must_contain",
@@ -2117,6 +2189,9 @@
                 "endpointId": "endpoint_id",
                 "serviceIps": "service_ips"
             },
+            "scaleway:index/VpcGatewayNetworkIpamConfig:VpcGatewayNetworkIpamConfig": {
+                "pushDefaultRoute": "push_default_route"
+            },
             "scaleway:index/VpcPrivateNetworkIpv4Subnet:VpcPrivateNetworkIpv4Subnet": {
                 "createdAt": "created_at",
                 "prefixLength": "prefix_length",
@@ -2213,6 +2288,38 @@
             },
             "scaleway:index/containerTrigger:ContainerTrigger": {
                 "containerId": "container_id"
+            },
+            "scaleway:index/documentDBDatabase:DocumentDBDatabase": {
+                "instanceId": "instance_id",
+                "projectId": "project_id"
+            },
+            "scaleway:index/documentDBInstance:DocumentDBInstance": {
+                "isHaCluster": "is_ha_cluster",
+                "nodeType": "node_type",
+                "projectId": "project_id",
+                "telemetryEnabled": "telemetry_enabled",
+                "userName": "user_name",
+                "volumeSizeInGb": "volume_size_in_gb",
+                "volumeType": "volume_type"
+            },
+            "scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint": {
+                "instanceId": "instance_id",
+                "ipNet": "ip_net",
+                "privateNetworkId": "private_network_id"
+            },
+            "scaleway:index/documentDBPrivilege:DocumentDBPrivilege": {
+                "databaseName": "database_name",
+                "instanceId": "instance_id",
+                "userName": "user_name"
+            },
+            "scaleway:index/documentDBReadReplica:DocumentDBReadReplica": {
+                "directAccess": "direct_access",
+                "instanceId": "instance_id",
+                "privateNetwork": "private_network"
+            },
+            "scaleway:index/documentDBUser:DocumentDBUser": {
+                "instanceId": "instance_id",
+                "isAdmin": "is_admin"
             },
             "scaleway:index/domainRecord:DomainRecord": {
                 "dnsZone": "dns_zone",
@@ -2377,6 +2484,25 @@
                 "registryEndpoint": "registry_endpoint",
                 "registryNamespaceId": "registry_namespace_id",
                 "secretEnvironmentVariables": "secret_environment_variables"
+            },
+            "scaleway:index/getDocumentDBDatabase:getDocumentDBDatabase": {
+                "instanceId": "instance_id",
+                "projectId": "project_id"
+            },
+            "scaleway:index/getDocumentDBInstance:getDocumentDBInstance": {
+                "instanceId": "instance_id",
+                "isHaCluster": "is_ha_cluster",
+                "nodeType": "node_type",
+                "projectId": "project_id",
+                "telemetryEnabled": "telemetry_enabled",
+                "userName": "user_name",
+                "volumeSizeInGb": "volume_size_in_gb",
+                "volumeType": "volume_type"
+            },
+            "scaleway:index/getDocumentDBLoadBalancerEndpoint:getDocumentDBLoadBalancerEndpoint": {
+                "instanceId": "instance_id",
+                "instanceName": "instance_name",
+                "projectId": "project_id"
             },
             "scaleway:index/getDomainRecord:getDomainRecord": {
                 "dnsZone": "dns_zone",
@@ -2710,6 +2836,7 @@
                 "availableFeatureGates": "available_feature_gates"
             },
             "scaleway:index/getLb:getLb": {
+                "assignFlexibleIp": "assign_flexible_ip",
                 "ipAddress": "ip_address",
                 "ipId": "ip_id",
                 "lbId": "lb_id",
@@ -3094,10 +3221,14 @@
                 "enableMasquerade": "enable_masquerade",
                 "gatewayId": "gateway_id",
                 "gatewayNetworkId": "gateway_network_id",
+                "ipamConfigs": "ipam_config",
                 "macAddress": "mac_address",
                 "privateNetworkId": "private_network_id",
                 "staticAddress": "static_address",
                 "updatedAt": "updated_at"
+            },
+            "scaleway:index/getVpcGatewayNetworkIpamConfig:getVpcGatewayNetworkIpamConfig": {
+                "pushDefaultRoute": "push_default_route"
             },
             "scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork": {
                 "createdAt": "created_at",
@@ -3420,6 +3551,7 @@
                 "waitForPoolReady": "wait_for_pool_ready"
             },
             "scaleway:index/lb:Lb": {
+                "assignFlexibleIp": "assign_flexible_ip",
                 "ipAddress": "ip_address",
                 "ipId": "ip_id",
                 "organizationId": "organization_id",
@@ -3650,6 +3782,7 @@
                 "enableDhcp": "enable_dhcp",
                 "enableMasquerade": "enable_masquerade",
                 "gatewayId": "gateway_id",
+                "ipamConfigs": "ipam_config",
                 "macAddress": "mac_address",
                 "privateNetworkId": "private_network_id",
                 "staticAddress": "static_address",

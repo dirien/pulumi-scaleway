@@ -136,6 +136,7 @@ namespace ediri.Scaleway
     [OutputType]
     public sealed class GetLbResult
     {
+        public readonly bool AssignFlexibleIp;
         public readonly string Description;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -172,6 +173,8 @@ namespace ediri.Scaleway
 
         [OutputConstructor]
         private GetLbResult(
+            bool assignFlexibleIp,
+
             string description,
 
             string id,
@@ -202,6 +205,7 @@ namespace ediri.Scaleway
 
             string? zone)
         {
+            AssignFlexibleIp = assignFlexibleIp;
             Description = description;
             Id = id;
             IpAddress = ipAddress;

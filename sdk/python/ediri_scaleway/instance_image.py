@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -37,21 +37,52 @@ class InstanceImageArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the image.
         :param pulumi.Input[str] zone: The zone in which the image should be created.
         """
-        pulumi.set(__self__, "root_volume_id", root_volume_id)
+        InstanceImageArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            root_volume_id=root_volume_id,
+            additional_volume_ids=additional_volume_ids,
+            architecture=architecture,
+            name=name,
+            project_id=project_id,
+            public=public,
+            tags=tags,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             root_volume_id: pulumi.Input[str],
+             additional_volume_ids: Optional[pulumi.Input[str]] = None,
+             architecture: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             public: Optional[pulumi.Input[bool]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'rootVolumeId' in kwargs:
+            root_volume_id = kwargs['rootVolumeId']
+        if 'additionalVolumeIds' in kwargs:
+            additional_volume_ids = kwargs['additionalVolumeIds']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+
+        _setter("root_volume_id", root_volume_id)
         if additional_volume_ids is not None:
-            pulumi.set(__self__, "additional_volume_ids", additional_volume_ids)
+            _setter("additional_volume_ids", additional_volume_ids)
         if architecture is not None:
-            pulumi.set(__self__, "architecture", architecture)
+            _setter("architecture", architecture)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if public is not None:
-            pulumi.set(__self__, "public", public)
+            _setter("public", public)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter(name="rootVolumeId")
@@ -188,34 +219,87 @@ class _InstanceImageState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the image.
         :param pulumi.Input[str] zone: The zone in which the image should be created.
         """
+        _InstanceImageState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            additional_volume_ids=additional_volume_ids,
+            additional_volumes=additional_volumes,
+            architecture=architecture,
+            creation_date=creation_date,
+            from_server_id=from_server_id,
+            modification_date=modification_date,
+            name=name,
+            organization_id=organization_id,
+            project_id=project_id,
+            public=public,
+            root_volume_id=root_volume_id,
+            state=state,
+            tags=tags,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             additional_volume_ids: Optional[pulumi.Input[str]] = None,
+             additional_volumes: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceImageAdditionalVolumeArgs']]]] = None,
+             architecture: Optional[pulumi.Input[str]] = None,
+             creation_date: Optional[pulumi.Input[str]] = None,
+             from_server_id: Optional[pulumi.Input[str]] = None,
+             modification_date: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             organization_id: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             public: Optional[pulumi.Input[bool]] = None,
+             root_volume_id: Optional[pulumi.Input[str]] = None,
+             state: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'additionalVolumeIds' in kwargs:
+            additional_volume_ids = kwargs['additionalVolumeIds']
+        if 'additionalVolumes' in kwargs:
+            additional_volumes = kwargs['additionalVolumes']
+        if 'creationDate' in kwargs:
+            creation_date = kwargs['creationDate']
+        if 'fromServerId' in kwargs:
+            from_server_id = kwargs['fromServerId']
+        if 'modificationDate' in kwargs:
+            modification_date = kwargs['modificationDate']
+        if 'organizationId' in kwargs:
+            organization_id = kwargs['organizationId']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if 'rootVolumeId' in kwargs:
+            root_volume_id = kwargs['rootVolumeId']
+
         if additional_volume_ids is not None:
-            pulumi.set(__self__, "additional_volume_ids", additional_volume_ids)
+            _setter("additional_volume_ids", additional_volume_ids)
         if additional_volumes is not None:
-            pulumi.set(__self__, "additional_volumes", additional_volumes)
+            _setter("additional_volumes", additional_volumes)
         if architecture is not None:
-            pulumi.set(__self__, "architecture", architecture)
+            _setter("architecture", architecture)
         if creation_date is not None:
-            pulumi.set(__self__, "creation_date", creation_date)
+            _setter("creation_date", creation_date)
         if from_server_id is not None:
-            pulumi.set(__self__, "from_server_id", from_server_id)
+            _setter("from_server_id", from_server_id)
         if modification_date is not None:
-            pulumi.set(__self__, "modification_date", modification_date)
+            _setter("modification_date", modification_date)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if organization_id is not None:
-            pulumi.set(__self__, "organization_id", organization_id)
+            _setter("organization_id", organization_id)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if public is not None:
-            pulumi.set(__self__, "public", public)
+            _setter("public", public)
         if root_volume_id is not None:
-            pulumi.set(__self__, "root_volume_id", root_volume_id)
+            _setter("root_volume_id", root_volume_id)
         if state is not None:
-            pulumi.set(__self__, "state", state)
+            _setter("state", state)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter(name="additionalVolumeIds")
@@ -511,6 +595,10 @@ class InstanceImage(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            InstanceImageArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

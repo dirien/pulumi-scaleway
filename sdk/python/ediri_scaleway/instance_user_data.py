@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['InstanceUserDataArgs', 'InstanceUserData']
@@ -30,11 +30,30 @@ class InstanceUserDataArgs:
                - string
                - UTF-8 encoded file content using file
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "server_id", server_id)
-        pulumi.set(__self__, "value", value)
+        InstanceUserDataArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            server_id=server_id,
+            value=value,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: pulumi.Input[str],
+             server_id: pulumi.Input[str],
+             value: pulumi.Input[str],
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'serverId' in kwargs:
+            server_id = kwargs['serverId']
+
+        _setter("key", key)
+        _setter("server_id", server_id)
+        _setter("value", value)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter
@@ -109,14 +128,33 @@ class _InstanceUserDataState:
                - string
                - UTF-8 encoded file content using file
         """
+        _InstanceUserDataState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            server_id=server_id,
+            value=value,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: Optional[pulumi.Input[str]] = None,
+             server_id: Optional[pulumi.Input[str]] = None,
+             value: Optional[pulumi.Input[str]] = None,
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'serverId' in kwargs:
+            server_id = kwargs['serverId']
+
         if key is not None:
-            pulumi.set(__self__, "key", key)
+            _setter("key", key)
         if server_id is not None:
-            pulumi.set(__self__, "server_id", server_id)
+            _setter("server_id", server_id)
         if value is not None:
-            pulumi.set(__self__, "value", value)
+            _setter("value", value)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter
@@ -318,6 +356,10 @@ class InstanceUserData(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            InstanceUserDataArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

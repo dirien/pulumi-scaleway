@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ContainerArgs', 'Container']
@@ -63,45 +63,116 @@ class ContainerArgs:
         :param pulumi.Input[str] status: The container status.
         :param pulumi.Input[int] timeout: The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
         """
-        pulumi.set(__self__, "namespace_id", namespace_id)
+        ContainerArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            namespace_id=namespace_id,
+            cpu_limit=cpu_limit,
+            deploy=deploy,
+            description=description,
+            environment_variables=environment_variables,
+            http_option=http_option,
+            max_concurrency=max_concurrency,
+            max_scale=max_scale,
+            memory_limit=memory_limit,
+            min_scale=min_scale,
+            name=name,
+            port=port,
+            privacy=privacy,
+            protocol=protocol,
+            region=region,
+            registry_image=registry_image,
+            registry_sha256=registry_sha256,
+            secret_environment_variables=secret_environment_variables,
+            status=status,
+            timeout=timeout,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             namespace_id: pulumi.Input[str],
+             cpu_limit: Optional[pulumi.Input[int]] = None,
+             deploy: Optional[pulumi.Input[bool]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             http_option: Optional[pulumi.Input[str]] = None,
+             max_concurrency: Optional[pulumi.Input[int]] = None,
+             max_scale: Optional[pulumi.Input[int]] = None,
+             memory_limit: Optional[pulumi.Input[int]] = None,
+             min_scale: Optional[pulumi.Input[int]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             port: Optional[pulumi.Input[int]] = None,
+             privacy: Optional[pulumi.Input[str]] = None,
+             protocol: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             registry_image: Optional[pulumi.Input[str]] = None,
+             registry_sha256: Optional[pulumi.Input[str]] = None,
+             secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             timeout: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'namespaceId' in kwargs:
+            namespace_id = kwargs['namespaceId']
+        if 'cpuLimit' in kwargs:
+            cpu_limit = kwargs['cpuLimit']
+        if 'environmentVariables' in kwargs:
+            environment_variables = kwargs['environmentVariables']
+        if 'httpOption' in kwargs:
+            http_option = kwargs['httpOption']
+        if 'maxConcurrency' in kwargs:
+            max_concurrency = kwargs['maxConcurrency']
+        if 'maxScale' in kwargs:
+            max_scale = kwargs['maxScale']
+        if 'memoryLimit' in kwargs:
+            memory_limit = kwargs['memoryLimit']
+        if 'minScale' in kwargs:
+            min_scale = kwargs['minScale']
+        if 'registryImage' in kwargs:
+            registry_image = kwargs['registryImage']
+        if 'registrySha256' in kwargs:
+            registry_sha256 = kwargs['registrySha256']
+        if 'secretEnvironmentVariables' in kwargs:
+            secret_environment_variables = kwargs['secretEnvironmentVariables']
+
+        _setter("namespace_id", namespace_id)
         if cpu_limit is not None:
-            pulumi.set(__self__, "cpu_limit", cpu_limit)
+            _setter("cpu_limit", cpu_limit)
         if deploy is not None:
-            pulumi.set(__self__, "deploy", deploy)
+            _setter("deploy", deploy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if environment_variables is not None:
-            pulumi.set(__self__, "environment_variables", environment_variables)
+            _setter("environment_variables", environment_variables)
         if http_option is not None:
-            pulumi.set(__self__, "http_option", http_option)
+            _setter("http_option", http_option)
         if max_concurrency is not None:
-            pulumi.set(__self__, "max_concurrency", max_concurrency)
+            _setter("max_concurrency", max_concurrency)
         if max_scale is not None:
-            pulumi.set(__self__, "max_scale", max_scale)
+            _setter("max_scale", max_scale)
         if memory_limit is not None:
-            pulumi.set(__self__, "memory_limit", memory_limit)
+            _setter("memory_limit", memory_limit)
         if min_scale is not None:
-            pulumi.set(__self__, "min_scale", min_scale)
+            _setter("min_scale", min_scale)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if port is not None:
-            pulumi.set(__self__, "port", port)
+            _setter("port", port)
         if privacy is not None:
-            pulumi.set(__self__, "privacy", privacy)
+            _setter("privacy", privacy)
         if protocol is not None:
-            pulumi.set(__self__, "protocol", protocol)
+            _setter("protocol", protocol)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if registry_image is not None:
-            pulumi.set(__self__, "registry_image", registry_image)
+            _setter("registry_image", registry_image)
         if registry_sha256 is not None:
-            pulumi.set(__self__, "registry_sha256", registry_sha256)
+            _setter("registry_sha256", registry_sha256)
         if secret_environment_variables is not None:
-            pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
+            _setter("secret_environment_variables", secret_environment_variables)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
         if timeout is not None:
-            pulumi.set(__self__, "timeout", timeout)
+            _setter("timeout", timeout)
 
     @property
     @pulumi.getter(name="namespaceId")
@@ -408,52 +479,135 @@ class _ContainerState:
         :param pulumi.Input[str] status: The container status.
         :param pulumi.Input[int] timeout: The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
         """
+        _ContainerState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cpu_limit=cpu_limit,
+            cron_status=cron_status,
+            deploy=deploy,
+            description=description,
+            domain_name=domain_name,
+            environment_variables=environment_variables,
+            error_message=error_message,
+            http_option=http_option,
+            max_concurrency=max_concurrency,
+            max_scale=max_scale,
+            memory_limit=memory_limit,
+            min_scale=min_scale,
+            name=name,
+            namespace_id=namespace_id,
+            port=port,
+            privacy=privacy,
+            protocol=protocol,
+            region=region,
+            registry_image=registry_image,
+            registry_sha256=registry_sha256,
+            secret_environment_variables=secret_environment_variables,
+            status=status,
+            timeout=timeout,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cpu_limit: Optional[pulumi.Input[int]] = None,
+             cron_status: Optional[pulumi.Input[str]] = None,
+             deploy: Optional[pulumi.Input[bool]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             domain_name: Optional[pulumi.Input[str]] = None,
+             environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             error_message: Optional[pulumi.Input[str]] = None,
+             http_option: Optional[pulumi.Input[str]] = None,
+             max_concurrency: Optional[pulumi.Input[int]] = None,
+             max_scale: Optional[pulumi.Input[int]] = None,
+             memory_limit: Optional[pulumi.Input[int]] = None,
+             min_scale: Optional[pulumi.Input[int]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             namespace_id: Optional[pulumi.Input[str]] = None,
+             port: Optional[pulumi.Input[int]] = None,
+             privacy: Optional[pulumi.Input[str]] = None,
+             protocol: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             registry_image: Optional[pulumi.Input[str]] = None,
+             registry_sha256: Optional[pulumi.Input[str]] = None,
+             secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             timeout: Optional[pulumi.Input[int]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'cpuLimit' in kwargs:
+            cpu_limit = kwargs['cpuLimit']
+        if 'cronStatus' in kwargs:
+            cron_status = kwargs['cronStatus']
+        if 'domainName' in kwargs:
+            domain_name = kwargs['domainName']
+        if 'environmentVariables' in kwargs:
+            environment_variables = kwargs['environmentVariables']
+        if 'errorMessage' in kwargs:
+            error_message = kwargs['errorMessage']
+        if 'httpOption' in kwargs:
+            http_option = kwargs['httpOption']
+        if 'maxConcurrency' in kwargs:
+            max_concurrency = kwargs['maxConcurrency']
+        if 'maxScale' in kwargs:
+            max_scale = kwargs['maxScale']
+        if 'memoryLimit' in kwargs:
+            memory_limit = kwargs['memoryLimit']
+        if 'minScale' in kwargs:
+            min_scale = kwargs['minScale']
+        if 'namespaceId' in kwargs:
+            namespace_id = kwargs['namespaceId']
+        if 'registryImage' in kwargs:
+            registry_image = kwargs['registryImage']
+        if 'registrySha256' in kwargs:
+            registry_sha256 = kwargs['registrySha256']
+        if 'secretEnvironmentVariables' in kwargs:
+            secret_environment_variables = kwargs['secretEnvironmentVariables']
+
         if cpu_limit is not None:
-            pulumi.set(__self__, "cpu_limit", cpu_limit)
+            _setter("cpu_limit", cpu_limit)
         if cron_status is not None:
-            pulumi.set(__self__, "cron_status", cron_status)
+            _setter("cron_status", cron_status)
         if deploy is not None:
-            pulumi.set(__self__, "deploy", deploy)
+            _setter("deploy", deploy)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if domain_name is not None:
-            pulumi.set(__self__, "domain_name", domain_name)
+            _setter("domain_name", domain_name)
         if environment_variables is not None:
-            pulumi.set(__self__, "environment_variables", environment_variables)
+            _setter("environment_variables", environment_variables)
         if error_message is not None:
-            pulumi.set(__self__, "error_message", error_message)
+            _setter("error_message", error_message)
         if http_option is not None:
-            pulumi.set(__self__, "http_option", http_option)
+            _setter("http_option", http_option)
         if max_concurrency is not None:
-            pulumi.set(__self__, "max_concurrency", max_concurrency)
+            _setter("max_concurrency", max_concurrency)
         if max_scale is not None:
-            pulumi.set(__self__, "max_scale", max_scale)
+            _setter("max_scale", max_scale)
         if memory_limit is not None:
-            pulumi.set(__self__, "memory_limit", memory_limit)
+            _setter("memory_limit", memory_limit)
         if min_scale is not None:
-            pulumi.set(__self__, "min_scale", min_scale)
+            _setter("min_scale", min_scale)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if namespace_id is not None:
-            pulumi.set(__self__, "namespace_id", namespace_id)
+            _setter("namespace_id", namespace_id)
         if port is not None:
-            pulumi.set(__self__, "port", port)
+            _setter("port", port)
         if privacy is not None:
-            pulumi.set(__self__, "privacy", privacy)
+            _setter("privacy", privacy)
         if protocol is not None:
-            pulumi.set(__self__, "protocol", protocol)
+            _setter("protocol", protocol)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if registry_image is not None:
-            pulumi.set(__self__, "registry_image", registry_image)
+            _setter("registry_image", registry_image)
         if registry_sha256 is not None:
-            pulumi.set(__self__, "registry_sha256", registry_sha256)
+            _setter("registry_sha256", registry_sha256)
         if secret_environment_variables is not None:
-            pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
+            _setter("secret_environment_variables", secret_environment_variables)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
         if timeout is not None:
-            pulumi.set(__self__, "timeout", timeout)
+            _setter("timeout", timeout)
 
     @property
     @pulumi.getter(name="cpuLimit")
@@ -792,7 +946,7 @@ class Container(pulumi.CustomResource):
             timeout=600,
             max_concurrency=80,
             privacy="private",
-            protocol="h2c",
+            protocol="http1",
             deploy=True,
             environment_variables={
                 "foo": "var",
@@ -908,7 +1062,7 @@ class Container(pulumi.CustomResource):
             timeout=600,
             max_concurrency=80,
             privacy="private",
-            protocol="h2c",
+            protocol="http1",
             deploy=True,
             environment_variables={
                 "foo": "var",
@@ -971,6 +1125,10 @@ class Container(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ContainerArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

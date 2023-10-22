@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['RdbPrivilegeArgs', 'RdbPrivilege']
@@ -27,12 +27,37 @@ class RdbPrivilegeArgs:
         :param pulumi.Input[str] user_name: Name of the user (e.g. `my-db-user`).
         :param pulumi.Input[str] region: `region`) The region in which the resource exists.
         """
-        pulumi.set(__self__, "database_name", database_name)
-        pulumi.set(__self__, "instance_id", instance_id)
-        pulumi.set(__self__, "permission", permission)
-        pulumi.set(__self__, "user_name", user_name)
+        RdbPrivilegeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            database_name=database_name,
+            instance_id=instance_id,
+            permission=permission,
+            user_name=user_name,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             database_name: pulumi.Input[str],
+             instance_id: pulumi.Input[str],
+             permission: pulumi.Input[str],
+             user_name: pulumi.Input[str],
+             region: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'databaseName' in kwargs:
+            database_name = kwargs['databaseName']
+        if 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if 'userName' in kwargs:
+            user_name = kwargs['userName']
+
+        _setter("database_name", database_name)
+        _setter("instance_id", instance_id)
+        _setter("permission", permission)
+        _setter("user_name", user_name)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter(name="databaseName")
@@ -111,16 +136,41 @@ class _RdbPrivilegeState:
         :param pulumi.Input[str] region: `region`) The region in which the resource exists.
         :param pulumi.Input[str] user_name: Name of the user (e.g. `my-db-user`).
         """
+        _RdbPrivilegeState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            database_name=database_name,
+            instance_id=instance_id,
+            permission=permission,
+            region=region,
+            user_name=user_name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             database_name: Optional[pulumi.Input[str]] = None,
+             instance_id: Optional[pulumi.Input[str]] = None,
+             permission: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             user_name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'databaseName' in kwargs:
+            database_name = kwargs['databaseName']
+        if 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if 'userName' in kwargs:
+            user_name = kwargs['userName']
+
         if database_name is not None:
-            pulumi.set(__self__, "database_name", database_name)
+            _setter("database_name", database_name)
         if instance_id is not None:
-            pulumi.set(__self__, "instance_id", instance_id)
+            _setter("instance_id", instance_id)
         if permission is not None:
-            pulumi.set(__self__, "permission", permission)
+            _setter("permission", permission)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if user_name is not None:
-            pulumi.set(__self__, "user_name", user_name)
+            _setter("user_name", user_name)
 
     @property
     @pulumi.getter(name="databaseName")
@@ -300,6 +350,10 @@ class RdbPrivilege(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            RdbPrivilegeArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

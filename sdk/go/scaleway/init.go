@@ -47,6 +47,18 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ContainerToken{}
 	case "scaleway:index/containerTrigger:ContainerTrigger":
 		r = &ContainerTrigger{}
+	case "scaleway:index/documentDBDatabase:DocumentDBDatabase":
+		r = &DocumentDBDatabase{}
+	case "scaleway:index/documentDBInstance:DocumentDBInstance":
+		r = &DocumentDBInstance{}
+	case "scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint":
+		r = &DocumentDBPrivateNetworkEndpoint{}
+	case "scaleway:index/documentDBPrivilege:DocumentDBPrivilege":
+		r = &DocumentDBPrivilege{}
+	case "scaleway:index/documentDBReadReplica:DocumentDBReadReplica":
+		r = &DocumentDBReadReplica{}
+	case "scaleway:index/documentDBUser:DocumentDBUser":
+		r = &DocumentDBUser{}
 	case "scaleway:index/domainRecord:DomainRecord":
 		r = &DomainRecord{}
 	case "scaleway:index/domainZone:DomainZone":
@@ -283,6 +295,36 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/containerTrigger",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/documentDBDatabase",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/documentDBInstance",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/documentDBPrivateNetworkEndpoint",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/documentDBPrivilege",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/documentDBReadReplica",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/documentDBUser",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

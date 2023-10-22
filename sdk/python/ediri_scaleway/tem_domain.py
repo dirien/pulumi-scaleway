@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['TemDomainArgs', 'TemDomain']
@@ -27,13 +27,34 @@ class TemDomainArgs:
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the domain should be created.
         """
-        pulumi.set(__self__, "accept_tos", accept_tos)
+        TemDomainArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            accept_tos=accept_tos,
+            name=name,
+            project_id=project_id,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             accept_tos: pulumi.Input[bool],
+             name: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'acceptTos' in kwargs:
+            accept_tos = kwargs['acceptTos']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+
+        _setter("accept_tos", accept_tos)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter(name="acceptTos")
@@ -130,42 +151,117 @@ class _TemDomainState:
         :param pulumi.Input[str] spf_config: The snippet of the SPF record that should be registered in the DNS zone.
         :param pulumi.Input[str] status: The status of the Transaction Email Domain.
         """
+        _TemDomainState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            accept_tos=accept_tos,
+            created_at=created_at,
+            dkim_config=dkim_config,
+            last_error=last_error,
+            last_valid_at=last_valid_at,
+            name=name,
+            next_check_at=next_check_at,
+            project_id=project_id,
+            region=region,
+            revoked_at=revoked_at,
+            smtp_host=smtp_host,
+            smtp_port=smtp_port,
+            smtp_port_alternative=smtp_port_alternative,
+            smtp_port_unsecure=smtp_port_unsecure,
+            smtps_port=smtps_port,
+            smtps_port_alternative=smtps_port_alternative,
+            spf_config=spf_config,
+            status=status,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             accept_tos: Optional[pulumi.Input[bool]] = None,
+             created_at: Optional[pulumi.Input[str]] = None,
+             dkim_config: Optional[pulumi.Input[str]] = None,
+             last_error: Optional[pulumi.Input[str]] = None,
+             last_valid_at: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             next_check_at: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             revoked_at: Optional[pulumi.Input[str]] = None,
+             smtp_host: Optional[pulumi.Input[str]] = None,
+             smtp_port: Optional[pulumi.Input[int]] = None,
+             smtp_port_alternative: Optional[pulumi.Input[int]] = None,
+             smtp_port_unsecure: Optional[pulumi.Input[int]] = None,
+             smtps_port: Optional[pulumi.Input[int]] = None,
+             smtps_port_alternative: Optional[pulumi.Input[int]] = None,
+             spf_config: Optional[pulumi.Input[str]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'acceptTos' in kwargs:
+            accept_tos = kwargs['acceptTos']
+        if 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if 'dkimConfig' in kwargs:
+            dkim_config = kwargs['dkimConfig']
+        if 'lastError' in kwargs:
+            last_error = kwargs['lastError']
+        if 'lastValidAt' in kwargs:
+            last_valid_at = kwargs['lastValidAt']
+        if 'nextCheckAt' in kwargs:
+            next_check_at = kwargs['nextCheckAt']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if 'revokedAt' in kwargs:
+            revoked_at = kwargs['revokedAt']
+        if 'smtpHost' in kwargs:
+            smtp_host = kwargs['smtpHost']
+        if 'smtpPort' in kwargs:
+            smtp_port = kwargs['smtpPort']
+        if 'smtpPortAlternative' in kwargs:
+            smtp_port_alternative = kwargs['smtpPortAlternative']
+        if 'smtpPortUnsecure' in kwargs:
+            smtp_port_unsecure = kwargs['smtpPortUnsecure']
+        if 'smtpsPort' in kwargs:
+            smtps_port = kwargs['smtpsPort']
+        if 'smtpsPortAlternative' in kwargs:
+            smtps_port_alternative = kwargs['smtpsPortAlternative']
+        if 'spfConfig' in kwargs:
+            spf_config = kwargs['spfConfig']
+
         if accept_tos is not None:
-            pulumi.set(__self__, "accept_tos", accept_tos)
+            _setter("accept_tos", accept_tos)
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if dkim_config is not None:
-            pulumi.set(__self__, "dkim_config", dkim_config)
+            _setter("dkim_config", dkim_config)
         if last_error is not None:
-            pulumi.set(__self__, "last_error", last_error)
+            _setter("last_error", last_error)
         if last_valid_at is not None:
-            pulumi.set(__self__, "last_valid_at", last_valid_at)
+            _setter("last_valid_at", last_valid_at)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if next_check_at is not None:
-            pulumi.set(__self__, "next_check_at", next_check_at)
+            _setter("next_check_at", next_check_at)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if revoked_at is not None:
-            pulumi.set(__self__, "revoked_at", revoked_at)
+            _setter("revoked_at", revoked_at)
         if smtp_host is not None:
-            pulumi.set(__self__, "smtp_host", smtp_host)
+            _setter("smtp_host", smtp_host)
         if smtp_port is not None:
-            pulumi.set(__self__, "smtp_port", smtp_port)
+            _setter("smtp_port", smtp_port)
         if smtp_port_alternative is not None:
-            pulumi.set(__self__, "smtp_port_alternative", smtp_port_alternative)
+            _setter("smtp_port_alternative", smtp_port_alternative)
         if smtp_port_unsecure is not None:
-            pulumi.set(__self__, "smtp_port_unsecure", smtp_port_unsecure)
+            _setter("smtp_port_unsecure", smtp_port_unsecure)
         if smtps_port is not None:
-            pulumi.set(__self__, "smtps_port", smtps_port)
+            _setter("smtps_port", smtps_port)
         if smtps_port_alternative is not None:
-            pulumi.set(__self__, "smtps_port_alternative", smtps_port_alternative)
+            _setter("smtps_port_alternative", smtps_port_alternative)
         if spf_config is not None:
-            pulumi.set(__self__, "spf_config", spf_config)
+            _setter("spf_config", spf_config)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
 
     @property
     @pulumi.getter(name="acceptTos")
@@ -513,6 +609,10 @@ class TemDomain(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            TemDomainArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

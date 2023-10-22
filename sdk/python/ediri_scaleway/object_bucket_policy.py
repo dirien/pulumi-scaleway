@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ObjectBucketPolicyArgs', 'ObjectBucketPolicy']
@@ -27,12 +27,31 @@ class ObjectBucketPolicyArgs:
                > **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         """
-        pulumi.set(__self__, "bucket", bucket)
-        pulumi.set(__self__, "policy", policy)
+        ObjectBucketPolicyArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            bucket=bucket,
+            policy=policy,
+            project_id=project_id,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             bucket: pulumi.Input[str],
+             policy: pulumi.Input[str],
+             project_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+
+        _setter("bucket", bucket)
+        _setter("policy", policy)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter
@@ -101,14 +120,33 @@ class _ObjectBucketPolicyState:
                > **Important:** The aws_iam_policy_document data source may be used, so long as it specifies a principal.
         :param pulumi.Input[str] region: The Scaleway region this bucket resides in.
         """
+        _ObjectBucketPolicyState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            bucket=bucket,
+            policy=policy,
+            project_id=project_id,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             bucket: Optional[pulumi.Input[str]] = None,
+             policy: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+
         if bucket is not None:
-            pulumi.set(__self__, "bucket", bucket)
+            _setter("bucket", bucket)
         if policy is not None:
-            pulumi.set(__self__, "policy", policy)
+            _setter("policy", policy)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter
@@ -183,16 +221,17 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         import json
 
         bucket = scaleway.ObjectBucket("bucket")
+        main = scaleway.IamApplication("main", description="a description")
         policy = scaleway.ObjectBucketPolicy("policy",
             bucket=bucket.name,
-            policy=pulumi.Output.all(bucket.name, bucket.name).apply(lambda bucketName, bucketName1: json.dumps({
+            policy=pulumi.Output.all(main.id, bucket.name, bucket.name).apply(lambda id, bucketName, bucketName1: json.dumps({
                 "Version": "2023-04-17",
                 "Id": "MyBucketPolicy",
                 "Statement": [{
                     "Sid": "Delegate access",
                     "Effect": "Allow",
                     "Principal": {
-                        "SCW": "application_id:<APPLICATION_ID>",
+                        "SCW": f"application_id:{id}",
                     },
                     "Action": "s3:ListBucket",
                     "Resource": [
@@ -238,16 +277,17 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         import json
 
         bucket = scaleway.ObjectBucket("bucket")
+        main = scaleway.IamApplication("main", description="a description")
         policy = scaleway.ObjectBucketPolicy("policy",
             bucket=bucket.name,
-            policy=pulumi.Output.all(bucket.name, bucket.name).apply(lambda bucketName, bucketName1: json.dumps({
+            policy=pulumi.Output.all(main.id, bucket.name, bucket.name).apply(lambda id, bucketName, bucketName1: json.dumps({
                 "Version": "2023-04-17",
                 "Id": "MyBucketPolicy",
                 "Statement": [{
                     "Sid": "Delegate access",
                     "Effect": "Allow",
                     "Principal": {
-                        "SCW": "application_id:<APPLICATION_ID>",
+                        "SCW": f"application_id:{id}",
                     },
                     "Action": "s3:ListBucket",
                     "Resource": [
@@ -276,6 +316,10 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ObjectBucketPolicyArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

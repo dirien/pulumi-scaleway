@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -64,39 +64,106 @@ class K8sPoolArgs:
         :param pulumi.Input[str] zone: `zone`) The zone in which the pool should be created.
                > **Important:** Updates to this field will recreate a new resource.
         """
-        pulumi.set(__self__, "cluster_id", cluster_id)
-        pulumi.set(__self__, "node_type", node_type)
-        pulumi.set(__self__, "size", size)
+        K8sPoolArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cluster_id=cluster_id,
+            node_type=node_type,
+            size=size,
+            autohealing=autohealing,
+            autoscaling=autoscaling,
+            container_runtime=container_runtime,
+            kubelet_args=kubelet_args,
+            max_size=max_size,
+            min_size=min_size,
+            name=name,
+            placement_group_id=placement_group_id,
+            region=region,
+            root_volume_size_in_gb=root_volume_size_in_gb,
+            root_volume_type=root_volume_type,
+            tags=tags,
+            upgrade_policy=upgrade_policy,
+            wait_for_pool_ready=wait_for_pool_ready,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cluster_id: pulumi.Input[str],
+             node_type: pulumi.Input[str],
+             size: pulumi.Input[int],
+             autohealing: Optional[pulumi.Input[bool]] = None,
+             autoscaling: Optional[pulumi.Input[bool]] = None,
+             container_runtime: Optional[pulumi.Input[str]] = None,
+             kubelet_args: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             max_size: Optional[pulumi.Input[int]] = None,
+             min_size: Optional[pulumi.Input[int]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             placement_group_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             root_volume_size_in_gb: Optional[pulumi.Input[int]] = None,
+             root_volume_type: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             upgrade_policy: Optional[pulumi.Input['K8sPoolUpgradePolicyArgs']] = None,
+             wait_for_pool_ready: Optional[pulumi.Input[bool]] = None,
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'clusterId' in kwargs:
+            cluster_id = kwargs['clusterId']
+        if 'nodeType' in kwargs:
+            node_type = kwargs['nodeType']
+        if 'containerRuntime' in kwargs:
+            container_runtime = kwargs['containerRuntime']
+        if 'kubeletArgs' in kwargs:
+            kubelet_args = kwargs['kubeletArgs']
+        if 'maxSize' in kwargs:
+            max_size = kwargs['maxSize']
+        if 'minSize' in kwargs:
+            min_size = kwargs['minSize']
+        if 'placementGroupId' in kwargs:
+            placement_group_id = kwargs['placementGroupId']
+        if 'rootVolumeSizeInGb' in kwargs:
+            root_volume_size_in_gb = kwargs['rootVolumeSizeInGb']
+        if 'rootVolumeType' in kwargs:
+            root_volume_type = kwargs['rootVolumeType']
+        if 'upgradePolicy' in kwargs:
+            upgrade_policy = kwargs['upgradePolicy']
+        if 'waitForPoolReady' in kwargs:
+            wait_for_pool_ready = kwargs['waitForPoolReady']
+
+        _setter("cluster_id", cluster_id)
+        _setter("node_type", node_type)
+        _setter("size", size)
         if autohealing is not None:
-            pulumi.set(__self__, "autohealing", autohealing)
+            _setter("autohealing", autohealing)
         if autoscaling is not None:
-            pulumi.set(__self__, "autoscaling", autoscaling)
+            _setter("autoscaling", autoscaling)
         if container_runtime is not None:
-            pulumi.set(__self__, "container_runtime", container_runtime)
+            _setter("container_runtime", container_runtime)
         if kubelet_args is not None:
-            pulumi.set(__self__, "kubelet_args", kubelet_args)
+            _setter("kubelet_args", kubelet_args)
         if max_size is not None:
-            pulumi.set(__self__, "max_size", max_size)
+            _setter("max_size", max_size)
         if min_size is not None:
-            pulumi.set(__self__, "min_size", min_size)
+            _setter("min_size", min_size)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if placement_group_id is not None:
-            pulumi.set(__self__, "placement_group_id", placement_group_id)
+            _setter("placement_group_id", placement_group_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if root_volume_size_in_gb is not None:
-            pulumi.set(__self__, "root_volume_size_in_gb", root_volume_size_in_gb)
+            _setter("root_volume_size_in_gb", root_volume_size_in_gb)
         if root_volume_type is not None:
-            pulumi.set(__self__, "root_volume_type", root_volume_type)
+            _setter("root_volume_type", root_volume_type)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if upgrade_policy is not None:
-            pulumi.set(__self__, "upgrade_policy", upgrade_policy)
+            _setter("upgrade_policy", upgrade_policy)
         if wait_for_pool_ready is not None:
-            pulumi.set(__self__, "wait_for_pool_ready", wait_for_pool_ready)
+            _setter("wait_for_pool_ready", wait_for_pool_ready)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter(name="clusterId")
@@ -387,54 +454,139 @@ class _K8sPoolState:
         :param pulumi.Input[str] zone: `zone`) The zone in which the pool should be created.
                > **Important:** Updates to this field will recreate a new resource.
         """
+        _K8sPoolState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            autohealing=autohealing,
+            autoscaling=autoscaling,
+            cluster_id=cluster_id,
+            container_runtime=container_runtime,
+            created_at=created_at,
+            current_size=current_size,
+            kubelet_args=kubelet_args,
+            max_size=max_size,
+            min_size=min_size,
+            name=name,
+            node_type=node_type,
+            nodes=nodes,
+            placement_group_id=placement_group_id,
+            region=region,
+            root_volume_size_in_gb=root_volume_size_in_gb,
+            root_volume_type=root_volume_type,
+            size=size,
+            status=status,
+            tags=tags,
+            updated_at=updated_at,
+            upgrade_policy=upgrade_policy,
+            version=version,
+            wait_for_pool_ready=wait_for_pool_ready,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             autohealing: Optional[pulumi.Input[bool]] = None,
+             autoscaling: Optional[pulumi.Input[bool]] = None,
+             cluster_id: Optional[pulumi.Input[str]] = None,
+             container_runtime: Optional[pulumi.Input[str]] = None,
+             created_at: Optional[pulumi.Input[str]] = None,
+             current_size: Optional[pulumi.Input[int]] = None,
+             kubelet_args: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             max_size: Optional[pulumi.Input[int]] = None,
+             min_size: Optional[pulumi.Input[int]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             node_type: Optional[pulumi.Input[str]] = None,
+             nodes: Optional[pulumi.Input[Sequence[pulumi.Input['K8sPoolNodeArgs']]]] = None,
+             placement_group_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             root_volume_size_in_gb: Optional[pulumi.Input[int]] = None,
+             root_volume_type: Optional[pulumi.Input[str]] = None,
+             size: Optional[pulumi.Input[int]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             updated_at: Optional[pulumi.Input[str]] = None,
+             upgrade_policy: Optional[pulumi.Input['K8sPoolUpgradePolicyArgs']] = None,
+             version: Optional[pulumi.Input[str]] = None,
+             wait_for_pool_ready: Optional[pulumi.Input[bool]] = None,
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'clusterId' in kwargs:
+            cluster_id = kwargs['clusterId']
+        if 'containerRuntime' in kwargs:
+            container_runtime = kwargs['containerRuntime']
+        if 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if 'currentSize' in kwargs:
+            current_size = kwargs['currentSize']
+        if 'kubeletArgs' in kwargs:
+            kubelet_args = kwargs['kubeletArgs']
+        if 'maxSize' in kwargs:
+            max_size = kwargs['maxSize']
+        if 'minSize' in kwargs:
+            min_size = kwargs['minSize']
+        if 'nodeType' in kwargs:
+            node_type = kwargs['nodeType']
+        if 'placementGroupId' in kwargs:
+            placement_group_id = kwargs['placementGroupId']
+        if 'rootVolumeSizeInGb' in kwargs:
+            root_volume_size_in_gb = kwargs['rootVolumeSizeInGb']
+        if 'rootVolumeType' in kwargs:
+            root_volume_type = kwargs['rootVolumeType']
+        if 'updatedAt' in kwargs:
+            updated_at = kwargs['updatedAt']
+        if 'upgradePolicy' in kwargs:
+            upgrade_policy = kwargs['upgradePolicy']
+        if 'waitForPoolReady' in kwargs:
+            wait_for_pool_ready = kwargs['waitForPoolReady']
+
         if autohealing is not None:
-            pulumi.set(__self__, "autohealing", autohealing)
+            _setter("autohealing", autohealing)
         if autoscaling is not None:
-            pulumi.set(__self__, "autoscaling", autoscaling)
+            _setter("autoscaling", autoscaling)
         if cluster_id is not None:
-            pulumi.set(__self__, "cluster_id", cluster_id)
+            _setter("cluster_id", cluster_id)
         if container_runtime is not None:
-            pulumi.set(__self__, "container_runtime", container_runtime)
+            _setter("container_runtime", container_runtime)
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if current_size is not None:
-            pulumi.set(__self__, "current_size", current_size)
+            _setter("current_size", current_size)
         if kubelet_args is not None:
-            pulumi.set(__self__, "kubelet_args", kubelet_args)
+            _setter("kubelet_args", kubelet_args)
         if max_size is not None:
-            pulumi.set(__self__, "max_size", max_size)
+            _setter("max_size", max_size)
         if min_size is not None:
-            pulumi.set(__self__, "min_size", min_size)
+            _setter("min_size", min_size)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if node_type is not None:
-            pulumi.set(__self__, "node_type", node_type)
+            _setter("node_type", node_type)
         if nodes is not None:
-            pulumi.set(__self__, "nodes", nodes)
+            _setter("nodes", nodes)
         if placement_group_id is not None:
-            pulumi.set(__self__, "placement_group_id", placement_group_id)
+            _setter("placement_group_id", placement_group_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if root_volume_size_in_gb is not None:
-            pulumi.set(__self__, "root_volume_size_in_gb", root_volume_size_in_gb)
+            _setter("root_volume_size_in_gb", root_volume_size_in_gb)
         if root_volume_type is not None:
-            pulumi.set(__self__, "root_volume_type", root_volume_type)
+            _setter("root_volume_type", root_volume_type)
         if size is not None:
-            pulumi.set(__self__, "size", size)
+            _setter("size", size)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
+            _setter("updated_at", updated_at)
         if upgrade_policy is not None:
-            pulumi.set(__self__, "upgrade_policy", upgrade_policy)
+            _setter("upgrade_policy", upgrade_policy)
         if version is not None:
-            pulumi.set(__self__, "version", version)
+            _setter("version", version)
         if wait_for_pool_ready is not None:
-            pulumi.set(__self__, "wait_for_pool_ready", wait_for_pool_ready)
+            _setter("wait_for_pool_ready", wait_for_pool_ready)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter
@@ -822,6 +974,10 @@ class K8sPool(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            K8sPoolArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -875,6 +1031,11 @@ class K8sPool(pulumi.CustomResource):
                 raise TypeError("Missing required property 'size'")
             __props__.__dict__["size"] = size
             __props__.__dict__["tags"] = tags
+            if upgrade_policy is not None and not isinstance(upgrade_policy, K8sPoolUpgradePolicyArgs):
+                upgrade_policy = upgrade_policy or {}
+                def _setter(key, value):
+                    upgrade_policy[key] = value
+                K8sPoolUpgradePolicyArgs._configure(_setter, **upgrade_policy)
             __props__.__dict__["upgrade_policy"] = upgrade_policy
             __props__.__dict__["wait_for_pool_ready"] = wait_for_pool_ready
             __props__.__dict__["zone"] = zone

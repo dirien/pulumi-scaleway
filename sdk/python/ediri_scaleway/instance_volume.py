@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['InstanceVolumeArgs', 'InstanceVolume']
@@ -33,21 +33,54 @@ class InstanceVolumeArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the volume.
         :param pulumi.Input[str] zone: `zone`) The zone in which the volume should be created.
         """
-        pulumi.set(__self__, "type", type)
+        InstanceVolumeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            type=type,
+            from_snapshot_id=from_snapshot_id,
+            from_volume_id=from_volume_id,
+            name=name,
+            project_id=project_id,
+            size_in_gb=size_in_gb,
+            tags=tags,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             type: pulumi.Input[str],
+             from_snapshot_id: Optional[pulumi.Input[str]] = None,
+             from_volume_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             size_in_gb: Optional[pulumi.Input[int]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'fromSnapshotId' in kwargs:
+            from_snapshot_id = kwargs['fromSnapshotId']
+        if 'fromVolumeId' in kwargs:
+            from_volume_id = kwargs['fromVolumeId']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if 'sizeInGb' in kwargs:
+            size_in_gb = kwargs['sizeInGb']
+
+        _setter("type", type)
         if from_snapshot_id is not None:
-            pulumi.set(__self__, "from_snapshot_id", from_snapshot_id)
+            _setter("from_snapshot_id", from_snapshot_id)
         if from_volume_id is not None:
-            pulumi.set(__self__, "from_volume_id", from_volume_id)
+            _setter("from_volume_id", from_volume_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if size_in_gb is not None:
-            pulumi.set(__self__, "size_in_gb", size_in_gb)
+            _setter("size_in_gb", size_in_gb)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter
@@ -172,26 +205,67 @@ class _InstanceVolumeState:
         :param pulumi.Input[str] type: The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
         :param pulumi.Input[str] zone: `zone`) The zone in which the volume should be created.
         """
+        _InstanceVolumeState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            from_snapshot_id=from_snapshot_id,
+            from_volume_id=from_volume_id,
+            name=name,
+            organization_id=organization_id,
+            project_id=project_id,
+            server_id=server_id,
+            size_in_gb=size_in_gb,
+            tags=tags,
+            type=type,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             from_snapshot_id: Optional[pulumi.Input[str]] = None,
+             from_volume_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             organization_id: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             server_id: Optional[pulumi.Input[str]] = None,
+             size_in_gb: Optional[pulumi.Input[int]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             type: Optional[pulumi.Input[str]] = None,
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'fromSnapshotId' in kwargs:
+            from_snapshot_id = kwargs['fromSnapshotId']
+        if 'fromVolumeId' in kwargs:
+            from_volume_id = kwargs['fromVolumeId']
+        if 'organizationId' in kwargs:
+            organization_id = kwargs['organizationId']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if 'serverId' in kwargs:
+            server_id = kwargs['serverId']
+        if 'sizeInGb' in kwargs:
+            size_in_gb = kwargs['sizeInGb']
+
         if from_snapshot_id is not None:
-            pulumi.set(__self__, "from_snapshot_id", from_snapshot_id)
+            _setter("from_snapshot_id", from_snapshot_id)
         if from_volume_id is not None:
-            pulumi.set(__self__, "from_volume_id", from_volume_id)
+            _setter("from_volume_id", from_volume_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if organization_id is not None:
-            pulumi.set(__self__, "organization_id", organization_id)
+            _setter("organization_id", organization_id)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if server_id is not None:
-            pulumi.set(__self__, "server_id", server_id)
+            _setter("server_id", server_id)
         if size_in_gb is not None:
-            pulumi.set(__self__, "size_in_gb", size_in_gb)
+            _setter("size_in_gb", size_in_gb)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter(name="fromSnapshotId")
@@ -401,6 +475,10 @@ class InstanceVolume(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            InstanceVolumeArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

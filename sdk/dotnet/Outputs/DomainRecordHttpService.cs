@@ -23,7 +23,7 @@ namespace ediri.Scaleway.Outputs
         /// </summary>
         public readonly string MustContain;
         /// <summary>
-        /// Strategy to return an IP from the IPs list. Can be `random` or `hashed`
+        /// Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
         /// </summary>
         public readonly string Strategy;
         /// <summary>

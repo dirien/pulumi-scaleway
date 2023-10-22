@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['IotHubArgs', 'IotHub']
@@ -41,25 +41,68 @@ class IotHubArgs:
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IoT Hub Instance is associated with.
         :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
         """
-        pulumi.set(__self__, "product_plan", product_plan)
+        IotHubArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            product_plan=product_plan,
+            device_auto_provisioning=device_auto_provisioning,
+            disable_events=disable_events,
+            enabled=enabled,
+            events_topic_prefix=events_topic_prefix,
+            hub_ca=hub_ca,
+            hub_ca_challenge=hub_ca_challenge,
+            name=name,
+            project_id=project_id,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             product_plan: pulumi.Input[str],
+             device_auto_provisioning: Optional[pulumi.Input[bool]] = None,
+             disable_events: Optional[pulumi.Input[bool]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             events_topic_prefix: Optional[pulumi.Input[str]] = None,
+             hub_ca: Optional[pulumi.Input[str]] = None,
+             hub_ca_challenge: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'productPlan' in kwargs:
+            product_plan = kwargs['productPlan']
+        if 'deviceAutoProvisioning' in kwargs:
+            device_auto_provisioning = kwargs['deviceAutoProvisioning']
+        if 'disableEvents' in kwargs:
+            disable_events = kwargs['disableEvents']
+        if 'eventsTopicPrefix' in kwargs:
+            events_topic_prefix = kwargs['eventsTopicPrefix']
+        if 'hubCa' in kwargs:
+            hub_ca = kwargs['hubCa']
+        if 'hubCaChallenge' in kwargs:
+            hub_ca_challenge = kwargs['hubCaChallenge']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+
+        _setter("product_plan", product_plan)
         if device_auto_provisioning is not None:
-            pulumi.set(__self__, "device_auto_provisioning", device_auto_provisioning)
+            _setter("device_auto_provisioning", device_auto_provisioning)
         if disable_events is not None:
-            pulumi.set(__self__, "disable_events", disable_events)
+            _setter("disable_events", disable_events)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if events_topic_prefix is not None:
-            pulumi.set(__self__, "events_topic_prefix", events_topic_prefix)
+            _setter("events_topic_prefix", events_topic_prefix)
         if hub_ca is not None:
-            pulumi.set(__self__, "hub_ca", hub_ca)
+            _setter("hub_ca", hub_ca)
         if hub_ca_challenge is not None:
-            pulumi.set(__self__, "hub_ca_challenge", hub_ca_challenge)
+            _setter("hub_ca_challenge", hub_ca_challenge)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter(name="productPlan")
@@ -230,40 +273,107 @@ class _IotHubState:
         :param pulumi.Input[str] status: The current status of the Hub.
         :param pulumi.Input[str] updated_at: The date and time the Hub resource was updated.
         """
+        _IotHubState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            connected_device_count=connected_device_count,
+            created_at=created_at,
+            device_auto_provisioning=device_auto_provisioning,
+            device_count=device_count,
+            disable_events=disable_events,
+            enabled=enabled,
+            endpoint=endpoint,
+            events_topic_prefix=events_topic_prefix,
+            hub_ca=hub_ca,
+            hub_ca_challenge=hub_ca_challenge,
+            name=name,
+            organization_id=organization_id,
+            product_plan=product_plan,
+            project_id=project_id,
+            region=region,
+            status=status,
+            updated_at=updated_at,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             connected_device_count: Optional[pulumi.Input[int]] = None,
+             created_at: Optional[pulumi.Input[str]] = None,
+             device_auto_provisioning: Optional[pulumi.Input[bool]] = None,
+             device_count: Optional[pulumi.Input[int]] = None,
+             disable_events: Optional[pulumi.Input[bool]] = None,
+             enabled: Optional[pulumi.Input[bool]] = None,
+             endpoint: Optional[pulumi.Input[str]] = None,
+             events_topic_prefix: Optional[pulumi.Input[str]] = None,
+             hub_ca: Optional[pulumi.Input[str]] = None,
+             hub_ca_challenge: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             organization_id: Optional[pulumi.Input[str]] = None,
+             product_plan: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             updated_at: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'connectedDeviceCount' in kwargs:
+            connected_device_count = kwargs['connectedDeviceCount']
+        if 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if 'deviceAutoProvisioning' in kwargs:
+            device_auto_provisioning = kwargs['deviceAutoProvisioning']
+        if 'deviceCount' in kwargs:
+            device_count = kwargs['deviceCount']
+        if 'disableEvents' in kwargs:
+            disable_events = kwargs['disableEvents']
+        if 'eventsTopicPrefix' in kwargs:
+            events_topic_prefix = kwargs['eventsTopicPrefix']
+        if 'hubCa' in kwargs:
+            hub_ca = kwargs['hubCa']
+        if 'hubCaChallenge' in kwargs:
+            hub_ca_challenge = kwargs['hubCaChallenge']
+        if 'organizationId' in kwargs:
+            organization_id = kwargs['organizationId']
+        if 'productPlan' in kwargs:
+            product_plan = kwargs['productPlan']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if 'updatedAt' in kwargs:
+            updated_at = kwargs['updatedAt']
+
         if connected_device_count is not None:
-            pulumi.set(__self__, "connected_device_count", connected_device_count)
+            _setter("connected_device_count", connected_device_count)
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if device_auto_provisioning is not None:
-            pulumi.set(__self__, "device_auto_provisioning", device_auto_provisioning)
+            _setter("device_auto_provisioning", device_auto_provisioning)
         if device_count is not None:
-            pulumi.set(__self__, "device_count", device_count)
+            _setter("device_count", device_count)
         if disable_events is not None:
-            pulumi.set(__self__, "disable_events", disable_events)
+            _setter("disable_events", disable_events)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if endpoint is not None:
-            pulumi.set(__self__, "endpoint", endpoint)
+            _setter("endpoint", endpoint)
         if events_topic_prefix is not None:
-            pulumi.set(__self__, "events_topic_prefix", events_topic_prefix)
+            _setter("events_topic_prefix", events_topic_prefix)
         if hub_ca is not None:
-            pulumi.set(__self__, "hub_ca", hub_ca)
+            _setter("hub_ca", hub_ca)
         if hub_ca_challenge is not None:
-            pulumi.set(__self__, "hub_ca_challenge", hub_ca_challenge)
+            _setter("hub_ca_challenge", hub_ca_challenge)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if organization_id is not None:
-            pulumi.set(__self__, "organization_id", organization_id)
+            _setter("organization_id", organization_id)
         if product_plan is not None:
-            pulumi.set(__self__, "product_plan", product_plan)
+            _setter("product_plan", product_plan)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
         if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
+            _setter("updated_at", updated_at)
 
     @property
     @pulumi.getter(name="connectedDeviceCount")
@@ -541,6 +651,10 @@ class IotHub(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            IotHubArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

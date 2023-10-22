@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['FunctionCronArgs', 'FunctionCron']
@@ -28,11 +28,30 @@ class FunctionCronArgs:
         :param pulumi.Input[str] region: (Defaults to provider `region`) The region
                in where the job was created.
         """
-        pulumi.set(__self__, "args", args)
-        pulumi.set(__self__, "function_id", function_id)
-        pulumi.set(__self__, "schedule", schedule)
+        FunctionCronArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            args=args,
+            function_id=function_id,
+            schedule=schedule,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             args: pulumi.Input[str],
+             function_id: pulumi.Input[str],
+             schedule: pulumi.Input[str],
+             region: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'functionId' in kwargs:
+            function_id = kwargs['functionId']
+
+        _setter("args", args)
+        _setter("function_id", function_id)
+        _setter("schedule", schedule)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter
@@ -105,16 +124,37 @@ class _FunctionCronState:
                executed.
         :param pulumi.Input[str] status: The cron status.
         """
+        _FunctionCronState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            args=args,
+            function_id=function_id,
+            region=region,
+            schedule=schedule,
+            status=status,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             args: Optional[pulumi.Input[str]] = None,
+             function_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             schedule: Optional[pulumi.Input[str]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'functionId' in kwargs:
+            function_id = kwargs['functionId']
+
         if args is not None:
-            pulumi.set(__self__, "args", args)
+            _setter("args", args)
         if function_id is not None:
-            pulumi.set(__self__, "function_id", function_id)
+            _setter("function_id", function_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if schedule is not None:
-            pulumi.set(__self__, "schedule", schedule)
+            _setter("schedule", schedule)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
 
     @property
     @pulumi.getter
@@ -304,6 +344,10 @@ class FunctionCron(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            FunctionCronArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -37,11 +37,18 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			main, err := scaleway.NewIamApplication(ctx, "main", &scaleway.IamApplicationArgs{
+//				Description: pulumi.String("a description"),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			_, err = scaleway.NewObjectBucketPolicy(ctx, "policy", &scaleway.ObjectBucketPolicyArgs{
 //				Bucket: bucket.Name,
-//				Policy: pulumi.All(bucket.Name, bucket.Name).ApplyT(func(_args []interface{}) (string, error) {
-//					bucketName := _args[0].(string)
-//					bucketName1 := _args[1].(string)
+//				Policy: pulumi.All(main.ID(), bucket.Name, bucket.Name).ApplyT(func(_args []interface{}) (string, error) {
+//					id := _args[0].(string)
+//					bucketName := _args[1].(string)
+//					bucketName1 := _args[2].(string)
 //					var _zero string
 //					tmpJSON0, err := json.Marshal(map[string]interface{}{
 //						"Version": "2023-04-17",
@@ -51,7 +58,7 @@ import (
 //								"Sid":    "Delegate access",
 //								"Effect": "Allow",
 //								"Principal": map[string]interface{}{
-//									"SCW": "application_id:<APPLICATION_ID>",
+//									"SCW": fmt.Sprintf("application_id:%v", id),
 //								},
 //								"Action": "s3:ListBucket",
 //								"Resource": []string{
