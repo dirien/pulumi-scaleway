@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['VpcPublicGatewayArgs', 'VpcPublicGateway']
@@ -37,25 +37,66 @@ class VpcPublicGatewayArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled.
         :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway should be created.
         """
-        pulumi.set(__self__, "type", type)
+        VpcPublicGatewayArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            type=type,
+            bastion_enabled=bastion_enabled,
+            bastion_port=bastion_port,
+            enable_smtp=enable_smtp,
+            ip_id=ip_id,
+            name=name,
+            project_id=project_id,
+            tags=tags,
+            upstream_dns_servers=upstream_dns_servers,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             type: pulumi.Input[str],
+             bastion_enabled: Optional[pulumi.Input[bool]] = None,
+             bastion_port: Optional[pulumi.Input[int]] = None,
+             enable_smtp: Optional[pulumi.Input[bool]] = None,
+             ip_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             upstream_dns_servers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'bastionEnabled' in kwargs:
+            bastion_enabled = kwargs['bastionEnabled']
+        if 'bastionPort' in kwargs:
+            bastion_port = kwargs['bastionPort']
+        if 'enableSmtp' in kwargs:
+            enable_smtp = kwargs['enableSmtp']
+        if 'ipId' in kwargs:
+            ip_id = kwargs['ipId']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if 'upstreamDnsServers' in kwargs:
+            upstream_dns_servers = kwargs['upstreamDnsServers']
+
+        _setter("type", type)
         if bastion_enabled is not None:
-            pulumi.set(__self__, "bastion_enabled", bastion_enabled)
+            _setter("bastion_enabled", bastion_enabled)
         if bastion_port is not None:
-            pulumi.set(__self__, "bastion_port", bastion_port)
+            _setter("bastion_port", bastion_port)
         if enable_smtp is not None:
-            pulumi.set(__self__, "enable_smtp", enable_smtp)
+            _setter("enable_smtp", enable_smtp)
         if ip_id is not None:
-            pulumi.set(__self__, "ip_id", ip_id)
+            _setter("ip_id", ip_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if upstream_dns_servers is not None:
-            pulumi.set(__self__, "upstream_dns_servers", upstream_dns_servers)
+            _setter("upstream_dns_servers", upstream_dns_servers)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter
@@ -210,32 +251,85 @@ class _VpcPublicGatewayState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] upstream_dns_servers: override the gateway's default recursive DNS servers, if DNS features are enabled.
         :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway should be created.
         """
+        _VpcPublicGatewayState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            bastion_enabled=bastion_enabled,
+            bastion_port=bastion_port,
+            created_at=created_at,
+            enable_smtp=enable_smtp,
+            ip_id=ip_id,
+            name=name,
+            organization_id=organization_id,
+            project_id=project_id,
+            tags=tags,
+            type=type,
+            updated_at=updated_at,
+            upstream_dns_servers=upstream_dns_servers,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             bastion_enabled: Optional[pulumi.Input[bool]] = None,
+             bastion_port: Optional[pulumi.Input[int]] = None,
+             created_at: Optional[pulumi.Input[str]] = None,
+             enable_smtp: Optional[pulumi.Input[bool]] = None,
+             ip_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             organization_id: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             type: Optional[pulumi.Input[str]] = None,
+             updated_at: Optional[pulumi.Input[str]] = None,
+             upstream_dns_servers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'bastionEnabled' in kwargs:
+            bastion_enabled = kwargs['bastionEnabled']
+        if 'bastionPort' in kwargs:
+            bastion_port = kwargs['bastionPort']
+        if 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if 'enableSmtp' in kwargs:
+            enable_smtp = kwargs['enableSmtp']
+        if 'ipId' in kwargs:
+            ip_id = kwargs['ipId']
+        if 'organizationId' in kwargs:
+            organization_id = kwargs['organizationId']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if 'updatedAt' in kwargs:
+            updated_at = kwargs['updatedAt']
+        if 'upstreamDnsServers' in kwargs:
+            upstream_dns_servers = kwargs['upstreamDnsServers']
+
         if bastion_enabled is not None:
-            pulumi.set(__self__, "bastion_enabled", bastion_enabled)
+            _setter("bastion_enabled", bastion_enabled)
         if bastion_port is not None:
-            pulumi.set(__self__, "bastion_port", bastion_port)
+            _setter("bastion_port", bastion_port)
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if enable_smtp is not None:
-            pulumi.set(__self__, "enable_smtp", enable_smtp)
+            _setter("enable_smtp", enable_smtp)
         if ip_id is not None:
-            pulumi.set(__self__, "ip_id", ip_id)
+            _setter("ip_id", ip_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if organization_id is not None:
-            pulumi.set(__self__, "organization_id", organization_id)
+            _setter("organization_id", organization_id)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
         if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
+            _setter("updated_at", updated_at)
         if upstream_dns_servers is not None:
-            pulumi.set(__self__, "upstream_dns_servers", upstream_dns_servers)
+            _setter("upstream_dns_servers", upstream_dns_servers)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter(name="bastionEnabled")
@@ -491,6 +585,10 @@ class VpcPublicGateway(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            VpcPublicGatewayArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

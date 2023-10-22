@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -16,9 +16,10 @@ __all__ = ['LbArgs', 'Lb']
 @pulumi.input_type
 class LbArgs:
     def __init__(__self__, *,
-                 ip_id: pulumi.Input[str],
                  type: pulumi.Input[str],
+                 assign_flexible_ip: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 ip_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['LbPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -28,11 +29,12 @@ class LbArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Lb resource.
+        :param pulumi.Input[str] type: The type of the load-balancer. Please check the migration section to upgrade the type.
+        :param pulumi.Input[bool] assign_flexible_ip: Defines whether to automatically assign a flexible public IP to the load-balancer.
+        :param pulumi.Input[str] description: The description of the load-balancer.
         :param pulumi.Input[str] ip_id: The ID of the associated LB IP. See below.
                
-               > **Important:** Updates to `ip_id` will not recreate the load-balancer.
-        :param pulumi.Input[str] type: The type of the load-balancer. Please check the migration section to upgrade the type
-        :param pulumi.Input[str] description: The description of the load-balancer.
+               > **Important:** Updates to `ip_id` will recreate the load-balancer.
         :param pulumi.Input[str] name: The name of the load-balancer.
         :param pulumi.Input[Sequence[pulumi.Input['LbPrivateNetworkArgs']]] private_networks: List of private network to connect with your load balancer
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the load-balancer is associated with.
@@ -41,53 +43,97 @@ class LbArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the load-balancers.
         :param pulumi.Input[str] zone: `zone`) The zone of the load-balancer.
         """
-        pulumi.set(__self__, "ip_id", ip_id)
-        pulumi.set(__self__, "type", type)
+        LbArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            type=type,
+            assign_flexible_ip=assign_flexible_ip,
+            description=description,
+            ip_id=ip_id,
+            name=name,
+            private_networks=private_networks,
+            project_id=project_id,
+            release_ip=release_ip,
+            ssl_compatibility_level=ssl_compatibility_level,
+            tags=tags,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             type: pulumi.Input[str],
+             assign_flexible_ip: Optional[pulumi.Input[bool]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             ip_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['LbPrivateNetworkArgs']]]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             release_ip: Optional[pulumi.Input[bool]] = None,
+             ssl_compatibility_level: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'assignFlexibleIp' in kwargs:
+            assign_flexible_ip = kwargs['assignFlexibleIp']
+        if 'ipId' in kwargs:
+            ip_id = kwargs['ipId']
+        if 'privateNetworks' in kwargs:
+            private_networks = kwargs['privateNetworks']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if 'releaseIp' in kwargs:
+            release_ip = kwargs['releaseIp']
+        if 'sslCompatibilityLevel' in kwargs:
+            ssl_compatibility_level = kwargs['sslCompatibilityLevel']
+
+        _setter("type", type)
+        if assign_flexible_ip is not None:
+            _setter("assign_flexible_ip", assign_flexible_ip)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
+        if ip_id is not None:
+            _setter("ip_id", ip_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if private_networks is not None:
-            pulumi.set(__self__, "private_networks", private_networks)
+            _setter("private_networks", private_networks)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if release_ip is not None:
             warnings.warn("""The resource ip will be destroyed by it's own resource. Please set this to `false`""", DeprecationWarning)
             pulumi.log.warn("""release_ip is deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`""")
         if release_ip is not None:
-            pulumi.set(__self__, "release_ip", release_ip)
+            _setter("release_ip", release_ip)
         if ssl_compatibility_level is not None:
-            pulumi.set(__self__, "ssl_compatibility_level", ssl_compatibility_level)
+            _setter("ssl_compatibility_level", ssl_compatibility_level)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
-
-    @property
-    @pulumi.getter(name="ipId")
-    def ip_id(self) -> pulumi.Input[str]:
-        """
-        The ID of the associated LB IP. See below.
-
-        > **Important:** Updates to `ip_id` will not recreate the load-balancer.
-        """
-        return pulumi.get(self, "ip_id")
-
-    @ip_id.setter
-    def ip_id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "ip_id", value)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The type of the load-balancer. Please check the migration section to upgrade the type
+        The type of the load-balancer. Please check the migration section to upgrade the type.
         """
         return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
         pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="assignFlexibleIp")
+    def assign_flexible_ip(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defines whether to automatically assign a flexible public IP to the load-balancer.
+        """
+        return pulumi.get(self, "assign_flexible_ip")
+
+    @assign_flexible_ip.setter
+    def assign_flexible_ip(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "assign_flexible_ip", value)
 
     @property
     @pulumi.getter
@@ -100,6 +146,20 @@ class LbArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="ipId")
+    def ip_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the associated LB IP. See below.
+
+        > **Important:** Updates to `ip_id` will recreate the load-balancer.
+        """
+        return pulumi.get(self, "ip_id")
+
+    @ip_id.setter
+    def ip_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ip_id", value)
 
     @property
     @pulumi.getter
@@ -192,6 +252,7 @@ class LbArgs:
 @pulumi.input_type
 class _LbState:
     def __init__(__self__, *,
+                 assign_flexible_ip: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  ip_address: Optional[pulumi.Input[str]] = None,
                  ip_id: Optional[pulumi.Input[str]] = None,
@@ -207,11 +268,12 @@ class _LbState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Lb resources.
+        :param pulumi.Input[bool] assign_flexible_ip: Defines whether to automatically assign a flexible public IP to the load-balancer.
         :param pulumi.Input[str] description: The description of the load-balancer.
         :param pulumi.Input[str] ip_address: The load-balance public IP Address
         :param pulumi.Input[str] ip_id: The ID of the associated LB IP. See below.
                
-               > **Important:** Updates to `ip_id` will not recreate the load-balancer.
+               > **Important:** Updates to `ip_id` will recreate the load-balancer.
         :param pulumi.Input[str] name: The name of the load-balancer.
         :param pulumi.Input[str] organization_id: The organization ID the load-balancer is associated with.
         :param pulumi.Input[Sequence[pulumi.Input['LbPrivateNetworkArgs']]] private_networks: List of private network to connect with your load balancer
@@ -220,38 +282,105 @@ class _LbState:
         :param pulumi.Input[bool] release_ip: The release_ip allow release the ip address associated with the load-balancers.
         :param pulumi.Input[str] ssl_compatibility_level: Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the load-balancers.
-        :param pulumi.Input[str] type: The type of the load-balancer. Please check the migration section to upgrade the type
+        :param pulumi.Input[str] type: The type of the load-balancer. Please check the migration section to upgrade the type.
         :param pulumi.Input[str] zone: `zone`) The zone of the load-balancer.
         """
+        _LbState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            assign_flexible_ip=assign_flexible_ip,
+            description=description,
+            ip_address=ip_address,
+            ip_id=ip_id,
+            name=name,
+            organization_id=organization_id,
+            private_networks=private_networks,
+            project_id=project_id,
+            region=region,
+            release_ip=release_ip,
+            ssl_compatibility_level=ssl_compatibility_level,
+            tags=tags,
+            type=type,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             assign_flexible_ip: Optional[pulumi.Input[bool]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             ip_address: Optional[pulumi.Input[str]] = None,
+             ip_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             organization_id: Optional[pulumi.Input[str]] = None,
+             private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['LbPrivateNetworkArgs']]]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             release_ip: Optional[pulumi.Input[bool]] = None,
+             ssl_compatibility_level: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             type: Optional[pulumi.Input[str]] = None,
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'assignFlexibleIp' in kwargs:
+            assign_flexible_ip = kwargs['assignFlexibleIp']
+        if 'ipAddress' in kwargs:
+            ip_address = kwargs['ipAddress']
+        if 'ipId' in kwargs:
+            ip_id = kwargs['ipId']
+        if 'organizationId' in kwargs:
+            organization_id = kwargs['organizationId']
+        if 'privateNetworks' in kwargs:
+            private_networks = kwargs['privateNetworks']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if 'releaseIp' in kwargs:
+            release_ip = kwargs['releaseIp']
+        if 'sslCompatibilityLevel' in kwargs:
+            ssl_compatibility_level = kwargs['sslCompatibilityLevel']
+
+        if assign_flexible_ip is not None:
+            _setter("assign_flexible_ip", assign_flexible_ip)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if ip_address is not None:
-            pulumi.set(__self__, "ip_address", ip_address)
+            _setter("ip_address", ip_address)
         if ip_id is not None:
-            pulumi.set(__self__, "ip_id", ip_id)
+            _setter("ip_id", ip_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if organization_id is not None:
-            pulumi.set(__self__, "organization_id", organization_id)
+            _setter("organization_id", organization_id)
         if private_networks is not None:
-            pulumi.set(__self__, "private_networks", private_networks)
+            _setter("private_networks", private_networks)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if release_ip is not None:
             warnings.warn("""The resource ip will be destroyed by it's own resource. Please set this to `false`""", DeprecationWarning)
             pulumi.log.warn("""release_ip is deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`""")
         if release_ip is not None:
-            pulumi.set(__self__, "release_ip", release_ip)
+            _setter("release_ip", release_ip)
         if ssl_compatibility_level is not None:
-            pulumi.set(__self__, "ssl_compatibility_level", ssl_compatibility_level)
+            _setter("ssl_compatibility_level", ssl_compatibility_level)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
+
+    @property
+    @pulumi.getter(name="assignFlexibleIp")
+    def assign_flexible_ip(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defines whether to automatically assign a flexible public IP to the load-balancer.
+        """
+        return pulumi.get(self, "assign_flexible_ip")
+
+    @assign_flexible_ip.setter
+    def assign_flexible_ip(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "assign_flexible_ip", value)
 
     @property
     @pulumi.getter
@@ -283,7 +412,7 @@ class _LbState:
         """
         The ID of the associated LB IP. See below.
 
-        > **Important:** Updates to `ip_id` will not recreate the load-balancer.
+        > **Important:** Updates to `ip_id` will recreate the load-balancer.
         """
         return pulumi.get(self, "ip_id")
 
@@ -394,7 +523,7 @@ class _LbState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the load-balancer. Please check the migration section to upgrade the type
+        The type of the load-balancer. Please check the migration section to upgrade the type.
         """
         return pulumi.get(self, "type")
 
@@ -420,6 +549,7 @@ class Lb(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 assign_flexible_ip: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  ip_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -448,6 +578,19 @@ class Lb(pulumi.CustomResource):
             ip_id=main.id,
             zone=main.zone,
             type="LB-S")
+        ```
+
+        ### Private LB
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        base = scaleway.Lb("base",
+            ip_id=scaleway_lb_ip["main"]["id"],
+            zone=scaleway_lb_ip["main"]["zone"],
+            type="LB-S",
+            assign_flexible_ip=False)
         ```
 
         ### IP for Public Gateway
@@ -550,17 +693,18 @@ class Lb(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] assign_flexible_ip: Defines whether to automatically assign a flexible public IP to the load-balancer.
         :param pulumi.Input[str] description: The description of the load-balancer.
         :param pulumi.Input[str] ip_id: The ID of the associated LB IP. See below.
                
-               > **Important:** Updates to `ip_id` will not recreate the load-balancer.
+               > **Important:** Updates to `ip_id` will recreate the load-balancer.
         :param pulumi.Input[str] name: The name of the load-balancer.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbPrivateNetworkArgs']]]] private_networks: List of private network to connect with your load balancer
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the load-balancer is associated with.
         :param pulumi.Input[bool] release_ip: The release_ip allow release the ip address associated with the load-balancers.
         :param pulumi.Input[str] ssl_compatibility_level: Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the load-balancers.
-        :param pulumi.Input[str] type: The type of the load-balancer. Please check the migration section to upgrade the type
+        :param pulumi.Input[str] type: The type of the load-balancer. Please check the migration section to upgrade the type.
         :param pulumi.Input[str] zone: `zone`) The zone of the load-balancer.
         """
         ...
@@ -586,6 +730,19 @@ class Lb(pulumi.CustomResource):
             ip_id=main.id,
             zone=main.zone,
             type="LB-S")
+        ```
+
+        ### Private LB
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        base = scaleway.Lb("base",
+            ip_id=scaleway_lb_ip["main"]["id"],
+            zone=scaleway_lb_ip["main"]["zone"],
+            type="LB-S",
+            assign_flexible_ip=False)
         ```
 
         ### IP for Public Gateway
@@ -696,11 +853,16 @@ class Lb(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            LbArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 assign_flexible_ip: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  ip_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -720,16 +882,12 @@ class Lb(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = LbArgs.__new__(LbArgs)
 
+            __props__.__dict__["assign_flexible_ip"] = assign_flexible_ip
             __props__.__dict__["description"] = description
-            if ip_id is None and not opts.urn:
-                raise TypeError("Missing required property 'ip_id'")
             __props__.__dict__["ip_id"] = ip_id
             __props__.__dict__["name"] = name
             __props__.__dict__["private_networks"] = private_networks
             __props__.__dict__["project_id"] = project_id
-            if release_ip is not None and not opts.urn:
-                warnings.warn("""The resource ip will be destroyed by it's own resource. Please set this to `false`""", DeprecationWarning)
-                pulumi.log.warn("""release_ip is deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`""")
             __props__.__dict__["release_ip"] = release_ip
             __props__.__dict__["ssl_compatibility_level"] = ssl_compatibility_level
             __props__.__dict__["tags"] = tags
@@ -750,6 +908,7 @@ class Lb(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            assign_flexible_ip: Optional[pulumi.Input[bool]] = None,
             description: Optional[pulumi.Input[str]] = None,
             ip_address: Optional[pulumi.Input[str]] = None,
             ip_id: Optional[pulumi.Input[str]] = None,
@@ -770,11 +929,12 @@ class Lb(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] assign_flexible_ip: Defines whether to automatically assign a flexible public IP to the load-balancer.
         :param pulumi.Input[str] description: The description of the load-balancer.
         :param pulumi.Input[str] ip_address: The load-balance public IP Address
         :param pulumi.Input[str] ip_id: The ID of the associated LB IP. See below.
                
-               > **Important:** Updates to `ip_id` will not recreate the load-balancer.
+               > **Important:** Updates to `ip_id` will recreate the load-balancer.
         :param pulumi.Input[str] name: The name of the load-balancer.
         :param pulumi.Input[str] organization_id: The organization ID the load-balancer is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbPrivateNetworkArgs']]]] private_networks: List of private network to connect with your load balancer
@@ -783,13 +943,14 @@ class Lb(pulumi.CustomResource):
         :param pulumi.Input[bool] release_ip: The release_ip allow release the ip address associated with the load-balancers.
         :param pulumi.Input[str] ssl_compatibility_level: Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the load-balancers.
-        :param pulumi.Input[str] type: The type of the load-balancer. Please check the migration section to upgrade the type
+        :param pulumi.Input[str] type: The type of the load-balancer. Please check the migration section to upgrade the type.
         :param pulumi.Input[str] zone: `zone`) The zone of the load-balancer.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _LbState.__new__(_LbState)
 
+        __props__.__dict__["assign_flexible_ip"] = assign_flexible_ip
         __props__.__dict__["description"] = description
         __props__.__dict__["ip_address"] = ip_address
         __props__.__dict__["ip_id"] = ip_id
@@ -804,6 +965,14 @@ class Lb(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         __props__.__dict__["zone"] = zone
         return Lb(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="assignFlexibleIp")
+    def assign_flexible_ip(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Defines whether to automatically assign a flexible public IP to the load-balancer.
+        """
+        return pulumi.get(self, "assign_flexible_ip")
 
     @property
     @pulumi.getter
@@ -823,11 +992,11 @@ class Lb(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ipId")
-    def ip_id(self) -> pulumi.Output[str]:
+    def ip_id(self) -> pulumi.Output[Optional[str]]:
         """
         The ID of the associated LB IP. See below.
 
-        > **Important:** Updates to `ip_id` will not recreate the load-balancer.
+        > **Important:** Updates to `ip_id` will recreate the load-balancer.
         """
         return pulumi.get(self, "ip_id")
 
@@ -902,7 +1071,7 @@ class Lb(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The type of the load-balancer. Please check the migration section to upgrade the type
+        The type of the load-balancer. Please check the migration section to upgrade the type.
         """
         return pulumi.get(self, "type")
 

@@ -1395,6 +1395,485 @@ func (o ContainerTriggerSqsPtrOutput) Region() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type DocumentDBReadReplicaDirectAccess struct {
+	EndpointId *string `pulumi:"endpointId"`
+	Hostname   *string `pulumi:"hostname"`
+	Ip         *string `pulumi:"ip"`
+	Name       *string `pulumi:"name"`
+	Port       *int    `pulumi:"port"`
+}
+
+// DocumentDBReadReplicaDirectAccessInput is an input type that accepts DocumentDBReadReplicaDirectAccessArgs and DocumentDBReadReplicaDirectAccessOutput values.
+// You can construct a concrete instance of `DocumentDBReadReplicaDirectAccessInput` via:
+//
+//	DocumentDBReadReplicaDirectAccessArgs{...}
+type DocumentDBReadReplicaDirectAccessInput interface {
+	pulumi.Input
+
+	ToDocumentDBReadReplicaDirectAccessOutput() DocumentDBReadReplicaDirectAccessOutput
+	ToDocumentDBReadReplicaDirectAccessOutputWithContext(context.Context) DocumentDBReadReplicaDirectAccessOutput
+}
+
+type DocumentDBReadReplicaDirectAccessArgs struct {
+	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
+	Hostname   pulumi.StringPtrInput `pulumi:"hostname"`
+	Ip         pulumi.StringPtrInput `pulumi:"ip"`
+	Name       pulumi.StringPtrInput `pulumi:"name"`
+	Port       pulumi.IntPtrInput    `pulumi:"port"`
+}
+
+func (DocumentDBReadReplicaDirectAccessArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DocumentDBReadReplicaDirectAccess)(nil)).Elem()
+}
+
+func (i DocumentDBReadReplicaDirectAccessArgs) ToDocumentDBReadReplicaDirectAccessOutput() DocumentDBReadReplicaDirectAccessOutput {
+	return i.ToDocumentDBReadReplicaDirectAccessOutputWithContext(context.Background())
+}
+
+func (i DocumentDBReadReplicaDirectAccessArgs) ToDocumentDBReadReplicaDirectAccessOutputWithContext(ctx context.Context) DocumentDBReadReplicaDirectAccessOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBReadReplicaDirectAccessOutput)
+}
+
+func (i DocumentDBReadReplicaDirectAccessArgs) ToOutput(ctx context.Context) pulumix.Output[DocumentDBReadReplicaDirectAccess] {
+	return pulumix.Output[DocumentDBReadReplicaDirectAccess]{
+		OutputState: i.ToDocumentDBReadReplicaDirectAccessOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i DocumentDBReadReplicaDirectAccessArgs) ToDocumentDBReadReplicaDirectAccessPtrOutput() DocumentDBReadReplicaDirectAccessPtrOutput {
+	return i.ToDocumentDBReadReplicaDirectAccessPtrOutputWithContext(context.Background())
+}
+
+func (i DocumentDBReadReplicaDirectAccessArgs) ToDocumentDBReadReplicaDirectAccessPtrOutputWithContext(ctx context.Context) DocumentDBReadReplicaDirectAccessPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBReadReplicaDirectAccessOutput).ToDocumentDBReadReplicaDirectAccessPtrOutputWithContext(ctx)
+}
+
+// DocumentDBReadReplicaDirectAccessPtrInput is an input type that accepts DocumentDBReadReplicaDirectAccessArgs, DocumentDBReadReplicaDirectAccessPtr and DocumentDBReadReplicaDirectAccessPtrOutput values.
+// You can construct a concrete instance of `DocumentDBReadReplicaDirectAccessPtrInput` via:
+//
+//	        DocumentDBReadReplicaDirectAccessArgs{...}
+//
+//	or:
+//
+//	        nil
+type DocumentDBReadReplicaDirectAccessPtrInput interface {
+	pulumi.Input
+
+	ToDocumentDBReadReplicaDirectAccessPtrOutput() DocumentDBReadReplicaDirectAccessPtrOutput
+	ToDocumentDBReadReplicaDirectAccessPtrOutputWithContext(context.Context) DocumentDBReadReplicaDirectAccessPtrOutput
+}
+
+type documentDBReadReplicaDirectAccessPtrType DocumentDBReadReplicaDirectAccessArgs
+
+func DocumentDBReadReplicaDirectAccessPtr(v *DocumentDBReadReplicaDirectAccessArgs) DocumentDBReadReplicaDirectAccessPtrInput {
+	return (*documentDBReadReplicaDirectAccessPtrType)(v)
+}
+
+func (*documentDBReadReplicaDirectAccessPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DocumentDBReadReplicaDirectAccess)(nil)).Elem()
+}
+
+func (i *documentDBReadReplicaDirectAccessPtrType) ToDocumentDBReadReplicaDirectAccessPtrOutput() DocumentDBReadReplicaDirectAccessPtrOutput {
+	return i.ToDocumentDBReadReplicaDirectAccessPtrOutputWithContext(context.Background())
+}
+
+func (i *documentDBReadReplicaDirectAccessPtrType) ToDocumentDBReadReplicaDirectAccessPtrOutputWithContext(ctx context.Context) DocumentDBReadReplicaDirectAccessPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBReadReplicaDirectAccessPtrOutput)
+}
+
+func (i *documentDBReadReplicaDirectAccessPtrType) ToOutput(ctx context.Context) pulumix.Output[*DocumentDBReadReplicaDirectAccess] {
+	return pulumix.Output[*DocumentDBReadReplicaDirectAccess]{
+		OutputState: i.ToDocumentDBReadReplicaDirectAccessPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type DocumentDBReadReplicaDirectAccessOutput struct{ *pulumi.OutputState }
+
+func (DocumentDBReadReplicaDirectAccessOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DocumentDBReadReplicaDirectAccess)(nil)).Elem()
+}
+
+func (o DocumentDBReadReplicaDirectAccessOutput) ToDocumentDBReadReplicaDirectAccessOutput() DocumentDBReadReplicaDirectAccessOutput {
+	return o
+}
+
+func (o DocumentDBReadReplicaDirectAccessOutput) ToDocumentDBReadReplicaDirectAccessOutputWithContext(ctx context.Context) DocumentDBReadReplicaDirectAccessOutput {
+	return o
+}
+
+func (o DocumentDBReadReplicaDirectAccessOutput) ToDocumentDBReadReplicaDirectAccessPtrOutput() DocumentDBReadReplicaDirectAccessPtrOutput {
+	return o.ToDocumentDBReadReplicaDirectAccessPtrOutputWithContext(context.Background())
+}
+
+func (o DocumentDBReadReplicaDirectAccessOutput) ToDocumentDBReadReplicaDirectAccessPtrOutputWithContext(ctx context.Context) DocumentDBReadReplicaDirectAccessPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DocumentDBReadReplicaDirectAccess) *DocumentDBReadReplicaDirectAccess {
+		return &v
+	}).(DocumentDBReadReplicaDirectAccessPtrOutput)
+}
+
+func (o DocumentDBReadReplicaDirectAccessOutput) ToOutput(ctx context.Context) pulumix.Output[DocumentDBReadReplicaDirectAccess] {
+	return pulumix.Output[DocumentDBReadReplicaDirectAccess]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o DocumentDBReadReplicaDirectAccessOutput) EndpointId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DocumentDBReadReplicaDirectAccess) *string { return v.EndpointId }).(pulumi.StringPtrOutput)
+}
+
+func (o DocumentDBReadReplicaDirectAccessOutput) Hostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DocumentDBReadReplicaDirectAccess) *string { return v.Hostname }).(pulumi.StringPtrOutput)
+}
+
+func (o DocumentDBReadReplicaDirectAccessOutput) Ip() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DocumentDBReadReplicaDirectAccess) *string { return v.Ip }).(pulumi.StringPtrOutput)
+}
+
+func (o DocumentDBReadReplicaDirectAccessOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DocumentDBReadReplicaDirectAccess) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o DocumentDBReadReplicaDirectAccessOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DocumentDBReadReplicaDirectAccess) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+type DocumentDBReadReplicaDirectAccessPtrOutput struct{ *pulumi.OutputState }
+
+func (DocumentDBReadReplicaDirectAccessPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DocumentDBReadReplicaDirectAccess)(nil)).Elem()
+}
+
+func (o DocumentDBReadReplicaDirectAccessPtrOutput) ToDocumentDBReadReplicaDirectAccessPtrOutput() DocumentDBReadReplicaDirectAccessPtrOutput {
+	return o
+}
+
+func (o DocumentDBReadReplicaDirectAccessPtrOutput) ToDocumentDBReadReplicaDirectAccessPtrOutputWithContext(ctx context.Context) DocumentDBReadReplicaDirectAccessPtrOutput {
+	return o
+}
+
+func (o DocumentDBReadReplicaDirectAccessPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DocumentDBReadReplicaDirectAccess] {
+	return pulumix.Output[*DocumentDBReadReplicaDirectAccess]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o DocumentDBReadReplicaDirectAccessPtrOutput) Elem() DocumentDBReadReplicaDirectAccessOutput {
+	return o.ApplyT(func(v *DocumentDBReadReplicaDirectAccess) DocumentDBReadReplicaDirectAccess {
+		if v != nil {
+			return *v
+		}
+		var ret DocumentDBReadReplicaDirectAccess
+		return ret
+	}).(DocumentDBReadReplicaDirectAccessOutput)
+}
+
+func (o DocumentDBReadReplicaDirectAccessPtrOutput) EndpointId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DocumentDBReadReplicaDirectAccess) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EndpointId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DocumentDBReadReplicaDirectAccessPtrOutput) Hostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DocumentDBReadReplicaDirectAccess) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Hostname
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DocumentDBReadReplicaDirectAccessPtrOutput) Ip() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DocumentDBReadReplicaDirectAccess) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Ip
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DocumentDBReadReplicaDirectAccessPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DocumentDBReadReplicaDirectAccess) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DocumentDBReadReplicaDirectAccessPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DocumentDBReadReplicaDirectAccess) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+type DocumentDBReadReplicaPrivateNetwork struct {
+	EndpointId       *string `pulumi:"endpointId"`
+	Hostname         *string `pulumi:"hostname"`
+	Ip               *string `pulumi:"ip"`
+	Name             *string `pulumi:"name"`
+	Port             *int    `pulumi:"port"`
+	PrivateNetworkId string  `pulumi:"privateNetworkId"`
+	ServiceIp        *string `pulumi:"serviceIp"`
+	Zone             *string `pulumi:"zone"`
+}
+
+// DocumentDBReadReplicaPrivateNetworkInput is an input type that accepts DocumentDBReadReplicaPrivateNetworkArgs and DocumentDBReadReplicaPrivateNetworkOutput values.
+// You can construct a concrete instance of `DocumentDBReadReplicaPrivateNetworkInput` via:
+//
+//	DocumentDBReadReplicaPrivateNetworkArgs{...}
+type DocumentDBReadReplicaPrivateNetworkInput interface {
+	pulumi.Input
+
+	ToDocumentDBReadReplicaPrivateNetworkOutput() DocumentDBReadReplicaPrivateNetworkOutput
+	ToDocumentDBReadReplicaPrivateNetworkOutputWithContext(context.Context) DocumentDBReadReplicaPrivateNetworkOutput
+}
+
+type DocumentDBReadReplicaPrivateNetworkArgs struct {
+	EndpointId       pulumi.StringPtrInput `pulumi:"endpointId"`
+	Hostname         pulumi.StringPtrInput `pulumi:"hostname"`
+	Ip               pulumi.StringPtrInput `pulumi:"ip"`
+	Name             pulumi.StringPtrInput `pulumi:"name"`
+	Port             pulumi.IntPtrInput    `pulumi:"port"`
+	PrivateNetworkId pulumi.StringInput    `pulumi:"privateNetworkId"`
+	ServiceIp        pulumi.StringPtrInput `pulumi:"serviceIp"`
+	Zone             pulumi.StringPtrInput `pulumi:"zone"`
+}
+
+func (DocumentDBReadReplicaPrivateNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DocumentDBReadReplicaPrivateNetwork)(nil)).Elem()
+}
+
+func (i DocumentDBReadReplicaPrivateNetworkArgs) ToDocumentDBReadReplicaPrivateNetworkOutput() DocumentDBReadReplicaPrivateNetworkOutput {
+	return i.ToDocumentDBReadReplicaPrivateNetworkOutputWithContext(context.Background())
+}
+
+func (i DocumentDBReadReplicaPrivateNetworkArgs) ToDocumentDBReadReplicaPrivateNetworkOutputWithContext(ctx context.Context) DocumentDBReadReplicaPrivateNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBReadReplicaPrivateNetworkOutput)
+}
+
+func (i DocumentDBReadReplicaPrivateNetworkArgs) ToOutput(ctx context.Context) pulumix.Output[DocumentDBReadReplicaPrivateNetwork] {
+	return pulumix.Output[DocumentDBReadReplicaPrivateNetwork]{
+		OutputState: i.ToDocumentDBReadReplicaPrivateNetworkOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i DocumentDBReadReplicaPrivateNetworkArgs) ToDocumentDBReadReplicaPrivateNetworkPtrOutput() DocumentDBReadReplicaPrivateNetworkPtrOutput {
+	return i.ToDocumentDBReadReplicaPrivateNetworkPtrOutputWithContext(context.Background())
+}
+
+func (i DocumentDBReadReplicaPrivateNetworkArgs) ToDocumentDBReadReplicaPrivateNetworkPtrOutputWithContext(ctx context.Context) DocumentDBReadReplicaPrivateNetworkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBReadReplicaPrivateNetworkOutput).ToDocumentDBReadReplicaPrivateNetworkPtrOutputWithContext(ctx)
+}
+
+// DocumentDBReadReplicaPrivateNetworkPtrInput is an input type that accepts DocumentDBReadReplicaPrivateNetworkArgs, DocumentDBReadReplicaPrivateNetworkPtr and DocumentDBReadReplicaPrivateNetworkPtrOutput values.
+// You can construct a concrete instance of `DocumentDBReadReplicaPrivateNetworkPtrInput` via:
+//
+//	        DocumentDBReadReplicaPrivateNetworkArgs{...}
+//
+//	or:
+//
+//	        nil
+type DocumentDBReadReplicaPrivateNetworkPtrInput interface {
+	pulumi.Input
+
+	ToDocumentDBReadReplicaPrivateNetworkPtrOutput() DocumentDBReadReplicaPrivateNetworkPtrOutput
+	ToDocumentDBReadReplicaPrivateNetworkPtrOutputWithContext(context.Context) DocumentDBReadReplicaPrivateNetworkPtrOutput
+}
+
+type documentDBReadReplicaPrivateNetworkPtrType DocumentDBReadReplicaPrivateNetworkArgs
+
+func DocumentDBReadReplicaPrivateNetworkPtr(v *DocumentDBReadReplicaPrivateNetworkArgs) DocumentDBReadReplicaPrivateNetworkPtrInput {
+	return (*documentDBReadReplicaPrivateNetworkPtrType)(v)
+}
+
+func (*documentDBReadReplicaPrivateNetworkPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DocumentDBReadReplicaPrivateNetwork)(nil)).Elem()
+}
+
+func (i *documentDBReadReplicaPrivateNetworkPtrType) ToDocumentDBReadReplicaPrivateNetworkPtrOutput() DocumentDBReadReplicaPrivateNetworkPtrOutput {
+	return i.ToDocumentDBReadReplicaPrivateNetworkPtrOutputWithContext(context.Background())
+}
+
+func (i *documentDBReadReplicaPrivateNetworkPtrType) ToDocumentDBReadReplicaPrivateNetworkPtrOutputWithContext(ctx context.Context) DocumentDBReadReplicaPrivateNetworkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBReadReplicaPrivateNetworkPtrOutput)
+}
+
+func (i *documentDBReadReplicaPrivateNetworkPtrType) ToOutput(ctx context.Context) pulumix.Output[*DocumentDBReadReplicaPrivateNetwork] {
+	return pulumix.Output[*DocumentDBReadReplicaPrivateNetwork]{
+		OutputState: i.ToDocumentDBReadReplicaPrivateNetworkPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type DocumentDBReadReplicaPrivateNetworkOutput struct{ *pulumi.OutputState }
+
+func (DocumentDBReadReplicaPrivateNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DocumentDBReadReplicaPrivateNetwork)(nil)).Elem()
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkOutput) ToDocumentDBReadReplicaPrivateNetworkOutput() DocumentDBReadReplicaPrivateNetworkOutput {
+	return o
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkOutput) ToDocumentDBReadReplicaPrivateNetworkOutputWithContext(ctx context.Context) DocumentDBReadReplicaPrivateNetworkOutput {
+	return o
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkOutput) ToDocumentDBReadReplicaPrivateNetworkPtrOutput() DocumentDBReadReplicaPrivateNetworkPtrOutput {
+	return o.ToDocumentDBReadReplicaPrivateNetworkPtrOutputWithContext(context.Background())
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkOutput) ToDocumentDBReadReplicaPrivateNetworkPtrOutputWithContext(ctx context.Context) DocumentDBReadReplicaPrivateNetworkPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DocumentDBReadReplicaPrivateNetwork) *DocumentDBReadReplicaPrivateNetwork {
+		return &v
+	}).(DocumentDBReadReplicaPrivateNetworkPtrOutput)
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkOutput) ToOutput(ctx context.Context) pulumix.Output[DocumentDBReadReplicaPrivateNetwork] {
+	return pulumix.Output[DocumentDBReadReplicaPrivateNetwork]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkOutput) EndpointId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DocumentDBReadReplicaPrivateNetwork) *string { return v.EndpointId }).(pulumi.StringPtrOutput)
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkOutput) Hostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DocumentDBReadReplicaPrivateNetwork) *string { return v.Hostname }).(pulumi.StringPtrOutput)
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkOutput) Ip() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DocumentDBReadReplicaPrivateNetwork) *string { return v.Ip }).(pulumi.StringPtrOutput)
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DocumentDBReadReplicaPrivateNetwork) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DocumentDBReadReplicaPrivateNetwork) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkOutput) PrivateNetworkId() pulumi.StringOutput {
+	return o.ApplyT(func(v DocumentDBReadReplicaPrivateNetwork) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkOutput) ServiceIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DocumentDBReadReplicaPrivateNetwork) *string { return v.ServiceIp }).(pulumi.StringPtrOutput)
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DocumentDBReadReplicaPrivateNetwork) *string { return v.Zone }).(pulumi.StringPtrOutput)
+}
+
+type DocumentDBReadReplicaPrivateNetworkPtrOutput struct{ *pulumi.OutputState }
+
+func (DocumentDBReadReplicaPrivateNetworkPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DocumentDBReadReplicaPrivateNetwork)(nil)).Elem()
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) ToDocumentDBReadReplicaPrivateNetworkPtrOutput() DocumentDBReadReplicaPrivateNetworkPtrOutput {
+	return o
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) ToDocumentDBReadReplicaPrivateNetworkPtrOutputWithContext(ctx context.Context) DocumentDBReadReplicaPrivateNetworkPtrOutput {
+	return o
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*DocumentDBReadReplicaPrivateNetwork] {
+	return pulumix.Output[*DocumentDBReadReplicaPrivateNetwork]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) Elem() DocumentDBReadReplicaPrivateNetworkOutput {
+	return o.ApplyT(func(v *DocumentDBReadReplicaPrivateNetwork) DocumentDBReadReplicaPrivateNetwork {
+		if v != nil {
+			return *v
+		}
+		var ret DocumentDBReadReplicaPrivateNetwork
+		return ret
+	}).(DocumentDBReadReplicaPrivateNetworkOutput)
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) EndpointId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DocumentDBReadReplicaPrivateNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EndpointId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) Hostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DocumentDBReadReplicaPrivateNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Hostname
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) Ip() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DocumentDBReadReplicaPrivateNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Ip
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DocumentDBReadReplicaPrivateNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DocumentDBReadReplicaPrivateNetwork) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) PrivateNetworkId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DocumentDBReadReplicaPrivateNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PrivateNetworkId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) ServiceIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DocumentDBReadReplicaPrivateNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ServiceIp
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DocumentDBReadReplicaPrivateNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Zone
+	}).(pulumi.StringPtrOutput)
+}
+
 type DomainRecordGeoIp struct {
 	// The list of matches. *(Can be more than 1)*
 	Matches []DomainRecordGeoIpMatch `pulumi:"matches"`
@@ -1700,7 +2179,7 @@ type DomainRecordHttpService struct {
 	Ips []string `pulumi:"ips"`
 	// Text to search
 	MustContain string `pulumi:"mustContain"`
-	// Strategy to return an IP from the IPs list. Can be `random` or `hashed`
+	// Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
 	Strategy string `pulumi:"strategy"`
 	// URL to match the `mustContain` text to validate an IP
 	Url string `pulumi:"url"`
@@ -1724,7 +2203,7 @@ type DomainRecordHttpServiceArgs struct {
 	Ips pulumi.StringArrayInput `pulumi:"ips"`
 	// Text to search
 	MustContain pulumi.StringInput `pulumi:"mustContain"`
-	// Strategy to return an IP from the IPs list. Can be `random` or `hashed`
+	// Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
 	Strategy pulumi.StringInput `pulumi:"strategy"`
 	// URL to match the `mustContain` text to validate an IP
 	Url pulumi.StringInput `pulumi:"url"`
@@ -1837,7 +2316,7 @@ func (o DomainRecordHttpServiceOutput) MustContain() pulumi.StringOutput {
 	return o.ApplyT(func(v DomainRecordHttpService) string { return v.MustContain }).(pulumi.StringOutput)
 }
 
-// Strategy to return an IP from the IPs list. Can be `random` or `hashed`
+// Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
 func (o DomainRecordHttpServiceOutput) Strategy() pulumi.StringOutput {
 	return o.ApplyT(func(v DomainRecordHttpService) string { return v.Strategy }).(pulumi.StringOutput)
 }
@@ -1902,7 +2381,7 @@ func (o DomainRecordHttpServicePtrOutput) MustContain() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Strategy to return an IP from the IPs list. Can be `random` or `hashed`
+// Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
 func (o DomainRecordHttpServicePtrOutput) Strategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DomainRecordHttpService) *string {
 		if v == nil {
@@ -7424,7 +7903,7 @@ type LbBackendHealthCheckHttp struct {
 	HostHeader *string `pulumi:"hostHeader"`
 	// The HTTP method to use for HC requests.
 	Method *string `pulumi:"method"`
-	// The HTTP endpoint URL to call for HC requests.
+	// The HTTPS endpoint URL to call for HC requests.
 	Uri string `pulumi:"uri"`
 }
 
@@ -7446,7 +7925,7 @@ type LbBackendHealthCheckHttpArgs struct {
 	HostHeader pulumi.StringPtrInput `pulumi:"hostHeader"`
 	// The HTTP method to use for HC requests.
 	Method pulumi.StringPtrInput `pulumi:"method"`
-	// The HTTP endpoint URL to call for HC requests.
+	// The HTTPS endpoint URL to call for HC requests.
 	Uri pulumi.StringInput `pulumi:"uri"`
 }
 
@@ -7560,7 +8039,7 @@ func (o LbBackendHealthCheckHttpOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LbBackendHealthCheckHttp) *string { return v.Method }).(pulumi.StringPtrOutput)
 }
 
-// The HTTP endpoint URL to call for HC requests.
+// The HTTPS endpoint URL to call for HC requests.
 func (o LbBackendHealthCheckHttpOutput) Uri() pulumi.StringOutput {
 	return o.ApplyT(func(v LbBackendHealthCheckHttp) string { return v.Uri }).(pulumi.StringOutput)
 }
@@ -7625,7 +8104,7 @@ func (o LbBackendHealthCheckHttpPtrOutput) Method() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The HTTP endpoint URL to call for HC requests.
+// The HTTPS endpoint URL to call for HC requests.
 func (o LbBackendHealthCheckHttpPtrOutput) Uri() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LbBackendHealthCheckHttp) *string {
 		if v == nil {
@@ -7644,7 +8123,7 @@ type LbBackendHealthCheckHttps struct {
 	Method *string `pulumi:"method"`
 	// The SNI to use for HC requests over SSL.
 	Sni *string `pulumi:"sni"`
-	// The HTTP endpoint URL to call for HC requests.
+	// The HTTPS endpoint URL to call for HC requests.
 	Uri string `pulumi:"uri"`
 }
 
@@ -7668,7 +8147,7 @@ type LbBackendHealthCheckHttpsArgs struct {
 	Method pulumi.StringPtrInput `pulumi:"method"`
 	// The SNI to use for HC requests over SSL.
 	Sni pulumi.StringPtrInput `pulumi:"sni"`
-	// The HTTP endpoint URL to call for HC requests.
+	// The HTTPS endpoint URL to call for HC requests.
 	Uri pulumi.StringInput `pulumi:"uri"`
 }
 
@@ -7787,7 +8266,7 @@ func (o LbBackendHealthCheckHttpsOutput) Sni() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LbBackendHealthCheckHttps) *string { return v.Sni }).(pulumi.StringPtrOutput)
 }
 
-// The HTTP endpoint URL to call for HC requests.
+// The HTTPS endpoint URL to call for HC requests.
 func (o LbBackendHealthCheckHttpsOutput) Uri() pulumi.StringOutput {
 	return o.ApplyT(func(v LbBackendHealthCheckHttps) string { return v.Uri }).(pulumi.StringOutput)
 }
@@ -7862,7 +8341,7 @@ func (o LbBackendHealthCheckHttpsPtrOutput) Sni() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The HTTP endpoint URL to call for HC requests.
+// The HTTPS endpoint URL to call for HC requests.
 func (o LbBackendHealthCheckHttpsPtrOutput) Uri() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LbBackendHealthCheckHttps) *string {
 		if v == nil {
@@ -13899,6 +14378,127 @@ func (o RedisClusterPublicNetworkPtrOutput) Port() pulumi.IntPtrOutput {
 		}
 		return v.Port
 	}).(pulumi.IntPtrOutput)
+}
+
+type VpcGatewayNetworkIpamConfig struct {
+	// Defines whether the default route is enabled on that Gateway Network. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+	PushDefaultRoute *bool `pulumi:"pushDefaultRoute"`
+}
+
+// VpcGatewayNetworkIpamConfigInput is an input type that accepts VpcGatewayNetworkIpamConfigArgs and VpcGatewayNetworkIpamConfigOutput values.
+// You can construct a concrete instance of `VpcGatewayNetworkIpamConfigInput` via:
+//
+//	VpcGatewayNetworkIpamConfigArgs{...}
+type VpcGatewayNetworkIpamConfigInput interface {
+	pulumi.Input
+
+	ToVpcGatewayNetworkIpamConfigOutput() VpcGatewayNetworkIpamConfigOutput
+	ToVpcGatewayNetworkIpamConfigOutputWithContext(context.Context) VpcGatewayNetworkIpamConfigOutput
+}
+
+type VpcGatewayNetworkIpamConfigArgs struct {
+	// Defines whether the default route is enabled on that Gateway Network. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+	PushDefaultRoute pulumi.BoolPtrInput `pulumi:"pushDefaultRoute"`
+}
+
+func (VpcGatewayNetworkIpamConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpcGatewayNetworkIpamConfig)(nil)).Elem()
+}
+
+func (i VpcGatewayNetworkIpamConfigArgs) ToVpcGatewayNetworkIpamConfigOutput() VpcGatewayNetworkIpamConfigOutput {
+	return i.ToVpcGatewayNetworkIpamConfigOutputWithContext(context.Background())
+}
+
+func (i VpcGatewayNetworkIpamConfigArgs) ToVpcGatewayNetworkIpamConfigOutputWithContext(ctx context.Context) VpcGatewayNetworkIpamConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcGatewayNetworkIpamConfigOutput)
+}
+
+func (i VpcGatewayNetworkIpamConfigArgs) ToOutput(ctx context.Context) pulumix.Output[VpcGatewayNetworkIpamConfig] {
+	return pulumix.Output[VpcGatewayNetworkIpamConfig]{
+		OutputState: i.ToVpcGatewayNetworkIpamConfigOutputWithContext(ctx).OutputState,
+	}
+}
+
+// VpcGatewayNetworkIpamConfigArrayInput is an input type that accepts VpcGatewayNetworkIpamConfigArray and VpcGatewayNetworkIpamConfigArrayOutput values.
+// You can construct a concrete instance of `VpcGatewayNetworkIpamConfigArrayInput` via:
+//
+//	VpcGatewayNetworkIpamConfigArray{ VpcGatewayNetworkIpamConfigArgs{...} }
+type VpcGatewayNetworkIpamConfigArrayInput interface {
+	pulumi.Input
+
+	ToVpcGatewayNetworkIpamConfigArrayOutput() VpcGatewayNetworkIpamConfigArrayOutput
+	ToVpcGatewayNetworkIpamConfigArrayOutputWithContext(context.Context) VpcGatewayNetworkIpamConfigArrayOutput
+}
+
+type VpcGatewayNetworkIpamConfigArray []VpcGatewayNetworkIpamConfigInput
+
+func (VpcGatewayNetworkIpamConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpcGatewayNetworkIpamConfig)(nil)).Elem()
+}
+
+func (i VpcGatewayNetworkIpamConfigArray) ToVpcGatewayNetworkIpamConfigArrayOutput() VpcGatewayNetworkIpamConfigArrayOutput {
+	return i.ToVpcGatewayNetworkIpamConfigArrayOutputWithContext(context.Background())
+}
+
+func (i VpcGatewayNetworkIpamConfigArray) ToVpcGatewayNetworkIpamConfigArrayOutputWithContext(ctx context.Context) VpcGatewayNetworkIpamConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcGatewayNetworkIpamConfigArrayOutput)
+}
+
+func (i VpcGatewayNetworkIpamConfigArray) ToOutput(ctx context.Context) pulumix.Output[[]VpcGatewayNetworkIpamConfig] {
+	return pulumix.Output[[]VpcGatewayNetworkIpamConfig]{
+		OutputState: i.ToVpcGatewayNetworkIpamConfigArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type VpcGatewayNetworkIpamConfigOutput struct{ *pulumi.OutputState }
+
+func (VpcGatewayNetworkIpamConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpcGatewayNetworkIpamConfig)(nil)).Elem()
+}
+
+func (o VpcGatewayNetworkIpamConfigOutput) ToVpcGatewayNetworkIpamConfigOutput() VpcGatewayNetworkIpamConfigOutput {
+	return o
+}
+
+func (o VpcGatewayNetworkIpamConfigOutput) ToVpcGatewayNetworkIpamConfigOutputWithContext(ctx context.Context) VpcGatewayNetworkIpamConfigOutput {
+	return o
+}
+
+func (o VpcGatewayNetworkIpamConfigOutput) ToOutput(ctx context.Context) pulumix.Output[VpcGatewayNetworkIpamConfig] {
+	return pulumix.Output[VpcGatewayNetworkIpamConfig]{
+		OutputState: o.OutputState,
+	}
+}
+
+// Defines whether the default route is enabled on that Gateway Network. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+func (o VpcGatewayNetworkIpamConfigOutput) PushDefaultRoute() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v VpcGatewayNetworkIpamConfig) *bool { return v.PushDefaultRoute }).(pulumi.BoolPtrOutput)
+}
+
+type VpcGatewayNetworkIpamConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (VpcGatewayNetworkIpamConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpcGatewayNetworkIpamConfig)(nil)).Elem()
+}
+
+func (o VpcGatewayNetworkIpamConfigArrayOutput) ToVpcGatewayNetworkIpamConfigArrayOutput() VpcGatewayNetworkIpamConfigArrayOutput {
+	return o
+}
+
+func (o VpcGatewayNetworkIpamConfigArrayOutput) ToVpcGatewayNetworkIpamConfigArrayOutputWithContext(ctx context.Context) VpcGatewayNetworkIpamConfigArrayOutput {
+	return o
+}
+
+func (o VpcGatewayNetworkIpamConfigArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpcGatewayNetworkIpamConfig] {
+	return pulumix.Output[[]VpcGatewayNetworkIpamConfig]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o VpcGatewayNetworkIpamConfigArrayOutput) Index(i pulumi.IntInput) VpcGatewayNetworkIpamConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpcGatewayNetworkIpamConfig {
+		return vs[0].([]VpcGatewayNetworkIpamConfig)[vs[1].(int)]
+	}).(VpcGatewayNetworkIpamConfigOutput)
 }
 
 type VpcPrivateNetworkIpv4Subnet struct {
@@ -25080,6 +25680,124 @@ func (o GetRedisClusterPublicNetworkArrayOutput) Index(i pulumi.IntInput) GetRed
 	}).(GetRedisClusterPublicNetworkOutput)
 }
 
+type GetVpcGatewayNetworkIpamConfig struct {
+	PushDefaultRoute bool `pulumi:"pushDefaultRoute"`
+}
+
+// GetVpcGatewayNetworkIpamConfigInput is an input type that accepts GetVpcGatewayNetworkIpamConfigArgs and GetVpcGatewayNetworkIpamConfigOutput values.
+// You can construct a concrete instance of `GetVpcGatewayNetworkIpamConfigInput` via:
+//
+//	GetVpcGatewayNetworkIpamConfigArgs{...}
+type GetVpcGatewayNetworkIpamConfigInput interface {
+	pulumi.Input
+
+	ToGetVpcGatewayNetworkIpamConfigOutput() GetVpcGatewayNetworkIpamConfigOutput
+	ToGetVpcGatewayNetworkIpamConfigOutputWithContext(context.Context) GetVpcGatewayNetworkIpamConfigOutput
+}
+
+type GetVpcGatewayNetworkIpamConfigArgs struct {
+	PushDefaultRoute pulumi.BoolInput `pulumi:"pushDefaultRoute"`
+}
+
+func (GetVpcGatewayNetworkIpamConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcGatewayNetworkIpamConfig)(nil)).Elem()
+}
+
+func (i GetVpcGatewayNetworkIpamConfigArgs) ToGetVpcGatewayNetworkIpamConfigOutput() GetVpcGatewayNetworkIpamConfigOutput {
+	return i.ToGetVpcGatewayNetworkIpamConfigOutputWithContext(context.Background())
+}
+
+func (i GetVpcGatewayNetworkIpamConfigArgs) ToGetVpcGatewayNetworkIpamConfigOutputWithContext(ctx context.Context) GetVpcGatewayNetworkIpamConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcGatewayNetworkIpamConfigOutput)
+}
+
+func (i GetVpcGatewayNetworkIpamConfigArgs) ToOutput(ctx context.Context) pulumix.Output[GetVpcGatewayNetworkIpamConfig] {
+	return pulumix.Output[GetVpcGatewayNetworkIpamConfig]{
+		OutputState: i.ToGetVpcGatewayNetworkIpamConfigOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetVpcGatewayNetworkIpamConfigArrayInput is an input type that accepts GetVpcGatewayNetworkIpamConfigArray and GetVpcGatewayNetworkIpamConfigArrayOutput values.
+// You can construct a concrete instance of `GetVpcGatewayNetworkIpamConfigArrayInput` via:
+//
+//	GetVpcGatewayNetworkIpamConfigArray{ GetVpcGatewayNetworkIpamConfigArgs{...} }
+type GetVpcGatewayNetworkIpamConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetVpcGatewayNetworkIpamConfigArrayOutput() GetVpcGatewayNetworkIpamConfigArrayOutput
+	ToGetVpcGatewayNetworkIpamConfigArrayOutputWithContext(context.Context) GetVpcGatewayNetworkIpamConfigArrayOutput
+}
+
+type GetVpcGatewayNetworkIpamConfigArray []GetVpcGatewayNetworkIpamConfigInput
+
+func (GetVpcGatewayNetworkIpamConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcGatewayNetworkIpamConfig)(nil)).Elem()
+}
+
+func (i GetVpcGatewayNetworkIpamConfigArray) ToGetVpcGatewayNetworkIpamConfigArrayOutput() GetVpcGatewayNetworkIpamConfigArrayOutput {
+	return i.ToGetVpcGatewayNetworkIpamConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetVpcGatewayNetworkIpamConfigArray) ToGetVpcGatewayNetworkIpamConfigArrayOutputWithContext(ctx context.Context) GetVpcGatewayNetworkIpamConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcGatewayNetworkIpamConfigArrayOutput)
+}
+
+func (i GetVpcGatewayNetworkIpamConfigArray) ToOutput(ctx context.Context) pulumix.Output[[]GetVpcGatewayNetworkIpamConfig] {
+	return pulumix.Output[[]GetVpcGatewayNetworkIpamConfig]{
+		OutputState: i.ToGetVpcGatewayNetworkIpamConfigArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetVpcGatewayNetworkIpamConfigOutput struct{ *pulumi.OutputState }
+
+func (GetVpcGatewayNetworkIpamConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcGatewayNetworkIpamConfig)(nil)).Elem()
+}
+
+func (o GetVpcGatewayNetworkIpamConfigOutput) ToGetVpcGatewayNetworkIpamConfigOutput() GetVpcGatewayNetworkIpamConfigOutput {
+	return o
+}
+
+func (o GetVpcGatewayNetworkIpamConfigOutput) ToGetVpcGatewayNetworkIpamConfigOutputWithContext(ctx context.Context) GetVpcGatewayNetworkIpamConfigOutput {
+	return o
+}
+
+func (o GetVpcGatewayNetworkIpamConfigOutput) ToOutput(ctx context.Context) pulumix.Output[GetVpcGatewayNetworkIpamConfig] {
+	return pulumix.Output[GetVpcGatewayNetworkIpamConfig]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetVpcGatewayNetworkIpamConfigOutput) PushDefaultRoute() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetVpcGatewayNetworkIpamConfig) bool { return v.PushDefaultRoute }).(pulumi.BoolOutput)
+}
+
+type GetVpcGatewayNetworkIpamConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVpcGatewayNetworkIpamConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcGatewayNetworkIpamConfig)(nil)).Elem()
+}
+
+func (o GetVpcGatewayNetworkIpamConfigArrayOutput) ToGetVpcGatewayNetworkIpamConfigArrayOutput() GetVpcGatewayNetworkIpamConfigArrayOutput {
+	return o
+}
+
+func (o GetVpcGatewayNetworkIpamConfigArrayOutput) ToGetVpcGatewayNetworkIpamConfigArrayOutputWithContext(ctx context.Context) GetVpcGatewayNetworkIpamConfigArrayOutput {
+	return o
+}
+
+func (o GetVpcGatewayNetworkIpamConfigArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetVpcGatewayNetworkIpamConfig] {
+	return pulumix.Output[[]GetVpcGatewayNetworkIpamConfig]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetVpcGatewayNetworkIpamConfigArrayOutput) Index(i pulumi.IntInput) GetVpcGatewayNetworkIpamConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVpcGatewayNetworkIpamConfig {
+		return vs[0].([]GetVpcGatewayNetworkIpamConfig)[vs[1].(int)]
+	}).(GetVpcGatewayNetworkIpamConfigOutput)
+}
+
 type GetVpcPrivateNetworkIpv4Subnet struct {
 	Address   string `pulumi:"address"`
 	CreatedAt string `pulumi:"createdAt"`
@@ -26045,6 +26763,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitTokenScopesPtrInput)(nil)).Elem(), CockpitTokenScopesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerSqsInput)(nil)).Elem(), ContainerTriggerSqsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerSqsPtrInput)(nil)).Elem(), ContainerTriggerSqsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBReadReplicaDirectAccessInput)(nil)).Elem(), DocumentDBReadReplicaDirectAccessArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBReadReplicaDirectAccessPtrInput)(nil)).Elem(), DocumentDBReadReplicaDirectAccessArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBReadReplicaPrivateNetworkInput)(nil)).Elem(), DocumentDBReadReplicaPrivateNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBReadReplicaPrivateNetworkPtrInput)(nil)).Elem(), DocumentDBReadReplicaPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordGeoIpInput)(nil)).Elem(), DomainRecordGeoIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordGeoIpPtrInput)(nil)).Elem(), DomainRecordGeoIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordGeoIpMatchInput)(nil)).Elem(), DomainRecordGeoIpMatchArgs{})
@@ -26181,6 +26903,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPrivateNetworkArrayInput)(nil)).Elem(), RedisClusterPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPublicNetworkInput)(nil)).Elem(), RedisClusterPublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPublicNetworkPtrInput)(nil)).Elem(), RedisClusterPublicNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcGatewayNetworkIpamConfigInput)(nil)).Elem(), VpcGatewayNetworkIpamConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcGatewayNetworkIpamConfigArrayInput)(nil)).Elem(), VpcGatewayNetworkIpamConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcPrivateNetworkIpv4SubnetInput)(nil)).Elem(), VpcPrivateNetworkIpv4SubnetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcPrivateNetworkIpv4SubnetPtrInput)(nil)).Elem(), VpcPrivateNetworkIpv4SubnetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcPrivateNetworkIpv6SubnetInput)(nil)).Elem(), VpcPrivateNetworkIpv6SubnetArgs{})
@@ -26327,6 +27051,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPrivateNetworkArrayInput)(nil)).Elem(), GetRedisClusterPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPublicNetworkInput)(nil)).Elem(), GetRedisClusterPublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPublicNetworkArrayInput)(nil)).Elem(), GetRedisClusterPublicNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcGatewayNetworkIpamConfigInput)(nil)).Elem(), GetVpcGatewayNetworkIpamConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcGatewayNetworkIpamConfigArrayInput)(nil)).Elem(), GetVpcGatewayNetworkIpamConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcPrivateNetworkIpv4SubnetInput)(nil)).Elem(), GetVpcPrivateNetworkIpv4SubnetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcPrivateNetworkIpv4SubnetArrayInput)(nil)).Elem(), GetVpcPrivateNetworkIpv4SubnetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcPrivateNetworkIpv6SubnetInput)(nil)).Elem(), GetVpcPrivateNetworkIpv6SubnetArgs{})
@@ -26355,6 +27081,10 @@ func init() {
 	pulumi.RegisterOutputType(CockpitTokenScopesPtrOutput{})
 	pulumi.RegisterOutputType(ContainerTriggerSqsOutput{})
 	pulumi.RegisterOutputType(ContainerTriggerSqsPtrOutput{})
+	pulumi.RegisterOutputType(DocumentDBReadReplicaDirectAccessOutput{})
+	pulumi.RegisterOutputType(DocumentDBReadReplicaDirectAccessPtrOutput{})
+	pulumi.RegisterOutputType(DocumentDBReadReplicaPrivateNetworkOutput{})
+	pulumi.RegisterOutputType(DocumentDBReadReplicaPrivateNetworkPtrOutput{})
 	pulumi.RegisterOutputType(DomainRecordGeoIpOutput{})
 	pulumi.RegisterOutputType(DomainRecordGeoIpPtrOutput{})
 	pulumi.RegisterOutputType(DomainRecordGeoIpMatchOutput{})
@@ -26491,6 +27221,8 @@ func init() {
 	pulumi.RegisterOutputType(RedisClusterPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(RedisClusterPublicNetworkOutput{})
 	pulumi.RegisterOutputType(RedisClusterPublicNetworkPtrOutput{})
+	pulumi.RegisterOutputType(VpcGatewayNetworkIpamConfigOutput{})
+	pulumi.RegisterOutputType(VpcGatewayNetworkIpamConfigArrayOutput{})
 	pulumi.RegisterOutputType(VpcPrivateNetworkIpv4SubnetOutput{})
 	pulumi.RegisterOutputType(VpcPrivateNetworkIpv4SubnetPtrOutput{})
 	pulumi.RegisterOutputType(VpcPrivateNetworkIpv6SubnetOutput{})
@@ -26637,6 +27369,8 @@ func init() {
 	pulumi.RegisterOutputType(GetRedisClusterPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetRedisClusterPublicNetworkOutput{})
 	pulumi.RegisterOutputType(GetRedisClusterPublicNetworkArrayOutput{})
+	pulumi.RegisterOutputType(GetVpcGatewayNetworkIpamConfigOutput{})
+	pulumi.RegisterOutputType(GetVpcGatewayNetworkIpamConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetVpcPrivateNetworkIpv4SubnetOutput{})
 	pulumi.RegisterOutputType(GetVpcPrivateNetworkIpv4SubnetArrayOutput{})
 	pulumi.RegisterOutputType(GetVpcPrivateNetworkIpv6SubnetOutput{})

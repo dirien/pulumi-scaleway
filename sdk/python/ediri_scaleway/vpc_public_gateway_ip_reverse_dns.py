@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['VpcPublicGatewayIpReverseDnsArgs', 'VpcPublicGatewayIpReverseDns']
@@ -23,10 +23,27 @@ class VpcPublicGatewayIpReverseDnsArgs:
         :param pulumi.Input[str] reverse: The reverse domain name for this IP address
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
-        pulumi.set(__self__, "gateway_ip_id", gateway_ip_id)
-        pulumi.set(__self__, "reverse", reverse)
+        VpcPublicGatewayIpReverseDnsArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            gateway_ip_id=gateway_ip_id,
+            reverse=reverse,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             gateway_ip_id: pulumi.Input[str],
+             reverse: pulumi.Input[str],
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'gatewayIpId' in kwargs:
+            gateway_ip_id = kwargs['gatewayIpId']
+
+        _setter("gateway_ip_id", gateway_ip_id)
+        _setter("reverse", reverse)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter(name="gatewayIpId")
@@ -77,12 +94,29 @@ class _VpcPublicGatewayIpReverseDnsState:
         :param pulumi.Input[str] reverse: The reverse domain name for this IP address
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
+        _VpcPublicGatewayIpReverseDnsState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            gateway_ip_id=gateway_ip_id,
+            reverse=reverse,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             gateway_ip_id: Optional[pulumi.Input[str]] = None,
+             reverse: Optional[pulumi.Input[str]] = None,
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'gatewayIpId' in kwargs:
+            gateway_ip_id = kwargs['gatewayIpId']
+
         if gateway_ip_id is not None:
-            pulumi.set(__self__, "gateway_ip_id", gateway_ip_id)
+            _setter("gateway_ip_id", gateway_ip_id)
         if reverse is not None:
-            pulumi.set(__self__, "reverse", reverse)
+            _setter("reverse", reverse)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter(name="gatewayIpId")
@@ -212,6 +246,10 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            VpcPublicGatewayIpReverseDnsArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

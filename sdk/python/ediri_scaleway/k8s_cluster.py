@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -65,35 +65,94 @@ class K8sClusterArgs:
                
                - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
         """
-        pulumi.set(__self__, "cni", cni)
-        pulumi.set(__self__, "delete_additional_resources", delete_additional_resources)
-        pulumi.set(__self__, "version", version)
+        K8sClusterArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cni=cni,
+            delete_additional_resources=delete_additional_resources,
+            version=version,
+            admission_plugins=admission_plugins,
+            apiserver_cert_sans=apiserver_cert_sans,
+            auto_upgrade=auto_upgrade,
+            autoscaler_config=autoscaler_config,
+            description=description,
+            feature_gates=feature_gates,
+            name=name,
+            open_id_connect_config=open_id_connect_config,
+            private_network_id=private_network_id,
+            project_id=project_id,
+            region=region,
+            tags=tags,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cni: pulumi.Input[str],
+             delete_additional_resources: pulumi.Input[bool],
+             version: pulumi.Input[str],
+             admission_plugins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             apiserver_cert_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             auto_upgrade: Optional[pulumi.Input['K8sClusterAutoUpgradeArgs']] = None,
+             autoscaler_config: Optional[pulumi.Input['K8sClusterAutoscalerConfigArgs']] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             feature_gates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             open_id_connect_config: Optional[pulumi.Input['K8sClusterOpenIdConnectConfigArgs']] = None,
+             private_network_id: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             type: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'deleteAdditionalResources' in kwargs:
+            delete_additional_resources = kwargs['deleteAdditionalResources']
+        if 'admissionPlugins' in kwargs:
+            admission_plugins = kwargs['admissionPlugins']
+        if 'apiserverCertSans' in kwargs:
+            apiserver_cert_sans = kwargs['apiserverCertSans']
+        if 'autoUpgrade' in kwargs:
+            auto_upgrade = kwargs['autoUpgrade']
+        if 'autoscalerConfig' in kwargs:
+            autoscaler_config = kwargs['autoscalerConfig']
+        if 'featureGates' in kwargs:
+            feature_gates = kwargs['featureGates']
+        if 'openIdConnectConfig' in kwargs:
+            open_id_connect_config = kwargs['openIdConnectConfig']
+        if 'privateNetworkId' in kwargs:
+            private_network_id = kwargs['privateNetworkId']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+
+        _setter("cni", cni)
+        _setter("delete_additional_resources", delete_additional_resources)
+        _setter("version", version)
         if admission_plugins is not None:
-            pulumi.set(__self__, "admission_plugins", admission_plugins)
+            _setter("admission_plugins", admission_plugins)
         if apiserver_cert_sans is not None:
-            pulumi.set(__self__, "apiserver_cert_sans", apiserver_cert_sans)
+            _setter("apiserver_cert_sans", apiserver_cert_sans)
         if auto_upgrade is not None:
-            pulumi.set(__self__, "auto_upgrade", auto_upgrade)
+            _setter("auto_upgrade", auto_upgrade)
         if autoscaler_config is not None:
-            pulumi.set(__self__, "autoscaler_config", autoscaler_config)
+            _setter("autoscaler_config", autoscaler_config)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if feature_gates is not None:
-            pulumi.set(__self__, "feature_gates", feature_gates)
+            _setter("feature_gates", feature_gates)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if open_id_connect_config is not None:
-            pulumi.set(__self__, "open_id_connect_config", open_id_connect_config)
+            _setter("open_id_connect_config", open_id_connect_config)
         if private_network_id is not None:
-            pulumi.set(__self__, "private_network_id", private_network_id)
+            _setter("private_network_id", private_network_id)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
 
     @property
     @pulumi.getter
@@ -370,54 +429,141 @@ class _K8sClusterState:
         :param pulumi.Input[str] version: The version of the Kubernetes cluster.
         :param pulumi.Input[str] wildcard_dns: The DNS wildcard that points to all ready nodes.
         """
+        _K8sClusterState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            admission_plugins=admission_plugins,
+            apiserver_cert_sans=apiserver_cert_sans,
+            apiserver_url=apiserver_url,
+            auto_upgrade=auto_upgrade,
+            autoscaler_config=autoscaler_config,
+            cni=cni,
+            created_at=created_at,
+            delete_additional_resources=delete_additional_resources,
+            description=description,
+            feature_gates=feature_gates,
+            kubeconfigs=kubeconfigs,
+            name=name,
+            open_id_connect_config=open_id_connect_config,
+            organization_id=organization_id,
+            private_network_id=private_network_id,
+            project_id=project_id,
+            region=region,
+            status=status,
+            tags=tags,
+            type=type,
+            updated_at=updated_at,
+            upgrade_available=upgrade_available,
+            version=version,
+            wildcard_dns=wildcard_dns,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             admission_plugins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             apiserver_cert_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             apiserver_url: Optional[pulumi.Input[str]] = None,
+             auto_upgrade: Optional[pulumi.Input['K8sClusterAutoUpgradeArgs']] = None,
+             autoscaler_config: Optional[pulumi.Input['K8sClusterAutoscalerConfigArgs']] = None,
+             cni: Optional[pulumi.Input[str]] = None,
+             created_at: Optional[pulumi.Input[str]] = None,
+             delete_additional_resources: Optional[pulumi.Input[bool]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             feature_gates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             kubeconfigs: Optional[pulumi.Input[Sequence[pulumi.Input['K8sClusterKubeconfigArgs']]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             open_id_connect_config: Optional[pulumi.Input['K8sClusterOpenIdConnectConfigArgs']] = None,
+             organization_id: Optional[pulumi.Input[str]] = None,
+             private_network_id: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             type: Optional[pulumi.Input[str]] = None,
+             updated_at: Optional[pulumi.Input[str]] = None,
+             upgrade_available: Optional[pulumi.Input[bool]] = None,
+             version: Optional[pulumi.Input[str]] = None,
+             wildcard_dns: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'admissionPlugins' in kwargs:
+            admission_plugins = kwargs['admissionPlugins']
+        if 'apiserverCertSans' in kwargs:
+            apiserver_cert_sans = kwargs['apiserverCertSans']
+        if 'apiserverUrl' in kwargs:
+            apiserver_url = kwargs['apiserverUrl']
+        if 'autoUpgrade' in kwargs:
+            auto_upgrade = kwargs['autoUpgrade']
+        if 'autoscalerConfig' in kwargs:
+            autoscaler_config = kwargs['autoscalerConfig']
+        if 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if 'deleteAdditionalResources' in kwargs:
+            delete_additional_resources = kwargs['deleteAdditionalResources']
+        if 'featureGates' in kwargs:
+            feature_gates = kwargs['featureGates']
+        if 'openIdConnectConfig' in kwargs:
+            open_id_connect_config = kwargs['openIdConnectConfig']
+        if 'organizationId' in kwargs:
+            organization_id = kwargs['organizationId']
+        if 'privateNetworkId' in kwargs:
+            private_network_id = kwargs['privateNetworkId']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if 'updatedAt' in kwargs:
+            updated_at = kwargs['updatedAt']
+        if 'upgradeAvailable' in kwargs:
+            upgrade_available = kwargs['upgradeAvailable']
+        if 'wildcardDns' in kwargs:
+            wildcard_dns = kwargs['wildcardDns']
+
         if admission_plugins is not None:
-            pulumi.set(__self__, "admission_plugins", admission_plugins)
+            _setter("admission_plugins", admission_plugins)
         if apiserver_cert_sans is not None:
-            pulumi.set(__self__, "apiserver_cert_sans", apiserver_cert_sans)
+            _setter("apiserver_cert_sans", apiserver_cert_sans)
         if apiserver_url is not None:
-            pulumi.set(__self__, "apiserver_url", apiserver_url)
+            _setter("apiserver_url", apiserver_url)
         if auto_upgrade is not None:
-            pulumi.set(__self__, "auto_upgrade", auto_upgrade)
+            _setter("auto_upgrade", auto_upgrade)
         if autoscaler_config is not None:
-            pulumi.set(__self__, "autoscaler_config", autoscaler_config)
+            _setter("autoscaler_config", autoscaler_config)
         if cni is not None:
-            pulumi.set(__self__, "cni", cni)
+            _setter("cni", cni)
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if delete_additional_resources is not None:
-            pulumi.set(__self__, "delete_additional_resources", delete_additional_resources)
+            _setter("delete_additional_resources", delete_additional_resources)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if feature_gates is not None:
-            pulumi.set(__self__, "feature_gates", feature_gates)
+            _setter("feature_gates", feature_gates)
         if kubeconfigs is not None:
-            pulumi.set(__self__, "kubeconfigs", kubeconfigs)
+            _setter("kubeconfigs", kubeconfigs)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if open_id_connect_config is not None:
-            pulumi.set(__self__, "open_id_connect_config", open_id_connect_config)
+            _setter("open_id_connect_config", open_id_connect_config)
         if organization_id is not None:
-            pulumi.set(__self__, "organization_id", organization_id)
+            _setter("organization_id", organization_id)
         if private_network_id is not None:
-            pulumi.set(__self__, "private_network_id", private_network_id)
+            _setter("private_network_id", private_network_id)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
         if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
+            _setter("updated_at", updated_at)
         if upgrade_available is not None:
-            pulumi.set(__self__, "upgrade_available", upgrade_available)
+            _setter("upgrade_available", upgrade_available)
         if version is not None:
-            pulumi.set(__self__, "version", version)
+            _setter("version", version)
         if wildcard_dns is not None:
-            pulumi.set(__self__, "wildcard_dns", wildcard_dns)
+            _setter("wildcard_dns", wildcard_dns)
 
     @property
     @pulumi.getter(name="admissionPlugins")
@@ -959,6 +1105,10 @@ class K8sCluster(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            K8sClusterArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -991,7 +1141,17 @@ class K8sCluster(pulumi.CustomResource):
 
             __props__.__dict__["admission_plugins"] = admission_plugins
             __props__.__dict__["apiserver_cert_sans"] = apiserver_cert_sans
+            if auto_upgrade is not None and not isinstance(auto_upgrade, K8sClusterAutoUpgradeArgs):
+                auto_upgrade = auto_upgrade or {}
+                def _setter(key, value):
+                    auto_upgrade[key] = value
+                K8sClusterAutoUpgradeArgs._configure(_setter, **auto_upgrade)
             __props__.__dict__["auto_upgrade"] = auto_upgrade
+            if autoscaler_config is not None and not isinstance(autoscaler_config, K8sClusterAutoscalerConfigArgs):
+                autoscaler_config = autoscaler_config or {}
+                def _setter(key, value):
+                    autoscaler_config[key] = value
+                K8sClusterAutoscalerConfigArgs._configure(_setter, **autoscaler_config)
             __props__.__dict__["autoscaler_config"] = autoscaler_config
             if cni is None and not opts.urn:
                 raise TypeError("Missing required property 'cni'")
@@ -1002,6 +1162,11 @@ class K8sCluster(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["feature_gates"] = feature_gates
             __props__.__dict__["name"] = name
+            if open_id_connect_config is not None and not isinstance(open_id_connect_config, K8sClusterOpenIdConnectConfigArgs):
+                open_id_connect_config = open_id_connect_config or {}
+                def _setter(key, value):
+                    open_id_connect_config[key] = value
+                K8sClusterOpenIdConnectConfigArgs._configure(_setter, **open_id_connect_config)
             __props__.__dict__["open_id_connect_config"] = open_id_connect_config
             __props__.__dict__["private_network_id"] = private_network_id
             __props__.__dict__["project_id"] = project_id

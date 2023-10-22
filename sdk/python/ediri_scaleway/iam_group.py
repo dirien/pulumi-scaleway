@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['IamGroupArgs', 'IamGroup']
@@ -29,18 +29,47 @@ class IamGroupArgs:
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the group is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] user_ids: The list of IDs of the users attached to the group.
         """
+        IamGroupArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            application_ids=application_ids,
+            description=description,
+            external_membership=external_membership,
+            name=name,
+            organization_id=organization_id,
+            user_ids=user_ids,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             application_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             external_membership: Optional[pulumi.Input[bool]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             organization_id: Optional[pulumi.Input[str]] = None,
+             user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'applicationIds' in kwargs:
+            application_ids = kwargs['applicationIds']
+        if 'externalMembership' in kwargs:
+            external_membership = kwargs['externalMembership']
+        if 'organizationId' in kwargs:
+            organization_id = kwargs['organizationId']
+        if 'userIds' in kwargs:
+            user_ids = kwargs['userIds']
+
         if application_ids is not None:
-            pulumi.set(__self__, "application_ids", application_ids)
+            _setter("application_ids", application_ids)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if external_membership is not None:
-            pulumi.set(__self__, "external_membership", external_membership)
+            _setter("external_membership", external_membership)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if organization_id is not None:
-            pulumi.set(__self__, "organization_id", organization_id)
+            _setter("organization_id", organization_id)
         if user_ids is not None:
-            pulumi.set(__self__, "user_ids", user_ids)
+            _setter("user_ids", user_ids)
 
     @property
     @pulumi.getter(name="applicationIds")
@@ -137,22 +166,59 @@ class _IamGroupState:
         :param pulumi.Input[str] updated_at: The date and time of the last update of the group
         :param pulumi.Input[Sequence[pulumi.Input[str]]] user_ids: The list of IDs of the users attached to the group.
         """
+        _IamGroupState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            application_ids=application_ids,
+            created_at=created_at,
+            description=description,
+            external_membership=external_membership,
+            name=name,
+            organization_id=organization_id,
+            updated_at=updated_at,
+            user_ids=user_ids,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             application_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             created_at: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             external_membership: Optional[pulumi.Input[bool]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             organization_id: Optional[pulumi.Input[str]] = None,
+             updated_at: Optional[pulumi.Input[str]] = None,
+             user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'applicationIds' in kwargs:
+            application_ids = kwargs['applicationIds']
+        if 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if 'externalMembership' in kwargs:
+            external_membership = kwargs['externalMembership']
+        if 'organizationId' in kwargs:
+            organization_id = kwargs['organizationId']
+        if 'updatedAt' in kwargs:
+            updated_at = kwargs['updatedAt']
+        if 'userIds' in kwargs:
+            user_ids = kwargs['userIds']
+
         if application_ids is not None:
-            pulumi.set(__self__, "application_ids", application_ids)
+            _setter("application_ids", application_ids)
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if external_membership is not None:
-            pulumi.set(__self__, "external_membership", external_membership)
+            _setter("external_membership", external_membership)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if organization_id is not None:
-            pulumi.set(__self__, "organization_id", organization_id)
+            _setter("organization_id", organization_id)
         if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
+            _setter("updated_at", updated_at)
         if user_ids is not None:
-            pulumi.set(__self__, "user_ids", user_ids)
+            _setter("user_ids", user_ids)
 
     @property
     @pulumi.getter(name="applicationIds")
@@ -364,6 +430,10 @@ class IamGroup(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            IamGroupArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

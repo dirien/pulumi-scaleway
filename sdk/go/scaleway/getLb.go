@@ -67,7 +67,8 @@ type LookupLbArgs struct {
 
 // A collection of values returned by getLb.
 type LookupLbResult struct {
-	Description string `pulumi:"description"`
+	AssignFlexibleIp bool   `pulumi:"assignFlexibleIp"`
+	Description      string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The load-balancer public IP Address.
@@ -136,6 +137,10 @@ func (o LookupLbResultOutput) ToOutput(ctx context.Context) pulumix.Output[Looku
 	return pulumix.Output[LookupLbResult]{
 		OutputState: o.OutputState,
 	}
+}
+
+func (o LookupLbResultOutput) AssignFlexibleIp() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupLbResult) bool { return v.AssignFlexibleIp }).(pulumi.BoolOutput)
 }
 
 func (o LookupLbResultOutput) Description() pulumi.StringOutput {

@@ -32,7 +32,7 @@ import * as utilities from "./utilities";
  *     timeout: 600,
  *     maxConcurrency: 80,
  *     privacy: "private",
- *     protocol: "h2c",
+ *     protocol: "http1",
  *     deploy: true,
  *     environmentVariables: {
  *         foo: "var",

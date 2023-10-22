@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -31,15 +31,38 @@ class LbAclArgs:
         :param pulumi.Input['LbAclMatchArgs'] match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
         """
-        pulumi.set(__self__, "action", action)
-        pulumi.set(__self__, "frontend_id", frontend_id)
-        pulumi.set(__self__, "index", index)
+        LbAclArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            action=action,
+            frontend_id=frontend_id,
+            index=index,
+            description=description,
+            match=match,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             action: pulumi.Input['LbAclActionArgs'],
+             frontend_id: pulumi.Input[str],
+             index: pulumi.Input[int],
+             description: Optional[pulumi.Input[str]] = None,
+             match: Optional[pulumi.Input['LbAclMatchArgs']] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'frontendId' in kwargs:
+            frontend_id = kwargs['frontendId']
+
+        _setter("action", action)
+        _setter("frontend_id", frontend_id)
+        _setter("index", index)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if match is not None:
-            pulumi.set(__self__, "match", match)
+            _setter("match", match)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter
@@ -136,22 +159,53 @@ class _LbAclState:
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
         :param pulumi.Input[str] updated_at: Date and time of ACL's update (RFC 3339 format)
         """
+        _LbAclState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            action=action,
+            created_at=created_at,
+            description=description,
+            frontend_id=frontend_id,
+            index=index,
+            match=match,
+            name=name,
+            updated_at=updated_at,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             action: Optional[pulumi.Input['LbAclActionArgs']] = None,
+             created_at: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             frontend_id: Optional[pulumi.Input[str]] = None,
+             index: Optional[pulumi.Input[int]] = None,
+             match: Optional[pulumi.Input['LbAclMatchArgs']] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             updated_at: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if 'frontendId' in kwargs:
+            frontend_id = kwargs['frontendId']
+        if 'updatedAt' in kwargs:
+            updated_at = kwargs['updatedAt']
+
         if action is not None:
-            pulumi.set(__self__, "action", action)
+            _setter("action", action)
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if frontend_id is not None:
-            pulumi.set(__self__, "frontend_id", frontend_id)
+            _setter("frontend_id", frontend_id)
         if index is not None:
-            pulumi.set(__self__, "index", index)
+            _setter("index", index)
         if match is not None:
-            pulumi.set(__self__, "match", match)
+            _setter("match", match)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
+            _setter("updated_at", updated_at)
 
     @property
     @pulumi.getter
@@ -357,6 +411,10 @@ class LbAcl(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            LbAclArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -377,6 +435,11 @@ class LbAcl(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = LbAclArgs.__new__(LbAclArgs)
 
+            if action is not None and not isinstance(action, LbAclActionArgs):
+                action = action or {}
+                def _setter(key, value):
+                    action[key] = value
+                LbAclActionArgs._configure(_setter, **action)
             if action is None and not opts.urn:
                 raise TypeError("Missing required property 'action'")
             __props__.__dict__["action"] = action
@@ -387,6 +450,11 @@ class LbAcl(pulumi.CustomResource):
             if index is None and not opts.urn:
                 raise TypeError("Missing required property 'index'")
             __props__.__dict__["index"] = index
+            if match is not None and not isinstance(match, LbAclMatchArgs):
+                match = match or {}
+                def _setter(key, value):
+                    match[key] = value
+                LbAclMatchArgs._configure(_setter, **match)
             __props__.__dict__["match"] = match
             __props__.__dict__["name"] = name
             __props__.__dict__["created_at"] = None

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ContainerTokenArgs', 'ContainerToken']
@@ -31,16 +31,41 @@ class ContainerTokenArgs:
                
                > **Important** Updates to any fields will recreate the token.
         """
+        ContainerTokenArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            container_id=container_id,
+            description=description,
+            expires_at=expires_at,
+            namespace_id=namespace_id,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             container_id: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             expires_at: Optional[pulumi.Input[str]] = None,
+             namespace_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'containerId' in kwargs:
+            container_id = kwargs['containerId']
+        if 'expiresAt' in kwargs:
+            expires_at = kwargs['expiresAt']
+        if 'namespaceId' in kwargs:
+            namespace_id = kwargs['namespaceId']
+
         if container_id is not None:
-            pulumi.set(__self__, "container_id", container_id)
+            _setter("container_id", container_id)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if expires_at is not None:
-            pulumi.set(__self__, "expires_at", expires_at)
+            _setter("expires_at", expires_at)
         if namespace_id is not None:
-            pulumi.set(__self__, "namespace_id", namespace_id)
+            _setter("namespace_id", namespace_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter(name="containerId")
@@ -129,18 +154,45 @@ class _ContainerTokenState:
                > **Important** Updates to any fields will recreate the token.
         :param pulumi.Input[str] token: The token.
         """
+        _ContainerTokenState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            container_id=container_id,
+            description=description,
+            expires_at=expires_at,
+            namespace_id=namespace_id,
+            region=region,
+            token=token,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             container_id: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             expires_at: Optional[pulumi.Input[str]] = None,
+             namespace_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             token: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'containerId' in kwargs:
+            container_id = kwargs['containerId']
+        if 'expiresAt' in kwargs:
+            expires_at = kwargs['expiresAt']
+        if 'namespaceId' in kwargs:
+            namespace_id = kwargs['namespaceId']
+
         if container_id is not None:
-            pulumi.set(__self__, "container_id", container_id)
+            _setter("container_id", container_id)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if expires_at is not None:
-            pulumi.set(__self__, "expires_at", expires_at)
+            _setter("expires_at", expires_at)
         if namespace_id is not None:
-            pulumi.set(__self__, "namespace_id", namespace_id)
+            _setter("namespace_id", namespace_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if token is not None:
-            pulumi.set(__self__, "token", token)
+            _setter("token", token)
 
     @property
     @pulumi.getter(name="containerId")
@@ -318,6 +370,10 @@ class ContainerToken(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ContainerTokenArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

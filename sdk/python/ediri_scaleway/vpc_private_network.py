@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -37,30 +37,67 @@ class VpcPrivateNetworkArgs:
         :param pulumi.Input[str] vpc_id: The VPC in which to create the private network.
         :param pulumi.Input[str] zone: please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
         """
+        VpcPrivateNetworkArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ipv4_subnet=ipv4_subnet,
+            ipv6_subnets=ipv6_subnets,
+            is_regional=is_regional,
+            name=name,
+            project_id=project_id,
+            region=region,
+            tags=tags,
+            vpc_id=vpc_id,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ipv4_subnet: Optional[pulumi.Input['VpcPrivateNetworkIpv4SubnetArgs']] = None,
+             ipv6_subnets: Optional[pulumi.Input[Sequence[pulumi.Input['VpcPrivateNetworkIpv6SubnetArgs']]]] = None,
+             is_regional: Optional[pulumi.Input[bool]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             vpc_id: Optional[pulumi.Input[str]] = None,
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'ipv4Subnet' in kwargs:
+            ipv4_subnet = kwargs['ipv4Subnet']
+        if 'ipv6Subnets' in kwargs:
+            ipv6_subnets = kwargs['ipv6Subnets']
+        if 'isRegional' in kwargs:
+            is_regional = kwargs['isRegional']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if 'vpcId' in kwargs:
+            vpc_id = kwargs['vpcId']
+
         if ipv4_subnet is not None:
-            pulumi.set(__self__, "ipv4_subnet", ipv4_subnet)
+            _setter("ipv4_subnet", ipv4_subnet)
         if ipv6_subnets is not None:
-            pulumi.set(__self__, "ipv6_subnets", ipv6_subnets)
+            _setter("ipv6_subnets", ipv6_subnets)
         if is_regional is not None:
             warnings.warn("""This field is deprecated and will be removed in the next major version""", DeprecationWarning)
             pulumi.log.warn("""is_regional is deprecated: This field is deprecated and will be removed in the next major version""")
         if is_regional is not None:
-            pulumi.set(__self__, "is_regional", is_regional)
+            _setter("is_regional", is_regional)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if vpc_id is not None:
-            pulumi.set(__self__, "vpc_id", vpc_id)
+            _setter("vpc_id", vpc_id)
         if zone is not None:
             warnings.warn("""This field is deprecated and will be removed in the next major version, please use `region` instead""", DeprecationWarning)
             pulumi.log.warn("""zone is deprecated: This field is deprecated and will be removed in the next major version, please use `region` instead""")
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter(name="ipv4Subnet")
@@ -207,36 +244,85 @@ class _VpcPrivateNetworkState:
         :param pulumi.Input[str] vpc_id: The VPC in which to create the private network.
         :param pulumi.Input[str] zone: please use `region` instead - (Defaults to provider `zone`) The zone in which the private network should be created.
         """
+        _VpcPrivateNetworkState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            created_at=created_at,
+            ipv4_subnet=ipv4_subnet,
+            ipv6_subnets=ipv6_subnets,
+            is_regional=is_regional,
+            name=name,
+            organization_id=organization_id,
+            project_id=project_id,
+            region=region,
+            tags=tags,
+            updated_at=updated_at,
+            vpc_id=vpc_id,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             created_at: Optional[pulumi.Input[str]] = None,
+             ipv4_subnet: Optional[pulumi.Input['VpcPrivateNetworkIpv4SubnetArgs']] = None,
+             ipv6_subnets: Optional[pulumi.Input[Sequence[pulumi.Input['VpcPrivateNetworkIpv6SubnetArgs']]]] = None,
+             is_regional: Optional[pulumi.Input[bool]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             organization_id: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             updated_at: Optional[pulumi.Input[str]] = None,
+             vpc_id: Optional[pulumi.Input[str]] = None,
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if 'ipv4Subnet' in kwargs:
+            ipv4_subnet = kwargs['ipv4Subnet']
+        if 'ipv6Subnets' in kwargs:
+            ipv6_subnets = kwargs['ipv6Subnets']
+        if 'isRegional' in kwargs:
+            is_regional = kwargs['isRegional']
+        if 'organizationId' in kwargs:
+            organization_id = kwargs['organizationId']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if 'updatedAt' in kwargs:
+            updated_at = kwargs['updatedAt']
+        if 'vpcId' in kwargs:
+            vpc_id = kwargs['vpcId']
+
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if ipv4_subnet is not None:
-            pulumi.set(__self__, "ipv4_subnet", ipv4_subnet)
+            _setter("ipv4_subnet", ipv4_subnet)
         if ipv6_subnets is not None:
-            pulumi.set(__self__, "ipv6_subnets", ipv6_subnets)
+            _setter("ipv6_subnets", ipv6_subnets)
         if is_regional is not None:
             warnings.warn("""This field is deprecated and will be removed in the next major version""", DeprecationWarning)
             pulumi.log.warn("""is_regional is deprecated: This field is deprecated and will be removed in the next major version""")
         if is_regional is not None:
-            pulumi.set(__self__, "is_regional", is_regional)
+            _setter("is_regional", is_regional)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if organization_id is not None:
-            pulumi.set(__self__, "organization_id", organization_id)
+            _setter("organization_id", organization_id)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
+            _setter("updated_at", updated_at)
         if vpc_id is not None:
-            pulumi.set(__self__, "vpc_id", vpc_id)
+            _setter("vpc_id", vpc_id)
         if zone is not None:
             warnings.warn("""This field is deprecated and will be removed in the next major version, please use `region` instead""", DeprecationWarning)
             pulumi.log.warn("""zone is deprecated: This field is deprecated and will be removed in the next major version, please use `region` instead""")
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -532,6 +618,10 @@ class VpcPrivateNetwork(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            VpcPrivateNetworkArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -555,20 +645,19 @@ class VpcPrivateNetwork(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = VpcPrivateNetworkArgs.__new__(VpcPrivateNetworkArgs)
 
+            if ipv4_subnet is not None and not isinstance(ipv4_subnet, VpcPrivateNetworkIpv4SubnetArgs):
+                ipv4_subnet = ipv4_subnet or {}
+                def _setter(key, value):
+                    ipv4_subnet[key] = value
+                VpcPrivateNetworkIpv4SubnetArgs._configure(_setter, **ipv4_subnet)
             __props__.__dict__["ipv4_subnet"] = ipv4_subnet
             __props__.__dict__["ipv6_subnets"] = ipv6_subnets
-            if is_regional is not None and not opts.urn:
-                warnings.warn("""This field is deprecated and will be removed in the next major version""", DeprecationWarning)
-                pulumi.log.warn("""is_regional is deprecated: This field is deprecated and will be removed in the next major version""")
             __props__.__dict__["is_regional"] = is_regional
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
             __props__.__dict__["tags"] = tags
             __props__.__dict__["vpc_id"] = vpc_id
-            if zone is not None and not opts.urn:
-                warnings.warn("""This field is deprecated and will be removed in the next major version, please use `region` instead""", DeprecationWarning)
-                pulumi.log.warn("""zone is deprecated: This field is deprecated and will be removed in the next major version, please use `region` instead""")
             __props__.__dict__["zone"] = zone
             __props__.__dict__["created_at"] = None
             __props__.__dict__["organization_id"] = None

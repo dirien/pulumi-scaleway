@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ObjectItemArgs', 'ObjectItem']
@@ -41,28 +41,67 @@ class ObjectItemArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags
         :param pulumi.Input[str] visibility: Visibility of the object, `public-read` or `private`
         """
-        pulumi.set(__self__, "bucket", bucket)
-        pulumi.set(__self__, "key", key)
+        ObjectItemArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            bucket=bucket,
+            key=key,
+            content=content,
+            content_base64=content_base64,
+            file=file,
+            hash=hash,
+            metadata=metadata,
+            project_id=project_id,
+            region=region,
+            storage_class=storage_class,
+            tags=tags,
+            visibility=visibility,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             bucket: pulumi.Input[str],
+             key: pulumi.Input[str],
+             content: Optional[pulumi.Input[str]] = None,
+             content_base64: Optional[pulumi.Input[str]] = None,
+             file: Optional[pulumi.Input[str]] = None,
+             hash: Optional[pulumi.Input[str]] = None,
+             metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             storage_class: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             visibility: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'contentBase64' in kwargs:
+            content_base64 = kwargs['contentBase64']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if 'storageClass' in kwargs:
+            storage_class = kwargs['storageClass']
+
+        _setter("bucket", bucket)
+        _setter("key", key)
         if content is not None:
-            pulumi.set(__self__, "content", content)
+            _setter("content", content)
         if content_base64 is not None:
-            pulumi.set(__self__, "content_base64", content_base64)
+            _setter("content_base64", content_base64)
         if file is not None:
-            pulumi.set(__self__, "file", file)
+            _setter("file", file)
         if hash is not None:
-            pulumi.set(__self__, "hash", hash)
+            _setter("hash", hash)
         if metadata is not None:
-            pulumi.set(__self__, "metadata", metadata)
+            _setter("metadata", metadata)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if storage_class is not None:
-            pulumi.set(__self__, "storage_class", storage_class)
+            _setter("storage_class", storage_class)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if visibility is not None:
-            pulumi.set(__self__, "visibility", visibility)
+            _setter("visibility", visibility)
 
     @property
     @pulumi.getter
@@ -239,30 +278,69 @@ class _ObjectItemState:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Map of tags
         :param pulumi.Input[str] visibility: Visibility of the object, `public-read` or `private`
         """
+        _ObjectItemState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            bucket=bucket,
+            content=content,
+            content_base64=content_base64,
+            file=file,
+            hash=hash,
+            key=key,
+            metadata=metadata,
+            project_id=project_id,
+            region=region,
+            storage_class=storage_class,
+            tags=tags,
+            visibility=visibility,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             bucket: Optional[pulumi.Input[str]] = None,
+             content: Optional[pulumi.Input[str]] = None,
+             content_base64: Optional[pulumi.Input[str]] = None,
+             file: Optional[pulumi.Input[str]] = None,
+             hash: Optional[pulumi.Input[str]] = None,
+             key: Optional[pulumi.Input[str]] = None,
+             metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             storage_class: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             visibility: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'contentBase64' in kwargs:
+            content_base64 = kwargs['contentBase64']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if 'storageClass' in kwargs:
+            storage_class = kwargs['storageClass']
+
         if bucket is not None:
-            pulumi.set(__self__, "bucket", bucket)
+            _setter("bucket", bucket)
         if content is not None:
-            pulumi.set(__self__, "content", content)
+            _setter("content", content)
         if content_base64 is not None:
-            pulumi.set(__self__, "content_base64", content_base64)
+            _setter("content_base64", content_base64)
         if file is not None:
-            pulumi.set(__self__, "file", file)
+            _setter("file", file)
         if hash is not None:
-            pulumi.set(__self__, "hash", hash)
+            _setter("hash", hash)
         if key is not None:
-            pulumi.set(__self__, "key", key)
+            _setter("key", key)
         if metadata is not None:
-            pulumi.set(__self__, "metadata", metadata)
+            _setter("metadata", metadata)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if storage_class is not None:
-            pulumi.set(__self__, "storage_class", storage_class)
+            _setter("storage_class", storage_class)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if visibility is not None:
-            pulumi.set(__self__, "visibility", visibility)
+            _setter("visibility", visibility)
 
     @property
     @pulumi.getter
@@ -482,6 +560,10 @@ class ObjectItem(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ObjectItemArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

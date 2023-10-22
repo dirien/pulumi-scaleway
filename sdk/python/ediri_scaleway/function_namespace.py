@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['FunctionNamespaceArgs', 'FunctionNamespace']
@@ -31,18 +31,45 @@ class FunctionNamespaceArgs:
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
         """
+        FunctionNamespaceArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            environment_variables=environment_variables,
+            name=name,
+            project_id=project_id,
+            region=region,
+            secret_environment_variables=secret_environment_variables,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: Optional[pulumi.Input[str]] = None,
+             environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'environmentVariables' in kwargs:
+            environment_variables = kwargs['environmentVariables']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if 'secretEnvironmentVariables' in kwargs:
+            secret_environment_variables = kwargs['secretEnvironmentVariables']
+
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if environment_variables is not None:
-            pulumi.set(__self__, "environment_variables", environment_variables)
+            _setter("environment_variables", environment_variables)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if secret_environment_variables is not None:
-            pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
+            _setter("secret_environment_variables", secret_environment_variables)
 
     @property
     @pulumi.getter
@@ -145,24 +172,63 @@ class _FunctionNamespaceState:
         :param pulumi.Input[str] registry_namespace_id: The registry namespace ID of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
         """
+        _FunctionNamespaceState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            environment_variables=environment_variables,
+            name=name,
+            organization_id=organization_id,
+            project_id=project_id,
+            region=region,
+            registry_endpoint=registry_endpoint,
+            registry_namespace_id=registry_namespace_id,
+            secret_environment_variables=secret_environment_variables,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: Optional[pulumi.Input[str]] = None,
+             environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             organization_id: Optional[pulumi.Input[str]] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             registry_endpoint: Optional[pulumi.Input[str]] = None,
+             registry_namespace_id: Optional[pulumi.Input[str]] = None,
+             secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'environmentVariables' in kwargs:
+            environment_variables = kwargs['environmentVariables']
+        if 'organizationId' in kwargs:
+            organization_id = kwargs['organizationId']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if 'registryEndpoint' in kwargs:
+            registry_endpoint = kwargs['registryEndpoint']
+        if 'registryNamespaceId' in kwargs:
+            registry_namespace_id = kwargs['registryNamespaceId']
+        if 'secretEnvironmentVariables' in kwargs:
+            secret_environment_variables = kwargs['secretEnvironmentVariables']
+
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if environment_variables is not None:
-            pulumi.set(__self__, "environment_variables", environment_variables)
+            _setter("environment_variables", environment_variables)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if organization_id is not None:
-            pulumi.set(__self__, "organization_id", organization_id)
+            _setter("organization_id", organization_id)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if registry_endpoint is not None:
-            pulumi.set(__self__, "registry_endpoint", registry_endpoint)
+            _setter("registry_endpoint", registry_endpoint)
         if registry_namespace_id is not None:
-            pulumi.set(__self__, "registry_namespace_id", registry_namespace_id)
+            _setter("registry_namespace_id", registry_namespace_id)
         if secret_environment_variables is not None:
-            pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
+            _setter("secret_environment_variables", secret_environment_variables)
 
     @property
     @pulumi.getter
@@ -360,6 +426,10 @@ class FunctionNamespace(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            FunctionNamespaceArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

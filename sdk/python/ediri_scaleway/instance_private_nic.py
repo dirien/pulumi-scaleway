@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['InstancePrivateNicArgs', 'InstancePrivateNic']
@@ -27,14 +27,39 @@ class InstancePrivateNicArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the private NIC.
         :param pulumi.Input[str] zone: `zone`) The zone in which the server must be created.
         """
-        pulumi.set(__self__, "private_network_id", private_network_id)
-        pulumi.set(__self__, "server_id", server_id)
+        InstancePrivateNicArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            private_network_id=private_network_id,
+            server_id=server_id,
+            ip_ids=ip_ids,
+            tags=tags,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             private_network_id: pulumi.Input[str],
+             server_id: pulumi.Input[str],
+             ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'privateNetworkId' in kwargs:
+            private_network_id = kwargs['privateNetworkId']
+        if 'serverId' in kwargs:
+            server_id = kwargs['serverId']
+        if 'ipIds' in kwargs:
+            ip_ids = kwargs['ipIds']
+
+        _setter("private_network_id", private_network_id)
+        _setter("server_id", server_id)
         if ip_ids is not None:
-            pulumi.set(__self__, "ip_ids", ip_ids)
+            _setter("ip_ids", ip_ids)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter(name="privateNetworkId")
@@ -115,18 +140,47 @@ class _InstancePrivateNicState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the private NIC.
         :param pulumi.Input[str] zone: `zone`) The zone in which the server must be created.
         """
+        _InstancePrivateNicState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ip_ids=ip_ids,
+            mac_address=mac_address,
+            private_network_id=private_network_id,
+            server_id=server_id,
+            tags=tags,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             mac_address: Optional[pulumi.Input[str]] = None,
+             private_network_id: Optional[pulumi.Input[str]] = None,
+             server_id: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'ipIds' in kwargs:
+            ip_ids = kwargs['ipIds']
+        if 'macAddress' in kwargs:
+            mac_address = kwargs['macAddress']
+        if 'privateNetworkId' in kwargs:
+            private_network_id = kwargs['privateNetworkId']
+        if 'serverId' in kwargs:
+            server_id = kwargs['serverId']
+
         if ip_ids is not None:
-            pulumi.set(__self__, "ip_ids", ip_ids)
+            _setter("ip_ids", ip_ids)
         if mac_address is not None:
-            pulumi.set(__self__, "mac_address", mac_address)
+            _setter("mac_address", mac_address)
         if private_network_id is not None:
-            pulumi.set(__self__, "private_network_id", private_network_id)
+            _setter("private_network_id", private_network_id)
         if server_id is not None:
-            pulumi.set(__self__, "server_id", server_id)
+            _setter("server_id", server_id)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter(name="ipIds")
@@ -320,6 +374,10 @@ class InstancePrivateNic(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            InstancePrivateNicArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

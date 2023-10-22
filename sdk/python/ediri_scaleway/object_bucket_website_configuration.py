@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -29,14 +29,39 @@ class ObjectBucketWebsiteConfigurationArgs:
         :param pulumi.Input[str] project_id: (Defaults to provider `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[str] region: The region you want to attach the resource to
         """
-        pulumi.set(__self__, "bucket", bucket)
-        pulumi.set(__self__, "index_document", index_document)
+        ObjectBucketWebsiteConfigurationArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            bucket=bucket,
+            index_document=index_document,
+            error_document=error_document,
+            project_id=project_id,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             bucket: pulumi.Input[str],
+             index_document: pulumi.Input['ObjectBucketWebsiteConfigurationIndexDocumentArgs'],
+             error_document: Optional[pulumi.Input['ObjectBucketWebsiteConfigurationErrorDocumentArgs']] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'indexDocument' in kwargs:
+            index_document = kwargs['indexDocument']
+        if 'errorDocument' in kwargs:
+            error_document = kwargs['errorDocument']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+
+        _setter("bucket", bucket)
+        _setter("index_document", index_document)
         if error_document is not None:
-            pulumi.set(__self__, "error_document", error_document)
+            _setter("error_document", error_document)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter
@@ -119,20 +144,53 @@ class _ObjectBucketWebsiteConfigurationState:
         :param pulumi.Input[str] website_domain: The website endpoint.
         :param pulumi.Input[str] website_endpoint: The domain of the website endpoint.
         """
+        _ObjectBucketWebsiteConfigurationState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            bucket=bucket,
+            error_document=error_document,
+            index_document=index_document,
+            project_id=project_id,
+            region=region,
+            website_domain=website_domain,
+            website_endpoint=website_endpoint,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             bucket: Optional[pulumi.Input[str]] = None,
+             error_document: Optional[pulumi.Input['ObjectBucketWebsiteConfigurationErrorDocumentArgs']] = None,
+             index_document: Optional[pulumi.Input['ObjectBucketWebsiteConfigurationIndexDocumentArgs']] = None,
+             project_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             website_domain: Optional[pulumi.Input[str]] = None,
+             website_endpoint: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'errorDocument' in kwargs:
+            error_document = kwargs['errorDocument']
+        if 'indexDocument' in kwargs:
+            index_document = kwargs['indexDocument']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+        if 'websiteDomain' in kwargs:
+            website_domain = kwargs['websiteDomain']
+        if 'websiteEndpoint' in kwargs:
+            website_endpoint = kwargs['websiteEndpoint']
+
         if bucket is not None:
-            pulumi.set(__self__, "bucket", bucket)
+            _setter("bucket", bucket)
         if error_document is not None:
-            pulumi.set(__self__, "error_document", error_document)
+            _setter("error_document", error_document)
         if index_document is not None:
-            pulumi.set(__self__, "index_document", index_document)
+            _setter("index_document", index_document)
         if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
+            _setter("project_id", project_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if website_domain is not None:
-            pulumi.set(__self__, "website_domain", website_domain)
+            _setter("website_domain", website_domain)
         if website_endpoint is not None:
-            pulumi.set(__self__, "website_endpoint", website_endpoint)
+            _setter("website_endpoint", website_endpoint)
 
     @property
     @pulumi.getter
@@ -404,6 +462,10 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ObjectBucketWebsiteConfigurationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -426,7 +488,17 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
             if bucket is None and not opts.urn:
                 raise TypeError("Missing required property 'bucket'")
             __props__.__dict__["bucket"] = bucket
+            if error_document is not None and not isinstance(error_document, ObjectBucketWebsiteConfigurationErrorDocumentArgs):
+                error_document = error_document or {}
+                def _setter(key, value):
+                    error_document[key] = value
+                ObjectBucketWebsiteConfigurationErrorDocumentArgs._configure(_setter, **error_document)
             __props__.__dict__["error_document"] = error_document
+            if index_document is not None and not isinstance(index_document, ObjectBucketWebsiteConfigurationIndexDocumentArgs):
+                index_document = index_document or {}
+                def _setter(key, value):
+                    index_document[key] = value
+                ObjectBucketWebsiteConfigurationIndexDocumentArgs._configure(_setter, **index_document)
             if index_document is None and not opts.urn:
                 raise TypeError("Missing required property 'index_document'")
             __props__.__dict__["index_document"] = index_document

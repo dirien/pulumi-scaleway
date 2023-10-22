@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['InstanceIpReverseDnsArgs', 'InstanceIpReverseDns']
@@ -23,10 +23,27 @@ class InstanceIpReverseDnsArgs:
         :param pulumi.Input[str] reverse: The reverse DNS for this IP.
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
-        pulumi.set(__self__, "ip_id", ip_id)
-        pulumi.set(__self__, "reverse", reverse)
+        InstanceIpReverseDnsArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ip_id=ip_id,
+            reverse=reverse,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ip_id: pulumi.Input[str],
+             reverse: pulumi.Input[str],
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'ipId' in kwargs:
+            ip_id = kwargs['ipId']
+
+        _setter("ip_id", ip_id)
+        _setter("reverse", reverse)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter(name="ipId")
@@ -77,12 +94,29 @@ class _InstanceIpReverseDnsState:
         :param pulumi.Input[str] reverse: The reverse DNS for this IP.
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
+        _InstanceIpReverseDnsState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ip_id=ip_id,
+            reverse=reverse,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ip_id: Optional[pulumi.Input[str]] = None,
+             reverse: Optional[pulumi.Input[str]] = None,
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'ipId' in kwargs:
+            ip_id = kwargs['ipId']
+
         if ip_id is not None:
-            pulumi.set(__self__, "ip_id", ip_id)
+            _setter("ip_id", ip_id)
         if reverse is not None:
-            pulumi.set(__self__, "reverse", reverse)
+            _setter("reverse", reverse)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter(name="ipId")
@@ -214,6 +248,10 @@ class InstanceIpReverseDns(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            InstanceIpReverseDnsArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

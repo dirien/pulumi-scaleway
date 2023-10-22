@@ -27,13 +27,19 @@ namespace ediri.Scaleway
     /// {
     ///     var bucket = new Scaleway.ObjectBucket("bucket");
     /// 
+    ///     var main = new Scaleway.IamApplication("main", new()
+    ///     {
+    ///         Description = "a description",
+    ///     });
+    /// 
     ///     var policy = new Scaleway.ObjectBucketPolicy("policy", new()
     ///     {
     ///         Bucket = bucket.Name,
-    ///         Policy = Output.Tuple(bucket.Name, bucket.Name).Apply(values =&gt;
+    ///         Policy = Output.Tuple(main.Id, bucket.Name, bucket.Name).Apply(values =&gt;
     ///         {
-    ///             var bucketName = values.Item1;
-    ///             var bucketName1 = values.Item2;
+    ///             var id = values.Item1;
+    ///             var bucketName = values.Item2;
+    ///             var bucketName1 = values.Item3;
     ///             return JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///             {
     ///                 ["Version"] = "2023-04-17",
@@ -46,7 +52,7 @@ namespace ediri.Scaleway
     ///                         ["Effect"] = "Allow",
     ///                         ["Principal"] = new Dictionary&lt;string, object?&gt;
     ///                         {
-    ///                             ["SCW"] = "application_id:&lt;APPLICATION_ID&gt;",
+    ///                             ["SCW"] = $"application_id:{id}",
     ///                         },
     ///                         ["Action"] = "s3:ListBucket",
     ///                         ["Resource"] = new[]

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['VpcPublicGatewayDhcpReservationArgs', 'VpcPublicGatewayDhcpReservation']
@@ -25,11 +25,34 @@ class VpcPublicGatewayDhcpReservationArgs:
         :param pulumi.Input[str] mac_address: The MAC address to give a static entry to.
         :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway DHCP config should be created.
         """
-        pulumi.set(__self__, "gateway_network_id", gateway_network_id)
-        pulumi.set(__self__, "ip_address", ip_address)
-        pulumi.set(__self__, "mac_address", mac_address)
+        VpcPublicGatewayDhcpReservationArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            gateway_network_id=gateway_network_id,
+            ip_address=ip_address,
+            mac_address=mac_address,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             gateway_network_id: pulumi.Input[str],
+             ip_address: pulumi.Input[str],
+             mac_address: pulumi.Input[str],
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'gatewayNetworkId' in kwargs:
+            gateway_network_id = kwargs['gatewayNetworkId']
+        if 'ipAddress' in kwargs:
+            ip_address = kwargs['ipAddress']
+        if 'macAddress' in kwargs:
+            mac_address = kwargs['macAddress']
+
+        _setter("gateway_network_id", gateway_network_id)
+        _setter("ip_address", ip_address)
+        _setter("mac_address", mac_address)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter(name="gatewayNetworkId")
@@ -102,22 +125,57 @@ class _VpcPublicGatewayDhcpReservationState:
         :param pulumi.Input[str] updated_at: The date and time of the last update of the public gateway DHCP config.
         :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway DHCP config should be created.
         """
+        _VpcPublicGatewayDhcpReservationState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            created_at=created_at,
+            gateway_network_id=gateway_network_id,
+            hostname=hostname,
+            ip_address=ip_address,
+            mac_address=mac_address,
+            type=type,
+            updated_at=updated_at,
+            zone=zone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             created_at: Optional[pulumi.Input[str]] = None,
+             gateway_network_id: Optional[pulumi.Input[str]] = None,
+             hostname: Optional[pulumi.Input[str]] = None,
+             ip_address: Optional[pulumi.Input[str]] = None,
+             mac_address: Optional[pulumi.Input[str]] = None,
+             type: Optional[pulumi.Input[str]] = None,
+             updated_at: Optional[pulumi.Input[str]] = None,
+             zone: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if 'gatewayNetworkId' in kwargs:
+            gateway_network_id = kwargs['gatewayNetworkId']
+        if 'ipAddress' in kwargs:
+            ip_address = kwargs['ipAddress']
+        if 'macAddress' in kwargs:
+            mac_address = kwargs['macAddress']
+        if 'updatedAt' in kwargs:
+            updated_at = kwargs['updatedAt']
+
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if gateway_network_id is not None:
-            pulumi.set(__self__, "gateway_network_id", gateway_network_id)
+            _setter("gateway_network_id", gateway_network_id)
         if hostname is not None:
-            pulumi.set(__self__, "hostname", hostname)
+            _setter("hostname", hostname)
         if ip_address is not None:
-            pulumi.set(__self__, "ip_address", ip_address)
+            _setter("ip_address", ip_address)
         if mac_address is not None:
-            pulumi.set(__self__, "mac_address", mac_address)
+            _setter("mac_address", mac_address)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
         if updated_at is not None:
-            pulumi.set(__self__, "updated_at", updated_at)
+            _setter("updated_at", updated_at)
         if zone is not None:
-            pulumi.set(__self__, "zone", zone)
+            _setter("zone", zone)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -357,6 +415,10 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            VpcPublicGatewayDhcpReservationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

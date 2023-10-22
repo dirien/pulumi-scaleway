@@ -55,6 +55,7 @@ export interface GetLbArgs {
  * A collection of values returned by getLb.
  */
 export interface GetLbResult {
+    readonly assignFlexibleIp: boolean;
     readonly description: string;
     /**
      * The provider-assigned unique ID for this managed resource.
