@@ -19,6 +19,7 @@ class ContainerTriggerArgs:
                  container_id: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nats: Optional[pulumi.Input['ContainerTriggerNatsArgs']] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  sqs: Optional[pulumi.Input['ContainerTriggerSqsArgs']] = None):
         """
@@ -26,6 +27,7 @@ class ContainerTriggerArgs:
         :param pulumi.Input[str] container_id: The ID of the container to create a trigger for
         :param pulumi.Input[str] description: The description of the trigger.
         :param pulumi.Input[str] name: The unique name of the trigger. Default to a generated name.
+        :param pulumi.Input['ContainerTriggerNatsArgs'] nats: The configuration for the Scaleway's Nats used by the trigger
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input['ContainerTriggerSqsArgs'] sqs: The configuration of the Scaleway's SQS used by the trigger
         """
@@ -34,6 +36,7 @@ class ContainerTriggerArgs:
             container_id=container_id,
             description=description,
             name=name,
+            nats=nats,
             region=region,
             sqs=sqs,
         )
@@ -43,6 +46,7 @@ class ContainerTriggerArgs:
              container_id: pulumi.Input[str],
              description: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
+             nats: Optional[pulumi.Input['ContainerTriggerNatsArgs']] = None,
              region: Optional[pulumi.Input[str]] = None,
              sqs: Optional[pulumi.Input['ContainerTriggerSqsArgs']] = None,
              opts: Optional[pulumi.ResourceOptions]=None,
@@ -55,6 +59,8 @@ class ContainerTriggerArgs:
             _setter("description", description)
         if name is not None:
             _setter("name", name)
+        if nats is not None:
+            _setter("nats", nats)
         if region is not None:
             _setter("region", region)
         if sqs is not None:
@@ -98,6 +104,18 @@ class ContainerTriggerArgs:
 
     @property
     @pulumi.getter
+    def nats(self) -> Optional[pulumi.Input['ContainerTriggerNatsArgs']]:
+        """
+        The configuration for the Scaleway's Nats used by the trigger
+        """
+        return pulumi.get(self, "nats")
+
+    @nats.setter
+    def nats(self, value: Optional[pulumi.Input['ContainerTriggerNatsArgs']]):
+        pulumi.set(self, "nats", value)
+
+    @property
+    @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         `region`). The region in which the namespace should be created.
@@ -127,6 +145,7 @@ class _ContainerTriggerState:
                  container_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nats: Optional[pulumi.Input['ContainerTriggerNatsArgs']] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  sqs: Optional[pulumi.Input['ContainerTriggerSqsArgs']] = None):
         """
@@ -134,6 +153,7 @@ class _ContainerTriggerState:
         :param pulumi.Input[str] container_id: The ID of the container to create a trigger for
         :param pulumi.Input[str] description: The description of the trigger.
         :param pulumi.Input[str] name: The unique name of the trigger. Default to a generated name.
+        :param pulumi.Input['ContainerTriggerNatsArgs'] nats: The configuration for the Scaleway's Nats used by the trigger
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input['ContainerTriggerSqsArgs'] sqs: The configuration of the Scaleway's SQS used by the trigger
         """
@@ -142,6 +162,7 @@ class _ContainerTriggerState:
             container_id=container_id,
             description=description,
             name=name,
+            nats=nats,
             region=region,
             sqs=sqs,
         )
@@ -151,6 +172,7 @@ class _ContainerTriggerState:
              container_id: Optional[pulumi.Input[str]] = None,
              description: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
+             nats: Optional[pulumi.Input['ContainerTriggerNatsArgs']] = None,
              region: Optional[pulumi.Input[str]] = None,
              sqs: Optional[pulumi.Input['ContainerTriggerSqsArgs']] = None,
              opts: Optional[pulumi.ResourceOptions]=None,
@@ -164,6 +186,8 @@ class _ContainerTriggerState:
             _setter("description", description)
         if name is not None:
             _setter("name", name)
+        if nats is not None:
+            _setter("nats", nats)
         if region is not None:
             _setter("region", region)
         if sqs is not None:
@@ -207,6 +231,18 @@ class _ContainerTriggerState:
 
     @property
     @pulumi.getter
+    def nats(self) -> Optional[pulumi.Input['ContainerTriggerNatsArgs']]:
+        """
+        The configuration for the Scaleway's Nats used by the trigger
+        """
+        return pulumi.get(self, "nats")
+
+    @nats.setter
+    def nats(self, value: Optional[pulumi.Input['ContainerTriggerNatsArgs']]):
+        pulumi.set(self, "nats", value)
+
+    @property
+    @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         `region`). The region in which the namespace should be created.
@@ -238,6 +274,7 @@ class ContainerTrigger(pulumi.CustomResource):
                  container_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nats: Optional[pulumi.Input[pulumi.InputType['ContainerTriggerNatsArgs']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  sqs: Optional[pulumi.Input[pulumi.InputType['ContainerTriggerSqsArgs']]] = None,
                  __props__=None):
@@ -247,7 +284,7 @@ class ContainerTrigger(pulumi.CustomResource):
 
         ## Examples
 
-        ### Basic
+        ### SQS
 
         ```python
         import pulumi
@@ -256,10 +293,24 @@ class ContainerTrigger(pulumi.CustomResource):
         main = scaleway.ContainerTrigger("main",
             container_id=scaleway_container["main"]["id"],
             sqs=scaleway.ContainerTriggerSqsArgs(
-                namespace_id=scaleway_mnq_namespace["main"]["id"],
+                project_id=scaleway_mnq_sqs["main"]["project_id"],
                 queue="MyQueue",
-                project_id=scaleway_mnq_namespace["main"]["project_id"],
-                region=scaleway_mnq_namespace["main"]["region"],
+                region=scaleway_mnq_sqs["main"]["region"],
+            ))
+        ```
+
+        ### Nats
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        main = scaleway.ContainerTrigger("main",
+            container_id=scaleway_container["main"]["id"],
+            nats=scaleway.ContainerTriggerNatsArgs(
+                account_id=scaleway_mnq_nats_account["main"]["id"],
+                subject="MySubject",
+                region=scaleway_mnq_nats_account["main"]["region"],
             ))
         ```
 
@@ -276,6 +327,7 @@ class ContainerTrigger(pulumi.CustomResource):
         :param pulumi.Input[str] container_id: The ID of the container to create a trigger for
         :param pulumi.Input[str] description: The description of the trigger.
         :param pulumi.Input[str] name: The unique name of the trigger. Default to a generated name.
+        :param pulumi.Input[pulumi.InputType['ContainerTriggerNatsArgs']] nats: The configuration for the Scaleway's Nats used by the trigger
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[pulumi.InputType['ContainerTriggerSqsArgs']] sqs: The configuration of the Scaleway's SQS used by the trigger
         """
@@ -291,7 +343,7 @@ class ContainerTrigger(pulumi.CustomResource):
 
         ## Examples
 
-        ### Basic
+        ### SQS
 
         ```python
         import pulumi
@@ -300,10 +352,24 @@ class ContainerTrigger(pulumi.CustomResource):
         main = scaleway.ContainerTrigger("main",
             container_id=scaleway_container["main"]["id"],
             sqs=scaleway.ContainerTriggerSqsArgs(
-                namespace_id=scaleway_mnq_namespace["main"]["id"],
+                project_id=scaleway_mnq_sqs["main"]["project_id"],
                 queue="MyQueue",
-                project_id=scaleway_mnq_namespace["main"]["project_id"],
-                region=scaleway_mnq_namespace["main"]["region"],
+                region=scaleway_mnq_sqs["main"]["region"],
+            ))
+        ```
+
+        ### Nats
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        main = scaleway.ContainerTrigger("main",
+            container_id=scaleway_container["main"]["id"],
+            nats=scaleway.ContainerTriggerNatsArgs(
+                account_id=scaleway_mnq_nats_account["main"]["id"],
+                subject="MySubject",
+                region=scaleway_mnq_nats_account["main"]["region"],
             ))
         ```
 
@@ -337,6 +403,7 @@ class ContainerTrigger(pulumi.CustomResource):
                  container_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nats: Optional[pulumi.Input[pulumi.InputType['ContainerTriggerNatsArgs']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  sqs: Optional[pulumi.Input[pulumi.InputType['ContainerTriggerSqsArgs']]] = None,
                  __props__=None):
@@ -353,6 +420,12 @@ class ContainerTrigger(pulumi.CustomResource):
             __props__.__dict__["container_id"] = container_id
             __props__.__dict__["description"] = description
             __props__.__dict__["name"] = name
+            if nats is not None and not isinstance(nats, ContainerTriggerNatsArgs):
+                nats = nats or {}
+                def _setter(key, value):
+                    nats[key] = value
+                ContainerTriggerNatsArgs._configure(_setter, **nats)
+            __props__.__dict__["nats"] = nats
             __props__.__dict__["region"] = region
             if sqs is not None and not isinstance(sqs, ContainerTriggerSqsArgs):
                 sqs = sqs or {}
@@ -373,6 +446,7 @@ class ContainerTrigger(pulumi.CustomResource):
             container_id: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            nats: Optional[pulumi.Input[pulumi.InputType['ContainerTriggerNatsArgs']]] = None,
             region: Optional[pulumi.Input[str]] = None,
             sqs: Optional[pulumi.Input[pulumi.InputType['ContainerTriggerSqsArgs']]] = None) -> 'ContainerTrigger':
         """
@@ -385,6 +459,7 @@ class ContainerTrigger(pulumi.CustomResource):
         :param pulumi.Input[str] container_id: The ID of the container to create a trigger for
         :param pulumi.Input[str] description: The description of the trigger.
         :param pulumi.Input[str] name: The unique name of the trigger. Default to a generated name.
+        :param pulumi.Input[pulumi.InputType['ContainerTriggerNatsArgs']] nats: The configuration for the Scaleway's Nats used by the trigger
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[pulumi.InputType['ContainerTriggerSqsArgs']] sqs: The configuration of the Scaleway's SQS used by the trigger
         """
@@ -395,6 +470,7 @@ class ContainerTrigger(pulumi.CustomResource):
         __props__.__dict__["container_id"] = container_id
         __props__.__dict__["description"] = description
         __props__.__dict__["name"] = name
+        __props__.__dict__["nats"] = nats
         __props__.__dict__["region"] = region
         __props__.__dict__["sqs"] = sqs
         return ContainerTrigger(resource_name, opts=opts, __props__=__props__)
@@ -422,6 +498,14 @@ class ContainerTrigger(pulumi.CustomResource):
         The unique name of the trigger. Default to a generated name.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def nats(self) -> pulumi.Output[Optional['outputs.ContainerTriggerNats']]:
+        """
+        The configuration for the Scaleway's Nats used by the trigger
+        """
+        return pulumi.get(self, "nats")
 
     @property
     @pulumi.getter

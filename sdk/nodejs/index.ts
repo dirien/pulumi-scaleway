@@ -185,6 +185,16 @@ export const getBaremetalServer: typeof import("./getBaremetalServer").getBareme
 export const getBaremetalServerOutput: typeof import("./getBaremetalServer").getBaremetalServerOutput = null as any;
 utilities.lazyLoad(exports, ["getBaremetalServer","getBaremetalServerOutput"], () => require("./getBaremetalServer"));
 
+export { GetBillingConsumptionsResult } from "./getBillingConsumptions";
+export const getBillingConsumptions: typeof import("./getBillingConsumptions").getBillingConsumptions = null as any;
+export const getBillingConsumptionsOutput: typeof import("./getBillingConsumptions").getBillingConsumptionsOutput = null as any;
+utilities.lazyLoad(exports, ["getBillingConsumptions","getBillingConsumptionsOutput"], () => require("./getBillingConsumptions"));
+
+export { GetBillingInvoicesArgs, GetBillingInvoicesResult, GetBillingInvoicesOutputArgs } from "./getBillingInvoices";
+export const getBillingInvoices: typeof import("./getBillingInvoices").getBillingInvoices = null as any;
+export const getBillingInvoicesOutput: typeof import("./getBillingInvoices").getBillingInvoicesOutput = null as any;
+utilities.lazyLoad(exports, ["getBillingInvoices","getBillingInvoicesOutput"], () => require("./getBillingInvoices"));
+
 export { GetCockpitArgs, GetCockpitResult, GetCockpitOutputArgs } from "./getCockpit";
 export const getCockpit: typeof import("./getCockpit").getCockpit = null as any;
 export const getCockpitOutput: typeof import("./getCockpit").getCockpitOutput = null as any;
@@ -405,6 +415,11 @@ export const getMarketplaceImage: typeof import("./getMarketplaceImage").getMark
 export const getMarketplaceImageOutput: typeof import("./getMarketplaceImage").getMarketplaceImageOutput = null as any;
 utilities.lazyLoad(exports, ["getMarketplaceImage","getMarketplaceImageOutput"], () => require("./getMarketplaceImage"));
 
+export { GetMnqSqsArgs, GetMnqSqsResult, GetMnqSqsOutputArgs } from "./getMnqSqs";
+export const getMnqSqs: typeof import("./getMnqSqs").getMnqSqs = null as any;
+export const getMnqSqsOutput: typeof import("./getMnqSqs").getMnqSqsOutput = null as any;
+utilities.lazyLoad(exports, ["getMnqSqs","getMnqSqsOutput"], () => require("./getMnqSqs"));
+
 export { GetObjectBucketArgs, GetObjectBucketResult, GetObjectBucketOutputArgs } from "./getObjectBucket";
 export const getObjectBucket: typeof import("./getObjectBucket").getObjectBucket = null as any;
 export const getObjectBucketOutput: typeof import("./getObjectBucket").getObjectBucketOutput = null as any;
@@ -555,6 +570,11 @@ export type IamSshKey = import("./iamSshKey").IamSshKey;
 export const IamSshKey: typeof import("./iamSshKey").IamSshKey = null as any;
 utilities.lazyLoad(exports, ["IamSshKey"], () => require("./iamSshKey"));
 
+export { IamUserArgs, IamUserState } from "./iamUser";
+export type IamUser = import("./iamUser").IamUser;
+export const IamUser: typeof import("./iamUser").IamUser = null as any;
+utilities.lazyLoad(exports, ["IamUser"], () => require("./iamUser"));
+
 export { InstanceImageArgs, InstanceImageState } from "./instanceImage";
 export type InstanceImage = import("./instanceImage").InstanceImage;
 export const InstanceImage: typeof import("./instanceImage").InstanceImage = null as any;
@@ -685,10 +705,35 @@ export type MnqNamespace = import("./mnqNamespace").MnqNamespace;
 export const MnqNamespace: typeof import("./mnqNamespace").MnqNamespace = null as any;
 utilities.lazyLoad(exports, ["MnqNamespace"], () => require("./mnqNamespace"));
 
+export { MnqNatsAccountArgs, MnqNatsAccountState } from "./mnqNatsAccount";
+export type MnqNatsAccount = import("./mnqNatsAccount").MnqNatsAccount;
+export const MnqNatsAccount: typeof import("./mnqNatsAccount").MnqNatsAccount = null as any;
+utilities.lazyLoad(exports, ["MnqNatsAccount"], () => require("./mnqNatsAccount"));
+
+export { MnqNatsCredentialsArgs, MnqNatsCredentialsState } from "./mnqNatsCredentials";
+export type MnqNatsCredentials = import("./mnqNatsCredentials").MnqNatsCredentials;
+export const MnqNatsCredentials: typeof import("./mnqNatsCredentials").MnqNatsCredentials = null as any;
+utilities.lazyLoad(exports, ["MnqNatsCredentials"], () => require("./mnqNatsCredentials"));
+
 export { MnqQueueArgs, MnqQueueState } from "./mnqQueue";
 export type MnqQueue = import("./mnqQueue").MnqQueue;
 export const MnqQueue: typeof import("./mnqQueue").MnqQueue = null as any;
 utilities.lazyLoad(exports, ["MnqQueue"], () => require("./mnqQueue"));
+
+export { MnqSqsArgs, MnqSqsState } from "./mnqSqs";
+export type MnqSqs = import("./mnqSqs").MnqSqs;
+export const MnqSqs: typeof import("./mnqSqs").MnqSqs = null as any;
+utilities.lazyLoad(exports, ["MnqSqs"], () => require("./mnqSqs"));
+
+export { MnqSqsCredentialsArgs, MnqSqsCredentialsState } from "./mnqSqsCredentials";
+export type MnqSqsCredentials = import("./mnqSqsCredentials").MnqSqsCredentials;
+export const MnqSqsCredentials: typeof import("./mnqSqsCredentials").MnqSqsCredentials = null as any;
+utilities.lazyLoad(exports, ["MnqSqsCredentials"], () => require("./mnqSqsCredentials"));
+
+export { MnqSqsQueueArgs, MnqSqsQueueState } from "./mnqSqsQueue";
+export type MnqSqsQueue = import("./mnqSqsQueue").MnqSqsQueue;
+export const MnqSqsQueue: typeof import("./mnqSqsQueue").MnqSqsQueue = null as any;
+utilities.lazyLoad(exports, ["MnqSqsQueue"], () => require("./mnqSqsQueue"));
 
 export { ObjectBucketArgs, ObjectBucketState } from "./objectBucket";
 export type ObjectBucket = import("./objectBucket").ObjectBucket;
@@ -919,6 +964,8 @@ const _module = {
                 return new IamPolicy(name, <any>undefined, { urn })
             case "scaleway:index/iamSshKey:IamSshKey":
                 return new IamSshKey(name, <any>undefined, { urn })
+            case "scaleway:index/iamUser:IamUser":
+                return new IamUser(name, <any>undefined, { urn })
             case "scaleway:index/instanceImage:InstanceImage":
                 return new InstanceImage(name, <any>undefined, { urn })
             case "scaleway:index/instanceIp:InstanceIp":
@@ -971,8 +1018,18 @@ const _module = {
                 return new MnqCredential(name, <any>undefined, { urn })
             case "scaleway:index/mnqNamespace:MnqNamespace":
                 return new MnqNamespace(name, <any>undefined, { urn })
+            case "scaleway:index/mnqNatsAccount:MnqNatsAccount":
+                return new MnqNatsAccount(name, <any>undefined, { urn })
+            case "scaleway:index/mnqNatsCredentials:MnqNatsCredentials":
+                return new MnqNatsCredentials(name, <any>undefined, { urn })
             case "scaleway:index/mnqQueue:MnqQueue":
                 return new MnqQueue(name, <any>undefined, { urn })
+            case "scaleway:index/mnqSqs:MnqSqs":
+                return new MnqSqs(name, <any>undefined, { urn })
+            case "scaleway:index/mnqSqsCredentials:MnqSqsCredentials":
+                return new MnqSqsCredentials(name, <any>undefined, { urn })
+            case "scaleway:index/mnqSqsQueue:MnqSqsQueue":
+                return new MnqSqsQueue(name, <any>undefined, { urn })
             case "scaleway:index/objectBucket:ObjectBucket":
                 return new ObjectBucket(name, <any>undefined, { urn })
             case "scaleway:index/objectBucketAcl:ObjectBucketAcl":
@@ -1069,6 +1126,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/iamGroup", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamGroupMembership", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamPolicy", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamSshKey", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/iamUser", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceImage", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/instanceIpReverseDns", _module)
@@ -1095,7 +1153,12 @@ pulumi.runtime.registerResourceModule("scaleway", "index/lbIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/lbRoute", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqCredential", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqNamespace", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mnqNatsAccount", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mnqNatsCredentials", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqQueue", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mnqSqs", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mnqSqsCredentials", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mnqSqsQueue", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucket", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketAcl", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketLockConfiguration", _module)

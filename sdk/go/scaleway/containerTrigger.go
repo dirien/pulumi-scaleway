@@ -18,7 +18,7 @@ import (
 //
 // ## Examples
 //
-// ### Basic
+// ### SQS
 //
 // ```go
 // package main
@@ -35,10 +35,40 @@ import (
 //			_, err := scaleway.NewContainerTrigger(ctx, "main", &scaleway.ContainerTriggerArgs{
 //				ContainerId: pulumi.Any(scaleway_container.Main.Id),
 //				Sqs: &scaleway.ContainerTriggerSqsArgs{
-//					NamespaceId: pulumi.Any(scaleway_mnq_namespace.Main.Id),
-//					Queue:       pulumi.String("MyQueue"),
-//					ProjectId:   pulumi.Any(scaleway_mnq_namespace.Main.Project_id),
-//					Region:      pulumi.Any(scaleway_mnq_namespace.Main.Region),
+//					ProjectId: pulumi.Any(scaleway_mnq_sqs.Main.Project_id),
+//					Queue:     pulumi.String("MyQueue"),
+//					Region:    pulumi.Any(scaleway_mnq_sqs.Main.Region),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Nats
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewContainerTrigger(ctx, "main", &scaleway.ContainerTriggerArgs{
+//				ContainerId: pulumi.Any(scaleway_container.Main.Id),
+//				Nats: &scaleway.ContainerTriggerNatsArgs{
+//					AccountId: pulumi.Any(scaleway_mnq_nats_account.Main.Id),
+//					Subject:   pulumi.String("MySubject"),
+//					Region:    pulumi.Any(scaleway_mnq_nats_account.Main.Region),
 //				},
 //			})
 //			if err != nil {
@@ -68,6 +98,8 @@ type ContainerTrigger struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The unique name of the trigger. Default to a generated name.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The configuration for the Scaleway's Nats used by the trigger
+	Nats ContainerTriggerNatsPtrOutput `pulumi:"nats"`
 	// `region`). The region in which the namespace should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The configuration of the Scaleway's SQS used by the trigger
@@ -113,6 +145,8 @@ type containerTriggerState struct {
 	Description *string `pulumi:"description"`
 	// The unique name of the trigger. Default to a generated name.
 	Name *string `pulumi:"name"`
+	// The configuration for the Scaleway's Nats used by the trigger
+	Nats *ContainerTriggerNats `pulumi:"nats"`
 	// `region`). The region in which the namespace should be created.
 	Region *string `pulumi:"region"`
 	// The configuration of the Scaleway's SQS used by the trigger
@@ -126,6 +160,8 @@ type ContainerTriggerState struct {
 	Description pulumi.StringPtrInput
 	// The unique name of the trigger. Default to a generated name.
 	Name pulumi.StringPtrInput
+	// The configuration for the Scaleway's Nats used by the trigger
+	Nats ContainerTriggerNatsPtrInput
 	// `region`). The region in which the namespace should be created.
 	Region pulumi.StringPtrInput
 	// The configuration of the Scaleway's SQS used by the trigger
@@ -143,6 +179,8 @@ type containerTriggerArgs struct {
 	Description *string `pulumi:"description"`
 	// The unique name of the trigger. Default to a generated name.
 	Name *string `pulumi:"name"`
+	// The configuration for the Scaleway's Nats used by the trigger
+	Nats *ContainerTriggerNats `pulumi:"nats"`
 	// `region`). The region in which the namespace should be created.
 	Region *string `pulumi:"region"`
 	// The configuration of the Scaleway's SQS used by the trigger
@@ -157,6 +195,8 @@ type ContainerTriggerArgs struct {
 	Description pulumi.StringPtrInput
 	// The unique name of the trigger. Default to a generated name.
 	Name pulumi.StringPtrInput
+	// The configuration for the Scaleway's Nats used by the trigger
+	Nats ContainerTriggerNatsPtrInput
 	// `region`). The region in which the namespace should be created.
 	Region pulumi.StringPtrInput
 	// The configuration of the Scaleway's SQS used by the trigger
@@ -287,6 +327,11 @@ func (o ContainerTriggerOutput) Description() pulumi.StringPtrOutput {
 // The unique name of the trigger. Default to a generated name.
 func (o ContainerTriggerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerTrigger) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The configuration for the Scaleway's Nats used by the trigger
+func (o ContainerTriggerOutput) Nats() ContainerTriggerNatsPtrOutput {
+	return o.ApplyT(func(v *ContainerTrigger) ContainerTriggerNatsPtrOutput { return v.Nats }).(ContainerTriggerNatsPtrOutput)
 }
 
 // `region`). The region in which the namespace should be created.

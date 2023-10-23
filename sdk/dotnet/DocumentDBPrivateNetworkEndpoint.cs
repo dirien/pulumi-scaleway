@@ -10,47 +10,58 @@ using Pulumi;
 
 namespace ediri.Scaleway
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// Database Instance Endpoint can be imported using the `{region}/{endpoint_id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint end fr-par/11111111-1111-1111-1111-111111111111
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint")]
     public partial class DocumentDBPrivateNetworkEndpoint : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The hostname of your endpoint
+        /// Hostname of the endpoint.
         /// </summary>
         [Output("hostname")]
         public Output<string> Hostname { get; private set; } = null!;
 
         /// <summary>
-        /// Instance on which the endpoint is attached
+        /// UUID of the documentdb instance.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// The IP of your private network service
+        /// IPv4 address on the network.
         /// </summary>
         [Output("ip")]
         public Output<string> Ip { get; private set; } = null!;
 
         /// <summary>
-        /// The IP with the given mask within the private subnet
+        /// The IP network address within the private subnet. This must be an IPv4 address with a
+        /// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+        /// service if not set.
         /// </summary>
         [Output("ipNet")]
         public Output<string> IpNet { get; private set; } = null!;
 
         /// <summary>
-        /// The name of your private service
+        /// Name of the endpoint.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The port of your private service
+        /// Port in the Private Network.
         /// </summary>
         [Output("port")]
         public Output<int> Port { get; private set; } = null!;
 
         /// <summary>
-        /// The private network ID
+        /// The ID of the private network.
         /// </summary>
         [Output("privateNetworkId")]
         public Output<string> PrivateNetworkId { get; private set; } = null!;
@@ -115,25 +126,27 @@ namespace ediri.Scaleway
     public sealed class DocumentDBPrivateNetworkEndpointArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Instance on which the endpoint is attached
+        /// UUID of the documentdb instance.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// The IP with the given mask within the private subnet
+        /// The IP network address within the private subnet. This must be an IPv4 address with a
+        /// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+        /// service if not set.
         /// </summary>
         [Input("ipNet")]
         public Input<string>? IpNet { get; set; }
 
         /// <summary>
-        /// The port of your private service
+        /// Port in the Private Network.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// The private network ID
+        /// The ID of the private network.
         /// </summary>
         [Input("privateNetworkId", required: true)]
         public Input<string> PrivateNetworkId { get; set; } = null!;
@@ -159,43 +172,45 @@ namespace ediri.Scaleway
     public sealed class DocumentDBPrivateNetworkEndpointState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The hostname of your endpoint
+        /// Hostname of the endpoint.
         /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
 
         /// <summary>
-        /// Instance on which the endpoint is attached
+        /// UUID of the documentdb instance.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// The IP of your private network service
+        /// IPv4 address on the network.
         /// </summary>
         [Input("ip")]
         public Input<string>? Ip { get; set; }
 
         /// <summary>
-        /// The IP with the given mask within the private subnet
+        /// The IP network address within the private subnet. This must be an IPv4 address with a
+        /// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+        /// service if not set.
         /// </summary>
         [Input("ipNet")]
         public Input<string>? IpNet { get; set; }
 
         /// <summary>
-        /// The name of your private service
+        /// Name of the endpoint.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The port of your private service
+        /// Port in the Private Network.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// The private network ID
+        /// The ID of the private network.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }

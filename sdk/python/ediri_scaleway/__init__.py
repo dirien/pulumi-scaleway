@@ -41,6 +41,8 @@ from .get_baremetal_offer import *
 from .get_baremetal_option import *
 from .get_baremetal_os import *
 from .get_baremetal_server import *
+from .get_billing_consumptions import *
+from .get_billing_invoices import *
 from .get_cockpit import *
 from .get_cockpit_plan import *
 from .get_container import *
@@ -85,6 +87,7 @@ from .get_lb_route import *
 from .get_lb_routes import *
 from .get_lbs import *
 from .get_marketplace_image import *
+from .get_mnq_sqs import *
 from .get_object_bucket import *
 from .get_object_bucket_policy import *
 from .get_rdb_acl import *
@@ -115,6 +118,7 @@ from .iam_group import *
 from .iam_group_membership import *
 from .iam_policy import *
 from .iam_ssh_key import *
+from .iam_user import *
 from .instance_image import *
 from .instance_ip import *
 from .instance_ip_reverse_dns import *
@@ -141,7 +145,12 @@ from .lb_ip import *
 from .lb_route import *
 from .mnq_credential import *
 from .mnq_namespace import *
+from .mnq_nats_account import *
+from .mnq_nats_credentials import *
 from .mnq_queue import *
+from .mnq_sqs import *
+from .mnq_sqs_credentials import *
+from .mnq_sqs_queue import *
 from .object_bucket import *
 from .object_bucket_acl import *
 from .object_bucket_lock_configuration import *
@@ -466,6 +475,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/iamUser",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/iamUser:IamUser": "IamUser"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/instanceImage",
   "fqn": "ediri_scaleway",
   "classes": {
@@ -674,10 +691,50 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/mnqNatsAccount",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/mnqNatsAccount:MnqNatsAccount": "MnqNatsAccount"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mnqNatsCredentials",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/mnqNatsCredentials:MnqNatsCredentials": "MnqNatsCredentials"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/mnqQueue",
   "fqn": "ediri_scaleway",
   "classes": {
    "scaleway:index/mnqQueue:MnqQueue": "MnqQueue"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mnqSqs",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/mnqSqs:MnqSqs": "MnqSqs"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mnqSqsCredentials",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/mnqSqsCredentials:MnqSqsCredentials": "MnqSqsCredentials"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mnqSqsQueue",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/mnqSqsQueue:MnqSqsQueue": "MnqSqsQueue"
   }
  },
  {

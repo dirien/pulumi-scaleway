@@ -4,6 +4,29 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Creates and manages Scaleway DocumentDB database.
+ * For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+ *
+ * ## Examples
+ *
+ * ### Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@ediri/scaleway";
+ *
+ * const main = new scaleway.DocumentDBDatabase("main", {instanceId: "11111111-1111-1111-1111-111111111111"});
+ * ```
+ *
+ * ## Import
+ *
+ * DocumentDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/documentDBDatabase:DocumentDBDatabase mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
+ * ```
+ */
 export class DocumentDBDatabase extends pulumi.CustomResource {
     /**
      * Get an existing DocumentDBDatabase resource's state with the given name, ID, and optional extra
@@ -33,19 +56,21 @@ export class DocumentDBDatabase extends pulumi.CustomResource {
     }
 
     /**
-     * Instance on which the database is created
+     * UUID of the documentdb instance.
+     *
+     * > **Important:** Updates to `instanceId` will recreate the Database.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
-     * Whether or not the database is managed
+     * Whether the database is managed or not.
      */
     public /*out*/ readonly managed!: pulumi.Output<boolean>;
     /**
-     * The database name
+     * Name of the database (e.g. `my-new-database`).
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * User that own the database
+     * The name of the owner of the database.
      */
     public /*out*/ readonly owner!: pulumi.Output<string>;
     /**
@@ -53,11 +78,11 @@ export class DocumentDBDatabase extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the resource exists.
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * Size of the database
+     * Size in gigabytes of the database.
      */
     public /*out*/ readonly size!: pulumi.Output<string>;
 
@@ -104,19 +129,21 @@ export class DocumentDBDatabase extends pulumi.CustomResource {
  */
 export interface DocumentDBDatabaseState {
     /**
-     * Instance on which the database is created
+     * UUID of the documentdb instance.
+     *
+     * > **Important:** Updates to `instanceId` will recreate the Database.
      */
     instanceId?: pulumi.Input<string>;
     /**
-     * Whether or not the database is managed
+     * Whether the database is managed or not.
      */
     managed?: pulumi.Input<boolean>;
     /**
-     * The database name
+     * Name of the database (e.g. `my-new-database`).
      */
     name?: pulumi.Input<string>;
     /**
-     * User that own the database
+     * The name of the owner of the database.
      */
     owner?: pulumi.Input<string>;
     /**
@@ -124,11 +151,11 @@ export interface DocumentDBDatabaseState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the resource exists.
      */
     region?: pulumi.Input<string>;
     /**
-     * Size of the database
+     * Size in gigabytes of the database.
      */
     size?: pulumi.Input<string>;
 }
@@ -138,11 +165,13 @@ export interface DocumentDBDatabaseState {
  */
 export interface DocumentDBDatabaseArgs {
     /**
-     * Instance on which the database is created
+     * UUID of the documentdb instance.
+     *
+     * > **Important:** Updates to `instanceId` will recreate the Database.
      */
     instanceId: pulumi.Input<string>;
     /**
-     * The database name
+     * Name of the database (e.g. `my-new-database`).
      */
     name?: pulumi.Input<string>;
     /**
@@ -150,7 +179,7 @@ export interface DocumentDBDatabaseArgs {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the resource exists.
      */
     region?: pulumi.Input<string>;
 }

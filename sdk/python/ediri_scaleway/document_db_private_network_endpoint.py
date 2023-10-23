@@ -22,10 +22,12 @@ class DocumentDBPrivateNetworkEndpointArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DocumentDBPrivateNetworkEndpoint resource.
-        :param pulumi.Input[str] instance_id: Instance on which the endpoint is attached
-        :param pulumi.Input[str] private_network_id: The private network ID
-        :param pulumi.Input[str] ip_net: The IP with the given mask within the private subnet
-        :param pulumi.Input[int] port: The port of your private service
+        :param pulumi.Input[str] instance_id: UUID of the documentdb instance.
+        :param pulumi.Input[str] private_network_id: The ID of the private network.
+        :param pulumi.Input[str] ip_net: The IP network address within the private subnet. This must be an IPv4 address with a
+               CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+               service if not set.
+        :param pulumi.Input[int] port: Port in the Private Network.
         :param pulumi.Input[str] region: The region you want to attach the resource to
         :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
@@ -71,7 +73,7 @@ class DocumentDBPrivateNetworkEndpointArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[str]:
         """
-        Instance on which the endpoint is attached
+        UUID of the documentdb instance.
         """
         return pulumi.get(self, "instance_id")
 
@@ -83,7 +85,7 @@ class DocumentDBPrivateNetworkEndpointArgs:
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> pulumi.Input[str]:
         """
-        The private network ID
+        The ID of the private network.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -95,7 +97,9 @@ class DocumentDBPrivateNetworkEndpointArgs:
     @pulumi.getter(name="ipNet")
     def ip_net(self) -> Optional[pulumi.Input[str]]:
         """
-        The IP with the given mask within the private subnet
+        The IP network address within the private subnet. This must be an IPv4 address with a
+        CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+        service if not set.
         """
         return pulumi.get(self, "ip_net")
 
@@ -107,7 +111,7 @@ class DocumentDBPrivateNetworkEndpointArgs:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        The port of your private service
+        Port in the Private Network.
         """
         return pulumi.get(self, "port")
 
@@ -154,13 +158,15 @@ class _DocumentDBPrivateNetworkEndpointState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DocumentDBPrivateNetworkEndpoint resources.
-        :param pulumi.Input[str] hostname: The hostname of your endpoint
-        :param pulumi.Input[str] instance_id: Instance on which the endpoint is attached
-        :param pulumi.Input[str] ip: The IP of your private network service
-        :param pulumi.Input[str] ip_net: The IP with the given mask within the private subnet
-        :param pulumi.Input[str] name: The name of your private service
-        :param pulumi.Input[int] port: The port of your private service
-        :param pulumi.Input[str] private_network_id: The private network ID
+        :param pulumi.Input[str] hostname: Hostname of the endpoint.
+        :param pulumi.Input[str] instance_id: UUID of the documentdb instance.
+        :param pulumi.Input[str] ip: IPv4 address on the network.
+        :param pulumi.Input[str] ip_net: The IP network address within the private subnet. This must be an IPv4 address with a
+               CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+               service if not set.
+        :param pulumi.Input[str] name: Name of the endpoint.
+        :param pulumi.Input[int] port: Port in the Private Network.
+        :param pulumi.Input[str] private_network_id: The ID of the private network.
         :param pulumi.Input[str] region: The region you want to attach the resource to
         :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
@@ -220,7 +226,7 @@ class _DocumentDBPrivateNetworkEndpointState:
     @pulumi.getter
     def hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        The hostname of your endpoint
+        Hostname of the endpoint.
         """
         return pulumi.get(self, "hostname")
 
@@ -232,7 +238,7 @@ class _DocumentDBPrivateNetworkEndpointState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Instance on which the endpoint is attached
+        UUID of the documentdb instance.
         """
         return pulumi.get(self, "instance_id")
 
@@ -244,7 +250,7 @@ class _DocumentDBPrivateNetworkEndpointState:
     @pulumi.getter
     def ip(self) -> Optional[pulumi.Input[str]]:
         """
-        The IP of your private network service
+        IPv4 address on the network.
         """
         return pulumi.get(self, "ip")
 
@@ -256,7 +262,9 @@ class _DocumentDBPrivateNetworkEndpointState:
     @pulumi.getter(name="ipNet")
     def ip_net(self) -> Optional[pulumi.Input[str]]:
         """
-        The IP with the given mask within the private subnet
+        The IP network address within the private subnet. This must be an IPv4 address with a
+        CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+        service if not set.
         """
         return pulumi.get(self, "ip_net")
 
@@ -268,7 +276,7 @@ class _DocumentDBPrivateNetworkEndpointState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of your private service
+        Name of the endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -280,7 +288,7 @@ class _DocumentDBPrivateNetworkEndpointState:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        The port of your private service
+        Port in the Private Network.
         """
         return pulumi.get(self, "port")
 
@@ -292,7 +300,7 @@ class _DocumentDBPrivateNetworkEndpointState:
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The private network ID
+        The ID of the private network.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -338,13 +346,22 @@ class DocumentDBPrivateNetworkEndpoint(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a DocumentDBPrivateNetworkEndpoint resource with the given unique name, props, and options.
+        ## Import
+
+        Database Instance Endpoint can be imported using the `{region}/{endpoint_id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint end fr-par/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] instance_id: Instance on which the endpoint is attached
-        :param pulumi.Input[str] ip_net: The IP with the given mask within the private subnet
-        :param pulumi.Input[int] port: The port of your private service
-        :param pulumi.Input[str] private_network_id: The private network ID
+        :param pulumi.Input[str] instance_id: UUID of the documentdb instance.
+        :param pulumi.Input[str] ip_net: The IP network address within the private subnet. This must be an IPv4 address with a
+               CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+               service if not set.
+        :param pulumi.Input[int] port: Port in the Private Network.
+        :param pulumi.Input[str] private_network_id: The ID of the private network.
         :param pulumi.Input[str] region: The region you want to attach the resource to
         :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
@@ -355,7 +372,14 @@ class DocumentDBPrivateNetworkEndpoint(pulumi.CustomResource):
                  args: DocumentDBPrivateNetworkEndpointArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DocumentDBPrivateNetworkEndpoint resource with the given unique name, props, and options.
+        ## Import
+
+        Database Instance Endpoint can be imported using the `{region}/{endpoint_id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint end fr-par/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param DocumentDBPrivateNetworkEndpointArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -429,13 +453,15 @@ class DocumentDBPrivateNetworkEndpoint(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] hostname: The hostname of your endpoint
-        :param pulumi.Input[str] instance_id: Instance on which the endpoint is attached
-        :param pulumi.Input[str] ip: The IP of your private network service
-        :param pulumi.Input[str] ip_net: The IP with the given mask within the private subnet
-        :param pulumi.Input[str] name: The name of your private service
-        :param pulumi.Input[int] port: The port of your private service
-        :param pulumi.Input[str] private_network_id: The private network ID
+        :param pulumi.Input[str] hostname: Hostname of the endpoint.
+        :param pulumi.Input[str] instance_id: UUID of the documentdb instance.
+        :param pulumi.Input[str] ip: IPv4 address on the network.
+        :param pulumi.Input[str] ip_net: The IP network address within the private subnet. This must be an IPv4 address with a
+               CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+               service if not set.
+        :param pulumi.Input[str] name: Name of the endpoint.
+        :param pulumi.Input[int] port: Port in the Private Network.
+        :param pulumi.Input[str] private_network_id: The ID of the private network.
         :param pulumi.Input[str] region: The region you want to attach the resource to
         :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
@@ -458,7 +484,7 @@ class DocumentDBPrivateNetworkEndpoint(pulumi.CustomResource):
     @pulumi.getter
     def hostname(self) -> pulumi.Output[str]:
         """
-        The hostname of your endpoint
+        Hostname of the endpoint.
         """
         return pulumi.get(self, "hostname")
 
@@ -466,7 +492,7 @@ class DocumentDBPrivateNetworkEndpoint(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
         """
-        Instance on which the endpoint is attached
+        UUID of the documentdb instance.
         """
         return pulumi.get(self, "instance_id")
 
@@ -474,7 +500,7 @@ class DocumentDBPrivateNetworkEndpoint(pulumi.CustomResource):
     @pulumi.getter
     def ip(self) -> pulumi.Output[str]:
         """
-        The IP of your private network service
+        IPv4 address on the network.
         """
         return pulumi.get(self, "ip")
 
@@ -482,7 +508,9 @@ class DocumentDBPrivateNetworkEndpoint(pulumi.CustomResource):
     @pulumi.getter(name="ipNet")
     def ip_net(self) -> pulumi.Output[str]:
         """
-        The IP with the given mask within the private subnet
+        The IP network address within the private subnet. This must be an IPv4 address with a
+        CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+        service if not set.
         """
         return pulumi.get(self, "ip_net")
 
@@ -490,7 +518,7 @@ class DocumentDBPrivateNetworkEndpoint(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of your private service
+        Name of the endpoint.
         """
         return pulumi.get(self, "name")
 
@@ -498,7 +526,7 @@ class DocumentDBPrivateNetworkEndpoint(pulumi.CustomResource):
     @pulumi.getter
     def port(self) -> pulumi.Output[int]:
         """
-        The port of your private service
+        Port in the Private Network.
         """
         return pulumi.get(self, "port")
 
@@ -506,7 +534,7 @@ class DocumentDBPrivateNetworkEndpoint(pulumi.CustomResource):
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> pulumi.Output[str]:
         """
-        The private network ID
+        The ID of the private network.
         """
         return pulumi.get(self, "private_network_id")
 

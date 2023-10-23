@@ -1177,10 +1177,228 @@ func (o CockpitTokenScopesPtrOutput) WriteMetrics() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+type ContainerTriggerNats struct {
+	// ID of the mnq nats account.
+	AccountId *string `pulumi:"accountId"`
+	// ID of the project that contain the mnq nats account, defaults to provider's project
+	ProjectId *string `pulumi:"projectId"`
+	// `region`). The region in which the namespace should be created.
+	Region *string `pulumi:"region"`
+	// The subject to listen to
+	Subject string `pulumi:"subject"`
+}
+
+// ContainerTriggerNatsInput is an input type that accepts ContainerTriggerNatsArgs and ContainerTriggerNatsOutput values.
+// You can construct a concrete instance of `ContainerTriggerNatsInput` via:
+//
+//	ContainerTriggerNatsArgs{...}
+type ContainerTriggerNatsInput interface {
+	pulumi.Input
+
+	ToContainerTriggerNatsOutput() ContainerTriggerNatsOutput
+	ToContainerTriggerNatsOutputWithContext(context.Context) ContainerTriggerNatsOutput
+}
+
+type ContainerTriggerNatsArgs struct {
+	// ID of the mnq nats account.
+	AccountId pulumi.StringPtrInput `pulumi:"accountId"`
+	// ID of the project that contain the mnq nats account, defaults to provider's project
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// `region`). The region in which the namespace should be created.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// The subject to listen to
+	Subject pulumi.StringInput `pulumi:"subject"`
+}
+
+func (ContainerTriggerNatsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContainerTriggerNats)(nil)).Elem()
+}
+
+func (i ContainerTriggerNatsArgs) ToContainerTriggerNatsOutput() ContainerTriggerNatsOutput {
+	return i.ToContainerTriggerNatsOutputWithContext(context.Background())
+}
+
+func (i ContainerTriggerNatsArgs) ToContainerTriggerNatsOutputWithContext(ctx context.Context) ContainerTriggerNatsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerTriggerNatsOutput)
+}
+
+func (i ContainerTriggerNatsArgs) ToOutput(ctx context.Context) pulumix.Output[ContainerTriggerNats] {
+	return pulumix.Output[ContainerTriggerNats]{
+		OutputState: i.ToContainerTriggerNatsOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i ContainerTriggerNatsArgs) ToContainerTriggerNatsPtrOutput() ContainerTriggerNatsPtrOutput {
+	return i.ToContainerTriggerNatsPtrOutputWithContext(context.Background())
+}
+
+func (i ContainerTriggerNatsArgs) ToContainerTriggerNatsPtrOutputWithContext(ctx context.Context) ContainerTriggerNatsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerTriggerNatsOutput).ToContainerTriggerNatsPtrOutputWithContext(ctx)
+}
+
+// ContainerTriggerNatsPtrInput is an input type that accepts ContainerTriggerNatsArgs, ContainerTriggerNatsPtr and ContainerTriggerNatsPtrOutput values.
+// You can construct a concrete instance of `ContainerTriggerNatsPtrInput` via:
+//
+//	        ContainerTriggerNatsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ContainerTriggerNatsPtrInput interface {
+	pulumi.Input
+
+	ToContainerTriggerNatsPtrOutput() ContainerTriggerNatsPtrOutput
+	ToContainerTriggerNatsPtrOutputWithContext(context.Context) ContainerTriggerNatsPtrOutput
+}
+
+type containerTriggerNatsPtrType ContainerTriggerNatsArgs
+
+func ContainerTriggerNatsPtr(v *ContainerTriggerNatsArgs) ContainerTriggerNatsPtrInput {
+	return (*containerTriggerNatsPtrType)(v)
+}
+
+func (*containerTriggerNatsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContainerTriggerNats)(nil)).Elem()
+}
+
+func (i *containerTriggerNatsPtrType) ToContainerTriggerNatsPtrOutput() ContainerTriggerNatsPtrOutput {
+	return i.ToContainerTriggerNatsPtrOutputWithContext(context.Background())
+}
+
+func (i *containerTriggerNatsPtrType) ToContainerTriggerNatsPtrOutputWithContext(ctx context.Context) ContainerTriggerNatsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContainerTriggerNatsPtrOutput)
+}
+
+func (i *containerTriggerNatsPtrType) ToOutput(ctx context.Context) pulumix.Output[*ContainerTriggerNats] {
+	return pulumix.Output[*ContainerTriggerNats]{
+		OutputState: i.ToContainerTriggerNatsPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type ContainerTriggerNatsOutput struct{ *pulumi.OutputState }
+
+func (ContainerTriggerNatsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContainerTriggerNats)(nil)).Elem()
+}
+
+func (o ContainerTriggerNatsOutput) ToContainerTriggerNatsOutput() ContainerTriggerNatsOutput {
+	return o
+}
+
+func (o ContainerTriggerNatsOutput) ToContainerTriggerNatsOutputWithContext(ctx context.Context) ContainerTriggerNatsOutput {
+	return o
+}
+
+func (o ContainerTriggerNatsOutput) ToContainerTriggerNatsPtrOutput() ContainerTriggerNatsPtrOutput {
+	return o.ToContainerTriggerNatsPtrOutputWithContext(context.Background())
+}
+
+func (o ContainerTriggerNatsOutput) ToContainerTriggerNatsPtrOutputWithContext(ctx context.Context) ContainerTriggerNatsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ContainerTriggerNats) *ContainerTriggerNats {
+		return &v
+	}).(ContainerTriggerNatsPtrOutput)
+}
+
+func (o ContainerTriggerNatsOutput) ToOutput(ctx context.Context) pulumix.Output[ContainerTriggerNats] {
+	return pulumix.Output[ContainerTriggerNats]{
+		OutputState: o.OutputState,
+	}
+}
+
+// ID of the mnq nats account.
+func (o ContainerTriggerNatsOutput) AccountId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContainerTriggerNats) *string { return v.AccountId }).(pulumi.StringPtrOutput)
+}
+
+// ID of the project that contain the mnq nats account, defaults to provider's project
+func (o ContainerTriggerNatsOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContainerTriggerNats) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
+}
+
+// `region`). The region in which the namespace should be created.
+func (o ContainerTriggerNatsOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContainerTriggerNats) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The subject to listen to
+func (o ContainerTriggerNatsOutput) Subject() pulumi.StringOutput {
+	return o.ApplyT(func(v ContainerTriggerNats) string { return v.Subject }).(pulumi.StringOutput)
+}
+
+type ContainerTriggerNatsPtrOutput struct{ *pulumi.OutputState }
+
+func (ContainerTriggerNatsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContainerTriggerNats)(nil)).Elem()
+}
+
+func (o ContainerTriggerNatsPtrOutput) ToContainerTriggerNatsPtrOutput() ContainerTriggerNatsPtrOutput {
+	return o
+}
+
+func (o ContainerTriggerNatsPtrOutput) ToContainerTriggerNatsPtrOutputWithContext(ctx context.Context) ContainerTriggerNatsPtrOutput {
+	return o
+}
+
+func (o ContainerTriggerNatsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ContainerTriggerNats] {
+	return pulumix.Output[*ContainerTriggerNats]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o ContainerTriggerNatsPtrOutput) Elem() ContainerTriggerNatsOutput {
+	return o.ApplyT(func(v *ContainerTriggerNats) ContainerTriggerNats {
+		if v != nil {
+			return *v
+		}
+		var ret ContainerTriggerNats
+		return ret
+	}).(ContainerTriggerNatsOutput)
+}
+
+// ID of the mnq nats account.
+func (o ContainerTriggerNatsPtrOutput) AccountId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerTriggerNats) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AccountId
+	}).(pulumi.StringPtrOutput)
+}
+
+// ID of the project that contain the mnq nats account, defaults to provider's project
+func (o ContainerTriggerNatsPtrOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerTriggerNats) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ProjectId
+	}).(pulumi.StringPtrOutput)
+}
+
+// `region`). The region in which the namespace should be created.
+func (o ContainerTriggerNatsPtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerTriggerNats) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
+// The subject to listen to
+func (o ContainerTriggerNatsPtrOutput) Subject() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerTriggerNats) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Subject
+	}).(pulumi.StringPtrOutput)
+}
+
 type ContainerTriggerSqs struct {
-	// ID of the mnq namespace
-	NamespaceId string `pulumi:"namespaceId"`
-	// ID of the project that contain the mnq namespace, defaults to provider's project
+	// ID of the mnq namespace. Deprecated.
+	NamespaceId *string `pulumi:"namespaceId"`
+	// ID of the project that contain the mnq nats account, defaults to provider's project
 	ProjectId *string `pulumi:"projectId"`
 	// Name of the queue
 	Queue string `pulumi:"queue"`
@@ -1200,9 +1418,9 @@ type ContainerTriggerSqsInput interface {
 }
 
 type ContainerTriggerSqsArgs struct {
-	// ID of the mnq namespace
-	NamespaceId pulumi.StringInput `pulumi:"namespaceId"`
-	// ID of the project that contain the mnq namespace, defaults to provider's project
+	// ID of the mnq namespace. Deprecated.
+	NamespaceId pulumi.StringPtrInput `pulumi:"namespaceId"`
+	// ID of the project that contain the mnq nats account, defaults to provider's project
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// Name of the queue
 	Queue pulumi.StringInput `pulumi:"queue"`
@@ -1305,12 +1523,12 @@ func (o ContainerTriggerSqsOutput) ToOutput(ctx context.Context) pulumix.Output[
 	}
 }
 
-// ID of the mnq namespace
-func (o ContainerTriggerSqsOutput) NamespaceId() pulumi.StringOutput {
-	return o.ApplyT(func(v ContainerTriggerSqs) string { return v.NamespaceId }).(pulumi.StringOutput)
+// ID of the mnq namespace. Deprecated.
+func (o ContainerTriggerSqsOutput) NamespaceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ContainerTriggerSqs) *string { return v.NamespaceId }).(pulumi.StringPtrOutput)
 }
 
-// ID of the project that contain the mnq namespace, defaults to provider's project
+// ID of the project that contain the mnq nats account, defaults to provider's project
 func (o ContainerTriggerSqsOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
@@ -1355,17 +1573,17 @@ func (o ContainerTriggerSqsPtrOutput) Elem() ContainerTriggerSqsOutput {
 	}).(ContainerTriggerSqsOutput)
 }
 
-// ID of the mnq namespace
+// ID of the mnq namespace. Deprecated.
 func (o ContainerTriggerSqsPtrOutput) NamespaceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.NamespaceId
+		return v.NamespaceId
 	}).(pulumi.StringPtrOutput)
 }
 
-// ID of the project that contain the mnq namespace, defaults to provider's project
+// ID of the project that contain the mnq nats account, defaults to provider's project
 func (o ContainerTriggerSqsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
 		if v == nil {
@@ -1396,11 +1614,16 @@ func (o ContainerTriggerSqsPtrOutput) Region() pulumi.StringPtrOutput {
 }
 
 type DocumentDBReadReplicaDirectAccess struct {
+	// The ID of the endpoint of the read replica.
 	EndpointId *string `pulumi:"endpointId"`
-	Hostname   *string `pulumi:"hostname"`
-	Ip         *string `pulumi:"ip"`
-	Name       *string `pulumi:"name"`
-	Port       *int    `pulumi:"port"`
+	// Hostname of the endpoint. Only one of ip and hostname may be set.
+	Hostname *string `pulumi:"hostname"`
+	// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+	Ip *string `pulumi:"ip"`
+	// Name of the endpoint.
+	Name *string `pulumi:"name"`
+	// TCP port of the endpoint.
+	Port *int `pulumi:"port"`
 }
 
 // DocumentDBReadReplicaDirectAccessInput is an input type that accepts DocumentDBReadReplicaDirectAccessArgs and DocumentDBReadReplicaDirectAccessOutput values.
@@ -1415,11 +1638,16 @@ type DocumentDBReadReplicaDirectAccessInput interface {
 }
 
 type DocumentDBReadReplicaDirectAccessArgs struct {
+	// The ID of the endpoint of the read replica.
 	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
-	Hostname   pulumi.StringPtrInput `pulumi:"hostname"`
-	Ip         pulumi.StringPtrInput `pulumi:"ip"`
-	Name       pulumi.StringPtrInput `pulumi:"name"`
-	Port       pulumi.IntPtrInput    `pulumi:"port"`
+	// Hostname of the endpoint. Only one of ip and hostname may be set.
+	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
+	// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+	Ip pulumi.StringPtrInput `pulumi:"ip"`
+	// Name of the endpoint.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// TCP port of the endpoint.
+	Port pulumi.IntPtrInput `pulumi:"port"`
 }
 
 func (DocumentDBReadReplicaDirectAccessArgs) ElementType() reflect.Type {
@@ -1517,22 +1745,27 @@ func (o DocumentDBReadReplicaDirectAccessOutput) ToOutput(ctx context.Context) p
 	}
 }
 
+// The ID of the endpoint of the read replica.
 func (o DocumentDBReadReplicaDirectAccessOutput) EndpointId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DocumentDBReadReplicaDirectAccess) *string { return v.EndpointId }).(pulumi.StringPtrOutput)
 }
 
+// Hostname of the endpoint. Only one of ip and hostname may be set.
 func (o DocumentDBReadReplicaDirectAccessOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DocumentDBReadReplicaDirectAccess) *string { return v.Hostname }).(pulumi.StringPtrOutput)
 }
 
+// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
 func (o DocumentDBReadReplicaDirectAccessOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DocumentDBReadReplicaDirectAccess) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
 
+// Name of the endpoint.
 func (o DocumentDBReadReplicaDirectAccessOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DocumentDBReadReplicaDirectAccess) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// TCP port of the endpoint.
 func (o DocumentDBReadReplicaDirectAccessOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DocumentDBReadReplicaDirectAccess) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
@@ -1567,6 +1800,7 @@ func (o DocumentDBReadReplicaDirectAccessPtrOutput) Elem() DocumentDBReadReplica
 	}).(DocumentDBReadReplicaDirectAccessOutput)
 }
 
+// The ID of the endpoint of the read replica.
 func (o DocumentDBReadReplicaDirectAccessPtrOutput) EndpointId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DocumentDBReadReplicaDirectAccess) *string {
 		if v == nil {
@@ -1576,6 +1810,7 @@ func (o DocumentDBReadReplicaDirectAccessPtrOutput) EndpointId() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
+// Hostname of the endpoint. Only one of ip and hostname may be set.
 func (o DocumentDBReadReplicaDirectAccessPtrOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DocumentDBReadReplicaDirectAccess) *string {
 		if v == nil {
@@ -1585,6 +1820,7 @@ func (o DocumentDBReadReplicaDirectAccessPtrOutput) Hostname() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
+// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
 func (o DocumentDBReadReplicaDirectAccessPtrOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DocumentDBReadReplicaDirectAccess) *string {
 		if v == nil {
@@ -1594,6 +1830,7 @@ func (o DocumentDBReadReplicaDirectAccessPtrOutput) Ip() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
+// Name of the endpoint.
 func (o DocumentDBReadReplicaDirectAccessPtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DocumentDBReadReplicaDirectAccess) *string {
 		if v == nil {
@@ -1603,6 +1840,7 @@ func (o DocumentDBReadReplicaDirectAccessPtrOutput) Name() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
+// TCP port of the endpoint.
 func (o DocumentDBReadReplicaDirectAccessPtrOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *DocumentDBReadReplicaDirectAccess) *int {
 		if v == nil {
@@ -1613,14 +1851,23 @@ func (o DocumentDBReadReplicaDirectAccessPtrOutput) Port() pulumi.IntPtrOutput {
 }
 
 type DocumentDBReadReplicaPrivateNetwork struct {
-	EndpointId       *string `pulumi:"endpointId"`
-	Hostname         *string `pulumi:"hostname"`
-	Ip               *string `pulumi:"ip"`
-	Name             *string `pulumi:"name"`
-	Port             *int    `pulumi:"port"`
-	PrivateNetworkId string  `pulumi:"privateNetworkId"`
-	ServiceIp        *string `pulumi:"serviceIp"`
-	Zone             *string `pulumi:"zone"`
+	// The ID of the endpoint of the read replica.
+	EndpointId *string `pulumi:"endpointId"`
+	// Hostname of the endpoint. Only one of ip and hostname may be set.
+	Hostname *string `pulumi:"hostname"`
+	// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+	Ip *string `pulumi:"ip"`
+	// Name of the endpoint.
+	Name *string `pulumi:"name"`
+	// TCP port of the endpoint.
+	Port *int `pulumi:"port"`
+	// UUID of the private network to be connected to the read replica.
+	PrivateNetworkId string `pulumi:"privateNetworkId"`
+	// The IP network address within the private subnet. This must be an IPv4 address with a
+	// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+	// service if not set.
+	ServiceIp *string `pulumi:"serviceIp"`
+	Zone      *string `pulumi:"zone"`
 }
 
 // DocumentDBReadReplicaPrivateNetworkInput is an input type that accepts DocumentDBReadReplicaPrivateNetworkArgs and DocumentDBReadReplicaPrivateNetworkOutput values.
@@ -1635,14 +1882,23 @@ type DocumentDBReadReplicaPrivateNetworkInput interface {
 }
 
 type DocumentDBReadReplicaPrivateNetworkArgs struct {
-	EndpointId       pulumi.StringPtrInput `pulumi:"endpointId"`
-	Hostname         pulumi.StringPtrInput `pulumi:"hostname"`
-	Ip               pulumi.StringPtrInput `pulumi:"ip"`
-	Name             pulumi.StringPtrInput `pulumi:"name"`
-	Port             pulumi.IntPtrInput    `pulumi:"port"`
-	PrivateNetworkId pulumi.StringInput    `pulumi:"privateNetworkId"`
-	ServiceIp        pulumi.StringPtrInput `pulumi:"serviceIp"`
-	Zone             pulumi.StringPtrInput `pulumi:"zone"`
+	// The ID of the endpoint of the read replica.
+	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
+	// Hostname of the endpoint. Only one of ip and hostname may be set.
+	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
+	// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+	Ip pulumi.StringPtrInput `pulumi:"ip"`
+	// Name of the endpoint.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// TCP port of the endpoint.
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// UUID of the private network to be connected to the read replica.
+	PrivateNetworkId pulumi.StringInput `pulumi:"privateNetworkId"`
+	// The IP network address within the private subnet. This must be an IPv4 address with a
+	// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+	// service if not set.
+	ServiceIp pulumi.StringPtrInput `pulumi:"serviceIp"`
+	Zone      pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (DocumentDBReadReplicaPrivateNetworkArgs) ElementType() reflect.Type {
@@ -1740,30 +1996,39 @@ func (o DocumentDBReadReplicaPrivateNetworkOutput) ToOutput(ctx context.Context)
 	}
 }
 
+// The ID of the endpoint of the read replica.
 func (o DocumentDBReadReplicaPrivateNetworkOutput) EndpointId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DocumentDBReadReplicaPrivateNetwork) *string { return v.EndpointId }).(pulumi.StringPtrOutput)
 }
 
+// Hostname of the endpoint. Only one of ip and hostname may be set.
 func (o DocumentDBReadReplicaPrivateNetworkOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DocumentDBReadReplicaPrivateNetwork) *string { return v.Hostname }).(pulumi.StringPtrOutput)
 }
 
+// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
 func (o DocumentDBReadReplicaPrivateNetworkOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DocumentDBReadReplicaPrivateNetwork) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
 
+// Name of the endpoint.
 func (o DocumentDBReadReplicaPrivateNetworkOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DocumentDBReadReplicaPrivateNetwork) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// TCP port of the endpoint.
 func (o DocumentDBReadReplicaPrivateNetworkOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DocumentDBReadReplicaPrivateNetwork) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
+// UUID of the private network to be connected to the read replica.
 func (o DocumentDBReadReplicaPrivateNetworkOutput) PrivateNetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v DocumentDBReadReplicaPrivateNetwork) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
+// The IP network address within the private subnet. This must be an IPv4 address with a
+// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+// service if not set.
 func (o DocumentDBReadReplicaPrivateNetworkOutput) ServiceIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DocumentDBReadReplicaPrivateNetwork) *string { return v.ServiceIp }).(pulumi.StringPtrOutput)
 }
@@ -1802,6 +2067,7 @@ func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) Elem() DocumentDBReadRepli
 	}).(DocumentDBReadReplicaPrivateNetworkOutput)
 }
 
+// The ID of the endpoint of the read replica.
 func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) EndpointId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DocumentDBReadReplicaPrivateNetwork) *string {
 		if v == nil {
@@ -1811,6 +2077,7 @@ func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) EndpointId() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
+// Hostname of the endpoint. Only one of ip and hostname may be set.
 func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DocumentDBReadReplicaPrivateNetwork) *string {
 		if v == nil {
@@ -1820,6 +2087,7 @@ func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) Hostname() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
+// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
 func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DocumentDBReadReplicaPrivateNetwork) *string {
 		if v == nil {
@@ -1829,6 +2097,7 @@ func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) Ip() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
+// Name of the endpoint.
 func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DocumentDBReadReplicaPrivateNetwork) *string {
 		if v == nil {
@@ -1838,6 +2107,7 @@ func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) Name() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
+// TCP port of the endpoint.
 func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *DocumentDBReadReplicaPrivateNetwork) *int {
 		if v == nil {
@@ -1847,6 +2117,7 @@ func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) Port() pulumi.IntPtrOutput
 	}).(pulumi.IntPtrOutput)
 }
 
+// UUID of the private network to be connected to the read replica.
 func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) PrivateNetworkId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DocumentDBReadReplicaPrivateNetwork) *string {
 		if v == nil {
@@ -1856,6 +2127,9 @@ func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) PrivateNetworkId() pulumi.
 	}).(pulumi.StringPtrOutput)
 }
 
+// The IP network address within the private subnet. This must be an IPv4 address with a
+// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+// service if not set.
 func (o DocumentDBReadReplicaPrivateNetworkPtrOutput) ServiceIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DocumentDBReadReplicaPrivateNetwork) *string {
 		if v == nil {
@@ -2671,10 +2945,228 @@ func (o DomainRecordWeightedArrayOutput) Index(i pulumi.IntInput) DomainRecordWe
 	}).(DomainRecordWeightedOutput)
 }
 
+type FunctionTriggerNats struct {
+	// ID of the mnq nats account.
+	AccountId *string `pulumi:"accountId"`
+	// ID of the project that contain the mnq nats account, defaults to provider's project
+	ProjectId *string `pulumi:"projectId"`
+	// `region`). The region in which the namespace should be created.
+	Region *string `pulumi:"region"`
+	// The subject to listen to
+	Subject string `pulumi:"subject"`
+}
+
+// FunctionTriggerNatsInput is an input type that accepts FunctionTriggerNatsArgs and FunctionTriggerNatsOutput values.
+// You can construct a concrete instance of `FunctionTriggerNatsInput` via:
+//
+//	FunctionTriggerNatsArgs{...}
+type FunctionTriggerNatsInput interface {
+	pulumi.Input
+
+	ToFunctionTriggerNatsOutput() FunctionTriggerNatsOutput
+	ToFunctionTriggerNatsOutputWithContext(context.Context) FunctionTriggerNatsOutput
+}
+
+type FunctionTriggerNatsArgs struct {
+	// ID of the mnq nats account.
+	AccountId pulumi.StringPtrInput `pulumi:"accountId"`
+	// ID of the project that contain the mnq nats account, defaults to provider's project
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// `region`). The region in which the namespace should be created.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// The subject to listen to
+	Subject pulumi.StringInput `pulumi:"subject"`
+}
+
+func (FunctionTriggerNatsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FunctionTriggerNats)(nil)).Elem()
+}
+
+func (i FunctionTriggerNatsArgs) ToFunctionTriggerNatsOutput() FunctionTriggerNatsOutput {
+	return i.ToFunctionTriggerNatsOutputWithContext(context.Background())
+}
+
+func (i FunctionTriggerNatsArgs) ToFunctionTriggerNatsOutputWithContext(ctx context.Context) FunctionTriggerNatsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionTriggerNatsOutput)
+}
+
+func (i FunctionTriggerNatsArgs) ToOutput(ctx context.Context) pulumix.Output[FunctionTriggerNats] {
+	return pulumix.Output[FunctionTriggerNats]{
+		OutputState: i.ToFunctionTriggerNatsOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i FunctionTriggerNatsArgs) ToFunctionTriggerNatsPtrOutput() FunctionTriggerNatsPtrOutput {
+	return i.ToFunctionTriggerNatsPtrOutputWithContext(context.Background())
+}
+
+func (i FunctionTriggerNatsArgs) ToFunctionTriggerNatsPtrOutputWithContext(ctx context.Context) FunctionTriggerNatsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionTriggerNatsOutput).ToFunctionTriggerNatsPtrOutputWithContext(ctx)
+}
+
+// FunctionTriggerNatsPtrInput is an input type that accepts FunctionTriggerNatsArgs, FunctionTriggerNatsPtr and FunctionTriggerNatsPtrOutput values.
+// You can construct a concrete instance of `FunctionTriggerNatsPtrInput` via:
+//
+//	        FunctionTriggerNatsArgs{...}
+//
+//	or:
+//
+//	        nil
+type FunctionTriggerNatsPtrInput interface {
+	pulumi.Input
+
+	ToFunctionTriggerNatsPtrOutput() FunctionTriggerNatsPtrOutput
+	ToFunctionTriggerNatsPtrOutputWithContext(context.Context) FunctionTriggerNatsPtrOutput
+}
+
+type functionTriggerNatsPtrType FunctionTriggerNatsArgs
+
+func FunctionTriggerNatsPtr(v *FunctionTriggerNatsArgs) FunctionTriggerNatsPtrInput {
+	return (*functionTriggerNatsPtrType)(v)
+}
+
+func (*functionTriggerNatsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**FunctionTriggerNats)(nil)).Elem()
+}
+
+func (i *functionTriggerNatsPtrType) ToFunctionTriggerNatsPtrOutput() FunctionTriggerNatsPtrOutput {
+	return i.ToFunctionTriggerNatsPtrOutputWithContext(context.Background())
+}
+
+func (i *functionTriggerNatsPtrType) ToFunctionTriggerNatsPtrOutputWithContext(ctx context.Context) FunctionTriggerNatsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FunctionTriggerNatsPtrOutput)
+}
+
+func (i *functionTriggerNatsPtrType) ToOutput(ctx context.Context) pulumix.Output[*FunctionTriggerNats] {
+	return pulumix.Output[*FunctionTriggerNats]{
+		OutputState: i.ToFunctionTriggerNatsPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type FunctionTriggerNatsOutput struct{ *pulumi.OutputState }
+
+func (FunctionTriggerNatsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FunctionTriggerNats)(nil)).Elem()
+}
+
+func (o FunctionTriggerNatsOutput) ToFunctionTriggerNatsOutput() FunctionTriggerNatsOutput {
+	return o
+}
+
+func (o FunctionTriggerNatsOutput) ToFunctionTriggerNatsOutputWithContext(ctx context.Context) FunctionTriggerNatsOutput {
+	return o
+}
+
+func (o FunctionTriggerNatsOutput) ToFunctionTriggerNatsPtrOutput() FunctionTriggerNatsPtrOutput {
+	return o.ToFunctionTriggerNatsPtrOutputWithContext(context.Background())
+}
+
+func (o FunctionTriggerNatsOutput) ToFunctionTriggerNatsPtrOutputWithContext(ctx context.Context) FunctionTriggerNatsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v FunctionTriggerNats) *FunctionTriggerNats {
+		return &v
+	}).(FunctionTriggerNatsPtrOutput)
+}
+
+func (o FunctionTriggerNatsOutput) ToOutput(ctx context.Context) pulumix.Output[FunctionTriggerNats] {
+	return pulumix.Output[FunctionTriggerNats]{
+		OutputState: o.OutputState,
+	}
+}
+
+// ID of the mnq nats account.
+func (o FunctionTriggerNatsOutput) AccountId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FunctionTriggerNats) *string { return v.AccountId }).(pulumi.StringPtrOutput)
+}
+
+// ID of the project that contain the mnq nats account, defaults to provider's project
+func (o FunctionTriggerNatsOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FunctionTriggerNats) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
+}
+
+// `region`). The region in which the namespace should be created.
+func (o FunctionTriggerNatsOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FunctionTriggerNats) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The subject to listen to
+func (o FunctionTriggerNatsOutput) Subject() pulumi.StringOutput {
+	return o.ApplyT(func(v FunctionTriggerNats) string { return v.Subject }).(pulumi.StringOutput)
+}
+
+type FunctionTriggerNatsPtrOutput struct{ *pulumi.OutputState }
+
+func (FunctionTriggerNatsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FunctionTriggerNats)(nil)).Elem()
+}
+
+func (o FunctionTriggerNatsPtrOutput) ToFunctionTriggerNatsPtrOutput() FunctionTriggerNatsPtrOutput {
+	return o
+}
+
+func (o FunctionTriggerNatsPtrOutput) ToFunctionTriggerNatsPtrOutputWithContext(ctx context.Context) FunctionTriggerNatsPtrOutput {
+	return o
+}
+
+func (o FunctionTriggerNatsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*FunctionTriggerNats] {
+	return pulumix.Output[*FunctionTriggerNats]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o FunctionTriggerNatsPtrOutput) Elem() FunctionTriggerNatsOutput {
+	return o.ApplyT(func(v *FunctionTriggerNats) FunctionTriggerNats {
+		if v != nil {
+			return *v
+		}
+		var ret FunctionTriggerNats
+		return ret
+	}).(FunctionTriggerNatsOutput)
+}
+
+// ID of the mnq nats account.
+func (o FunctionTriggerNatsPtrOutput) AccountId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FunctionTriggerNats) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AccountId
+	}).(pulumi.StringPtrOutput)
+}
+
+// ID of the project that contain the mnq nats account, defaults to provider's project
+func (o FunctionTriggerNatsPtrOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FunctionTriggerNats) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ProjectId
+	}).(pulumi.StringPtrOutput)
+}
+
+// `region`). The region in which the namespace should be created.
+func (o FunctionTriggerNatsPtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FunctionTriggerNats) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
+// The subject to listen to
+func (o FunctionTriggerNatsPtrOutput) Subject() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FunctionTriggerNats) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Subject
+	}).(pulumi.StringPtrOutput)
+}
+
 type FunctionTriggerSqs struct {
-	// ID of the mnq namespace
-	NamespaceId string `pulumi:"namespaceId"`
-	// ID of the project that contain the mnq namespace, defaults to provider's project
+	// ID of the mnq namespace. Deprecated.
+	NamespaceId *string `pulumi:"namespaceId"`
+	// ID of the project that contain the mnq nats account, defaults to provider's project
 	ProjectId *string `pulumi:"projectId"`
 	// Name of the queue
 	Queue string `pulumi:"queue"`
@@ -2694,9 +3186,9 @@ type FunctionTriggerSqsInput interface {
 }
 
 type FunctionTriggerSqsArgs struct {
-	// ID of the mnq namespace
-	NamespaceId pulumi.StringInput `pulumi:"namespaceId"`
-	// ID of the project that contain the mnq namespace, defaults to provider's project
+	// ID of the mnq namespace. Deprecated.
+	NamespaceId pulumi.StringPtrInput `pulumi:"namespaceId"`
+	// ID of the project that contain the mnq nats account, defaults to provider's project
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// Name of the queue
 	Queue pulumi.StringInput `pulumi:"queue"`
@@ -2799,12 +3291,12 @@ func (o FunctionTriggerSqsOutput) ToOutput(ctx context.Context) pulumix.Output[F
 	}
 }
 
-// ID of the mnq namespace
-func (o FunctionTriggerSqsOutput) NamespaceId() pulumi.StringOutput {
-	return o.ApplyT(func(v FunctionTriggerSqs) string { return v.NamespaceId }).(pulumi.StringOutput)
+// ID of the mnq namespace. Deprecated.
+func (o FunctionTriggerSqsOutput) NamespaceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FunctionTriggerSqs) *string { return v.NamespaceId }).(pulumi.StringPtrOutput)
 }
 
-// ID of the project that contain the mnq namespace, defaults to provider's project
+// ID of the project that contain the mnq nats account, defaults to provider's project
 func (o FunctionTriggerSqsOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FunctionTriggerSqs) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
@@ -2849,17 +3341,17 @@ func (o FunctionTriggerSqsPtrOutput) Elem() FunctionTriggerSqsOutput {
 	}).(FunctionTriggerSqsOutput)
 }
 
-// ID of the mnq namespace
+// ID of the mnq namespace. Deprecated.
 func (o FunctionTriggerSqsPtrOutput) NamespaceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTriggerSqs) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.NamespaceId
+		return v.NamespaceId
 	}).(pulumi.StringPtrOutput)
 }
 
-// ID of the project that contain the mnq namespace, defaults to provider's project
+// ID of the project that contain the mnq nats account, defaults to provider's project
 func (o FunctionTriggerSqsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTriggerSqs) *string {
 		if v == nil {
@@ -10489,6 +10981,205 @@ func (o MnqQueueSqsPtrOutput) VisibilityTimeoutSeconds() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+type MnqSqsCredentialsPermissions struct {
+	// . Defines if user can manage the associated resource(s).
+	CanManage *bool `pulumi:"canManage"`
+	// . Defines if user can publish messages to the service.
+	CanPublish *bool `pulumi:"canPublish"`
+	// . Defines if user can receive messages from the service.
+	CanReceive *bool `pulumi:"canReceive"`
+}
+
+// MnqSqsCredentialsPermissionsInput is an input type that accepts MnqSqsCredentialsPermissionsArgs and MnqSqsCredentialsPermissionsOutput values.
+// You can construct a concrete instance of `MnqSqsCredentialsPermissionsInput` via:
+//
+//	MnqSqsCredentialsPermissionsArgs{...}
+type MnqSqsCredentialsPermissionsInput interface {
+	pulumi.Input
+
+	ToMnqSqsCredentialsPermissionsOutput() MnqSqsCredentialsPermissionsOutput
+	ToMnqSqsCredentialsPermissionsOutputWithContext(context.Context) MnqSqsCredentialsPermissionsOutput
+}
+
+type MnqSqsCredentialsPermissionsArgs struct {
+	// . Defines if user can manage the associated resource(s).
+	CanManage pulumi.BoolPtrInput `pulumi:"canManage"`
+	// . Defines if user can publish messages to the service.
+	CanPublish pulumi.BoolPtrInput `pulumi:"canPublish"`
+	// . Defines if user can receive messages from the service.
+	CanReceive pulumi.BoolPtrInput `pulumi:"canReceive"`
+}
+
+func (MnqSqsCredentialsPermissionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MnqSqsCredentialsPermissions)(nil)).Elem()
+}
+
+func (i MnqSqsCredentialsPermissionsArgs) ToMnqSqsCredentialsPermissionsOutput() MnqSqsCredentialsPermissionsOutput {
+	return i.ToMnqSqsCredentialsPermissionsOutputWithContext(context.Background())
+}
+
+func (i MnqSqsCredentialsPermissionsArgs) ToMnqSqsCredentialsPermissionsOutputWithContext(ctx context.Context) MnqSqsCredentialsPermissionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MnqSqsCredentialsPermissionsOutput)
+}
+
+func (i MnqSqsCredentialsPermissionsArgs) ToOutput(ctx context.Context) pulumix.Output[MnqSqsCredentialsPermissions] {
+	return pulumix.Output[MnqSqsCredentialsPermissions]{
+		OutputState: i.ToMnqSqsCredentialsPermissionsOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i MnqSqsCredentialsPermissionsArgs) ToMnqSqsCredentialsPermissionsPtrOutput() MnqSqsCredentialsPermissionsPtrOutput {
+	return i.ToMnqSqsCredentialsPermissionsPtrOutputWithContext(context.Background())
+}
+
+func (i MnqSqsCredentialsPermissionsArgs) ToMnqSqsCredentialsPermissionsPtrOutputWithContext(ctx context.Context) MnqSqsCredentialsPermissionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MnqSqsCredentialsPermissionsOutput).ToMnqSqsCredentialsPermissionsPtrOutputWithContext(ctx)
+}
+
+// MnqSqsCredentialsPermissionsPtrInput is an input type that accepts MnqSqsCredentialsPermissionsArgs, MnqSqsCredentialsPermissionsPtr and MnqSqsCredentialsPermissionsPtrOutput values.
+// You can construct a concrete instance of `MnqSqsCredentialsPermissionsPtrInput` via:
+//
+//	        MnqSqsCredentialsPermissionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type MnqSqsCredentialsPermissionsPtrInput interface {
+	pulumi.Input
+
+	ToMnqSqsCredentialsPermissionsPtrOutput() MnqSqsCredentialsPermissionsPtrOutput
+	ToMnqSqsCredentialsPermissionsPtrOutputWithContext(context.Context) MnqSqsCredentialsPermissionsPtrOutput
+}
+
+type mnqSqsCredentialsPermissionsPtrType MnqSqsCredentialsPermissionsArgs
+
+func MnqSqsCredentialsPermissionsPtr(v *MnqSqsCredentialsPermissionsArgs) MnqSqsCredentialsPermissionsPtrInput {
+	return (*mnqSqsCredentialsPermissionsPtrType)(v)
+}
+
+func (*mnqSqsCredentialsPermissionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MnqSqsCredentialsPermissions)(nil)).Elem()
+}
+
+func (i *mnqSqsCredentialsPermissionsPtrType) ToMnqSqsCredentialsPermissionsPtrOutput() MnqSqsCredentialsPermissionsPtrOutput {
+	return i.ToMnqSqsCredentialsPermissionsPtrOutputWithContext(context.Background())
+}
+
+func (i *mnqSqsCredentialsPermissionsPtrType) ToMnqSqsCredentialsPermissionsPtrOutputWithContext(ctx context.Context) MnqSqsCredentialsPermissionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MnqSqsCredentialsPermissionsPtrOutput)
+}
+
+func (i *mnqSqsCredentialsPermissionsPtrType) ToOutput(ctx context.Context) pulumix.Output[*MnqSqsCredentialsPermissions] {
+	return pulumix.Output[*MnqSqsCredentialsPermissions]{
+		OutputState: i.ToMnqSqsCredentialsPermissionsPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type MnqSqsCredentialsPermissionsOutput struct{ *pulumi.OutputState }
+
+func (MnqSqsCredentialsPermissionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MnqSqsCredentialsPermissions)(nil)).Elem()
+}
+
+func (o MnqSqsCredentialsPermissionsOutput) ToMnqSqsCredentialsPermissionsOutput() MnqSqsCredentialsPermissionsOutput {
+	return o
+}
+
+func (o MnqSqsCredentialsPermissionsOutput) ToMnqSqsCredentialsPermissionsOutputWithContext(ctx context.Context) MnqSqsCredentialsPermissionsOutput {
+	return o
+}
+
+func (o MnqSqsCredentialsPermissionsOutput) ToMnqSqsCredentialsPermissionsPtrOutput() MnqSqsCredentialsPermissionsPtrOutput {
+	return o.ToMnqSqsCredentialsPermissionsPtrOutputWithContext(context.Background())
+}
+
+func (o MnqSqsCredentialsPermissionsOutput) ToMnqSqsCredentialsPermissionsPtrOutputWithContext(ctx context.Context) MnqSqsCredentialsPermissionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MnqSqsCredentialsPermissions) *MnqSqsCredentialsPermissions {
+		return &v
+	}).(MnqSqsCredentialsPermissionsPtrOutput)
+}
+
+func (o MnqSqsCredentialsPermissionsOutput) ToOutput(ctx context.Context) pulumix.Output[MnqSqsCredentialsPermissions] {
+	return pulumix.Output[MnqSqsCredentialsPermissions]{
+		OutputState: o.OutputState,
+	}
+}
+
+// . Defines if user can manage the associated resource(s).
+func (o MnqSqsCredentialsPermissionsOutput) CanManage() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v MnqSqsCredentialsPermissions) *bool { return v.CanManage }).(pulumi.BoolPtrOutput)
+}
+
+// . Defines if user can publish messages to the service.
+func (o MnqSqsCredentialsPermissionsOutput) CanPublish() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v MnqSqsCredentialsPermissions) *bool { return v.CanPublish }).(pulumi.BoolPtrOutput)
+}
+
+// . Defines if user can receive messages from the service.
+func (o MnqSqsCredentialsPermissionsOutput) CanReceive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v MnqSqsCredentialsPermissions) *bool { return v.CanReceive }).(pulumi.BoolPtrOutput)
+}
+
+type MnqSqsCredentialsPermissionsPtrOutput struct{ *pulumi.OutputState }
+
+func (MnqSqsCredentialsPermissionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MnqSqsCredentialsPermissions)(nil)).Elem()
+}
+
+func (o MnqSqsCredentialsPermissionsPtrOutput) ToMnqSqsCredentialsPermissionsPtrOutput() MnqSqsCredentialsPermissionsPtrOutput {
+	return o
+}
+
+func (o MnqSqsCredentialsPermissionsPtrOutput) ToMnqSqsCredentialsPermissionsPtrOutputWithContext(ctx context.Context) MnqSqsCredentialsPermissionsPtrOutput {
+	return o
+}
+
+func (o MnqSqsCredentialsPermissionsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*MnqSqsCredentialsPermissions] {
+	return pulumix.Output[*MnqSqsCredentialsPermissions]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o MnqSqsCredentialsPermissionsPtrOutput) Elem() MnqSqsCredentialsPermissionsOutput {
+	return o.ApplyT(func(v *MnqSqsCredentialsPermissions) MnqSqsCredentialsPermissions {
+		if v != nil {
+			return *v
+		}
+		var ret MnqSqsCredentialsPermissions
+		return ret
+	}).(MnqSqsCredentialsPermissionsOutput)
+}
+
+// . Defines if user can manage the associated resource(s).
+func (o MnqSqsCredentialsPermissionsPtrOutput) CanManage() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *MnqSqsCredentialsPermissions) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.CanManage
+	}).(pulumi.BoolPtrOutput)
+}
+
+// . Defines if user can publish messages to the service.
+func (o MnqSqsCredentialsPermissionsPtrOutput) CanPublish() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *MnqSqsCredentialsPermissions) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.CanPublish
+	}).(pulumi.BoolPtrOutput)
+}
+
+// . Defines if user can receive messages from the service.
+func (o MnqSqsCredentialsPermissionsPtrOutput) CanReceive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *MnqSqsCredentialsPermissions) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.CanReceive
+	}).(pulumi.BoolPtrOutput)
+}
+
 type ObjectBucketAclAccessControlPolicy struct {
 	Grants []ObjectBucketAclAccessControlPolicyGrant `pulumi:"grants"`
 	Owner  ObjectBucketAclAccessControlPolicyOwner   `pulumi:"owner"`
@@ -16333,6 +17024,332 @@ func (o GetBaremetalServerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) Ge
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBaremetalServerPrivateNetwork {
 		return vs[0].([]GetBaremetalServerPrivateNetwork)[vs[1].(int)]
 	}).(GetBaremetalServerPrivateNetworkOutput)
+}
+
+type GetBillingConsumptionsConsumption struct {
+	Category      string `pulumi:"category"`
+	Description   string `pulumi:"description"`
+	OperationPath string `pulumi:"operationPath"`
+	ProjectId     string `pulumi:"projectId"`
+	Value         string `pulumi:"value"`
+}
+
+// GetBillingConsumptionsConsumptionInput is an input type that accepts GetBillingConsumptionsConsumptionArgs and GetBillingConsumptionsConsumptionOutput values.
+// You can construct a concrete instance of `GetBillingConsumptionsConsumptionInput` via:
+//
+//	GetBillingConsumptionsConsumptionArgs{...}
+type GetBillingConsumptionsConsumptionInput interface {
+	pulumi.Input
+
+	ToGetBillingConsumptionsConsumptionOutput() GetBillingConsumptionsConsumptionOutput
+	ToGetBillingConsumptionsConsumptionOutputWithContext(context.Context) GetBillingConsumptionsConsumptionOutput
+}
+
+type GetBillingConsumptionsConsumptionArgs struct {
+	Category      pulumi.StringInput `pulumi:"category"`
+	Description   pulumi.StringInput `pulumi:"description"`
+	OperationPath pulumi.StringInput `pulumi:"operationPath"`
+	ProjectId     pulumi.StringInput `pulumi:"projectId"`
+	Value         pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetBillingConsumptionsConsumptionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBillingConsumptionsConsumption)(nil)).Elem()
+}
+
+func (i GetBillingConsumptionsConsumptionArgs) ToGetBillingConsumptionsConsumptionOutput() GetBillingConsumptionsConsumptionOutput {
+	return i.ToGetBillingConsumptionsConsumptionOutputWithContext(context.Background())
+}
+
+func (i GetBillingConsumptionsConsumptionArgs) ToGetBillingConsumptionsConsumptionOutputWithContext(ctx context.Context) GetBillingConsumptionsConsumptionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBillingConsumptionsConsumptionOutput)
+}
+
+func (i GetBillingConsumptionsConsumptionArgs) ToOutput(ctx context.Context) pulumix.Output[GetBillingConsumptionsConsumption] {
+	return pulumix.Output[GetBillingConsumptionsConsumption]{
+		OutputState: i.ToGetBillingConsumptionsConsumptionOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetBillingConsumptionsConsumptionArrayInput is an input type that accepts GetBillingConsumptionsConsumptionArray and GetBillingConsumptionsConsumptionArrayOutput values.
+// You can construct a concrete instance of `GetBillingConsumptionsConsumptionArrayInput` via:
+//
+//	GetBillingConsumptionsConsumptionArray{ GetBillingConsumptionsConsumptionArgs{...} }
+type GetBillingConsumptionsConsumptionArrayInput interface {
+	pulumi.Input
+
+	ToGetBillingConsumptionsConsumptionArrayOutput() GetBillingConsumptionsConsumptionArrayOutput
+	ToGetBillingConsumptionsConsumptionArrayOutputWithContext(context.Context) GetBillingConsumptionsConsumptionArrayOutput
+}
+
+type GetBillingConsumptionsConsumptionArray []GetBillingConsumptionsConsumptionInput
+
+func (GetBillingConsumptionsConsumptionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBillingConsumptionsConsumption)(nil)).Elem()
+}
+
+func (i GetBillingConsumptionsConsumptionArray) ToGetBillingConsumptionsConsumptionArrayOutput() GetBillingConsumptionsConsumptionArrayOutput {
+	return i.ToGetBillingConsumptionsConsumptionArrayOutputWithContext(context.Background())
+}
+
+func (i GetBillingConsumptionsConsumptionArray) ToGetBillingConsumptionsConsumptionArrayOutputWithContext(ctx context.Context) GetBillingConsumptionsConsumptionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBillingConsumptionsConsumptionArrayOutput)
+}
+
+func (i GetBillingConsumptionsConsumptionArray) ToOutput(ctx context.Context) pulumix.Output[[]GetBillingConsumptionsConsumption] {
+	return pulumix.Output[[]GetBillingConsumptionsConsumption]{
+		OutputState: i.ToGetBillingConsumptionsConsumptionArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetBillingConsumptionsConsumptionOutput struct{ *pulumi.OutputState }
+
+func (GetBillingConsumptionsConsumptionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBillingConsumptionsConsumption)(nil)).Elem()
+}
+
+func (o GetBillingConsumptionsConsumptionOutput) ToGetBillingConsumptionsConsumptionOutput() GetBillingConsumptionsConsumptionOutput {
+	return o
+}
+
+func (o GetBillingConsumptionsConsumptionOutput) ToGetBillingConsumptionsConsumptionOutputWithContext(ctx context.Context) GetBillingConsumptionsConsumptionOutput {
+	return o
+}
+
+func (o GetBillingConsumptionsConsumptionOutput) ToOutput(ctx context.Context) pulumix.Output[GetBillingConsumptionsConsumption] {
+	return pulumix.Output[GetBillingConsumptionsConsumption]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetBillingConsumptionsConsumptionOutput) Category() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingConsumptionsConsumption) string { return v.Category }).(pulumi.StringOutput)
+}
+
+func (o GetBillingConsumptionsConsumptionOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingConsumptionsConsumption) string { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o GetBillingConsumptionsConsumptionOutput) OperationPath() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingConsumptionsConsumption) string { return v.OperationPath }).(pulumi.StringOutput)
+}
+
+func (o GetBillingConsumptionsConsumptionOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingConsumptionsConsumption) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o GetBillingConsumptionsConsumptionOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingConsumptionsConsumption) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetBillingConsumptionsConsumptionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBillingConsumptionsConsumptionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBillingConsumptionsConsumption)(nil)).Elem()
+}
+
+func (o GetBillingConsumptionsConsumptionArrayOutput) ToGetBillingConsumptionsConsumptionArrayOutput() GetBillingConsumptionsConsumptionArrayOutput {
+	return o
+}
+
+func (o GetBillingConsumptionsConsumptionArrayOutput) ToGetBillingConsumptionsConsumptionArrayOutputWithContext(ctx context.Context) GetBillingConsumptionsConsumptionArrayOutput {
+	return o
+}
+
+func (o GetBillingConsumptionsConsumptionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetBillingConsumptionsConsumption] {
+	return pulumix.Output[[]GetBillingConsumptionsConsumption]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetBillingConsumptionsConsumptionArrayOutput) Index(i pulumi.IntInput) GetBillingConsumptionsConsumptionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBillingConsumptionsConsumption {
+		return vs[0].([]GetBillingConsumptionsConsumption)[vs[1].(int)]
+	}).(GetBillingConsumptionsConsumptionOutput)
+}
+
+type GetBillingInvoicesInvoice struct {
+	// The payment time limit, set according to the Organization's payment conditions (RFC 3339 format).
+	DueDate string `pulumi:"dueDate"`
+	// The associated invoice ID.
+	Id string `pulumi:"id"`
+	// Invoices with the given type are listed. Valid values are `periodic` and `purchase`.
+	InvoiceType string `pulumi:"invoiceType"`
+	// The date when the invoice was sent to the customer (RFC 3339 format).
+	IssuedDate string `pulumi:"issuedDate"`
+	// The invoice number.
+	Number int `pulumi:"number"`
+	// The start date of the billing period (RFC 3339 format).
+	StartDate string `pulumi:"startDate"`
+	// The total amount, taxed.
+	TotalTaxed string `pulumi:"totalTaxed"`
+	// The total amount, untaxed.
+	TotalUntaxed string `pulumi:"totalUntaxed"`
+}
+
+// GetBillingInvoicesInvoiceInput is an input type that accepts GetBillingInvoicesInvoiceArgs and GetBillingInvoicesInvoiceOutput values.
+// You can construct a concrete instance of `GetBillingInvoicesInvoiceInput` via:
+//
+//	GetBillingInvoicesInvoiceArgs{...}
+type GetBillingInvoicesInvoiceInput interface {
+	pulumi.Input
+
+	ToGetBillingInvoicesInvoiceOutput() GetBillingInvoicesInvoiceOutput
+	ToGetBillingInvoicesInvoiceOutputWithContext(context.Context) GetBillingInvoicesInvoiceOutput
+}
+
+type GetBillingInvoicesInvoiceArgs struct {
+	// The payment time limit, set according to the Organization's payment conditions (RFC 3339 format).
+	DueDate pulumi.StringInput `pulumi:"dueDate"`
+	// The associated invoice ID.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Invoices with the given type are listed. Valid values are `periodic` and `purchase`.
+	InvoiceType pulumi.StringInput `pulumi:"invoiceType"`
+	// The date when the invoice was sent to the customer (RFC 3339 format).
+	IssuedDate pulumi.StringInput `pulumi:"issuedDate"`
+	// The invoice number.
+	Number pulumi.IntInput `pulumi:"number"`
+	// The start date of the billing period (RFC 3339 format).
+	StartDate pulumi.StringInput `pulumi:"startDate"`
+	// The total amount, taxed.
+	TotalTaxed pulumi.StringInput `pulumi:"totalTaxed"`
+	// The total amount, untaxed.
+	TotalUntaxed pulumi.StringInput `pulumi:"totalUntaxed"`
+}
+
+func (GetBillingInvoicesInvoiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBillingInvoicesInvoice)(nil)).Elem()
+}
+
+func (i GetBillingInvoicesInvoiceArgs) ToGetBillingInvoicesInvoiceOutput() GetBillingInvoicesInvoiceOutput {
+	return i.ToGetBillingInvoicesInvoiceOutputWithContext(context.Background())
+}
+
+func (i GetBillingInvoicesInvoiceArgs) ToGetBillingInvoicesInvoiceOutputWithContext(ctx context.Context) GetBillingInvoicesInvoiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBillingInvoicesInvoiceOutput)
+}
+
+func (i GetBillingInvoicesInvoiceArgs) ToOutput(ctx context.Context) pulumix.Output[GetBillingInvoicesInvoice] {
+	return pulumix.Output[GetBillingInvoicesInvoice]{
+		OutputState: i.ToGetBillingInvoicesInvoiceOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetBillingInvoicesInvoiceArrayInput is an input type that accepts GetBillingInvoicesInvoiceArray and GetBillingInvoicesInvoiceArrayOutput values.
+// You can construct a concrete instance of `GetBillingInvoicesInvoiceArrayInput` via:
+//
+//	GetBillingInvoicesInvoiceArray{ GetBillingInvoicesInvoiceArgs{...} }
+type GetBillingInvoicesInvoiceArrayInput interface {
+	pulumi.Input
+
+	ToGetBillingInvoicesInvoiceArrayOutput() GetBillingInvoicesInvoiceArrayOutput
+	ToGetBillingInvoicesInvoiceArrayOutputWithContext(context.Context) GetBillingInvoicesInvoiceArrayOutput
+}
+
+type GetBillingInvoicesInvoiceArray []GetBillingInvoicesInvoiceInput
+
+func (GetBillingInvoicesInvoiceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBillingInvoicesInvoice)(nil)).Elem()
+}
+
+func (i GetBillingInvoicesInvoiceArray) ToGetBillingInvoicesInvoiceArrayOutput() GetBillingInvoicesInvoiceArrayOutput {
+	return i.ToGetBillingInvoicesInvoiceArrayOutputWithContext(context.Background())
+}
+
+func (i GetBillingInvoicesInvoiceArray) ToGetBillingInvoicesInvoiceArrayOutputWithContext(ctx context.Context) GetBillingInvoicesInvoiceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBillingInvoicesInvoiceArrayOutput)
+}
+
+func (i GetBillingInvoicesInvoiceArray) ToOutput(ctx context.Context) pulumix.Output[[]GetBillingInvoicesInvoice] {
+	return pulumix.Output[[]GetBillingInvoicesInvoice]{
+		OutputState: i.ToGetBillingInvoicesInvoiceArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetBillingInvoicesInvoiceOutput struct{ *pulumi.OutputState }
+
+func (GetBillingInvoicesInvoiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBillingInvoicesInvoice)(nil)).Elem()
+}
+
+func (o GetBillingInvoicesInvoiceOutput) ToGetBillingInvoicesInvoiceOutput() GetBillingInvoicesInvoiceOutput {
+	return o
+}
+
+func (o GetBillingInvoicesInvoiceOutput) ToGetBillingInvoicesInvoiceOutputWithContext(ctx context.Context) GetBillingInvoicesInvoiceOutput {
+	return o
+}
+
+func (o GetBillingInvoicesInvoiceOutput) ToOutput(ctx context.Context) pulumix.Output[GetBillingInvoicesInvoice] {
+	return pulumix.Output[GetBillingInvoicesInvoice]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The payment time limit, set according to the Organization's payment conditions (RFC 3339 format).
+func (o GetBillingInvoicesInvoiceOutput) DueDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingInvoicesInvoice) string { return v.DueDate }).(pulumi.StringOutput)
+}
+
+// The associated invoice ID.
+func (o GetBillingInvoicesInvoiceOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingInvoicesInvoice) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Invoices with the given type are listed. Valid values are `periodic` and `purchase`.
+func (o GetBillingInvoicesInvoiceOutput) InvoiceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingInvoicesInvoice) string { return v.InvoiceType }).(pulumi.StringOutput)
+}
+
+// The date when the invoice was sent to the customer (RFC 3339 format).
+func (o GetBillingInvoicesInvoiceOutput) IssuedDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingInvoicesInvoice) string { return v.IssuedDate }).(pulumi.StringOutput)
+}
+
+// The invoice number.
+func (o GetBillingInvoicesInvoiceOutput) Number() pulumi.IntOutput {
+	return o.ApplyT(func(v GetBillingInvoicesInvoice) int { return v.Number }).(pulumi.IntOutput)
+}
+
+// The start date of the billing period (RFC 3339 format).
+func (o GetBillingInvoicesInvoiceOutput) StartDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingInvoicesInvoice) string { return v.StartDate }).(pulumi.StringOutput)
+}
+
+// The total amount, taxed.
+func (o GetBillingInvoicesInvoiceOutput) TotalTaxed() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingInvoicesInvoice) string { return v.TotalTaxed }).(pulumi.StringOutput)
+}
+
+// The total amount, untaxed.
+func (o GetBillingInvoicesInvoiceOutput) TotalUntaxed() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingInvoicesInvoice) string { return v.TotalUntaxed }).(pulumi.StringOutput)
+}
+
+type GetBillingInvoicesInvoiceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBillingInvoicesInvoiceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBillingInvoicesInvoice)(nil)).Elem()
+}
+
+func (o GetBillingInvoicesInvoiceArrayOutput) ToGetBillingInvoicesInvoiceArrayOutput() GetBillingInvoicesInvoiceArrayOutput {
+	return o
+}
+
+func (o GetBillingInvoicesInvoiceArrayOutput) ToGetBillingInvoicesInvoiceArrayOutputWithContext(ctx context.Context) GetBillingInvoicesInvoiceArrayOutput {
+	return o
+}
+
+func (o GetBillingInvoicesInvoiceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetBillingInvoicesInvoice] {
+	return pulumix.Output[[]GetBillingInvoicesInvoice]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetBillingInvoicesInvoiceArrayOutput) Index(i pulumi.IntInput) GetBillingInvoicesInvoiceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBillingInvoicesInvoice {
+		return vs[0].([]GetBillingInvoicesInvoice)[vs[1].(int)]
+	}).(GetBillingInvoicesInvoiceOutput)
 }
 
 type GetCockpitEndpoint struct {
@@ -26761,6 +27778,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitEndpointArrayInput)(nil)).Elem(), CockpitEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitTokenScopesInput)(nil)).Elem(), CockpitTokenScopesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitTokenScopesPtrInput)(nil)).Elem(), CockpitTokenScopesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerNatsInput)(nil)).Elem(), ContainerTriggerNatsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerNatsPtrInput)(nil)).Elem(), ContainerTriggerNatsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerSqsInput)(nil)).Elem(), ContainerTriggerSqsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerSqsPtrInput)(nil)).Elem(), ContainerTriggerSqsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBReadReplicaDirectAccessInput)(nil)).Elem(), DocumentDBReadReplicaDirectAccessArgs{})
@@ -26777,6 +27796,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordViewArrayInput)(nil)).Elem(), DomainRecordViewArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordWeightedInput)(nil)).Elem(), DomainRecordWeightedArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordWeightedArrayInput)(nil)).Elem(), DomainRecordWeightedArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FunctionTriggerNatsInput)(nil)).Elem(), FunctionTriggerNatsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FunctionTriggerNatsPtrInput)(nil)).Elem(), FunctionTriggerNatsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FunctionTriggerSqsInput)(nil)).Elem(), FunctionTriggerSqsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FunctionTriggerSqsPtrInput)(nil)).Elem(), FunctionTriggerSqsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IamPolicyRuleInput)(nil)).Elem(), IamPolicyRuleArgs{})
@@ -26859,6 +27880,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqQueueNatsPtrInput)(nil)).Elem(), MnqQueueNatsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqQueueSqsInput)(nil)).Elem(), MnqQueueSqsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqQueueSqsPtrInput)(nil)).Elem(), MnqQueueSqsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MnqSqsCredentialsPermissionsInput)(nil)).Elem(), MnqSqsCredentialsPermissionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MnqSqsCredentialsPermissionsPtrInput)(nil)).Elem(), MnqSqsCredentialsPermissionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketAclAccessControlPolicyInput)(nil)).Elem(), ObjectBucketAclAccessControlPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketAclAccessControlPolicyPtrInput)(nil)).Elem(), ObjectBucketAclAccessControlPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketAclAccessControlPolicyGrantInput)(nil)).Elem(), ObjectBucketAclAccessControlPolicyGrantArgs{})
@@ -26929,6 +27952,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerOptionArrayInput)(nil)).Elem(), GetBaremetalServerOptionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerPrivateNetworkInput)(nil)).Elem(), GetBaremetalServerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerPrivateNetworkArrayInput)(nil)).Elem(), GetBaremetalServerPrivateNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBillingConsumptionsConsumptionInput)(nil)).Elem(), GetBillingConsumptionsConsumptionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBillingConsumptionsConsumptionArrayInput)(nil)).Elem(), GetBillingConsumptionsConsumptionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBillingInvoicesInvoiceInput)(nil)).Elem(), GetBillingInvoicesInvoiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBillingInvoicesInvoiceArrayInput)(nil)).Elem(), GetBillingInvoicesInvoiceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCockpitEndpointInput)(nil)).Elem(), GetCockpitEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCockpitEndpointArrayInput)(nil)).Elem(), GetCockpitEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordGeoIpInput)(nil)).Elem(), GetDomainRecordGeoIpArgs{})
@@ -27079,6 +28106,8 @@ func init() {
 	pulumi.RegisterOutputType(CockpitEndpointArrayOutput{})
 	pulumi.RegisterOutputType(CockpitTokenScopesOutput{})
 	pulumi.RegisterOutputType(CockpitTokenScopesPtrOutput{})
+	pulumi.RegisterOutputType(ContainerTriggerNatsOutput{})
+	pulumi.RegisterOutputType(ContainerTriggerNatsPtrOutput{})
 	pulumi.RegisterOutputType(ContainerTriggerSqsOutput{})
 	pulumi.RegisterOutputType(ContainerTriggerSqsPtrOutput{})
 	pulumi.RegisterOutputType(DocumentDBReadReplicaDirectAccessOutput{})
@@ -27095,6 +28124,8 @@ func init() {
 	pulumi.RegisterOutputType(DomainRecordViewArrayOutput{})
 	pulumi.RegisterOutputType(DomainRecordWeightedOutput{})
 	pulumi.RegisterOutputType(DomainRecordWeightedArrayOutput{})
+	pulumi.RegisterOutputType(FunctionTriggerNatsOutput{})
+	pulumi.RegisterOutputType(FunctionTriggerNatsPtrOutput{})
 	pulumi.RegisterOutputType(FunctionTriggerSqsOutput{})
 	pulumi.RegisterOutputType(FunctionTriggerSqsPtrOutput{})
 	pulumi.RegisterOutputType(IamPolicyRuleOutput{})
@@ -27177,6 +28208,8 @@ func init() {
 	pulumi.RegisterOutputType(MnqQueueNatsPtrOutput{})
 	pulumi.RegisterOutputType(MnqQueueSqsOutput{})
 	pulumi.RegisterOutputType(MnqQueueSqsPtrOutput{})
+	pulumi.RegisterOutputType(MnqSqsCredentialsPermissionsOutput{})
+	pulumi.RegisterOutputType(MnqSqsCredentialsPermissionsPtrOutput{})
 	pulumi.RegisterOutputType(ObjectBucketAclAccessControlPolicyOutput{})
 	pulumi.RegisterOutputType(ObjectBucketAclAccessControlPolicyPtrOutput{})
 	pulumi.RegisterOutputType(ObjectBucketAclAccessControlPolicyGrantOutput{})
@@ -27247,6 +28280,10 @@ func init() {
 	pulumi.RegisterOutputType(GetBaremetalServerOptionArrayOutput{})
 	pulumi.RegisterOutputType(GetBaremetalServerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(GetBaremetalServerPrivateNetworkArrayOutput{})
+	pulumi.RegisterOutputType(GetBillingConsumptionsConsumptionOutput{})
+	pulumi.RegisterOutputType(GetBillingConsumptionsConsumptionArrayOutput{})
+	pulumi.RegisterOutputType(GetBillingInvoicesInvoiceOutput{})
+	pulumi.RegisterOutputType(GetBillingInvoicesInvoiceArrayOutput{})
 	pulumi.RegisterOutputType(GetCockpitEndpointOutput{})
 	pulumi.RegisterOutputType(GetCockpitEndpointArrayOutput{})
 	pulumi.RegisterOutputType(GetDomainRecordGeoIpOutput{})

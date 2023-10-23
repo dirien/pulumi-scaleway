@@ -4,6 +4,38 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Creates and manages Scaleway Database DocumentDB Users.
+ * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+ *
+ * ## Examples
+ *
+ * ### Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as random from "@pulumi/random";
+ * import * as scaleway from "@ediri/scaleway";
+ *
+ * const dbPassword = new random.RandomPassword("dbPassword", {
+ *     length: 16,
+ *     special: true,
+ * });
+ * const dbAdmin = new scaleway.DocumentDBUser("dbAdmin", {
+ *     instanceId: "11111111-1111-1111-1111-111111111111",
+ *     password: dbPassword.result,
+ *     isAdmin: true,
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/documentDBUser:DocumentDBUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
+ * ```
+ */
 export class DocumentDBUser extends pulumi.CustomResource {
     /**
      * Get an existing DocumentDBUser resource's state with the given name, ID, and optional extra
@@ -33,23 +65,27 @@ export class DocumentDBUser extends pulumi.CustomResource {
     }
 
     /**
-     * Instance on which the user is created
+     * UUID of the documentDB instance.
+     *
+     * > **Important:** Updates to `instanceId` will recreate the Database User.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
-     * Grant admin permissions to database user
+     * Grant admin permissions to the Database User.
      */
     public readonly isAdmin!: pulumi.Output<boolean | undefined>;
     /**
-     * Database user name
+     * Database Username.
+     *
+     * > **Important:** Updates to `name` will recreate the Database User.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Database user password
+     * Database User password.
      */
     public readonly password!: pulumi.Output<string>;
     /**
-     * The region you want to attach the resource to
+     * The Scaleway region this resource resides in.
      */
     public readonly region!: pulumi.Output<string>;
 
@@ -97,23 +133,27 @@ export class DocumentDBUser extends pulumi.CustomResource {
  */
 export interface DocumentDBUserState {
     /**
-     * Instance on which the user is created
+     * UUID of the documentDB instance.
+     *
+     * > **Important:** Updates to `instanceId` will recreate the Database User.
      */
     instanceId?: pulumi.Input<string>;
     /**
-     * Grant admin permissions to database user
+     * Grant admin permissions to the Database User.
      */
     isAdmin?: pulumi.Input<boolean>;
     /**
-     * Database user name
+     * Database Username.
+     *
+     * > **Important:** Updates to `name` will recreate the Database User.
      */
     name?: pulumi.Input<string>;
     /**
-     * Database user password
+     * Database User password.
      */
     password?: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * The Scaleway region this resource resides in.
      */
     region?: pulumi.Input<string>;
 }
@@ -123,23 +163,27 @@ export interface DocumentDBUserState {
  */
 export interface DocumentDBUserArgs {
     /**
-     * Instance on which the user is created
+     * UUID of the documentDB instance.
+     *
+     * > **Important:** Updates to `instanceId` will recreate the Database User.
      */
     instanceId: pulumi.Input<string>;
     /**
-     * Grant admin permissions to database user
+     * Grant admin permissions to the Database User.
      */
     isAdmin?: pulumi.Input<boolean>;
     /**
-     * Database user name
+     * Database Username.
+     *
+     * > **Important:** Updates to `name` will recreate the Database User.
      */
     name?: pulumi.Input<string>;
     /**
-     * Database user password
+     * Database User password.
      */
     password: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * The Scaleway region this resource resides in.
      */
     region?: pulumi.Input<string>;
 }

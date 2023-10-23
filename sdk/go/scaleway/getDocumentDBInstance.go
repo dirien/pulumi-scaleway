@@ -12,6 +12,33 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
+// Gets information about an DocumentDB instance. For further information see our [developers website](https://www.scaleway.com/en/developers/api/document_db/)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.LookupDocumentDBInstance(ctx, &scaleway.LookupDocumentDBInstanceArgs{
+//				InstanceId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupDocumentDBInstance(ctx *pulumi.Context, args *LookupDocumentDBInstanceArgs, opts ...pulumi.InvokeOption) (*LookupDocumentDBInstanceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDocumentDBInstanceResult
@@ -24,9 +51,14 @@ func LookupDocumentDBInstance(ctx *pulumi.Context, args *LookupDocumentDBInstanc
 
 // A collection of arguments for invoking getDocumentDBInstance.
 type LookupDocumentDBInstanceArgs struct {
+	// The DocumentDB instance ID.
+	// Only one of `name` and `instanceId` should be specified.
 	InstanceId *string `pulumi:"instanceId"`
-	Name       *string `pulumi:"name"`
-	Region     *string `pulumi:"region"`
+	// The name of the DocumentDB instance.
+	// Only one of `name` and `instanceId` should be specified.
+	Name *string `pulumi:"name"`
+	// `region`) The region in which the DocumentDB instance exists.
+	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getDocumentDBInstance.
@@ -63,9 +95,14 @@ func LookupDocumentDBInstanceOutput(ctx *pulumi.Context, args LookupDocumentDBIn
 
 // A collection of arguments for invoking getDocumentDBInstance.
 type LookupDocumentDBInstanceOutputArgs struct {
+	// The DocumentDB instance ID.
+	// Only one of `name` and `instanceId` should be specified.
 	InstanceId pulumi.StringPtrInput `pulumi:"instanceId"`
-	Name       pulumi.StringPtrInput `pulumi:"name"`
-	Region     pulumi.StringPtrInput `pulumi:"region"`
+	// The name of the DocumentDB instance.
+	// Only one of `name` and `instanceId` should be specified.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// `region`) The region in which the DocumentDB instance exists.
+	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
 func (LookupDocumentDBInstanceOutputArgs) ElementType() reflect.Type {

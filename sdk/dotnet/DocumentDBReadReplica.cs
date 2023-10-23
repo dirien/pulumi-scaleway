@@ -10,29 +10,90 @@ using Pulumi;
 
 namespace ediri.Scaleway
 {
+    /// <summary>
+    /// Creates and manages Scaleway DocumentDB Database read replicas.
+    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+    /// 
+    /// ## Examples
+    /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var replica = new Scaleway.DocumentDBReadReplica("replica", new()
+    ///     {
+    ///         DirectAccess = null,
+    ///         InstanceId = "11111111-1111-1111-1111-111111111111",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Private network
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+    /// 
+    ///     var replica = new Scaleway.DocumentDBReadReplica("replica", new()
+    ///     {
+    ///         InstanceId = scaleway_rdb_instance.Instance.Id,
+    ///         PrivateNetwork = new Scaleway.Inputs.DocumentDBReadReplicaPrivateNetworkArgs
+    ///         {
+    ///             PrivateNetworkId = pn.Id,
+    ///             ServiceIp = "192.168.1.254/24",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Database Read replica can be imported using the `{region}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/documentDBReadReplica:DocumentDBReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/documentDBReadReplica:DocumentDBReadReplica")]
     public partial class DocumentDBReadReplica : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Direct access endpoint, it gives you an IP and a port to access your read-replica
+        /// Creates a direct access endpoint to documentdb replica.
         /// </summary>
         [Output("directAccess")]
         public Output<Outputs.DocumentDBReadReplicaDirectAccess?> DirectAccess { get; private set; } = null!;
 
         /// <summary>
-        /// Id of the rdb instance to replicate
+        /// UUID of the documentdb instance.
+        /// 
+        /// &gt; **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// Private network endpoints
+        /// Create an endpoint in a private network.
         /// </summary>
         [Output("privateNetwork")]
         public Output<Outputs.DocumentDBReadReplicaPrivateNetwork?> PrivateNetwork { get; private set; } = null!;
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region
+        /// in which the Database read replica should be created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -85,25 +146,28 @@ namespace ediri.Scaleway
     public sealed class DocumentDBReadReplicaArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Direct access endpoint, it gives you an IP and a port to access your read-replica
+        /// Creates a direct access endpoint to documentdb replica.
         /// </summary>
         [Input("directAccess")]
         public Input<Inputs.DocumentDBReadReplicaDirectAccessArgs>? DirectAccess { get; set; }
 
         /// <summary>
-        /// Id of the rdb instance to replicate
+        /// UUID of the documentdb instance.
+        /// 
+        /// &gt; **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// Private network endpoints
+        /// Create an endpoint in a private network.
         /// </summary>
         [Input("privateNetwork")]
         public Input<Inputs.DocumentDBReadReplicaPrivateNetworkArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region
+        /// in which the Database read replica should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -117,25 +181,28 @@ namespace ediri.Scaleway
     public sealed class DocumentDBReadReplicaState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Direct access endpoint, it gives you an IP and a port to access your read-replica
+        /// Creates a direct access endpoint to documentdb replica.
         /// </summary>
         [Input("directAccess")]
         public Input<Inputs.DocumentDBReadReplicaDirectAccessGetArgs>? DirectAccess { get; set; }
 
         /// <summary>
-        /// Id of the rdb instance to replicate
+        /// UUID of the documentdb instance.
+        /// 
+        /// &gt; **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// Private network endpoints
+        /// Create an endpoint in a private network.
         /// </summary>
         [Input("privateNetwork")]
         public Input<Inputs.DocumentDBReadReplicaPrivateNetworkGetArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region
+        /// in which the Database read replica should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

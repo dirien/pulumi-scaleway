@@ -63,6 +63,9 @@ class GetDocumentDBDatabaseResult:
     @property
     @pulumi.getter
     def managed(self) -> bool:
+        """
+        Whether the database is managed or not.
+        """
         return pulumi.get(self, "managed")
 
     @property
@@ -73,6 +76,9 @@ class GetDocumentDBDatabaseResult:
     @property
     @pulumi.getter
     def owner(self) -> str:
+        """
+        The name of the owner of the database.
+        """
         return pulumi.get(self, "owner")
 
     @property
@@ -88,6 +94,9 @@ class GetDocumentDBDatabaseResult:
     @property
     @pulumi.getter
     def size(self) -> str:
+        """
+        Size of the database (in bytes).
+        """
         return pulumi.get(self, "size")
 
 
@@ -112,7 +121,21 @@ def get_document_db_database(instance_id: Optional[str] = None,
                              region: Optional[str] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDocumentDBDatabaseResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about DocumentDB database. More on our official [site](https://www.scaleway.com/en/developers/api/document_db/)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    main = scaleway.get_document_db_database(instance_id="11111111-1111-1111-1111-111111111111",
+        name="foobar")
+    ```
+
+
+    :param str instance_id: The DocumentDB instance ID.
+    :param str name: The name of the DocumentDB instance.
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
@@ -138,6 +161,20 @@ def get_document_db_database_output(instance_id: Optional[pulumi.Input[str]] = N
                                     region: Optional[pulumi.Input[Optional[str]]] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDocumentDBDatabaseResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about DocumentDB database. More on our official [site](https://www.scaleway.com/en/developers/api/document_db/)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    main = scaleway.get_document_db_database(instance_id="11111111-1111-1111-1111-111111111111",
+        name="foobar")
+    ```
+
+
+    :param str instance_id: The DocumentDB instance ID.
+    :param str name: The name of the DocumentDB instance.
     """
     ...

@@ -129,6 +129,8 @@ type RdbReadReplica struct {
 	// `region`) The region
 	// in which the Database read replica should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
+	// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+	SameZone pulumi.BoolPtrOutput `pulumi:"sameZone"`
 }
 
 // NewRdbReadReplica registers a new resource with the given unique name, arguments, and options.
@@ -175,6 +177,8 @@ type rdbReadReplicaState struct {
 	// `region`) The region
 	// in which the Database read replica should be created.
 	Region *string `pulumi:"region"`
+	// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+	SameZone *bool `pulumi:"sameZone"`
 }
 
 type RdbReadReplicaState struct {
@@ -189,6 +193,8 @@ type RdbReadReplicaState struct {
 	// `region`) The region
 	// in which the Database read replica should be created.
 	Region pulumi.StringPtrInput
+	// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+	SameZone pulumi.BoolPtrInput
 }
 
 func (RdbReadReplicaState) ElementType() reflect.Type {
@@ -207,6 +213,8 @@ type rdbReadReplicaArgs struct {
 	// `region`) The region
 	// in which the Database read replica should be created.
 	Region *string `pulumi:"region"`
+	// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+	SameZone *bool `pulumi:"sameZone"`
 }
 
 // The set of arguments for constructing a RdbReadReplica resource.
@@ -222,6 +230,8 @@ type RdbReadReplicaArgs struct {
 	// `region`) The region
 	// in which the Database read replica should be created.
 	Region pulumi.StringPtrInput
+	// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+	SameZone pulumi.BoolPtrInput
 }
 
 func (RdbReadReplicaArgs) ElementType() reflect.Type {
@@ -356,6 +366,11 @@ func (o RdbReadReplicaOutput) PrivateNetwork() RdbReadReplicaPrivateNetworkPtrOu
 // in which the Database read replica should be created.
 func (o RdbReadReplicaOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *RdbReadReplica) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
+func (o RdbReadReplicaOutput) SameZone() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RdbReadReplica) pulumi.BoolPtrOutput { return v.SameZone }).(pulumi.BoolPtrOutput)
 }
 
 type RdbReadReplicaArrayOutput struct{ *pulumi.OutputState }

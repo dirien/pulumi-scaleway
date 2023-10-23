@@ -4,6 +4,32 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Create and manage Scaleway DocumentDB database privilege.
+ * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@ediri/scaleway";
+ *
+ * const main = new scaleway.DocumentDBPrivilege("main", {
+ *     databaseName: "my-db-name",
+ *     instanceId: "11111111-1111-1111-1111-111111111111",
+ *     permission: "all",
+ *     userName: "my-db-user",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/documentDBPrivilege:DocumentDBPrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
+ * ```
+ */
 export class DocumentDBPrivilege extends pulumi.CustomResource {
     /**
      * Get an existing DocumentDBPrivilege resource's state with the given name, ID, and optional extra
@@ -33,23 +59,23 @@ export class DocumentDBPrivilege extends pulumi.CustomResource {
     }
 
     /**
-     * Database name
+     * Name of the database (e.g. `my-db-name`).
      */
     public readonly databaseName!: pulumi.Output<string>;
     /**
-     * Instance on which the database is created
+     * UUID of the rdb instance.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
-     * Privilege
+     * Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
      */
     public readonly permission!: pulumi.Output<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the resource exists.
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * User name
+     * Name of the user (e.g. `my-db-user`).
      */
     public readonly userName!: pulumi.Output<string>;
 
@@ -101,23 +127,23 @@ export class DocumentDBPrivilege extends pulumi.CustomResource {
  */
 export interface DocumentDBPrivilegeState {
     /**
-     * Database name
+     * Name of the database (e.g. `my-db-name`).
      */
     databaseName?: pulumi.Input<string>;
     /**
-     * Instance on which the database is created
+     * UUID of the rdb instance.
      */
     instanceId?: pulumi.Input<string>;
     /**
-     * Privilege
+     * Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
      */
     permission?: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the resource exists.
      */
     region?: pulumi.Input<string>;
     /**
-     * User name
+     * Name of the user (e.g. `my-db-user`).
      */
     userName?: pulumi.Input<string>;
 }
@@ -127,23 +153,23 @@ export interface DocumentDBPrivilegeState {
  */
 export interface DocumentDBPrivilegeArgs {
     /**
-     * Database name
+     * Name of the database (e.g. `my-db-name`).
      */
     databaseName: pulumi.Input<string>;
     /**
-     * Instance on which the database is created
+     * UUID of the rdb instance.
      */
     instanceId: pulumi.Input<string>;
     /**
-     * Privilege
+     * Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
      */
     permission: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the resource exists.
      */
     region?: pulumi.Input<string>;
     /**
-     * User name
+     * Name of the user (e.g. `my-db-user`).
      */
     userName: pulumi.Input<string>;
 }

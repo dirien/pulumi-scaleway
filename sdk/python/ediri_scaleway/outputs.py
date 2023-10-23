@@ -18,6 +18,7 @@ __all__ = [
     'BaremetalServerPrivateNetwork',
     'CockpitEndpoint',
     'CockpitTokenScopes',
+    'ContainerTriggerNats',
     'ContainerTriggerSqs',
     'DocumentDBReadReplicaDirectAccess',
     'DocumentDBReadReplicaPrivateNetwork',
@@ -26,6 +27,7 @@ __all__ = [
     'DomainRecordHttpService',
     'DomainRecordView',
     'DomainRecordWeighted',
+    'FunctionTriggerNats',
     'FunctionTriggerSqs',
     'IamPolicyRule',
     'InstanceImageAdditionalVolume',
@@ -68,6 +70,7 @@ __all__ = [
     'MnqCredentialSqsSnsCredentialsPermissions',
     'MnqQueueNats',
     'MnqQueueSqs',
+    'MnqSqsCredentialsPermissions',
     'ObjectBucketAclAccessControlPolicy',
     'ObjectBucketAclAccessControlPolicyGrant',
     'ObjectBucketAclAccessControlPolicyGrantGrantee',
@@ -103,6 +106,8 @@ __all__ = [
     'GetBaremetalServerIpv6Result',
     'GetBaremetalServerOptionResult',
     'GetBaremetalServerPrivateNetworkResult',
+    'GetBillingConsumptionsConsumptionResult',
+    'GetBillingInvoicesInvoiceResult',
     'GetCockpitEndpointResult',
     'GetDomainRecordGeoIpResult',
     'GetDomainRecordGeoIpMatchResult',
@@ -834,6 +839,100 @@ class CockpitTokenScopes(dict):
 
 
 @pulumi.output_type
+class ContainerTriggerNats(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accountId":
+            suggest = "account_id"
+        elif key == "projectId":
+            suggest = "project_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ContainerTriggerNats. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ContainerTriggerNats.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ContainerTriggerNats.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 subject: str,
+                 account_id: Optional[str] = None,
+                 project_id: Optional[str] = None,
+                 region: Optional[str] = None):
+        """
+        :param str subject: The subject to listen to
+        :param str account_id: ID of the mnq nats account.
+        :param str project_id: ID of the project that contain the mnq nats account, defaults to provider's project
+        :param str region: `region`). The region in which the namespace should be created.
+        """
+        ContainerTriggerNats._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            subject=subject,
+            account_id=account_id,
+            project_id=project_id,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             subject: str,
+             account_id: Optional[str] = None,
+             project_id: Optional[str] = None,
+             region: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'accountId' in kwargs:
+            account_id = kwargs['accountId']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+
+        _setter("subject", subject)
+        if account_id is not None:
+            _setter("account_id", account_id)
+        if project_id is not None:
+            _setter("project_id", project_id)
+        if region is not None:
+            _setter("region", region)
+
+    @property
+    @pulumi.getter
+    def subject(self) -> str:
+        """
+        The subject to listen to
+        """
+        return pulumi.get(self, "subject")
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> Optional[str]:
+        """
+        ID of the mnq nats account.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[str]:
+        """
+        ID of the project that contain the mnq nats account, defaults to provider's project
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        """
+        `region`). The region in which the namespace should be created.
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
 class ContainerTriggerSqs(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -855,28 +954,28 @@ class ContainerTriggerSqs(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 namespace_id: str,
                  queue: str,
+                 namespace_id: Optional[str] = None,
                  project_id: Optional[str] = None,
                  region: Optional[str] = None):
         """
-        :param str namespace_id: ID of the mnq namespace
         :param str queue: Name of the queue
-        :param str project_id: ID of the project that contain the mnq namespace, defaults to provider's project
+        :param str namespace_id: ID of the mnq namespace. Deprecated.
+        :param str project_id: ID of the project that contain the mnq nats account, defaults to provider's project
         :param str region: `region`). The region in which the namespace should be created.
         """
         ContainerTriggerSqs._configure(
             lambda key, value: pulumi.set(__self__, key, value),
-            namespace_id=namespace_id,
             queue=queue,
+            namespace_id=namespace_id,
             project_id=project_id,
             region=region,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             namespace_id: str,
              queue: str,
+             namespace_id: Optional[str] = None,
              project_id: Optional[str] = None,
              region: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions]=None,
@@ -886,20 +985,13 @@ class ContainerTriggerSqs(dict):
         if 'projectId' in kwargs:
             project_id = kwargs['projectId']
 
-        _setter("namespace_id", namespace_id)
         _setter("queue", queue)
+        if namespace_id is not None:
+            _setter("namespace_id", namespace_id)
         if project_id is not None:
             _setter("project_id", project_id)
         if region is not None:
             _setter("region", region)
-
-    @property
-    @pulumi.getter(name="namespaceId")
-    def namespace_id(self) -> str:
-        """
-        ID of the mnq namespace
-        """
-        return pulumi.get(self, "namespace_id")
 
     @property
     @pulumi.getter
@@ -910,10 +1002,18 @@ class ContainerTriggerSqs(dict):
         return pulumi.get(self, "queue")
 
     @property
+    @pulumi.getter(name="namespaceId")
+    def namespace_id(self) -> Optional[str]:
+        """
+        ID of the mnq namespace. Deprecated.
+        """
+        return pulumi.get(self, "namespace_id")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[str]:
         """
-        ID of the project that contain the mnq namespace, defaults to provider's project
+        ID of the project that contain the mnq nats account, defaults to provider's project
         """
         return pulumi.get(self, "project_id")
 
@@ -951,6 +1051,13 @@ class DocumentDBReadReplicaDirectAccess(dict):
                  ip: Optional[str] = None,
                  name: Optional[str] = None,
                  port: Optional[int] = None):
+        """
+        :param str endpoint_id: The ID of the endpoint of the read replica.
+        :param str hostname: Hostname of the endpoint. Only one of ip and hostname may be set.
+        :param str ip: IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+        :param str name: Name of the endpoint.
+        :param int port: TCP port of the endpoint.
+        """
         DocumentDBReadReplicaDirectAccess._configure(
             lambda key, value: pulumi.set(__self__, key, value),
             endpoint_id=endpoint_id,
@@ -986,26 +1093,41 @@ class DocumentDBReadReplicaDirectAccess(dict):
     @property
     @pulumi.getter(name="endpointId")
     def endpoint_id(self) -> Optional[str]:
+        """
+        The ID of the endpoint of the read replica.
+        """
         return pulumi.get(self, "endpoint_id")
 
     @property
     @pulumi.getter
     def hostname(self) -> Optional[str]:
+        """
+        Hostname of the endpoint. Only one of ip and hostname may be set.
+        """
         return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter
     def ip(self) -> Optional[str]:
+        """
+        IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+        """
         return pulumi.get(self, "ip")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Name of the endpoint.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def port(self) -> Optional[int]:
+        """
+        TCP port of the endpoint.
+        """
         return pulumi.get(self, "port")
 
 
@@ -1041,6 +1163,17 @@ class DocumentDBReadReplicaPrivateNetwork(dict):
                  port: Optional[int] = None,
                  service_ip: Optional[str] = None,
                  zone: Optional[str] = None):
+        """
+        :param str private_network_id: UUID of the private network to be connected to the read replica.
+        :param str endpoint_id: The ID of the endpoint of the read replica.
+        :param str hostname: Hostname of the endpoint. Only one of ip and hostname may be set.
+        :param str ip: IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+        :param str name: Name of the endpoint.
+        :param int port: TCP port of the endpoint.
+        :param str service_ip: The IP network address within the private subnet. This must be an IPv4 address with a
+               CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+               service if not set.
+        """
         DocumentDBReadReplicaPrivateNetwork._configure(
             lambda key, value: pulumi.set(__self__, key, value),
             private_network_id=private_network_id,
@@ -1091,36 +1224,59 @@ class DocumentDBReadReplicaPrivateNetwork(dict):
     @property
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> str:
+        """
+        UUID of the private network to be connected to the read replica.
+        """
         return pulumi.get(self, "private_network_id")
 
     @property
     @pulumi.getter(name="endpointId")
     def endpoint_id(self) -> Optional[str]:
+        """
+        The ID of the endpoint of the read replica.
+        """
         return pulumi.get(self, "endpoint_id")
 
     @property
     @pulumi.getter
     def hostname(self) -> Optional[str]:
+        """
+        Hostname of the endpoint. Only one of ip and hostname may be set.
+        """
         return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter
     def ip(self) -> Optional[str]:
+        """
+        IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+        """
         return pulumi.get(self, "ip")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Name of the endpoint.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def port(self) -> Optional[int]:
+        """
+        TCP port of the endpoint.
+        """
         return pulumi.get(self, "port")
 
     @property
     @pulumi.getter(name="serviceIp")
     def service_ip(self) -> Optional[str]:
+        """
+        The IP network address within the private subnet. This must be an IPv4 address with a
+        CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+        service if not set.
+        """
         return pulumi.get(self, "service_ip")
 
     @property
@@ -1405,6 +1561,100 @@ class DomainRecordWeighted(dict):
 
 
 @pulumi.output_type
+class FunctionTriggerNats(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accountId":
+            suggest = "account_id"
+        elif key == "projectId":
+            suggest = "project_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FunctionTriggerNats. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FunctionTriggerNats.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FunctionTriggerNats.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 subject: str,
+                 account_id: Optional[str] = None,
+                 project_id: Optional[str] = None,
+                 region: Optional[str] = None):
+        """
+        :param str subject: The subject to listen to
+        :param str account_id: ID of the mnq nats account.
+        :param str project_id: ID of the project that contain the mnq nats account, defaults to provider's project
+        :param str region: `region`). The region in which the namespace should be created.
+        """
+        FunctionTriggerNats._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            subject=subject,
+            account_id=account_id,
+            project_id=project_id,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             subject: str,
+             account_id: Optional[str] = None,
+             project_id: Optional[str] = None,
+             region: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'accountId' in kwargs:
+            account_id = kwargs['accountId']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+
+        _setter("subject", subject)
+        if account_id is not None:
+            _setter("account_id", account_id)
+        if project_id is not None:
+            _setter("project_id", project_id)
+        if region is not None:
+            _setter("region", region)
+
+    @property
+    @pulumi.getter
+    def subject(self) -> str:
+        """
+        The subject to listen to
+        """
+        return pulumi.get(self, "subject")
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> Optional[str]:
+        """
+        ID of the mnq nats account.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[str]:
+        """
+        ID of the project that contain the mnq nats account, defaults to provider's project
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        """
+        `region`). The region in which the namespace should be created.
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
 class FunctionTriggerSqs(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1426,28 +1676,28 @@ class FunctionTriggerSqs(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 namespace_id: str,
                  queue: str,
+                 namespace_id: Optional[str] = None,
                  project_id: Optional[str] = None,
                  region: Optional[str] = None):
         """
-        :param str namespace_id: ID of the mnq namespace
         :param str queue: Name of the queue
-        :param str project_id: ID of the project that contain the mnq namespace, defaults to provider's project
+        :param str namespace_id: ID of the mnq namespace. Deprecated.
+        :param str project_id: ID of the project that contain the mnq nats account, defaults to provider's project
         :param str region: `region`). The region in which the namespace should be created.
         """
         FunctionTriggerSqs._configure(
             lambda key, value: pulumi.set(__self__, key, value),
-            namespace_id=namespace_id,
             queue=queue,
+            namespace_id=namespace_id,
             project_id=project_id,
             region=region,
         )
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             namespace_id: str,
              queue: str,
+             namespace_id: Optional[str] = None,
              project_id: Optional[str] = None,
              region: Optional[str] = None,
              opts: Optional[pulumi.ResourceOptions]=None,
@@ -1457,20 +1707,13 @@ class FunctionTriggerSqs(dict):
         if 'projectId' in kwargs:
             project_id = kwargs['projectId']
 
-        _setter("namespace_id", namespace_id)
         _setter("queue", queue)
+        if namespace_id is not None:
+            _setter("namespace_id", namespace_id)
         if project_id is not None:
             _setter("project_id", project_id)
         if region is not None:
             _setter("region", region)
-
-    @property
-    @pulumi.getter(name="namespaceId")
-    def namespace_id(self) -> str:
-        """
-        ID of the mnq namespace
-        """
-        return pulumi.get(self, "namespace_id")
 
     @property
     @pulumi.getter
@@ -1481,10 +1724,18 @@ class FunctionTriggerSqs(dict):
         return pulumi.get(self, "queue")
 
     @property
+    @pulumi.getter(name="namespaceId")
+    def namespace_id(self) -> Optional[str]:
+        """
+        ID of the mnq namespace. Deprecated.
+        """
+        return pulumi.get(self, "namespace_id")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[str]:
         """
-        ID of the project that contain the mnq namespace, defaults to provider's project
+        ID of the project that contain the mnq nats account, defaults to provider's project
         """
         return pulumi.get(self, "project_id")
 
@@ -5059,6 +5310,91 @@ class MnqQueueSqs(dict):
 
 
 @pulumi.output_type
+class MnqSqsCredentialsPermissions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "canManage":
+            suggest = "can_manage"
+        elif key == "canPublish":
+            suggest = "can_publish"
+        elif key == "canReceive":
+            suggest = "can_receive"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MnqSqsCredentialsPermissions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MnqSqsCredentialsPermissions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MnqSqsCredentialsPermissions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 can_manage: Optional[bool] = None,
+                 can_publish: Optional[bool] = None,
+                 can_receive: Optional[bool] = None):
+        """
+        :param bool can_manage: . Defines if user can manage the associated resource(s).
+        :param bool can_publish: . Defines if user can publish messages to the service.
+        :param bool can_receive: . Defines if user can receive messages from the service.
+        """
+        MnqSqsCredentialsPermissions._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            can_manage=can_manage,
+            can_publish=can_publish,
+            can_receive=can_receive,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             can_manage: Optional[bool] = None,
+             can_publish: Optional[bool] = None,
+             can_receive: Optional[bool] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'canManage' in kwargs:
+            can_manage = kwargs['canManage']
+        if 'canPublish' in kwargs:
+            can_publish = kwargs['canPublish']
+        if 'canReceive' in kwargs:
+            can_receive = kwargs['canReceive']
+
+        if can_manage is not None:
+            _setter("can_manage", can_manage)
+        if can_publish is not None:
+            _setter("can_publish", can_publish)
+        if can_receive is not None:
+            _setter("can_receive", can_receive)
+
+    @property
+    @pulumi.getter(name="canManage")
+    def can_manage(self) -> Optional[bool]:
+        """
+        . Defines if user can manage the associated resource(s).
+        """
+        return pulumi.get(self, "can_manage")
+
+    @property
+    @pulumi.getter(name="canPublish")
+    def can_publish(self) -> Optional[bool]:
+        """
+        . Defines if user can publish messages to the service.
+        """
+        return pulumi.get(self, "can_publish")
+
+    @property
+    @pulumi.getter(name="canReceive")
+    def can_receive(self) -> Optional[bool]:
+        """
+        . Defines if user can receive messages from the service.
+        """
+        return pulumi.get(self, "can_receive")
+
+
+@pulumi.output_type
 class ObjectBucketAclAccessControlPolicy(dict):
     def __init__(__self__, *,
                  owner: 'outputs.ObjectBucketAclAccessControlPolicyOwner',
@@ -7501,6 +7837,201 @@ class GetBaremetalServerPrivateNetworkResult(dict):
     @pulumi.getter
     def vlan(self) -> int:
         return pulumi.get(self, "vlan")
+
+
+@pulumi.output_type
+class GetBillingConsumptionsConsumptionResult(dict):
+    def __init__(__self__, *,
+                 category: str,
+                 description: str,
+                 operation_path: str,
+                 project_id: str,
+                 value: str):
+        GetBillingConsumptionsConsumptionResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            category=category,
+            description=description,
+            operation_path=operation_path,
+            project_id=project_id,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             category: str,
+             description: str,
+             operation_path: str,
+             project_id: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'operationPath' in kwargs:
+            operation_path = kwargs['operationPath']
+        if 'projectId' in kwargs:
+            project_id = kwargs['projectId']
+
+        _setter("category", category)
+        _setter("description", description)
+        _setter("operation_path", operation_path)
+        _setter("project_id", project_id)
+        _setter("value", value)
+
+    @property
+    @pulumi.getter
+    def category(self) -> str:
+        return pulumi.get(self, "category")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="operationPath")
+    def operation_path(self) -> str:
+        return pulumi.get(self, "operation_path")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetBillingInvoicesInvoiceResult(dict):
+    def __init__(__self__, *,
+                 due_date: str,
+                 id: str,
+                 invoice_type: str,
+                 issued_date: str,
+                 number: int,
+                 start_date: str,
+                 total_taxed: str,
+                 total_untaxed: str):
+        """
+        :param str due_date: The payment time limit, set according to the Organization's payment conditions (RFC 3339 format).
+        :param str id: The associated invoice ID.
+        :param str invoice_type: Invoices with the given type are listed. Valid values are `periodic` and `purchase`.
+        :param str issued_date: The date when the invoice was sent to the customer (RFC 3339 format).
+        :param int number: The invoice number.
+        :param str start_date: The start date of the billing period (RFC 3339 format).
+        :param str total_taxed: The total amount, taxed.
+        :param str total_untaxed: The total amount, untaxed.
+        """
+        GetBillingInvoicesInvoiceResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            due_date=due_date,
+            id=id,
+            invoice_type=invoice_type,
+            issued_date=issued_date,
+            number=number,
+            start_date=start_date,
+            total_taxed=total_taxed,
+            total_untaxed=total_untaxed,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             due_date: str,
+             id: str,
+             invoice_type: str,
+             issued_date: str,
+             number: int,
+             start_date: str,
+             total_taxed: str,
+             total_untaxed: str,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'dueDate' in kwargs:
+            due_date = kwargs['dueDate']
+        if 'invoiceType' in kwargs:
+            invoice_type = kwargs['invoiceType']
+        if 'issuedDate' in kwargs:
+            issued_date = kwargs['issuedDate']
+        if 'startDate' in kwargs:
+            start_date = kwargs['startDate']
+        if 'totalTaxed' in kwargs:
+            total_taxed = kwargs['totalTaxed']
+        if 'totalUntaxed' in kwargs:
+            total_untaxed = kwargs['totalUntaxed']
+
+        _setter("due_date", due_date)
+        _setter("id", id)
+        _setter("invoice_type", invoice_type)
+        _setter("issued_date", issued_date)
+        _setter("number", number)
+        _setter("start_date", start_date)
+        _setter("total_taxed", total_taxed)
+        _setter("total_untaxed", total_untaxed)
+
+    @property
+    @pulumi.getter(name="dueDate")
+    def due_date(self) -> str:
+        """
+        The payment time limit, set according to the Organization's payment conditions (RFC 3339 format).
+        """
+        return pulumi.get(self, "due_date")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The associated invoice ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="invoiceType")
+    def invoice_type(self) -> str:
+        """
+        Invoices with the given type are listed. Valid values are `periodic` and `purchase`.
+        """
+        return pulumi.get(self, "invoice_type")
+
+    @property
+    @pulumi.getter(name="issuedDate")
+    def issued_date(self) -> str:
+        """
+        The date when the invoice was sent to the customer (RFC 3339 format).
+        """
+        return pulumi.get(self, "issued_date")
+
+    @property
+    @pulumi.getter
+    def number(self) -> int:
+        """
+        The invoice number.
+        """
+        return pulumi.get(self, "number")
+
+    @property
+    @pulumi.getter(name="startDate")
+    def start_date(self) -> str:
+        """
+        The start date of the billing period (RFC 3339 format).
+        """
+        return pulumi.get(self, "start_date")
+
+    @property
+    @pulumi.getter(name="totalTaxed")
+    def total_taxed(self) -> str:
+        """
+        The total amount, taxed.
+        """
+        return pulumi.get(self, "total_taxed")
+
+    @property
+    @pulumi.getter(name="totalUntaxed")
+    def total_untaxed(self) -> str:
+        """
+        The total amount, untaxed.
+        """
+        return pulumi.get(self, "total_untaxed")
 
 
 @pulumi.output_type

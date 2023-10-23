@@ -12,9 +12,61 @@ namespace ediri.Scaleway
 {
     public static class GetDocumentDBDatabase
     {
+        /// <summary>
+        /// Gets information about DocumentDB database. More on our official [site](https://www.scaleway.com/en/developers/api/document_db/)
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = Scaleway.GetDocumentDBDatabase.Invoke(new()
+        ///     {
+        ///         InstanceId = "11111111-1111-1111-1111-111111111111",
+        ///         Name = "foobar",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetDocumentDBDatabaseResult> InvokeAsync(GetDocumentDBDatabaseArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDocumentDBDatabaseResult>("scaleway:index/getDocumentDBDatabase:getDocumentDBDatabase", args ?? new GetDocumentDBDatabaseArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Gets information about DocumentDB database. More on our official [site](https://www.scaleway.com/en/developers/api/document_db/)
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = Scaleway.GetDocumentDBDatabase.Invoke(new()
+        ///     {
+        ///         InstanceId = "11111111-1111-1111-1111-111111111111",
+        ///         Name = "foobar",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetDocumentDBDatabaseResult> Invoke(GetDocumentDBDatabaseInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDocumentDBDatabaseResult>("scaleway:index/getDocumentDBDatabase:getDocumentDBDatabase", args ?? new GetDocumentDBDatabaseInvokeArgs(), options.WithDefaults());
     }
@@ -22,9 +74,15 @@ namespace ediri.Scaleway
 
     public sealed class GetDocumentDBDatabaseArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The DocumentDB instance ID.
+        /// </summary>
         [Input("instanceId", required: true)]
         public string InstanceId { get; set; } = null!;
 
+        /// <summary>
+        /// The name of the DocumentDB instance.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -39,9 +97,15 @@ namespace ediri.Scaleway
 
     public sealed class GetDocumentDBDatabaseInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The DocumentDB instance ID.
+        /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
 
+        /// <summary>
+        /// The name of the DocumentDB instance.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -63,11 +127,20 @@ namespace ediri.Scaleway
         /// </summary>
         public readonly string Id;
         public readonly string InstanceId;
+        /// <summary>
+        /// Whether the database is managed or not.
+        /// </summary>
         public readonly bool Managed;
         public readonly string? Name;
+        /// <summary>
+        /// The name of the owner of the database.
+        /// </summary>
         public readonly string Owner;
         public readonly string ProjectId;
         public readonly string? Region;
+        /// <summary>
+        /// Size of the database (in bytes).
+        /// </summary>
         public readonly string Size;
 
         [OutputConstructor]

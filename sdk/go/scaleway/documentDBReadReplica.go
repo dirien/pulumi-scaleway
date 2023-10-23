@@ -13,16 +13,94 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
+// Creates and manages Scaleway DocumentDB Database read replicas.
+// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+//
+// ## Examples
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewDocumentDBReadReplica(ctx, "replica", &scaleway.DocumentDBReadReplicaArgs{
+//				DirectAccess: nil,
+//				InstanceId:   pulumi.String("11111111-1111-1111-1111-111111111111"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Private network
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewDocumentDBReadReplica(ctx, "replica", &scaleway.DocumentDBReadReplicaArgs{
+//				InstanceId: pulumi.Any(scaleway_rdb_instance.Instance.Id),
+//				PrivateNetwork: &scaleway.DocumentDBReadReplicaPrivateNetworkArgs{
+//					PrivateNetworkId: pn.ID(),
+//					ServiceIp:        pulumi.String("192.168.1.254/24"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Database Read replica can be imported using the `{region}/{id}`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/documentDBReadReplica:DocumentDBReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
+//
+// ```
 type DocumentDBReadReplica struct {
 	pulumi.CustomResourceState
 
-	// Direct access endpoint, it gives you an IP and a port to access your read-replica
+	// Creates a direct access endpoint to documentdb replica.
 	DirectAccess DocumentDBReadReplicaDirectAccessPtrOutput `pulumi:"directAccess"`
-	// Id of the rdb instance to replicate
+	// UUID of the documentdb instance.
+	//
+	// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
-	// Private network endpoints
+	// Create an endpoint in a private network.
 	PrivateNetwork DocumentDBReadReplicaPrivateNetworkPtrOutput `pulumi:"privateNetwork"`
-	// The region you want to attach the resource to
+	// `region`) The region
+	// in which the Database read replica should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
 }
 
@@ -59,24 +137,30 @@ func GetDocumentDBReadReplica(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DocumentDBReadReplica resources.
 type documentDBReadReplicaState struct {
-	// Direct access endpoint, it gives you an IP and a port to access your read-replica
+	// Creates a direct access endpoint to documentdb replica.
 	DirectAccess *DocumentDBReadReplicaDirectAccess `pulumi:"directAccess"`
-	// Id of the rdb instance to replicate
+	// UUID of the documentdb instance.
+	//
+	// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
 	InstanceId *string `pulumi:"instanceId"`
-	// Private network endpoints
+	// Create an endpoint in a private network.
 	PrivateNetwork *DocumentDBReadReplicaPrivateNetwork `pulumi:"privateNetwork"`
-	// The region you want to attach the resource to
+	// `region`) The region
+	// in which the Database read replica should be created.
 	Region *string `pulumi:"region"`
 }
 
 type DocumentDBReadReplicaState struct {
-	// Direct access endpoint, it gives you an IP and a port to access your read-replica
+	// Creates a direct access endpoint to documentdb replica.
 	DirectAccess DocumentDBReadReplicaDirectAccessPtrInput
-	// Id of the rdb instance to replicate
+	// UUID of the documentdb instance.
+	//
+	// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
 	InstanceId pulumi.StringPtrInput
-	// Private network endpoints
+	// Create an endpoint in a private network.
 	PrivateNetwork DocumentDBReadReplicaPrivateNetworkPtrInput
-	// The region you want to attach the resource to
+	// `region`) The region
+	// in which the Database read replica should be created.
 	Region pulumi.StringPtrInput
 }
 
@@ -85,25 +169,31 @@ func (DocumentDBReadReplicaState) ElementType() reflect.Type {
 }
 
 type documentDBReadReplicaArgs struct {
-	// Direct access endpoint, it gives you an IP and a port to access your read-replica
+	// Creates a direct access endpoint to documentdb replica.
 	DirectAccess *DocumentDBReadReplicaDirectAccess `pulumi:"directAccess"`
-	// Id of the rdb instance to replicate
+	// UUID of the documentdb instance.
+	//
+	// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
 	InstanceId string `pulumi:"instanceId"`
-	// Private network endpoints
+	// Create an endpoint in a private network.
 	PrivateNetwork *DocumentDBReadReplicaPrivateNetwork `pulumi:"privateNetwork"`
-	// The region you want to attach the resource to
+	// `region`) The region
+	// in which the Database read replica should be created.
 	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a DocumentDBReadReplica resource.
 type DocumentDBReadReplicaArgs struct {
-	// Direct access endpoint, it gives you an IP and a port to access your read-replica
+	// Creates a direct access endpoint to documentdb replica.
 	DirectAccess DocumentDBReadReplicaDirectAccessPtrInput
-	// Id of the rdb instance to replicate
+	// UUID of the documentdb instance.
+	//
+	// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
 	InstanceId pulumi.StringInput
-	// Private network endpoints
+	// Create an endpoint in a private network.
 	PrivateNetwork DocumentDBReadReplicaPrivateNetworkPtrInput
-	// The region you want to attach the resource to
+	// `region`) The region
+	// in which the Database read replica should be created.
 	Region pulumi.StringPtrInput
 }
 
@@ -218,22 +308,25 @@ func (o DocumentDBReadReplicaOutput) ToOutput(ctx context.Context) pulumix.Outpu
 	}
 }
 
-// Direct access endpoint, it gives you an IP and a port to access your read-replica
+// Creates a direct access endpoint to documentdb replica.
 func (o DocumentDBReadReplicaOutput) DirectAccess() DocumentDBReadReplicaDirectAccessPtrOutput {
 	return o.ApplyT(func(v *DocumentDBReadReplica) DocumentDBReadReplicaDirectAccessPtrOutput { return v.DirectAccess }).(DocumentDBReadReplicaDirectAccessPtrOutput)
 }
 
-// Id of the rdb instance to replicate
+// UUID of the documentdb instance.
+//
+// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
 func (o DocumentDBReadReplicaOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBReadReplica) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-// Private network endpoints
+// Create an endpoint in a private network.
 func (o DocumentDBReadReplicaOutput) PrivateNetwork() DocumentDBReadReplicaPrivateNetworkPtrOutput {
 	return o.ApplyT(func(v *DocumentDBReadReplica) DocumentDBReadReplicaPrivateNetworkPtrOutput { return v.PrivateNetwork }).(DocumentDBReadReplicaPrivateNetworkPtrOutput)
 }
 
-// The region you want to attach the resource to
+// `region`) The region
+// in which the Database read replica should be created.
 func (o DocumentDBReadReplicaOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBReadReplica) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

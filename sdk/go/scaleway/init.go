@@ -91,6 +91,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &IamPolicy{}
 	case "scaleway:index/iamSshKey:IamSshKey":
 		r = &IamSshKey{}
+	case "scaleway:index/iamUser:IamUser":
+		r = &IamUser{}
 	case "scaleway:index/instanceImage:InstanceImage":
 		r = &InstanceImage{}
 	case "scaleway:index/instanceIp:InstanceIp":
@@ -143,8 +145,18 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &MnqCredential{}
 	case "scaleway:index/mnqNamespace:MnqNamespace":
 		r = &MnqNamespace{}
+	case "scaleway:index/mnqNatsAccount:MnqNatsAccount":
+		r = &MnqNatsAccount{}
+	case "scaleway:index/mnqNatsCredentials:MnqNatsCredentials":
+		r = &MnqNatsCredentials{}
 	case "scaleway:index/mnqQueue:MnqQueue":
 		r = &MnqQueue{}
+	case "scaleway:index/mnqSqs:MnqSqs":
+		r = &MnqSqs{}
+	case "scaleway:index/mnqSqsCredentials:MnqSqsCredentials":
+		r = &MnqSqsCredentials{}
+	case "scaleway:index/mnqSqsQueue:MnqSqsQueue":
+		r = &MnqSqsQueue{}
 	case "scaleway:index/objectBucket:ObjectBucket":
 		r = &ObjectBucket{}
 	case "scaleway:index/objectBucketAcl:ObjectBucketAcl":
@@ -409,6 +421,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/iamUser",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/instanceImage",
 		&module{version},
 	)
@@ -539,7 +556,32 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/mnqNatsAccount",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mnqNatsCredentials",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/mnqQueue",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mnqSqs",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mnqSqsCredentials",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mnqSqsQueue",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

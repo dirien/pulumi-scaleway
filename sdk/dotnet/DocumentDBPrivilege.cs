@@ -10,35 +10,68 @@ using Pulumi;
 
 namespace ediri.Scaleway
 {
+    /// <summary>
+    /// Create and manage Scaleway DocumentDB database privilege.
+    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.DocumentDBPrivilege("main", new()
+    ///     {
+    ///         DatabaseName = "my-db-name",
+    ///         InstanceId = "11111111-1111-1111-1111-111111111111",
+    ///         Permission = "all",
+    ///         UserName = "my-db-user",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/documentDBPrivilege:DocumentDBPrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/documentDBPrivilege:DocumentDBPrivilege")]
     public partial class DocumentDBPrivilege : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Database name
+        /// Name of the database (e.g. `my-db-name`).
         /// </summary>
         [Output("databaseName")]
         public Output<string> DatabaseName { get; private set; } = null!;
 
         /// <summary>
-        /// Instance on which the database is created
+        /// UUID of the rdb instance.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// Privilege
+        /// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
         /// </summary>
         [Output("permission")]
         public Output<string> Permission { get; private set; } = null!;
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the resource exists.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// User name
+        /// Name of the user (e.g. `my-db-user`).
         /// </summary>
         [Output("userName")]
         public Output<string> UserName { get; private set; } = null!;
@@ -91,31 +124,31 @@ namespace ediri.Scaleway
     public sealed class DocumentDBPrivilegeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Database name
+        /// Name of the database (e.g. `my-db-name`).
         /// </summary>
         [Input("databaseName", required: true)]
         public Input<string> DatabaseName { get; set; } = null!;
 
         /// <summary>
-        /// Instance on which the database is created
+        /// UUID of the rdb instance.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// Privilege
+        /// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
         /// </summary>
         [Input("permission", required: true)]
         public Input<string> Permission { get; set; } = null!;
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the resource exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// User name
+        /// Name of the user (e.g. `my-db-user`).
         /// </summary>
         [Input("userName", required: true)]
         public Input<string> UserName { get; set; } = null!;
@@ -129,31 +162,31 @@ namespace ediri.Scaleway
     public sealed class DocumentDBPrivilegeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Database name
+        /// Name of the database (e.g. `my-db-name`).
         /// </summary>
         [Input("databaseName")]
         public Input<string>? DatabaseName { get; set; }
 
         /// <summary>
-        /// Instance on which the database is created
+        /// UUID of the rdb instance.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// Privilege
+        /// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
         /// </summary>
         [Input("permission")]
         public Input<string>? Permission { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the resource exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// User name
+        /// Name of the user (e.g. `my-db-user`).
         /// </summary>
         [Input("userName")]
         public Input<string>? UserName { get; set; }
