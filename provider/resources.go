@@ -307,6 +307,9 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_documentdb_database":                 {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getDocumentDBDatabase")},
 			"scaleway_documentdb_instance":                 {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getDocumentDBInstance")},
 			"scaleway_documentdb_load_balancer_endpoint":   {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getDocumentDBLoadBalancerEndpoint")},
+			"scaleway_billing_consumptions":				{Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getBillingConsumptions")},
+			"scaleway_billing_invoices":					{Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getBillingInvoices")},
+			"scaleway_mnq_sqs":								{Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getMnqSqs")},
 		},
 		TFProviderModuleVersion: "v2",
 		JavaScript: &tfbridge.JavaScriptInfo{
