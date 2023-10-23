@@ -10,77 +10,130 @@ using Pulumi;
 
 namespace ediri.Scaleway
 {
+    /// <summary>
+    /// Creates and manages Scaleway Database Instances.
+    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+    /// 
+    /// ## Examples
+    /// 
+    /// ### Example Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.DocumentDBInstance("main", new()
+    ///     {
+    ///         Engine = "FerretDB-1",
+    ///         NodeType = "docdb-play2-pico",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         Tags = new[]
+    ///         {
+    ///             "terraform-test",
+    ///             "scaleway_documentdb_instance",
+    ///             "minimal",
+    ///         },
+    ///         UserName = "my_initial_user",
+    ///         VolumeSizeInGb = 20,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Database Instance can be imported using the `{region}/{id}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/documentDBInstance:DocumentDBInstance db fr-par/11111111-1111-1111-1111-111111111111
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/documentDBInstance:DocumentDBInstance")]
     public partial class DocumentDBInstance : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Database's engine version id
+        /// Database Instance's engine version (e.g. `FerretDB-1`).
+        /// 
+        /// &gt; **Important:** Updates to `engine` will recreate the Database Instance.
         /// </summary>
         [Output("engine")]
         public Output<string> Engine { get; private set; } = null!;
 
         /// <summary>
-        /// Enable or disable high availability for the database instance
+        /// Enable or disable high availability for the database instance.
         /// </summary>
         [Output("isHaCluster")]
         public Output<bool?> IsHaCluster { get; private set; } = null!;
 
         /// <summary>
-        /// The document db instance name
+        /// The name of the Database Instance.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The type of database instance you want to create
+        /// The type of database instance you want to create (e.g. `docdb-play2-pico`).
+        /// 
+        /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+        /// interruption. Keep in mind that you cannot downgrade a Database Instance.
         /// </summary>
         [Output("nodeType")]
         public Output<string> NodeType { get; private set; } = null!;
 
         /// <summary>
-        /// Password for the first user of the database instance
+        /// Password for the first user of the database instance.
         /// </summary>
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the Database
+        /// Instance is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region
+        /// in which the Database Instance should be created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// List of tags ["tag1", "tag2", ...] attached to a database instance
+        /// The tags associated with the Database Instance.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service
+        /// Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service. More about the telemetry [here](https://docs.ferretdb.io/telemetry/#configure-telemetry).
+        /// 
+        /// &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
         /// </summary>
         [Output("telemetryEnabled")]
         public Output<bool?> TelemetryEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// Identifier for the first user of the database instance
+        /// Identifier for the first user of the database instance.
+        /// 
+        /// &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
         /// </summary>
         [Output("userName")]
         public Output<string?> UserName { get; private set; } = null!;
 
         /// <summary>
-        /// Volume size (in GB) when volume_type is not lssd
+        /// Volume size (in GB) when `volume_type` is set to `bssd`.
         /// </summary>
         [Output("volumeSizeInGb")]
         public Output<int> VolumeSizeInGb { get; private set; } = null!;
 
         /// <summary>
-        /// Type of volume where data are stored
+        /// Type of volume where data are stored (`bssd` or `lssd`).
         /// </summary>
         [Output("volumeType")]
         public Output<string?> VolumeType { get; private set; } = null!;
@@ -137,25 +190,30 @@ namespace ediri.Scaleway
     public sealed class DocumentDBInstanceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Database's engine version id
+        /// Database Instance's engine version (e.g. `FerretDB-1`).
+        /// 
+        /// &gt; **Important:** Updates to `engine` will recreate the Database Instance.
         /// </summary>
         [Input("engine", required: true)]
         public Input<string> Engine { get; set; } = null!;
 
         /// <summary>
-        /// Enable or disable high availability for the database instance
+        /// Enable or disable high availability for the database instance.
         /// </summary>
         [Input("isHaCluster")]
         public Input<bool>? IsHaCluster { get; set; }
 
         /// <summary>
-        /// The document db instance name
+        /// The name of the Database Instance.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The type of database instance you want to create
+        /// The type of database instance you want to create (e.g. `docdb-play2-pico`).
+        /// 
+        /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+        /// interruption. Keep in mind that you cannot downgrade a Database Instance.
         /// </summary>
         [Input("nodeType", required: true)]
         public Input<string> NodeType { get; set; } = null!;
@@ -164,7 +222,7 @@ namespace ediri.Scaleway
         private Input<string>? _password;
 
         /// <summary>
-        /// Password for the first user of the database instance
+        /// Password for the first user of the database instance.
         /// </summary>
         public Input<string>? Password
         {
@@ -177,13 +235,15 @@ namespace ediri.Scaleway
         }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the Database
+        /// Instance is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region
+        /// in which the Database Instance should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -192,7 +252,7 @@ namespace ediri.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// List of tags ["tag1", "tag2", ...] attached to a database instance
+        /// The tags associated with the Database Instance.
         /// </summary>
         public InputList<string> Tags
         {
@@ -201,25 +261,29 @@ namespace ediri.Scaleway
         }
 
         /// <summary>
-        /// Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service
+        /// Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service. More about the telemetry [here](https://docs.ferretdb.io/telemetry/#configure-telemetry).
+        /// 
+        /// &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
         /// </summary>
         [Input("telemetryEnabled")]
         public Input<bool>? TelemetryEnabled { get; set; }
 
         /// <summary>
-        /// Identifier for the first user of the database instance
+        /// Identifier for the first user of the database instance.
+        /// 
+        /// &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
         /// </summary>
         [Input("userName")]
         public Input<string>? UserName { get; set; }
 
         /// <summary>
-        /// Volume size (in GB) when volume_type is not lssd
+        /// Volume size (in GB) when `volume_type` is set to `bssd`.
         /// </summary>
         [Input("volumeSizeInGb")]
         public Input<int>? VolumeSizeInGb { get; set; }
 
         /// <summary>
-        /// Type of volume where data are stored
+        /// Type of volume where data are stored (`bssd` or `lssd`).
         /// </summary>
         [Input("volumeType")]
         public Input<string>? VolumeType { get; set; }
@@ -233,25 +297,30 @@ namespace ediri.Scaleway
     public sealed class DocumentDBInstanceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Database's engine version id
+        /// Database Instance's engine version (e.g. `FerretDB-1`).
+        /// 
+        /// &gt; **Important:** Updates to `engine` will recreate the Database Instance.
         /// </summary>
         [Input("engine")]
         public Input<string>? Engine { get; set; }
 
         /// <summary>
-        /// Enable or disable high availability for the database instance
+        /// Enable or disable high availability for the database instance.
         /// </summary>
         [Input("isHaCluster")]
         public Input<bool>? IsHaCluster { get; set; }
 
         /// <summary>
-        /// The document db instance name
+        /// The name of the Database Instance.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The type of database instance you want to create
+        /// The type of database instance you want to create (e.g. `docdb-play2-pico`).
+        /// 
+        /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+        /// interruption. Keep in mind that you cannot downgrade a Database Instance.
         /// </summary>
         [Input("nodeType")]
         public Input<string>? NodeType { get; set; }
@@ -260,7 +329,7 @@ namespace ediri.Scaleway
         private Input<string>? _password;
 
         /// <summary>
-        /// Password for the first user of the database instance
+        /// Password for the first user of the database instance.
         /// </summary>
         public Input<string>? Password
         {
@@ -273,13 +342,15 @@ namespace ediri.Scaleway
         }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the Database
+        /// Instance is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region
+        /// in which the Database Instance should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -288,7 +359,7 @@ namespace ediri.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// List of tags ["tag1", "tag2", ...] attached to a database instance
+        /// The tags associated with the Database Instance.
         /// </summary>
         public InputList<string> Tags
         {
@@ -297,25 +368,29 @@ namespace ediri.Scaleway
         }
 
         /// <summary>
-        /// Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service
+        /// Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service. More about the telemetry [here](https://docs.ferretdb.io/telemetry/#configure-telemetry).
+        /// 
+        /// &gt; **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
         /// </summary>
         [Input("telemetryEnabled")]
         public Input<bool>? TelemetryEnabled { get; set; }
 
         /// <summary>
-        /// Identifier for the first user of the database instance
+        /// Identifier for the first user of the database instance.
+        /// 
+        /// &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
         /// </summary>
         [Input("userName")]
         public Input<string>? UserName { get; set; }
 
         /// <summary>
-        /// Volume size (in GB) when volume_type is not lssd
+        /// Volume size (in GB) when `volume_type` is set to `bssd`.
         /// </summary>
         [Input("volumeSizeInGb")]
         public Input<int>? VolumeSizeInGb { get; set; }
 
         /// <summary>
-        /// Type of volume where data are stored
+        /// Type of volume where data are stored (`bssd` or `lssd`).
         /// </summary>
         [Input("volumeType")]
         public Input<string>? VolumeType { get; set; }

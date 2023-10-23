@@ -21,11 +21,11 @@ class DocumentDBPrivilegeArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DocumentDBPrivilege resource.
-        :param pulumi.Input[str] database_name: Database name
-        :param pulumi.Input[str] instance_id: Instance on which the database is created
-        :param pulumi.Input[str] permission: Privilege
-        :param pulumi.Input[str] user_name: User name
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] database_name: Name of the database (e.g. `my-db-name`).
+        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+        :param pulumi.Input[str] permission: Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        :param pulumi.Input[str] user_name: Name of the user (e.g. `my-db-user`).
+        :param pulumi.Input[str] region: `region`) The region in which the resource exists.
         """
         DocumentDBPrivilegeArgs._configure(
             lambda key, value: pulumi.set(__self__, key, value),
@@ -63,7 +63,7 @@ class DocumentDBPrivilegeArgs:
     @pulumi.getter(name="databaseName")
     def database_name(self) -> pulumi.Input[str]:
         """
-        Database name
+        Name of the database (e.g. `my-db-name`).
         """
         return pulumi.get(self, "database_name")
 
@@ -75,7 +75,7 @@ class DocumentDBPrivilegeArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[str]:
         """
-        Instance on which the database is created
+        UUID of the rdb instance.
         """
         return pulumi.get(self, "instance_id")
 
@@ -87,7 +87,7 @@ class DocumentDBPrivilegeArgs:
     @pulumi.getter
     def permission(self) -> pulumi.Input[str]:
         """
-        Privilege
+        Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
         """
         return pulumi.get(self, "permission")
 
@@ -99,7 +99,7 @@ class DocumentDBPrivilegeArgs:
     @pulumi.getter(name="userName")
     def user_name(self) -> pulumi.Input[str]:
         """
-        User name
+        Name of the user (e.g. `my-db-user`).
         """
         return pulumi.get(self, "user_name")
 
@@ -111,7 +111,7 @@ class DocumentDBPrivilegeArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        `region`) The region in which the resource exists.
         """
         return pulumi.get(self, "region")
 
@@ -130,11 +130,11 @@ class _DocumentDBPrivilegeState:
                  user_name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DocumentDBPrivilege resources.
-        :param pulumi.Input[str] database_name: Database name
-        :param pulumi.Input[str] instance_id: Instance on which the database is created
-        :param pulumi.Input[str] permission: Privilege
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[str] user_name: User name
+        :param pulumi.Input[str] database_name: Name of the database (e.g. `my-db-name`).
+        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+        :param pulumi.Input[str] permission: Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        :param pulumi.Input[str] region: `region`) The region in which the resource exists.
+        :param pulumi.Input[str] user_name: Name of the user (e.g. `my-db-user`).
         """
         _DocumentDBPrivilegeState._configure(
             lambda key, value: pulumi.set(__self__, key, value),
@@ -176,7 +176,7 @@ class _DocumentDBPrivilegeState:
     @pulumi.getter(name="databaseName")
     def database_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Database name
+        Name of the database (e.g. `my-db-name`).
         """
         return pulumi.get(self, "database_name")
 
@@ -188,7 +188,7 @@ class _DocumentDBPrivilegeState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Instance on which the database is created
+        UUID of the rdb instance.
         """
         return pulumi.get(self, "instance_id")
 
@@ -200,7 +200,7 @@ class _DocumentDBPrivilegeState:
     @pulumi.getter
     def permission(self) -> Optional[pulumi.Input[str]]:
         """
-        Privilege
+        Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
         """
         return pulumi.get(self, "permission")
 
@@ -212,7 +212,7 @@ class _DocumentDBPrivilegeState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        `region`) The region in which the resource exists.
         """
         return pulumi.get(self, "region")
 
@@ -224,7 +224,7 @@ class _DocumentDBPrivilegeState:
     @pulumi.getter(name="userName")
     def user_name(self) -> Optional[pulumi.Input[str]]:
         """
-        User name
+        Name of the user (e.g. `my-db-user`).
         """
         return pulumi.get(self, "user_name")
 
@@ -245,14 +245,37 @@ class DocumentDBPrivilege(pulumi.CustomResource):
                  user_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a DocumentDBPrivilege resource with the given unique name, props, and options.
+        Create and manage Scaleway DocumentDB database privilege.
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        main = scaleway.DocumentDBPrivilege("main",
+            database_name="my-db-name",
+            instance_id="11111111-1111-1111-1111-111111111111",
+            permission="all",
+            user_name="my-db-user")
+        ```
+
+        ## Import
+
+        The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/documentDBPrivilege:DocumentDBPrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] database_name: Database name
-        :param pulumi.Input[str] instance_id: Instance on which the database is created
-        :param pulumi.Input[str] permission: Privilege
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[str] user_name: User name
+        :param pulumi.Input[str] database_name: Name of the database (e.g. `my-db-name`).
+        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+        :param pulumi.Input[str] permission: Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        :param pulumi.Input[str] region: `region`) The region in which the resource exists.
+        :param pulumi.Input[str] user_name: Name of the user (e.g. `my-db-user`).
         """
         ...
     @overload
@@ -261,7 +284,30 @@ class DocumentDBPrivilege(pulumi.CustomResource):
                  args: DocumentDBPrivilegeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DocumentDBPrivilege resource with the given unique name, props, and options.
+        Create and manage Scaleway DocumentDB database privilege.
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        main = scaleway.DocumentDBPrivilege("main",
+            database_name="my-db-name",
+            instance_id="11111111-1111-1111-1111-111111111111",
+            permission="all",
+            user_name="my-db-user")
+        ```
+
+        ## Import
+
+        The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/documentDBPrivilege:DocumentDBPrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
+        ```
+
         :param str resource_name: The name of the resource.
         :param DocumentDBPrivilegeArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -330,11 +376,11 @@ class DocumentDBPrivilege(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] database_name: Database name
-        :param pulumi.Input[str] instance_id: Instance on which the database is created
-        :param pulumi.Input[str] permission: Privilege
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[str] user_name: User name
+        :param pulumi.Input[str] database_name: Name of the database (e.g. `my-db-name`).
+        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+        :param pulumi.Input[str] permission: Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        :param pulumi.Input[str] region: `region`) The region in which the resource exists.
+        :param pulumi.Input[str] user_name: Name of the user (e.g. `my-db-user`).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -351,7 +397,7 @@ class DocumentDBPrivilege(pulumi.CustomResource):
     @pulumi.getter(name="databaseName")
     def database_name(self) -> pulumi.Output[str]:
         """
-        Database name
+        Name of the database (e.g. `my-db-name`).
         """
         return pulumi.get(self, "database_name")
 
@@ -359,7 +405,7 @@ class DocumentDBPrivilege(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
         """
-        Instance on which the database is created
+        UUID of the rdb instance.
         """
         return pulumi.get(self, "instance_id")
 
@@ -367,7 +413,7 @@ class DocumentDBPrivilege(pulumi.CustomResource):
     @pulumi.getter
     def permission(self) -> pulumi.Output[str]:
         """
-        Privilege
+        Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
         """
         return pulumi.get(self, "permission")
 
@@ -375,7 +421,7 @@ class DocumentDBPrivilege(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        The region you want to attach the resource to
+        `region`) The region in which the resource exists.
         """
         return pulumi.get(self, "region")
 
@@ -383,7 +429,7 @@ class DocumentDBPrivilege(pulumi.CustomResource):
     @pulumi.getter(name="userName")
     def user_name(self) -> pulumi.Output[str]:
         """
-        User name
+        Name of the user (e.g. `my-db-user`).
         """
         return pulumi.get(self, "user_name")
 

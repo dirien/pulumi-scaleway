@@ -73,6 +73,9 @@
             "scaleway_container_trigger": {
                 "current": "scaleway:index/containerTrigger:ContainerTrigger",
                 "fields": {
+                    "nats": {
+                        "maxItemsOne": true
+                    },
                     "sqs": {
                         "maxItemsOne": true
                     }
@@ -107,6 +110,37 @@
                 }
             },
             "scaleway_document_db_user": {
+                "current": "scaleway:index/documentDBUser:DocumentDBUser"
+            },
+            "scaleway_documentdb_database": {
+                "current": "scaleway:index/documentDBDatabase:DocumentDBDatabase"
+            },
+            "scaleway_documentdb_instance": {
+                "current": "scaleway:index/documentDBInstance:DocumentDBInstance",
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_documentdb_private_network_endpoint": {
+                "current": "scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint"
+            },
+            "scaleway_documentdb_privilege": {
+                "current": "scaleway:index/documentDBPrivilege:DocumentDBPrivilege"
+            },
+            "scaleway_documentdb_read_replica": {
+                "current": "scaleway:index/documentDBReadReplica:DocumentDBReadReplica",
+                "fields": {
+                    "direct_access": {
+                        "maxItemsOne": true
+                    },
+                    "private_network": {
+                        "maxItemsOne": true
+                    }
+                }
+            },
+            "scaleway_documentdb_user": {
                 "current": "scaleway:index/documentDBUser:DocumentDBUser"
             },
             "scaleway_domain_record": {
@@ -198,6 +232,9 @@
             "scaleway_function_trigger": {
                 "current": "scaleway:index/functionTrigger:FunctionTrigger",
                 "fields": {
+                    "nats": {
+                        "maxItemsOne": true
+                    },
                     "sqs": {
                         "maxItemsOne": true
                     }
@@ -243,6 +280,9 @@
             },
             "scaleway_iam_ssh_key": {
                 "current": "scaleway:index/iamSshKey:IamSshKey"
+            },
+            "scaleway_iam_user": {
+                "current": "scaleway:index/iamUser:IamUser"
             },
             "scaleway_instance_image": {
                 "current": "scaleway:index/instanceImage:InstanceImage",
@@ -622,6 +662,12 @@
             "scaleway_mnq_namespace": {
                 "current": "scaleway:index/mnqNamespace:MnqNamespace"
             },
+            "scaleway_mnq_nats_account": {
+                "current": "scaleway:index/mnqNatsAccount:MnqNatsAccount"
+            },
+            "scaleway_mnq_nats_credentials": {
+                "current": "scaleway:index/mnqNatsCredentials:MnqNatsCredentials"
+            },
             "scaleway_mnq_queue": {
                 "current": "scaleway:index/mnqQueue:MnqQueue",
                 "fields": {
@@ -632,6 +678,20 @@
                         "maxItemsOne": true
                     }
                 }
+            },
+            "scaleway_mnq_sqs": {
+                "current": "scaleway:index/mnqSqs:MnqSqs"
+            },
+            "scaleway_mnq_sqs_credentials": {
+                "current": "scaleway:index/mnqSqsCredentials:MnqSqsCredentials",
+                "fields": {
+                    "permissions": {
+                        "maxItemsOne": true
+                    }
+                }
+            },
+            "scaleway_mnq_sqs_queue": {
+                "current": "scaleway:index/mnqSqsQueue:MnqSqsQueue"
             },
             "scaleway_object": {
                 "current": "scaleway:index/objectItem:ObjectItem"
@@ -974,6 +1034,22 @@
                     }
                 }
             },
+            "scaleway_billing_consumptions": {
+                "current": "scaleway:index/getBillingConsumptions:getBillingConsumptions",
+                "fields": {
+                    "consumptions": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_billing_invoices": {
+                "current": "scaleway:index/getBillingInvoices:getBillingInvoices",
+                "fields": {
+                    "invoices": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_cockpit": {
                 "current": "scaleway:index/getCockpit:getCockpit",
                 "fields": {
@@ -1003,6 +1079,20 @@
                 }
             },
             "scaleway_document_db_load_balancer_endpoint": {
+                "current": "scaleway:index/getDocumentDBLoadBalancerEndpoint:getDocumentDBLoadBalancerEndpoint"
+            },
+            "scaleway_documentdb_database": {
+                "current": "scaleway:index/getDocumentDBDatabase:getDocumentDBDatabase"
+            },
+            "scaleway_documentdb_instance": {
+                "current": "scaleway:index/getDocumentDBInstance:getDocumentDBInstance",
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_documentdb_load_balancer_endpoint": {
                 "current": "scaleway:index/getDocumentDBLoadBalancerEndpoint:getDocumentDBLoadBalancerEndpoint"
             },
             "scaleway_domain_record": {
@@ -1549,6 +1639,9 @@
             "scaleway_marketplace_image": {
                 "current": "scaleway:index/getMarketplaceImage:getMarketplaceImage"
             },
+            "scaleway_mnq_sqs": {
+                "current": "scaleway:index/getMnqSqs:getMnqSqs"
+            },
             "scaleway_object_bucket": {
                 "current": "scaleway:index/getObjectBucket:getObjectBucket",
                 "fields": {
@@ -1808,12 +1901,12 @@
             "scaleway:index/containerNamespace:ContainerNamespace": "scaleway_container_namespace",
             "scaleway:index/containerToken:ContainerToken": "scaleway_container_token",
             "scaleway:index/containerTrigger:ContainerTrigger": "scaleway_container_trigger",
-            "scaleway:index/documentDBDatabase:DocumentDBDatabase": "scaleway_document_db_database",
-            "scaleway:index/documentDBInstance:DocumentDBInstance": "scaleway_document_db_instance",
-            "scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint": "scaleway_document_db_private_network_endpoint",
-            "scaleway:index/documentDBPrivilege:DocumentDBPrivilege": "scaleway_document_db_privilege",
-            "scaleway:index/documentDBReadReplica:DocumentDBReadReplica": "scaleway_document_db_read_replica",
-            "scaleway:index/documentDBUser:DocumentDBUser": "scaleway_document_db_user",
+            "scaleway:index/documentDBDatabase:DocumentDBDatabase": "scaleway_documentdb_database",
+            "scaleway:index/documentDBInstance:DocumentDBInstance": "scaleway_documentdb_instance",
+            "scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint": "scaleway_documentdb_private_network_endpoint",
+            "scaleway:index/documentDBPrivilege:DocumentDBPrivilege": "scaleway_documentdb_privilege",
+            "scaleway:index/documentDBReadReplica:DocumentDBReadReplica": "scaleway_documentdb_read_replica",
+            "scaleway:index/documentDBUser:DocumentDBUser": "scaleway_documentdb_user",
             "scaleway:index/domainRecord:DomainRecord": "scaleway_domain_record",
             "scaleway:index/domainZone:DomainZone": "scaleway_domain_zone",
             "scaleway:index/flexibleIp:FlexibleIp": "scaleway_flexible_ip",
@@ -1830,6 +1923,7 @@
             "scaleway:index/iamGroupMembership:IamGroupMembership": "scaleway_iam_group_membership",
             "scaleway:index/iamPolicy:IamPolicy": "scaleway_iam_policy",
             "scaleway:index/iamSshKey:IamSshKey": "scaleway_iam_ssh_key",
+            "scaleway:index/iamUser:IamUser": "scaleway_iam_user",
             "scaleway:index/instanceImage:InstanceImage": "scaleway_instance_image",
             "scaleway:index/instanceIp:InstanceIp": "scaleway_instance_ip",
             "scaleway:index/instanceIpReverseDns:InstanceIpReverseDns": "scaleway_instance_ip_reverse_dns",
@@ -1856,7 +1950,12 @@
             "scaleway:index/lbRoute:LbRoute": "scaleway_lb_route",
             "scaleway:index/mnqCredential:MnqCredential": "scaleway_mnq_credential",
             "scaleway:index/mnqNamespace:MnqNamespace": "scaleway_mnq_namespace",
+            "scaleway:index/mnqNatsAccount:MnqNatsAccount": "scaleway_mnq_nats_account",
+            "scaleway:index/mnqNatsCredentials:MnqNatsCredentials": "scaleway_mnq_nats_credentials",
             "scaleway:index/mnqQueue:MnqQueue": "scaleway_mnq_queue",
+            "scaleway:index/mnqSqs:MnqSqs": "scaleway_mnq_sqs",
+            "scaleway:index/mnqSqsCredentials:MnqSqsCredentials": "scaleway_mnq_sqs_credentials",
+            "scaleway:index/mnqSqsQueue:MnqSqsQueue": "scaleway_mnq_sqs_queue",
             "scaleway:index/objectBucket:ObjectBucket": "scaleway_object_bucket",
             "scaleway:index/objectBucketAcl:ObjectBucketAcl": "scaleway_object_bucket_acl",
             "scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration": "scaleway_object_bucket_lock_configuration",
@@ -1894,13 +1993,15 @@
             "scaleway:index/getBaremetalOption:getBaremetalOption": "scaleway_baremetal_option",
             "scaleway:index/getBaremetalOs:getBaremetalOs": "scaleway_baremetal_os",
             "scaleway:index/getBaremetalServer:getBaremetalServer": "scaleway_baremetal_server",
+            "scaleway:index/getBillingConsumptions:getBillingConsumptions": "scaleway_billing_consumptions",
+            "scaleway:index/getBillingInvoices:getBillingInvoices": "scaleway_billing_invoices",
             "scaleway:index/getCockpit:getCockpit": "scaleway_cockpit",
             "scaleway:index/getCockpitPlan:getCockpitPlan": "scaleway_cockpit_plan",
             "scaleway:index/getContainer:getContainer": "scaleway_container",
             "scaleway:index/getContainerNamespace:getContainerNamespace": "scaleway_container_namespace",
-            "scaleway:index/getDocumentDBDatabase:getDocumentDBDatabase": "scaleway_document_db_database",
-            "scaleway:index/getDocumentDBInstance:getDocumentDBInstance": "scaleway_document_db_instance",
-            "scaleway:index/getDocumentDBLoadBalancerEndpoint:getDocumentDBLoadBalancerEndpoint": "scaleway_document_db_load_balancer_endpoint",
+            "scaleway:index/getDocumentDBDatabase:getDocumentDBDatabase": "scaleway_documentdb_database",
+            "scaleway:index/getDocumentDBInstance:getDocumentDBInstance": "scaleway_documentdb_instance",
+            "scaleway:index/getDocumentDBLoadBalancerEndpoint:getDocumentDBLoadBalancerEndpoint": "scaleway_documentdb_load_balancer_endpoint",
             "scaleway:index/getDomainRecord:getDomainRecord": "scaleway_domain_record",
             "scaleway:index/getDomainZone:getDomainZone": "scaleway_domain_zone",
             "scaleway:index/getFlexibleIp:getFlexibleIp": "scaleway_flexible_ip",
@@ -1938,6 +2039,7 @@
             "scaleway:index/getLbRoutes:getLbRoutes": "scaleway_lb_routes",
             "scaleway:index/getLbs:getLbs": "scaleway_lbs",
             "scaleway:index/getMarketplaceImage:getMarketplaceImage": "scaleway_marketplace_image",
+            "scaleway:index/getMnqSqs:getMnqSqs": "scaleway_mnq_sqs",
             "scaleway:index/getObjectBucket:getObjectBucket": "scaleway_object_bucket",
             "scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy": "scaleway_object_bucket_policy",
             "scaleway:index/getRdbAcl:getRdbAcl": "scaleway_rdb_acl",
@@ -1986,6 +2088,10 @@
                 "writeLogs": "write_logs",
                 "writeMetrics": "write_metrics"
             },
+            "scaleway:index/ContainerTriggerNats:ContainerTriggerNats": {
+                "accountId": "account_id",
+                "projectId": "project_id"
+            },
             "scaleway:index/ContainerTriggerSqs:ContainerTriggerSqs": {
                 "namespaceId": "namespace_id",
                 "projectId": "project_id"
@@ -2001,6 +2107,10 @@
             "scaleway:index/DomainRecordHttpService:DomainRecordHttpService": {
                 "mustContain": "must_contain",
                 "userAgent": "user_agent"
+            },
+            "scaleway:index/FunctionTriggerNats:FunctionTriggerNats": {
+                "accountId": "account_id",
+                "projectId": "project_id"
             },
             "scaleway:index/FunctionTriggerSqs:FunctionTriggerSqs": {
                 "namespaceId": "namespace_id",
@@ -2142,6 +2252,11 @@
                 "receiveWaitTimeSeconds": "receive_wait_time_seconds",
                 "secretKey": "secret_key",
                 "visibilityTimeoutSeconds": "visibility_timeout_seconds"
+            },
+            "scaleway:index/MnqSqsCredentialsPermissions:MnqSqsCredentialsPermissions": {
+                "canManage": "can_manage",
+                "canPublish": "can_publish",
+                "canReceive": "can_receive"
             },
             "scaleway:index/ObjectBucketAclAccessControlPolicy:ObjectBucketAclAccessControlPolicy": {
                 "grants": "grant"
@@ -2447,6 +2562,28 @@
             "scaleway:index/getBaremetalServerPrivateNetwork:getBaremetalServerPrivateNetwork": {
                 "createdAt": "created_at",
                 "updatedAt": "updated_at"
+            },
+            "scaleway:index/getBillingConsumptions:getBillingConsumptions": {
+                "organizationId": "organization_id",
+                "updatedAt": "updated_at"
+            },
+            "scaleway:index/getBillingConsumptionsConsumption:getBillingConsumptionsConsumption": {
+                "operationPath": "operation_path",
+                "projectId": "project_id"
+            },
+            "scaleway:index/getBillingInvoices:getBillingInvoices": {
+                "invoiceType": "invoice_type",
+                "organizationId": "organization_id",
+                "startedAfter": "started_after",
+                "startedBefore": "started_before"
+            },
+            "scaleway:index/getBillingInvoicesInvoice:getBillingInvoicesInvoice": {
+                "dueDate": "due_date",
+                "invoiceType": "invoice_type",
+                "issuedDate": "issued_date",
+                "startDate": "start_date",
+                "totalTaxed": "total_taxed",
+                "totalUntaxed": "total_untaxed"
             },
             "scaleway:index/getCockpit:getCockpit": {
                 "planId": "plan_id",
@@ -2816,6 +2953,7 @@
                 "nodeType": "node_type",
                 "placementGroupId": "placement_group_id",
                 "poolId": "pool_id",
+                "publicIpDisabled": "public_ip_disabled",
                 "rootVolumeSizeInGb": "root_volume_size_in_gb",
                 "rootVolumeType": "root_volume_type",
                 "updatedAt": "updated_at",
@@ -3068,6 +3206,9 @@
             },
             "scaleway:index/getMarketplaceImage:getMarketplaceImage": {
                 "instanceType": "instance_type"
+            },
+            "scaleway:index/getMnqSqs:getMnqSqs": {
+                "projectId": "project_id"
             },
             "scaleway:index/getObjectBucket:getObjectBucket": {
                 "corsRules": "cors_rule",
@@ -3393,6 +3534,13 @@
                 "publicKey": "public_key",
                 "updatedAt": "updated_at"
             },
+            "scaleway:index/iamUser:IamUser": {
+                "accountRootUserId": "account_root_user_id",
+                "createdAt": "created_at",
+                "lastLoginAt": "last_login_at",
+                "organizationId": "organization_id",
+                "updatedAt": "updated_at"
+            },
             "scaleway:index/instanceImage:InstanceImage": {
                 "additionalVolumeIds": "additional_volume_ids",
                 "additionalVolumes": "additional_volumes",
@@ -3544,6 +3692,7 @@
                 "minSize": "min_size",
                 "nodeType": "node_type",
                 "placementGroupId": "placement_group_id",
+                "publicIpDisabled": "public_ip_disabled",
                 "rootVolumeSizeInGb": "root_volume_size_in_gb",
                 "rootVolumeType": "root_volume_type",
                 "updatedAt": "updated_at",
@@ -3639,11 +3788,37 @@
                 "projectId": "project_id",
                 "updatedAt": "updated_at"
             },
+            "scaleway:index/mnqNatsAccount:MnqNatsAccount": {
+                "projectId": "project_id"
+            },
+            "scaleway:index/mnqNatsCredentials:MnqNatsCredentials": {
+                "accountId": "account_id"
+            },
             "scaleway:index/mnqQueue:MnqQueue": {
                 "messageMaxAge": "message_max_age",
                 "messageMaxSize": "message_max_size",
                 "namePrefix": "name_prefix",
                 "namespaceId": "namespace_id"
+            },
+            "scaleway:index/mnqSqs:MnqSqs": {
+                "projectId": "project_id"
+            },
+            "scaleway:index/mnqSqsCredentials:MnqSqsCredentials": {
+                "accessKey": "access_key",
+                "projectId": "project_id",
+                "secretKey": "secret_key"
+            },
+            "scaleway:index/mnqSqsQueue:MnqSqsQueue": {
+                "accessKey": "access_key",
+                "contentBasedDeduplication": "content_based_deduplication",
+                "fifoQueue": "fifo_queue",
+                "messageMaxAge": "message_max_age",
+                "messageMaxSize": "message_max_size",
+                "namePrefix": "name_prefix",
+                "projectId": "project_id",
+                "receiveWaitTimeSeconds": "receive_wait_time_seconds",
+                "secretKey": "secret_key",
+                "visibilityTimeoutSeconds": "visibility_timeout_seconds"
             },
             "scaleway:index/objectBucket:ObjectBucket": {
                 "corsRules": "cors_rule",
@@ -3717,7 +3892,8 @@
             "scaleway:index/rdbReadReplica:RdbReadReplica": {
                 "directAccess": "direct_access",
                 "instanceId": "instance_id",
-                "privateNetwork": "private_network"
+                "privateNetwork": "private_network",
+                "sameZone": "same_zone"
             },
             "scaleway:index/rdbUser:RdbUser": {
                 "instanceId": "instance_id",

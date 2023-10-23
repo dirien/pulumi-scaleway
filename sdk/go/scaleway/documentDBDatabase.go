@@ -13,22 +13,64 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
+// Creates and manages Scaleway DocumentDB database.
+// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+//
+// ## Examples
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewDocumentDBDatabase(ctx, "main", &scaleway.DocumentDBDatabaseArgs{
+//				InstanceId: pulumi.String("11111111-1111-1111-1111-111111111111"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// DocumentDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/documentDBDatabase:DocumentDBDatabase mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
+//
+// ```
 type DocumentDBDatabase struct {
 	pulumi.CustomResourceState
 
-	// Instance on which the database is created
+	// UUID of the documentdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
-	// Whether or not the database is managed
+	// Whether the database is managed or not.
 	Managed pulumi.BoolOutput `pulumi:"managed"`
-	// The database name
+	// Name of the database (e.g. `my-new-database`).
 	Name pulumi.StringOutput `pulumi:"name"`
-	// User that own the database
+	// The name of the owner of the database.
 	Owner pulumi.StringOutput `pulumi:"owner"`
 	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the resource exists.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Size of the database
+	// Size in gigabytes of the database.
 	Size pulumi.StringOutput `pulumi:"size"`
 }
 
@@ -65,36 +107,40 @@ func GetDocumentDBDatabase(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DocumentDBDatabase resources.
 type documentDBDatabaseState struct {
-	// Instance on which the database is created
+	// UUID of the documentdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database.
 	InstanceId *string `pulumi:"instanceId"`
-	// Whether or not the database is managed
+	// Whether the database is managed or not.
 	Managed *bool `pulumi:"managed"`
-	// The database name
+	// Name of the database (e.g. `my-new-database`).
 	Name *string `pulumi:"name"`
-	// User that own the database
+	// The name of the owner of the database.
 	Owner *string `pulumi:"owner"`
 	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the resource exists.
 	Region *string `pulumi:"region"`
-	// Size of the database
+	// Size in gigabytes of the database.
 	Size *string `pulumi:"size"`
 }
 
 type DocumentDBDatabaseState struct {
-	// Instance on which the database is created
+	// UUID of the documentdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database.
 	InstanceId pulumi.StringPtrInput
-	// Whether or not the database is managed
+	// Whether the database is managed or not.
 	Managed pulumi.BoolPtrInput
-	// The database name
+	// Name of the database (e.g. `my-new-database`).
 	Name pulumi.StringPtrInput
-	// User that own the database
+	// The name of the owner of the database.
 	Owner pulumi.StringPtrInput
 	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// `region`) The region in which the resource exists.
 	Region pulumi.StringPtrInput
-	// Size of the database
+	// Size in gigabytes of the database.
 	Size pulumi.StringPtrInput
 }
 
@@ -103,25 +149,29 @@ func (DocumentDBDatabaseState) ElementType() reflect.Type {
 }
 
 type documentDBDatabaseArgs struct {
-	// Instance on which the database is created
+	// UUID of the documentdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database.
 	InstanceId string `pulumi:"instanceId"`
-	// The database name
+	// Name of the database (e.g. `my-new-database`).
 	Name *string `pulumi:"name"`
 	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the resource exists.
 	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a DocumentDBDatabase resource.
 type DocumentDBDatabaseArgs struct {
-	// Instance on which the database is created
+	// UUID of the documentdb instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database.
 	InstanceId pulumi.StringInput
-	// The database name
+	// Name of the database (e.g. `my-new-database`).
 	Name pulumi.StringPtrInput
 	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// `region`) The region in which the resource exists.
 	Region pulumi.StringPtrInput
 }
 
@@ -236,22 +286,24 @@ func (o DocumentDBDatabaseOutput) ToOutput(ctx context.Context) pulumix.Output[*
 	}
 }
 
-// Instance on which the database is created
+// UUID of the documentdb instance.
+//
+// > **Important:** Updates to `instanceId` will recreate the Database.
 func (o DocumentDBDatabaseOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBDatabase) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-// Whether or not the database is managed
+// Whether the database is managed or not.
 func (o DocumentDBDatabaseOutput) Managed() pulumi.BoolOutput {
 	return o.ApplyT(func(v *DocumentDBDatabase) pulumi.BoolOutput { return v.Managed }).(pulumi.BoolOutput)
 }
 
-// The database name
+// Name of the database (e.g. `my-new-database`).
 func (o DocumentDBDatabaseOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBDatabase) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// User that own the database
+// The name of the owner of the database.
 func (o DocumentDBDatabaseOutput) Owner() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBDatabase) pulumi.StringOutput { return v.Owner }).(pulumi.StringOutput)
 }
@@ -261,12 +313,12 @@ func (o DocumentDBDatabaseOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBDatabase) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The region you want to attach the resource to
+// `region`) The region in which the resource exists.
 func (o DocumentDBDatabaseOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBDatabase) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// Size of the database
+// Size in gigabytes of the database.
 func (o DocumentDBDatabaseOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBDatabase) pulumi.StringOutput { return v.Size }).(pulumi.StringOutput)
 }

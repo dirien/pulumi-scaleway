@@ -4,6 +4,40 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Creates and manages Scaleway Database Instances.
+ * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+ *
+ * ## Examples
+ *
+ * ### Example Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@ediri/scaleway";
+ *
+ * const main = new scaleway.DocumentDBInstance("main", {
+ *     engine: "FerretDB-1",
+ *     nodeType: "docdb-play2-pico",
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     tags: [
+ *         "terraform-test",
+ *         "scaleway_documentdb_instance",
+ *         "minimal",
+ *     ],
+ *     userName: "my_initial_user",
+ *     volumeSizeInGb: 20,
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Database Instance can be imported using the `{region}/{id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/documentDBInstance:DocumentDBInstance db fr-par/11111111-1111-1111-1111-111111111111
+ * ```
+ */
 export class DocumentDBInstance extends pulumi.CustomResource {
     /**
      * Get an existing DocumentDBInstance resource's state with the given name, ID, and optional extra
@@ -33,51 +67,62 @@ export class DocumentDBInstance extends pulumi.CustomResource {
     }
 
     /**
-     * Database's engine version id
+     * Database Instance's engine version (e.g. `FerretDB-1`).
+     *
+     * > **Important:** Updates to `engine` will recreate the Database Instance.
      */
     public readonly engine!: pulumi.Output<string>;
     /**
-     * Enable or disable high availability for the database instance
+     * Enable or disable high availability for the database instance.
      */
     public readonly isHaCluster!: pulumi.Output<boolean | undefined>;
     /**
-     * The document db instance name
+     * The name of the Database Instance.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The type of database instance you want to create
+     * The type of database instance you want to create (e.g. `docdb-play2-pico`).
+     *
+     * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+     * interruption. Keep in mind that you cannot downgrade a Database Instance.
      */
     public readonly nodeType!: pulumi.Output<string>;
     /**
-     * Password for the first user of the database instance
+     * Password for the first user of the database instance.
      */
     public readonly password!: pulumi.Output<string | undefined>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the Database
+     * Instance is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region
+     * in which the Database Instance should be created.
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * List of tags ["tag1", "tag2", ...] attached to a database instance
+     * The tags associated with the Database Instance.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service
+     * Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service. More about the telemetry [here](https://docs.ferretdb.io/telemetry/#configure-telemetry).
+     *
+     * > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
      */
     public readonly telemetryEnabled!: pulumi.Output<boolean | undefined>;
     /**
-     * Identifier for the first user of the database instance
+     * Identifier for the first user of the database instance.
+     *
+     * > **Important:** Updates to `userName` will recreate the Database Instance.
      */
     public readonly userName!: pulumi.Output<string | undefined>;
     /**
-     * Volume size (in GB) when volume_type is not lssd
+     * Volume size (in GB) when `volumeType` is set to `bssd`.
      */
     public readonly volumeSizeInGb!: pulumi.Output<number>;
     /**
-     * Type of volume where data are stored
+     * Type of volume where data are stored (`bssd` or `lssd`).
      */
     public readonly volumeType!: pulumi.Output<string | undefined>;
 
@@ -139,51 +184,62 @@ export class DocumentDBInstance extends pulumi.CustomResource {
  */
 export interface DocumentDBInstanceState {
     /**
-     * Database's engine version id
+     * Database Instance's engine version (e.g. `FerretDB-1`).
+     *
+     * > **Important:** Updates to `engine` will recreate the Database Instance.
      */
     engine?: pulumi.Input<string>;
     /**
-     * Enable or disable high availability for the database instance
+     * Enable or disable high availability for the database instance.
      */
     isHaCluster?: pulumi.Input<boolean>;
     /**
-     * The document db instance name
+     * The name of the Database Instance.
      */
     name?: pulumi.Input<string>;
     /**
-     * The type of database instance you want to create
+     * The type of database instance you want to create (e.g. `docdb-play2-pico`).
+     *
+     * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+     * interruption. Keep in mind that you cannot downgrade a Database Instance.
      */
     nodeType?: pulumi.Input<string>;
     /**
-     * Password for the first user of the database instance
+     * Password for the first user of the database instance.
      */
     password?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the Database
+     * Instance is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region
+     * in which the Database Instance should be created.
      */
     region?: pulumi.Input<string>;
     /**
-     * List of tags ["tag1", "tag2", ...] attached to a database instance
+     * The tags associated with the Database Instance.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service
+     * Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service. More about the telemetry [here](https://docs.ferretdb.io/telemetry/#configure-telemetry).
+     *
+     * > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
      */
     telemetryEnabled?: pulumi.Input<boolean>;
     /**
-     * Identifier for the first user of the database instance
+     * Identifier for the first user of the database instance.
+     *
+     * > **Important:** Updates to `userName` will recreate the Database Instance.
      */
     userName?: pulumi.Input<string>;
     /**
-     * Volume size (in GB) when volume_type is not lssd
+     * Volume size (in GB) when `volumeType` is set to `bssd`.
      */
     volumeSizeInGb?: pulumi.Input<number>;
     /**
-     * Type of volume where data are stored
+     * Type of volume where data are stored (`bssd` or `lssd`).
      */
     volumeType?: pulumi.Input<string>;
 }
@@ -193,51 +249,62 @@ export interface DocumentDBInstanceState {
  */
 export interface DocumentDBInstanceArgs {
     /**
-     * Database's engine version id
+     * Database Instance's engine version (e.g. `FerretDB-1`).
+     *
+     * > **Important:** Updates to `engine` will recreate the Database Instance.
      */
     engine: pulumi.Input<string>;
     /**
-     * Enable or disable high availability for the database instance
+     * Enable or disable high availability for the database instance.
      */
     isHaCluster?: pulumi.Input<boolean>;
     /**
-     * The document db instance name
+     * The name of the Database Instance.
      */
     name?: pulumi.Input<string>;
     /**
-     * The type of database instance you want to create
+     * The type of database instance you want to create (e.g. `docdb-play2-pico`).
+     *
+     * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
+     * interruption. Keep in mind that you cannot downgrade a Database Instance.
      */
     nodeType: pulumi.Input<string>;
     /**
-     * Password for the first user of the database instance
+     * Password for the first user of the database instance.
      */
     password?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * `projectId`) The ID of the project the Database
+     * Instance is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region
+     * in which the Database Instance should be created.
      */
     region?: pulumi.Input<string>;
     /**
-     * List of tags ["tag1", "tag2", ...] attached to a database instance
+     * The tags associated with the Database Instance.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service
+     * Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service. More about the telemetry [here](https://docs.ferretdb.io/telemetry/#configure-telemetry).
+     *
+     * > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
      */
     telemetryEnabled?: pulumi.Input<boolean>;
     /**
-     * Identifier for the first user of the database instance
+     * Identifier for the first user of the database instance.
+     *
+     * > **Important:** Updates to `userName` will recreate the Database Instance.
      */
     userName?: pulumi.Input<string>;
     /**
-     * Volume size (in GB) when volume_type is not lssd
+     * Volume size (in GB) when `volumeType` is set to `bssd`.
      */
     volumeSizeInGb?: pulumi.Input<number>;
     /**
-     * Type of volume where data are stored
+     * Type of volume where data are stored (`bssd` or `lssd`).
      */
     volumeType?: pulumi.Input<string>;
 }

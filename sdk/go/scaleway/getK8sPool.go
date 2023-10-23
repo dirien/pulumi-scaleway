@@ -91,6 +91,7 @@ type LookupK8sPoolResult struct {
 	// [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool are attached to.
 	PlacementGroupId   string  `pulumi:"placementGroupId"`
 	PoolId             *string `pulumi:"poolId"`
+	PublicIpDisabled   bool    `pulumi:"publicIpDisabled"`
 	Region             *string `pulumi:"region"`
 	RootVolumeSizeInGb int     `pulumi:"rootVolumeSizeInGb"`
 	RootVolumeType     string  `pulumi:"rootVolumeType"`
@@ -230,6 +231,10 @@ func (o LookupK8sPoolResultOutput) PlacementGroupId() pulumi.StringOutput {
 
 func (o LookupK8sPoolResultOutput) PoolId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupK8sPoolResult) *string { return v.PoolId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupK8sPoolResultOutput) PublicIpDisabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupK8sPoolResult) bool { return v.PublicIpDisabled }).(pulumi.BoolOutput)
 }
 
 func (o LookupK8sPoolResultOutput) Region() pulumi.StringPtrOutput {

@@ -12,9 +12,59 @@ namespace ediri.Scaleway
 {
     public static class GetDocumentDBInstance
     {
+        /// <summary>
+        /// Gets information about an DocumentDB instance. For further information see our [developers website](https://www.scaleway.com/en/developers/api/document_db/)
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var db = Scaleway.GetDocumentDBInstance.Invoke(new()
+        ///     {
+        ///         InstanceId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetDocumentDBInstanceResult> InvokeAsync(GetDocumentDBInstanceArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDocumentDBInstanceResult>("scaleway:index/getDocumentDBInstance:getDocumentDBInstance", args ?? new GetDocumentDBInstanceArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Gets information about an DocumentDB instance. For further information see our [developers website](https://www.scaleway.com/en/developers/api/document_db/)
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var db = Scaleway.GetDocumentDBInstance.Invoke(new()
+        ///     {
+        ///         InstanceId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetDocumentDBInstanceResult> Invoke(GetDocumentDBInstanceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDocumentDBInstanceResult>("scaleway:index/getDocumentDBInstance:getDocumentDBInstance", args ?? new GetDocumentDBInstanceInvokeArgs(), options.WithDefaults());
     }
@@ -22,12 +72,23 @@ namespace ediri.Scaleway
 
     public sealed class GetDocumentDBInstanceArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The DocumentDB instance ID.
+        /// Only one of `name` and `instance_id` should be specified.
+        /// </summary>
         [Input("instanceId")]
         public string? InstanceId { get; set; }
 
+        /// <summary>
+        /// The name of the DocumentDB instance.
+        /// Only one of `name` and `instance_id` should be specified.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// `region`) The region in which the DocumentDB instance exists.
+        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
@@ -39,12 +100,23 @@ namespace ediri.Scaleway
 
     public sealed class GetDocumentDBInstanceInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The DocumentDB instance ID.
+        /// Only one of `name` and `instance_id` should be specified.
+        /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
+        /// <summary>
+        /// The name of the DocumentDB instance.
+        /// Only one of `name` and `instance_id` should be specified.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// `region`) The region in which the DocumentDB instance exists.
+        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 

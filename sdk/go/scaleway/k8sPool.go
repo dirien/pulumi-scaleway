@@ -57,6 +57,9 @@ type K8sPool struct {
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
 	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId pulumi.StringPtrOutput `pulumi:"placementGroupId"`
+	// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+	// > **Important:** Updates to this field will recreate a new resource.
+	PublicIpDisabled pulumi.BoolPtrOutput `pulumi:"publicIpDisabled"`
 	// `region`) The region in which the pool should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The size of the system volume of the nodes in gigabyte
@@ -155,6 +158,9 @@ type k8sPoolState struct {
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
 	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId *string `pulumi:"placementGroupId"`
+	// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+	// > **Important:** Updates to this field will recreate a new resource.
+	PublicIpDisabled *bool `pulumi:"publicIpDisabled"`
 	// `region`) The region in which the pool should be created.
 	Region *string `pulumi:"region"`
 	// The size of the system volume of the nodes in gigabyte
@@ -215,6 +221,9 @@ type K8sPoolState struct {
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
 	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId pulumi.StringPtrInput
+	// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+	// > **Important:** Updates to this field will recreate a new resource.
+	PublicIpDisabled pulumi.BoolPtrInput
 	// `region`) The region in which the pool should be created.
 	Region pulumi.StringPtrInput
 	// The size of the system volume of the nodes in gigabyte
@@ -273,6 +282,9 @@ type k8sPoolArgs struct {
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
 	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId *string `pulumi:"placementGroupId"`
+	// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+	// > **Important:** Updates to this field will recreate a new resource.
+	PublicIpDisabled *bool `pulumi:"publicIpDisabled"`
 	// `region`) The region in which the pool should be created.
 	Region *string `pulumi:"region"`
 	// The size of the system volume of the nodes in gigabyte
@@ -322,6 +334,9 @@ type K8sPoolArgs struct {
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
 	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId pulumi.StringPtrInput
+	// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+	// > **Important:** Updates to this field will recreate a new resource.
+	PublicIpDisabled pulumi.BoolPtrInput
 	// `region`) The region in which the pool should be created.
 	Region pulumi.StringPtrInput
 	// The size of the system volume of the nodes in gigabyte
@@ -523,6 +538,12 @@ func (o K8sPoolOutput) Nodes() K8sPoolNodeArrayOutput {
 // > **Important:** Updates to this field will recreate a new resource.
 func (o K8sPoolOutput) PlacementGroupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *K8sPool) pulumi.StringPtrOutput { return v.PlacementGroupId }).(pulumi.StringPtrOutput)
+}
+
+// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+// > **Important:** Updates to this field will recreate a new resource.
+func (o K8sPoolOutput) PublicIpDisabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *K8sPool) pulumi.BoolPtrOutput { return v.PublicIpDisabled }).(pulumi.BoolPtrOutput)
 }
 
 // `region`) The region in which the pool should be created.

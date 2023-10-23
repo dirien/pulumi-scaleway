@@ -28,18 +28,29 @@ class DocumentDBInstanceArgs:
                  volume_type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DocumentDBInstance resource.
-        :param pulumi.Input[str] engine: Database's engine version id
-        :param pulumi.Input[str] node_type: The type of database instance you want to create
-        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance
-        :param pulumi.Input[str] name: The document db instance name
-        :param pulumi.Input[str] password: Password for the first user of the database instance
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags ["tag1", "tag2", ...] attached to a database instance
-        :param pulumi.Input[bool] telemetry_enabled: Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service
-        :param pulumi.Input[str] user_name: Identifier for the first user of the database instance
-        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when volume_type is not lssd
-        :param pulumi.Input[str] volume_type: Type of volume where data are stored
+        :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `FerretDB-1`).
+               
+               > **Important:** Updates to `engine` will recreate the Database Instance.
+        :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `docdb-play2-pico`).
+               
+               > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+               interruption. Keep in mind that you cannot downgrade a Database Instance.
+        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance.
+        :param pulumi.Input[str] name: The name of the Database Instance.
+        :param pulumi.Input[str] password: Password for the first user of the database instance.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database
+               Instance is associated with.
+        :param pulumi.Input[str] region: `region`) The region
+               in which the Database Instance should be created.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
+        :param pulumi.Input[bool] telemetry_enabled: Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service. More about the telemetry [here](https://docs.ferretdb.io/telemetry/#configure-telemetry).
+               
+               > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
+        :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
+               
+               > **Important:** Updates to `user_name` will recreate the Database Instance.
+        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`.
+        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd` or `lssd`).
         """
         DocumentDBInstanceArgs._configure(
             lambda key, value: pulumi.set(__self__, key, value),
@@ -115,7 +126,9 @@ class DocumentDBInstanceArgs:
     @pulumi.getter
     def engine(self) -> pulumi.Input[str]:
         """
-        Database's engine version id
+        Database Instance's engine version (e.g. `FerretDB-1`).
+
+        > **Important:** Updates to `engine` will recreate the Database Instance.
         """
         return pulumi.get(self, "engine")
 
@@ -127,7 +140,10 @@ class DocumentDBInstanceArgs:
     @pulumi.getter(name="nodeType")
     def node_type(self) -> pulumi.Input[str]:
         """
-        The type of database instance you want to create
+        The type of database instance you want to create (e.g. `docdb-play2-pico`).
+
+        > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+        interruption. Keep in mind that you cannot downgrade a Database Instance.
         """
         return pulumi.get(self, "node_type")
 
@@ -139,7 +155,7 @@ class DocumentDBInstanceArgs:
     @pulumi.getter(name="isHaCluster")
     def is_ha_cluster(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable or disable high availability for the database instance
+        Enable or disable high availability for the database instance.
         """
         return pulumi.get(self, "is_ha_cluster")
 
@@ -151,7 +167,7 @@ class DocumentDBInstanceArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The document db instance name
+        The name of the Database Instance.
         """
         return pulumi.get(self, "name")
 
@@ -163,7 +179,7 @@ class DocumentDBInstanceArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        Password for the first user of the database instance
+        Password for the first user of the database instance.
         """
         return pulumi.get(self, "password")
 
@@ -175,7 +191,8 @@ class DocumentDBInstanceArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the Database
+        Instance is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -187,7 +204,8 @@ class DocumentDBInstanceArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        `region`) The region
+        in which the Database Instance should be created.
         """
         return pulumi.get(self, "region")
 
@@ -199,7 +217,7 @@ class DocumentDBInstanceArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of tags ["tag1", "tag2", ...] attached to a database instance
+        The tags associated with the Database Instance.
         """
         return pulumi.get(self, "tags")
 
@@ -211,7 +229,9 @@ class DocumentDBInstanceArgs:
     @pulumi.getter(name="telemetryEnabled")
     def telemetry_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service
+        Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service. More about the telemetry [here](https://docs.ferretdb.io/telemetry/#configure-telemetry).
+
+        > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
         """
         return pulumi.get(self, "telemetry_enabled")
 
@@ -223,7 +243,9 @@ class DocumentDBInstanceArgs:
     @pulumi.getter(name="userName")
     def user_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Identifier for the first user of the database instance
+        Identifier for the first user of the database instance.
+
+        > **Important:** Updates to `user_name` will recreate the Database Instance.
         """
         return pulumi.get(self, "user_name")
 
@@ -235,7 +257,7 @@ class DocumentDBInstanceArgs:
     @pulumi.getter(name="volumeSizeInGb")
     def volume_size_in_gb(self) -> Optional[pulumi.Input[int]]:
         """
-        Volume size (in GB) when volume_type is not lssd
+        Volume size (in GB) when `volume_type` is set to `bssd`.
         """
         return pulumi.get(self, "volume_size_in_gb")
 
@@ -247,7 +269,7 @@ class DocumentDBInstanceArgs:
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Type of volume where data are stored
+        Type of volume where data are stored (`bssd` or `lssd`).
         """
         return pulumi.get(self, "volume_type")
 
@@ -273,18 +295,29 @@ class _DocumentDBInstanceState:
                  volume_type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DocumentDBInstance resources.
-        :param pulumi.Input[str] engine: Database's engine version id
-        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance
-        :param pulumi.Input[str] name: The document db instance name
-        :param pulumi.Input[str] node_type: The type of database instance you want to create
-        :param pulumi.Input[str] password: Password for the first user of the database instance
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags ["tag1", "tag2", ...] attached to a database instance
-        :param pulumi.Input[bool] telemetry_enabled: Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service
-        :param pulumi.Input[str] user_name: Identifier for the first user of the database instance
-        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when volume_type is not lssd
-        :param pulumi.Input[str] volume_type: Type of volume where data are stored
+        :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `FerretDB-1`).
+               
+               > **Important:** Updates to `engine` will recreate the Database Instance.
+        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance.
+        :param pulumi.Input[str] name: The name of the Database Instance.
+        :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `docdb-play2-pico`).
+               
+               > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+               interruption. Keep in mind that you cannot downgrade a Database Instance.
+        :param pulumi.Input[str] password: Password for the first user of the database instance.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database
+               Instance is associated with.
+        :param pulumi.Input[str] region: `region`) The region
+               in which the Database Instance should be created.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
+        :param pulumi.Input[bool] telemetry_enabled: Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service. More about the telemetry [here](https://docs.ferretdb.io/telemetry/#configure-telemetry).
+               
+               > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
+        :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
+               
+               > **Important:** Updates to `user_name` will recreate the Database Instance.
+        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`.
+        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd` or `lssd`).
         """
         _DocumentDBInstanceState._configure(
             lambda key, value: pulumi.set(__self__, key, value),
@@ -362,7 +395,9 @@ class _DocumentDBInstanceState:
     @pulumi.getter
     def engine(self) -> Optional[pulumi.Input[str]]:
         """
-        Database's engine version id
+        Database Instance's engine version (e.g. `FerretDB-1`).
+
+        > **Important:** Updates to `engine` will recreate the Database Instance.
         """
         return pulumi.get(self, "engine")
 
@@ -374,7 +409,7 @@ class _DocumentDBInstanceState:
     @pulumi.getter(name="isHaCluster")
     def is_ha_cluster(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable or disable high availability for the database instance
+        Enable or disable high availability for the database instance.
         """
         return pulumi.get(self, "is_ha_cluster")
 
@@ -386,7 +421,7 @@ class _DocumentDBInstanceState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The document db instance name
+        The name of the Database Instance.
         """
         return pulumi.get(self, "name")
 
@@ -398,7 +433,10 @@ class _DocumentDBInstanceState:
     @pulumi.getter(name="nodeType")
     def node_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of database instance you want to create
+        The type of database instance you want to create (e.g. `docdb-play2-pico`).
+
+        > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+        interruption. Keep in mind that you cannot downgrade a Database Instance.
         """
         return pulumi.get(self, "node_type")
 
@@ -410,7 +448,7 @@ class _DocumentDBInstanceState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        Password for the first user of the database instance
+        Password for the first user of the database instance.
         """
         return pulumi.get(self, "password")
 
@@ -422,7 +460,8 @@ class _DocumentDBInstanceState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the Database
+        Instance is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -434,7 +473,8 @@ class _DocumentDBInstanceState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        `region`) The region
+        in which the Database Instance should be created.
         """
         return pulumi.get(self, "region")
 
@@ -446,7 +486,7 @@ class _DocumentDBInstanceState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of tags ["tag1", "tag2", ...] attached to a database instance
+        The tags associated with the Database Instance.
         """
         return pulumi.get(self, "tags")
 
@@ -458,7 +498,9 @@ class _DocumentDBInstanceState:
     @pulumi.getter(name="telemetryEnabled")
     def telemetry_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service
+        Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service. More about the telemetry [here](https://docs.ferretdb.io/telemetry/#configure-telemetry).
+
+        > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
         """
         return pulumi.get(self, "telemetry_enabled")
 
@@ -470,7 +512,9 @@ class _DocumentDBInstanceState:
     @pulumi.getter(name="userName")
     def user_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Identifier for the first user of the database instance
+        Identifier for the first user of the database instance.
+
+        > **Important:** Updates to `user_name` will recreate the Database Instance.
         """
         return pulumi.get(self, "user_name")
 
@@ -482,7 +526,7 @@ class _DocumentDBInstanceState:
     @pulumi.getter(name="volumeSizeInGb")
     def volume_size_in_gb(self) -> Optional[pulumi.Input[int]]:
         """
-        Volume size (in GB) when volume_type is not lssd
+        Volume size (in GB) when `volume_type` is set to `bssd`.
         """
         return pulumi.get(self, "volume_size_in_gb")
 
@@ -494,7 +538,7 @@ class _DocumentDBInstanceState:
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Type of volume where data are stored
+        Type of volume where data are stored (`bssd` or `lssd`).
         """
         return pulumi.get(self, "volume_type")
 
@@ -522,21 +566,63 @@ class DocumentDBInstance(pulumi.CustomResource):
                  volume_type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a DocumentDBInstance resource with the given unique name, props, and options.
+        Creates and manages Scaleway Database Instances.
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+
+        ## Examples
+
+        ### Example Basic
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        main = scaleway.DocumentDBInstance("main",
+            engine="FerretDB-1",
+            node_type="docdb-play2-pico",
+            password="thiZ_is_v&ry_s3cret",
+            tags=[
+                "terraform-test",
+                "scaleway_documentdb_instance",
+                "minimal",
+            ],
+            user_name="my_initial_user",
+            volume_size_in_gb=20)
+        ```
+
+        ## Import
+
+        Database Instance can be imported using the `{region}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/documentDBInstance:DocumentDBInstance db fr-par/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] engine: Database's engine version id
-        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance
-        :param pulumi.Input[str] name: The document db instance name
-        :param pulumi.Input[str] node_type: The type of database instance you want to create
-        :param pulumi.Input[str] password: Password for the first user of the database instance
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags ["tag1", "tag2", ...] attached to a database instance
-        :param pulumi.Input[bool] telemetry_enabled: Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service
-        :param pulumi.Input[str] user_name: Identifier for the first user of the database instance
-        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when volume_type is not lssd
-        :param pulumi.Input[str] volume_type: Type of volume where data are stored
+        :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `FerretDB-1`).
+               
+               > **Important:** Updates to `engine` will recreate the Database Instance.
+        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance.
+        :param pulumi.Input[str] name: The name of the Database Instance.
+        :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `docdb-play2-pico`).
+               
+               > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+               interruption. Keep in mind that you cannot downgrade a Database Instance.
+        :param pulumi.Input[str] password: Password for the first user of the database instance.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database
+               Instance is associated with.
+        :param pulumi.Input[str] region: `region`) The region
+               in which the Database Instance should be created.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
+        :param pulumi.Input[bool] telemetry_enabled: Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service. More about the telemetry [here](https://docs.ferretdb.io/telemetry/#configure-telemetry).
+               
+               > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
+        :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
+               
+               > **Important:** Updates to `user_name` will recreate the Database Instance.
+        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`.
+        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd` or `lssd`).
         """
         ...
     @overload
@@ -545,7 +631,38 @@ class DocumentDBInstance(pulumi.CustomResource):
                  args: DocumentDBInstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DocumentDBInstance resource with the given unique name, props, and options.
+        Creates and manages Scaleway Database Instances.
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+
+        ## Examples
+
+        ### Example Basic
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        main = scaleway.DocumentDBInstance("main",
+            engine="FerretDB-1",
+            node_type="docdb-play2-pico",
+            password="thiZ_is_v&ry_s3cret",
+            tags=[
+                "terraform-test",
+                "scaleway_documentdb_instance",
+                "minimal",
+            ],
+            user_name="my_initial_user",
+            volume_size_in_gb=20)
+        ```
+
+        ## Import
+
+        Database Instance can be imported using the `{region}/{id}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/documentDBInstance:DocumentDBInstance db fr-par/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param DocumentDBInstanceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -633,18 +750,29 @@ class DocumentDBInstance(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] engine: Database's engine version id
-        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance
-        :param pulumi.Input[str] name: The document db instance name
-        :param pulumi.Input[str] node_type: The type of database instance you want to create
-        :param pulumi.Input[str] password: Password for the first user of the database instance
-        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags ["tag1", "tag2", ...] attached to a database instance
-        :param pulumi.Input[bool] telemetry_enabled: Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service
-        :param pulumi.Input[str] user_name: Identifier for the first user of the database instance
-        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when volume_type is not lssd
-        :param pulumi.Input[str] volume_type: Type of volume where data are stored
+        :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `FerretDB-1`).
+               
+               > **Important:** Updates to `engine` will recreate the Database Instance.
+        :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance.
+        :param pulumi.Input[str] name: The name of the Database Instance.
+        :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `docdb-play2-pico`).
+               
+               > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+               interruption. Keep in mind that you cannot downgrade a Database Instance.
+        :param pulumi.Input[str] password: Password for the first user of the database instance.
+        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database
+               Instance is associated with.
+        :param pulumi.Input[str] region: `region`) The region
+               in which the Database Instance should be created.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
+        :param pulumi.Input[bool] telemetry_enabled: Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service. More about the telemetry [here](https://docs.ferretdb.io/telemetry/#configure-telemetry).
+               
+               > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
+        :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
+               
+               > **Important:** Updates to `user_name` will recreate the Database Instance.
+        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`.
+        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd` or `lssd`).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -668,7 +796,9 @@ class DocumentDBInstance(pulumi.CustomResource):
     @pulumi.getter
     def engine(self) -> pulumi.Output[str]:
         """
-        Database's engine version id
+        Database Instance's engine version (e.g. `FerretDB-1`).
+
+        > **Important:** Updates to `engine` will recreate the Database Instance.
         """
         return pulumi.get(self, "engine")
 
@@ -676,7 +806,7 @@ class DocumentDBInstance(pulumi.CustomResource):
     @pulumi.getter(name="isHaCluster")
     def is_ha_cluster(self) -> pulumi.Output[Optional[bool]]:
         """
-        Enable or disable high availability for the database instance
+        Enable or disable high availability for the database instance.
         """
         return pulumi.get(self, "is_ha_cluster")
 
@@ -684,7 +814,7 @@ class DocumentDBInstance(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The document db instance name
+        The name of the Database Instance.
         """
         return pulumi.get(self, "name")
 
@@ -692,7 +822,10 @@ class DocumentDBInstance(pulumi.CustomResource):
     @pulumi.getter(name="nodeType")
     def node_type(self) -> pulumi.Output[str]:
         """
-        The type of database instance you want to create
+        The type of database instance you want to create (e.g. `docdb-play2-pico`).
+
+        > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
+        interruption. Keep in mind that you cannot downgrade a Database Instance.
         """
         return pulumi.get(self, "node_type")
 
@@ -700,7 +833,7 @@ class DocumentDBInstance(pulumi.CustomResource):
     @pulumi.getter
     def password(self) -> pulumi.Output[Optional[str]]:
         """
-        Password for the first user of the database instance
+        Password for the first user of the database instance.
         """
         return pulumi.get(self, "password")
 
@@ -708,7 +841,8 @@ class DocumentDBInstance(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        The project_id you want to attach the resource to
+        `project_id`) The ID of the project the Database
+        Instance is associated with.
         """
         return pulumi.get(self, "project_id")
 
@@ -716,7 +850,8 @@ class DocumentDBInstance(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        The region you want to attach the resource to
+        `region`) The region
+        in which the Database Instance should be created.
         """
         return pulumi.get(self, "region")
 
@@ -724,7 +859,7 @@ class DocumentDBInstance(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        List of tags ["tag1", "tag2", ...] attached to a database instance
+        The tags associated with the Database Instance.
         """
         return pulumi.get(self, "tags")
 
@@ -732,7 +867,9 @@ class DocumentDBInstance(pulumi.CustomResource):
     @pulumi.getter(name="telemetryEnabled")
     def telemetry_enabled(self) -> pulumi.Output[Optional[bool]]:
         """
-        Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service
+        Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service. More about the telemetry [here](https://docs.ferretdb.io/telemetry/#configure-telemetry).
+
+        > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
         """
         return pulumi.get(self, "telemetry_enabled")
 
@@ -740,7 +877,9 @@ class DocumentDBInstance(pulumi.CustomResource):
     @pulumi.getter(name="userName")
     def user_name(self) -> pulumi.Output[Optional[str]]:
         """
-        Identifier for the first user of the database instance
+        Identifier for the first user of the database instance.
+
+        > **Important:** Updates to `user_name` will recreate the Database Instance.
         """
         return pulumi.get(self, "user_name")
 
@@ -748,7 +887,7 @@ class DocumentDBInstance(pulumi.CustomResource):
     @pulumi.getter(name="volumeSizeInGb")
     def volume_size_in_gb(self) -> pulumi.Output[int]:
         """
-        Volume size (in GB) when volume_type is not lssd
+        Volume size (in GB) when `volume_type` is set to `bssd`.
         """
         return pulumi.get(self, "volume_size_in_gb")
 
@@ -756,7 +895,7 @@ class DocumentDBInstance(pulumi.CustomResource):
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> pulumi.Output[Optional[str]]:
         """
-        Type of volume where data are stored
+        Type of volume where data are stored (`bssd` or `lssd`).
         """
         return pulumi.get(self, "volume_type")
 

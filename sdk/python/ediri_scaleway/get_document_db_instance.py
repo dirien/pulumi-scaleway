@@ -166,7 +166,23 @@ def get_document_db_instance(instance_id: Optional[str] = None,
                              region: Optional[str] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDocumentDBInstanceResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about an DocumentDB instance. For further information see our [developers website](https://www.scaleway.com/en/developers/api/document_db/)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    db = scaleway.get_document_db_instance(instance_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str instance_id: The DocumentDB instance ID.
+           Only one of `name` and `instance_id` should be specified.
+    :param str name: The name of the DocumentDB instance.
+           Only one of `name` and `instance_id` should be specified.
+    :param str region: `region`) The region in which the DocumentDB instance exists.
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
@@ -198,6 +214,22 @@ def get_document_db_instance_output(instance_id: Optional[pulumi.Input[Optional[
                                     region: Optional[pulumi.Input[Optional[str]]] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDocumentDBInstanceResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about an DocumentDB instance. For further information see our [developers website](https://www.scaleway.com/en/developers/api/document_db/)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    db = scaleway.get_document_db_instance(instance_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str instance_id: The DocumentDB instance ID.
+           Only one of `name` and `instance_id` should be specified.
+    :param str name: The name of the DocumentDB instance.
+           Only one of `name` and `instance_id` should be specified.
+    :param str region: `region`) The region in which the DocumentDB instance exists.
     """
     ...

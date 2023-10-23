@@ -13,18 +13,59 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
+// Create and manage Scaleway DocumentDB database privilege.
+// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewDocumentDBPrivilege(ctx, "main", &scaleway.DocumentDBPrivilegeArgs{
+//				DatabaseName: pulumi.String("my-db-name"),
+//				InstanceId:   pulumi.String("11111111-1111-1111-1111-111111111111"),
+//				Permission:   pulumi.String("all"),
+//				UserName:     pulumi.String("my-db-user"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/documentDBPrivilege:DocumentDBPrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
+//
+// ```
 type DocumentDBPrivilege struct {
 	pulumi.CustomResourceState
 
-	// Database name
+	// Name of the database (e.g. `my-db-name`).
 	DatabaseName pulumi.StringOutput `pulumi:"databaseName"`
-	// Instance on which the database is created
+	// UUID of the rdb instance.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
-	// Privilege
+	// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 	Permission pulumi.StringOutput `pulumi:"permission"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the resource exists.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// User name
+	// Name of the user (e.g. `my-db-user`).
 	UserName pulumi.StringOutput `pulumi:"userName"`
 }
 
@@ -70,28 +111,28 @@ func GetDocumentDBPrivilege(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DocumentDBPrivilege resources.
 type documentDBPrivilegeState struct {
-	// Database name
+	// Name of the database (e.g. `my-db-name`).
 	DatabaseName *string `pulumi:"databaseName"`
-	// Instance on which the database is created
+	// UUID of the rdb instance.
 	InstanceId *string `pulumi:"instanceId"`
-	// Privilege
+	// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 	Permission *string `pulumi:"permission"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the resource exists.
 	Region *string `pulumi:"region"`
-	// User name
+	// Name of the user (e.g. `my-db-user`).
 	UserName *string `pulumi:"userName"`
 }
 
 type DocumentDBPrivilegeState struct {
-	// Database name
+	// Name of the database (e.g. `my-db-name`).
 	DatabaseName pulumi.StringPtrInput
-	// Instance on which the database is created
+	// UUID of the rdb instance.
 	InstanceId pulumi.StringPtrInput
-	// Privilege
+	// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 	Permission pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// `region`) The region in which the resource exists.
 	Region pulumi.StringPtrInput
-	// User name
+	// Name of the user (e.g. `my-db-user`).
 	UserName pulumi.StringPtrInput
 }
 
@@ -100,29 +141,29 @@ func (DocumentDBPrivilegeState) ElementType() reflect.Type {
 }
 
 type documentDBPrivilegeArgs struct {
-	// Database name
+	// Name of the database (e.g. `my-db-name`).
 	DatabaseName string `pulumi:"databaseName"`
-	// Instance on which the database is created
+	// UUID of the rdb instance.
 	InstanceId string `pulumi:"instanceId"`
-	// Privilege
+	// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 	Permission string `pulumi:"permission"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the resource exists.
 	Region *string `pulumi:"region"`
-	// User name
+	// Name of the user (e.g. `my-db-user`).
 	UserName string `pulumi:"userName"`
 }
 
 // The set of arguments for constructing a DocumentDBPrivilege resource.
 type DocumentDBPrivilegeArgs struct {
-	// Database name
+	// Name of the database (e.g. `my-db-name`).
 	DatabaseName pulumi.StringInput
-	// Instance on which the database is created
+	// UUID of the rdb instance.
 	InstanceId pulumi.StringInput
-	// Privilege
+	// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 	Permission pulumi.StringInput
-	// The region you want to attach the resource to
+	// `region`) The region in which the resource exists.
 	Region pulumi.StringPtrInput
-	// User name
+	// Name of the user (e.g. `my-db-user`).
 	UserName pulumi.StringInput
 }
 
@@ -237,27 +278,27 @@ func (o DocumentDBPrivilegeOutput) ToOutput(ctx context.Context) pulumix.Output[
 	}
 }
 
-// Database name
+// Name of the database (e.g. `my-db-name`).
 func (o DocumentDBPrivilegeOutput) DatabaseName() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBPrivilege) pulumi.StringOutput { return v.DatabaseName }).(pulumi.StringOutput)
 }
 
-// Instance on which the database is created
+// UUID of the rdb instance.
 func (o DocumentDBPrivilegeOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBPrivilege) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-// Privilege
+// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 func (o DocumentDBPrivilegeOutput) Permission() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBPrivilege) pulumi.StringOutput { return v.Permission }).(pulumi.StringOutput)
 }
 
-// The region you want to attach the resource to
+// `region`) The region in which the resource exists.
 func (o DocumentDBPrivilegeOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBPrivilege) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// User name
+// Name of the user (e.g. `my-db-user`).
 func (o DocumentDBPrivilegeOutput) UserName() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBPrivilege) pulumi.StringOutput { return v.UserName }).(pulumi.StringOutput)
 }

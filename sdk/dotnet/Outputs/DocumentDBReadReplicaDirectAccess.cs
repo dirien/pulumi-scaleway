@@ -14,10 +14,25 @@ namespace ediri.Scaleway.Outputs
     [OutputType]
     public sealed class DocumentDBReadReplicaDirectAccess
     {
+        /// <summary>
+        /// The ID of the endpoint of the read replica.
+        /// </summary>
         public readonly string? EndpointId;
+        /// <summary>
+        /// Hostname of the endpoint. Only one of ip and hostname may be set.
+        /// </summary>
         public readonly string? Hostname;
+        /// <summary>
+        /// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+        /// </summary>
         public readonly string? Ip;
+        /// <summary>
+        /// Name of the endpoint.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// TCP port of the endpoint.
+        /// </summary>
         public readonly int? Port;
 
         [OutputConstructor]

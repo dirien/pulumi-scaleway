@@ -27,6 +27,7 @@ class K8sPoolArgs:
                  min_size: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  placement_group_id: Optional[pulumi.Input[str]] = None,
+                 public_ip_disabled: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  root_volume_size_in_gb: Optional[pulumi.Input[int]] = None,
                  root_volume_type: Optional[pulumi.Input[str]] = None,
@@ -54,6 +55,8 @@ class K8sPoolArgs:
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
                > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[bool] public_ip_disabled: Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+               > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] region: `region`) The region in which the pool should be created.
         :param pulumi.Input[int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
         :param pulumi.Input[str] root_volume_type: System volume type of the nodes composing the pool
@@ -77,6 +80,7 @@ class K8sPoolArgs:
             min_size=min_size,
             name=name,
             placement_group_id=placement_group_id,
+            public_ip_disabled=public_ip_disabled,
             region=region,
             root_volume_size_in_gb=root_volume_size_in_gb,
             root_volume_type=root_volume_type,
@@ -99,6 +103,7 @@ class K8sPoolArgs:
              min_size: Optional[pulumi.Input[int]] = None,
              name: Optional[pulumi.Input[str]] = None,
              placement_group_id: Optional[pulumi.Input[str]] = None,
+             public_ip_disabled: Optional[pulumi.Input[bool]] = None,
              region: Optional[pulumi.Input[str]] = None,
              root_volume_size_in_gb: Optional[pulumi.Input[int]] = None,
              root_volume_type: Optional[pulumi.Input[str]] = None,
@@ -122,6 +127,8 @@ class K8sPoolArgs:
             min_size = kwargs['minSize']
         if 'placementGroupId' in kwargs:
             placement_group_id = kwargs['placementGroupId']
+        if 'publicIpDisabled' in kwargs:
+            public_ip_disabled = kwargs['publicIpDisabled']
         if 'rootVolumeSizeInGb' in kwargs:
             root_volume_size_in_gb = kwargs['rootVolumeSizeInGb']
         if 'rootVolumeType' in kwargs:
@@ -150,6 +157,8 @@ class K8sPoolArgs:
             _setter("name", name)
         if placement_group_id is not None:
             _setter("placement_group_id", placement_group_id)
+        if public_ip_disabled is not None:
+            _setter("public_ip_disabled", public_ip_disabled)
         if region is not None:
             _setter("region", region)
         if root_volume_size_in_gb is not None:
@@ -305,6 +314,19 @@ class K8sPoolArgs:
         pulumi.set(self, "placement_group_id", value)
 
     @property
+    @pulumi.getter(name="publicIpDisabled")
+    def public_ip_disabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+        > **Important:** Updates to this field will recreate a new resource.
+        """
+        return pulumi.get(self, "public_ip_disabled")
+
+    @public_ip_disabled.setter
+    def public_ip_disabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "public_ip_disabled", value)
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
@@ -407,6 +429,7 @@ class _K8sPoolState:
                  node_type: Optional[pulumi.Input[str]] = None,
                  nodes: Optional[pulumi.Input[Sequence[pulumi.Input['K8sPoolNodeArgs']]]] = None,
                  placement_group_id: Optional[pulumi.Input[str]] = None,
+                 public_ip_disabled: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  root_volume_size_in_gb: Optional[pulumi.Input[int]] = None,
                  root_volume_type: Optional[pulumi.Input[str]] = None,
@@ -439,6 +462,8 @@ class _K8sPoolState:
         :param pulumi.Input[Sequence[pulumi.Input['K8sPoolNodeArgs']]] nodes: (List of) The nodes in the default pool.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
                > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[bool] public_ip_disabled: Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+               > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] region: `region`) The region in which the pool should be created.
         :param pulumi.Input[int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
         :param pulumi.Input[str] root_volume_type: System volume type of the nodes composing the pool
@@ -469,6 +494,7 @@ class _K8sPoolState:
             node_type=node_type,
             nodes=nodes,
             placement_group_id=placement_group_id,
+            public_ip_disabled=public_ip_disabled,
             region=region,
             root_volume_size_in_gb=root_volume_size_in_gb,
             root_volume_type=root_volume_type,
@@ -497,6 +523,7 @@ class _K8sPoolState:
              node_type: Optional[pulumi.Input[str]] = None,
              nodes: Optional[pulumi.Input[Sequence[pulumi.Input['K8sPoolNodeArgs']]]] = None,
              placement_group_id: Optional[pulumi.Input[str]] = None,
+             public_ip_disabled: Optional[pulumi.Input[bool]] = None,
              region: Optional[pulumi.Input[str]] = None,
              root_volume_size_in_gb: Optional[pulumi.Input[int]] = None,
              root_volume_type: Optional[pulumi.Input[str]] = None,
@@ -528,6 +555,8 @@ class _K8sPoolState:
             node_type = kwargs['nodeType']
         if 'placementGroupId' in kwargs:
             placement_group_id = kwargs['placementGroupId']
+        if 'publicIpDisabled' in kwargs:
+            public_ip_disabled = kwargs['publicIpDisabled']
         if 'rootVolumeSizeInGb' in kwargs:
             root_volume_size_in_gb = kwargs['rootVolumeSizeInGb']
         if 'rootVolumeType' in kwargs:
@@ -565,6 +594,8 @@ class _K8sPoolState:
             _setter("nodes", nodes)
         if placement_group_id is not None:
             _setter("placement_group_id", placement_group_id)
+        if public_ip_disabled is not None:
+            _setter("public_ip_disabled", public_ip_disabled)
         if region is not None:
             _setter("region", region)
         if root_volume_size_in_gb is not None:
@@ -751,6 +782,19 @@ class _K8sPoolState:
         pulumi.set(self, "placement_group_id", value)
 
     @property
+    @pulumi.getter(name="publicIpDisabled")
+    def public_ip_disabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+        > **Important:** Updates to this field will recreate a new resource.
+        """
+        return pulumi.get(self, "public_ip_disabled")
+
+    @public_ip_disabled.setter
+    def public_ip_disabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "public_ip_disabled", value)
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
@@ -901,6 +945,7 @@ class K8sPool(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  placement_group_id: Optional[pulumi.Input[str]] = None,
+                 public_ip_disabled: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  root_volume_size_in_gb: Optional[pulumi.Input[int]] = None,
                  root_volume_type: Optional[pulumi.Input[str]] = None,
@@ -936,6 +981,8 @@ class K8sPool(pulumi.CustomResource):
                
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
+               > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[bool] public_ip_disabled: Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] region: `region`) The region in which the pool should be created.
         :param pulumi.Input[int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
@@ -993,6 +1040,7 @@ class K8sPool(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  placement_group_id: Optional[pulumi.Input[str]] = None,
+                 public_ip_disabled: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  root_volume_size_in_gb: Optional[pulumi.Input[int]] = None,
                  root_volume_type: Optional[pulumi.Input[str]] = None,
@@ -1024,6 +1072,7 @@ class K8sPool(pulumi.CustomResource):
                 raise TypeError("Missing required property 'node_type'")
             __props__.__dict__["node_type"] = node_type
             __props__.__dict__["placement_group_id"] = placement_group_id
+            __props__.__dict__["public_ip_disabled"] = public_ip_disabled
             __props__.__dict__["region"] = region
             __props__.__dict__["root_volume_size_in_gb"] = root_volume_size_in_gb
             __props__.__dict__["root_volume_type"] = root_volume_type
@@ -1068,6 +1117,7 @@ class K8sPool(pulumi.CustomResource):
             node_type: Optional[pulumi.Input[str]] = None,
             nodes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['K8sPoolNodeArgs']]]]] = None,
             placement_group_id: Optional[pulumi.Input[str]] = None,
+            public_ip_disabled: Optional[pulumi.Input[bool]] = None,
             region: Optional[pulumi.Input[str]] = None,
             root_volume_size_in_gb: Optional[pulumi.Input[int]] = None,
             root_volume_type: Optional[pulumi.Input[str]] = None,
@@ -1105,6 +1155,8 @@ class K8sPool(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['K8sPoolNodeArgs']]]] nodes: (List of) The nodes in the default pool.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.
                > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[bool] public_ip_disabled: Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+               > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] region: `region`) The region in which the pool should be created.
         :param pulumi.Input[int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
         :param pulumi.Input[str] root_volume_type: System volume type of the nodes composing the pool
@@ -1137,6 +1189,7 @@ class K8sPool(pulumi.CustomResource):
         __props__.__dict__["node_type"] = node_type
         __props__.__dict__["nodes"] = nodes
         __props__.__dict__["placement_group_id"] = placement_group_id
+        __props__.__dict__["public_ip_disabled"] = public_ip_disabled
         __props__.__dict__["region"] = region
         __props__.__dict__["root_volume_size_in_gb"] = root_volume_size_in_gb
         __props__.__dict__["root_volume_type"] = root_volume_type
@@ -1259,6 +1312,15 @@ class K8sPool(pulumi.CustomResource):
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "placement_group_id")
+
+    @property
+    @pulumi.getter(name="publicIpDisabled")
+    def public_ip_disabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
+        > **Important:** Updates to this field will recreate a new resource.
+        """
+        return pulumi.get(self, "public_ip_disabled")
 
     @property
     @pulumi.getter

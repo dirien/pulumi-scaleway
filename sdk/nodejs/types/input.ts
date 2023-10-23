@@ -150,13 +150,32 @@ export interface CockpitTokenScopes {
     writeMetrics?: pulumi.Input<boolean>;
 }
 
+export interface ContainerTriggerNats {
+    /**
+     * ID of the mnq nats account.
+     */
+    accountId?: pulumi.Input<string>;
+    /**
+     * ID of the project that contain the mnq nats account, defaults to provider's project
+     */
+    projectId?: pulumi.Input<string>;
+    /**
+     * `region`). The region in which the namespace should be created.
+     */
+    region?: pulumi.Input<string>;
+    /**
+     * The subject to listen to
+     */
+    subject: pulumi.Input<string>;
+}
+
 export interface ContainerTriggerSqs {
     /**
-     * ID of the mnq namespace
+     * ID of the mnq namespace. Deprecated.
      */
-    namespaceId: pulumi.Input<string>;
+    namespaceId?: pulumi.Input<string>;
     /**
-     * ID of the project that contain the mnq namespace, defaults to provider's project
+     * ID of the project that contain the mnq nats account, defaults to provider's project
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -170,20 +189,58 @@ export interface ContainerTriggerSqs {
 }
 
 export interface DocumentDBReadReplicaDirectAccess {
+    /**
+     * The ID of the endpoint of the read replica.
+     */
     endpointId?: pulumi.Input<string>;
+    /**
+     * Hostname of the endpoint. Only one of ip and hostname may be set.
+     */
     hostname?: pulumi.Input<string>;
+    /**
+     * IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+     */
     ip?: pulumi.Input<string>;
+    /**
+     * Name of the endpoint.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * TCP port of the endpoint.
+     */
     port?: pulumi.Input<number>;
 }
 
 export interface DocumentDBReadReplicaPrivateNetwork {
+    /**
+     * The ID of the endpoint of the read replica.
+     */
     endpointId?: pulumi.Input<string>;
+    /**
+     * Hostname of the endpoint. Only one of ip and hostname may be set.
+     */
     hostname?: pulumi.Input<string>;
+    /**
+     * IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+     */
     ip?: pulumi.Input<string>;
+    /**
+     * Name of the endpoint.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * TCP port of the endpoint.
+     */
     port?: pulumi.Input<number>;
+    /**
+     * UUID of the private network to be connected to the read replica.
+     */
     privateNetworkId: pulumi.Input<string>;
+    /**
+     * The IP network address within the private subnet. This must be an IPv4 address with a
+     * CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+     * service if not set.
+     */
     serviceIp?: pulumi.Input<string>;
     zone?: pulumi.Input<string>;
 }
@@ -255,13 +312,32 @@ export interface DomainRecordWeighted {
     weight: pulumi.Input<number>;
 }
 
+export interface FunctionTriggerNats {
+    /**
+     * ID of the mnq nats account.
+     */
+    accountId?: pulumi.Input<string>;
+    /**
+     * ID of the project that contain the mnq nats account, defaults to provider's project
+     */
+    projectId?: pulumi.Input<string>;
+    /**
+     * `region`). The region in which the namespace should be created.
+     */
+    region?: pulumi.Input<string>;
+    /**
+     * The subject to listen to
+     */
+    subject: pulumi.Input<string>;
+}
+
 export interface FunctionTriggerSqs {
     /**
-     * ID of the mnq namespace
+     * ID of the mnq namespace. Deprecated.
      */
-    namespaceId: pulumi.Input<string>;
+    namespaceId?: pulumi.Input<string>;
     /**
-     * ID of the project that contain the mnq namespace, defaults to provider's project
+     * ID of the project that contain the mnq nats account, defaults to provider's project
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -1003,6 +1079,21 @@ export interface MnqQueueSqs {
     secretKey: pulumi.Input<string>;
     url?: pulumi.Input<string>;
     visibilityTimeoutSeconds?: pulumi.Input<number>;
+}
+
+export interface MnqSqsCredentialsPermissions {
+    /**
+     * . Defines if user can manage the associated resource(s).
+     */
+    canManage?: pulumi.Input<boolean>;
+    /**
+     * . Defines if user can publish messages to the service.
+     */
+    canPublish?: pulumi.Input<boolean>;
+    /**
+     * . Defines if user can receive messages from the service.
+     */
+    canReceive?: pulumi.Input<boolean>;
 }
 
 export interface ObjectBucketAclAccessControlPolicy {

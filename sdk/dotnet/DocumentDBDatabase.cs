@@ -10,29 +10,63 @@ using Pulumi;
 
 namespace ediri.Scaleway
 {
+    /// <summary>
+    /// Creates and manages Scaleway DocumentDB database.
+    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+    /// 
+    /// ## Examples
+    /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.DocumentDBDatabase("main", new()
+    ///     {
+    ///         InstanceId = "11111111-1111-1111-1111-111111111111",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// DocumentDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/documentDBDatabase:DocumentDBDatabase mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/documentDBDatabase:DocumentDBDatabase")]
     public partial class DocumentDBDatabase : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Instance on which the database is created
+        /// UUID of the documentdb instance.
+        /// 
+        /// &gt; **Important:** Updates to `instance_id` will recreate the Database.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// Whether or not the database is managed
+        /// Whether the database is managed or not.
         /// </summary>
         [Output("managed")]
         public Output<bool> Managed { get; private set; } = null!;
 
         /// <summary>
-        /// The database name
+        /// Name of the database (e.g. `my-new-database`).
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// User that own the database
+        /// The name of the owner of the database.
         /// </summary>
         [Output("owner")]
         public Output<string> Owner { get; private set; } = null!;
@@ -44,13 +78,13 @@ namespace ediri.Scaleway
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the resource exists.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Size of the database
+        /// Size in gigabytes of the database.
         /// </summary>
         [Output("size")]
         public Output<string> Size { get; private set; } = null!;
@@ -103,13 +137,15 @@ namespace ediri.Scaleway
     public sealed class DocumentDBDatabaseArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Instance on which the database is created
+        /// UUID of the documentdb instance.
+        /// 
+        /// &gt; **Important:** Updates to `instance_id` will recreate the Database.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// The database name
+        /// Name of the database (e.g. `my-new-database`).
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -121,7 +157,7 @@ namespace ediri.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the resource exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -135,25 +171,27 @@ namespace ediri.Scaleway
     public sealed class DocumentDBDatabaseState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Instance on which the database is created
+        /// UUID of the documentdb instance.
+        /// 
+        /// &gt; **Important:** Updates to `instance_id` will recreate the Database.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// Whether or not the database is managed
+        /// Whether the database is managed or not.
         /// </summary>
         [Input("managed")]
         public Input<bool>? Managed { get; set; }
 
         /// <summary>
-        /// The database name
+        /// Name of the database (e.g. `my-new-database`).
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// User that own the database
+        /// The name of the owner of the database.
         /// </summary>
         [Input("owner")]
         public Input<string>? Owner { get; set; }
@@ -165,13 +203,13 @@ namespace ediri.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the resource exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Size of the database
+        /// Size in gigabytes of the database.
         /// </summary>
         [Input("size")]
         public Input<string>? Size { get; set; }

@@ -21,11 +21,15 @@ class DocumentDBUserArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DocumentDBUser resource.
-        :param pulumi.Input[str] instance_id: Instance on which the user is created
-        :param pulumi.Input[str] password: Database user password
-        :param pulumi.Input[bool] is_admin: Grant admin permissions to database user
-        :param pulumi.Input[str] name: Database user name
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] instance_id: UUID of the documentDB instance.
+               
+               > **Important:** Updates to `instance_id` will recreate the Database User.
+        :param pulumi.Input[str] password: Database User password.
+        :param pulumi.Input[bool] is_admin: Grant admin permissions to the Database User.
+        :param pulumi.Input[str] name: Database Username.
+               
+               > **Important:** Updates to `name` will recreate the Database User.
+        :param pulumi.Input[str] region: The Scaleway region this resource resides in.
         """
         DocumentDBUserArgs._configure(
             lambda key, value: pulumi.set(__self__, key, value),
@@ -63,7 +67,9 @@ class DocumentDBUserArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[str]:
         """
-        Instance on which the user is created
+        UUID of the documentDB instance.
+
+        > **Important:** Updates to `instance_id` will recreate the Database User.
         """
         return pulumi.get(self, "instance_id")
 
@@ -75,7 +81,7 @@ class DocumentDBUserArgs:
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
         """
-        Database user password
+        Database User password.
         """
         return pulumi.get(self, "password")
 
@@ -87,7 +93,7 @@ class DocumentDBUserArgs:
     @pulumi.getter(name="isAdmin")
     def is_admin(self) -> Optional[pulumi.Input[bool]]:
         """
-        Grant admin permissions to database user
+        Grant admin permissions to the Database User.
         """
         return pulumi.get(self, "is_admin")
 
@@ -99,7 +105,9 @@ class DocumentDBUserArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Database user name
+        Database Username.
+
+        > **Important:** Updates to `name` will recreate the Database User.
         """
         return pulumi.get(self, "name")
 
@@ -111,7 +119,7 @@ class DocumentDBUserArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        The Scaleway region this resource resides in.
         """
         return pulumi.get(self, "region")
 
@@ -130,11 +138,15 @@ class _DocumentDBUserState:
                  region: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DocumentDBUser resources.
-        :param pulumi.Input[str] instance_id: Instance on which the user is created
-        :param pulumi.Input[bool] is_admin: Grant admin permissions to database user
-        :param pulumi.Input[str] name: Database user name
-        :param pulumi.Input[str] password: Database user password
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] instance_id: UUID of the documentDB instance.
+               
+               > **Important:** Updates to `instance_id` will recreate the Database User.
+        :param pulumi.Input[bool] is_admin: Grant admin permissions to the Database User.
+        :param pulumi.Input[str] name: Database Username.
+               
+               > **Important:** Updates to `name` will recreate the Database User.
+        :param pulumi.Input[str] password: Database User password.
+        :param pulumi.Input[str] region: The Scaleway region this resource resides in.
         """
         _DocumentDBUserState._configure(
             lambda key, value: pulumi.set(__self__, key, value),
@@ -174,7 +186,9 @@ class _DocumentDBUserState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Instance on which the user is created
+        UUID of the documentDB instance.
+
+        > **Important:** Updates to `instance_id` will recreate the Database User.
         """
         return pulumi.get(self, "instance_id")
 
@@ -186,7 +200,7 @@ class _DocumentDBUserState:
     @pulumi.getter(name="isAdmin")
     def is_admin(self) -> Optional[pulumi.Input[bool]]:
         """
-        Grant admin permissions to database user
+        Grant admin permissions to the Database User.
         """
         return pulumi.get(self, "is_admin")
 
@@ -198,7 +212,9 @@ class _DocumentDBUserState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Database user name
+        Database Username.
+
+        > **Important:** Updates to `name` will recreate the Database User.
         """
         return pulumi.get(self, "name")
 
@@ -210,7 +226,7 @@ class _DocumentDBUserState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        Database user password
+        Database User password.
         """
         return pulumi.get(self, "password")
 
@@ -222,7 +238,7 @@ class _DocumentDBUserState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        The Scaleway region this resource resides in.
         """
         return pulumi.get(self, "region")
 
@@ -243,14 +259,46 @@ class DocumentDBUser(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a DocumentDBUser resource with the given unique name, props, and options.
+        Creates and manages Scaleway Database DocumentDB Users.
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+        import pulumi_random as random
+
+        db_password = random.RandomPassword("dbPassword",
+            length=16,
+            special=True)
+        db_admin = scaleway.DocumentDBUser("dbAdmin",
+            instance_id="11111111-1111-1111-1111-111111111111",
+            password=db_password.result,
+            is_admin=True)
+        ```
+
+        ## Import
+
+        Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/documentDBUser:DocumentDBUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] instance_id: Instance on which the user is created
-        :param pulumi.Input[bool] is_admin: Grant admin permissions to database user
-        :param pulumi.Input[str] name: Database user name
-        :param pulumi.Input[str] password: Database user password
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] instance_id: UUID of the documentDB instance.
+               
+               > **Important:** Updates to `instance_id` will recreate the Database User.
+        :param pulumi.Input[bool] is_admin: Grant admin permissions to the Database User.
+        :param pulumi.Input[str] name: Database Username.
+               
+               > **Important:** Updates to `name` will recreate the Database User.
+        :param pulumi.Input[str] password: Database User password.
+        :param pulumi.Input[str] region: The Scaleway region this resource resides in.
         """
         ...
     @overload
@@ -259,7 +307,35 @@ class DocumentDBUser(pulumi.CustomResource):
                  args: DocumentDBUserArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DocumentDBUser resource with the given unique name, props, and options.
+        Creates and manages Scaleway Database DocumentDB Users.
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+        import pulumi_random as random
+
+        db_password = random.RandomPassword("dbPassword",
+            length=16,
+            special=True)
+        db_admin = scaleway.DocumentDBUser("dbAdmin",
+            instance_id="11111111-1111-1111-1111-111111111111",
+            password=db_password.result,
+            is_admin=True)
+        ```
+
+        ## Import
+
+        Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/documentDBUser:DocumentDBUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
+        ```
+
         :param str resource_name: The name of the resource.
         :param DocumentDBUserArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -326,11 +402,15 @@ class DocumentDBUser(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] instance_id: Instance on which the user is created
-        :param pulumi.Input[bool] is_admin: Grant admin permissions to database user
-        :param pulumi.Input[str] name: Database user name
-        :param pulumi.Input[str] password: Database user password
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] instance_id: UUID of the documentDB instance.
+               
+               > **Important:** Updates to `instance_id` will recreate the Database User.
+        :param pulumi.Input[bool] is_admin: Grant admin permissions to the Database User.
+        :param pulumi.Input[str] name: Database Username.
+               
+               > **Important:** Updates to `name` will recreate the Database User.
+        :param pulumi.Input[str] password: Database User password.
+        :param pulumi.Input[str] region: The Scaleway region this resource resides in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -347,7 +427,9 @@ class DocumentDBUser(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
         """
-        Instance on which the user is created
+        UUID of the documentDB instance.
+
+        > **Important:** Updates to `instance_id` will recreate the Database User.
         """
         return pulumi.get(self, "instance_id")
 
@@ -355,7 +437,7 @@ class DocumentDBUser(pulumi.CustomResource):
     @pulumi.getter(name="isAdmin")
     def is_admin(self) -> pulumi.Output[Optional[bool]]:
         """
-        Grant admin permissions to database user
+        Grant admin permissions to the Database User.
         """
         return pulumi.get(self, "is_admin")
 
@@ -363,7 +445,9 @@ class DocumentDBUser(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Database user name
+        Database Username.
+
+        > **Important:** Updates to `name` will recreate the Database User.
         """
         return pulumi.get(self, "name")
 
@@ -371,7 +455,7 @@ class DocumentDBUser(pulumi.CustomResource):
     @pulumi.getter
     def password(self) -> pulumi.Output[str]:
         """
-        Database user password
+        Database User password.
         """
         return pulumi.get(self, "password")
 
@@ -379,7 +463,7 @@ class DocumentDBUser(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        The region you want to attach the resource to
+        The Scaleway region this resource resides in.
         """
         return pulumi.get(self, "region")
 

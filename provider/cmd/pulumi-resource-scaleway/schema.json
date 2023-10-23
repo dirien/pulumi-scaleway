@@ -364,15 +364,48 @@
             },
             "type": "object"
         },
+        "scaleway:index/ContainerTriggerNats:ContainerTriggerNats": {
+            "properties": {
+                "accountId": {
+                    "type": "string",
+                    "description": "ID of the mnq nats account.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "ID of the project that contain the mnq nats account, defaults to provider's project\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "`region`). The region in which the namespace should be created.\n"
+                },
+                "subject": {
+                    "type": "string",
+                    "description": "The subject to listen to\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "subject"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "projectId",
+                        "region",
+                        "subject"
+                    ]
+                }
+            }
+        },
         "scaleway:index/ContainerTriggerSqs:ContainerTriggerSqs": {
             "properties": {
                 "namespaceId": {
                     "type": "string",
-                    "description": "ID of the mnq namespace\n"
+                    "description": "ID of the mnq namespace. Deprecated.\n"
                 },
                 "projectId": {
                     "type": "string",
-                    "description": "ID of the project that contain the mnq namespace, defaults to provider's project\n"
+                    "description": "ID of the project that contain the mnq nats account, defaults to provider's project\n"
                 },
                 "queue": {
                     "type": "string",
@@ -385,13 +418,11 @@
             },
             "type": "object",
             "required": [
-                "namespaceId",
                 "queue"
             ],
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
-                        "namespaceId",
                         "projectId",
                         "queue",
                         "region"
@@ -402,19 +433,24 @@
         "scaleway:index/DocumentDBReadReplicaDirectAccess:DocumentDBReadReplicaDirectAccess": {
             "properties": {
                 "endpointId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The ID of the endpoint of the read replica.\n"
                 },
                 "hostname": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Hostname of the endpoint. Only one of ip and hostname may be set.\n"
                 },
                 "ip": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the endpoint.\n"
                 },
                 "port": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "TCP port of the endpoint.\n"
                 }
             },
             "type": "object",
@@ -433,25 +469,32 @@
         "scaleway:index/DocumentDBReadReplicaPrivateNetwork:DocumentDBReadReplicaPrivateNetwork": {
             "properties": {
                 "endpointId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The ID of the endpoint of the read replica.\n"
                 },
                 "hostname": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Hostname of the endpoint. Only one of ip and hostname may be set.\n"
                 },
                 "ip": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the endpoint.\n"
                 },
                 "port": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "TCP port of the endpoint.\n"
                 },
                 "privateNetworkId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "UUID of the private network to be connected to the read replica.\n"
                 },
                 "serviceIp": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The IP network address within the private subnet. This must be an IPv4 address with a\nCIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)\nservice if not set.\n"
                 },
                 "zone": {
                     "type": "string"
@@ -585,15 +628,48 @@
                 "weight"
             ]
         },
+        "scaleway:index/FunctionTriggerNats:FunctionTriggerNats": {
+            "properties": {
+                "accountId": {
+                    "type": "string",
+                    "description": "ID of the mnq nats account.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "ID of the project that contain the mnq nats account, defaults to provider's project\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "`region`). The region in which the namespace should be created.\n"
+                },
+                "subject": {
+                    "type": "string",
+                    "description": "The subject to listen to\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "subject"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "projectId",
+                        "region",
+                        "subject"
+                    ]
+                }
+            }
+        },
         "scaleway:index/FunctionTriggerSqs:FunctionTriggerSqs": {
             "properties": {
                 "namespaceId": {
                     "type": "string",
-                    "description": "ID of the mnq namespace\n"
+                    "description": "ID of the mnq namespace. Deprecated.\n"
                 },
                 "projectId": {
                     "type": "string",
-                    "description": "ID of the project that contain the mnq namespace, defaults to provider's project\n"
+                    "description": "ID of the project that contain the mnq nats account, defaults to provider's project\n"
                 },
                 "queue": {
                     "type": "string",
@@ -606,13 +682,11 @@
             },
             "type": "object",
             "required": [
-                "namespaceId",
                 "queue"
             ],
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
-                        "namespaceId",
                         "projectId",
                         "queue",
                         "region"
@@ -1728,6 +1802,32 @@
                 }
             }
         },
+        "scaleway:index/MnqSqsCredentialsPermissions:MnqSqsCredentialsPermissions": {
+            "properties": {
+                "canManage": {
+                    "type": "boolean",
+                    "description": ". Defines if user can manage the associated resource(s).\n"
+                },
+                "canPublish": {
+                    "type": "boolean",
+                    "description": ". Defines if user can publish messages to the service.\n"
+                },
+                "canReceive": {
+                    "type": "boolean",
+                    "description": ". Defines if user can receive messages from the service.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "canManage",
+                        "canPublish",
+                        "canReceive"
+                    ]
+                }
+            }
+        },
         "scaleway:index/ObjectBucketAclAccessControlPolicy:ObjectBucketAclAccessControlPolicy": {
             "properties": {
                 "grants": {
@@ -2687,6 +2787,90 @@
                 "status",
                 "updatedAt",
                 "vlan"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "scaleway:index/getBillingConsumptionsConsumption:getBillingConsumptionsConsumption": {
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "operationPath": {
+                    "type": "string"
+                },
+                "projectId": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "category",
+                "description",
+                "operationPath",
+                "projectId",
+                "value"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "scaleway:index/getBillingInvoicesInvoice:getBillingInvoicesInvoice": {
+            "properties": {
+                "dueDate": {
+                    "type": "string",
+                    "description": "The payment time limit, set according to the Organization's payment conditions (RFC 3339 format).\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The associated invoice ID.\n"
+                },
+                "invoiceType": {
+                    "type": "string",
+                    "description": "Invoices with the given type are listed. Valid values are `periodic` and `purchase`.\n"
+                },
+                "issuedDate": {
+                    "type": "string",
+                    "description": "The date when the invoice was sent to the customer (RFC 3339 format).\n"
+                },
+                "number": {
+                    "type": "integer",
+                    "description": "The invoice number.\n"
+                },
+                "startDate": {
+                    "type": "string",
+                    "description": "The start date of the billing period (RFC 3339 format).\n"
+                },
+                "totalTaxed": {
+                    "type": "string",
+                    "description": "The total amount, taxed.\n"
+                },
+                "totalUntaxed": {
+                    "type": "string",
+                    "description": "The total amount, untaxed.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "dueDate",
+                "id",
+                "invoiceType",
+                "issuedDate",
+                "number",
+                "startDate",
+                "totalTaxed",
+                "totalUntaxed"
             ],
             "language": {
                 "nodejs": {
@@ -6951,7 +7135,7 @@
             }
         },
         "scaleway:index/containerTrigger:ContainerTrigger": {
-            "description": "Creates and manages Scaleway Container Triggers.\nFor more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers).\n\n## Examples\n\n### Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst main = new scaleway.ContainerTrigger(\"main\", {\n    containerId: scaleway_container.main.id,\n    sqs: {\n        namespaceId: scaleway_mnq_namespace.main.id,\n        queue: \"MyQueue\",\n        projectId: scaleway_mnq_namespace.main.project_id,\n        region: scaleway_mnq_namespace.main.region,\n    },\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain = scaleway.ContainerTrigger(\"main\",\n    container_id=scaleway_container[\"main\"][\"id\"],\n    sqs=scaleway.ContainerTriggerSqsArgs(\n        namespace_id=scaleway_mnq_namespace[\"main\"][\"id\"],\n        queue=\"MyQueue\",\n        project_id=scaleway_mnq_namespace[\"main\"][\"project_id\"],\n        region=scaleway_mnq_namespace[\"main\"][\"region\"],\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.ContainerTrigger(\"main\", new()\n    {\n        ContainerId = scaleway_container.Main.Id,\n        Sqs = new Scaleway.Inputs.ContainerTriggerSqsArgs\n        {\n            NamespaceId = scaleway_mnq_namespace.Main.Id,\n            Queue = \"MyQueue\",\n            ProjectId = scaleway_mnq_namespace.Main.Project_id,\n            Region = scaleway_mnq_namespace.Main.Region,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewContainerTrigger(ctx, \"main\", \u0026scaleway.ContainerTriggerArgs{\n\t\t\tContainerId: pulumi.Any(scaleway_container.Main.Id),\n\t\t\tSqs: \u0026scaleway.ContainerTriggerSqsArgs{\n\t\t\t\tNamespaceId: pulumi.Any(scaleway_mnq_namespace.Main.Id),\n\t\t\t\tQueue:       pulumi.String(\"MyQueue\"),\n\t\t\t\tProjectId:   pulumi.Any(scaleway_mnq_namespace.Main.Project_id),\n\t\t\t\tRegion:      pulumi.Any(scaleway_mnq_namespace.Main.Region),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ContainerTrigger;\nimport com.pulumi.scaleway.ContainerTriggerArgs;\nimport com.pulumi.scaleway.inputs.ContainerTriggerSqsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new ContainerTrigger(\"main\", ContainerTriggerArgs.builder()        \n            .containerId(scaleway_container.main().id())\n            .sqs(ContainerTriggerSqsArgs.builder()\n                .namespaceId(scaleway_mnq_namespace.main().id())\n                .queue(\"MyQueue\")\n                .projectId(scaleway_mnq_namespace.main().project_id())\n                .region(scaleway_mnq_namespace.main().region())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:ContainerTrigger\n    properties:\n      containerId: ${scaleway_container.main.id}\n      sqs:\n        namespaceId: ${scaleway_mnq_namespace.main.id}\n        queue: MyQueue\n        projectId: ${scaleway_mnq_namespace.main.project_id}\n        region: ${scaleway_mnq_namespace.main.region}\n```\n\n\n## Import\n\nContainer Triggers can be imported using the `{region}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/containerTrigger:ContainerTrigger main fr-par/11111111-1111-1111-1111-111111111111\n```\n\n ",
+            "description": "Creates and manages Scaleway Container Triggers.\nFor more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers).\n\n## Examples\n\n### SQS\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst main = new scaleway.ContainerTrigger(\"main\", {\n    containerId: scaleway_container.main.id,\n    sqs: {\n        projectId: scaleway_mnq_sqs.main.project_id,\n        queue: \"MyQueue\",\n        region: scaleway_mnq_sqs.main.region,\n    },\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain = scaleway.ContainerTrigger(\"main\",\n    container_id=scaleway_container[\"main\"][\"id\"],\n    sqs=scaleway.ContainerTriggerSqsArgs(\n        project_id=scaleway_mnq_sqs[\"main\"][\"project_id\"],\n        queue=\"MyQueue\",\n        region=scaleway_mnq_sqs[\"main\"][\"region\"],\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.ContainerTrigger(\"main\", new()\n    {\n        ContainerId = scaleway_container.Main.Id,\n        Sqs = new Scaleway.Inputs.ContainerTriggerSqsArgs\n        {\n            ProjectId = scaleway_mnq_sqs.Main.Project_id,\n            Queue = \"MyQueue\",\n            Region = scaleway_mnq_sqs.Main.Region,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewContainerTrigger(ctx, \"main\", \u0026scaleway.ContainerTriggerArgs{\n\t\t\tContainerId: pulumi.Any(scaleway_container.Main.Id),\n\t\t\tSqs: \u0026scaleway.ContainerTriggerSqsArgs{\n\t\t\t\tProjectId: pulumi.Any(scaleway_mnq_sqs.Main.Project_id),\n\t\t\t\tQueue:     pulumi.String(\"MyQueue\"),\n\t\t\t\tRegion:    pulumi.Any(scaleway_mnq_sqs.Main.Region),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ContainerTrigger;\nimport com.pulumi.scaleway.ContainerTriggerArgs;\nimport com.pulumi.scaleway.inputs.ContainerTriggerSqsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new ContainerTrigger(\"main\", ContainerTriggerArgs.builder()        \n            .containerId(scaleway_container.main().id())\n            .sqs(ContainerTriggerSqsArgs.builder()\n                .projectId(scaleway_mnq_sqs.main().project_id())\n                .queue(\"MyQueue\")\n                .region(scaleway_mnq_sqs.main().region())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:ContainerTrigger\n    properties:\n      containerId: ${scaleway_container.main.id}\n      sqs:\n        projectId: ${scaleway_mnq_sqs.main.project_id}\n        queue: MyQueue\n        region: ${scaleway_mnq_sqs.main.region}\n```\n\n### Nats\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst main = new scaleway.ContainerTrigger(\"main\", {\n    containerId: scaleway_container.main.id,\n    nats: {\n        accountId: scaleway_mnq_nats_account.main.id,\n        subject: \"MySubject\",\n        region: scaleway_mnq_nats_account.main.region,\n    },\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain = scaleway.ContainerTrigger(\"main\",\n    container_id=scaleway_container[\"main\"][\"id\"],\n    nats=scaleway.ContainerTriggerNatsArgs(\n        account_id=scaleway_mnq_nats_account[\"main\"][\"id\"],\n        subject=\"MySubject\",\n        region=scaleway_mnq_nats_account[\"main\"][\"region\"],\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.ContainerTrigger(\"main\", new()\n    {\n        ContainerId = scaleway_container.Main.Id,\n        Nats = new Scaleway.Inputs.ContainerTriggerNatsArgs\n        {\n            AccountId = scaleway_mnq_nats_account.Main.Id,\n            Subject = \"MySubject\",\n            Region = scaleway_mnq_nats_account.Main.Region,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewContainerTrigger(ctx, \"main\", \u0026scaleway.ContainerTriggerArgs{\n\t\t\tContainerId: pulumi.Any(scaleway_container.Main.Id),\n\t\t\tNats: \u0026scaleway.ContainerTriggerNatsArgs{\n\t\t\t\tAccountId: pulumi.Any(scaleway_mnq_nats_account.Main.Id),\n\t\t\t\tSubject:   pulumi.String(\"MySubject\"),\n\t\t\t\tRegion:    pulumi.Any(scaleway_mnq_nats_account.Main.Region),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ContainerTrigger;\nimport com.pulumi.scaleway.ContainerTriggerArgs;\nimport com.pulumi.scaleway.inputs.ContainerTriggerNatsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new ContainerTrigger(\"main\", ContainerTriggerArgs.builder()        \n            .containerId(scaleway_container.main().id())\n            .nats(ContainerTriggerNatsArgs.builder()\n                .accountId(scaleway_mnq_nats_account.main().id())\n                .subject(\"MySubject\")\n                .region(scaleway_mnq_nats_account.main().region())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:ContainerTrigger\n    properties:\n      containerId: ${scaleway_container.main.id}\n      nats:\n        accountId: ${scaleway_mnq_nats_account.main.id}\n        subject: MySubject\n        region: ${scaleway_mnq_nats_account.main.region}\n```\n\n\n## Import\n\nContainer Triggers can be imported using the `{region}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/containerTrigger:ContainerTrigger main fr-par/11111111-1111-1111-1111-111111111111\n```\n\n ",
             "properties": {
                 "containerId": {
                     "type": "string",
@@ -6964,6 +7148,10 @@
                 "name": {
                     "type": "string",
                     "description": "The unique name of the trigger. Default to a generated name.\n"
+                },
+                "nats": {
+                    "$ref": "#/types/scaleway:index/ContainerTriggerNats:ContainerTriggerNats",
+                    "description": "The configuration for the Scaleway's Nats used by the trigger\n"
                 },
                 "region": {
                     "type": "string",
@@ -6991,6 +7179,11 @@
                 "name": {
                     "type": "string",
                     "description": "The unique name of the trigger. Default to a generated name.\n"
+                },
+                "nats": {
+                    "$ref": "#/types/scaleway:index/ContainerTriggerNats:ContainerTriggerNats",
+                    "description": "The configuration for the Scaleway's Nats used by the trigger\n",
+                    "willReplaceOnChanges": true
                 },
                 "region": {
                     "type": "string",
@@ -7021,6 +7214,11 @@
                         "type": "string",
                         "description": "The unique name of the trigger. Default to a generated name.\n"
                     },
+                    "nats": {
+                        "$ref": "#/types/scaleway:index/ContainerTriggerNats:ContainerTriggerNats",
+                        "description": "The configuration for the Scaleway's Nats used by the trigger\n",
+                        "willReplaceOnChanges": true
+                    },
                     "region": {
                         "type": "string",
                         "description": "`region`). The region in which the namespace should be created.\n",
@@ -7036,22 +7234,23 @@
             }
         },
         "scaleway:index/documentDBDatabase:DocumentDBDatabase": {
+            "description": "Creates and manages Scaleway DocumentDB database.\nFor more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).\n\n## Examples\n\n### Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst main = new scaleway.DocumentDBDatabase(\"main\", {instanceId: \"11111111-1111-1111-1111-111111111111\"});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain = scaleway.DocumentDBDatabase(\"main\", instance_id=\"11111111-1111-1111-1111-111111111111\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.DocumentDBDatabase(\"main\", new()\n    {\n        InstanceId = \"11111111-1111-1111-1111-111111111111\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewDocumentDBDatabase(ctx, \"main\", \u0026scaleway.DocumentDBDatabaseArgs{\n\t\t\tInstanceId: pulumi.String(\"11111111-1111-1111-1111-111111111111\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.DocumentDBDatabase;\nimport com.pulumi.scaleway.DocumentDBDatabaseArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new DocumentDBDatabase(\"main\", DocumentDBDatabaseArgs.builder()        \n            .instanceId(\"11111111-1111-1111-1111-111111111111\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:DocumentDBDatabase\n    properties:\n      instanceId: 11111111-1111-1111-1111-111111111111\n```\n\n\n## Import\n\nDocumentDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/documentDBDatabase:DocumentDBDatabase mydb fr-par/11111111-1111-1111-1111-111111111111/mydb\n```\n\n ",
             "properties": {
                 "instanceId": {
                     "type": "string",
-                    "description": "Instance on which the database is created\n"
+                    "description": "UUID of the documentdb instance.\n\n\u003e **Important:** Updates to `instance_id` will recreate the Database.\n"
                 },
                 "managed": {
                     "type": "boolean",
-                    "description": "Whether or not the database is managed\n"
+                    "description": "Whether the database is managed or not.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "The database name\n"
+                    "description": "Name of the database (e.g. `my-new-database`).\n"
                 },
                 "owner": {
                     "type": "string",
-                    "description": "User that own the database\n"
+                    "description": "The name of the owner of the database.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -7059,11 +7258,11 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region you want to attach the resource to\n"
+                    "description": "`region`) The region in which the resource exists.\n"
                 },
                 "size": {
                     "type": "string",
-                    "description": "Size of the database\n"
+                    "description": "Size in gigabytes of the database.\n"
                 }
             },
             "required": [
@@ -7078,12 +7277,12 @@
             "inputProperties": {
                 "instanceId": {
                     "type": "string",
-                    "description": "Instance on which the database is created\n",
+                    "description": "UUID of the documentdb instance.\n\n\u003e **Important:** Updates to `instance_id` will recreate the Database.\n",
                     "willReplaceOnChanges": true
                 },
                 "name": {
                     "type": "string",
-                    "description": "The database name\n",
+                    "description": "Name of the database (e.g. `my-new-database`).\n",
                     "willReplaceOnChanges": true
                 },
                 "projectId": {
@@ -7093,7 +7292,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region you want to attach the resource to\n",
+                    "description": "`region`) The region in which the resource exists.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -7105,21 +7304,21 @@
                 "properties": {
                     "instanceId": {
                         "type": "string",
-                        "description": "Instance on which the database is created\n",
+                        "description": "UUID of the documentdb instance.\n\n\u003e **Important:** Updates to `instance_id` will recreate the Database.\n",
                         "willReplaceOnChanges": true
                     },
                     "managed": {
                         "type": "boolean",
-                        "description": "Whether or not the database is managed\n"
+                        "description": "Whether the database is managed or not.\n"
                     },
                     "name": {
                         "type": "string",
-                        "description": "The database name\n",
+                        "description": "Name of the database (e.g. `my-new-database`).\n",
                         "willReplaceOnChanges": true
                     },
                     "owner": {
                         "type": "string",
-                        "description": "User that own the database\n"
+                        "description": "The name of the owner of the database.\n"
                     },
                     "projectId": {
                         "type": "string",
@@ -7128,70 +7327,71 @@
                     },
                     "region": {
                         "type": "string",
-                        "description": "The region you want to attach the resource to\n",
+                        "description": "`region`) The region in which the resource exists.\n",
                         "willReplaceOnChanges": true
                     },
                     "size": {
                         "type": "string",
-                        "description": "Size of the database\n"
+                        "description": "Size in gigabytes of the database.\n"
                     }
                 },
                 "type": "object"
             }
         },
         "scaleway:index/documentDBInstance:DocumentDBInstance": {
+            "description": "Creates and manages Scaleway Database Instances.\nFor more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).\n\n## Examples\n\n### Example Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst main = new scaleway.DocumentDBInstance(\"main\", {\n    engine: \"FerretDB-1\",\n    nodeType: \"docdb-play2-pico\",\n    password: \"thiZ_is_v\u0026ry_s3cret\",\n    tags: [\n        \"terraform-test\",\n        \"scaleway_documentdb_instance\",\n        \"minimal\",\n    ],\n    userName: \"my_initial_user\",\n    volumeSizeInGb: 20,\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain = scaleway.DocumentDBInstance(\"main\",\n    engine=\"FerretDB-1\",\n    node_type=\"docdb-play2-pico\",\n    password=\"thiZ_is_v\u0026ry_s3cret\",\n    tags=[\n        \"terraform-test\",\n        \"scaleway_documentdb_instance\",\n        \"minimal\",\n    ],\n    user_name=\"my_initial_user\",\n    volume_size_in_gb=20)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.DocumentDBInstance(\"main\", new()\n    {\n        Engine = \"FerretDB-1\",\n        NodeType = \"docdb-play2-pico\",\n        Password = \"thiZ_is_v\u0026ry_s3cret\",\n        Tags = new[]\n        {\n            \"terraform-test\",\n            \"scaleway_documentdb_instance\",\n            \"minimal\",\n        },\n        UserName = \"my_initial_user\",\n        VolumeSizeInGb = 20,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewDocumentDBInstance(ctx, \"main\", \u0026scaleway.DocumentDBInstanceArgs{\n\t\t\tEngine:   pulumi.String(\"FerretDB-1\"),\n\t\t\tNodeType: pulumi.String(\"docdb-play2-pico\"),\n\t\t\tPassword: pulumi.String(\"thiZ_is_v\u0026ry_s3cret\"),\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"terraform-test\"),\n\t\t\t\tpulumi.String(\"scaleway_documentdb_instance\"),\n\t\t\t\tpulumi.String(\"minimal\"),\n\t\t\t},\n\t\t\tUserName:       pulumi.String(\"my_initial_user\"),\n\t\t\tVolumeSizeInGb: pulumi.Int(20),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.DocumentDBInstance;\nimport com.pulumi.scaleway.DocumentDBInstanceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new DocumentDBInstance(\"main\", DocumentDBInstanceArgs.builder()        \n            .engine(\"FerretDB-1\")\n            .nodeType(\"docdb-play2-pico\")\n            .password(\"thiZ_is_v\u0026ry_s3cret\")\n            .tags(            \n                \"terraform-test\",\n                \"scaleway_documentdb_instance\",\n                \"minimal\")\n            .userName(\"my_initial_user\")\n            .volumeSizeInGb(20)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:DocumentDBInstance\n    properties:\n      engine: FerretDB-1\n      nodeType: docdb-play2-pico\n      password: thiZ_is_v\u0026ry_s3cret\n      tags:\n        - terraform-test\n        - scaleway_documentdb_instance\n        - minimal\n      userName: my_initial_user\n      volumeSizeInGb: 20\n```\n\n\n## Import\n\nDatabase Instance can be imported using the `{region}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/documentDBInstance:DocumentDBInstance db fr-par/11111111-1111-1111-1111-111111111111\n```\n\n ",
             "properties": {
                 "engine": {
                     "type": "string",
-                    "description": "Database's engine version id\n"
+                    "description": "Database Instance's engine version (e.g. `FerretDB-1`).\n\n\u003e **Important:** Updates to `engine` will recreate the Database Instance.\n"
                 },
                 "isHaCluster": {
                     "type": "boolean",
-                    "description": "Enable or disable high availability for the database instance\n"
+                    "description": "Enable or disable high availability for the database instance.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "The document db instance name\n"
+                    "description": "The name of the Database Instance.\n"
                 },
                 "nodeType": {
                     "type": "string",
-                    "description": "The type of database instance you want to create\n"
+                    "description": "The type of database instance you want to create (e.g. `docdb-play2-pico`).\n\n\u003e **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any\ninterruption. Keep in mind that you cannot downgrade a Database Instance.\n"
                 },
                 "password": {
                     "type": "string",
-                    "description": "Password for the first user of the database instance\n",
+                    "description": "Password for the first user of the database instance.\n",
                     "secret": true
                 },
                 "projectId": {
                     "type": "string",
-                    "description": "The project_id you want to attach the resource to\n"
+                    "description": "`project_id`) The ID of the project the Database\nInstance is associated with.\n"
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region you want to attach the resource to\n"
+                    "description": "`region`) The region\nin which the Database Instance should be created.\n"
                 },
                 "tags": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "List of tags [\"tag1\", \"tag2\", ...] attached to a database instance\n"
+                    "description": "The tags associated with the Database Instance.\n"
                 },
                 "telemetryEnabled": {
                     "type": "boolean",
-                    "description": "Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service\n"
+                    "description": "Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service. More about the telemetry [here](https://docs.ferretdb.io/telemetry/#configure-telemetry).\n\n\u003e **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.\n"
                 },
                 "userName": {
                     "type": "string",
-                    "description": "Identifier for the first user of the database instance\n"
+                    "description": "Identifier for the first user of the database instance.\n\n\u003e **Important:** Updates to `user_name` will recreate the Database Instance.\n"
                 },
                 "volumeSizeInGb": {
                     "type": "integer",
-                    "description": "Volume size (in GB) when volume_type is not lssd\n"
+                    "description": "Volume size (in GB) when `volume_type` is set to `bssd`.\n"
                 },
                 "volumeType": {
                     "type": "string",
-                    "description": "Type of volume where data are stored\n"
+                    "description": "Type of volume where data are stored (`bssd` or `lssd`).\n"
                 }
             },
             "required": [
@@ -7205,35 +7405,35 @@
             "inputProperties": {
                 "engine": {
                     "type": "string",
-                    "description": "Database's engine version id\n",
+                    "description": "Database Instance's engine version (e.g. `FerretDB-1`).\n\n\u003e **Important:** Updates to `engine` will recreate the Database Instance.\n",
                     "willReplaceOnChanges": true
                 },
                 "isHaCluster": {
                     "type": "boolean",
-                    "description": "Enable or disable high availability for the database instance\n"
+                    "description": "Enable or disable high availability for the database instance.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "The document db instance name\n"
+                    "description": "The name of the Database Instance.\n"
                 },
                 "nodeType": {
                     "type": "string",
-                    "description": "The type of database instance you want to create\n"
+                    "description": "The type of database instance you want to create (e.g. `docdb-play2-pico`).\n\n\u003e **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any\ninterruption. Keep in mind that you cannot downgrade a Database Instance.\n"
                 },
                 "password": {
                     "type": "string",
-                    "description": "Password for the first user of the database instance\n",
+                    "description": "Password for the first user of the database instance.\n",
                     "secret": true,
                     "willReplaceOnChanges": true
                 },
                 "projectId": {
                     "type": "string",
-                    "description": "The project_id you want to attach the resource to\n",
+                    "description": "`project_id`) The ID of the project the Database\nInstance is associated with.\n",
                     "willReplaceOnChanges": true
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region you want to attach the resource to\n",
+                    "description": "`region`) The region\nin which the Database Instance should be created.\n",
                     "willReplaceOnChanges": true
                 },
                 "tags": {
@@ -7241,24 +7441,24 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "List of tags [\"tag1\", \"tag2\", ...] attached to a database instance\n"
+                    "description": "The tags associated with the Database Instance.\n"
                 },
                 "telemetryEnabled": {
                     "type": "boolean",
-                    "description": "Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service\n"
+                    "description": "Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service. More about the telemetry [here](https://docs.ferretdb.io/telemetry/#configure-telemetry).\n\n\u003e **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.\n"
                 },
                 "userName": {
                     "type": "string",
-                    "description": "Identifier for the first user of the database instance\n",
+                    "description": "Identifier for the first user of the database instance.\n\n\u003e **Important:** Updates to `user_name` will recreate the Database Instance.\n",
                     "willReplaceOnChanges": true
                 },
                 "volumeSizeInGb": {
                     "type": "integer",
-                    "description": "Volume size (in GB) when volume_type is not lssd\n"
+                    "description": "Volume size (in GB) when `volume_type` is set to `bssd`.\n"
                 },
                 "volumeType": {
                     "type": "string",
-                    "description": "Type of volume where data are stored\n"
+                    "description": "Type of volume where data are stored (`bssd` or `lssd`).\n"
                 }
             },
             "requiredInputs": [
@@ -7270,35 +7470,35 @@
                 "properties": {
                     "engine": {
                         "type": "string",
-                        "description": "Database's engine version id\n",
+                        "description": "Database Instance's engine version (e.g. `FerretDB-1`).\n\n\u003e **Important:** Updates to `engine` will recreate the Database Instance.\n",
                         "willReplaceOnChanges": true
                     },
                     "isHaCluster": {
                         "type": "boolean",
-                        "description": "Enable or disable high availability for the database instance\n"
+                        "description": "Enable or disable high availability for the database instance.\n"
                     },
                     "name": {
                         "type": "string",
-                        "description": "The document db instance name\n"
+                        "description": "The name of the Database Instance.\n"
                     },
                     "nodeType": {
                         "type": "string",
-                        "description": "The type of database instance you want to create\n"
+                        "description": "The type of database instance you want to create (e.g. `docdb-play2-pico`).\n\n\u003e **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any\ninterruption. Keep in mind that you cannot downgrade a Database Instance.\n"
                     },
                     "password": {
                         "type": "string",
-                        "description": "Password for the first user of the database instance\n",
+                        "description": "Password for the first user of the database instance.\n",
                         "secret": true,
                         "willReplaceOnChanges": true
                     },
                     "projectId": {
                         "type": "string",
-                        "description": "The project_id you want to attach the resource to\n",
+                        "description": "`project_id`) The ID of the project the Database\nInstance is associated with.\n",
                         "willReplaceOnChanges": true
                     },
                     "region": {
                         "type": "string",
-                        "description": "The region you want to attach the resource to\n",
+                        "description": "`region`) The region\nin which the Database Instance should be created.\n",
                         "willReplaceOnChanges": true
                     },
                     "tags": {
@@ -7306,58 +7506,59 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "List of tags [\"tag1\", \"tag2\", ...] attached to a database instance\n"
+                        "description": "The tags associated with the Database Instance.\n"
                     },
                     "telemetryEnabled": {
                         "type": "boolean",
-                        "description": "Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service\n"
+                        "description": "Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service. More about the telemetry [here](https://docs.ferretdb.io/telemetry/#configure-telemetry).\n\n\u003e **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.\n"
                     },
                     "userName": {
                         "type": "string",
-                        "description": "Identifier for the first user of the database instance\n",
+                        "description": "Identifier for the first user of the database instance.\n\n\u003e **Important:** Updates to `user_name` will recreate the Database Instance.\n",
                         "willReplaceOnChanges": true
                     },
                     "volumeSizeInGb": {
                         "type": "integer",
-                        "description": "Volume size (in GB) when volume_type is not lssd\n"
+                        "description": "Volume size (in GB) when `volume_type` is set to `bssd`.\n"
                     },
                     "volumeType": {
                         "type": "string",
-                        "description": "Type of volume where data are stored\n"
+                        "description": "Type of volume where data are stored (`bssd` or `lssd`).\n"
                     }
                 },
                 "type": "object"
             }
         },
         "scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint": {
+            "description": "\n\n\n## Import\n\nDatabase Instance Endpoint can be imported using the `{region}/{endpoint_id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint end fr-par/11111111-1111-1111-1111-111111111111\n```\n\n ",
             "properties": {
                 "hostname": {
                     "type": "string",
-                    "description": "The hostname of your endpoint\n"
+                    "description": "Hostname of the endpoint.\n"
                 },
                 "instanceId": {
                     "type": "string",
-                    "description": "Instance on which the endpoint is attached\n"
+                    "description": "UUID of the documentdb instance.\n"
                 },
                 "ip": {
                     "type": "string",
-                    "description": "The IP of your private network service\n"
+                    "description": "IPv4 address on the network.\n"
                 },
                 "ipNet": {
                     "type": "string",
-                    "description": "The IP with the given mask within the private subnet\n"
+                    "description": "The IP network address within the private subnet. This must be an IPv4 address with a\nCIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)\nservice if not set.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of your private service\n"
+                    "description": "Name of the endpoint.\n"
                 },
                 "port": {
                     "type": "integer",
-                    "description": "The port of your private service\n"
+                    "description": "Port in the Private Network.\n"
                 },
                 "privateNetworkId": {
                     "type": "string",
-                    "description": "The private network ID\n"
+                    "description": "The ID of the private network.\n"
                 },
                 "region": {
                     "type": "string",
@@ -7382,20 +7583,20 @@
             "inputProperties": {
                 "instanceId": {
                     "type": "string",
-                    "description": "Instance on which the endpoint is attached\n"
+                    "description": "UUID of the documentdb instance.\n"
                 },
                 "ipNet": {
                     "type": "string",
-                    "description": "The IP with the given mask within the private subnet\n",
+                    "description": "The IP network address within the private subnet. This must be an IPv4 address with a\nCIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)\nservice if not set.\n",
                     "willReplaceOnChanges": true
                 },
                 "port": {
                     "type": "integer",
-                    "description": "The port of your private service\n"
+                    "description": "Port in the Private Network.\n"
                 },
                 "privateNetworkId": {
                     "type": "string",
-                    "description": "The private network ID\n",
+                    "description": "The ID of the private network.\n",
                     "willReplaceOnChanges": true
                 },
                 "region": {
@@ -7418,32 +7619,32 @@
                 "properties": {
                     "hostname": {
                         "type": "string",
-                        "description": "The hostname of your endpoint\n"
+                        "description": "Hostname of the endpoint.\n"
                     },
                     "instanceId": {
                         "type": "string",
-                        "description": "Instance on which the endpoint is attached\n"
+                        "description": "UUID of the documentdb instance.\n"
                     },
                     "ip": {
                         "type": "string",
-                        "description": "The IP of your private network service\n"
+                        "description": "IPv4 address on the network.\n"
                     },
                     "ipNet": {
                         "type": "string",
-                        "description": "The IP with the given mask within the private subnet\n",
+                        "description": "The IP network address within the private subnet. This must be an IPv4 address with a\nCIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)\nservice if not set.\n",
                         "willReplaceOnChanges": true
                     },
                     "name": {
                         "type": "string",
-                        "description": "The name of your private service\n"
+                        "description": "Name of the endpoint.\n"
                     },
                     "port": {
                         "type": "integer",
-                        "description": "The port of your private service\n"
+                        "description": "Port in the Private Network.\n"
                     },
                     "privateNetworkId": {
                         "type": "string",
-                        "description": "The private network ID\n",
+                        "description": "The ID of the private network.\n",
                         "willReplaceOnChanges": true
                     },
                     "region": {
@@ -7461,26 +7662,27 @@
             }
         },
         "scaleway:index/documentDBPrivilege:DocumentDBPrivilege": {
+            "description": "Create and manage Scaleway DocumentDB database privilege.\nFor more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst main = new scaleway.DocumentDBPrivilege(\"main\", {\n    databaseName: \"my-db-name\",\n    instanceId: \"11111111-1111-1111-1111-111111111111\",\n    permission: \"all\",\n    userName: \"my-db-user\",\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain = scaleway.DocumentDBPrivilege(\"main\",\n    database_name=\"my-db-name\",\n    instance_id=\"11111111-1111-1111-1111-111111111111\",\n    permission=\"all\",\n    user_name=\"my-db-user\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.DocumentDBPrivilege(\"main\", new()\n    {\n        DatabaseName = \"my-db-name\",\n        InstanceId = \"11111111-1111-1111-1111-111111111111\",\n        Permission = \"all\",\n        UserName = \"my-db-user\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewDocumentDBPrivilege(ctx, \"main\", \u0026scaleway.DocumentDBPrivilegeArgs{\n\t\t\tDatabaseName: pulumi.String(\"my-db-name\"),\n\t\t\tInstanceId:   pulumi.String(\"11111111-1111-1111-1111-111111111111\"),\n\t\t\tPermission:   pulumi.String(\"all\"),\n\t\t\tUserName:     pulumi.String(\"my-db-user\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.DocumentDBPrivilege;\nimport com.pulumi.scaleway.DocumentDBPrivilegeArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new DocumentDBPrivilege(\"main\", DocumentDBPrivilegeArgs.builder()        \n            .databaseName(\"my-db-name\")\n            .instanceId(\"11111111-1111-1111-1111-111111111111\")\n            .permission(\"all\")\n            .userName(\"my-db-user\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:DocumentDBPrivilege\n    properties:\n      databaseName: my-db-name\n      instanceId: 11111111-1111-1111-1111-111111111111\n      permission: all\n      userName: my-db-user\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nThe user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/documentDBPrivilege:DocumentDBPrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo\n```\n\n ",
             "properties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "Database name\n"
+                    "description": "Name of the database (e.g. `my-db-name`).\n"
                 },
                 "instanceId": {
                     "type": "string",
-                    "description": "Instance on which the database is created\n"
+                    "description": "UUID of the rdb instance.\n"
                 },
                 "permission": {
                     "type": "string",
-                    "description": "Privilege\n"
+                    "description": "Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.\n"
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region you want to attach the resource to\n"
+                    "description": "`region`) The region in which the resource exists.\n"
                 },
                 "userName": {
                     "type": "string",
-                    "description": "User name\n"
+                    "description": "Name of the user (e.g. `my-db-user`).\n"
                 }
             },
             "required": [
@@ -7493,25 +7695,25 @@
             "inputProperties": {
                 "databaseName": {
                     "type": "string",
-                    "description": "Database name\n"
+                    "description": "Name of the database (e.g. `my-db-name`).\n"
                 },
                 "instanceId": {
                     "type": "string",
-                    "description": "Instance on which the database is created\n",
+                    "description": "UUID of the rdb instance.\n",
                     "willReplaceOnChanges": true
                 },
                 "permission": {
                     "type": "string",
-                    "description": "Privilege\n"
+                    "description": "Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.\n"
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region you want to attach the resource to\n",
+                    "description": "`region`) The region in which the resource exists.\n",
                     "willReplaceOnChanges": true
                 },
                 "userName": {
                     "type": "string",
-                    "description": "User name\n"
+                    "description": "Name of the user (e.g. `my-db-user`).\n"
                 }
             },
             "requiredInputs": [
@@ -7525,47 +7727,48 @@
                 "properties": {
                     "databaseName": {
                         "type": "string",
-                        "description": "Database name\n"
+                        "description": "Name of the database (e.g. `my-db-name`).\n"
                     },
                     "instanceId": {
                         "type": "string",
-                        "description": "Instance on which the database is created\n",
+                        "description": "UUID of the rdb instance.\n",
                         "willReplaceOnChanges": true
                     },
                     "permission": {
                         "type": "string",
-                        "description": "Privilege\n"
+                        "description": "Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.\n"
                     },
                     "region": {
                         "type": "string",
-                        "description": "The region you want to attach the resource to\n",
+                        "description": "`region`) The region in which the resource exists.\n",
                         "willReplaceOnChanges": true
                     },
                     "userName": {
                         "type": "string",
-                        "description": "User name\n"
+                        "description": "Name of the user (e.g. `my-db-user`).\n"
                     }
                 },
                 "type": "object"
             }
         },
         "scaleway:index/documentDBReadReplica:DocumentDBReadReplica": {
+            "description": "Creates and manages Scaleway DocumentDB Database read replicas.\nFor more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).\n\n## Examples\n\n### Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst replica = new scaleway.DocumentDBReadReplica(\"replica\", {\n    directAccess: {},\n    instanceId: \"11111111-1111-1111-1111-111111111111\",\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nreplica = scaleway.DocumentDBReadReplica(\"replica\",\n    direct_access=scaleway.DocumentDBReadReplicaDirectAccessArgs(),\n    instance_id=\"11111111-1111-1111-1111-111111111111\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var replica = new Scaleway.DocumentDBReadReplica(\"replica\", new()\n    {\n        DirectAccess = null,\n        InstanceId = \"11111111-1111-1111-1111-111111111111\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewDocumentDBReadReplica(ctx, \"replica\", \u0026scaleway.DocumentDBReadReplicaArgs{\n\t\t\tDirectAccess: nil,\n\t\t\tInstanceId:   pulumi.String(\"11111111-1111-1111-1111-111111111111\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.DocumentDBReadReplica;\nimport com.pulumi.scaleway.DocumentDBReadReplicaArgs;\nimport com.pulumi.scaleway.inputs.DocumentDBReadReplicaDirectAccessArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var replica = new DocumentDBReadReplica(\"replica\", DocumentDBReadReplicaArgs.builder()        \n            .directAccess()\n            .instanceId(\"11111111-1111-1111-1111-111111111111\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  replica:\n    type: scaleway:DocumentDBReadReplica\n    properties:\n      directAccess: {}\n      instanceId: 11111111-1111-1111-1111-111111111111\n```\n\n### Private network\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst pn = new scaleway.VpcPrivateNetwork(\"pn\", {});\nconst replica = new scaleway.DocumentDBReadReplica(\"replica\", {\n    instanceId: scaleway_rdb_instance.instance.id,\n    privateNetwork: {\n        privateNetworkId: pn.id,\n        serviceIp: \"192.168.1.254/24\",\n    },\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\npn = scaleway.VpcPrivateNetwork(\"pn\")\nreplica = scaleway.DocumentDBReadReplica(\"replica\",\n    instance_id=scaleway_rdb_instance[\"instance\"][\"id\"],\n    private_network=scaleway.DocumentDBReadReplicaPrivateNetworkArgs(\n        private_network_id=pn.id,\n        service_ip=\"192.168.1.254/24\",\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var pn = new Scaleway.VpcPrivateNetwork(\"pn\");\n\n    var replica = new Scaleway.DocumentDBReadReplica(\"replica\", new()\n    {\n        InstanceId = scaleway_rdb_instance.Instance.Id,\n        PrivateNetwork = new Scaleway.Inputs.DocumentDBReadReplicaPrivateNetworkArgs\n        {\n            PrivateNetworkId = pn.Id,\n            ServiceIp = \"192.168.1.254/24\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tpn, err := scaleway.NewVpcPrivateNetwork(ctx, \"pn\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewDocumentDBReadReplica(ctx, \"replica\", \u0026scaleway.DocumentDBReadReplicaArgs{\n\t\t\tInstanceId: pulumi.Any(scaleway_rdb_instance.Instance.Id),\n\t\t\tPrivateNetwork: \u0026scaleway.DocumentDBReadReplicaPrivateNetworkArgs{\n\t\t\t\tPrivateNetworkId: pn.ID(),\n\t\t\t\tServiceIp:        pulumi.String(\"192.168.1.254/24\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.VpcPrivateNetwork;\nimport com.pulumi.scaleway.DocumentDBReadReplica;\nimport com.pulumi.scaleway.DocumentDBReadReplicaArgs;\nimport com.pulumi.scaleway.inputs.DocumentDBReadReplicaPrivateNetworkArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pn = new VpcPrivateNetwork(\"pn\");\n\n        var replica = new DocumentDBReadReplica(\"replica\", DocumentDBReadReplicaArgs.builder()        \n            .instanceId(scaleway_rdb_instance.instance().id())\n            .privateNetwork(DocumentDBReadReplicaPrivateNetworkArgs.builder()\n                .privateNetworkId(pn.id())\n                .serviceIp(\"192.168.1.254/24\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  pn:\n    type: scaleway:VpcPrivateNetwork\n  replica:\n    type: scaleway:DocumentDBReadReplica\n    properties:\n      instanceId: ${scaleway_rdb_instance.instance.id}\n      privateNetwork:\n        privateNetworkId: ${pn.id}\n        serviceIp: 192.168.1.254/24\n```\n\n\n## Import\n\nDatabase Read replica can be imported using the `{region}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/documentDBReadReplica:DocumentDBReadReplica rr fr-par/11111111-1111-1111-1111-111111111111\n```\n\n ",
             "properties": {
                 "directAccess": {
                     "$ref": "#/types/scaleway:index/DocumentDBReadReplicaDirectAccess:DocumentDBReadReplicaDirectAccess",
-                    "description": "Direct access endpoint, it gives you an IP and a port to access your read-replica\n"
+                    "description": "Creates a direct access endpoint to documentdb replica.\n"
                 },
                 "instanceId": {
                     "type": "string",
-                    "description": "Id of the rdb instance to replicate\n"
+                    "description": "UUID of the documentdb instance.\n\n\u003e **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.\n"
                 },
                 "privateNetwork": {
                     "$ref": "#/types/scaleway:index/DocumentDBReadReplicaPrivateNetwork:DocumentDBReadReplicaPrivateNetwork",
-                    "description": "Private network endpoints\n"
+                    "description": "Create an endpoint in a private network.\n"
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region you want to attach the resource to\n"
+                    "description": "`region`) The region\nin which the Database read replica should be created.\n"
                 }
             },
             "required": [
@@ -7575,19 +7778,19 @@
             "inputProperties": {
                 "directAccess": {
                     "$ref": "#/types/scaleway:index/DocumentDBReadReplicaDirectAccess:DocumentDBReadReplicaDirectAccess",
-                    "description": "Direct access endpoint, it gives you an IP and a port to access your read-replica\n"
+                    "description": "Creates a direct access endpoint to documentdb replica.\n"
                 },
                 "instanceId": {
                     "type": "string",
-                    "description": "Id of the rdb instance to replicate\n"
+                    "description": "UUID of the documentdb instance.\n\n\u003e **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.\n"
                 },
                 "privateNetwork": {
                     "$ref": "#/types/scaleway:index/DocumentDBReadReplicaPrivateNetwork:DocumentDBReadReplicaPrivateNetwork",
-                    "description": "Private network endpoints\n"
+                    "description": "Create an endpoint in a private network.\n"
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region you want to attach the resource to\n",
+                    "description": "`region`) The region\nin which the Database read replica should be created.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -7599,19 +7802,19 @@
                 "properties": {
                     "directAccess": {
                         "$ref": "#/types/scaleway:index/DocumentDBReadReplicaDirectAccess:DocumentDBReadReplicaDirectAccess",
-                        "description": "Direct access endpoint, it gives you an IP and a port to access your read-replica\n"
+                        "description": "Creates a direct access endpoint to documentdb replica.\n"
                     },
                     "instanceId": {
                         "type": "string",
-                        "description": "Id of the rdb instance to replicate\n"
+                        "description": "UUID of the documentdb instance.\n\n\u003e **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.\n"
                     },
                     "privateNetwork": {
                         "$ref": "#/types/scaleway:index/DocumentDBReadReplicaPrivateNetwork:DocumentDBReadReplicaPrivateNetwork",
-                        "description": "Private network endpoints\n"
+                        "description": "Create an endpoint in a private network.\n"
                     },
                     "region": {
                         "type": "string",
-                        "description": "The region you want to attach the resource to\n",
+                        "description": "`region`) The region\nin which the Database read replica should be created.\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -7619,27 +7822,28 @@
             }
         },
         "scaleway:index/documentDBUser:DocumentDBUser": {
+            "description": "Creates and manages Scaleway Database DocumentDB Users.\nFor more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).\n\n## Examples\n\n### Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as random from \"@pulumi/random\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst dbPassword = new random.RandomPassword(\"dbPassword\", {\n    length: 16,\n    special: true,\n});\nconst dbAdmin = new scaleway.DocumentDBUser(\"dbAdmin\", {\n    instanceId: \"11111111-1111-1111-1111-111111111111\",\n    password: dbPassword.result,\n    isAdmin: true,\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\nimport pulumi_random as random\n\ndb_password = random.RandomPassword(\"dbPassword\",\n    length=16,\n    special=True)\ndb_admin = scaleway.DocumentDBUser(\"dbAdmin\",\n    instance_id=\"11111111-1111-1111-1111-111111111111\",\n    password=db_password.result,\n    is_admin=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Random = Pulumi.Random;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var dbPassword = new Random.RandomPassword(\"dbPassword\", new()\n    {\n        Length = 16,\n        Special = true,\n    });\n\n    var dbAdmin = new Scaleway.DocumentDBUser(\"dbAdmin\", new()\n    {\n        InstanceId = \"11111111-1111-1111-1111-111111111111\",\n        Password = dbPassword.Result,\n        IsAdmin = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi-random/sdk/v4/go/random\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tdbPassword, err := random.NewRandomPassword(ctx, \"dbPassword\", \u0026random.RandomPasswordArgs{\n\t\t\tLength:  pulumi.Int(16),\n\t\t\tSpecial: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewDocumentDBUser(ctx, \"dbAdmin\", \u0026scaleway.DocumentDBUserArgs{\n\t\t\tInstanceId: pulumi.String(\"11111111-1111-1111-1111-111111111111\"),\n\t\t\tPassword:   dbPassword.Result,\n\t\t\tIsAdmin:    pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.random.RandomPassword;\nimport com.pulumi.random.RandomPasswordArgs;\nimport com.pulumi.scaleway.DocumentDBUser;\nimport com.pulumi.scaleway.DocumentDBUserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var dbPassword = new RandomPassword(\"dbPassword\", RandomPasswordArgs.builder()        \n            .length(16)\n            .special(true)\n            .build());\n\n        var dbAdmin = new DocumentDBUser(\"dbAdmin\", DocumentDBUserArgs.builder()        \n            .instanceId(\"11111111-1111-1111-1111-111111111111\")\n            .password(dbPassword.result())\n            .isAdmin(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  dbPassword:\n    type: random:RandomPassword\n    properties:\n      length: 16\n      special: true\n  dbAdmin:\n    type: scaleway:DocumentDBUser\n    properties:\n      instanceId: 11111111-1111-1111-1111-111111111111\n      password: ${dbPassword.result}\n      isAdmin: true\n```\n\n\n## Import\n\nDatabase User can be imported using `{region}/{instance_id}/{user_name}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/documentDBUser:DocumentDBUser admin fr-par/11111111-1111-1111-1111-111111111111/admin\n```\n\n ",
             "properties": {
                 "instanceId": {
                     "type": "string",
-                    "description": "Instance on which the user is created\n"
+                    "description": "UUID of the documentDB instance.\n\n\u003e **Important:** Updates to `instance_id` will recreate the Database User.\n"
                 },
                 "isAdmin": {
                     "type": "boolean",
-                    "description": "Grant admin permissions to database user\n"
+                    "description": "Grant admin permissions to the Database User.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "Database user name\n"
+                    "description": "Database Username.\n\n\u003e **Important:** Updates to `name` will recreate the Database User.\n"
                 },
                 "password": {
                     "type": "string",
-                    "description": "Database user password\n",
+                    "description": "Database User password.\n",
                     "secret": true
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region you want to attach the resource to\n"
+                    "description": "The Scaleway region this resource resides in.\n"
                 }
             },
             "required": [
@@ -7651,26 +7855,26 @@
             "inputProperties": {
                 "instanceId": {
                     "type": "string",
-                    "description": "Instance on which the user is created\n",
+                    "description": "UUID of the documentDB instance.\n\n\u003e **Important:** Updates to `instance_id` will recreate the Database User.\n",
                     "willReplaceOnChanges": true
                 },
                 "isAdmin": {
                     "type": "boolean",
-                    "description": "Grant admin permissions to database user\n"
+                    "description": "Grant admin permissions to the Database User.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "Database user name\n",
+                    "description": "Database Username.\n\n\u003e **Important:** Updates to `name` will recreate the Database User.\n",
                     "willReplaceOnChanges": true
                 },
                 "password": {
                     "type": "string",
-                    "description": "Database user password\n",
+                    "description": "Database User password.\n",
                     "secret": true
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region you want to attach the resource to\n",
+                    "description": "The Scaleway region this resource resides in.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -7683,26 +7887,26 @@
                 "properties": {
                     "instanceId": {
                         "type": "string",
-                        "description": "Instance on which the user is created\n",
+                        "description": "UUID of the documentDB instance.\n\n\u003e **Important:** Updates to `instance_id` will recreate the Database User.\n",
                         "willReplaceOnChanges": true
                     },
                     "isAdmin": {
                         "type": "boolean",
-                        "description": "Grant admin permissions to database user\n"
+                        "description": "Grant admin permissions to the Database User.\n"
                     },
                     "name": {
                         "type": "string",
-                        "description": "Database user name\n",
+                        "description": "Database Username.\n\n\u003e **Important:** Updates to `name` will recreate the Database User.\n",
                         "willReplaceOnChanges": true
                     },
                     "password": {
                         "type": "string",
-                        "description": "Database user password\n",
+                        "description": "Database User password.\n",
                         "secret": true
                     },
                     "region": {
                         "type": "string",
-                        "description": "The region you want to attach the resource to\n",
+                        "description": "The Scaleway region this resource resides in.\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -9026,7 +9230,7 @@
             }
         },
         "scaleway:index/functionTrigger:FunctionTrigger": {
-            "description": "Creates and manages Scaleway Function Triggers.\nFor more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers).\n\n## Examples\n\n### Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst main = new scaleway.FunctionTrigger(\"main\", {\n    functionId: scaleway_function.main.id,\n    sqs: {\n        namespaceId: scaleway_mnq_namespace.main.id,\n        queue: \"MyQueue\",\n        projectId: scaleway_mnq_namespace.main.project_id,\n        region: scaleway_mnq_namespace.main.region,\n    },\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain = scaleway.FunctionTrigger(\"main\",\n    function_id=scaleway_function[\"main\"][\"id\"],\n    sqs=scaleway.FunctionTriggerSqsArgs(\n        namespace_id=scaleway_mnq_namespace[\"main\"][\"id\"],\n        queue=\"MyQueue\",\n        project_id=scaleway_mnq_namespace[\"main\"][\"project_id\"],\n        region=scaleway_mnq_namespace[\"main\"][\"region\"],\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.FunctionTrigger(\"main\", new()\n    {\n        FunctionId = scaleway_function.Main.Id,\n        Sqs = new Scaleway.Inputs.FunctionTriggerSqsArgs\n        {\n            NamespaceId = scaleway_mnq_namespace.Main.Id,\n            Queue = \"MyQueue\",\n            ProjectId = scaleway_mnq_namespace.Main.Project_id,\n            Region = scaleway_mnq_namespace.Main.Region,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewFunctionTrigger(ctx, \"main\", \u0026scaleway.FunctionTriggerArgs{\n\t\t\tFunctionId: pulumi.Any(scaleway_function.Main.Id),\n\t\t\tSqs: \u0026scaleway.FunctionTriggerSqsArgs{\n\t\t\t\tNamespaceId: pulumi.Any(scaleway_mnq_namespace.Main.Id),\n\t\t\t\tQueue:       pulumi.String(\"MyQueue\"),\n\t\t\t\tProjectId:   pulumi.Any(scaleway_mnq_namespace.Main.Project_id),\n\t\t\t\tRegion:      pulumi.Any(scaleway_mnq_namespace.Main.Region),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.FunctionTrigger;\nimport com.pulumi.scaleway.FunctionTriggerArgs;\nimport com.pulumi.scaleway.inputs.FunctionTriggerSqsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new FunctionTrigger(\"main\", FunctionTriggerArgs.builder()        \n            .functionId(scaleway_function.main().id())\n            .sqs(FunctionTriggerSqsArgs.builder()\n                .namespaceId(scaleway_mnq_namespace.main().id())\n                .queue(\"MyQueue\")\n                .projectId(scaleway_mnq_namespace.main().project_id())\n                .region(scaleway_mnq_namespace.main().region())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:FunctionTrigger\n    properties:\n      functionId: ${scaleway_function.main.id}\n      sqs:\n        namespaceId: ${scaleway_mnq_namespace.main.id}\n        queue: MyQueue\n        projectId: ${scaleway_mnq_namespace.main.project_id}\n        region: ${scaleway_mnq_namespace.main.region}\n```\n\n\n## Import\n\nFunction Triggers can be imported using the `{region}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/functionTrigger:FunctionTrigger main fr-par/11111111-1111-1111-1111-111111111111\n```\n\n ",
+            "description": "Creates and manages Scaleway Function Triggers.\nFor more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers).\n\n## Examples\n\n### SQS\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst main = new scaleway.FunctionTrigger(\"main\", {\n    functionId: scaleway_function.main.id,\n    sqs: {\n        projectId: scaleway_mnq_sqs.main.project_id,\n        queue: \"MyQueue\",\n        region: scaleway_mnq_sqs.main.region,\n    },\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain = scaleway.FunctionTrigger(\"main\",\n    function_id=scaleway_function[\"main\"][\"id\"],\n    sqs=scaleway.FunctionTriggerSqsArgs(\n        project_id=scaleway_mnq_sqs[\"main\"][\"project_id\"],\n        queue=\"MyQueue\",\n        region=scaleway_mnq_sqs[\"main\"][\"region\"],\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.FunctionTrigger(\"main\", new()\n    {\n        FunctionId = scaleway_function.Main.Id,\n        Sqs = new Scaleway.Inputs.FunctionTriggerSqsArgs\n        {\n            ProjectId = scaleway_mnq_sqs.Main.Project_id,\n            Queue = \"MyQueue\",\n            Region = scaleway_mnq_sqs.Main.Region,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewFunctionTrigger(ctx, \"main\", \u0026scaleway.FunctionTriggerArgs{\n\t\t\tFunctionId: pulumi.Any(scaleway_function.Main.Id),\n\t\t\tSqs: \u0026scaleway.FunctionTriggerSqsArgs{\n\t\t\t\tProjectId: pulumi.Any(scaleway_mnq_sqs.Main.Project_id),\n\t\t\t\tQueue:     pulumi.String(\"MyQueue\"),\n\t\t\t\tRegion:    pulumi.Any(scaleway_mnq_sqs.Main.Region),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.FunctionTrigger;\nimport com.pulumi.scaleway.FunctionTriggerArgs;\nimport com.pulumi.scaleway.inputs.FunctionTriggerSqsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new FunctionTrigger(\"main\", FunctionTriggerArgs.builder()        \n            .functionId(scaleway_function.main().id())\n            .sqs(FunctionTriggerSqsArgs.builder()\n                .projectId(scaleway_mnq_sqs.main().project_id())\n                .queue(\"MyQueue\")\n                .region(scaleway_mnq_sqs.main().region())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:FunctionTrigger\n    properties:\n      functionId: ${scaleway_function.main.id}\n      sqs:\n        projectId: ${scaleway_mnq_sqs.main.project_id}\n        queue: MyQueue\n        region: ${scaleway_mnq_sqs.main.region}\n```\n\n### Nats\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.FunctionTrigger;\nimport com.pulumi.scaleway.FunctionTriggerArgs;\nimport com.pulumi.scaleway.inputs.FunctionTriggerNatsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new FunctionTrigger(\"main\", FunctionTriggerArgs.builder()        \n            .containerId(scaleway_container.main().id())\n            .nats(FunctionTriggerNatsArgs.builder()\n                .accountId(scaleway_mnq_nats_account.main().id())\n                .subject(\"MySubject\")\n                .region(scaleway_mnq_nats_account.main().region())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:FunctionTrigger\n    properties:\n      containerId: ${scaleway_container.main.id}\n      nats:\n        accountId: ${scaleway_mnq_nats_account.main.id}\n        subject: MySubject\n        region: ${scaleway_mnq_nats_account.main.region}\n```\n\n\n## Import\n\nFunction Triggers can be imported using the `{region}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/functionTrigger:FunctionTrigger main fr-par/11111111-1111-1111-1111-111111111111\n```\n\n ",
             "properties": {
                 "description": {
                     "type": "string",
@@ -9039,6 +9243,10 @@
                 "name": {
                     "type": "string",
                     "description": "The unique name of the trigger. Default to a generated name.\n"
+                },
+                "nats": {
+                    "$ref": "#/types/scaleway:index/FunctionTriggerNats:FunctionTriggerNats",
+                    "description": "The configuration for the Scaleway's Nats used by the trigger\n"
                 },
                 "region": {
                     "type": "string",
@@ -9066,6 +9274,11 @@
                 "name": {
                     "type": "string",
                     "description": "The unique name of the trigger. Default to a generated name.\n"
+                },
+                "nats": {
+                    "$ref": "#/types/scaleway:index/FunctionTriggerNats:FunctionTriggerNats",
+                    "description": "The configuration for the Scaleway's Nats used by the trigger\n",
+                    "willReplaceOnChanges": true
                 },
                 "region": {
                     "type": "string",
@@ -9095,6 +9308,11 @@
                     "name": {
                         "type": "string",
                         "description": "The unique name of the trigger. Default to a generated name.\n"
+                    },
+                    "nats": {
+                        "$ref": "#/types/scaleway:index/FunctionTriggerNats:FunctionTriggerNats",
+                        "description": "The configuration for the Scaleway's Nats used by the trigger\n",
+                        "willReplaceOnChanges": true
                     },
                     "region": {
                         "type": "string",
@@ -9771,6 +9989,124 @@
                     "updatedAt": {
                         "type": "string",
                         "description": "The date and time of the last update of the SSH key.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "scaleway:index/iamUser:IamUser": {
+            "description": "Creates and manages Scaleway IAM Users.\nFor more information, see [the documentation](https://www.scaleway.com/en/developers/api/iam/#path-users-list-users-of-an-organization).\n\n## Examples\n\n### Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst basic = new scaleway.IamUser(\"basic\", {email: \"test@test.com\"});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nbasic = scaleway.IamUser(\"basic\", email=\"test@test.com\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var basic = new Scaleway.IamUser(\"basic\", new()\n    {\n        Email = \"test@test.com\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewIamUser(ctx, \"basic\", \u0026scaleway.IamUserArgs{\n\t\t\tEmail: pulumi.String(\"test@test.com\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.IamUser;\nimport com.pulumi.scaleway.IamUserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var basic = new IamUser(\"basic\", IamUserArgs.builder()        \n            .email(\"test@test.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  basic:\n    type: scaleway:IamUser\n    properties:\n      email: test@test.com\n```\n\n\n## Import\n\nIAM users can be imported using the `{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/iamUser:IamUser basic 11111111-1111-1111-1111-111111111111\n```\n\n ",
+            "properties": {
+                "accountRootUserId": {
+                    "type": "string",
+                    "description": "The ID of the account root user associated with the user.\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "The date and time of the creation of the iam user.\n"
+                },
+                "deletable": {
+                    "type": "boolean",
+                    "description": "Whether the iam user is deletable.\n"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "The email of the IAM user.\n"
+                },
+                "lastLoginAt": {
+                    "type": "string",
+                    "description": "The date of the last login.\n"
+                },
+                "mfa": {
+                    "type": "boolean",
+                    "description": "Whether the MFA is enabled.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "`organization_id`) The ID of the organization the user is associated with.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The status of user invitation. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of user. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "The date and time of the last update of the iam user.\n"
+                }
+            },
+            "required": [
+                "accountRootUserId",
+                "createdAt",
+                "deletable",
+                "email",
+                "lastLoginAt",
+                "mfa",
+                "organizationId",
+                "status",
+                "type",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "email": {
+                    "type": "string",
+                    "description": "The email of the IAM user.\n",
+                    "willReplaceOnChanges": true
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "`organization_id`) The ID of the organization the user is associated with.\n"
+                }
+            },
+            "requiredInputs": [
+                "email"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering IamUser resources.\n",
+                "properties": {
+                    "accountRootUserId": {
+                        "type": "string",
+                        "description": "The ID of the account root user associated with the user.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The date and time of the creation of the iam user.\n"
+                    },
+                    "deletable": {
+                        "type": "boolean",
+                        "description": "Whether the iam user is deletable.\n"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "The email of the IAM user.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "lastLoginAt": {
+                        "type": "string",
+                        "description": "The date of the last login.\n"
+                    },
+                    "mfa": {
+                        "type": "boolean",
+                        "description": "Whether the MFA is enabled.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "`organization_id`) The ID of the organization the user is associated with.\n"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of user invitation. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of user. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "The date and time of the last update of the iam user.\n"
                     }
                 },
                 "type": "object"
@@ -12489,6 +12825,10 @@
                     "type": "string",
                     "description": "The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.\n\u003e **Important:** Updates to this field will recreate a new resource.\n"
                 },
+                "publicIpDisabled": {
+                    "type": "boolean",
+                    "description": "Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.\n\u003e **Important:** Updates to this field will recreate a new resource.\n"
+                },
                 "region": {
                     "type": "string",
                     "description": "`region`) The region in which the pool should be created.\n"
@@ -12602,6 +12942,11 @@
                     "description": "The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.\n\u003e **Important:** Updates to this field will recreate a new resource.\n",
                     "willReplaceOnChanges": true
                 },
+                "publicIpDisabled": {
+                    "type": "boolean",
+                    "description": "Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.\n\u003e **Important:** Updates to this field will recreate a new resource.\n",
+                    "willReplaceOnChanges": true
+                },
                 "region": {
                     "type": "string",
                     "description": "`region`) The region in which the pool should be created.\n",
@@ -12711,6 +13056,11 @@
                     "placementGroupId": {
                         "type": "string",
                         "description": "The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the nodes of the pool will be attached to.\n\u003e **Important:** Updates to this field will recreate a new resource.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "publicIpDisabled": {
+                        "type": "boolean",
+                        "description": "Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.\n\u003e **Important:** Updates to this field will recreate a new resource.\n",
                         "willReplaceOnChanges": true
                     },
                     "region": {
@@ -14072,7 +14422,7 @@
             }
         },
         "scaleway:index/mnqNamespace:MnqNamespace": {
-            "description": "Creates and manages Scaleway Messaging and queuing Namespace.\nFor further information please check\nour [documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/mnq/v1alpha1#pkg-index)\n\n## Examples\n\n### Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst main = new scaleway.MnqNamespace(\"main\", {\n    protocol: \"nats\",\n    region: \"fr-par\",\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain = scaleway.MnqNamespace(\"main\",\n    protocol=\"nats\",\n    region=\"fr-par\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.MnqNamespace(\"main\", new()\n    {\n        Protocol = \"nats\",\n        Region = \"fr-par\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewMnqNamespace(ctx, \"main\", \u0026scaleway.MnqNamespaceArgs{\n\t\t\tProtocol: pulumi.String(\"nats\"),\n\t\t\tRegion:   pulumi.String(\"fr-par\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.MnqNamespace;\nimport com.pulumi.scaleway.MnqNamespaceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new MnqNamespace(\"main\", MnqNamespaceArgs.builder()        \n            .protocol(\"nats\")\n            .region(\"fr-par\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:MnqNamespace\n    properties:\n      protocol: nats\n      region: fr-par\n```\n\n\n## Import\n\nNamespaces can be imported using the `{region}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/mnqNamespace:MnqNamespace main fr-par/11111111111111111111111111111111\n```\n\n ",
+            "description": "Creates and manages Scaleway Messaging and queuing Namespace.\nFor further information please check\nour [documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/mnq/v1alpha1#pkg-index)\n\n\u003e NOTE: This resource refers to the old version of the MNQ API. You should use new resources dedicated to your protocol. SQS, NATS.\n\n\n## Examples\n\n### Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst main = new scaleway.MnqNamespace(\"main\", {\n    protocol: \"nats\",\n    region: \"fr-par\",\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain = scaleway.MnqNamespace(\"main\",\n    protocol=\"nats\",\n    region=\"fr-par\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.MnqNamespace(\"main\", new()\n    {\n        Protocol = \"nats\",\n        Region = \"fr-par\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewMnqNamespace(ctx, \"main\", \u0026scaleway.MnqNamespaceArgs{\n\t\t\tProtocol: pulumi.String(\"nats\"),\n\t\t\tRegion:   pulumi.String(\"fr-par\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.MnqNamespace;\nimport com.pulumi.scaleway.MnqNamespaceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new MnqNamespace(\"main\", MnqNamespaceArgs.builder()        \n            .protocol(\"nats\")\n            .region(\"fr-par\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:MnqNamespace\n    properties:\n      protocol: nats\n      region: fr-par\n```\n\n\n## Import\n\nNamespaces can be imported using the `{region}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/mnqNamespace:MnqNamespace main fr-par/11111111111111111111111111111111\n```\n\n ",
             "properties": {
                 "createdAt": {
                     "type": "string",
@@ -14174,8 +14524,142 @@
                 "type": "object"
             }
         },
+        "scaleway:index/mnqNatsAccount:MnqNatsAccount": {
+            "description": "Creates and manages Scaleway Messaging and queuing Nats Accounts.\nFor further information please check\nour [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)\n\n## Examples\n\n### Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst main = new scaleway.MnqNatsAccount(\"main\", {});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain = scaleway.MnqNatsAccount(\"main\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.MnqNatsAccount(\"main\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewMnqNatsAccount(ctx, \"main\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.MnqNatsAccount;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new MnqNatsAccount(\"main\");\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:MnqNatsAccount\n```\n\n\n## Import\n\nNamespaces can be imported using the `{region}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/mnqNatsAccount:MnqNatsAccount main fr-par/11111111111111111111111111111111\n```\n\n ",
+            "properties": {
+                "endpoint": {
+                    "type": "string",
+                    "description": "The endpoint of the NATS service for this account.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the nats account.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "`project_id`) The ID of the project the\naccount is associated with.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "`region`). The region\nin which the account should be created.\n"
+                }
+            },
+            "required": [
+                "endpoint",
+                "name",
+                "projectId",
+                "region"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the nats account.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "`project_id`) The ID of the project the\naccount is associated with.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "`region`). The region\nin which the account should be created.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering MnqNatsAccount resources.\n",
+                "properties": {
+                    "endpoint": {
+                        "type": "string",
+                        "description": "The endpoint of the NATS service for this account.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The unique name of the nats account.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "`project_id`) The ID of the project the\naccount is associated with.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "`region`). The region\nin which the account should be created.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "scaleway:index/mnqNatsCredentials:MnqNatsCredentials": {
+            "description": "Creates and manages Scaleway Messaging and queuing Nats Credentials.\nFor further information please check\nour [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)\n\n## Examples\n\n### Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst mainMnqNatsAccount = new scaleway.MnqNatsAccount(\"mainMnqNatsAccount\", {});\nconst mainMnqNatsCredentials = new scaleway.MnqNatsCredentials(\"mainMnqNatsCredentials\", {accountId: mainMnqNatsAccount.id});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain_mnq_nats_account = scaleway.MnqNatsAccount(\"mainMnqNatsAccount\")\nmain_mnq_nats_credentials = scaleway.MnqNatsCredentials(\"mainMnqNatsCredentials\", account_id=main_mnq_nats_account.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var mainMnqNatsAccount = new Scaleway.MnqNatsAccount(\"mainMnqNatsAccount\");\n\n    var mainMnqNatsCredentials = new Scaleway.MnqNatsCredentials(\"mainMnqNatsCredentials\", new()\n    {\n        AccountId = mainMnqNatsAccount.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmainMnqNatsAccount, err := scaleway.NewMnqNatsAccount(ctx, \"mainMnqNatsAccount\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewMnqNatsCredentials(ctx, \"mainMnqNatsCredentials\", \u0026scaleway.MnqNatsCredentialsArgs{\n\t\t\tAccountId: mainMnqNatsAccount.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.MnqNatsAccount;\nimport com.pulumi.scaleway.MnqNatsCredentials;\nimport com.pulumi.scaleway.MnqNatsCredentialsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var mainMnqNatsAccount = new MnqNatsAccount(\"mainMnqNatsAccount\");\n\n        var mainMnqNatsCredentials = new MnqNatsCredentials(\"mainMnqNatsCredentials\", MnqNatsCredentialsArgs.builder()        \n            .accountId(mainMnqNatsAccount.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  mainMnqNatsAccount:\n    type: scaleway:MnqNatsAccount\n  mainMnqNatsCredentials:\n    type: scaleway:MnqNatsCredentials\n    properties:\n      accountId: ${mainMnqNatsAccount.id}\n```\n\n\n## Import\n\nNamespaces can be imported using the `{region}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/mnqNatsCredentials:MnqNatsCredentials main fr-par/11111111111111111111111111111111\n```\n\n ",
+            "properties": {
+                "accountId": {
+                    "type": "string",
+                    "description": "The ID of the nats account the credentials are generated from\n"
+                },
+                "file": {
+                    "type": "string",
+                    "description": "The content of the credentials file.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the nats credentials.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "`region`). The region\nin which the account exists.\n"
+                }
+            },
+            "required": [
+                "accountId",
+                "file",
+                "name",
+                "region"
+            ],
+            "inputProperties": {
+                "accountId": {
+                    "type": "string",
+                    "description": "The ID of the nats account the credentials are generated from\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the nats credentials.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "`region`). The region\nin which the account exists.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "accountId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering MnqNatsCredentials resources.\n",
+                "properties": {
+                    "accountId": {
+                        "type": "string",
+                        "description": "The ID of the nats account the credentials are generated from\n"
+                    },
+                    "file": {
+                        "type": "string",
+                        "description": "The content of the credentials file.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The unique name of the nats credentials.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "`region`). The region\nin which the account exists.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
         "scaleway:index/mnqQueue:MnqQueue": {
-            "description": "Creates and manages Scaleway Messaging and Queuing queues.\n\nFor more information about MNQ, see [the documentation](https://www.scaleway.com/en/developers/api/messaging-and-queuing/).\n\n## Examples\n\n### NATS\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst mainMnqNamespace = new scaleway.MnqNamespace(\"mainMnqNamespace\", {protocol: \"nats\"});\nconst mainMnqCredential = new scaleway.MnqCredential(\"mainMnqCredential\", {namespaceId: mainMnqNamespace.id});\nconst myQueue = new scaleway.MnqQueue(\"myQueue\", {\n    namespaceId: mainMnqNamespace.id,\n    nats: {\n        credentials: mainMnqCredential.natsCredentials.apply(natsCredentials =\u003e natsCredentials.content),\n    },\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain_mnq_namespace = scaleway.MnqNamespace(\"mainMnqNamespace\", protocol=\"nats\")\nmain_mnq_credential = scaleway.MnqCredential(\"mainMnqCredential\", namespace_id=main_mnq_namespace.id)\nmy_queue = scaleway.MnqQueue(\"myQueue\",\n    namespace_id=main_mnq_namespace.id,\n    nats=scaleway.MnqQueueNatsArgs(\n        credentials=main_mnq_credential.nats_credentials.content,\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var mainMnqNamespace = new Scaleway.MnqNamespace(\"mainMnqNamespace\", new()\n    {\n        Protocol = \"nats\",\n    });\n\n    var mainMnqCredential = new Scaleway.MnqCredential(\"mainMnqCredential\", new()\n    {\n        NamespaceId = mainMnqNamespace.Id,\n    });\n\n    var myQueue = new Scaleway.MnqQueue(\"myQueue\", new()\n    {\n        NamespaceId = mainMnqNamespace.Id,\n        Nats = new Scaleway.Inputs.MnqQueueNatsArgs\n        {\n            Credentials = mainMnqCredential.NatsCredentials.Apply(natsCredentials =\u003e natsCredentials.Content),\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmainMnqNamespace, err := scaleway.NewMnqNamespace(ctx, \"mainMnqNamespace\", \u0026scaleway.MnqNamespaceArgs{\n\t\t\tProtocol: pulumi.String(\"nats\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmainMnqCredential, err := scaleway.NewMnqCredential(ctx, \"mainMnqCredential\", \u0026scaleway.MnqCredentialArgs{\n\t\t\tNamespaceId: mainMnqNamespace.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewMnqQueue(ctx, \"myQueue\", \u0026scaleway.MnqQueueArgs{\n\t\t\tNamespaceId: mainMnqNamespace.ID(),\n\t\t\tNats: \u0026scaleway.MnqQueueNatsArgs{\n\t\t\t\tCredentials: mainMnqCredential.NatsCredentials.ApplyT(func(natsCredentials scaleway.MnqCredentialNatsCredentials) (*string, error) {\n\t\t\t\t\treturn \u0026natsCredentials.Content, nil\n\t\t\t\t}).(pulumi.StringPtrOutput),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.MnqNamespace;\nimport com.pulumi.scaleway.MnqNamespaceArgs;\nimport com.pulumi.scaleway.MnqCredential;\nimport com.pulumi.scaleway.MnqCredentialArgs;\nimport com.pulumi.scaleway.MnqQueue;\nimport com.pulumi.scaleway.MnqQueueArgs;\nimport com.pulumi.scaleway.inputs.MnqQueueNatsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var mainMnqNamespace = new MnqNamespace(\"mainMnqNamespace\", MnqNamespaceArgs.builder()        \n            .protocol(\"nats\")\n            .build());\n\n        var mainMnqCredential = new MnqCredential(\"mainMnqCredential\", MnqCredentialArgs.builder()        \n            .namespaceId(mainMnqNamespace.id())\n            .build());\n\n        var myQueue = new MnqQueue(\"myQueue\", MnqQueueArgs.builder()        \n            .namespaceId(mainMnqNamespace.id())\n            .nats(MnqQueueNatsArgs.builder()\n                .credentials(mainMnqCredential.natsCredentials().applyValue(natsCredentials -\u003e natsCredentials.content()))\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  mainMnqNamespace:\n    type: scaleway:MnqNamespace\n    properties:\n      protocol: nats\n  mainMnqCredential:\n    type: scaleway:MnqCredential\n    properties:\n      namespaceId: ${mainMnqNamespace.id}\n  myQueue:\n    type: scaleway:MnqQueue\n    properties:\n      namespaceId: ${mainMnqNamespace.id}\n      nats:\n        credentials: ${mainMnqCredential.natsCredentials.content}\n```\n\n### SQS\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst mainMnqNamespace = new scaleway.MnqNamespace(\"mainMnqNamespace\", {protocol: \"sqs_sns\"});\nconst mainMnqCredential = new scaleway.MnqCredential(\"mainMnqCredential\", {\n    namespaceId: mainMnqNamespace.id,\n    sqsSnsCredentials: {\n        permissions: {\n            canPublish: true,\n            canReceive: true,\n            canManage: true,\n        },\n    },\n});\nconst myQueue = new scaleway.MnqQueue(\"myQueue\", {\n    namespaceId: mainMnqNamespace.id,\n    sqs: {\n        accessKey: mainMnqCredential.sqsSnsCredentials.apply(sqsSnsCredentials =\u003e sqsSnsCredentials?.accessKey),\n        secretKey: mainMnqCredential.sqsSnsCredentials.apply(sqsSnsCredentials =\u003e sqsSnsCredentials?.secretKey),\n    },\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain_mnq_namespace = scaleway.MnqNamespace(\"mainMnqNamespace\", protocol=\"sqs_sns\")\nmain_mnq_credential = scaleway.MnqCredential(\"mainMnqCredential\",\n    namespace_id=main_mnq_namespace.id,\n    sqs_sns_credentials=scaleway.MnqCredentialSqsSnsCredentialsArgs(\n        permissions=scaleway.MnqCredentialSqsSnsCredentialsPermissionsArgs(\n            can_publish=True,\n            can_receive=True,\n            can_manage=True,\n        ),\n    ))\nmy_queue = scaleway.MnqQueue(\"myQueue\",\n    namespace_id=main_mnq_namespace.id,\n    sqs=scaleway.MnqQueueSqsArgs(\n        access_key=main_mnq_credential.sqs_sns_credentials.access_key,\n        secret_key=main_mnq_credential.sqs_sns_credentials.secret_key,\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var mainMnqNamespace = new Scaleway.MnqNamespace(\"mainMnqNamespace\", new()\n    {\n        Protocol = \"sqs_sns\",\n    });\n\n    var mainMnqCredential = new Scaleway.MnqCredential(\"mainMnqCredential\", new()\n    {\n        NamespaceId = mainMnqNamespace.Id,\n        SqsSnsCredentials = new Scaleway.Inputs.MnqCredentialSqsSnsCredentialsArgs\n        {\n            Permissions = new Scaleway.Inputs.MnqCredentialSqsSnsCredentialsPermissionsArgs\n            {\n                CanPublish = true,\n                CanReceive = true,\n                CanManage = true,\n            },\n        },\n    });\n\n    var myQueue = new Scaleway.MnqQueue(\"myQueue\", new()\n    {\n        NamespaceId = mainMnqNamespace.Id,\n        Sqs = new Scaleway.Inputs.MnqQueueSqsArgs\n        {\n            AccessKey = mainMnqCredential.SqsSnsCredentials.Apply(sqsSnsCredentials =\u003e sqsSnsCredentials?.AccessKey),\n            SecretKey = mainMnqCredential.SqsSnsCredentials.Apply(sqsSnsCredentials =\u003e sqsSnsCredentials?.SecretKey),\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmainMnqNamespace, err := scaleway.NewMnqNamespace(ctx, \"mainMnqNamespace\", \u0026scaleway.MnqNamespaceArgs{\n\t\t\tProtocol: pulumi.String(\"sqs_sns\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmainMnqCredential, err := scaleway.NewMnqCredential(ctx, \"mainMnqCredential\", \u0026scaleway.MnqCredentialArgs{\n\t\t\tNamespaceId: mainMnqNamespace.ID(),\n\t\t\tSqsSnsCredentials: \u0026scaleway.MnqCredentialSqsSnsCredentialsArgs{\n\t\t\t\tPermissions: \u0026scaleway.MnqCredentialSqsSnsCredentialsPermissionsArgs{\n\t\t\t\t\tCanPublish: pulumi.Bool(true),\n\t\t\t\t\tCanReceive: pulumi.Bool(true),\n\t\t\t\t\tCanManage:  pulumi.Bool(true),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewMnqQueue(ctx, \"myQueue\", \u0026scaleway.MnqQueueArgs{\n\t\t\tNamespaceId: mainMnqNamespace.ID(),\n\t\t\tSqs: \u0026scaleway.MnqQueueSqsArgs{\n\t\t\t\tAccessKey: mainMnqCredential.SqsSnsCredentials.ApplyT(func(sqsSnsCredentials scaleway.MnqCredentialSqsSnsCredentials) (*string, error) {\n\t\t\t\t\treturn \u0026sqsSnsCredentials.AccessKey, nil\n\t\t\t\t}).(pulumi.StringPtrOutput),\n\t\t\t\tSecretKey: mainMnqCredential.SqsSnsCredentials.ApplyT(func(sqsSnsCredentials scaleway.MnqCredentialSqsSnsCredentials) (*string, error) {\n\t\t\t\t\treturn \u0026sqsSnsCredentials.SecretKey, nil\n\t\t\t\t}).(pulumi.StringPtrOutput),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.MnqNamespace;\nimport com.pulumi.scaleway.MnqNamespaceArgs;\nimport com.pulumi.scaleway.MnqCredential;\nimport com.pulumi.scaleway.MnqCredentialArgs;\nimport com.pulumi.scaleway.inputs.MnqCredentialSqsSnsCredentialsArgs;\nimport com.pulumi.scaleway.inputs.MnqCredentialSqsSnsCredentialsPermissionsArgs;\nimport com.pulumi.scaleway.MnqQueue;\nimport com.pulumi.scaleway.MnqQueueArgs;\nimport com.pulumi.scaleway.inputs.MnqQueueSqsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var mainMnqNamespace = new MnqNamespace(\"mainMnqNamespace\", MnqNamespaceArgs.builder()        \n            .protocol(\"sqs_sns\")\n            .build());\n\n        var mainMnqCredential = new MnqCredential(\"mainMnqCredential\", MnqCredentialArgs.builder()        \n            .namespaceId(mainMnqNamespace.id())\n            .sqsSnsCredentials(MnqCredentialSqsSnsCredentialsArgs.builder()\n                .permissions(MnqCredentialSqsSnsCredentialsPermissionsArgs.builder()\n                    .canPublish(true)\n                    .canReceive(true)\n                    .canManage(true)\n                    .build())\n                .build())\n            .build());\n\n        var myQueue = new MnqQueue(\"myQueue\", MnqQueueArgs.builder()        \n            .namespaceId(mainMnqNamespace.id())\n            .sqs(MnqQueueSqsArgs.builder()\n                .accessKey(mainMnqCredential.sqsSnsCredentials().applyValue(sqsSnsCredentials -\u003e sqsSnsCredentials.accessKey()))\n                .secretKey(mainMnqCredential.sqsSnsCredentials().applyValue(sqsSnsCredentials -\u003e sqsSnsCredentials.secretKey()))\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  mainMnqNamespace:\n    type: scaleway:MnqNamespace\n    properties:\n      protocol: sqs_sns\n  mainMnqCredential:\n    type: scaleway:MnqCredential\n    properties:\n      namespaceId: ${mainMnqNamespace.id}\n      sqsSnsCredentials:\n        permissions:\n          canPublish: true\n          canReceive: true\n          canManage: true\n  myQueue:\n    type: scaleway:MnqQueue\n    properties:\n      namespaceId: ${mainMnqNamespace.id}\n      sqs:\n        accessKey: ${mainMnqCredential.sqsSnsCredentials.accessKey}\n        secretKey: ${mainMnqCredential.sqsSnsCredentials.secretKey}\n```\n\n### Argument Reference\n\nThe following arguments are supported:\n\n* `namespace_id` - (Required) The ID of the Namespace associated to.\n\n* `name` - (Optional) The name of the queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.\n\n* `name_prefix` - (Optional) Creates a unique name beginning with the specified prefix. Conflicts with `name`.\n\n* `message_max_age` - (Optional) The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.\n\n* `message_max_size` - (Optional) The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.\n\n* `sqs` - (Optional) The SQS attributes of the queue. Conflicts with `nats`.\n    - `endpoint` - (Optional) The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.\n    - `access_key` - (Required) The access key of the SQS queue.\n    - `secret_key` - (Required) The secret key of the SQS queue.\n    - `fifo_queue` - (Optional) Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.\n    - `content_based_deduplication` - (Optional) Specifies whether to enable content-based deduplication. Defaults to `false`.\n    - `receive_wait_time_seconds` - (Optional) The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.\n    - `visibility_timeout_seconds` - (Optional) The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.\n    - For more information about the SQS limitations, see [the documentation](https://www.scaleway.com/en/developers/api/messaging-and-queuing/#technical-limitations).\n\n* `nats` - (Optional) The NATS attributes of the queue. Conflicts with `sqs`.\n    - `endpoint` - (Optional) The endpoint of the NATS queue. Can contain a {region} placeholder. Defaults to `nats://nats.mnq.{region}.scw.cloud:4222`.\n    - `credentials` - (Required) Line jump separated key and seed.\n    - `retention_policy` - (Optional) The retention policy of the queue. See https://docs.nats.io/nats-concepts/jetstream/streams#retentionpolicy for more information. Defaults to `workqueue`.\n\n\n### Attribute Reference\n\nIn addition to all arguments above, the following attributes are exported:\n\n* `sqs` - The SQS attributes of the queue.\n  ~ `url` - The URL of the queue.\n",
             "properties": {
                 "messageMaxAge": {
                     "type": "integer",
@@ -14278,6 +14762,359 @@
                     "sqs": {
                         "$ref": "#/types/scaleway:index/MnqQueueSqs:MnqQueueSqs",
                         "description": "The SQS attributes of the queue\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "scaleway:index/mnqSqs:MnqSqs": {
+            "description": "Activate Scaleway Messaging and queuing SQS for a project.\nFor further information please check\nour [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)\n\n## Examples\n\n### Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\n// For default project in default region\nconst main = new scaleway.MnqSqs(\"main\", {});\n// For specific project in default region\nconst forProject = new scaleway.MnqSqs(\"forProject\", {projectId: scaleway_account_project.main.id});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\n# For default project in default region\nmain = scaleway.MnqSqs(\"main\")\n# For specific project in default region\nfor_project = scaleway.MnqSqs(\"forProject\", project_id=scaleway_account_project[\"main\"][\"id\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // For default project in default region\n    var main = new Scaleway.MnqSqs(\"main\");\n\n    // For specific project in default region\n    var forProject = new Scaleway.MnqSqs(\"forProject\", new()\n    {\n        ProjectId = scaleway_account_project.Main.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.NewMnqSqs(ctx, \"main\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewMnqSqs(ctx, \"forProject\", \u0026scaleway.MnqSqsArgs{\n\t\t\tProjectId: pulumi.Any(scaleway_account_project.Main.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.MnqSqs;\nimport com.pulumi.scaleway.MnqSqsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new MnqSqs(\"main\");\n\n        var forProject = new MnqSqs(\"forProject\", MnqSqsArgs.builder()        \n            .projectId(scaleway_account_project.main().id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # For default project in default region\n  main:\n    type: scaleway:MnqSqs\n  # For specific project in default region\n  forProject:\n    type: scaleway:MnqSqs\n    properties:\n      projectId: ${scaleway_account_project.main.id}\n```\n\n\n## Import\n\nSQS status can be imported using the `{region}/{project_id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111\n```\n\n ",
+            "properties": {
+                "endpoint": {
+                    "type": "string",
+                    "description": "The endpoint of the SQS service for this project.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "`project_id`) The ID of the project the sqs will be enabled for.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "`region`). The region\nin which sqs will be enabled.\n"
+                }
+            },
+            "required": [
+                "endpoint",
+                "projectId",
+                "region"
+            ],
+            "inputProperties": {
+                "projectId": {
+                    "type": "string",
+                    "description": "`project_id`) The ID of the project the sqs will be enabled for.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "`region`). The region\nin which sqs will be enabled.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering MnqSqs resources.\n",
+                "properties": {
+                    "endpoint": {
+                        "type": "string",
+                        "description": "The endpoint of the SQS service for this project.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "`project_id`) The ID of the project the sqs will be enabled for.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "`region`). The region\nin which sqs will be enabled.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "scaleway:index/mnqSqsCredentials:MnqSqsCredentials": {
+            "description": "Creates and manages Scaleway Messaging and queuing SQS Credentials.\nFor further information please check\nour [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)\n\n## Examples\n\n### Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst mainMnqSqs = new scaleway.MnqSqs(\"mainMnqSqs\", {});\nconst mainMnqSqsCredentials = new scaleway.MnqSqsCredentials(\"mainMnqSqsCredentials\", {\n    projectId: mainMnqSqs.projectId,\n    permissions: {\n        canManage: false,\n        canReceive: true,\n        canPublish: false,\n    },\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain_mnq_sqs = scaleway.MnqSqs(\"mainMnqSqs\")\nmain_mnq_sqs_credentials = scaleway.MnqSqsCredentials(\"mainMnqSqsCredentials\",\n    project_id=main_mnq_sqs.project_id,\n    permissions=scaleway.MnqSqsCredentialsPermissionsArgs(\n        can_manage=False,\n        can_receive=True,\n        can_publish=False,\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var mainMnqSqs = new Scaleway.MnqSqs(\"mainMnqSqs\");\n\n    var mainMnqSqsCredentials = new Scaleway.MnqSqsCredentials(\"mainMnqSqsCredentials\", new()\n    {\n        ProjectId = mainMnqSqs.ProjectId,\n        Permissions = new Scaleway.Inputs.MnqSqsCredentialsPermissionsArgs\n        {\n            CanManage = false,\n            CanReceive = true,\n            CanPublish = false,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmainMnqSqs, err := scaleway.NewMnqSqs(ctx, \"mainMnqSqs\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewMnqSqsCredentials(ctx, \"mainMnqSqsCredentials\", \u0026scaleway.MnqSqsCredentialsArgs{\n\t\t\tProjectId: mainMnqSqs.ProjectId,\n\t\t\tPermissions: \u0026scaleway.MnqSqsCredentialsPermissionsArgs{\n\t\t\t\tCanManage:  pulumi.Bool(false),\n\t\t\t\tCanReceive: pulumi.Bool(true),\n\t\t\t\tCanPublish: pulumi.Bool(false),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.MnqSqs;\nimport com.pulumi.scaleway.MnqSqsCredentials;\nimport com.pulumi.scaleway.MnqSqsCredentialsArgs;\nimport com.pulumi.scaleway.inputs.MnqSqsCredentialsPermissionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var mainMnqSqs = new MnqSqs(\"mainMnqSqs\");\n\n        var mainMnqSqsCredentials = new MnqSqsCredentials(\"mainMnqSqsCredentials\", MnqSqsCredentialsArgs.builder()        \n            .projectId(mainMnqSqs.projectId())\n            .permissions(MnqSqsCredentialsPermissionsArgs.builder()\n                .canManage(false)\n                .canReceive(true)\n                .canPublish(false)\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  mainMnqSqs:\n    type: scaleway:MnqSqs\n  mainMnqSqsCredentials:\n    type: scaleway:MnqSqsCredentials\n    properties:\n      projectId: ${mainMnqSqs.projectId}\n      permissions:\n        canManage: false\n        canReceive: true\n        canPublish: false\n```\n\n\n## Import\n\nSQS credentials can be imported using the `{region}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/mnqSqsCredentials:MnqSqsCredentials main fr-par/11111111111111111111111111111111\n```\n\n ",
+            "properties": {
+                "accessKey": {
+                    "type": "string",
+                    "description": "The ID of the key.\n",
+                    "secret": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the sqs credentials.\n"
+                },
+                "permissions": {
+                    "$ref": "#/types/scaleway:index/MnqSqsCredentialsPermissions:MnqSqsCredentialsPermissions",
+                    "description": ". List of permissions associated to these credentials. Only one of permissions may be set.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "`project_id`) The ID of the project the sqs is enabled for.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "`region`). The region in which sqs is enabled.\n"
+                },
+                "secretKey": {
+                    "type": "string",
+                    "description": "The secret value of the key.\n",
+                    "secret": true
+                }
+            },
+            "required": [
+                "accessKey",
+                "name",
+                "permissions",
+                "projectId",
+                "region",
+                "secretKey"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the sqs credentials.\n"
+                },
+                "permissions": {
+                    "$ref": "#/types/scaleway:index/MnqSqsCredentialsPermissions:MnqSqsCredentialsPermissions",
+                    "description": ". List of permissions associated to these credentials. Only one of permissions may be set.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "`project_id`) The ID of the project the sqs is enabled for.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "`region`). The region in which sqs is enabled.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering MnqSqsCredentials resources.\n",
+                "properties": {
+                    "accessKey": {
+                        "type": "string",
+                        "description": "The ID of the key.\n",
+                        "secret": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The unique name of the sqs credentials.\n"
+                    },
+                    "permissions": {
+                        "$ref": "#/types/scaleway:index/MnqSqsCredentialsPermissions:MnqSqsCredentialsPermissions",
+                        "description": ". List of permissions associated to these credentials. Only one of permissions may be set.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "`project_id`) The ID of the project the sqs is enabled for.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "`region`). The region in which sqs is enabled.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "secretKey": {
+                        "type": "string",
+                        "description": "The secret value of the key.\n",
+                        "secret": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "scaleway:index/mnqSqsQueue:MnqSqsQueue": {
+            "description": "Creates and manages Scaleway Messaging and queuing SQS Queues.\nFor further information please check\nour [documentation](https://www.scaleway.com/en/docs/serverless/messaging/how-to/create-manage-queues/)\n\n## Examples\n\n### Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst mainMnqSqs = new scaleway.MnqSqs(\"mainMnqSqs\", {});\nconst mainMnqSqsCredentials = new scaleway.MnqSqsCredentials(\"mainMnqSqsCredentials\", {\n    projectId: mainMnqSqs.projectId,\n    permissions: {\n        canManage: false,\n        canReceive: true,\n        canPublish: false,\n    },\n});\nconst mainMnqSqsQueue = new scaleway.MnqSqsQueue(\"mainMnqSqsQueue\", {\n    projectId: mainMnqSqs.projectId,\n    endpoint: mainMnqSqs.endpoint,\n    accessKey: mainMnqSqsCredentials.accessKey,\n    secretKey: mainMnqSqsCredentials.secretKey,\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nmain_mnq_sqs = scaleway.MnqSqs(\"mainMnqSqs\")\nmain_mnq_sqs_credentials = scaleway.MnqSqsCredentials(\"mainMnqSqsCredentials\",\n    project_id=main_mnq_sqs.project_id,\n    permissions=scaleway.MnqSqsCredentialsPermissionsArgs(\n        can_manage=False,\n        can_receive=True,\n        can_publish=False,\n    ))\nmain_mnq_sqs_queue = scaleway.MnqSqsQueue(\"mainMnqSqsQueue\",\n    project_id=main_mnq_sqs.project_id,\n    endpoint=main_mnq_sqs.endpoint,\n    access_key=main_mnq_sqs_credentials.access_key,\n    secret_key=main_mnq_sqs_credentials.secret_key)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var mainMnqSqs = new Scaleway.MnqSqs(\"mainMnqSqs\");\n\n    var mainMnqSqsCredentials = new Scaleway.MnqSqsCredentials(\"mainMnqSqsCredentials\", new()\n    {\n        ProjectId = mainMnqSqs.ProjectId,\n        Permissions = new Scaleway.Inputs.MnqSqsCredentialsPermissionsArgs\n        {\n            CanManage = false,\n            CanReceive = true,\n            CanPublish = false,\n        },\n    });\n\n    var mainMnqSqsQueue = new Scaleway.MnqSqsQueue(\"mainMnqSqsQueue\", new()\n    {\n        ProjectId = mainMnqSqs.ProjectId,\n        Endpoint = mainMnqSqs.Endpoint,\n        AccessKey = mainMnqSqsCredentials.AccessKey,\n        SecretKey = mainMnqSqsCredentials.SecretKey,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmainMnqSqs, err := scaleway.NewMnqSqs(ctx, \"mainMnqSqs\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmainMnqSqsCredentials, err := scaleway.NewMnqSqsCredentials(ctx, \"mainMnqSqsCredentials\", \u0026scaleway.MnqSqsCredentialsArgs{\n\t\t\tProjectId: mainMnqSqs.ProjectId,\n\t\t\tPermissions: \u0026scaleway.MnqSqsCredentialsPermissionsArgs{\n\t\t\t\tCanManage:  pulumi.Bool(false),\n\t\t\t\tCanReceive: pulumi.Bool(true),\n\t\t\t\tCanPublish: pulumi.Bool(false),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewMnqSqsQueue(ctx, \"mainMnqSqsQueue\", \u0026scaleway.MnqSqsQueueArgs{\n\t\t\tProjectId: mainMnqSqs.ProjectId,\n\t\t\tEndpoint:  mainMnqSqs.Endpoint,\n\t\t\tAccessKey: mainMnqSqsCredentials.AccessKey,\n\t\t\tSecretKey: mainMnqSqsCredentials.SecretKey,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.MnqSqs;\nimport com.pulumi.scaleway.MnqSqsCredentials;\nimport com.pulumi.scaleway.MnqSqsCredentialsArgs;\nimport com.pulumi.scaleway.inputs.MnqSqsCredentialsPermissionsArgs;\nimport com.pulumi.scaleway.MnqSqsQueue;\nimport com.pulumi.scaleway.MnqSqsQueueArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var mainMnqSqs = new MnqSqs(\"mainMnqSqs\");\n\n        var mainMnqSqsCredentials = new MnqSqsCredentials(\"mainMnqSqsCredentials\", MnqSqsCredentialsArgs.builder()        \n            .projectId(mainMnqSqs.projectId())\n            .permissions(MnqSqsCredentialsPermissionsArgs.builder()\n                .canManage(false)\n                .canReceive(true)\n                .canPublish(false)\n                .build())\n            .build());\n\n        var mainMnqSqsQueue = new MnqSqsQueue(\"mainMnqSqsQueue\", MnqSqsQueueArgs.builder()        \n            .projectId(mainMnqSqs.projectId())\n            .endpoint(mainMnqSqs.endpoint())\n            .accessKey(mainMnqSqsCredentials.accessKey())\n            .secretKey(mainMnqSqsCredentials.secretKey())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  mainMnqSqs:\n    type: scaleway:MnqSqs\n  mainMnqSqsCredentials:\n    type: scaleway:MnqSqsCredentials\n    properties:\n      projectId: ${mainMnqSqs.projectId}\n      permissions:\n        canManage: false\n        canReceive: true\n        canPublish: false\n  mainMnqSqsQueue:\n    type: scaleway:MnqSqsQueue\n    properties:\n      projectId: ${mainMnqSqs.projectId}\n      endpoint: ${mainMnqSqs.endpoint}\n      accessKey: ${mainMnqSqsCredentials.accessKey}\n      secretKey: ${mainMnqSqsCredentials.secretKey}\n```\n\n\n## Import\n\nSQS queues can be imported using the `{region}/{project-id}/{queue-name}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/mnqSqsQueue:MnqSqsQueue main fr-par/11111111111111111111111111111111/my-queue\n```\n\n ",
+            "properties": {
+                "accessKey": {
+                    "type": "string",
+                    "description": "The access key of the SQS queue.\n",
+                    "secret": true
+                },
+                "contentBasedDeduplication": {
+                    "type": "boolean",
+                    "description": "Specifies whether to enable content-based deduplication. Defaults to `false`.\n"
+                },
+                "endpoint": {
+                    "type": "string",
+                    "description": "The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.\n"
+                },
+                "fifoQueue": {
+                    "type": "boolean",
+                    "description": "Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.\n"
+                },
+                "messageMaxAge": {
+                    "type": "integer",
+                    "description": "The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.\n"
+                },
+                "messageMaxSize": {
+                    "type": "integer",
+                    "description": "The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the sqs queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.\n"
+                },
+                "namePrefix": {
+                    "type": "string",
+                    "description": "Creates a unique name beginning with the specified prefix. Conflicts with `name`.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "`project_id`) The ID of the project the sqs is enabled for.\n"
+                },
+                "receiveWaitTimeSeconds": {
+                    "type": "integer",
+                    "description": "The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "`region`). The region in which sqs is enabled.\n"
+                },
+                "secretKey": {
+                    "type": "string",
+                    "description": "The secret key of the SQS queue.\n",
+                    "secret": true
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The URL of the queue.\n"
+                },
+                "visibilityTimeoutSeconds": {
+                    "type": "integer",
+                    "description": "The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.\n"
+                }
+            },
+            "required": [
+                "accessKey",
+                "contentBasedDeduplication",
+                "fifoQueue",
+                "name",
+                "namePrefix",
+                "projectId",
+                "region",
+                "secretKey",
+                "url"
+            ],
+            "inputProperties": {
+                "accessKey": {
+                    "type": "string",
+                    "description": "The access key of the SQS queue.\n",
+                    "secret": true
+                },
+                "contentBasedDeduplication": {
+                    "type": "boolean",
+                    "description": "Specifies whether to enable content-based deduplication. Defaults to `false`.\n"
+                },
+                "endpoint": {
+                    "type": "string",
+                    "description": "The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.\n"
+                },
+                "fifoQueue": {
+                    "type": "boolean",
+                    "description": "Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.\n"
+                },
+                "messageMaxAge": {
+                    "type": "integer",
+                    "description": "The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.\n"
+                },
+                "messageMaxSize": {
+                    "type": "integer",
+                    "description": "The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The unique name of the sqs queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "namePrefix": {
+                    "type": "string",
+                    "description": "Creates a unique name beginning with the specified prefix. Conflicts with `name`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "`project_id`) The ID of the project the sqs is enabled for.\n",
+                    "willReplaceOnChanges": true
+                },
+                "receiveWaitTimeSeconds": {
+                    "type": "integer",
+                    "description": "The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "`region`). The region in which sqs is enabled.\n",
+                    "willReplaceOnChanges": true
+                },
+                "secretKey": {
+                    "type": "string",
+                    "description": "The secret key of the SQS queue.\n",
+                    "secret": true
+                },
+                "visibilityTimeoutSeconds": {
+                    "type": "integer",
+                    "description": "The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.\n"
+                }
+            },
+            "requiredInputs": [
+                "accessKey",
+                "secretKey"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering MnqSqsQueue resources.\n",
+                "properties": {
+                    "accessKey": {
+                        "type": "string",
+                        "description": "The access key of the SQS queue.\n",
+                        "secret": true
+                    },
+                    "contentBasedDeduplication": {
+                        "type": "boolean",
+                        "description": "Specifies whether to enable content-based deduplication. Defaults to `false`.\n"
+                    },
+                    "endpoint": {
+                        "type": "string",
+                        "description": "The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.\n"
+                    },
+                    "fifoQueue": {
+                        "type": "boolean",
+                        "description": "Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.\n"
+                    },
+                    "messageMaxAge": {
+                        "type": "integer",
+                        "description": "The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.\n"
+                    },
+                    "messageMaxSize": {
+                        "type": "integer",
+                        "description": "The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The unique name of the sqs queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "namePrefix": {
+                        "type": "string",
+                        "description": "Creates a unique name beginning with the specified prefix. Conflicts with `name`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "`project_id`) The ID of the project the sqs is enabled for.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "receiveWaitTimeSeconds": {
+                        "type": "integer",
+                        "description": "The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "`region`). The region in which sqs is enabled.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "secretKey": {
+                        "type": "string",
+                        "description": "The secret key of the SQS queue.\n",
+                        "secret": true
+                    },
+                    "url": {
+                        "type": "string",
+                        "description": "The URL of the queue.\n"
+                    },
+                    "visibilityTimeoutSeconds": {
+                        "type": "integer",
+                        "description": "The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.\n"
                     }
                 },
                 "type": "object"
@@ -15766,6 +16603,10 @@
                 "region": {
                     "type": "string",
                     "description": "`region`) The region\nin which the Database read replica should be created.\n"
+                },
+                "sameZone": {
+                    "type": "boolean",
+                    "description": "Defines whether to create the replica in the same availability zone as the main instance nodes or not.\n"
                 }
             },
             "required": [
@@ -15788,6 +16629,11 @@
                 "region": {
                     "type": "string",
                     "description": "`region`) The region\nin which the Database read replica should be created.\n",
+                    "willReplaceOnChanges": true
+                },
+                "sameZone": {
+                    "type": "boolean",
+                    "description": "Defines whether to create the replica in the same availability zone as the main instance nodes or not.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -15812,6 +16658,11 @@
                     "region": {
                         "type": "string",
                         "description": "`region`) The region\nin which the Database read replica should be created.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "sameZone": {
+                        "type": "boolean",
+                        "description": "Defines whether to create the replica in the same availability zone as the main instance nodes or not.\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -18837,6 +19688,92 @@
                 ]
             }
         },
+        "scaleway:index/getBillingConsumptions:getBillingConsumptions": {
+            "outputs": {
+                "description": "A collection of values returned by getBillingConsumptions.\n",
+                "properties": {
+                    "consumptions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/scaleway:index/getBillingConsumptionsConsumption:getBillingConsumptionsConsumption"
+                        }
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "organizationId": {
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "consumptions",
+                    "organizationId",
+                    "updatedAt",
+                    "id"
+                ]
+            }
+        },
+        "scaleway:index/getBillingInvoices:getBillingInvoices": {
+            "description": "Gets information about your Invoices.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst my-invoices = scaleway.getBillingInvoices({\n    invoiceType: \"periodic\",\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\n\nmy_invoices = scaleway.get_billing_invoices(invoice_type=\"periodic\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var my_invoices = Scaleway.GetBillingInvoices.Invoke(new()\n    {\n        InvoiceType = \"periodic\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.GetBillingInvoices(ctx, \u0026scaleway.GetBillingInvoicesArgs{\n\t\t\tInvoiceType: pulumi.StringRef(\"periodic\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetBillingInvoicesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var my-invoices = ScalewayFunctions.getBillingInvoices(GetBillingInvoicesArgs.builder()\n            .invoiceType(\"periodic\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  my-invoices:\n    fn::invoke:\n      Function: scaleway:getBillingInvoices\n      Arguments:\n        invoiceType: periodic\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getBillingInvoices.\n",
+                "properties": {
+                    "invoiceType": {
+                        "type": "string",
+                        "description": "Invoices with the given type are listed. Valid values are `periodic` and `purchase`.\n"
+                    },
+                    "startedAfter": {
+                        "type": "string",
+                        "description": "Invoices with a start date that are greater or equal to `started_after` are listed (RFC 3339 format).\n"
+                    },
+                    "startedBefore": {
+                        "type": "string",
+                        "description": "Invoices with a start date that precedes `started_before` are listed (RFC 3339 format).\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getBillingInvoices.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "invoiceType": {
+                        "type": "string",
+                        "description": "The type of invoice.\n"
+                    },
+                    "invoices": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/scaleway:index/getBillingInvoicesInvoice:getBillingInvoicesInvoice"
+                        },
+                        "description": "List of found invoices\n"
+                    },
+                    "organizationId": {
+                        "type": "string"
+                    },
+                    "startedAfter": {
+                        "type": "string"
+                    },
+                    "startedBefore": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "invoices",
+                    "organizationId",
+                    "id"
+                ]
+            }
+        },
         "scaleway:index/getCockpit:getCockpit": {
             "description": "Gets information about the Scaleway Cockpit.\n\nFor more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst main = scaleway.getCockpit({});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\n\nmain = scaleway.get_cockpit()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = Scaleway.GetCockpit.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.LookupCockpit(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetCockpitArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var main = ScalewayFunctions.getCockpit();\n\n    }\n}\n```\n```yaml\nvariables:\n  main:\n    fn::invoke:\n      Function: scaleway:getCockpit\n      Arguments: {}\n```\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst main = scaleway.getCockpit({\n    projectId: \"11111111-1111-1111-1111-111111111111\",\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\n\nmain = scaleway.get_cockpit(project_id=\"11111111-1111-1111-1111-111111111111\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = Scaleway.GetCockpit.Invoke(new()\n    {\n        ProjectId = \"11111111-1111-1111-1111-111111111111\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.LookupCockpit(ctx, \u0026scaleway.LookupCockpitArgs{\n\t\t\tProjectId: pulumi.StringRef(\"11111111-1111-1111-1111-111111111111\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetCockpitArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var main = ScalewayFunctions.getCockpit(GetCockpitArgs.builder()\n            .projectId(\"11111111-1111-1111-1111-111111111111\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  main:\n    fn::invoke:\n      Function: scaleway:getCockpit\n      Arguments:\n        projectId: 11111111-1111-1111-1111-111111111111\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
@@ -19157,14 +20094,17 @@
             }
         },
         "scaleway:index/getDocumentDBDatabase:getDocumentDBDatabase": {
+            "description": "Gets information about DocumentDB database. More on our official [site](https://www.scaleway.com/en/developers/api/document_db/)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst main = scaleway.getDocumentDBDatabase({\n    instanceId: \"11111111-1111-1111-1111-111111111111\",\n    name: \"foobar\",\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\n\nmain = scaleway.get_document_db_database(instance_id=\"11111111-1111-1111-1111-111111111111\",\n    name=\"foobar\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = Scaleway.GetDocumentDBDatabase.Invoke(new()\n    {\n        InstanceId = \"11111111-1111-1111-1111-111111111111\",\n        Name = \"foobar\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.LookupDocumentDBDatabase(ctx, \u0026scaleway.LookupDocumentDBDatabaseArgs{\n\t\t\tInstanceId: \"11111111-1111-1111-1111-111111111111\",\n\t\t\tName:       pulumi.StringRef(\"foobar\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetDocumentDBDatabaseArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var main = ScalewayFunctions.getDocumentDBDatabase(GetDocumentDBDatabaseArgs.builder()\n            .instanceId(\"11111111-1111-1111-1111-111111111111\")\n            .name(\"foobar\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  main:\n    fn::invoke:\n      Function: scaleway:getDocumentDBDatabase\n      Arguments:\n        instanceId: 11111111-1111-1111-1111-111111111111\n        name: foobar\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getDocumentDBDatabase.\n",
                 "properties": {
                     "instanceId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The DocumentDB instance ID.\n"
                     },
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The name of the DocumentDB instance.\n"
                     },
                     "region": {
                         "type": "string"
@@ -19186,13 +20126,15 @@
                         "type": "string"
                     },
                     "managed": {
-                        "type": "boolean"
+                        "type": "boolean",
+                        "description": "Whether the database is managed or not.\n"
                     },
                     "name": {
                         "type": "string"
                     },
                     "owner": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The name of the owner of the database.\n"
                     },
                     "projectId": {
                         "type": "string"
@@ -19201,7 +20143,8 @@
                         "type": "string"
                     },
                     "size": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Size of the database (in bytes).\n"
                     }
                 },
                 "type": "object",
@@ -19216,17 +20159,21 @@
             }
         },
         "scaleway:index/getDocumentDBInstance:getDocumentDBInstance": {
+            "description": "Gets information about an DocumentDB instance. For further information see our [developers website](https://www.scaleway.com/en/developers/api/document_db/)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst db = scaleway.getDocumentDBInstance({\n    instanceId: \"11111111-1111-1111-1111-111111111111\",\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\n\ndb = scaleway.get_document_db_instance(instance_id=\"11111111-1111-1111-1111-111111111111\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var db = Scaleway.GetDocumentDBInstance.Invoke(new()\n    {\n        InstanceId = \"11111111-1111-1111-1111-111111111111\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.LookupDocumentDBInstance(ctx, \u0026scaleway.LookupDocumentDBInstanceArgs{\n\t\t\tInstanceId: pulumi.StringRef(\"11111111-1111-1111-1111-111111111111\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetDocumentDBInstanceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var db = ScalewayFunctions.getDocumentDBInstance(GetDocumentDBInstanceArgs.builder()\n            .instanceId(\"11111111-1111-1111-1111-111111111111\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  db:\n    fn::invoke:\n      Function: scaleway:getDocumentDBInstance\n      Arguments:\n        instanceId: 11111111-1111-1111-1111-111111111111\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getDocumentDBInstance.\n",
                 "properties": {
                     "instanceId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The DocumentDB instance ID.\nOnly one of `name` and `instance_id` should be specified.\n"
                     },
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The name of the DocumentDB instance.\nOnly one of `name` and `instance_id` should be specified.\n"
                     },
                     "region": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "`region`) The region in which the DocumentDB instance exists.\n"
                     }
                 },
                 "type": "object"
@@ -20136,7 +21083,7 @@
             }
         },
         "scaleway:index/getIamUser:getIamUser": {
-            "description": "Use this data source to get information on an existing IAM user based on its ID or email address.\nFor more information,\nsee [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst findById = scaleway.getIamUser({\n    userId: \"11111111-1111-1111-1111-111111111111\",\n});\nconst findByEmail = scaleway.getIamUser({\n    email: \"foo@bar.com\",\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\n\nfind_by_id = scaleway.get_iam_user(user_id=\"11111111-1111-1111-1111-111111111111\")\nfind_by_email = scaleway.get_iam_user(email=\"foo@bar.com\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var findById = Scaleway.GetIamUser.Invoke(new()\n    {\n        UserId = \"11111111-1111-1111-1111-111111111111\",\n    });\n\n    var findByEmail = Scaleway.GetIamUser.Invoke(new()\n    {\n        Email = \"foo@bar.com\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.GetIamUser(ctx, \u0026scaleway.GetIamUserArgs{\n\t\t\tUserId: pulumi.StringRef(\"11111111-1111-1111-1111-111111111111\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.GetIamUser(ctx, \u0026scaleway.GetIamUserArgs{\n\t\t\tEmail: pulumi.StringRef(\"foo@bar.com\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetIamUserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var findById = ScalewayFunctions.getIamUser(GetIamUserArgs.builder()\n            .userId(\"11111111-1111-1111-1111-111111111111\")\n            .build());\n\n        final var findByEmail = ScalewayFunctions.getIamUser(GetIamUserArgs.builder()\n            .email(\"foo@bar.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  findById:\n    fn::invoke:\n      Function: scaleway:getIamUser\n      Arguments:\n        userId: 11111111-1111-1111-1111-111111111111\n  findByEmail:\n    fn::invoke:\n      Function: scaleway:getIamUser\n      Arguments:\n        email: foo@bar.com\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Use this data source to get information on an existing IAM user based on its ID or email address.\nFor more information,\nsee [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst findById = scaleway.getIamUser({\n    userId: \"11111111-1111-1111-1111-111111111111\",\n});\nconst findByEmail = scaleway.getIamUser({\n    email: \"foo@bar.com\",\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\n\nfind_by_id = scaleway.get_iam_user(user_id=\"11111111-1111-1111-1111-111111111111\")\nfind_by_email = scaleway.get_iam_user(email=\"foo@bar.com\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var findById = Scaleway.GetIamUser.Invoke(new()\n    {\n        UserId = \"11111111-1111-1111-1111-111111111111\",\n    });\n\n    var findByEmail = Scaleway.GetIamUser.Invoke(new()\n    {\n        Email = \"foo@bar.com\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.LookupIamUser(ctx, \u0026scaleway.LookupIamUserArgs{\n\t\t\tUserId: pulumi.StringRef(\"11111111-1111-1111-1111-111111111111\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.LookupIamUser(ctx, \u0026scaleway.LookupIamUserArgs{\n\t\t\tEmail: pulumi.StringRef(\"foo@bar.com\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetIamUserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var findById = ScalewayFunctions.getIamUser(GetIamUserArgs.builder()\n            .userId(\"11111111-1111-1111-1111-111111111111\")\n            .build());\n\n        final var findByEmail = ScalewayFunctions.getIamUser(GetIamUserArgs.builder()\n            .email(\"foo@bar.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  findById:\n    fn::invoke:\n      Function: scaleway:getIamUser\n      Arguments:\n        userId: 11111111-1111-1111-1111-111111111111\n  findByEmail:\n    fn::invoke:\n      Function: scaleway:getIamUser\n      Arguments:\n        email: foo@bar.com\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getIamUser.\n",
                 "properties": {
@@ -21512,6 +22459,9 @@
                     "poolId": {
                         "type": "string"
                     },
+                    "publicIpDisabled": {
+                        "type": "boolean"
+                    },
                     "region": {
                         "type": "string"
                     },
@@ -21570,6 +22520,7 @@
                     "nodeType",
                     "nodes",
                     "placementGroupId",
+                    "publicIpDisabled",
                     "rootVolumeSizeInGb",
                     "rootVolumeType",
                     "status",
@@ -22639,6 +23590,47 @@
                 "required": [
                     "label",
                     "zone",
+                    "id"
+                ]
+            }
+        },
+        "scaleway:index/getMnqSqs:getMnqSqs": {
+            "description": "Gets information about SQS for a project\n\n## Examples\n\n### Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst main = scaleway.getMnqSqs({});\nconst forProject = scaleway.getMnqSqs({\n    projectId: scaleway_account_project.main.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\n\nmain = scaleway.get_mnq_sqs()\nfor_project = scaleway.get_mnq_sqs(project_id=scaleway_account_project[\"main\"][\"id\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = Scaleway.GetMnqSqs.Invoke();\n\n    var forProject = Scaleway.GetMnqSqs.Invoke(new()\n    {\n        ProjectId = scaleway_account_project.Main.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.LookupMnqSqs(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.LookupMnqSqs(ctx, \u0026scaleway.LookupMnqSqsArgs{\n\t\t\tProjectId: pulumi.StringRef(scaleway_account_project.Main.Id),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetMnqSqsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var main = ScalewayFunctions.getMnqSqs();\n\n        final var forProject = ScalewayFunctions.getMnqSqs(GetMnqSqsArgs.builder()\n            .projectId(scaleway_account_project.main().id())\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  main:\n    fn::invoke:\n      Function: scaleway:getMnqSqs\n      Arguments: {}\n  forProject:\n    fn::invoke:\n      Function: scaleway:getMnqSqs\n      Arguments:\n        projectId: ${scaleway_account_project.main.id}\n```\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getMnqSqs.\n",
+                "properties": {
+                    "projectId": {
+                        "type": "string",
+                        "description": "`project_id`) The ID of the project for which sqs is enabled.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "`region`). The region in which sqs is enabled.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getMnqSqs.\n",
+                "properties": {
+                    "endpoint": {
+                        "type": "string",
+                        "description": "The endpoint of the SQS service for this project.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "projectId": {
+                        "type": "string"
+                    },
+                    "region": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "endpoint",
                     "id"
                 ]
             }

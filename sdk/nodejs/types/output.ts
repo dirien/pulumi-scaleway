@@ -150,13 +150,32 @@ export interface CockpitTokenScopes {
     writeMetrics?: boolean;
 }
 
+export interface ContainerTriggerNats {
+    /**
+     * ID of the mnq nats account.
+     */
+    accountId?: string;
+    /**
+     * ID of the project that contain the mnq nats account, defaults to provider's project
+     */
+    projectId: string;
+    /**
+     * `region`). The region in which the namespace should be created.
+     */
+    region: string;
+    /**
+     * The subject to listen to
+     */
+    subject: string;
+}
+
 export interface ContainerTriggerSqs {
     /**
-     * ID of the mnq namespace
+     * ID of the mnq namespace. Deprecated.
      */
-    namespaceId: string;
+    namespaceId?: string;
     /**
-     * ID of the project that contain the mnq namespace, defaults to provider's project
+     * ID of the project that contain the mnq nats account, defaults to provider's project
      */
     projectId: string;
     /**
@@ -170,20 +189,58 @@ export interface ContainerTriggerSqs {
 }
 
 export interface DocumentDBReadReplicaDirectAccess {
+    /**
+     * The ID of the endpoint of the read replica.
+     */
     endpointId: string;
+    /**
+     * Hostname of the endpoint. Only one of ip and hostname may be set.
+     */
     hostname: string;
+    /**
+     * IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+     */
     ip: string;
+    /**
+     * Name of the endpoint.
+     */
     name: string;
+    /**
+     * TCP port of the endpoint.
+     */
     port: number;
 }
 
 export interface DocumentDBReadReplicaPrivateNetwork {
+    /**
+     * The ID of the endpoint of the read replica.
+     */
     endpointId: string;
+    /**
+     * Hostname of the endpoint. Only one of ip and hostname may be set.
+     */
     hostname: string;
+    /**
+     * IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+     */
     ip: string;
+    /**
+     * Name of the endpoint.
+     */
     name: string;
+    /**
+     * TCP port of the endpoint.
+     */
     port: number;
+    /**
+     * UUID of the private network to be connected to the read replica.
+     */
     privateNetworkId: string;
+    /**
+     * The IP network address within the private subnet. This must be an IPv4 address with a
+     * CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+     * service if not set.
+     */
     serviceIp: string;
     zone: string;
 }
@@ -255,13 +312,32 @@ export interface DomainRecordWeighted {
     weight: number;
 }
 
+export interface FunctionTriggerNats {
+    /**
+     * ID of the mnq nats account.
+     */
+    accountId?: string;
+    /**
+     * ID of the project that contain the mnq nats account, defaults to provider's project
+     */
+    projectId: string;
+    /**
+     * `region`). The region in which the namespace should be created.
+     */
+    region: string;
+    /**
+     * The subject to listen to
+     */
+    subject: string;
+}
+
 export interface FunctionTriggerSqs {
     /**
-     * ID of the mnq namespace
+     * ID of the mnq namespace. Deprecated.
      */
-    namespaceId: string;
+    namespaceId?: string;
     /**
-     * ID of the project that contain the mnq namespace, defaults to provider's project
+     * ID of the project that contain the mnq nats account, defaults to provider's project
      */
     projectId: string;
     /**
@@ -374,6 +450,49 @@ export interface GetBaremetalServerPrivateNetwork {
     status: string;
     updatedAt: string;
     vlan: number;
+}
+
+export interface GetBillingConsumptionsConsumption {
+    category: string;
+    description: string;
+    operationPath: string;
+    projectId: string;
+    value: string;
+}
+
+export interface GetBillingInvoicesInvoice {
+    /**
+     * The payment time limit, set according to the Organization's payment conditions (RFC 3339 format).
+     */
+    dueDate: string;
+    /**
+     * The associated invoice ID.
+     */
+    id: string;
+    /**
+     * Invoices with the given type are listed. Valid values are `periodic` and `purchase`.
+     */
+    invoiceType: string;
+    /**
+     * The date when the invoice was sent to the customer (RFC 3339 format).
+     */
+    issuedDate: string;
+    /**
+     * The invoice number.
+     */
+    number: number;
+    /**
+     * The start date of the billing period (RFC 3339 format).
+     */
+    startDate: string;
+    /**
+     * The total amount, taxed.
+     */
+    totalTaxed: string;
+    /**
+     * The total amount, untaxed.
+     */
+    totalUntaxed: string;
 }
 
 export interface GetCockpitEndpoint {
@@ -2295,6 +2414,21 @@ export interface MnqQueueSqs {
     secretKey: string;
     url: string;
     visibilityTimeoutSeconds?: number;
+}
+
+export interface MnqSqsCredentialsPermissions {
+    /**
+     * . Defines if user can manage the associated resource(s).
+     */
+    canManage: boolean;
+    /**
+     * . Defines if user can publish messages to the service.
+     */
+    canPublish: boolean;
+    /**
+     * . Defines if user can receive messages from the service.
+     */
+    canReceive: boolean;
 }
 
 export interface ObjectBucketAclAccessControlPolicy {

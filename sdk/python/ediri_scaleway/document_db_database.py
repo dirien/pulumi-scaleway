@@ -20,10 +20,12 @@ class DocumentDBDatabaseArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DocumentDBDatabase resource.
-        :param pulumi.Input[str] instance_id: Instance on which the database is created
-        :param pulumi.Input[str] name: The database name
+        :param pulumi.Input[str] instance_id: UUID of the documentdb instance.
+               
+               > **Important:** Updates to `instance_id` will recreate the Database.
+        :param pulumi.Input[str] name: Name of the database (e.g. `my-new-database`).
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] region: `region`) The region in which the resource exists.
         """
         DocumentDBDatabaseArgs._configure(
             lambda key, value: pulumi.set(__self__, key, value),
@@ -58,7 +60,9 @@ class DocumentDBDatabaseArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[str]:
         """
-        Instance on which the database is created
+        UUID of the documentdb instance.
+
+        > **Important:** Updates to `instance_id` will recreate the Database.
         """
         return pulumi.get(self, "instance_id")
 
@@ -70,7 +74,7 @@ class DocumentDBDatabaseArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The database name
+        Name of the database (e.g. `my-new-database`).
         """
         return pulumi.get(self, "name")
 
@@ -94,7 +98,7 @@ class DocumentDBDatabaseArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        `region`) The region in which the resource exists.
         """
         return pulumi.get(self, "region")
 
@@ -115,13 +119,15 @@ class _DocumentDBDatabaseState:
                  size: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DocumentDBDatabase resources.
-        :param pulumi.Input[str] instance_id: Instance on which the database is created
-        :param pulumi.Input[bool] managed: Whether or not the database is managed
-        :param pulumi.Input[str] name: The database name
-        :param pulumi.Input[str] owner: User that own the database
+        :param pulumi.Input[str] instance_id: UUID of the documentdb instance.
+               
+               > **Important:** Updates to `instance_id` will recreate the Database.
+        :param pulumi.Input[bool] managed: Whether the database is managed or not.
+        :param pulumi.Input[str] name: Name of the database (e.g. `my-new-database`).
+        :param pulumi.Input[str] owner: The name of the owner of the database.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[str] size: Size of the database
+        :param pulumi.Input[str] region: `region`) The region in which the resource exists.
+        :param pulumi.Input[str] size: Size in gigabytes of the database.
         """
         _DocumentDBDatabaseState._configure(
             lambda key, value: pulumi.set(__self__, key, value),
@@ -169,7 +175,9 @@ class _DocumentDBDatabaseState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Instance on which the database is created
+        UUID of the documentdb instance.
+
+        > **Important:** Updates to `instance_id` will recreate the Database.
         """
         return pulumi.get(self, "instance_id")
 
@@ -181,7 +189,7 @@ class _DocumentDBDatabaseState:
     @pulumi.getter
     def managed(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether or not the database is managed
+        Whether the database is managed or not.
         """
         return pulumi.get(self, "managed")
 
@@ -193,7 +201,7 @@ class _DocumentDBDatabaseState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The database name
+        Name of the database (e.g. `my-new-database`).
         """
         return pulumi.get(self, "name")
 
@@ -205,7 +213,7 @@ class _DocumentDBDatabaseState:
     @pulumi.getter
     def owner(self) -> Optional[pulumi.Input[str]]:
         """
-        User that own the database
+        The name of the owner of the database.
         """
         return pulumi.get(self, "owner")
 
@@ -229,7 +237,7 @@ class _DocumentDBDatabaseState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region you want to attach the resource to
+        `region`) The region in which the resource exists.
         """
         return pulumi.get(self, "region")
 
@@ -241,7 +249,7 @@ class _DocumentDBDatabaseState:
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[str]]:
         """
-        Size of the database
+        Size in gigabytes of the database.
         """
         return pulumi.get(self, "size")
 
@@ -261,13 +269,36 @@ class DocumentDBDatabase(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a DocumentDBDatabase resource with the given unique name, props, and options.
+        Creates and manages Scaleway DocumentDB database.
+        For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        main = scaleway.DocumentDBDatabase("main", instance_id="11111111-1111-1111-1111-111111111111")
+        ```
+
+        ## Import
+
+        DocumentDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/documentDBDatabase:DocumentDBDatabase mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] instance_id: Instance on which the database is created
-        :param pulumi.Input[str] name: The database name
+        :param pulumi.Input[str] instance_id: UUID of the documentdb instance.
+               
+               > **Important:** Updates to `instance_id` will recreate the Database.
+        :param pulumi.Input[str] name: Name of the database (e.g. `my-new-database`).
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The region you want to attach the resource to
+        :param pulumi.Input[str] region: `region`) The region in which the resource exists.
         """
         ...
     @overload
@@ -276,7 +307,28 @@ class DocumentDBDatabase(pulumi.CustomResource):
                  args: DocumentDBDatabaseArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DocumentDBDatabase resource with the given unique name, props, and options.
+        Creates and manages Scaleway DocumentDB database.
+        For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+
+        ## Examples
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        main = scaleway.DocumentDBDatabase("main", instance_id="11111111-1111-1111-1111-111111111111")
+        ```
+
+        ## Import
+
+        DocumentDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g. bash
+
+        ```sh
+         $ pulumi import scaleway:index/documentDBDatabase:DocumentDBDatabase mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
+        ```
+
         :param str resource_name: The name of the resource.
         :param DocumentDBDatabaseArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -342,13 +394,15 @@ class DocumentDBDatabase(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] instance_id: Instance on which the database is created
-        :param pulumi.Input[bool] managed: Whether or not the database is managed
-        :param pulumi.Input[str] name: The database name
-        :param pulumi.Input[str] owner: User that own the database
+        :param pulumi.Input[str] instance_id: UUID of the documentdb instance.
+               
+               > **Important:** Updates to `instance_id` will recreate the Database.
+        :param pulumi.Input[bool] managed: Whether the database is managed or not.
+        :param pulumi.Input[str] name: Name of the database (e.g. `my-new-database`).
+        :param pulumi.Input[str] owner: The name of the owner of the database.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
-        :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[str] size: Size of the database
+        :param pulumi.Input[str] region: `region`) The region in which the resource exists.
+        :param pulumi.Input[str] size: Size in gigabytes of the database.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -367,7 +421,9 @@ class DocumentDBDatabase(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
         """
-        Instance on which the database is created
+        UUID of the documentdb instance.
+
+        > **Important:** Updates to `instance_id` will recreate the Database.
         """
         return pulumi.get(self, "instance_id")
 
@@ -375,7 +431,7 @@ class DocumentDBDatabase(pulumi.CustomResource):
     @pulumi.getter
     def managed(self) -> pulumi.Output[bool]:
         """
-        Whether or not the database is managed
+        Whether the database is managed or not.
         """
         return pulumi.get(self, "managed")
 
@@ -383,7 +439,7 @@ class DocumentDBDatabase(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The database name
+        Name of the database (e.g. `my-new-database`).
         """
         return pulumi.get(self, "name")
 
@@ -391,7 +447,7 @@ class DocumentDBDatabase(pulumi.CustomResource):
     @pulumi.getter
     def owner(self) -> pulumi.Output[str]:
         """
-        User that own the database
+        The name of the owner of the database.
         """
         return pulumi.get(self, "owner")
 
@@ -407,7 +463,7 @@ class DocumentDBDatabase(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        The region you want to attach the resource to
+        `region`) The region in which the resource exists.
         """
         return pulumi.get(self, "region")
 
@@ -415,7 +471,7 @@ class DocumentDBDatabase(pulumi.CustomResource):
     @pulumi.getter
     def size(self) -> pulumi.Output[str]:
         """
-        Size of the database
+        Size in gigabytes of the database.
         """
         return pulumi.get(self, "size")
 

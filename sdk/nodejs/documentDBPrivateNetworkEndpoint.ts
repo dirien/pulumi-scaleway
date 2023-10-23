@@ -4,6 +4,15 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## Import
+ *
+ * Database Instance Endpoint can be imported using the `{region}/{endpoint_id}`, e.g. bash
+ *
+ * ```sh
+ *  $ pulumi import scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint end fr-par/11111111-1111-1111-1111-111111111111
+ * ```
+ */
 export class DocumentDBPrivateNetworkEndpoint extends pulumi.CustomResource {
     /**
      * Get an existing DocumentDBPrivateNetworkEndpoint resource's state with the given name, ID, and optional extra
@@ -33,31 +42,33 @@ export class DocumentDBPrivateNetworkEndpoint extends pulumi.CustomResource {
     }
 
     /**
-     * The hostname of your endpoint
+     * Hostname of the endpoint.
      */
     public /*out*/ readonly hostname!: pulumi.Output<string>;
     /**
-     * Instance on which the endpoint is attached
+     * UUID of the documentdb instance.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
-     * The IP of your private network service
+     * IPv4 address on the network.
      */
     public /*out*/ readonly ip!: pulumi.Output<string>;
     /**
-     * The IP with the given mask within the private subnet
+     * The IP network address within the private subnet. This must be an IPv4 address with a
+     * CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+     * service if not set.
      */
     public readonly ipNet!: pulumi.Output<string>;
     /**
-     * The name of your private service
+     * Name of the endpoint.
      */
     public /*out*/ readonly name!: pulumi.Output<string>;
     /**
-     * The port of your private service
+     * Port in the Private Network.
      */
     public readonly port!: pulumi.Output<number>;
     /**
-     * The private network ID
+     * The ID of the private network.
      */
     public readonly privateNetworkId!: pulumi.Output<string>;
     /**
@@ -119,31 +130,33 @@ export class DocumentDBPrivateNetworkEndpoint extends pulumi.CustomResource {
  */
 export interface DocumentDBPrivateNetworkEndpointState {
     /**
-     * The hostname of your endpoint
+     * Hostname of the endpoint.
      */
     hostname?: pulumi.Input<string>;
     /**
-     * Instance on which the endpoint is attached
+     * UUID of the documentdb instance.
      */
     instanceId?: pulumi.Input<string>;
     /**
-     * The IP of your private network service
+     * IPv4 address on the network.
      */
     ip?: pulumi.Input<string>;
     /**
-     * The IP with the given mask within the private subnet
+     * The IP network address within the private subnet. This must be an IPv4 address with a
+     * CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+     * service if not set.
      */
     ipNet?: pulumi.Input<string>;
     /**
-     * The name of your private service
+     * Name of the endpoint.
      */
     name?: pulumi.Input<string>;
     /**
-     * The port of your private service
+     * Port in the Private Network.
      */
     port?: pulumi.Input<number>;
     /**
-     * The private network ID
+     * The ID of the private network.
      */
     privateNetworkId?: pulumi.Input<string>;
     /**
@@ -161,19 +174,21 @@ export interface DocumentDBPrivateNetworkEndpointState {
  */
 export interface DocumentDBPrivateNetworkEndpointArgs {
     /**
-     * Instance on which the endpoint is attached
+     * UUID of the documentdb instance.
      */
     instanceId: pulumi.Input<string>;
     /**
-     * The IP with the given mask within the private subnet
+     * The IP network address within the private subnet. This must be an IPv4 address with a
+     * CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+     * service if not set.
      */
     ipNet?: pulumi.Input<string>;
     /**
-     * The port of your private service
+     * Port in the Private Network.
      */
     port?: pulumi.Input<number>;
     /**
-     * The private network ID
+     * The ID of the private network.
      */
     privateNetworkId: pulumi.Input<string>;
     /**

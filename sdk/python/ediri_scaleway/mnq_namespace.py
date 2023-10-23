@@ -277,6 +277,8 @@ class MnqNamespace(pulumi.CustomResource):
         For further information please check
         our [documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/mnq/v1alpha1#pkg-index)
 
+        > NOTE: This resource refers to the old version of the MNQ API. You should use new resources dedicated to your protocol. SQS, NATS.
+
         ## Examples
 
         ### Basic
@@ -318,6 +320,8 @@ class MnqNamespace(pulumi.CustomResource):
         Creates and manages Scaleway Messaging and queuing Namespace.
         For further information please check
         our [documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/mnq/v1alpha1#pkg-index)
+
+        > NOTE: This resource refers to the old version of the MNQ API. You should use new resources dedicated to your protocol. SQS, NATS.
 
         ## Examples
 

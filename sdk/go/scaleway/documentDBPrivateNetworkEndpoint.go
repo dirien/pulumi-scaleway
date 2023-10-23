@@ -13,22 +13,33 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
+// ## Import
+//
+// Database Instance Endpoint can be imported using the `{region}/{endpoint_id}`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint end fr-par/11111111-1111-1111-1111-111111111111
+//
+// ```
 type DocumentDBPrivateNetworkEndpoint struct {
 	pulumi.CustomResourceState
 
-	// The hostname of your endpoint
+	// Hostname of the endpoint.
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
-	// Instance on which the endpoint is attached
+	// UUID of the documentdb instance.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
-	// The IP of your private network service
+	// IPv4 address on the network.
 	Ip pulumi.StringOutput `pulumi:"ip"`
-	// The IP with the given mask within the private subnet
+	// The IP network address within the private subnet. This must be an IPv4 address with a
+	// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+	// service if not set.
 	IpNet pulumi.StringOutput `pulumi:"ipNet"`
-	// The name of your private service
+	// Name of the endpoint.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The port of your private service
+	// Port in the Private Network.
 	Port pulumi.IntOutput `pulumi:"port"`
-	// The private network ID
+	// The ID of the private network.
 	PrivateNetworkId pulumi.StringOutput `pulumi:"privateNetworkId"`
 	// The region you want to attach the resource to
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -72,19 +83,21 @@ func GetDocumentDBPrivateNetworkEndpoint(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DocumentDBPrivateNetworkEndpoint resources.
 type documentDBPrivateNetworkEndpointState struct {
-	// The hostname of your endpoint
+	// Hostname of the endpoint.
 	Hostname *string `pulumi:"hostname"`
-	// Instance on which the endpoint is attached
+	// UUID of the documentdb instance.
 	InstanceId *string `pulumi:"instanceId"`
-	// The IP of your private network service
+	// IPv4 address on the network.
 	Ip *string `pulumi:"ip"`
-	// The IP with the given mask within the private subnet
+	// The IP network address within the private subnet. This must be an IPv4 address with a
+	// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+	// service if not set.
 	IpNet *string `pulumi:"ipNet"`
-	// The name of your private service
+	// Name of the endpoint.
 	Name *string `pulumi:"name"`
-	// The port of your private service
+	// Port in the Private Network.
 	Port *int `pulumi:"port"`
-	// The private network ID
+	// The ID of the private network.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
@@ -93,19 +106,21 @@ type documentDBPrivateNetworkEndpointState struct {
 }
 
 type DocumentDBPrivateNetworkEndpointState struct {
-	// The hostname of your endpoint
+	// Hostname of the endpoint.
 	Hostname pulumi.StringPtrInput
-	// Instance on which the endpoint is attached
+	// UUID of the documentdb instance.
 	InstanceId pulumi.StringPtrInput
-	// The IP of your private network service
+	// IPv4 address on the network.
 	Ip pulumi.StringPtrInput
-	// The IP with the given mask within the private subnet
+	// The IP network address within the private subnet. This must be an IPv4 address with a
+	// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+	// service if not set.
 	IpNet pulumi.StringPtrInput
-	// The name of your private service
+	// Name of the endpoint.
 	Name pulumi.StringPtrInput
-	// The port of your private service
+	// Port in the Private Network.
 	Port pulumi.IntPtrInput
-	// The private network ID
+	// The ID of the private network.
 	PrivateNetworkId pulumi.StringPtrInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
@@ -118,13 +133,15 @@ func (DocumentDBPrivateNetworkEndpointState) ElementType() reflect.Type {
 }
 
 type documentDBPrivateNetworkEndpointArgs struct {
-	// Instance on which the endpoint is attached
+	// UUID of the documentdb instance.
 	InstanceId string `pulumi:"instanceId"`
-	// The IP with the given mask within the private subnet
+	// The IP network address within the private subnet. This must be an IPv4 address with a
+	// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+	// service if not set.
 	IpNet *string `pulumi:"ipNet"`
-	// The port of your private service
+	// Port in the Private Network.
 	Port *int `pulumi:"port"`
-	// The private network ID
+	// The ID of the private network.
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
@@ -134,13 +151,15 @@ type documentDBPrivateNetworkEndpointArgs struct {
 
 // The set of arguments for constructing a DocumentDBPrivateNetworkEndpoint resource.
 type DocumentDBPrivateNetworkEndpointArgs struct {
-	// Instance on which the endpoint is attached
+	// UUID of the documentdb instance.
 	InstanceId pulumi.StringInput
-	// The IP with the given mask within the private subnet
+	// The IP network address within the private subnet. This must be an IPv4 address with a
+	// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+	// service if not set.
 	IpNet pulumi.StringPtrInput
-	// The port of your private service
+	// Port in the Private Network.
 	Port pulumi.IntPtrInput
-	// The private network ID
+	// The ID of the private network.
 	PrivateNetworkId pulumi.StringInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
@@ -259,37 +278,39 @@ func (o DocumentDBPrivateNetworkEndpointOutput) ToOutput(ctx context.Context) pu
 	}
 }
 
-// The hostname of your endpoint
+// Hostname of the endpoint.
 func (o DocumentDBPrivateNetworkEndpointOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBPrivateNetworkEndpoint) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
 }
 
-// Instance on which the endpoint is attached
+// UUID of the documentdb instance.
 func (o DocumentDBPrivateNetworkEndpointOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBPrivateNetworkEndpoint) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-// The IP of your private network service
+// IPv4 address on the network.
 func (o DocumentDBPrivateNetworkEndpointOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBPrivateNetworkEndpoint) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
 }
 
-// The IP with the given mask within the private subnet
+// The IP network address within the private subnet. This must be an IPv4 address with a
+// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
+// service if not set.
 func (o DocumentDBPrivateNetworkEndpointOutput) IpNet() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBPrivateNetworkEndpoint) pulumi.StringOutput { return v.IpNet }).(pulumi.StringOutput)
 }
 
-// The name of your private service
+// Name of the endpoint.
 func (o DocumentDBPrivateNetworkEndpointOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBPrivateNetworkEndpoint) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The port of your private service
+// Port in the Private Network.
 func (o DocumentDBPrivateNetworkEndpointOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v *DocumentDBPrivateNetworkEndpoint) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
 }
 
-// The private network ID
+// The ID of the private network.
 func (o DocumentDBPrivateNetworkEndpointOutput) PrivateNetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBPrivateNetworkEndpoint) pulumi.StringOutput { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }

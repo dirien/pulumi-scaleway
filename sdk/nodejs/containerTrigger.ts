@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  *
  * ## Examples
  *
- * ### Basic
+ * ### SQS
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -21,10 +21,25 @@ import * as utilities from "./utilities";
  * const main = new scaleway.ContainerTrigger("main", {
  *     containerId: scaleway_container.main.id,
  *     sqs: {
- *         namespaceId: scaleway_mnq_namespace.main.id,
+ *         projectId: scaleway_mnq_sqs.main.project_id,
  *         queue: "MyQueue",
- *         projectId: scaleway_mnq_namespace.main.project_id,
- *         region: scaleway_mnq_namespace.main.region,
+ *         region: scaleway_mnq_sqs.main.region,
+ *     },
+ * });
+ * ```
+ *
+ * ### Nats
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@ediri/scaleway";
+ *
+ * const main = new scaleway.ContainerTrigger("main", {
+ *     containerId: scaleway_container.main.id,
+ *     nats: {
+ *         accountId: scaleway_mnq_nats_account.main.id,
+ *         subject: "MySubject",
+ *         region: scaleway_mnq_nats_account.main.region,
  *     },
  * });
  * ```
@@ -78,6 +93,10 @@ export class ContainerTrigger extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The configuration for the Scaleway's Nats used by the trigger
+     */
+    public readonly nats!: pulumi.Output<outputs.ContainerTriggerNats | undefined>;
+    /**
      * `region`). The region in which the namespace should be created.
      */
     public readonly region!: pulumi.Output<string>;
@@ -102,6 +121,7 @@ export class ContainerTrigger extends pulumi.CustomResource {
             resourceInputs["containerId"] = state ? state.containerId : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["nats"] = state ? state.nats : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["sqs"] = state ? state.sqs : undefined;
         } else {
@@ -112,6 +132,7 @@ export class ContainerTrigger extends pulumi.CustomResource {
             resourceInputs["containerId"] = args ? args.containerId : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["nats"] = args ? args.nats : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["sqs"] = args ? args.sqs : undefined;
         }
@@ -136,6 +157,10 @@ export interface ContainerTriggerState {
      * The unique name of the trigger. Default to a generated name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The configuration for the Scaleway's Nats used by the trigger
+     */
+    nats?: pulumi.Input<inputs.ContainerTriggerNats>;
     /**
      * `region`). The region in which the namespace should be created.
      */
@@ -162,6 +187,10 @@ export interface ContainerTriggerArgs {
      * The unique name of the trigger. Default to a generated name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The configuration for the Scaleway's Nats used by the trigger
+     */
+    nats?: pulumi.Input<inputs.ContainerTriggerNats>;
     /**
      * `region`). The region in which the namespace should be created.
      */

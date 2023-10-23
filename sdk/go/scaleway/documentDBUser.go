@@ -13,18 +13,72 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
+// Creates and manages Scaleway Database DocumentDB Users.
+// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+//
+// ## Examples
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi-random/sdk/v4/go/random"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			dbPassword, err := random.NewRandomPassword(ctx, "dbPassword", &random.RandomPasswordArgs{
+//				Length:  pulumi.Int(16),
+//				Special: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewDocumentDBUser(ctx, "dbAdmin", &scaleway.DocumentDBUserArgs{
+//				InstanceId: pulumi.String("11111111-1111-1111-1111-111111111111"),
+//				Password:   dbPassword.Result,
+//				IsAdmin:    pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g. bash
+//
+// ```sh
+//
+//	$ pulumi import scaleway:index/documentDBUser:DocumentDBUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
+//
+// ```
 type DocumentDBUser struct {
 	pulumi.CustomResourceState
 
-	// Instance on which the user is created
+	// UUID of the documentDB instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database User.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
-	// Grant admin permissions to database user
+	// Grant admin permissions to the Database User.
 	IsAdmin pulumi.BoolPtrOutput `pulumi:"isAdmin"`
-	// Database user name
+	// Database Username.
+	//
+	// > **Important:** Updates to `name` will recreate the Database User.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Database user password
+	// Database User password.
 	Password pulumi.StringOutput `pulumi:"password"`
-	// The region you want to attach the resource to
+	// The Scaleway region this resource resides in.
 	Region pulumi.StringOutput `pulumi:"region"`
 }
 
@@ -71,28 +125,36 @@ func GetDocumentDBUser(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DocumentDBUser resources.
 type documentDBUserState struct {
-	// Instance on which the user is created
+	// UUID of the documentDB instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database User.
 	InstanceId *string `pulumi:"instanceId"`
-	// Grant admin permissions to database user
+	// Grant admin permissions to the Database User.
 	IsAdmin *bool `pulumi:"isAdmin"`
-	// Database user name
+	// Database Username.
+	//
+	// > **Important:** Updates to `name` will recreate the Database User.
 	Name *string `pulumi:"name"`
-	// Database user password
+	// Database User password.
 	Password *string `pulumi:"password"`
-	// The region you want to attach the resource to
+	// The Scaleway region this resource resides in.
 	Region *string `pulumi:"region"`
 }
 
 type DocumentDBUserState struct {
-	// Instance on which the user is created
+	// UUID of the documentDB instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database User.
 	InstanceId pulumi.StringPtrInput
-	// Grant admin permissions to database user
+	// Grant admin permissions to the Database User.
 	IsAdmin pulumi.BoolPtrInput
-	// Database user name
+	// Database Username.
+	//
+	// > **Important:** Updates to `name` will recreate the Database User.
 	Name pulumi.StringPtrInput
-	// Database user password
+	// Database User password.
 	Password pulumi.StringPtrInput
-	// The region you want to attach the resource to
+	// The Scaleway region this resource resides in.
 	Region pulumi.StringPtrInput
 }
 
@@ -101,29 +163,37 @@ func (DocumentDBUserState) ElementType() reflect.Type {
 }
 
 type documentDBUserArgs struct {
-	// Instance on which the user is created
+	// UUID of the documentDB instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database User.
 	InstanceId string `pulumi:"instanceId"`
-	// Grant admin permissions to database user
+	// Grant admin permissions to the Database User.
 	IsAdmin *bool `pulumi:"isAdmin"`
-	// Database user name
+	// Database Username.
+	//
+	// > **Important:** Updates to `name` will recreate the Database User.
 	Name *string `pulumi:"name"`
-	// Database user password
+	// Database User password.
 	Password string `pulumi:"password"`
-	// The region you want to attach the resource to
+	// The Scaleway region this resource resides in.
 	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a DocumentDBUser resource.
 type DocumentDBUserArgs struct {
-	// Instance on which the user is created
+	// UUID of the documentDB instance.
+	//
+	// > **Important:** Updates to `instanceId` will recreate the Database User.
 	InstanceId pulumi.StringInput
-	// Grant admin permissions to database user
+	// Grant admin permissions to the Database User.
 	IsAdmin pulumi.BoolPtrInput
-	// Database user name
+	// Database Username.
+	//
+	// > **Important:** Updates to `name` will recreate the Database User.
 	Name pulumi.StringPtrInput
-	// Database user password
+	// Database User password.
 	Password pulumi.StringInput
-	// The region you want to attach the resource to
+	// The Scaleway region this resource resides in.
 	Region pulumi.StringPtrInput
 }
 
@@ -238,27 +308,31 @@ func (o DocumentDBUserOutput) ToOutput(ctx context.Context) pulumix.Output[*Docu
 	}
 }
 
-// Instance on which the user is created
+// UUID of the documentDB instance.
+//
+// > **Important:** Updates to `instanceId` will recreate the Database User.
 func (o DocumentDBUserOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBUser) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-// Grant admin permissions to database user
+// Grant admin permissions to the Database User.
 func (o DocumentDBUserOutput) IsAdmin() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DocumentDBUser) pulumi.BoolPtrOutput { return v.IsAdmin }).(pulumi.BoolPtrOutput)
 }
 
-// Database user name
+// Database Username.
+//
+// > **Important:** Updates to `name` will recreate the Database User.
 func (o DocumentDBUserOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBUser) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Database user password
+// Database User password.
 func (o DocumentDBUserOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBUser) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
 }
 
-// The region you want to attach the resource to
+// The Scaleway region this resource resides in.
 func (o DocumentDBUserOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *DocumentDBUser) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

@@ -10,35 +10,80 @@ using Pulumi;
 
 namespace ediri.Scaleway
 {
+    /// <summary>
+    /// Creates and manages Scaleway Database DocumentDB Users.
+    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+    /// 
+    /// ## Examples
+    /// 
+    /// ### Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Random = Pulumi.Random;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var dbPassword = new Random.RandomPassword("dbPassword", new()
+    ///     {
+    ///         Length = 16,
+    ///         Special = true,
+    ///     });
+    /// 
+    ///     var dbAdmin = new Scaleway.DocumentDBUser("dbAdmin", new()
+    ///     {
+    ///         InstanceId = "11111111-1111-1111-1111-111111111111",
+    ///         Password = dbPassword.Result,
+    ///         IsAdmin = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g. bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import scaleway:index/documentDBUser:DocumentDBUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
+    /// ```
+    /// </summary>
     [ScalewayResourceType("scaleway:index/documentDBUser:DocumentDBUser")]
     public partial class DocumentDBUser : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Instance on which the user is created
+        /// UUID of the documentDB instance.
+        /// 
+        /// &gt; **Important:** Updates to `instance_id` will recreate the Database User.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// Grant admin permissions to database user
+        /// Grant admin permissions to the Database User.
         /// </summary>
         [Output("isAdmin")]
         public Output<bool?> IsAdmin { get; private set; } = null!;
 
         /// <summary>
-        /// Database user name
+        /// Database Username.
+        /// 
+        /// &gt; **Important:** Updates to `name` will recreate the Database User.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Database user password
+        /// Database User password.
         /// </summary>
         [Output("password")]
         public Output<string> Password { get; private set; } = null!;
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// The Scaleway region this resource resides in.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -95,19 +140,23 @@ namespace ediri.Scaleway
     public sealed class DocumentDBUserArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Instance on which the user is created
+        /// UUID of the documentDB instance.
+        /// 
+        /// &gt; **Important:** Updates to `instance_id` will recreate the Database User.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// Grant admin permissions to database user
+        /// Grant admin permissions to the Database User.
         /// </summary>
         [Input("isAdmin")]
         public Input<bool>? IsAdmin { get; set; }
 
         /// <summary>
-        /// Database user name
+        /// Database Username.
+        /// 
+        /// &gt; **Important:** Updates to `name` will recreate the Database User.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -116,7 +165,7 @@ namespace ediri.Scaleway
         private Input<string>? _password;
 
         /// <summary>
-        /// Database user password
+        /// Database User password.
         /// </summary>
         public Input<string>? Password
         {
@@ -129,7 +178,7 @@ namespace ediri.Scaleway
         }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// The Scaleway region this resource resides in.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -143,19 +192,23 @@ namespace ediri.Scaleway
     public sealed class DocumentDBUserState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Instance on which the user is created
+        /// UUID of the documentDB instance.
+        /// 
+        /// &gt; **Important:** Updates to `instance_id` will recreate the Database User.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// Grant admin permissions to database user
+        /// Grant admin permissions to the Database User.
         /// </summary>
         [Input("isAdmin")]
         public Input<bool>? IsAdmin { get; set; }
 
         /// <summary>
-        /// Database user name
+        /// Database Username.
+        /// 
+        /// &gt; **Important:** Updates to `name` will recreate the Database User.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -164,7 +217,7 @@ namespace ediri.Scaleway
         private Input<string>? _password;
 
         /// <summary>
-        /// Database user password
+        /// Database User password.
         /// </summary>
         public Input<string>? Password
         {
@@ -177,7 +230,7 @@ namespace ediri.Scaleway
         }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// The Scaleway region this resource resides in.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
