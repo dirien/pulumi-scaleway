@@ -13,27 +13,15 @@ namespace ediri.Scaleway.Inputs
 
     public sealed class IamIpResourceArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The ID of the resource that the IP is bound to.
-        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
-        /// <summary>
-        /// The MAC Address of the resource the IP is attached to.
-        /// </summary>
         [Input("macAddress")]
         public Input<string>? MacAddress { get; set; }
 
-        /// <summary>
-        /// The name of the resource the IP is attached to.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// The type of resource the IP is attached to.
-        /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 

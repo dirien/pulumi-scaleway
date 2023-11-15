@@ -7,77 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Books and manages Scaleway IPAM IPs.
- *
- * ## Example
- *
- * ### Basic
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@ediri/scaleway";
- *
- * const vpc01 = new scaleway.Vpc("vpc01", {});
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
- *     vpcId: vpc01.id,
- *     ipv4Subnet: {
- *         subnet: "172.16.32.0/22",
- *     },
- * });
- * const ip01 = new scaleway.IamIp("ip01", {sources: [{
- *     privateNetworkId: pn01.id,
- * }]});
- * ```
- *
- * ### Request a specific IPv4
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@ediri/scaleway";
- *
- * const vpc01 = new scaleway.Vpc("vpc01", {});
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
- *     vpcId: vpc01.id,
- *     ipv4Subnet: {
- *         subnet: "172.16.32.0/22",
- *     },
- * });
- * const ip01 = new scaleway.IamIp("ip01", {
- *     address: "172.16.32.7/22",
- *     sources: [{
- *         privateNetworkId: pn01.id,
- *     }],
- * });
- * ```
- *
- * ### Request an IPv6
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@ediri/scaleway";
- *
- * const vpc01 = new scaleway.Vpc("vpc01", {});
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
- *     vpcId: vpc01.id,
- *     ipv6Subnets: [{
- *         subnet: "fd46:78ab:30b8:177c::/64",
- *     }],
- * });
- * const ip01 = new scaleway.IamIp("ip01", {
- *     isIpv6: true,
- *     sources: [{
- *         privateNetworkId: pn01.id,
- *     }],
- * });
- * ```
- *
- * ## Import
- *
- * IPAM IPs can be imported using the `{region}/{id}`, e.g. bash
- *
- * ```sh
- *  $ pulumi import scaleway:index/iamIp:IamIp ip_demo fr-par/11111111-1111-1111-1111-111111111111
- * ```
+ * @deprecated scaleway.index/iamip.IamIp has been deprecated in favor of scaleway.index/ipamip.IpamIp
  */
 export class IamIp extends pulumi.CustomResource {
     /**
@@ -90,6 +20,7 @@ export class IamIp extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IamIpState, opts?: pulumi.CustomResourceOptions): IamIp {
+        pulumi.log.warn("IamIp is deprecated: scaleway.index/iamip.IamIp has been deprecated in favor of scaleway.index/ipamip.IpamIp")
         return new IamIp(name, <any>state, { ...opts, id: id });
     }
 
@@ -108,43 +39,43 @@ export class IamIp extends pulumi.CustomResource {
     }
 
     /**
-     * Request a specific IP in the requested source pool.
+     * Request a specific IP in the requested source pool
      */
     public readonly address!: pulumi.Output<string>;
     /**
-     * Date and time of IP's creation (RFC 3339 format).
+     * The date and time of the creation of the IP
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * Defines whether to request an IPv6 instead of an IPv4.
+     * Request an IPv6 instead of an IPv4
      */
     public readonly isIpv6!: pulumi.Output<boolean | undefined>;
     /**
-     * `projectId`) The ID of the project the IP is associated with.
+     * The project_id you want to attach the resource to
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * `region`) The region of the IP.
+     * The region you want to attach the resource to
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * The IP resource.
+     * The IP resource
      */
     public /*out*/ readonly resources!: pulumi.Output<outputs.IamIpResource[]>;
     /**
-     * The source in which to book the IP.
+     * The source in which to book the IP
      */
     public readonly sources!: pulumi.Output<outputs.IamIpSource[]>;
     /**
-     * The tags associated with the IP.
+     * The tags associated with the IP
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * Date and time of IP's last update (RFC 3339 format).
+     * The date and time of the last update of the IP
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
-     * The zone of the IP.
+     * The zone of the resource
      */
     public /*out*/ readonly zone!: pulumi.Output<string>;
 
@@ -155,8 +86,11 @@ export class IamIp extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/iamip.IamIp has been deprecated in favor of scaleway.index/ipamip.IpamIp */
     constructor(name: string, args: IamIpArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/iamip.IamIp has been deprecated in favor of scaleway.index/ipamip.IpamIp */
     constructor(name: string, argsOrState?: IamIpArgs | IamIpState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("IamIp is deprecated: scaleway.index/iamip.IamIp has been deprecated in favor of scaleway.index/ipamip.IpamIp")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -197,43 +131,43 @@ export class IamIp extends pulumi.CustomResource {
  */
 export interface IamIpState {
     /**
-     * Request a specific IP in the requested source pool.
+     * Request a specific IP in the requested source pool
      */
     address?: pulumi.Input<string>;
     /**
-     * Date and time of IP's creation (RFC 3339 format).
+     * The date and time of the creation of the IP
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * Defines whether to request an IPv6 instead of an IPv4.
+     * Request an IPv6 instead of an IPv4
      */
     isIpv6?: pulumi.Input<boolean>;
     /**
-     * `projectId`) The ID of the project the IP is associated with.
+     * The project_id you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`) The region of the IP.
+     * The region you want to attach the resource to
      */
     region?: pulumi.Input<string>;
     /**
-     * The IP resource.
+     * The IP resource
      */
     resources?: pulumi.Input<pulumi.Input<inputs.IamIpResource>[]>;
     /**
-     * The source in which to book the IP.
+     * The source in which to book the IP
      */
     sources?: pulumi.Input<pulumi.Input<inputs.IamIpSource>[]>;
     /**
-     * The tags associated with the IP.
+     * The tags associated with the IP
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Date and time of IP's last update (RFC 3339 format).
+     * The date and time of the last update of the IP
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * The zone of the IP.
+     * The zone of the resource
      */
     zone?: pulumi.Input<string>;
 }
@@ -243,27 +177,27 @@ export interface IamIpState {
  */
 export interface IamIpArgs {
     /**
-     * Request a specific IP in the requested source pool.
+     * Request a specific IP in the requested source pool
      */
     address?: pulumi.Input<string>;
     /**
-     * Defines whether to request an IPv6 instead of an IPv4.
+     * Request an IPv6 instead of an IPv4
      */
     isIpv6?: pulumi.Input<boolean>;
     /**
-     * `projectId`) The ID of the project the IP is associated with.
+     * The project_id you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`) The region of the IP.
+     * The region you want to attach the resource to
      */
     region?: pulumi.Input<string>;
     /**
-     * The source in which to book the IP.
+     * The source in which to book the IP
      */
     sources: pulumi.Input<pulumi.Input<inputs.IamIpSource>[]>;
     /**
-     * The tags associated with the IP.
+     * The tags associated with the IP
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
 }

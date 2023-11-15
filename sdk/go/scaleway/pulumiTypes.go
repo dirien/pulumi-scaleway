@@ -2996,14 +2996,10 @@ func (o FunctionTriggerSqsPtrOutput) Region() pulumi.StringPtrOutput {
 }
 
 type IamIpResource struct {
-	// The ID of the resource that the IP is bound to.
-	Id *string `pulumi:"id"`
-	// The MAC Address of the resource the IP is attached to.
+	Id         *string `pulumi:"id"`
 	MacAddress *string `pulumi:"macAddress"`
-	// The name of the resource the IP is attached to.
-	Name *string `pulumi:"name"`
-	// The type of resource the IP is attached to.
-	Type *string `pulumi:"type"`
+	Name       *string `pulumi:"name"`
+	Type       *string `pulumi:"type"`
 }
 
 // IamIpResourceInput is an input type that accepts IamIpResourceArgs and IamIpResourceOutput values.
@@ -3018,14 +3014,10 @@ type IamIpResourceInput interface {
 }
 
 type IamIpResourceArgs struct {
-	// The ID of the resource that the IP is bound to.
-	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The MAC Address of the resource the IP is attached to.
+	Id         pulumi.StringPtrInput `pulumi:"id"`
 	MacAddress pulumi.StringPtrInput `pulumi:"macAddress"`
-	// The name of the resource the IP is attached to.
-	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The type of resource the IP is attached to.
-	Type pulumi.StringPtrInput `pulumi:"type"`
+	Name       pulumi.StringPtrInput `pulumi:"name"`
+	Type       pulumi.StringPtrInput `pulumi:"type"`
 }
 
 func (IamIpResourceArgs) ElementType() reflect.Type {
@@ -3079,22 +3071,18 @@ func (o IamIpResourceOutput) ToIamIpResourceOutputWithContext(ctx context.Contex
 	return o
 }
 
-// The ID of the resource that the IP is bound to.
 func (o IamIpResourceOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IamIpResource) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The MAC Address of the resource the IP is attached to.
 func (o IamIpResourceOutput) MacAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IamIpResource) *string { return v.MacAddress }).(pulumi.StringPtrOutput)
 }
 
-// The name of the resource the IP is attached to.
 func (o IamIpResourceOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IamIpResource) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The type of resource the IP is attached to.
 func (o IamIpResourceOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IamIpResource) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -3120,12 +3108,9 @@ func (o IamIpResourceArrayOutput) Index(i pulumi.IntInput) IamIpResourceOutput {
 }
 
 type IamIpSource struct {
-	// The private network the IP lives in if the IP is a private IP.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
-	// The private network subnet the IP lives in if the IP is a private IP in a private network.
-	SubnetId *string `pulumi:"subnetId"`
-	// The zone the IP lives in if the IP is a public zoned one
-	Zonal *string `pulumi:"zonal"`
+	SubnetId         *string `pulumi:"subnetId"`
+	Zonal            *string `pulumi:"zonal"`
 }
 
 // IamIpSourceInput is an input type that accepts IamIpSourceArgs and IamIpSourceOutput values.
@@ -3140,12 +3125,9 @@ type IamIpSourceInput interface {
 }
 
 type IamIpSourceArgs struct {
-	// The private network the IP lives in if the IP is a private IP.
 	PrivateNetworkId pulumi.StringPtrInput `pulumi:"privateNetworkId"`
-	// The private network subnet the IP lives in if the IP is a private IP in a private network.
-	SubnetId pulumi.StringPtrInput `pulumi:"subnetId"`
-	// The zone the IP lives in if the IP is a public zoned one
-	Zonal pulumi.StringPtrInput `pulumi:"zonal"`
+	SubnetId         pulumi.StringPtrInput `pulumi:"subnetId"`
+	Zonal            pulumi.StringPtrInput `pulumi:"zonal"`
 }
 
 func (IamIpSourceArgs) ElementType() reflect.Type {
@@ -3199,17 +3181,14 @@ func (o IamIpSourceOutput) ToIamIpSourceOutputWithContext(ctx context.Context) I
 	return o
 }
 
-// The private network the IP lives in if the IP is a private IP.
 func (o IamIpSourceOutput) PrivateNetworkId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IamIpSource) *string { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
 }
 
-// The private network subnet the IP lives in if the IP is a private IP in a private network.
 func (o IamIpSourceOutput) SubnetId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IamIpSource) *string { return v.SubnetId }).(pulumi.StringPtrOutput)
 }
 
-// The zone the IP lives in if the IP is a public zoned one
 func (o IamIpSourceOutput) Zonal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IamIpSource) *string { return v.Zonal }).(pulumi.StringPtrOutput)
 }
@@ -5978,6 +5957,245 @@ func (o IotRouteS3PtrOutput) Strategy() pulumi.StringPtrOutput {
 		}
 		return &v.Strategy
 	}).(pulumi.StringPtrOutput)
+}
+
+type IpamIpResource struct {
+	// The ID of the resource that the IP is bound to.
+	Id *string `pulumi:"id"`
+	// The MAC Address of the resource the IP is attached to.
+	MacAddress *string `pulumi:"macAddress"`
+	// The name of the resource the IP is attached to.
+	Name *string `pulumi:"name"`
+	// The type of resource the IP is attached to.
+	Type *string `pulumi:"type"`
+}
+
+// IpamIpResourceInput is an input type that accepts IpamIpResourceArgs and IpamIpResourceOutput values.
+// You can construct a concrete instance of `IpamIpResourceInput` via:
+//
+//	IpamIpResourceArgs{...}
+type IpamIpResourceInput interface {
+	pulumi.Input
+
+	ToIpamIpResourceOutput() IpamIpResourceOutput
+	ToIpamIpResourceOutputWithContext(context.Context) IpamIpResourceOutput
+}
+
+type IpamIpResourceArgs struct {
+	// The ID of the resource that the IP is bound to.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The MAC Address of the resource the IP is attached to.
+	MacAddress pulumi.StringPtrInput `pulumi:"macAddress"`
+	// The name of the resource the IP is attached to.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The type of resource the IP is attached to.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (IpamIpResourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IpamIpResource)(nil)).Elem()
+}
+
+func (i IpamIpResourceArgs) ToIpamIpResourceOutput() IpamIpResourceOutput {
+	return i.ToIpamIpResourceOutputWithContext(context.Background())
+}
+
+func (i IpamIpResourceArgs) ToIpamIpResourceOutputWithContext(ctx context.Context) IpamIpResourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IpamIpResourceOutput)
+}
+
+// IpamIpResourceArrayInput is an input type that accepts IpamIpResourceArray and IpamIpResourceArrayOutput values.
+// You can construct a concrete instance of `IpamIpResourceArrayInput` via:
+//
+//	IpamIpResourceArray{ IpamIpResourceArgs{...} }
+type IpamIpResourceArrayInput interface {
+	pulumi.Input
+
+	ToIpamIpResourceArrayOutput() IpamIpResourceArrayOutput
+	ToIpamIpResourceArrayOutputWithContext(context.Context) IpamIpResourceArrayOutput
+}
+
+type IpamIpResourceArray []IpamIpResourceInput
+
+func (IpamIpResourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IpamIpResource)(nil)).Elem()
+}
+
+func (i IpamIpResourceArray) ToIpamIpResourceArrayOutput() IpamIpResourceArrayOutput {
+	return i.ToIpamIpResourceArrayOutputWithContext(context.Background())
+}
+
+func (i IpamIpResourceArray) ToIpamIpResourceArrayOutputWithContext(ctx context.Context) IpamIpResourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IpamIpResourceArrayOutput)
+}
+
+type IpamIpResourceOutput struct{ *pulumi.OutputState }
+
+func (IpamIpResourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IpamIpResource)(nil)).Elem()
+}
+
+func (o IpamIpResourceOutput) ToIpamIpResourceOutput() IpamIpResourceOutput {
+	return o
+}
+
+func (o IpamIpResourceOutput) ToIpamIpResourceOutputWithContext(ctx context.Context) IpamIpResourceOutput {
+	return o
+}
+
+// The ID of the resource that the IP is bound to.
+func (o IpamIpResourceOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IpamIpResource) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The MAC Address of the resource the IP is attached to.
+func (o IpamIpResourceOutput) MacAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IpamIpResource) *string { return v.MacAddress }).(pulumi.StringPtrOutput)
+}
+
+// The name of the resource the IP is attached to.
+func (o IpamIpResourceOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IpamIpResource) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// The type of resource the IP is attached to.
+func (o IpamIpResourceOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IpamIpResource) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type IpamIpResourceArrayOutput struct{ *pulumi.OutputState }
+
+func (IpamIpResourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IpamIpResource)(nil)).Elem()
+}
+
+func (o IpamIpResourceArrayOutput) ToIpamIpResourceArrayOutput() IpamIpResourceArrayOutput {
+	return o
+}
+
+func (o IpamIpResourceArrayOutput) ToIpamIpResourceArrayOutputWithContext(ctx context.Context) IpamIpResourceArrayOutput {
+	return o
+}
+
+func (o IpamIpResourceArrayOutput) Index(i pulumi.IntInput) IpamIpResourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IpamIpResource {
+		return vs[0].([]IpamIpResource)[vs[1].(int)]
+	}).(IpamIpResourceOutput)
+}
+
+type IpamIpSource struct {
+	// The private network the IP lives in if the IP is a private IP.
+	PrivateNetworkId *string `pulumi:"privateNetworkId"`
+	// The private network subnet the IP lives in if the IP is a private IP in a private network.
+	SubnetId *string `pulumi:"subnetId"`
+	// The zone the IP lives in if the IP is a public zoned one
+	Zonal *string `pulumi:"zonal"`
+}
+
+// IpamIpSourceInput is an input type that accepts IpamIpSourceArgs and IpamIpSourceOutput values.
+// You can construct a concrete instance of `IpamIpSourceInput` via:
+//
+//	IpamIpSourceArgs{...}
+type IpamIpSourceInput interface {
+	pulumi.Input
+
+	ToIpamIpSourceOutput() IpamIpSourceOutput
+	ToIpamIpSourceOutputWithContext(context.Context) IpamIpSourceOutput
+}
+
+type IpamIpSourceArgs struct {
+	// The private network the IP lives in if the IP is a private IP.
+	PrivateNetworkId pulumi.StringPtrInput `pulumi:"privateNetworkId"`
+	// The private network subnet the IP lives in if the IP is a private IP in a private network.
+	SubnetId pulumi.StringPtrInput `pulumi:"subnetId"`
+	// The zone the IP lives in if the IP is a public zoned one
+	Zonal pulumi.StringPtrInput `pulumi:"zonal"`
+}
+
+func (IpamIpSourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IpamIpSource)(nil)).Elem()
+}
+
+func (i IpamIpSourceArgs) ToIpamIpSourceOutput() IpamIpSourceOutput {
+	return i.ToIpamIpSourceOutputWithContext(context.Background())
+}
+
+func (i IpamIpSourceArgs) ToIpamIpSourceOutputWithContext(ctx context.Context) IpamIpSourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IpamIpSourceOutput)
+}
+
+// IpamIpSourceArrayInput is an input type that accepts IpamIpSourceArray and IpamIpSourceArrayOutput values.
+// You can construct a concrete instance of `IpamIpSourceArrayInput` via:
+//
+//	IpamIpSourceArray{ IpamIpSourceArgs{...} }
+type IpamIpSourceArrayInput interface {
+	pulumi.Input
+
+	ToIpamIpSourceArrayOutput() IpamIpSourceArrayOutput
+	ToIpamIpSourceArrayOutputWithContext(context.Context) IpamIpSourceArrayOutput
+}
+
+type IpamIpSourceArray []IpamIpSourceInput
+
+func (IpamIpSourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IpamIpSource)(nil)).Elem()
+}
+
+func (i IpamIpSourceArray) ToIpamIpSourceArrayOutput() IpamIpSourceArrayOutput {
+	return i.ToIpamIpSourceArrayOutputWithContext(context.Background())
+}
+
+func (i IpamIpSourceArray) ToIpamIpSourceArrayOutputWithContext(ctx context.Context) IpamIpSourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IpamIpSourceArrayOutput)
+}
+
+type IpamIpSourceOutput struct{ *pulumi.OutputState }
+
+func (IpamIpSourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IpamIpSource)(nil)).Elem()
+}
+
+func (o IpamIpSourceOutput) ToIpamIpSourceOutput() IpamIpSourceOutput {
+	return o
+}
+
+func (o IpamIpSourceOutput) ToIpamIpSourceOutputWithContext(ctx context.Context) IpamIpSourceOutput {
+	return o
+}
+
+// The private network the IP lives in if the IP is a private IP.
+func (o IpamIpSourceOutput) PrivateNetworkId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IpamIpSource) *string { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
+}
+
+// The private network subnet the IP lives in if the IP is a private IP in a private network.
+func (o IpamIpSourceOutput) SubnetId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IpamIpSource) *string { return v.SubnetId }).(pulumi.StringPtrOutput)
+}
+
+// The zone the IP lives in if the IP is a public zoned one
+func (o IpamIpSourceOutput) Zonal() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IpamIpSource) *string { return v.Zonal }).(pulumi.StringPtrOutput)
+}
+
+type IpamIpSourceArrayOutput struct{ *pulumi.OutputState }
+
+func (IpamIpSourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IpamIpSource)(nil)).Elem()
+}
+
+func (o IpamIpSourceArrayOutput) ToIpamIpSourceArrayOutput() IpamIpSourceArrayOutput {
+	return o
+}
+
+func (o IpamIpSourceArrayOutput) ToIpamIpSourceArrayOutputWithContext(ctx context.Context) IpamIpSourceArrayOutput {
+	return o
+}
+
+func (o IpamIpSourceArrayOutput) Index(i pulumi.IntInput) IpamIpSourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IpamIpSource {
+		return vs[0].([]IpamIpSource)[vs[1].(int)]
+	}).(IpamIpSourceOutput)
 }
 
 type K8sClusterAutoUpgrade struct {
@@ -24463,6 +24681,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteRestPtrInput)(nil)).Elem(), IotRouteRestArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteS3Input)(nil)).Elem(), IotRouteS3Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteS3PtrInput)(nil)).Elem(), IotRouteS3Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpResourceInput)(nil)).Elem(), IpamIpResourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpResourceArrayInput)(nil)).Elem(), IpamIpResourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpSourceInput)(nil)).Elem(), IpamIpSourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpSourceArrayInput)(nil)).Elem(), IpamIpSourceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*K8sClusterAutoUpgradeInput)(nil)).Elem(), K8sClusterAutoUpgradeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*K8sClusterAutoUpgradePtrInput)(nil)).Elem(), K8sClusterAutoUpgradeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*K8sClusterAutoscalerConfigInput)(nil)).Elem(), K8sClusterAutoscalerConfigArgs{})
@@ -24799,6 +25021,10 @@ func init() {
 	pulumi.RegisterOutputType(IotRouteRestPtrOutput{})
 	pulumi.RegisterOutputType(IotRouteS3Output{})
 	pulumi.RegisterOutputType(IotRouteS3PtrOutput{})
+	pulumi.RegisterOutputType(IpamIpResourceOutput{})
+	pulumi.RegisterOutputType(IpamIpResourceArrayOutput{})
+	pulumi.RegisterOutputType(IpamIpSourceOutput{})
+	pulumi.RegisterOutputType(IpamIpSourceArrayOutput{})
 	pulumi.RegisterOutputType(K8sClusterAutoUpgradeOutput{})
 	pulumi.RegisterOutputType(K8sClusterAutoUpgradePtrOutput{})
 	pulumi.RegisterOutputType(K8sClusterAutoscalerConfigOutput{})

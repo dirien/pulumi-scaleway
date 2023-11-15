@@ -146,6 +146,7 @@
         "iotHub.ts",
         "iotNetwork.ts",
         "iotRoute.ts",
+        "ipamIp.ts",
         "k8sCluster.ts",
         "k8sPool.ts",
         "lb.ts",

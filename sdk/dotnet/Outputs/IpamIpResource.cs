@@ -12,15 +12,27 @@ namespace ediri.Scaleway.Outputs
 {
 
     [OutputType]
-    public sealed class IamIpResource
+    public sealed class IpamIpResource
     {
+        /// <summary>
+        /// The ID of the resource that the IP is bound to.
+        /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// The MAC Address of the resource the IP is attached to.
+        /// </summary>
         public readonly string? MacAddress;
+        /// <summary>
+        /// The name of the resource the IP is attached to.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// The type of resource the IP is attached to.
+        /// </summary>
         public readonly string? Type;
 
         [OutputConstructor]
-        private IamIpResource(
+        private IpamIpResource(
             string? id,
 
             string? macAddress,

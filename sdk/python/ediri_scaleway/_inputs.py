@@ -47,6 +47,8 @@ __all__ = [
     'IotRouteDatabaseArgs',
     'IotRouteRestArgs',
     'IotRouteS3Args',
+    'IpamIpResourceArgs',
+    'IpamIpSourceArgs',
     'K8sClusterAutoUpgradeArgs',
     'K8sClusterAutoscalerConfigArgs',
     'K8sClusterKubeconfigArgs',
@@ -1435,12 +1437,6 @@ class IamIpResourceArgs:
                  mac_address: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] id: The ID of the resource that the IP is bound to.
-        :param pulumi.Input[str] mac_address: The MAC Address of the resource the IP is attached to.
-        :param pulumi.Input[str] name: The name of the resource the IP is attached to.
-        :param pulumi.Input[str] type: The type of resource the IP is attached to.
-        """
         if id is not None:
             pulumi.set(__self__, "id", id)
         if mac_address is not None:
@@ -1453,9 +1449,6 @@ class IamIpResourceArgs:
     @property
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ID of the resource that the IP is bound to.
-        """
         return pulumi.get(self, "id")
 
     @id.setter
@@ -1465,9 +1458,6 @@ class IamIpResourceArgs:
     @property
     @pulumi.getter(name="macAddress")
     def mac_address(self) -> Optional[pulumi.Input[str]]:
-        """
-        The MAC Address of the resource the IP is attached to.
-        """
         return pulumi.get(self, "mac_address")
 
     @mac_address.setter
@@ -1477,9 +1467,6 @@ class IamIpResourceArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        The name of the resource the IP is attached to.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -1489,9 +1476,6 @@ class IamIpResourceArgs:
     @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
-        """
-        The type of resource the IP is attached to.
-        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -1505,11 +1489,6 @@ class IamIpSourceArgs:
                  private_network_id: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  zonal: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] private_network_id: The private network the IP lives in if the IP is a private IP.
-        :param pulumi.Input[str] subnet_id: The private network subnet the IP lives in if the IP is a private IP in a private network.
-        :param pulumi.Input[str] zonal: The zone the IP lives in if the IP is a public zoned one
-        """
         if private_network_id is not None:
             pulumi.set(__self__, "private_network_id", private_network_id)
         if subnet_id is not None:
@@ -1520,9 +1499,6 @@ class IamIpSourceArgs:
     @property
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The private network the IP lives in if the IP is a private IP.
-        """
         return pulumi.get(self, "private_network_id")
 
     @private_network_id.setter
@@ -1532,9 +1508,6 @@ class IamIpSourceArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The private network subnet the IP lives in if the IP is a private IP in a private network.
-        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -1544,9 +1517,6 @@ class IamIpSourceArgs:
     @property
     @pulumi.getter
     def zonal(self) -> Optional[pulumi.Input[str]]:
-        """
-        The zone the IP lives in if the IP is a public zoned one
-        """
         return pulumi.get(self, "zonal")
 
     @zonal.setter
@@ -2819,6 +2789,132 @@ class IotRouteS3Args:
     @object_prefix.setter
     def object_prefix(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "object_prefix", value)
+
+
+@pulumi.input_type
+class IpamIpResourceArgs:
+    def __init__(__self__, *,
+                 id: Optional[pulumi.Input[str]] = None,
+                 mac_address: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] id: The ID of the resource that the IP is bound to.
+        :param pulumi.Input[str] mac_address: The MAC Address of the resource the IP is attached to.
+        :param pulumi.Input[str] name: The name of the resource the IP is attached to.
+        :param pulumi.Input[str] type: The type of resource the IP is attached to.
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if mac_address is not None:
+            pulumi.set(__self__, "mac_address", mac_address)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the resource that the IP is bound to.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="macAddress")
+    def mac_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The MAC Address of the resource the IP is attached to.
+        """
+        return pulumi.get(self, "mac_address")
+
+    @mac_address.setter
+    def mac_address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_address", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the resource the IP is attached to.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of resource the IP is attached to.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class IpamIpSourceArgs:
+    def __init__(__self__, *,
+                 private_network_id: Optional[pulumi.Input[str]] = None,
+                 subnet_id: Optional[pulumi.Input[str]] = None,
+                 zonal: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] private_network_id: The private network the IP lives in if the IP is a private IP.
+        :param pulumi.Input[str] subnet_id: The private network subnet the IP lives in if the IP is a private IP in a private network.
+        :param pulumi.Input[str] zonal: The zone the IP lives in if the IP is a public zoned one
+        """
+        if private_network_id is not None:
+            pulumi.set(__self__, "private_network_id", private_network_id)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
+        if zonal is not None:
+            pulumi.set(__self__, "zonal", zonal)
+
+    @property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private network the IP lives in if the IP is a private IP.
+        """
+        return pulumi.get(self, "private_network_id")
+
+    @private_network_id.setter
+    def private_network_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_network_id", value)
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private network subnet the IP lives in if the IP is a private IP in a private network.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @subnet_id.setter
+    def subnet_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subnet_id", value)
+
+    @property
+    @pulumi.getter
+    def zonal(self) -> Optional[pulumi.Input[str]]:
+        """
+        The zone the IP lives in if the IP is a public zoned one
+        """
+        return pulumi.get(self, "zonal")
+
+    @zonal.setter
+    def zonal(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "zonal", value)
 
 
 @pulumi.input_type

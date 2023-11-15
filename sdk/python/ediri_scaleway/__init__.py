@@ -135,6 +135,7 @@ from .iot_device import *
 from .iot_hub import *
 from .iot_network import *
 from .iot_route import *
+from .ipam_ip import *
 from .k8s_cluster import *
 from .k8s_pool import *
 from .lb import *
@@ -608,6 +609,14 @@ _utilities.register(
   "fqn": "ediri_scaleway",
   "classes": {
    "scaleway:index/iotRoute:IotRoute": "IotRoute"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/ipamIp",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/ipamIp:IpamIp": "IpamIp"
   }
  },
  {

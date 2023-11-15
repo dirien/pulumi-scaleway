@@ -655,6 +655,11 @@ export type IotRoute = import("./iotRoute").IotRoute;
 export const IotRoute: typeof import("./iotRoute").IotRoute = null as any;
 utilities.lazyLoad(exports, ["IotRoute"], () => require("./iotRoute"));
 
+export { IpamIpArgs, IpamIpState } from "./ipamIp";
+export type IpamIp = import("./ipamIp").IpamIp;
+export const IpamIp: typeof import("./ipamIp").IpamIp = null as any;
+utilities.lazyLoad(exports, ["IpamIp"], () => require("./ipamIp"));
+
 export { K8sClusterArgs, K8sClusterState } from "./k8sCluster";
 export type K8sCluster = import("./k8sCluster").K8sCluster;
 export const K8sCluster: typeof import("./k8sCluster").K8sCluster = null as any;
@@ -1003,6 +1008,8 @@ const _module = {
                 return new IotNetwork(name, <any>undefined, { urn })
             case "scaleway:index/iotRoute:IotRoute":
                 return new IotRoute(name, <any>undefined, { urn })
+            case "scaleway:index/ipamIp:IpamIp":
+                return new IpamIp(name, <any>undefined, { urn })
             case "scaleway:index/k8sCluster:K8sCluster":
                 return new K8sCluster(name, <any>undefined, { urn })
             case "scaleway:index/k8sPool:K8sPool":
@@ -1150,6 +1157,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/iotDevice", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iotHub", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iotNetwork", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iotRoute", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/ipamIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/k8sCluster", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/k8sPool", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/lb", _module)

@@ -1733,36 +1733,15 @@ export interface GetWebhostingOption {
 }
 
 export interface IamIpResource {
-    /**
-     * The ID of the resource that the IP is bound to.
-     */
     id: string;
-    /**
-     * The MAC Address of the resource the IP is attached to.
-     */
     macAddress: string;
-    /**
-     * The name of the resource the IP is attached to.
-     */
     name: string;
-    /**
-     * The type of resource the IP is attached to.
-     */
     type: string;
 }
 
 export interface IamIpSource {
-    /**
-     * The private network the IP lives in if the IP is a private IP.
-     */
     privateNetworkId: string;
-    /**
-     * The private network subnet the IP lives in if the IP is a private IP in a private network.
-     */
     subnetId: string;
-    /**
-     * The zone the IP lives in if the IP is a public zoned one
-     */
     zonal: string;
 }
 
@@ -2076,6 +2055,40 @@ export interface IotRouteS3 {
     bucketRegion: string;
     objectPrefix?: string;
     strategy: string;
+}
+
+export interface IpamIpResource {
+    /**
+     * The ID of the resource that the IP is bound to.
+     */
+    id: string;
+    /**
+     * The MAC Address of the resource the IP is attached to.
+     */
+    macAddress: string;
+    /**
+     * The name of the resource the IP is attached to.
+     */
+    name: string;
+    /**
+     * The type of resource the IP is attached to.
+     */
+    type: string;
+}
+
+export interface IpamIpSource {
+    /**
+     * The private network the IP lives in if the IP is a private IP.
+     */
+    privateNetworkId: string;
+    /**
+     * The private network subnet the IP lives in if the IP is a private IP in a private network.
+     */
+    subnetId: string;
+    /**
+     * The zone the IP lives in if the IP is a public zoned one
+     */
+    zonal: string;
 }
 
 export interface K8sClusterAutoUpgrade {

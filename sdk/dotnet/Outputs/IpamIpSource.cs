@@ -12,14 +12,23 @@ namespace ediri.Scaleway.Outputs
 {
 
     [OutputType]
-    public sealed class IamIpSource
+    public sealed class IpamIpSource
     {
+        /// <summary>
+        /// The private network the IP lives in if the IP is a private IP.
+        /// </summary>
         public readonly string? PrivateNetworkId;
+        /// <summary>
+        /// The private network subnet the IP lives in if the IP is a private IP in a private network.
+        /// </summary>
         public readonly string? SubnetId;
+        /// <summary>
+        /// The zone the IP lives in if the IP is a public zoned one
+        /// </summary>
         public readonly string? Zonal;
 
         [OutputConstructor]
-        private IamIpSource(
+        private IpamIpSource(
             string? privateNetworkId,
 
             string? subnetId,

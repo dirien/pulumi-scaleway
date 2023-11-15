@@ -10,188 +10,66 @@ using Pulumi;
 
 namespace ediri.Scaleway
 {
-    /// <summary>
-    /// Books and manages Scaleway IPAM IPs.
-    /// 
-    /// ## Example
-    /// 
-    /// ### Basic
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = ediri.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var vpc01 = new Scaleway.Vpc("vpc01");
-    /// 
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
-    ///     {
-    ///         VpcId = vpc01.Id,
-    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
-    ///         {
-    ///             Subnet = "172.16.32.0/22",
-    ///         },
-    ///     });
-    /// 
-    ///     var ip01 = new Scaleway.IamIp("ip01", new()
-    ///     {
-    ///         Sources = new[]
-    ///         {
-    ///             new Scaleway.Inputs.IamIpSourceArgs
-    ///             {
-    ///                 PrivateNetworkId = pn01.Id,
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### Request a specific IPv4
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = ediri.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var vpc01 = new Scaleway.Vpc("vpc01");
-    /// 
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
-    ///     {
-    ///         VpcId = vpc01.Id,
-    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
-    ///         {
-    ///             Subnet = "172.16.32.0/22",
-    ///         },
-    ///     });
-    /// 
-    ///     var ip01 = new Scaleway.IamIp("ip01", new()
-    ///     {
-    ///         Address = "172.16.32.7/22",
-    ///         Sources = new[]
-    ///         {
-    ///             new Scaleway.Inputs.IamIpSourceArgs
-    ///             {
-    ///                 PrivateNetworkId = pn01.Id,
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### Request an IPv6
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = ediri.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var vpc01 = new Scaleway.Vpc("vpc01");
-    /// 
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
-    ///     {
-    ///         VpcId = vpc01.Id,
-    ///         Ipv6Subnets = new[]
-    ///         {
-    ///             new Scaleway.Inputs.VpcPrivateNetworkIpv6SubnetArgs
-    ///             {
-    ///                 Subnet = "fd46:78ab:30b8:177c::/64",
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    ///     var ip01 = new Scaleway.IamIp("ip01", new()
-    ///     {
-    ///         IsIpv6 = true,
-    ///         Sources = new[]
-    ///         {
-    ///             new Scaleway.Inputs.IamIpSourceArgs
-    ///             {
-    ///                 PrivateNetworkId = pn01.Id,
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// IPAM IPs can be imported using the `{region}/{id}`, e.g. bash
-    /// 
-    /// ```sh
-    ///  $ pulumi import scaleway:index/iamIp:IamIp ip_demo fr-par/11111111-1111-1111-1111-111111111111
-    /// ```
-    /// </summary>
+    [Obsolete(@"scaleway.index/iamip.IamIp has been deprecated in favor of scaleway.index/ipamip.IpamIp")]
     [ScalewayResourceType("scaleway:index/iamIp:IamIp")]
     public partial class IamIp : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Request a specific IP in the requested source pool.
+        /// Request a specific IP in the requested source pool
         /// </summary>
         [Output("address")]
         public Output<string> Address { get; private set; } = null!;
 
         /// <summary>
-        /// Date and time of IP's creation (RFC 3339 format).
+        /// The date and time of the creation of the IP
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Defines whether to request an IPv6 instead of an IPv4.
+        /// Request an IPv6 instead of an IPv4
         /// </summary>
         [Output("isIpv6")]
         public Output<bool?> IsIpv6 { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the IP is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region of the IP.
+        /// The region you want to attach the resource to
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The IP resource.
+        /// The IP resource
         /// </summary>
         [Output("resources")]
         public Output<ImmutableArray<Outputs.IamIpResource>> Resources { get; private set; } = null!;
 
         /// <summary>
-        /// The source in which to book the IP.
+        /// The source in which to book the IP
         /// </summary>
         [Output("sources")]
         public Output<ImmutableArray<Outputs.IamIpSource>> Sources { get; private set; } = null!;
 
         /// <summary>
-        /// The tags associated with the IP.
+        /// The tags associated with the IP
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// Date and time of IP's last update (RFC 3339 format).
+        /// The date and time of the last update of the IP
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The zone of the IP.
+        /// The zone of the resource
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -244,25 +122,25 @@ namespace ediri.Scaleway
     public sealed class IamIpArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Request a specific IP in the requested source pool.
+        /// Request a specific IP in the requested source pool
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
 
         /// <summary>
-        /// Defines whether to request an IPv6 instead of an IPv4.
+        /// Request an IPv6 instead of an IPv4
         /// </summary>
         [Input("isIpv6")]
         public Input<bool>? IsIpv6 { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the IP is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region of the IP.
+        /// The region you want to attach the resource to
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -271,7 +149,7 @@ namespace ediri.Scaleway
         private InputList<Inputs.IamIpSourceArgs>? _sources;
 
         /// <summary>
-        /// The source in which to book the IP.
+        /// The source in which to book the IP
         /// </summary>
         public InputList<Inputs.IamIpSourceArgs> Sources
         {
@@ -283,7 +161,7 @@ namespace ediri.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the IP.
+        /// The tags associated with the IP
         /// </summary>
         public InputList<string> Tags
         {
@@ -300,31 +178,31 @@ namespace ediri.Scaleway
     public sealed class IamIpState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Request a specific IP in the requested source pool.
+        /// Request a specific IP in the requested source pool
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
 
         /// <summary>
-        /// Date and time of IP's creation (RFC 3339 format).
+        /// The date and time of the creation of the IP
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Defines whether to request an IPv6 instead of an IPv4.
+        /// Request an IPv6 instead of an IPv4
         /// </summary>
         [Input("isIpv6")]
         public Input<bool>? IsIpv6 { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the IP is associated with.
+        /// The project_id you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region of the IP.
+        /// The region you want to attach the resource to
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -333,7 +211,7 @@ namespace ediri.Scaleway
         private InputList<Inputs.IamIpResourceGetArgs>? _resources;
 
         /// <summary>
-        /// The IP resource.
+        /// The IP resource
         /// </summary>
         public InputList<Inputs.IamIpResourceGetArgs> Resources
         {
@@ -345,7 +223,7 @@ namespace ediri.Scaleway
         private InputList<Inputs.IamIpSourceGetArgs>? _sources;
 
         /// <summary>
-        /// The source in which to book the IP.
+        /// The source in which to book the IP
         /// </summary>
         public InputList<Inputs.IamIpSourceGetArgs> Sources
         {
@@ -357,7 +235,7 @@ namespace ediri.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the IP.
+        /// The tags associated with the IP
         /// </summary>
         public InputList<string> Tags
         {
@@ -366,13 +244,13 @@ namespace ediri.Scaleway
         }
 
         /// <summary>
-        /// Date and time of IP's last update (RFC 3339 format).
+        /// The date and time of the last update of the IP
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// The zone of the IP.
+        /// The zone of the resource
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

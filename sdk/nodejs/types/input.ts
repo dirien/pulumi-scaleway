@@ -393,36 +393,15 @@ export interface GetIpamIpResourceArgs {
 }
 
 export interface IamIpResource {
-    /**
-     * The ID of the resource that the IP is bound to.
-     */
     id?: pulumi.Input<string>;
-    /**
-     * The MAC Address of the resource the IP is attached to.
-     */
     macAddress?: pulumi.Input<string>;
-    /**
-     * The name of the resource the IP is attached to.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * The type of resource the IP is attached to.
-     */
     type?: pulumi.Input<string>;
 }
 
 export interface IamIpSource {
-    /**
-     * The private network the IP lives in if the IP is a private IP.
-     */
     privateNetworkId?: pulumi.Input<string>;
-    /**
-     * The private network subnet the IP lives in if the IP is a private IP in a private network.
-     */
     subnetId?: pulumi.Input<string>;
-    /**
-     * The zone the IP lives in if the IP is a public zoned one
-     */
     zonal?: pulumi.Input<string>;
 }
 
@@ -736,6 +715,40 @@ export interface IotRouteS3 {
     bucketRegion: pulumi.Input<string>;
     objectPrefix?: pulumi.Input<string>;
     strategy: pulumi.Input<string>;
+}
+
+export interface IpamIpResource {
+    /**
+     * The ID of the resource that the IP is bound to.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * The MAC Address of the resource the IP is attached to.
+     */
+    macAddress?: pulumi.Input<string>;
+    /**
+     * The name of the resource the IP is attached to.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * The type of resource the IP is attached to.
+     */
+    type?: pulumi.Input<string>;
+}
+
+export interface IpamIpSource {
+    /**
+     * The private network the IP lives in if the IP is a private IP.
+     */
+    privateNetworkId?: pulumi.Input<string>;
+    /**
+     * The private network subnet the IP lives in if the IP is a private IP in a private network.
+     */
+    subnetId?: pulumi.Input<string>;
+    /**
+     * The zone the IP lives in if the IP is a public zoned one
+     */
+    zonal?: pulumi.Input<string>;
 }
 
 export interface K8sClusterAutoUpgrade {

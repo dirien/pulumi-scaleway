@@ -40,11 +40,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = scaleway.GetIpamIpOutput(ctx, scaleway.GetIpamIpOutputArgs{
+//			_ = scaleway.LookupIpamIpOutput(ctx, scaleway.GetIpamIpOutputArgs{
 //				MacAddress: nic.MacAddress,
 //				Type:       pulumi.String("ipv4"),
 //			}, nil)
-//			_ = scaleway.GetIpamIpOutput(ctx, scaleway.GetIpamIpOutputArgs{
+//			_ = scaleway.LookupIpamIpOutput(ctx, scaleway.GetIpamIpOutputArgs{
 //				Resource: &scaleway.GetIpamIpResourceArgs{
 //					Id:   nic.ID(),
 //					Type: pulumi.String("instance_private_nic"),
@@ -65,7 +65,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = scaleway.GetIpamIpOutput(ctx, scaleway.GetIpamIpOutputArgs{
+//			_ = scaleway.LookupIpamIpOutput(ctx, scaleway.GetIpamIpOutputArgs{
 //				Resource: &scaleway.GetIpamIpResourceArgs{
 //					Name: main.Name,
 //					Type: pulumi.String("rdb_instance"),
@@ -77,9 +77,9 @@ import (
 //	}
 //
 // ```
-func GetIpamIp(ctx *pulumi.Context, args *GetIpamIpArgs, opts ...pulumi.InvokeOption) (*GetIpamIpResult, error) {
+func LookupIpamIp(ctx *pulumi.Context, args *LookupIpamIpArgs, opts ...pulumi.InvokeOption) (*LookupIpamIpResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetIpamIpResult
+	var rv LookupIpamIpResult
 	err := ctx.Invoke("scaleway:index/getIpamIp:getIpamIp", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -88,7 +88,7 @@ func GetIpamIp(ctx *pulumi.Context, args *GetIpamIpArgs, opts ...pulumi.InvokeOp
 }
 
 // A collection of arguments for invoking getIpamIp.
-type GetIpamIpArgs struct {
+type LookupIpamIpArgs struct {
 	// The Mac Address linked to the IP.
 	MacAddress *string `pulumi:"macAddress"`
 	// The ID of the private network the IP belong to.
@@ -109,7 +109,7 @@ type GetIpamIpArgs struct {
 }
 
 // A collection of values returned by getIpamIp.
-type GetIpamIpResult struct {
+type LookupIpamIpResult struct {
 	// The IP address
 	Address string `pulumi:"address"`
 	// The provider-assigned unique ID for this managed resource.
@@ -125,21 +125,21 @@ type GetIpamIpResult struct {
 	Zonal            string             `pulumi:"zonal"`
 }
 
-func GetIpamIpOutput(ctx *pulumi.Context, args GetIpamIpOutputArgs, opts ...pulumi.InvokeOption) GetIpamIpResultOutput {
+func LookupIpamIpOutput(ctx *pulumi.Context, args LookupIpamIpOutputArgs, opts ...pulumi.InvokeOption) LookupIpamIpResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetIpamIpResult, error) {
-			args := v.(GetIpamIpArgs)
-			r, err := GetIpamIp(ctx, &args, opts...)
-			var s GetIpamIpResult
+		ApplyT(func(v interface{}) (LookupIpamIpResult, error) {
+			args := v.(LookupIpamIpArgs)
+			r, err := LookupIpamIp(ctx, &args, opts...)
+			var s LookupIpamIpResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(GetIpamIpResultOutput)
+		}).(LookupIpamIpResultOutput)
 }
 
 // A collection of arguments for invoking getIpamIp.
-type GetIpamIpOutputArgs struct {
+type LookupIpamIpOutputArgs struct {
 	// The Mac Address linked to the IP.
 	MacAddress pulumi.StringPtrInput `pulumi:"macAddress"`
 	// The ID of the private network the IP belong to.
@@ -159,71 +159,71 @@ type GetIpamIpOutputArgs struct {
 	Zonal pulumi.StringPtrInput `pulumi:"zonal"`
 }
 
-func (GetIpamIpOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetIpamIpArgs)(nil)).Elem()
+func (LookupIpamIpOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupIpamIpArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getIpamIp.
-type GetIpamIpResultOutput struct{ *pulumi.OutputState }
+type LookupIpamIpResultOutput struct{ *pulumi.OutputState }
 
-func (GetIpamIpResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetIpamIpResult)(nil)).Elem()
+func (LookupIpamIpResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupIpamIpResult)(nil)).Elem()
 }
 
-func (o GetIpamIpResultOutput) ToGetIpamIpResultOutput() GetIpamIpResultOutput {
+func (o LookupIpamIpResultOutput) ToLookupIpamIpResultOutput() LookupIpamIpResultOutput {
 	return o
 }
 
-func (o GetIpamIpResultOutput) ToGetIpamIpResultOutputWithContext(ctx context.Context) GetIpamIpResultOutput {
+func (o LookupIpamIpResultOutput) ToLookupIpamIpResultOutputWithContext(ctx context.Context) LookupIpamIpResultOutput {
 	return o
 }
 
 // The IP address
-func (o GetIpamIpResultOutput) Address() pulumi.StringOutput {
-	return o.ApplyT(func(v GetIpamIpResult) string { return v.Address }).(pulumi.StringOutput)
+func (o LookupIpamIpResultOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIpamIpResult) string { return v.Address }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
-func (o GetIpamIpResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetIpamIpResult) string { return v.Id }).(pulumi.StringOutput)
+func (o LookupIpamIpResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIpamIpResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o GetIpamIpResultOutput) MacAddress() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetIpamIpResult) *string { return v.MacAddress }).(pulumi.StringPtrOutput)
+func (o LookupIpamIpResultOutput) MacAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupIpamIpResult) *string { return v.MacAddress }).(pulumi.StringPtrOutput)
 }
 
-func (o GetIpamIpResultOutput) OrganizationId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetIpamIpResult) string { return v.OrganizationId }).(pulumi.StringOutput)
+func (o LookupIpamIpResultOutput) OrganizationId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIpamIpResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-func (o GetIpamIpResultOutput) PrivateNetworkId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetIpamIpResult) *string { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
+func (o LookupIpamIpResultOutput) PrivateNetworkId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupIpamIpResult) *string { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
 }
 
-func (o GetIpamIpResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetIpamIpResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupIpamIpResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIpamIpResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o GetIpamIpResultOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetIpamIpResult) string { return v.Region }).(pulumi.StringOutput)
+func (o LookupIpamIpResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIpamIpResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
-func (o GetIpamIpResultOutput) Resource() GetIpamIpResourcePtrOutput {
-	return o.ApplyT(func(v GetIpamIpResult) *GetIpamIpResource { return v.Resource }).(GetIpamIpResourcePtrOutput)
+func (o LookupIpamIpResultOutput) Resource() GetIpamIpResourcePtrOutput {
+	return o.ApplyT(func(v LookupIpamIpResult) *GetIpamIpResource { return v.Resource }).(GetIpamIpResourcePtrOutput)
 }
 
-func (o GetIpamIpResultOutput) Tags() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetIpamIpResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
+func (o LookupIpamIpResultOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupIpamIpResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-func (o GetIpamIpResultOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetIpamIpResult) string { return v.Type }).(pulumi.StringOutput)
+func (o LookupIpamIpResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIpamIpResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
-func (o GetIpamIpResultOutput) Zonal() pulumi.StringOutput {
-	return o.ApplyT(func(v GetIpamIpResult) string { return v.Zonal }).(pulumi.StringOutput)
+func (o LookupIpamIpResultOutput) Zonal() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIpamIpResult) string { return v.Zonal }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetIpamIpResultOutput{})
+	pulumi.RegisterOutputType(LookupIpamIpResultOutput{})
 }

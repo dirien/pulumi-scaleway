@@ -12,174 +12,29 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Books and manages Scaleway IPAM IPs.
-//
-// ## Example
-//
-// ### Basic
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", nil)
-//			if err != nil {
-//				return err
-//			}
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
-//				VpcId: vpc01.ID(),
-//				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
-//					Subnet: pulumi.String("172.16.32.0/22"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = scaleway.NewIamIp(ctx, "ip01", &scaleway.IamIpArgs{
-//				Sources: scaleway.IamIpSourceArray{
-//					&scaleway.IamIpSourceArgs{
-//						PrivateNetworkId: pn01.ID(),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Request a specific IPv4
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", nil)
-//			if err != nil {
-//				return err
-//			}
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
-//				VpcId: vpc01.ID(),
-//				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
-//					Subnet: pulumi.String("172.16.32.0/22"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = scaleway.NewIamIp(ctx, "ip01", &scaleway.IamIpArgs{
-//				Address: pulumi.String("172.16.32.7/22"),
-//				Sources: scaleway.IamIpSourceArray{
-//					&scaleway.IamIpSourceArgs{
-//						PrivateNetworkId: pn01.ID(),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Request an IPv6
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", nil)
-//			if err != nil {
-//				return err
-//			}
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
-//				VpcId: vpc01.ID(),
-//				Ipv6Subnets: scaleway.VpcPrivateNetworkIpv6SubnetArray{
-//					&scaleway.VpcPrivateNetworkIpv6SubnetArgs{
-//						Subnet: pulumi.String("fd46:78ab:30b8:177c::/64"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = scaleway.NewIamIp(ctx, "ip01", &scaleway.IamIpArgs{
-//				IsIpv6: pulumi.Bool(true),
-//				Sources: scaleway.IamIpSourceArray{
-//					&scaleway.IamIpSourceArgs{
-//						PrivateNetworkId: pn01.ID(),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Import
-//
-// IPAM IPs can be imported using the `{region}/{id}`, e.g. bash
-//
-// ```sh
-//
-//	$ pulumi import scaleway:index/iamIp:IamIp ip_demo fr-par/11111111-1111-1111-1111-111111111111
-//
-// ```
+// Deprecated: scaleway.index/iamip.IamIp has been deprecated in favor of scaleway.index/ipamip.IpamIp
 type IamIp struct {
 	pulumi.CustomResourceState
 
-	// Request a specific IP in the requested source pool.
+	// Request a specific IP in the requested source pool
 	Address pulumi.StringOutput `pulumi:"address"`
-	// Date and time of IP's creation (RFC 3339 format).
+	// The date and time of the creation of the IP
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// Defines whether to request an IPv6 instead of an IPv4.
+	// Request an IPv6 instead of an IPv4
 	IsIpv6 pulumi.BoolPtrOutput `pulumi:"isIpv6"`
-	// `projectId`) The ID of the project the IP is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// `region`) The region of the IP.
+	// The region you want to attach the resource to
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The IP resource.
+	// The IP resource
 	Resources IamIpResourceArrayOutput `pulumi:"resources"`
-	// The source in which to book the IP.
+	// The source in which to book the IP
 	Sources IamIpSourceArrayOutput `pulumi:"sources"`
-	// The tags associated with the IP.
+	// The tags associated with the IP
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// Date and time of IP's last update (RFC 3339 format).
+	// The date and time of the last update of the IP
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// The zone of the IP.
+	// The zone of the resource
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -216,48 +71,48 @@ func GetIamIp(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IamIp resources.
 type iamIpState struct {
-	// Request a specific IP in the requested source pool.
+	// Request a specific IP in the requested source pool
 	Address *string `pulumi:"address"`
-	// Date and time of IP's creation (RFC 3339 format).
+	// The date and time of the creation of the IP
 	CreatedAt *string `pulumi:"createdAt"`
-	// Defines whether to request an IPv6 instead of an IPv4.
+	// Request an IPv6 instead of an IPv4
 	IsIpv6 *bool `pulumi:"isIpv6"`
-	// `projectId`) The ID of the project the IP is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
-	// `region`) The region of the IP.
+	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
-	// The IP resource.
+	// The IP resource
 	Resources []IamIpResource `pulumi:"resources"`
-	// The source in which to book the IP.
+	// The source in which to book the IP
 	Sources []IamIpSource `pulumi:"sources"`
-	// The tags associated with the IP.
+	// The tags associated with the IP
 	Tags []string `pulumi:"tags"`
-	// Date and time of IP's last update (RFC 3339 format).
+	// The date and time of the last update of the IP
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// The zone of the IP.
+	// The zone of the resource
 	Zone *string `pulumi:"zone"`
 }
 
 type IamIpState struct {
-	// Request a specific IP in the requested source pool.
+	// Request a specific IP in the requested source pool
 	Address pulumi.StringPtrInput
-	// Date and time of IP's creation (RFC 3339 format).
+	// The date and time of the creation of the IP
 	CreatedAt pulumi.StringPtrInput
-	// Defines whether to request an IPv6 instead of an IPv4.
+	// Request an IPv6 instead of an IPv4
 	IsIpv6 pulumi.BoolPtrInput
-	// `projectId`) The ID of the project the IP is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
-	// `region`) The region of the IP.
+	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
-	// The IP resource.
+	// The IP resource
 	Resources IamIpResourceArrayInput
-	// The source in which to book the IP.
+	// The source in which to book the IP
 	Sources IamIpSourceArrayInput
-	// The tags associated with the IP.
+	// The tags associated with the IP
 	Tags pulumi.StringArrayInput
-	// Date and time of IP's last update (RFC 3339 format).
+	// The date and time of the last update of the IP
 	UpdatedAt pulumi.StringPtrInput
-	// The zone of the IP.
+	// The zone of the resource
 	Zone pulumi.StringPtrInput
 }
 
@@ -266,33 +121,33 @@ func (IamIpState) ElementType() reflect.Type {
 }
 
 type iamIpArgs struct {
-	// Request a specific IP in the requested source pool.
+	// Request a specific IP in the requested source pool
 	Address *string `pulumi:"address"`
-	// Defines whether to request an IPv6 instead of an IPv4.
+	// Request an IPv6 instead of an IPv4
 	IsIpv6 *bool `pulumi:"isIpv6"`
-	// `projectId`) The ID of the project the IP is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
-	// `region`) The region of the IP.
+	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
-	// The source in which to book the IP.
+	// The source in which to book the IP
 	Sources []IamIpSource `pulumi:"sources"`
-	// The tags associated with the IP.
+	// The tags associated with the IP
 	Tags []string `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a IamIp resource.
 type IamIpArgs struct {
-	// Request a specific IP in the requested source pool.
+	// Request a specific IP in the requested source pool
 	Address pulumi.StringPtrInput
-	// Defines whether to request an IPv6 instead of an IPv4.
+	// Request an IPv6 instead of an IPv4
 	IsIpv6 pulumi.BoolPtrInput
-	// `projectId`) The ID of the project the IP is associated with.
+	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
-	// `region`) The region of the IP.
+	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
-	// The source in which to book the IP.
+	// The source in which to book the IP
 	Sources IamIpSourceArrayInput
-	// The tags associated with the IP.
+	// The tags associated with the IP
 	Tags pulumi.StringArrayInput
 }
 
@@ -383,52 +238,52 @@ func (o IamIpOutput) ToIamIpOutputWithContext(ctx context.Context) IamIpOutput {
 	return o
 }
 
-// Request a specific IP in the requested source pool.
+// Request a specific IP in the requested source pool
 func (o IamIpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamIp) pulumi.StringOutput { return v.Address }).(pulumi.StringOutput)
 }
 
-// Date and time of IP's creation (RFC 3339 format).
+// The date and time of the creation of the IP
 func (o IamIpOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamIp) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// Defines whether to request an IPv6 instead of an IPv4.
+// Request an IPv6 instead of an IPv4
 func (o IamIpOutput) IsIpv6() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IamIp) pulumi.BoolPtrOutput { return v.IsIpv6 }).(pulumi.BoolPtrOutput)
 }
 
-// `projectId`) The ID of the project the IP is associated with.
+// The project_id you want to attach the resource to
 func (o IamIpOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamIp) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// `region`) The region of the IP.
+// The region you want to attach the resource to
 func (o IamIpOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamIp) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// The IP resource.
+// The IP resource
 func (o IamIpOutput) Resources() IamIpResourceArrayOutput {
 	return o.ApplyT(func(v *IamIp) IamIpResourceArrayOutput { return v.Resources }).(IamIpResourceArrayOutput)
 }
 
-// The source in which to book the IP.
+// The source in which to book the IP
 func (o IamIpOutput) Sources() IamIpSourceArrayOutput {
 	return o.ApplyT(func(v *IamIp) IamIpSourceArrayOutput { return v.Sources }).(IamIpSourceArrayOutput)
 }
 
-// The tags associated with the IP.
+// The tags associated with the IP
 func (o IamIpOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *IamIp) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// Date and time of IP's last update (RFC 3339 format).
+// The date and time of the last update of the IP
 func (o IamIpOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamIp) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// The zone of the IP.
+// The zone of the resource
 func (o IamIpOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamIp) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
