@@ -29,8 +29,6 @@ __all__ = [
     'DomainRecordWeighted',
     'FunctionTriggerNats',
     'FunctionTriggerSqs',
-    'IamIpResource',
-    'IamIpSource',
     'IamPolicyRule',
     'InstanceImageAdditionalVolume',
     'InstanceSecurityGroupInboundRule',
@@ -1430,108 +1428,6 @@ class FunctionTriggerSqs(dict):
         `region`). The region in which the namespace should be created.
         """
         return pulumi.get(self, "region")
-
-
-@pulumi.output_type
-class IamIpResource(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "macAddress":
-            suggest = "mac_address"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in IamIpResource. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        IamIpResource.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        IamIpResource.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 id: Optional[str] = None,
-                 mac_address: Optional[str] = None,
-                 name: Optional[str] = None,
-                 type: Optional[str] = None):
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if mac_address is not None:
-            pulumi.set(__self__, "mac_address", mac_address)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter(name="macAddress")
-    def mac_address(self) -> Optional[str]:
-        return pulumi.get(self, "mac_address")
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[str]:
-        return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def type(self) -> Optional[str]:
-        return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class IamIpSource(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "privateNetworkId":
-            suggest = "private_network_id"
-        elif key == "subnetId":
-            suggest = "subnet_id"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in IamIpSource. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        IamIpSource.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        IamIpSource.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 private_network_id: Optional[str] = None,
-                 subnet_id: Optional[str] = None,
-                 zonal: Optional[str] = None):
-        if private_network_id is not None:
-            pulumi.set(__self__, "private_network_id", private_network_id)
-        if subnet_id is not None:
-            pulumi.set(__self__, "subnet_id", subnet_id)
-        if zonal is not None:
-            pulumi.set(__self__, "zonal", zonal)
-
-    @property
-    @pulumi.getter(name="privateNetworkId")
-    def private_network_id(self) -> Optional[str]:
-        return pulumi.get(self, "private_network_id")
-
-    @property
-    @pulumi.getter(name="subnetId")
-    def subnet_id(self) -> Optional[str]:
-        return pulumi.get(self, "subnet_id")
-
-    @property
-    @pulumi.getter
-    def zonal(self) -> Optional[str]:
-        return pulumi.get(self, "zonal")
 
 
 @pulumi.output_type

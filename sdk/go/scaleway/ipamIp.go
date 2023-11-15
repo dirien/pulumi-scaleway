@@ -193,12 +193,6 @@ func NewIpamIp(ctx *pulumi.Context,
 	if args.Sources == nil {
 		return nil, errors.New("invalid value for required argument 'Sources'")
 	}
-	aliases := pulumi.Aliases([]pulumi.Alias{
-		{
-			Type: pulumi.String("scaleway:index/iamIp:IamIp"),
-		},
-	})
-	opts = append(opts, aliases)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IpamIp
 	err := ctx.RegisterResource("scaleway:index/ipamIp:IpamIp", name, args, &resource, opts...)

@@ -560,11 +560,6 @@ export type IamGroupMembership = import("./iamGroupMembership").IamGroupMembersh
 export const IamGroupMembership: typeof import("./iamGroupMembership").IamGroupMembership = null as any;
 utilities.lazyLoad(exports, ["IamGroupMembership"], () => require("./iamGroupMembership"));
 
-export { IamIpArgs, IamIpState } from "./iamIp";
-export type IamIp = import("./iamIp").IamIp;
-export const IamIp: typeof import("./iamIp").IamIp = null as any;
-utilities.lazyLoad(exports, ["IamIp"], () => require("./iamIp"));
-
 export { IamPolicyArgs, IamPolicyState } from "./iamPolicy";
 export type IamPolicy = import("./iamPolicy").IamPolicy;
 export const IamPolicy: typeof import("./iamPolicy").IamPolicy = null as any;
@@ -970,8 +965,6 @@ const _module = {
                 return new IamGroup(name, <any>undefined, { urn })
             case "scaleway:index/iamGroupMembership:IamGroupMembership":
                 return new IamGroupMembership(name, <any>undefined, { urn })
-            case "scaleway:index/iamIp:IamIp":
-                return new IamIp(name, <any>undefined, { urn })
             case "scaleway:index/iamPolicy:IamPolicy":
                 return new IamPolicy(name, <any>undefined, { urn })
             case "scaleway:index/iamSshKey:IamSshKey":
@@ -1138,7 +1131,6 @@ pulumi.runtime.registerResourceModule("scaleway", "index/iamApiKey", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamApplication", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamGroup", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamGroupMembership", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/iamIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamPolicy", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamSshKey", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iamUser", _module)

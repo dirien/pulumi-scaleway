@@ -87,8 +87,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &IamGroup{}
 	case "scaleway:index/iamGroupMembership:IamGroupMembership":
 		r = &IamGroupMembership{}
-	case "scaleway:index/iamIp:IamIp":
-		r = &IamIp{}
 	case "scaleway:index/iamPolicy:IamPolicy":
 		r = &IamPolicy{}
 	case "scaleway:index/iamSshKey:IamSshKey":
@@ -411,11 +409,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/iamGroupMembership",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"scaleway",
-		"index/iamIp",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

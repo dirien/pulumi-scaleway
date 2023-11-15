@@ -188,8 +188,6 @@ export class IpamIp extends pulumi.CustomResource {
             resourceInputs["zone"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const aliasOpts = { aliases: [{ type: "scaleway:index/iamIp:IamIp" }] };
-        opts = pulumi.mergeOptions(opts, aliasOpts);
         super(IpamIp.__pulumiType, name, resourceInputs, opts);
     }
 }

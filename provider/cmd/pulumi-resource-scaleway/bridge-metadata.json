@@ -461,14 +461,7 @@
                 }
             },
             "scaleway_ipam_ip": {
-                "current": "scaleway:index/iamIp:IamIp",
-                "past": [
-                    {
-                        "name": "scaleway:index/iamIp:IamIp",
-                        "inCodegen": true,
-                        "majorVersion": 0
-                    }
-                ],
+                "current": "scaleway:index/ipamIp:IpamIp",
                 "fields": {
                     "resource": {
                         "maxItemsOne": false
@@ -1955,7 +1948,6 @@
             "scaleway:index/iamApplication:IamApplication": "scaleway_iam_application",
             "scaleway:index/iamGroup:IamGroup": "scaleway_iam_group",
             "scaleway:index/iamGroupMembership:IamGroupMembership": "scaleway_iam_group_membership",
-            "scaleway:index/iamIp:IamIp": "scaleway_ipam_ip_legacy",
             "scaleway:index/iamPolicy:IamPolicy": "scaleway_iam_policy",
             "scaleway:index/iamSshKey:IamSshKey": "scaleway_iam_ssh_key",
             "scaleway:index/iamUser:IamUser": "scaleway_iam_user",
@@ -2154,13 +2146,6 @@
             "scaleway:index/FunctionTriggerSqs:FunctionTriggerSqs": {
                 "namespaceId": "namespace_id",
                 "projectId": "project_id"
-            },
-            "scaleway:index/IamIpResource:IamIpResource": {
-                "macAddress": "mac_address"
-            },
-            "scaleway:index/IamIpSource:IamIpSource": {
-                "privateNetworkId": "private_network_id",
-                "subnetId": "subnet_id"
             },
             "scaleway:index/IamPolicyRule:IamPolicyRule": {
                 "organizationId": "organization_id",
@@ -3585,14 +3570,6 @@
                 "applicationId": "application_id",
                 "groupId": "group_id",
                 "userId": "user_id"
-            },
-            "scaleway:index/iamIp:IamIp": {
-                "createdAt": "created_at",
-                "isIpv6": "is_ipv6",
-                "projectId": "project_id",
-                "resources": "resource",
-                "sources": "source",
-                "updatedAt": "updated_at"
             },
             "scaleway:index/iamPolicy:IamPolicy": {
                 "applicationId": "application_id",

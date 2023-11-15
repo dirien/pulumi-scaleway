@@ -489,8 +489,6 @@ class IpamIp(pulumi.CustomResource):
             __props__.__dict__["resources"] = None
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["zone"] = None
-        alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/iamIp:IamIp")])
-        opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(IpamIp, __self__).__init__(
             'scaleway:index/ipamIp:IpamIp',
             resource_name,

@@ -392,19 +392,6 @@ export interface GetIpamIpResourceArgs {
     type: pulumi.Input<string>;
 }
 
-export interface IamIpResource {
-    id?: pulumi.Input<string>;
-    macAddress?: pulumi.Input<string>;
-    name?: pulumi.Input<string>;
-    type?: pulumi.Input<string>;
-}
-
-export interface IamIpSource {
-    privateNetworkId?: pulumi.Input<string>;
-    subnetId?: pulumi.Input<string>;
-    zonal?: pulumi.Input<string>;
-}
-
 export interface IamPolicyRule {
     /**
      * ID of organization scoped to the rule.

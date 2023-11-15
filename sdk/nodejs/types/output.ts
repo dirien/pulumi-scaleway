@@ -1732,19 +1732,6 @@ export interface GetWebhostingOption {
     name: string;
 }
 
-export interface IamIpResource {
-    id: string;
-    macAddress: string;
-    name: string;
-    type: string;
-}
-
-export interface IamIpSource {
-    privateNetworkId: string;
-    subnetId: string;
-    zonal: string;
-}
-
 export interface IamPolicyRule {
     /**
      * ID of organization scoped to the rule.
