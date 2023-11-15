@@ -30,6 +30,7 @@ namespace ediri.Scaleway.Outputs
         /// The metrics URL
         /// </summary>
         public readonly string MetricsUrl;
+        public readonly string TracesUrl;
 
         [OutputConstructor]
         private GetCockpitEndpointResult(
@@ -39,12 +40,15 @@ namespace ediri.Scaleway.Outputs
 
             string logsUrl,
 
-            string metricsUrl)
+            string metricsUrl,
+
+            string tracesUrl)
         {
             AlertmanagerUrl = alertmanagerUrl;
             GrafanaUrl = grafanaUrl;
             LogsUrl = logsUrl;
             MetricsUrl = metricsUrl;
+            TracesUrl = tracesUrl;
         }
     }
 }

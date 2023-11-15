@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['LbIpArgs', 'LbIp']
@@ -23,29 +23,12 @@ class LbIpArgs:
         :param pulumi.Input[str] reverse: The reverse domain associated with this IP.
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
-        LbIpArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            project_id=project_id,
-            reverse=reverse,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             project_id: Optional[pulumi.Input[str]] = None,
-             reverse: Optional[pulumi.Input[str]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if reverse is not None:
-            _setter("reverse", reverse)
+            pulumi.set(__self__, "reverse", reverse)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter(name="projectId")
@@ -104,51 +87,20 @@ class _LbIpState:
         :param pulumi.Input[str] reverse: The reverse domain associated with this IP.
         :param pulumi.Input[str] zone: `zone`) The zone in which the IP should be reserved.
         """
-        _LbIpState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            ip_address=ip_address,
-            lb_id=lb_id,
-            organization_id=organization_id,
-            project_id=project_id,
-            region=region,
-            reverse=reverse,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             ip_address: Optional[pulumi.Input[str]] = None,
-             lb_id: Optional[pulumi.Input[str]] = None,
-             organization_id: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             reverse: Optional[pulumi.Input[str]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'ipAddress' in kwargs:
-            ip_address = kwargs['ipAddress']
-        if 'lbId' in kwargs:
-            lb_id = kwargs['lbId']
-        if 'organizationId' in kwargs:
-            organization_id = kwargs['organizationId']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
         if ip_address is not None:
-            _setter("ip_address", ip_address)
+            pulumi.set(__self__, "ip_address", ip_address)
         if lb_id is not None:
-            _setter("lb_id", lb_id)
+            pulumi.set(__self__, "lb_id", lb_id)
         if organization_id is not None:
-            _setter("organization_id", organization_id)
+            pulumi.set(__self__, "organization_id", organization_id)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if reverse is not None:
-            _setter("reverse", reverse)
+            pulumi.set(__self__, "reverse", reverse)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter(name="ipAddress")
@@ -312,10 +264,6 @@ class LbIp(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            LbIpArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

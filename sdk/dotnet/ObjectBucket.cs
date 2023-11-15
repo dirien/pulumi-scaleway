@@ -161,6 +161,12 @@ namespace ediri.Scaleway
         public Output<string?> Acl { get; private set; } = null!;
 
         /// <summary>
+        /// API URL of the bucket
+        /// </summary>
+        [Output("apiEndpoint")]
+        public Output<string> ApiEndpoint { get; private set; } = null!;
+
+        /// <summary>
         /// A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
         /// </summary>
         [Output("corsRules")]
@@ -364,6 +370,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("acl")]
         public Input<string>? Acl { get; set; }
+
+        /// <summary>
+        /// API URL of the bucket
+        /// </summary>
+        [Input("apiEndpoint")]
+        public Input<string>? ApiEndpoint { get; set; }
 
         [Input("corsRules")]
         private InputList<Inputs.ObjectBucketCorsRuleGetArgs>? _corsRules;

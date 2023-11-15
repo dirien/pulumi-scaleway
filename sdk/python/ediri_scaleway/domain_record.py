@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -43,70 +43,27 @@ class DomainRecordArgs:
         :param pulumi.Input[Sequence[pulumi.Input['DomainRecordViewArgs']]] views: The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
         :param pulumi.Input[Sequence[pulumi.Input['DomainRecordWeightedArgs']]] weighteds: You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
         """
-        DomainRecordArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            data=data,
-            dns_zone=dns_zone,
-            type=type,
-            geo_ip=geo_ip,
-            http_service=http_service,
-            keep_empty_zone=keep_empty_zone,
-            name=name,
-            priority=priority,
-            project_id=project_id,
-            ttl=ttl,
-            views=views,
-            weighteds=weighteds,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             data: pulumi.Input[str],
-             dns_zone: pulumi.Input[str],
-             type: pulumi.Input[str],
-             geo_ip: Optional[pulumi.Input['DomainRecordGeoIpArgs']] = None,
-             http_service: Optional[pulumi.Input['DomainRecordHttpServiceArgs']] = None,
-             keep_empty_zone: Optional[pulumi.Input[bool]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             priority: Optional[pulumi.Input[int]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             ttl: Optional[pulumi.Input[int]] = None,
-             views: Optional[pulumi.Input[Sequence[pulumi.Input['DomainRecordViewArgs']]]] = None,
-             weighteds: Optional[pulumi.Input[Sequence[pulumi.Input['DomainRecordWeightedArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'dnsZone' in kwargs:
-            dns_zone = kwargs['dnsZone']
-        if 'geoIp' in kwargs:
-            geo_ip = kwargs['geoIp']
-        if 'httpService' in kwargs:
-            http_service = kwargs['httpService']
-        if 'keepEmptyZone' in kwargs:
-            keep_empty_zone = kwargs['keepEmptyZone']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
-        _setter("data", data)
-        _setter("dns_zone", dns_zone)
-        _setter("type", type)
+        pulumi.set(__self__, "data", data)
+        pulumi.set(__self__, "dns_zone", dns_zone)
+        pulumi.set(__self__, "type", type)
         if geo_ip is not None:
-            _setter("geo_ip", geo_ip)
+            pulumi.set(__self__, "geo_ip", geo_ip)
         if http_service is not None:
-            _setter("http_service", http_service)
+            pulumi.set(__self__, "http_service", http_service)
         if keep_empty_zone is not None:
-            _setter("keep_empty_zone", keep_empty_zone)
+            pulumi.set(__self__, "keep_empty_zone", keep_empty_zone)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if priority is not None:
-            _setter("priority", priority)
+            pulumi.set(__self__, "priority", priority)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if ttl is not None:
-            _setter("ttl", ttl)
+            pulumi.set(__self__, "ttl", ttl)
         if views is not None:
-            _setter("views", views)
+            pulumi.set(__self__, "views", views)
         if weighteds is not None:
-            _setter("weighteds", weighteds)
+            pulumi.set(__self__, "weighteds", weighteds)
 
     @property
     @pulumi.getter
@@ -285,79 +242,32 @@ class _DomainRecordState:
         :param pulumi.Input[Sequence[pulumi.Input['DomainRecordViewArgs']]] views: The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
         :param pulumi.Input[Sequence[pulumi.Input['DomainRecordWeightedArgs']]] weighteds: You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
         """
-        _DomainRecordState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            data=data,
-            dns_zone=dns_zone,
-            geo_ip=geo_ip,
-            http_service=http_service,
-            keep_empty_zone=keep_empty_zone,
-            name=name,
-            priority=priority,
-            project_id=project_id,
-            root_zone=root_zone,
-            ttl=ttl,
-            type=type,
-            views=views,
-            weighteds=weighteds,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             data: Optional[pulumi.Input[str]] = None,
-             dns_zone: Optional[pulumi.Input[str]] = None,
-             geo_ip: Optional[pulumi.Input['DomainRecordGeoIpArgs']] = None,
-             http_service: Optional[pulumi.Input['DomainRecordHttpServiceArgs']] = None,
-             keep_empty_zone: Optional[pulumi.Input[bool]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             priority: Optional[pulumi.Input[int]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             root_zone: Optional[pulumi.Input[bool]] = None,
-             ttl: Optional[pulumi.Input[int]] = None,
-             type: Optional[pulumi.Input[str]] = None,
-             views: Optional[pulumi.Input[Sequence[pulumi.Input['DomainRecordViewArgs']]]] = None,
-             weighteds: Optional[pulumi.Input[Sequence[pulumi.Input['DomainRecordWeightedArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'dnsZone' in kwargs:
-            dns_zone = kwargs['dnsZone']
-        if 'geoIp' in kwargs:
-            geo_ip = kwargs['geoIp']
-        if 'httpService' in kwargs:
-            http_service = kwargs['httpService']
-        if 'keepEmptyZone' in kwargs:
-            keep_empty_zone = kwargs['keepEmptyZone']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'rootZone' in kwargs:
-            root_zone = kwargs['rootZone']
-
         if data is not None:
-            _setter("data", data)
+            pulumi.set(__self__, "data", data)
         if dns_zone is not None:
-            _setter("dns_zone", dns_zone)
+            pulumi.set(__self__, "dns_zone", dns_zone)
         if geo_ip is not None:
-            _setter("geo_ip", geo_ip)
+            pulumi.set(__self__, "geo_ip", geo_ip)
         if http_service is not None:
-            _setter("http_service", http_service)
+            pulumi.set(__self__, "http_service", http_service)
         if keep_empty_zone is not None:
-            _setter("keep_empty_zone", keep_empty_zone)
+            pulumi.set(__self__, "keep_empty_zone", keep_empty_zone)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if priority is not None:
-            _setter("priority", priority)
+            pulumi.set(__self__, "priority", priority)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if root_zone is not None:
-            _setter("root_zone", root_zone)
+            pulumi.set(__self__, "root_zone", root_zone)
         if ttl is not None:
-            _setter("ttl", ttl)
+            pulumi.set(__self__, "ttl", ttl)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
         if views is not None:
-            _setter("views", views)
+            pulumi.set(__self__, "views", views)
         if weighteds is not None:
-            _setter("weighteds", weighteds)
+            pulumi.set(__self__, "weighteds", weighteds)
 
     @property
     @pulumi.getter
@@ -887,10 +797,6 @@ class DomainRecord(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            DomainRecordArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -923,17 +829,7 @@ class DomainRecord(pulumi.CustomResource):
             if dns_zone is None and not opts.urn:
                 raise TypeError("Missing required property 'dns_zone'")
             __props__.__dict__["dns_zone"] = dns_zone
-            if geo_ip is not None and not isinstance(geo_ip, DomainRecordGeoIpArgs):
-                geo_ip = geo_ip or {}
-                def _setter(key, value):
-                    geo_ip[key] = value
-                DomainRecordGeoIpArgs._configure(_setter, **geo_ip)
             __props__.__dict__["geo_ip"] = geo_ip
-            if http_service is not None and not isinstance(http_service, DomainRecordHttpServiceArgs):
-                http_service = http_service or {}
-                def _setter(key, value):
-                    http_service[key] = value
-                DomainRecordHttpServiceArgs._configure(_setter, **http_service)
             __props__.__dict__["http_service"] = http_service
             __props__.__dict__["keep_empty_zone"] = keep_empty_zone
             __props__.__dict__["name"] = name

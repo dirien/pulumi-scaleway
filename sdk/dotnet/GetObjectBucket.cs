@@ -189,6 +189,7 @@ namespace ediri.Scaleway
     public sealed class GetObjectBucketResult
     {
         public readonly string Acl;
+        public readonly string ApiEndpoint;
         public readonly ImmutableArray<Outputs.GetObjectBucketCorsRuleResult> CorsRules;
         /// <summary>
         /// The endpoint URL of the bucket
@@ -210,6 +211,8 @@ namespace ediri.Scaleway
         [OutputConstructor]
         private GetObjectBucketResult(
             string acl,
+
+            string apiEndpoint,
 
             ImmutableArray<Outputs.GetObjectBucketCorsRuleResult> corsRules,
 
@@ -234,6 +237,7 @@ namespace ediri.Scaleway
             ImmutableArray<Outputs.GetObjectBucketVersioningResult> versionings)
         {
             Acl = acl;
+            ApiEndpoint = apiEndpoint;
             CorsRules = corsRules;
             Endpoint = endpoint;
             ForceDestroy = forceDestroy;

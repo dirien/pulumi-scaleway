@@ -9,7 +9,6 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about the RDB instance network Access Control List.
@@ -105,12 +104,6 @@ func (o LookupRdbAclResultOutput) ToLookupRdbAclResultOutput() LookupRdbAclResul
 
 func (o LookupRdbAclResultOutput) ToLookupRdbAclResultOutputWithContext(ctx context.Context) LookupRdbAclResultOutput {
 	return o
-}
-
-func (o LookupRdbAclResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupRdbAclResult] {
-	return pulumix.Output[LookupRdbAclResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of ACLs rules (structure is described below)

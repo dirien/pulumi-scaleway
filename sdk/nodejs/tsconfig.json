@@ -126,6 +126,7 @@
         "iamApplication.ts",
         "iamGroup.ts",
         "iamGroupMembership.ts",
+        "iamIp.ts",
         "iamPolicy.ts",
         "iamSshKey.ts",
         "iamUser.ts",

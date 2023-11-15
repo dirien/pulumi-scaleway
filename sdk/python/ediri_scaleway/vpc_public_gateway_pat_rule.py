@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['VpcPublicGatewayPatRuleArgs', 'VpcPublicGatewayPatRule']
@@ -29,43 +29,14 @@ class VpcPublicGatewayPatRuleArgs:
         :param pulumi.Input[str] protocol: The Protocol the rule should apply to. Possible values are both, tcp and udp.
         :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway DHCP config should be created.
         """
-        VpcPublicGatewayPatRuleArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            gateway_id=gateway_id,
-            private_ip=private_ip,
-            private_port=private_port,
-            public_port=public_port,
-            protocol=protocol,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             gateway_id: pulumi.Input[str],
-             private_ip: pulumi.Input[str],
-             private_port: pulumi.Input[int],
-             public_port: pulumi.Input[int],
-             protocol: Optional[pulumi.Input[str]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'gatewayId' in kwargs:
-            gateway_id = kwargs['gatewayId']
-        if 'privateIp' in kwargs:
-            private_ip = kwargs['privateIp']
-        if 'privatePort' in kwargs:
-            private_port = kwargs['privatePort']
-        if 'publicPort' in kwargs:
-            public_port = kwargs['publicPort']
-
-        _setter("gateway_id", gateway_id)
-        _setter("private_ip", private_ip)
-        _setter("private_port", private_port)
-        _setter("public_port", public_port)
+        pulumi.set(__self__, "gateway_id", gateway_id)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "private_port", private_port)
+        pulumi.set(__self__, "public_port", public_port)
         if protocol is not None:
-            _setter("protocol", protocol)
+            pulumi.set(__self__, "protocol", protocol)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter(name="gatewayId")
@@ -164,65 +135,24 @@ class _VpcPublicGatewayPatRuleState:
         :param pulumi.Input[str] updated_at: The date and time of the last update of the pat rule config.
         :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway DHCP config should be created.
         """
-        _VpcPublicGatewayPatRuleState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            created_at=created_at,
-            gateway_id=gateway_id,
-            organization_id=organization_id,
-            private_ip=private_ip,
-            private_port=private_port,
-            protocol=protocol,
-            public_port=public_port,
-            updated_at=updated_at,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             created_at: Optional[pulumi.Input[str]] = None,
-             gateway_id: Optional[pulumi.Input[str]] = None,
-             organization_id: Optional[pulumi.Input[str]] = None,
-             private_ip: Optional[pulumi.Input[str]] = None,
-             private_port: Optional[pulumi.Input[int]] = None,
-             protocol: Optional[pulumi.Input[str]] = None,
-             public_port: Optional[pulumi.Input[int]] = None,
-             updated_at: Optional[pulumi.Input[str]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if 'gatewayId' in kwargs:
-            gateway_id = kwargs['gatewayId']
-        if 'organizationId' in kwargs:
-            organization_id = kwargs['organizationId']
-        if 'privateIp' in kwargs:
-            private_ip = kwargs['privateIp']
-        if 'privatePort' in kwargs:
-            private_port = kwargs['privatePort']
-        if 'publicPort' in kwargs:
-            public_port = kwargs['publicPort']
-        if 'updatedAt' in kwargs:
-            updated_at = kwargs['updatedAt']
-
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if gateway_id is not None:
-            _setter("gateway_id", gateway_id)
+            pulumi.set(__self__, "gateway_id", gateway_id)
         if organization_id is not None:
-            _setter("organization_id", organization_id)
+            pulumi.set(__self__, "organization_id", organization_id)
         if private_ip is not None:
-            _setter("private_ip", private_ip)
+            pulumi.set(__self__, "private_ip", private_ip)
         if private_port is not None:
-            _setter("private_port", private_port)
+            pulumi.set(__self__, "private_port", private_port)
         if protocol is not None:
-            _setter("protocol", protocol)
+            pulumi.set(__self__, "protocol", protocol)
         if public_port is not None:
-            _setter("public_port", public_port)
+            pulumi.set(__self__, "public_port", public_port)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -446,10 +376,6 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            VpcPublicGatewayPatRuleArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

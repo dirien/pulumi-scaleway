@@ -9,7 +9,6 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about multiple Load Balancer IPs.
@@ -115,12 +114,6 @@ func (o GetLbIpsResultOutput) ToGetLbIpsResultOutput() GetLbIpsResultOutput {
 
 func (o GetLbIpsResultOutput) ToGetLbIpsResultOutputWithContext(ctx context.Context) GetLbIpsResultOutput {
 	return o
-}
-
-func (o GetLbIpsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetLbIpsResult] {
-	return pulumix.Output[GetLbIpsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

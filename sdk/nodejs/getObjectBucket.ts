@@ -70,6 +70,7 @@ export interface GetObjectBucketArgs {
  */
 export interface GetObjectBucketResult {
     readonly acl: string;
+    readonly apiEndpoint: string;
     readonly corsRules: outputs.GetObjectBucketCorsRule[];
     /**
      * The endpoint URL of the bucket

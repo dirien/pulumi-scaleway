@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -29,34 +29,13 @@ class LbCertificateArgs:
         :param pulumi.Input['LbCertificateLetsencryptArgs'] letsencrypt: Configuration block for Let's Encrypt configuration. Only one of `letsencrypt` and `custom_certificate` should be specified.
         :param pulumi.Input[str] name: The name of the certificate backend.
         """
-        LbCertificateArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            lb_id=lb_id,
-            custom_certificate=custom_certificate,
-            letsencrypt=letsencrypt,
-            name=name,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             lb_id: pulumi.Input[str],
-             custom_certificate: Optional[pulumi.Input['LbCertificateCustomCertificateArgs']] = None,
-             letsencrypt: Optional[pulumi.Input['LbCertificateLetsencryptArgs']] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'lbId' in kwargs:
-            lb_id = kwargs['lbId']
-        if 'customCertificate' in kwargs:
-            custom_certificate = kwargs['customCertificate']
-
-        _setter("lb_id", lb_id)
+        pulumi.set(__self__, "lb_id", lb_id)
         if custom_certificate is not None:
-            _setter("custom_certificate", custom_certificate)
+            pulumi.set(__self__, "custom_certificate", custom_certificate)
         if letsencrypt is not None:
-            _setter("letsencrypt", letsencrypt)
+            pulumi.set(__self__, "letsencrypt", letsencrypt)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter(name="lbId")
@@ -139,67 +118,26 @@ class _LbCertificateState:
                
                > **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
         """
-        _LbCertificateState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            common_name=common_name,
-            custom_certificate=custom_certificate,
-            fingerprint=fingerprint,
-            lb_id=lb_id,
-            letsencrypt=letsencrypt,
-            name=name,
-            not_valid_after=not_valid_after,
-            not_valid_before=not_valid_before,
-            status=status,
-            subject_alternative_names=subject_alternative_names,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             common_name: Optional[pulumi.Input[str]] = None,
-             custom_certificate: Optional[pulumi.Input['LbCertificateCustomCertificateArgs']] = None,
-             fingerprint: Optional[pulumi.Input[str]] = None,
-             lb_id: Optional[pulumi.Input[str]] = None,
-             letsencrypt: Optional[pulumi.Input['LbCertificateLetsencryptArgs']] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             not_valid_after: Optional[pulumi.Input[str]] = None,
-             not_valid_before: Optional[pulumi.Input[str]] = None,
-             status: Optional[pulumi.Input[str]] = None,
-             subject_alternative_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'commonName' in kwargs:
-            common_name = kwargs['commonName']
-        if 'customCertificate' in kwargs:
-            custom_certificate = kwargs['customCertificate']
-        if 'lbId' in kwargs:
-            lb_id = kwargs['lbId']
-        if 'notValidAfter' in kwargs:
-            not_valid_after = kwargs['notValidAfter']
-        if 'notValidBefore' in kwargs:
-            not_valid_before = kwargs['notValidBefore']
-        if 'subjectAlternativeNames' in kwargs:
-            subject_alternative_names = kwargs['subjectAlternativeNames']
-
         if common_name is not None:
-            _setter("common_name", common_name)
+            pulumi.set(__self__, "common_name", common_name)
         if custom_certificate is not None:
-            _setter("custom_certificate", custom_certificate)
+            pulumi.set(__self__, "custom_certificate", custom_certificate)
         if fingerprint is not None:
-            _setter("fingerprint", fingerprint)
+            pulumi.set(__self__, "fingerprint", fingerprint)
         if lb_id is not None:
-            _setter("lb_id", lb_id)
+            pulumi.set(__self__, "lb_id", lb_id)
         if letsencrypt is not None:
-            _setter("letsencrypt", letsencrypt)
+            pulumi.set(__self__, "letsencrypt", letsencrypt)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if not_valid_after is not None:
-            _setter("not_valid_after", not_valid_after)
+            pulumi.set(__self__, "not_valid_after", not_valid_after)
         if not_valid_before is not None:
-            _setter("not_valid_before", not_valid_before)
+            pulumi.set(__self__, "not_valid_before", not_valid_before)
         if status is not None:
-            _setter("status", status)
+            pulumi.set(__self__, "status", status)
         if subject_alternative_names is not None:
-            _setter("subject_alternative_names", subject_alternative_names)
+            pulumi.set(__self__, "subject_alternative_names", subject_alternative_names)
 
     @property
     @pulumi.getter(name="commonName")
@@ -365,10 +303,6 @@ class LbCertificate(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            LbCertificateArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -387,20 +321,10 @@ class LbCertificate(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = LbCertificateArgs.__new__(LbCertificateArgs)
 
-            if custom_certificate is not None and not isinstance(custom_certificate, LbCertificateCustomCertificateArgs):
-                custom_certificate = custom_certificate or {}
-                def _setter(key, value):
-                    custom_certificate[key] = value
-                LbCertificateCustomCertificateArgs._configure(_setter, **custom_certificate)
             __props__.__dict__["custom_certificate"] = custom_certificate
             if lb_id is None and not opts.urn:
                 raise TypeError("Missing required property 'lb_id'")
             __props__.__dict__["lb_id"] = lb_id
-            if letsencrypt is not None and not isinstance(letsencrypt, LbCertificateLetsencryptArgs):
-                letsencrypt = letsencrypt or {}
-                def _setter(key, value):
-                    letsencrypt[key] = value
-                LbCertificateLetsencryptArgs._configure(_setter, **letsencrypt)
             __props__.__dict__["letsencrypt"] = letsencrypt
             __props__.__dict__["name"] = name
             __props__.__dict__["common_name"] = None

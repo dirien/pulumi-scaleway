@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -37,56 +37,21 @@ class IamPolicyArgs:
         :param pulumi.Input[str] organization_id: ID of organization scoped to the rule.
         :param pulumi.Input[str] user_id: ID of the User the policy will be linked to
         """
-        IamPolicyArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            rules=rules,
-            application_id=application_id,
-            description=description,
-            group_id=group_id,
-            name=name,
-            no_principal=no_principal,
-            organization_id=organization_id,
-            user_id=user_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             rules: pulumi.Input[Sequence[pulumi.Input['IamPolicyRuleArgs']]],
-             application_id: Optional[pulumi.Input[str]] = None,
-             description: Optional[pulumi.Input[str]] = None,
-             group_id: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             no_principal: Optional[pulumi.Input[bool]] = None,
-             organization_id: Optional[pulumi.Input[str]] = None,
-             user_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'applicationId' in kwargs:
-            application_id = kwargs['applicationId']
-        if 'groupId' in kwargs:
-            group_id = kwargs['groupId']
-        if 'noPrincipal' in kwargs:
-            no_principal = kwargs['noPrincipal']
-        if 'organizationId' in kwargs:
-            organization_id = kwargs['organizationId']
-        if 'userId' in kwargs:
-            user_id = kwargs['userId']
-
-        _setter("rules", rules)
+        pulumi.set(__self__, "rules", rules)
         if application_id is not None:
-            _setter("application_id", application_id)
+            pulumi.set(__self__, "application_id", application_id)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if group_id is not None:
-            _setter("group_id", group_id)
+            pulumi.set(__self__, "group_id", group_id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if no_principal is not None:
-            _setter("no_principal", no_principal)
+            pulumi.set(__self__, "no_principal", no_principal)
         if organization_id is not None:
-            _setter("organization_id", organization_id)
+            pulumi.set(__self__, "organization_id", organization_id)
         if user_id is not None:
-            _setter("user_id", user_id)
+            pulumi.set(__self__, "user_id", user_id)
 
     @property
     @pulumi.getter
@@ -217,73 +182,28 @@ class _IamPolicyState:
         :param pulumi.Input[str] updated_at: The date and time of the last update of the policy.
         :param pulumi.Input[str] user_id: ID of the User the policy will be linked to
         """
-        _IamPolicyState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            application_id=application_id,
-            created_at=created_at,
-            description=description,
-            editable=editable,
-            group_id=group_id,
-            name=name,
-            no_principal=no_principal,
-            organization_id=organization_id,
-            rules=rules,
-            updated_at=updated_at,
-            user_id=user_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             application_id: Optional[pulumi.Input[str]] = None,
-             created_at: Optional[pulumi.Input[str]] = None,
-             description: Optional[pulumi.Input[str]] = None,
-             editable: Optional[pulumi.Input[bool]] = None,
-             group_id: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             no_principal: Optional[pulumi.Input[bool]] = None,
-             organization_id: Optional[pulumi.Input[str]] = None,
-             rules: Optional[pulumi.Input[Sequence[pulumi.Input['IamPolicyRuleArgs']]]] = None,
-             updated_at: Optional[pulumi.Input[str]] = None,
-             user_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'applicationId' in kwargs:
-            application_id = kwargs['applicationId']
-        if 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if 'groupId' in kwargs:
-            group_id = kwargs['groupId']
-        if 'noPrincipal' in kwargs:
-            no_principal = kwargs['noPrincipal']
-        if 'organizationId' in kwargs:
-            organization_id = kwargs['organizationId']
-        if 'updatedAt' in kwargs:
-            updated_at = kwargs['updatedAt']
-        if 'userId' in kwargs:
-            user_id = kwargs['userId']
-
         if application_id is not None:
-            _setter("application_id", application_id)
+            pulumi.set(__self__, "application_id", application_id)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if editable is not None:
-            _setter("editable", editable)
+            pulumi.set(__self__, "editable", editable)
         if group_id is not None:
-            _setter("group_id", group_id)
+            pulumi.set(__self__, "group_id", group_id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if no_principal is not None:
-            _setter("no_principal", no_principal)
+            pulumi.set(__self__, "no_principal", no_principal)
         if organization_id is not None:
-            _setter("organization_id", organization_id)
+            pulumi.set(__self__, "organization_id", organization_id)
         if rules is not None:
-            _setter("rules", rules)
+            pulumi.set(__self__, "rules", rules)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
         if user_id is not None:
-            _setter("user_id", user_id)
+            pulumi.set(__self__, "user_id", user_id)
 
     @property
     @pulumi.getter(name="applicationId")
@@ -523,10 +443,6 @@ class IamPolicy(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            IamPolicyArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

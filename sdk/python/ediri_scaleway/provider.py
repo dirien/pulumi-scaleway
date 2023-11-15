@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ProviderArgs', 'Provider']
@@ -33,69 +33,34 @@ class ProviderArgs:
         :param pulumi.Input[str] secret_key: The Scaleway secret Key.
         :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
-        ProviderArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            access_key=access_key,
-            api_url=api_url,
-            organization_id=organization_id,
-            profile=profile,
-            project_id=project_id,
-            region=region,
-            secret_key=secret_key,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             access_key: Optional[pulumi.Input[str]] = None,
-             api_url: Optional[pulumi.Input[str]] = None,
-             organization_id: Optional[pulumi.Input[str]] = None,
-             profile: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             secret_key: Optional[pulumi.Input[str]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'accessKey' in kwargs:
-            access_key = kwargs['accessKey']
-        if 'apiUrl' in kwargs:
-            api_url = kwargs['apiUrl']
-        if 'organizationId' in kwargs:
-            organization_id = kwargs['organizationId']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'secretKey' in kwargs:
-            secret_key = kwargs['secretKey']
-
         if access_key is None:
             access_key = _utilities.get_env('SCW_ACCESS_KEY')
         if access_key is not None:
-            _setter("access_key", access_key)
+            pulumi.set(__self__, "access_key", access_key)
         if api_url is not None:
-            _setter("api_url", api_url)
+            pulumi.set(__self__, "api_url", api_url)
         if organization_id is None:
             organization_id = _utilities.get_env('SCW_DEFAULT_ORGANIZATION_ID')
         if organization_id is not None:
-            _setter("organization_id", organization_id)
+            pulumi.set(__self__, "organization_id", organization_id)
         if profile is not None:
-            _setter("profile", profile)
+            pulumi.set(__self__, "profile", profile)
         if project_id is None:
             project_id = _utilities.get_env('SCW_DEFAULT_PROJECT_ID')
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if region is None:
             region = _utilities.get_env('SCW_DEFAULT_REGION')
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if secret_key is None:
             secret_key = _utilities.get_env('SCW_SECRET_KEY')
         if secret_key is not None:
-            _setter("secret_key", secret_key)
+            pulumi.set(__self__, "secret_key", secret_key)
         if zone is None:
             zone = _utilities.get_env('SCW_DEFAULT_ZONE')
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter(name="accessKey")
@@ -247,10 +212,6 @@ class Provider(pulumi.ProviderResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ProviderArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

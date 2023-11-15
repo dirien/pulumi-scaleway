@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Create and manage Scaleway DocumentDB database privilege.
@@ -190,12 +189,6 @@ func (i *DocumentDBPrivilege) ToDocumentDBPrivilegeOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBPrivilegeOutput)
 }
 
-func (i *DocumentDBPrivilege) ToOutput(ctx context.Context) pulumix.Output[*DocumentDBPrivilege] {
-	return pulumix.Output[*DocumentDBPrivilege]{
-		OutputState: i.ToDocumentDBPrivilegeOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DocumentDBPrivilegeArrayInput is an input type that accepts DocumentDBPrivilegeArray and DocumentDBPrivilegeArrayOutput values.
 // You can construct a concrete instance of `DocumentDBPrivilegeArrayInput` via:
 //
@@ -219,12 +212,6 @@ func (i DocumentDBPrivilegeArray) ToDocumentDBPrivilegeArrayOutput() DocumentDBP
 
 func (i DocumentDBPrivilegeArray) ToDocumentDBPrivilegeArrayOutputWithContext(ctx context.Context) DocumentDBPrivilegeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBPrivilegeArrayOutput)
-}
-
-func (i DocumentDBPrivilegeArray) ToOutput(ctx context.Context) pulumix.Output[[]*DocumentDBPrivilege] {
-	return pulumix.Output[[]*DocumentDBPrivilege]{
-		OutputState: i.ToDocumentDBPrivilegeArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DocumentDBPrivilegeMapInput is an input type that accepts DocumentDBPrivilegeMap and DocumentDBPrivilegeMapOutput values.
@@ -252,12 +239,6 @@ func (i DocumentDBPrivilegeMap) ToDocumentDBPrivilegeMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBPrivilegeMapOutput)
 }
 
-func (i DocumentDBPrivilegeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DocumentDBPrivilege] {
-	return pulumix.Output[map[string]*DocumentDBPrivilege]{
-		OutputState: i.ToDocumentDBPrivilegeMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DocumentDBPrivilegeOutput struct{ *pulumi.OutputState }
 
 func (DocumentDBPrivilegeOutput) ElementType() reflect.Type {
@@ -270,12 +251,6 @@ func (o DocumentDBPrivilegeOutput) ToDocumentDBPrivilegeOutput() DocumentDBPrivi
 
 func (o DocumentDBPrivilegeOutput) ToDocumentDBPrivilegeOutputWithContext(ctx context.Context) DocumentDBPrivilegeOutput {
 	return o
-}
-
-func (o DocumentDBPrivilegeOutput) ToOutput(ctx context.Context) pulumix.Output[*DocumentDBPrivilege] {
-	return pulumix.Output[*DocumentDBPrivilege]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Name of the database (e.g. `my-db-name`).
@@ -317,12 +292,6 @@ func (o DocumentDBPrivilegeArrayOutput) ToDocumentDBPrivilegeArrayOutputWithCont
 	return o
 }
 
-func (o DocumentDBPrivilegeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DocumentDBPrivilege] {
-	return pulumix.Output[[]*DocumentDBPrivilege]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DocumentDBPrivilegeArrayOutput) Index(i pulumi.IntInput) DocumentDBPrivilegeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DocumentDBPrivilege {
 		return vs[0].([]*DocumentDBPrivilege)[vs[1].(int)]
@@ -341,12 +310,6 @@ func (o DocumentDBPrivilegeMapOutput) ToDocumentDBPrivilegeMapOutput() DocumentD
 
 func (o DocumentDBPrivilegeMapOutput) ToDocumentDBPrivilegeMapOutputWithContext(ctx context.Context) DocumentDBPrivilegeMapOutput {
 	return o
-}
-
-func (o DocumentDBPrivilegeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DocumentDBPrivilege] {
-	return pulumix.Output[map[string]*DocumentDBPrivilege]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DocumentDBPrivilegeMapOutput) MapIndex(k pulumi.StringInput) DocumentDBPrivilegeOutput {

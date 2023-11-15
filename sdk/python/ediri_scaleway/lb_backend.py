@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -82,193 +82,66 @@ class LbBackendArgs:
         :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time. (e.g.: `1s`)
         :param pulumi.Input[str] timeout_tunnel: Maximum tunnel inactivity time. (e.g.: `1s`)
         """
-        LbBackendArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            forward_port=forward_port,
-            forward_protocol=forward_protocol,
-            lb_id=lb_id,
-            failover_host=failover_host,
-            forward_port_algorithm=forward_port_algorithm,
-            health_check_delay=health_check_delay,
-            health_check_http=health_check_http,
-            health_check_https=health_check_https,
-            health_check_max_retries=health_check_max_retries,
-            health_check_port=health_check_port,
-            health_check_send_proxy=health_check_send_proxy,
-            health_check_tcp=health_check_tcp,
-            health_check_timeout=health_check_timeout,
-            health_check_transient_delay=health_check_transient_delay,
-            ignore_ssl_server_verify=ignore_ssl_server_verify,
-            max_connections=max_connections,
-            max_retries=max_retries,
-            name=name,
-            on_marked_down_action=on_marked_down_action,
-            proxy_protocol=proxy_protocol,
-            redispatch_attempt_count=redispatch_attempt_count,
-            send_proxy_v2=send_proxy_v2,
-            server_ips=server_ips,
-            ssl_bridging=ssl_bridging,
-            sticky_sessions=sticky_sessions,
-            sticky_sessions_cookie_name=sticky_sessions_cookie_name,
-            timeout_connect=timeout_connect,
-            timeout_queue=timeout_queue,
-            timeout_server=timeout_server,
-            timeout_tunnel=timeout_tunnel,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             forward_port: pulumi.Input[int],
-             forward_protocol: pulumi.Input[str],
-             lb_id: pulumi.Input[str],
-             failover_host: Optional[pulumi.Input[str]] = None,
-             forward_port_algorithm: Optional[pulumi.Input[str]] = None,
-             health_check_delay: Optional[pulumi.Input[str]] = None,
-             health_check_http: Optional[pulumi.Input['LbBackendHealthCheckHttpArgs']] = None,
-             health_check_https: Optional[pulumi.Input['LbBackendHealthCheckHttpsArgs']] = None,
-             health_check_max_retries: Optional[pulumi.Input[int]] = None,
-             health_check_port: Optional[pulumi.Input[int]] = None,
-             health_check_send_proxy: Optional[pulumi.Input[bool]] = None,
-             health_check_tcp: Optional[pulumi.Input['LbBackendHealthCheckTcpArgs']] = None,
-             health_check_timeout: Optional[pulumi.Input[str]] = None,
-             health_check_transient_delay: Optional[pulumi.Input[str]] = None,
-             ignore_ssl_server_verify: Optional[pulumi.Input[bool]] = None,
-             max_connections: Optional[pulumi.Input[int]] = None,
-             max_retries: Optional[pulumi.Input[int]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             on_marked_down_action: Optional[pulumi.Input[str]] = None,
-             proxy_protocol: Optional[pulumi.Input[str]] = None,
-             redispatch_attempt_count: Optional[pulumi.Input[int]] = None,
-             send_proxy_v2: Optional[pulumi.Input[bool]] = None,
-             server_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             ssl_bridging: Optional[pulumi.Input[bool]] = None,
-             sticky_sessions: Optional[pulumi.Input[str]] = None,
-             sticky_sessions_cookie_name: Optional[pulumi.Input[str]] = None,
-             timeout_connect: Optional[pulumi.Input[str]] = None,
-             timeout_queue: Optional[pulumi.Input[str]] = None,
-             timeout_server: Optional[pulumi.Input[str]] = None,
-             timeout_tunnel: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'forwardPort' in kwargs:
-            forward_port = kwargs['forwardPort']
-        if 'forwardProtocol' in kwargs:
-            forward_protocol = kwargs['forwardProtocol']
-        if 'lbId' in kwargs:
-            lb_id = kwargs['lbId']
-        if 'failoverHost' in kwargs:
-            failover_host = kwargs['failoverHost']
-        if 'forwardPortAlgorithm' in kwargs:
-            forward_port_algorithm = kwargs['forwardPortAlgorithm']
-        if 'healthCheckDelay' in kwargs:
-            health_check_delay = kwargs['healthCheckDelay']
-        if 'healthCheckHttp' in kwargs:
-            health_check_http = kwargs['healthCheckHttp']
-        if 'healthCheckHttps' in kwargs:
-            health_check_https = kwargs['healthCheckHttps']
-        if 'healthCheckMaxRetries' in kwargs:
-            health_check_max_retries = kwargs['healthCheckMaxRetries']
-        if 'healthCheckPort' in kwargs:
-            health_check_port = kwargs['healthCheckPort']
-        if 'healthCheckSendProxy' in kwargs:
-            health_check_send_proxy = kwargs['healthCheckSendProxy']
-        if 'healthCheckTcp' in kwargs:
-            health_check_tcp = kwargs['healthCheckTcp']
-        if 'healthCheckTimeout' in kwargs:
-            health_check_timeout = kwargs['healthCheckTimeout']
-        if 'healthCheckTransientDelay' in kwargs:
-            health_check_transient_delay = kwargs['healthCheckTransientDelay']
-        if 'ignoreSslServerVerify' in kwargs:
-            ignore_ssl_server_verify = kwargs['ignoreSslServerVerify']
-        if 'maxConnections' in kwargs:
-            max_connections = kwargs['maxConnections']
-        if 'maxRetries' in kwargs:
-            max_retries = kwargs['maxRetries']
-        if 'onMarkedDownAction' in kwargs:
-            on_marked_down_action = kwargs['onMarkedDownAction']
-        if 'proxyProtocol' in kwargs:
-            proxy_protocol = kwargs['proxyProtocol']
-        if 'redispatchAttemptCount' in kwargs:
-            redispatch_attempt_count = kwargs['redispatchAttemptCount']
-        if 'sendProxyV2' in kwargs:
-            send_proxy_v2 = kwargs['sendProxyV2']
-        if 'serverIps' in kwargs:
-            server_ips = kwargs['serverIps']
-        if 'sslBridging' in kwargs:
-            ssl_bridging = kwargs['sslBridging']
-        if 'stickySessions' in kwargs:
-            sticky_sessions = kwargs['stickySessions']
-        if 'stickySessionsCookieName' in kwargs:
-            sticky_sessions_cookie_name = kwargs['stickySessionsCookieName']
-        if 'timeoutConnect' in kwargs:
-            timeout_connect = kwargs['timeoutConnect']
-        if 'timeoutQueue' in kwargs:
-            timeout_queue = kwargs['timeoutQueue']
-        if 'timeoutServer' in kwargs:
-            timeout_server = kwargs['timeoutServer']
-        if 'timeoutTunnel' in kwargs:
-            timeout_tunnel = kwargs['timeoutTunnel']
-
-        _setter("forward_port", forward_port)
-        _setter("forward_protocol", forward_protocol)
-        _setter("lb_id", lb_id)
+        pulumi.set(__self__, "forward_port", forward_port)
+        pulumi.set(__self__, "forward_protocol", forward_protocol)
+        pulumi.set(__self__, "lb_id", lb_id)
         if failover_host is not None:
-            _setter("failover_host", failover_host)
+            pulumi.set(__self__, "failover_host", failover_host)
         if forward_port_algorithm is not None:
-            _setter("forward_port_algorithm", forward_port_algorithm)
+            pulumi.set(__self__, "forward_port_algorithm", forward_port_algorithm)
         if health_check_delay is not None:
-            _setter("health_check_delay", health_check_delay)
+            pulumi.set(__self__, "health_check_delay", health_check_delay)
         if health_check_http is not None:
-            _setter("health_check_http", health_check_http)
+            pulumi.set(__self__, "health_check_http", health_check_http)
         if health_check_https is not None:
-            _setter("health_check_https", health_check_https)
+            pulumi.set(__self__, "health_check_https", health_check_https)
         if health_check_max_retries is not None:
-            _setter("health_check_max_retries", health_check_max_retries)
+            pulumi.set(__self__, "health_check_max_retries", health_check_max_retries)
         if health_check_port is not None:
-            _setter("health_check_port", health_check_port)
+            pulumi.set(__self__, "health_check_port", health_check_port)
         if health_check_send_proxy is not None:
-            _setter("health_check_send_proxy", health_check_send_proxy)
+            pulumi.set(__self__, "health_check_send_proxy", health_check_send_proxy)
         if health_check_tcp is not None:
-            _setter("health_check_tcp", health_check_tcp)
+            pulumi.set(__self__, "health_check_tcp", health_check_tcp)
         if health_check_timeout is not None:
-            _setter("health_check_timeout", health_check_timeout)
+            pulumi.set(__self__, "health_check_timeout", health_check_timeout)
         if health_check_transient_delay is not None:
-            _setter("health_check_transient_delay", health_check_transient_delay)
+            pulumi.set(__self__, "health_check_transient_delay", health_check_transient_delay)
         if ignore_ssl_server_verify is not None:
-            _setter("ignore_ssl_server_verify", ignore_ssl_server_verify)
+            pulumi.set(__self__, "ignore_ssl_server_verify", ignore_ssl_server_verify)
         if max_connections is not None:
-            _setter("max_connections", max_connections)
+            pulumi.set(__self__, "max_connections", max_connections)
         if max_retries is not None:
-            _setter("max_retries", max_retries)
+            pulumi.set(__self__, "max_retries", max_retries)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if on_marked_down_action is not None:
-            _setter("on_marked_down_action", on_marked_down_action)
+            pulumi.set(__self__, "on_marked_down_action", on_marked_down_action)
         if proxy_protocol is not None:
-            _setter("proxy_protocol", proxy_protocol)
+            pulumi.set(__self__, "proxy_protocol", proxy_protocol)
         if redispatch_attempt_count is not None:
-            _setter("redispatch_attempt_count", redispatch_attempt_count)
+            pulumi.set(__self__, "redispatch_attempt_count", redispatch_attempt_count)
         if send_proxy_v2 is not None:
             warnings.warn("""Please use proxy_protocol instead""", DeprecationWarning)
             pulumi.log.warn("""send_proxy_v2 is deprecated: Please use proxy_protocol instead""")
         if send_proxy_v2 is not None:
-            _setter("send_proxy_v2", send_proxy_v2)
+            pulumi.set(__self__, "send_proxy_v2", send_proxy_v2)
         if server_ips is not None:
-            _setter("server_ips", server_ips)
+            pulumi.set(__self__, "server_ips", server_ips)
         if ssl_bridging is not None:
-            _setter("ssl_bridging", ssl_bridging)
+            pulumi.set(__self__, "ssl_bridging", ssl_bridging)
         if sticky_sessions is not None:
-            _setter("sticky_sessions", sticky_sessions)
+            pulumi.set(__self__, "sticky_sessions", sticky_sessions)
         if sticky_sessions_cookie_name is not None:
-            _setter("sticky_sessions_cookie_name", sticky_sessions_cookie_name)
+            pulumi.set(__self__, "sticky_sessions_cookie_name", sticky_sessions_cookie_name)
         if timeout_connect is not None:
-            _setter("timeout_connect", timeout_connect)
+            pulumi.set(__self__, "timeout_connect", timeout_connect)
         if timeout_queue is not None:
-            _setter("timeout_queue", timeout_queue)
+            pulumi.set(__self__, "timeout_queue", timeout_queue)
         if timeout_server is not None:
-            _setter("timeout_server", timeout_server)
+            pulumi.set(__self__, "timeout_server", timeout_server)
         if timeout_tunnel is not None:
-            _setter("timeout_tunnel", timeout_tunnel)
+            pulumi.set(__self__, "timeout_tunnel", timeout_tunnel)
 
     @property
     @pulumi.getter(name="forwardPort")
@@ -706,196 +579,69 @@ class _LbBackendState:
         :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time. (e.g.: `1s`)
         :param pulumi.Input[str] timeout_tunnel: Maximum tunnel inactivity time. (e.g.: `1s`)
         """
-        _LbBackendState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            failover_host=failover_host,
-            forward_port=forward_port,
-            forward_port_algorithm=forward_port_algorithm,
-            forward_protocol=forward_protocol,
-            health_check_delay=health_check_delay,
-            health_check_http=health_check_http,
-            health_check_https=health_check_https,
-            health_check_max_retries=health_check_max_retries,
-            health_check_port=health_check_port,
-            health_check_send_proxy=health_check_send_proxy,
-            health_check_tcp=health_check_tcp,
-            health_check_timeout=health_check_timeout,
-            health_check_transient_delay=health_check_transient_delay,
-            ignore_ssl_server_verify=ignore_ssl_server_verify,
-            lb_id=lb_id,
-            max_connections=max_connections,
-            max_retries=max_retries,
-            name=name,
-            on_marked_down_action=on_marked_down_action,
-            proxy_protocol=proxy_protocol,
-            redispatch_attempt_count=redispatch_attempt_count,
-            send_proxy_v2=send_proxy_v2,
-            server_ips=server_ips,
-            ssl_bridging=ssl_bridging,
-            sticky_sessions=sticky_sessions,
-            sticky_sessions_cookie_name=sticky_sessions_cookie_name,
-            timeout_connect=timeout_connect,
-            timeout_queue=timeout_queue,
-            timeout_server=timeout_server,
-            timeout_tunnel=timeout_tunnel,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             failover_host: Optional[pulumi.Input[str]] = None,
-             forward_port: Optional[pulumi.Input[int]] = None,
-             forward_port_algorithm: Optional[pulumi.Input[str]] = None,
-             forward_protocol: Optional[pulumi.Input[str]] = None,
-             health_check_delay: Optional[pulumi.Input[str]] = None,
-             health_check_http: Optional[pulumi.Input['LbBackendHealthCheckHttpArgs']] = None,
-             health_check_https: Optional[pulumi.Input['LbBackendHealthCheckHttpsArgs']] = None,
-             health_check_max_retries: Optional[pulumi.Input[int]] = None,
-             health_check_port: Optional[pulumi.Input[int]] = None,
-             health_check_send_proxy: Optional[pulumi.Input[bool]] = None,
-             health_check_tcp: Optional[pulumi.Input['LbBackendHealthCheckTcpArgs']] = None,
-             health_check_timeout: Optional[pulumi.Input[str]] = None,
-             health_check_transient_delay: Optional[pulumi.Input[str]] = None,
-             ignore_ssl_server_verify: Optional[pulumi.Input[bool]] = None,
-             lb_id: Optional[pulumi.Input[str]] = None,
-             max_connections: Optional[pulumi.Input[int]] = None,
-             max_retries: Optional[pulumi.Input[int]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             on_marked_down_action: Optional[pulumi.Input[str]] = None,
-             proxy_protocol: Optional[pulumi.Input[str]] = None,
-             redispatch_attempt_count: Optional[pulumi.Input[int]] = None,
-             send_proxy_v2: Optional[pulumi.Input[bool]] = None,
-             server_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             ssl_bridging: Optional[pulumi.Input[bool]] = None,
-             sticky_sessions: Optional[pulumi.Input[str]] = None,
-             sticky_sessions_cookie_name: Optional[pulumi.Input[str]] = None,
-             timeout_connect: Optional[pulumi.Input[str]] = None,
-             timeout_queue: Optional[pulumi.Input[str]] = None,
-             timeout_server: Optional[pulumi.Input[str]] = None,
-             timeout_tunnel: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'failoverHost' in kwargs:
-            failover_host = kwargs['failoverHost']
-        if 'forwardPort' in kwargs:
-            forward_port = kwargs['forwardPort']
-        if 'forwardPortAlgorithm' in kwargs:
-            forward_port_algorithm = kwargs['forwardPortAlgorithm']
-        if 'forwardProtocol' in kwargs:
-            forward_protocol = kwargs['forwardProtocol']
-        if 'healthCheckDelay' in kwargs:
-            health_check_delay = kwargs['healthCheckDelay']
-        if 'healthCheckHttp' in kwargs:
-            health_check_http = kwargs['healthCheckHttp']
-        if 'healthCheckHttps' in kwargs:
-            health_check_https = kwargs['healthCheckHttps']
-        if 'healthCheckMaxRetries' in kwargs:
-            health_check_max_retries = kwargs['healthCheckMaxRetries']
-        if 'healthCheckPort' in kwargs:
-            health_check_port = kwargs['healthCheckPort']
-        if 'healthCheckSendProxy' in kwargs:
-            health_check_send_proxy = kwargs['healthCheckSendProxy']
-        if 'healthCheckTcp' in kwargs:
-            health_check_tcp = kwargs['healthCheckTcp']
-        if 'healthCheckTimeout' in kwargs:
-            health_check_timeout = kwargs['healthCheckTimeout']
-        if 'healthCheckTransientDelay' in kwargs:
-            health_check_transient_delay = kwargs['healthCheckTransientDelay']
-        if 'ignoreSslServerVerify' in kwargs:
-            ignore_ssl_server_verify = kwargs['ignoreSslServerVerify']
-        if 'lbId' in kwargs:
-            lb_id = kwargs['lbId']
-        if 'maxConnections' in kwargs:
-            max_connections = kwargs['maxConnections']
-        if 'maxRetries' in kwargs:
-            max_retries = kwargs['maxRetries']
-        if 'onMarkedDownAction' in kwargs:
-            on_marked_down_action = kwargs['onMarkedDownAction']
-        if 'proxyProtocol' in kwargs:
-            proxy_protocol = kwargs['proxyProtocol']
-        if 'redispatchAttemptCount' in kwargs:
-            redispatch_attempt_count = kwargs['redispatchAttemptCount']
-        if 'sendProxyV2' in kwargs:
-            send_proxy_v2 = kwargs['sendProxyV2']
-        if 'serverIps' in kwargs:
-            server_ips = kwargs['serverIps']
-        if 'sslBridging' in kwargs:
-            ssl_bridging = kwargs['sslBridging']
-        if 'stickySessions' in kwargs:
-            sticky_sessions = kwargs['stickySessions']
-        if 'stickySessionsCookieName' in kwargs:
-            sticky_sessions_cookie_name = kwargs['stickySessionsCookieName']
-        if 'timeoutConnect' in kwargs:
-            timeout_connect = kwargs['timeoutConnect']
-        if 'timeoutQueue' in kwargs:
-            timeout_queue = kwargs['timeoutQueue']
-        if 'timeoutServer' in kwargs:
-            timeout_server = kwargs['timeoutServer']
-        if 'timeoutTunnel' in kwargs:
-            timeout_tunnel = kwargs['timeoutTunnel']
-
         if failover_host is not None:
-            _setter("failover_host", failover_host)
+            pulumi.set(__self__, "failover_host", failover_host)
         if forward_port is not None:
-            _setter("forward_port", forward_port)
+            pulumi.set(__self__, "forward_port", forward_port)
         if forward_port_algorithm is not None:
-            _setter("forward_port_algorithm", forward_port_algorithm)
+            pulumi.set(__self__, "forward_port_algorithm", forward_port_algorithm)
         if forward_protocol is not None:
-            _setter("forward_protocol", forward_protocol)
+            pulumi.set(__self__, "forward_protocol", forward_protocol)
         if health_check_delay is not None:
-            _setter("health_check_delay", health_check_delay)
+            pulumi.set(__self__, "health_check_delay", health_check_delay)
         if health_check_http is not None:
-            _setter("health_check_http", health_check_http)
+            pulumi.set(__self__, "health_check_http", health_check_http)
         if health_check_https is not None:
-            _setter("health_check_https", health_check_https)
+            pulumi.set(__self__, "health_check_https", health_check_https)
         if health_check_max_retries is not None:
-            _setter("health_check_max_retries", health_check_max_retries)
+            pulumi.set(__self__, "health_check_max_retries", health_check_max_retries)
         if health_check_port is not None:
-            _setter("health_check_port", health_check_port)
+            pulumi.set(__self__, "health_check_port", health_check_port)
         if health_check_send_proxy is not None:
-            _setter("health_check_send_proxy", health_check_send_proxy)
+            pulumi.set(__self__, "health_check_send_proxy", health_check_send_proxy)
         if health_check_tcp is not None:
-            _setter("health_check_tcp", health_check_tcp)
+            pulumi.set(__self__, "health_check_tcp", health_check_tcp)
         if health_check_timeout is not None:
-            _setter("health_check_timeout", health_check_timeout)
+            pulumi.set(__self__, "health_check_timeout", health_check_timeout)
         if health_check_transient_delay is not None:
-            _setter("health_check_transient_delay", health_check_transient_delay)
+            pulumi.set(__self__, "health_check_transient_delay", health_check_transient_delay)
         if ignore_ssl_server_verify is not None:
-            _setter("ignore_ssl_server_verify", ignore_ssl_server_verify)
+            pulumi.set(__self__, "ignore_ssl_server_verify", ignore_ssl_server_verify)
         if lb_id is not None:
-            _setter("lb_id", lb_id)
+            pulumi.set(__self__, "lb_id", lb_id)
         if max_connections is not None:
-            _setter("max_connections", max_connections)
+            pulumi.set(__self__, "max_connections", max_connections)
         if max_retries is not None:
-            _setter("max_retries", max_retries)
+            pulumi.set(__self__, "max_retries", max_retries)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if on_marked_down_action is not None:
-            _setter("on_marked_down_action", on_marked_down_action)
+            pulumi.set(__self__, "on_marked_down_action", on_marked_down_action)
         if proxy_protocol is not None:
-            _setter("proxy_protocol", proxy_protocol)
+            pulumi.set(__self__, "proxy_protocol", proxy_protocol)
         if redispatch_attempt_count is not None:
-            _setter("redispatch_attempt_count", redispatch_attempt_count)
+            pulumi.set(__self__, "redispatch_attempt_count", redispatch_attempt_count)
         if send_proxy_v2 is not None:
             warnings.warn("""Please use proxy_protocol instead""", DeprecationWarning)
             pulumi.log.warn("""send_proxy_v2 is deprecated: Please use proxy_protocol instead""")
         if send_proxy_v2 is not None:
-            _setter("send_proxy_v2", send_proxy_v2)
+            pulumi.set(__self__, "send_proxy_v2", send_proxy_v2)
         if server_ips is not None:
-            _setter("server_ips", server_ips)
+            pulumi.set(__self__, "server_ips", server_ips)
         if ssl_bridging is not None:
-            _setter("ssl_bridging", ssl_bridging)
+            pulumi.set(__self__, "ssl_bridging", ssl_bridging)
         if sticky_sessions is not None:
-            _setter("sticky_sessions", sticky_sessions)
+            pulumi.set(__self__, "sticky_sessions", sticky_sessions)
         if sticky_sessions_cookie_name is not None:
-            _setter("sticky_sessions_cookie_name", sticky_sessions_cookie_name)
+            pulumi.set(__self__, "sticky_sessions_cookie_name", sticky_sessions_cookie_name)
         if timeout_connect is not None:
-            _setter("timeout_connect", timeout_connect)
+            pulumi.set(__self__, "timeout_connect", timeout_connect)
         if timeout_queue is not None:
-            _setter("timeout_queue", timeout_queue)
+            pulumi.set(__self__, "timeout_queue", timeout_queue)
         if timeout_server is not None:
-            _setter("timeout_server", timeout_server)
+            pulumi.set(__self__, "timeout_server", timeout_server)
         if timeout_tunnel is not None:
-            _setter("timeout_tunnel", timeout_tunnel)
+            pulumi.set(__self__, "timeout_tunnel", timeout_tunnel)
 
     @property
     @pulumi.getter(name="failoverHost")
@@ -1434,10 +1180,6 @@ class LbBackend(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            LbBackendArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -1491,26 +1233,11 @@ class LbBackend(pulumi.CustomResource):
                 raise TypeError("Missing required property 'forward_protocol'")
             __props__.__dict__["forward_protocol"] = forward_protocol
             __props__.__dict__["health_check_delay"] = health_check_delay
-            if health_check_http is not None and not isinstance(health_check_http, LbBackendHealthCheckHttpArgs):
-                health_check_http = health_check_http or {}
-                def _setter(key, value):
-                    health_check_http[key] = value
-                LbBackendHealthCheckHttpArgs._configure(_setter, **health_check_http)
             __props__.__dict__["health_check_http"] = health_check_http
-            if health_check_https is not None and not isinstance(health_check_https, LbBackendHealthCheckHttpsArgs):
-                health_check_https = health_check_https or {}
-                def _setter(key, value):
-                    health_check_https[key] = value
-                LbBackendHealthCheckHttpsArgs._configure(_setter, **health_check_https)
             __props__.__dict__["health_check_https"] = health_check_https
             __props__.__dict__["health_check_max_retries"] = health_check_max_retries
             __props__.__dict__["health_check_port"] = health_check_port
             __props__.__dict__["health_check_send_proxy"] = health_check_send_proxy
-            if health_check_tcp is not None and not isinstance(health_check_tcp, LbBackendHealthCheckTcpArgs):
-                health_check_tcp = health_check_tcp or {}
-                def _setter(key, value):
-                    health_check_tcp[key] = value
-                LbBackendHealthCheckTcpArgs._configure(_setter, **health_check_tcp)
             __props__.__dict__["health_check_tcp"] = health_check_tcp
             __props__.__dict__["health_check_timeout"] = health_check_timeout
             __props__.__dict__["health_check_transient_delay"] = health_check_transient_delay

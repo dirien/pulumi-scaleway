@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -33,50 +33,19 @@ class MnqQueueArgs:
         :param pulumi.Input['MnqQueueNatsArgs'] nats: The NATS attributes of the queue
         :param pulumi.Input['MnqQueueSqsArgs'] sqs: The SQS attributes of the queue
         """
-        MnqQueueArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            namespace_id=namespace_id,
-            message_max_age=message_max_age,
-            message_max_size=message_max_size,
-            name=name,
-            name_prefix=name_prefix,
-            nats=nats,
-            sqs=sqs,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             namespace_id: pulumi.Input[str],
-             message_max_age: Optional[pulumi.Input[int]] = None,
-             message_max_size: Optional[pulumi.Input[int]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             name_prefix: Optional[pulumi.Input[str]] = None,
-             nats: Optional[pulumi.Input['MnqQueueNatsArgs']] = None,
-             sqs: Optional[pulumi.Input['MnqQueueSqsArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'namespaceId' in kwargs:
-            namespace_id = kwargs['namespaceId']
-        if 'messageMaxAge' in kwargs:
-            message_max_age = kwargs['messageMaxAge']
-        if 'messageMaxSize' in kwargs:
-            message_max_size = kwargs['messageMaxSize']
-        if 'namePrefix' in kwargs:
-            name_prefix = kwargs['namePrefix']
-
-        _setter("namespace_id", namespace_id)
+        pulumi.set(__self__, "namespace_id", namespace_id)
         if message_max_age is not None:
-            _setter("message_max_age", message_max_age)
+            pulumi.set(__self__, "message_max_age", message_max_age)
         if message_max_size is not None:
-            _setter("message_max_size", message_max_size)
+            pulumi.set(__self__, "message_max_size", message_max_size)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if name_prefix is not None:
-            _setter("name_prefix", name_prefix)
+            pulumi.set(__self__, "name_prefix", name_prefix)
         if nats is not None:
-            _setter("nats", nats)
+            pulumi.set(__self__, "nats", nats)
         if sqs is not None:
-            _setter("sqs", sqs)
+            pulumi.set(__self__, "sqs", sqs)
 
     @property
     @pulumi.getter(name="namespaceId")
@@ -183,51 +152,20 @@ class _MnqQueueState:
         :param pulumi.Input['MnqQueueNatsArgs'] nats: The NATS attributes of the queue
         :param pulumi.Input['MnqQueueSqsArgs'] sqs: The SQS attributes of the queue
         """
-        _MnqQueueState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            message_max_age=message_max_age,
-            message_max_size=message_max_size,
-            name=name,
-            name_prefix=name_prefix,
-            namespace_id=namespace_id,
-            nats=nats,
-            sqs=sqs,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             message_max_age: Optional[pulumi.Input[int]] = None,
-             message_max_size: Optional[pulumi.Input[int]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             name_prefix: Optional[pulumi.Input[str]] = None,
-             namespace_id: Optional[pulumi.Input[str]] = None,
-             nats: Optional[pulumi.Input['MnqQueueNatsArgs']] = None,
-             sqs: Optional[pulumi.Input['MnqQueueSqsArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'messageMaxAge' in kwargs:
-            message_max_age = kwargs['messageMaxAge']
-        if 'messageMaxSize' in kwargs:
-            message_max_size = kwargs['messageMaxSize']
-        if 'namePrefix' in kwargs:
-            name_prefix = kwargs['namePrefix']
-        if 'namespaceId' in kwargs:
-            namespace_id = kwargs['namespaceId']
-
         if message_max_age is not None:
-            _setter("message_max_age", message_max_age)
+            pulumi.set(__self__, "message_max_age", message_max_age)
         if message_max_size is not None:
-            _setter("message_max_size", message_max_size)
+            pulumi.set(__self__, "message_max_size", message_max_size)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if name_prefix is not None:
-            _setter("name_prefix", name_prefix)
+            pulumi.set(__self__, "name_prefix", name_prefix)
         if namespace_id is not None:
-            _setter("namespace_id", namespace_id)
+            pulumi.set(__self__, "namespace_id", namespace_id)
         if nats is not None:
-            _setter("nats", nats)
+            pulumi.set(__self__, "nats", nats)
         if sqs is not None:
-            _setter("sqs", sqs)
+            pulumi.set(__self__, "sqs", sqs)
 
     @property
     @pulumi.getter(name="messageMaxAge")
@@ -357,10 +295,6 @@ class MnqQueue(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            MnqQueueArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -389,17 +323,7 @@ class MnqQueue(pulumi.CustomResource):
             if namespace_id is None and not opts.urn:
                 raise TypeError("Missing required property 'namespace_id'")
             __props__.__dict__["namespace_id"] = namespace_id
-            if nats is not None and not isinstance(nats, MnqQueueNatsArgs):
-                nats = nats or {}
-                def _setter(key, value):
-                    nats[key] = value
-                MnqQueueNatsArgs._configure(_setter, **nats)
             __props__.__dict__["nats"] = nats
-            if sqs is not None and not isinstance(sqs, MnqQueueSqsArgs):
-                sqs = sqs or {}
-                def _setter(key, value):
-                    sqs[key] = value
-                MnqQueueSqsArgs._configure(_setter, **sqs)
             __props__.__dict__["sqs"] = sqs
         super(MnqQueue, __self__).__init__(
             'scaleway:index/mnqQueue:MnqQueue',

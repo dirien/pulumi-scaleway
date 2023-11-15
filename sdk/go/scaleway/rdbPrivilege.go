@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Create and manage Scaleway RDB database privilege.
@@ -218,12 +217,6 @@ func (i *RdbPrivilege) ToRdbPrivilegeOutputWithContext(ctx context.Context) RdbP
 	return pulumi.ToOutputWithContext(ctx, i).(RdbPrivilegeOutput)
 }
 
-func (i *RdbPrivilege) ToOutput(ctx context.Context) pulumix.Output[*RdbPrivilege] {
-	return pulumix.Output[*RdbPrivilege]{
-		OutputState: i.ToRdbPrivilegeOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RdbPrivilegeArrayInput is an input type that accepts RdbPrivilegeArray and RdbPrivilegeArrayOutput values.
 // You can construct a concrete instance of `RdbPrivilegeArrayInput` via:
 //
@@ -247,12 +240,6 @@ func (i RdbPrivilegeArray) ToRdbPrivilegeArrayOutput() RdbPrivilegeArrayOutput {
 
 func (i RdbPrivilegeArray) ToRdbPrivilegeArrayOutputWithContext(ctx context.Context) RdbPrivilegeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RdbPrivilegeArrayOutput)
-}
-
-func (i RdbPrivilegeArray) ToOutput(ctx context.Context) pulumix.Output[[]*RdbPrivilege] {
-	return pulumix.Output[[]*RdbPrivilege]{
-		OutputState: i.ToRdbPrivilegeArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RdbPrivilegeMapInput is an input type that accepts RdbPrivilegeMap and RdbPrivilegeMapOutput values.
@@ -280,12 +267,6 @@ func (i RdbPrivilegeMap) ToRdbPrivilegeMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(RdbPrivilegeMapOutput)
 }
 
-func (i RdbPrivilegeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RdbPrivilege] {
-	return pulumix.Output[map[string]*RdbPrivilege]{
-		OutputState: i.ToRdbPrivilegeMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RdbPrivilegeOutput struct{ *pulumi.OutputState }
 
 func (RdbPrivilegeOutput) ElementType() reflect.Type {
@@ -298,12 +279,6 @@ func (o RdbPrivilegeOutput) ToRdbPrivilegeOutput() RdbPrivilegeOutput {
 
 func (o RdbPrivilegeOutput) ToRdbPrivilegeOutputWithContext(ctx context.Context) RdbPrivilegeOutput {
 	return o
-}
-
-func (o RdbPrivilegeOutput) ToOutput(ctx context.Context) pulumix.Output[*RdbPrivilege] {
-	return pulumix.Output[*RdbPrivilege]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Name of the database (e.g. `my-db-name`).
@@ -345,12 +320,6 @@ func (o RdbPrivilegeArrayOutput) ToRdbPrivilegeArrayOutputWithContext(ctx contex
 	return o
 }
 
-func (o RdbPrivilegeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RdbPrivilege] {
-	return pulumix.Output[[]*RdbPrivilege]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RdbPrivilegeArrayOutput) Index(i pulumi.IntInput) RdbPrivilegeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RdbPrivilege {
 		return vs[0].([]*RdbPrivilege)[vs[1].(int)]
@@ -369,12 +338,6 @@ func (o RdbPrivilegeMapOutput) ToRdbPrivilegeMapOutput() RdbPrivilegeMapOutput {
 
 func (o RdbPrivilegeMapOutput) ToRdbPrivilegeMapOutputWithContext(ctx context.Context) RdbPrivilegeMapOutput {
 	return o
-}
-
-func (o RdbPrivilegeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RdbPrivilege] {
-	return pulumix.Output[map[string]*RdbPrivilege]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RdbPrivilegeMapOutput) MapIndex(k pulumi.StringInput) RdbPrivilegeOutput {

@@ -116,6 +116,7 @@ from .iam_api_key import *
 from .iam_application import *
 from .iam_group import *
 from .iam_group_membership import *
+from .iam_ip import *
 from .iam_policy import *
 from .iam_ssh_key import *
 from .iam_user import *
@@ -455,6 +456,14 @@ _utilities.register(
   "fqn": "ediri_scaleway",
   "classes": {
    "scaleway:index/iamGroupMembership:IamGroupMembership": "IamGroupMembership"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/iamIp",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/iamIp:IamIp": "IamIp"
   }
  },
  {

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Load-Balancer ACLs. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls).
@@ -219,12 +218,6 @@ func (i *LbAcl) ToLbAclOutputWithContext(ctx context.Context) LbAclOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LbAclOutput)
 }
 
-func (i *LbAcl) ToOutput(ctx context.Context) pulumix.Output[*LbAcl] {
-	return pulumix.Output[*LbAcl]{
-		OutputState: i.ToLbAclOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LbAclArrayInput is an input type that accepts LbAclArray and LbAclArrayOutput values.
 // You can construct a concrete instance of `LbAclArrayInput` via:
 //
@@ -248,12 +241,6 @@ func (i LbAclArray) ToLbAclArrayOutput() LbAclArrayOutput {
 
 func (i LbAclArray) ToLbAclArrayOutputWithContext(ctx context.Context) LbAclArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LbAclArrayOutput)
-}
-
-func (i LbAclArray) ToOutput(ctx context.Context) pulumix.Output[[]*LbAcl] {
-	return pulumix.Output[[]*LbAcl]{
-		OutputState: i.ToLbAclArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LbAclMapInput is an input type that accepts LbAclMap and LbAclMapOutput values.
@@ -281,12 +268,6 @@ func (i LbAclMap) ToLbAclMapOutputWithContext(ctx context.Context) LbAclMapOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(LbAclMapOutput)
 }
 
-func (i LbAclMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LbAcl] {
-	return pulumix.Output[map[string]*LbAcl]{
-		OutputState: i.ToLbAclMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LbAclOutput struct{ *pulumi.OutputState }
 
 func (LbAclOutput) ElementType() reflect.Type {
@@ -299,12 +280,6 @@ func (o LbAclOutput) ToLbAclOutput() LbAclOutput {
 
 func (o LbAclOutput) ToLbAclOutputWithContext(ctx context.Context) LbAclOutput {
 	return o
-}
-
-func (o LbAclOutput) ToOutput(ctx context.Context) pulumix.Output[*LbAcl] {
-	return pulumix.Output[*LbAcl]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Action to undertake when an ACL filter matches.
@@ -361,12 +336,6 @@ func (o LbAclArrayOutput) ToLbAclArrayOutputWithContext(ctx context.Context) LbA
 	return o
 }
 
-func (o LbAclArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LbAcl] {
-	return pulumix.Output[[]*LbAcl]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LbAclArrayOutput) Index(i pulumi.IntInput) LbAclOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LbAcl {
 		return vs[0].([]*LbAcl)[vs[1].(int)]
@@ -385,12 +354,6 @@ func (o LbAclMapOutput) ToLbAclMapOutput() LbAclMapOutput {
 
 func (o LbAclMapOutput) ToLbAclMapOutputWithContext(ctx context.Context) LbAclMapOutput {
 	return o
-}
-
-func (o LbAclMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LbAcl] {
-	return pulumix.Output[map[string]*LbAcl]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LbAclMapOutput) MapIndex(k pulumi.StringInput) LbAclOutput {

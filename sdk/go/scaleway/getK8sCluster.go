@@ -9,7 +9,6 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a Kubernetes Cluster.
@@ -148,12 +147,6 @@ func (o LookupK8sClusterResultOutput) ToLookupK8sClusterResultOutput() LookupK8s
 
 func (o LookupK8sClusterResultOutput) ToLookupK8sClusterResultOutputWithContext(ctx context.Context) LookupK8sClusterResultOutput {
 	return o
-}
-
-func (o LookupK8sClusterResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupK8sClusterResult] {
-	return pulumix.Output[LookupK8sClusterResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) enabled on the cluster.

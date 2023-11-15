@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['IotNetworkArgs', 'IotNetwork']
@@ -25,33 +25,12 @@ class IotNetworkArgs:
         :param pulumi.Input[str] name: The name of the IoT Network you want to create (e.g. `my-net`).
         :param pulumi.Input[str] topic_prefix: The prefix that will be prepended to all topics for this Network.
         """
-        IotNetworkArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            hub_id=hub_id,
-            type=type,
-            name=name,
-            topic_prefix=topic_prefix,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             hub_id: pulumi.Input[str],
-             type: pulumi.Input[str],
-             name: Optional[pulumi.Input[str]] = None,
-             topic_prefix: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'hubId' in kwargs:
-            hub_id = kwargs['hubId']
-        if 'topicPrefix' in kwargs:
-            topic_prefix = kwargs['topicPrefix']
-
-        _setter("hub_id", hub_id)
-        _setter("type", type)
+        pulumi.set(__self__, "hub_id", hub_id)
+        pulumi.set(__self__, "type", type)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if topic_prefix is not None:
-            _setter("topic_prefix", topic_prefix)
+            pulumi.set(__self__, "topic_prefix", topic_prefix)
 
     @property
     @pulumi.getter(name="hubId")
@@ -122,49 +101,20 @@ class _IotNetworkState:
         :param pulumi.Input[str] topic_prefix: The prefix that will be prepended to all topics for this Network.
         :param pulumi.Input[str] type: The network type to create (e.g. `sigfox`).
         """
-        _IotNetworkState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            created_at=created_at,
-            endpoint=endpoint,
-            hub_id=hub_id,
-            name=name,
-            secret=secret,
-            topic_prefix=topic_prefix,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             created_at: Optional[pulumi.Input[str]] = None,
-             endpoint: Optional[pulumi.Input[str]] = None,
-             hub_id: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             secret: Optional[pulumi.Input[str]] = None,
-             topic_prefix: Optional[pulumi.Input[str]] = None,
-             type: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if 'hubId' in kwargs:
-            hub_id = kwargs['hubId']
-        if 'topicPrefix' in kwargs:
-            topic_prefix = kwargs['topicPrefix']
-
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if endpoint is not None:
-            _setter("endpoint", endpoint)
+            pulumi.set(__self__, "endpoint", endpoint)
         if hub_id is not None:
-            _setter("hub_id", hub_id)
+            pulumi.set(__self__, "hub_id", hub_id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if secret is not None:
-            _setter("secret", secret)
+            pulumi.set(__self__, "secret", secret)
         if topic_prefix is not None:
-            _setter("topic_prefix", topic_prefix)
+            pulumi.set(__self__, "topic_prefix", topic_prefix)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -302,10 +252,6 @@ class IotNetwork(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            IotNetworkArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -9,7 +9,6 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Get information about Scaleway Load-Balancer Routes.
@@ -138,12 +137,6 @@ func (o LookupLbRouteResultOutput) ToLookupLbRouteResultOutput() LookupLbRouteRe
 
 func (o LookupLbRouteResultOutput) ToLookupLbRouteResultOutputWithContext(ctx context.Context) LookupLbRouteResultOutput {
 	return o
-}
-
-func (o LookupLbRouteResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupLbRouteResult] {
-	return pulumix.Output[LookupLbRouteResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupLbRouteResultOutput) BackendId() pulumi.StringOutput {

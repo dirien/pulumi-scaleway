@@ -230,7 +230,7 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_mnq_sqs":                             {Tok: tfbridge.MakeResource(mainPkg, mainMod, "MnqSqs")},
 			"scaleway_mnq_sqs_credentials":                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "MnqSqsCredentials")},
 			"scaleway_mnq_sqs_queue":                       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "MnqSqsQueue")},
-			"scaleway_ipam_ip":								{Tok: tfbridge.MakeResource(mainPkg, mainMod, "IamIp")},
+			"scaleway_ipam_ip":								{Tok: tfbridge.MakeResource(mainPkg, mainMod, "IpamIp")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"scaleway_account_project":                     {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAccountProject")},

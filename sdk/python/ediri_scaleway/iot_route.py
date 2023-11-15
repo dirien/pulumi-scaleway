@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -33,43 +33,18 @@ class IotRouteArgs:
         :param pulumi.Input['IotRouteRestArgs'] rest: Rest Route parameters
         :param pulumi.Input['IotRouteS3Args'] s3: S3 Route parameters
         """
-        IotRouteArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            hub_id=hub_id,
-            topic=topic,
-            database=database,
-            name=name,
-            region=region,
-            rest=rest,
-            s3=s3,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             hub_id: pulumi.Input[str],
-             topic: pulumi.Input[str],
-             database: Optional[pulumi.Input['IotRouteDatabaseArgs']] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             rest: Optional[pulumi.Input['IotRouteRestArgs']] = None,
-             s3: Optional[pulumi.Input['IotRouteS3Args']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'hubId' in kwargs:
-            hub_id = kwargs['hubId']
-
-        _setter("hub_id", hub_id)
-        _setter("topic", topic)
+        pulumi.set(__self__, "hub_id", hub_id)
+        pulumi.set(__self__, "topic", topic)
         if database is not None:
-            _setter("database", database)
+            pulumi.set(__self__, "database", database)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if rest is not None:
-            _setter("rest", rest)
+            pulumi.set(__self__, "rest", rest)
         if s3 is not None:
-            _setter("s3", s3)
+            pulumi.set(__self__, "s3", s3)
 
     @property
     @pulumi.getter(name="hubId")
@@ -178,51 +153,22 @@ class _IotRouteState:
         :param pulumi.Input['IotRouteS3Args'] s3: S3 Route parameters
         :param pulumi.Input[str] topic: The Topic the route subscribes to (wildcards allowed)
         """
-        _IotRouteState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            created_at=created_at,
-            database=database,
-            hub_id=hub_id,
-            name=name,
-            region=region,
-            rest=rest,
-            s3=s3,
-            topic=topic,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             created_at: Optional[pulumi.Input[str]] = None,
-             database: Optional[pulumi.Input['IotRouteDatabaseArgs']] = None,
-             hub_id: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             rest: Optional[pulumi.Input['IotRouteRestArgs']] = None,
-             s3: Optional[pulumi.Input['IotRouteS3Args']] = None,
-             topic: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if 'hubId' in kwargs:
-            hub_id = kwargs['hubId']
-
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if database is not None:
-            _setter("database", database)
+            pulumi.set(__self__, "database", database)
         if hub_id is not None:
-            _setter("hub_id", hub_id)
+            pulumi.set(__self__, "hub_id", hub_id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if rest is not None:
-            _setter("rest", rest)
+            pulumi.set(__self__, "rest", rest)
         if s3 is not None:
-            _setter("s3", s3)
+            pulumi.set(__self__, "s3", s3)
         if topic is not None:
-            _setter("topic", topic)
+            pulumi.set(__self__, "topic", topic)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -364,10 +310,6 @@ class IotRoute(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            IotRouteArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -389,28 +331,13 @@ class IotRoute(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = IotRouteArgs.__new__(IotRouteArgs)
 
-            if database is not None and not isinstance(database, IotRouteDatabaseArgs):
-                database = database or {}
-                def _setter(key, value):
-                    database[key] = value
-                IotRouteDatabaseArgs._configure(_setter, **database)
             __props__.__dict__["database"] = database
             if hub_id is None and not opts.urn:
                 raise TypeError("Missing required property 'hub_id'")
             __props__.__dict__["hub_id"] = hub_id
             __props__.__dict__["name"] = name
             __props__.__dict__["region"] = region
-            if rest is not None and not isinstance(rest, IotRouteRestArgs):
-                rest = rest or {}
-                def _setter(key, value):
-                    rest[key] = value
-                IotRouteRestArgs._configure(_setter, **rest)
             __props__.__dict__["rest"] = rest
-            if s3 is not None and not isinstance(s3, IotRouteS3Args):
-                s3 = s3 or {}
-                def _setter(key, value):
-                    s3[key] = value
-                IotRouteS3Args._configure(_setter, **s3)
             __props__.__dict__["s3"] = s3
             if topic is None and not opts.urn:
                 raise TypeError("Missing required property 'topic'")

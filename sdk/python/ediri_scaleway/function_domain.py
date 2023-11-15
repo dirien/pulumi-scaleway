@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['FunctionDomainArgs', 'FunctionDomain']
@@ -26,27 +26,10 @@ class FunctionDomainArgs:
                > **Important** Updates to `function_id` or `hostname` will recreate the domain.
         :param pulumi.Input[str] region: (Defaults to provider `region`) The region in where the domain was created.
         """
-        FunctionDomainArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            function_id=function_id,
-            hostname=hostname,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             function_id: pulumi.Input[str],
-             hostname: pulumi.Input[str],
-             region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'functionId' in kwargs:
-            function_id = kwargs['functionId']
-
-        _setter("function_id", function_id)
-        _setter("hostname", hostname)
+        pulumi.set(__self__, "function_id", function_id)
+        pulumi.set(__self__, "hostname", hostname)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="functionId")
@@ -105,33 +88,14 @@ class _FunctionDomainState:
         :param pulumi.Input[str] region: (Defaults to provider `region`) The region in where the domain was created.
         :param pulumi.Input[str] url: The URL that triggers the function
         """
-        _FunctionDomainState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            function_id=function_id,
-            hostname=hostname,
-            region=region,
-            url=url,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             function_id: Optional[pulumi.Input[str]] = None,
-             hostname: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             url: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'functionId' in kwargs:
-            function_id = kwargs['functionId']
-
         if function_id is not None:
-            _setter("function_id", function_id)
+            pulumi.set(__self__, "function_id", function_id)
         if hostname is not None:
-            _setter("hostname", hostname)
+            pulumi.set(__self__, "hostname", hostname)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if url is not None:
-            _setter("url", url)
+            pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter(name="functionId")
@@ -287,10 +251,6 @@ class FunctionDomain(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            FunctionDomainArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

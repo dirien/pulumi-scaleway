@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['InstancePlacementGroupArgs', 'InstancePlacementGroup']
@@ -29,45 +29,18 @@ class InstancePlacementGroupArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the placement group.
         :param pulumi.Input[str] zone: `zone`) The zone in which the placement group should be created.
         """
-        InstancePlacementGroupArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            policy_mode=policy_mode,
-            policy_type=policy_type,
-            project_id=project_id,
-            tags=tags,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[pulumi.Input[str]] = None,
-             policy_mode: Optional[pulumi.Input[str]] = None,
-             policy_type: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'policyMode' in kwargs:
-            policy_mode = kwargs['policyMode']
-        if 'policyType' in kwargs:
-            policy_type = kwargs['policyType']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if policy_mode is not None:
-            _setter("policy_mode", policy_mode)
+            pulumi.set(__self__, "policy_mode", policy_mode)
         if policy_type is not None:
-            _setter("policy_type", policy_type)
+            pulumi.set(__self__, "policy_type", policy_type)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter
@@ -164,57 +137,22 @@ class _InstancePlacementGroupState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the placement group.
         :param pulumi.Input[str] zone: `zone`) The zone in which the placement group should be created.
         """
-        _InstancePlacementGroupState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            organization_id=organization_id,
-            policy_mode=policy_mode,
-            policy_respected=policy_respected,
-            policy_type=policy_type,
-            project_id=project_id,
-            tags=tags,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[pulumi.Input[str]] = None,
-             organization_id: Optional[pulumi.Input[str]] = None,
-             policy_mode: Optional[pulumi.Input[str]] = None,
-             policy_respected: Optional[pulumi.Input[bool]] = None,
-             policy_type: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'organizationId' in kwargs:
-            organization_id = kwargs['organizationId']
-        if 'policyMode' in kwargs:
-            policy_mode = kwargs['policyMode']
-        if 'policyRespected' in kwargs:
-            policy_respected = kwargs['policyRespected']
-        if 'policyType' in kwargs:
-            policy_type = kwargs['policyType']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if organization_id is not None:
-            _setter("organization_id", organization_id)
+            pulumi.set(__self__, "organization_id", organization_id)
         if policy_mode is not None:
-            _setter("policy_mode", policy_mode)
+            pulumi.set(__self__, "policy_mode", policy_mode)
         if policy_respected is not None:
-            _setter("policy_respected", policy_respected)
+            pulumi.set(__self__, "policy_respected", policy_respected)
         if policy_type is not None:
-            _setter("policy_type", policy_type)
+            pulumi.set(__self__, "policy_type", policy_type)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter
@@ -390,10 +328,6 @@ class InstancePlacementGroup(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            InstancePlacementGroupArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

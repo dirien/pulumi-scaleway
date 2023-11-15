@@ -9,7 +9,6 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an existing IAM application.
@@ -124,12 +123,6 @@ func (o LookupIamApplicationResultOutput) ToLookupIamApplicationResultOutput() L
 
 func (o LookupIamApplicationResultOutput) ToLookupIamApplicationResultOutputWithContext(ctx context.Context) LookupIamApplicationResultOutput {
 	return o
-}
-
-func (o LookupIamApplicationResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupIamApplicationResult] {
-	return pulumix.Output[LookupIamApplicationResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupIamApplicationResultOutput) ApplicationId() pulumi.StringPtrOutput {

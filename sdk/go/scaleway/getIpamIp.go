@@ -9,7 +9,6 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about IP managed by IPAM service. IPAM service is used for dhcp bundled in VPCs' private networks.
@@ -30,9 +29,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
+//			if err != nil {
+//				return err
+//			}
 //			nic, err := scaleway.NewInstancePrivateNic(ctx, "nic", &scaleway.InstancePrivateNicArgs{
 //				ServerId:         pulumi.Any(scaleway_instance_server.Server.Id),
-//				PrivateNetworkId: pulumi.Any(scaleway_vpc_private_network.Pn.Id),
+//				PrivateNetworkId: pn.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -45,6 +48,27 @@ import (
 //				Resource: &scaleway.GetIpamIpResourceArgs{
 //					Id:   nic.ID(),
 //					Type: pulumi.String("instance_private_nic"),
+//				},
+//				Type: pulumi.String("ipv4"),
+//			}, nil)
+//			main, err := scaleway.NewRdbInstance(ctx, "main", &scaleway.RdbInstanceArgs{
+//				NodeType:      pulumi.String("DB-DEV-S"),
+//				Engine:        pulumi.String("PostgreSQL-15"),
+//				IsHaCluster:   pulumi.Bool(true),
+//				DisableBackup: pulumi.Bool(true),
+//				UserName:      pulumi.String("my_initial_user"),
+//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
+//				PrivateNetwork: &scaleway.RdbInstancePrivateNetworkArgs{
+//					PnId: pn.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = scaleway.GetIpamIpOutput(ctx, scaleway.GetIpamIpOutputArgs{
+//				Resource: &scaleway.GetIpamIpResourceArgs{
+//					Name: main.Name,
+//					Type: pulumi.String("rdb_instance"),
 //				},
 //				Type: pulumi.String("ipv4"),
 //			}, nil)
@@ -69,12 +93,19 @@ type GetIpamIpArgs struct {
 	MacAddress *string `pulumi:"macAddress"`
 	// The ID of the private network the IP belong to.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
+	// `projectId`) The ID of the project the IP is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the IP exists.
 	Region *string `pulumi:"region"`
-	// Filter by resource ID and type, both attributes must be set
+	// Filter by resource ID, type or name. If specified, `type` is required, and at least one of `id` or `name` must be set.
 	Resource *GetIpamIpResource `pulumi:"resource"`
-	// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+	// The tags associated with the IP.
+	// As datasource only returns one IP, the search with given tags must return only one result.
+	Tags []string `pulumi:"tags"`
+	// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
 	Type string `pulumi:"type"`
+	// Only IPs that are zonal, and in this zone, will be returned.
+	Zonal *string `pulumi:"zonal"`
 }
 
 // A collection of values returned by getIpamIp.
@@ -84,10 +115,14 @@ type GetIpamIpResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id               string             `pulumi:"id"`
 	MacAddress       *string            `pulumi:"macAddress"`
+	OrganizationId   string             `pulumi:"organizationId"`
 	PrivateNetworkId *string            `pulumi:"privateNetworkId"`
+	ProjectId        string             `pulumi:"projectId"`
 	Region           string             `pulumi:"region"`
 	Resource         *GetIpamIpResource `pulumi:"resource"`
+	Tags             []string           `pulumi:"tags"`
 	Type             string             `pulumi:"type"`
+	Zonal            string             `pulumi:"zonal"`
 }
 
 func GetIpamIpOutput(ctx *pulumi.Context, args GetIpamIpOutputArgs, opts ...pulumi.InvokeOption) GetIpamIpResultOutput {
@@ -109,12 +144,19 @@ type GetIpamIpOutputArgs struct {
 	MacAddress pulumi.StringPtrInput `pulumi:"macAddress"`
 	// The ID of the private network the IP belong to.
 	PrivateNetworkId pulumi.StringPtrInput `pulumi:"privateNetworkId"`
+	// `projectId`) The ID of the project the IP is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region in which the IP exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
-	// Filter by resource ID and type, both attributes must be set
+	// Filter by resource ID, type or name. If specified, `type` is required, and at least one of `id` or `name` must be set.
 	Resource GetIpamIpResourcePtrInput `pulumi:"resource"`
-	// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+	// The tags associated with the IP.
+	// As datasource only returns one IP, the search with given tags must return only one result.
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
+	// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
 	Type pulumi.StringInput `pulumi:"type"`
+	// Only IPs that are zonal, and in this zone, will be returned.
+	Zonal pulumi.StringPtrInput `pulumi:"zonal"`
 }
 
 func (GetIpamIpOutputArgs) ElementType() reflect.Type {
@@ -136,12 +178,6 @@ func (o GetIpamIpResultOutput) ToGetIpamIpResultOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o GetIpamIpResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetIpamIpResult] {
-	return pulumix.Output[GetIpamIpResult]{
-		OutputState: o.OutputState,
-	}
-}
-
 // The IP address
 func (o GetIpamIpResultOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpamIpResult) string { return v.Address }).(pulumi.StringOutput)
@@ -156,8 +192,16 @@ func (o GetIpamIpResultOutput) MacAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetIpamIpResult) *string { return v.MacAddress }).(pulumi.StringPtrOutput)
 }
 
+func (o GetIpamIpResultOutput) OrganizationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpamIpResult) string { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
 func (o GetIpamIpResultOutput) PrivateNetworkId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetIpamIpResult) *string { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
+}
+
+func (o GetIpamIpResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpamIpResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 func (o GetIpamIpResultOutput) Region() pulumi.StringOutput {
@@ -168,8 +212,16 @@ func (o GetIpamIpResultOutput) Resource() GetIpamIpResourcePtrOutput {
 	return o.ApplyT(func(v GetIpamIpResult) *GetIpamIpResource { return v.Resource }).(GetIpamIpResourcePtrOutput)
 }
 
+func (o GetIpamIpResultOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetIpamIpResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
 func (o GetIpamIpResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpamIpResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o GetIpamIpResultOutput) Zonal() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpamIpResult) string { return v.Zonal }).(pulumi.StringOutput)
 }
 
 func init() {

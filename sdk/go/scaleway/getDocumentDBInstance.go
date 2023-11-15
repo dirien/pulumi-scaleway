@@ -9,7 +9,6 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an DocumentDB instance. For further information see our [developers website](https://www.scaleway.com/en/developers/api/document_db/)
@@ -122,12 +121,6 @@ func (o LookupDocumentDBInstanceResultOutput) ToLookupDocumentDBInstanceResultOu
 
 func (o LookupDocumentDBInstanceResultOutput) ToLookupDocumentDBInstanceResultOutputWithContext(ctx context.Context) LookupDocumentDBInstanceResultOutput {
 	return o
-}
-
-func (o LookupDocumentDBInstanceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDocumentDBInstanceResult] {
-	return pulumix.Output[LookupDocumentDBInstanceResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupDocumentDBInstanceResultOutput) Engine() pulumi.StringOutput {

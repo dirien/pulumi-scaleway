@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -66,6 +66,8 @@ class InstanceServerArgs:
                To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
         :param pulumi.Input[str] ip_id: The ID of the reserved IP that is attached to the server.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_ids: List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+               
+               > `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
                
@@ -91,140 +93,51 @@ class InstanceServerArgs:
                - Binary files using filebase64.
         :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
         """
-        InstanceServerArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            type=type,
-            additional_volume_ids=additional_volume_ids,
-            boot_type=boot_type,
-            bootscript_id=bootscript_id,
-            cloud_init=cloud_init,
-            enable_dynamic_ip=enable_dynamic_ip,
-            enable_ipv6=enable_ipv6,
-            image=image,
-            ip_id=ip_id,
-            ip_ids=ip_ids,
-            name=name,
-            placement_group_id=placement_group_id,
-            private_networks=private_networks,
-            project_id=project_id,
-            public_ips=public_ips,
-            replace_on_type_change=replace_on_type_change,
-            root_volume=root_volume,
-            routed_ip_enabled=routed_ip_enabled,
-            security_group_id=security_group_id,
-            state=state,
-            tags=tags,
-            user_data=user_data,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             type: pulumi.Input[str],
-             additional_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             boot_type: Optional[pulumi.Input[str]] = None,
-             bootscript_id: Optional[pulumi.Input[str]] = None,
-             cloud_init: Optional[pulumi.Input[str]] = None,
-             enable_dynamic_ip: Optional[pulumi.Input[bool]] = None,
-             enable_ipv6: Optional[pulumi.Input[bool]] = None,
-             image: Optional[pulumi.Input[str]] = None,
-             ip_id: Optional[pulumi.Input[str]] = None,
-             ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             placement_group_id: Optional[pulumi.Input[str]] = None,
-             private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateNetworkArgs']]]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             public_ips: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceServerPublicIpArgs']]]] = None,
-             replace_on_type_change: Optional[pulumi.Input[bool]] = None,
-             root_volume: Optional[pulumi.Input['InstanceServerRootVolumeArgs']] = None,
-             routed_ip_enabled: Optional[pulumi.Input[bool]] = None,
-             security_group_id: Optional[pulumi.Input[str]] = None,
-             state: Optional[pulumi.Input[str]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             user_data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'additionalVolumeIds' in kwargs:
-            additional_volume_ids = kwargs['additionalVolumeIds']
-        if 'bootType' in kwargs:
-            boot_type = kwargs['bootType']
-        if 'bootscriptId' in kwargs:
-            bootscript_id = kwargs['bootscriptId']
-        if 'cloudInit' in kwargs:
-            cloud_init = kwargs['cloudInit']
-        if 'enableDynamicIp' in kwargs:
-            enable_dynamic_ip = kwargs['enableDynamicIp']
-        if 'enableIpv6' in kwargs:
-            enable_ipv6 = kwargs['enableIpv6']
-        if 'ipId' in kwargs:
-            ip_id = kwargs['ipId']
-        if 'ipIds' in kwargs:
-            ip_ids = kwargs['ipIds']
-        if 'placementGroupId' in kwargs:
-            placement_group_id = kwargs['placementGroupId']
-        if 'privateNetworks' in kwargs:
-            private_networks = kwargs['privateNetworks']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'publicIps' in kwargs:
-            public_ips = kwargs['publicIps']
-        if 'replaceOnTypeChange' in kwargs:
-            replace_on_type_change = kwargs['replaceOnTypeChange']
-        if 'rootVolume' in kwargs:
-            root_volume = kwargs['rootVolume']
-        if 'routedIpEnabled' in kwargs:
-            routed_ip_enabled = kwargs['routedIpEnabled']
-        if 'securityGroupId' in kwargs:
-            security_group_id = kwargs['securityGroupId']
-        if 'userData' in kwargs:
-            user_data = kwargs['userData']
-
-        _setter("type", type)
+        pulumi.set(__self__, "type", type)
         if additional_volume_ids is not None:
-            _setter("additional_volume_ids", additional_volume_ids)
+            pulumi.set(__self__, "additional_volume_ids", additional_volume_ids)
         if boot_type is not None:
-            _setter("boot_type", boot_type)
+            pulumi.set(__self__, "boot_type", boot_type)
         if bootscript_id is not None:
-            _setter("bootscript_id", bootscript_id)
+            pulumi.set(__self__, "bootscript_id", bootscript_id)
         if cloud_init is not None:
-            _setter("cloud_init", cloud_init)
+            pulumi.set(__self__, "cloud_init", cloud_init)
         if enable_dynamic_ip is not None:
-            _setter("enable_dynamic_ip", enable_dynamic_ip)
+            pulumi.set(__self__, "enable_dynamic_ip", enable_dynamic_ip)
         if enable_ipv6 is not None:
-            _setter("enable_ipv6", enable_ipv6)
+            pulumi.set(__self__, "enable_ipv6", enable_ipv6)
         if image is not None:
-            _setter("image", image)
+            pulumi.set(__self__, "image", image)
         if ip_id is not None:
-            _setter("ip_id", ip_id)
+            pulumi.set(__self__, "ip_id", ip_id)
         if ip_ids is not None:
-            _setter("ip_ids", ip_ids)
+            pulumi.set(__self__, "ip_ids", ip_ids)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if placement_group_id is not None:
-            _setter("placement_group_id", placement_group_id)
+            pulumi.set(__self__, "placement_group_id", placement_group_id)
         if private_networks is not None:
-            _setter("private_networks", private_networks)
+            pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if public_ips is not None:
-            _setter("public_ips", public_ips)
+            pulumi.set(__self__, "public_ips", public_ips)
         if replace_on_type_change is not None:
-            _setter("replace_on_type_change", replace_on_type_change)
+            pulumi.set(__self__, "replace_on_type_change", replace_on_type_change)
         if root_volume is not None:
-            _setter("root_volume", root_volume)
+            pulumi.set(__self__, "root_volume", root_volume)
         if routed_ip_enabled is not None:
-            _setter("routed_ip_enabled", routed_ip_enabled)
+            pulumi.set(__self__, "routed_ip_enabled", routed_ip_enabled)
         if security_group_id is not None:
-            _setter("security_group_id", security_group_id)
+            pulumi.set(__self__, "security_group_id", security_group_id)
         if state is not None:
-            _setter("state", state)
+            pulumi.set(__self__, "state", state)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if user_data is not None:
-            _setter("user_data", user_data)
+            pulumi.set(__self__, "user_data", user_data)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter
@@ -354,6 +267,8 @@ class InstanceServerArgs:
     def ip_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+
+        > `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         """
         return pulumi.get(self, "ip_ids")
 
@@ -583,6 +498,8 @@ class _InstanceServerState:
                To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
         :param pulumi.Input[str] ip_id: The ID of the reserved IP that is attached to the server.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_ids: List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+               
+               > `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         :param pulumi.Input[str] ipv6_address: The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
         :param pulumi.Input[str] ipv6_gateway: The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
         :param pulumi.Input[int] ipv6_prefix_length: The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
@@ -621,183 +538,66 @@ class _InstanceServerState:
                - Binary files using filebase64.
         :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
         """
-        _InstanceServerState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            additional_volume_ids=additional_volume_ids,
-            boot_type=boot_type,
-            bootscript_id=bootscript_id,
-            cloud_init=cloud_init,
-            enable_dynamic_ip=enable_dynamic_ip,
-            enable_ipv6=enable_ipv6,
-            image=image,
-            ip_id=ip_id,
-            ip_ids=ip_ids,
-            ipv6_address=ipv6_address,
-            ipv6_gateway=ipv6_gateway,
-            ipv6_prefix_length=ipv6_prefix_length,
-            name=name,
-            organization_id=organization_id,
-            placement_group_id=placement_group_id,
-            placement_group_policy_respected=placement_group_policy_respected,
-            private_ip=private_ip,
-            private_networks=private_networks,
-            project_id=project_id,
-            public_ip=public_ip,
-            public_ips=public_ips,
-            replace_on_type_change=replace_on_type_change,
-            root_volume=root_volume,
-            routed_ip_enabled=routed_ip_enabled,
-            security_group_id=security_group_id,
-            state=state,
-            tags=tags,
-            type=type,
-            user_data=user_data,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             additional_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             boot_type: Optional[pulumi.Input[str]] = None,
-             bootscript_id: Optional[pulumi.Input[str]] = None,
-             cloud_init: Optional[pulumi.Input[str]] = None,
-             enable_dynamic_ip: Optional[pulumi.Input[bool]] = None,
-             enable_ipv6: Optional[pulumi.Input[bool]] = None,
-             image: Optional[pulumi.Input[str]] = None,
-             ip_id: Optional[pulumi.Input[str]] = None,
-             ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             ipv6_address: Optional[pulumi.Input[str]] = None,
-             ipv6_gateway: Optional[pulumi.Input[str]] = None,
-             ipv6_prefix_length: Optional[pulumi.Input[int]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             organization_id: Optional[pulumi.Input[str]] = None,
-             placement_group_id: Optional[pulumi.Input[str]] = None,
-             placement_group_policy_respected: Optional[pulumi.Input[bool]] = None,
-             private_ip: Optional[pulumi.Input[str]] = None,
-             private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateNetworkArgs']]]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             public_ip: Optional[pulumi.Input[str]] = None,
-             public_ips: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceServerPublicIpArgs']]]] = None,
-             replace_on_type_change: Optional[pulumi.Input[bool]] = None,
-             root_volume: Optional[pulumi.Input['InstanceServerRootVolumeArgs']] = None,
-             routed_ip_enabled: Optional[pulumi.Input[bool]] = None,
-             security_group_id: Optional[pulumi.Input[str]] = None,
-             state: Optional[pulumi.Input[str]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             type: Optional[pulumi.Input[str]] = None,
-             user_data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'additionalVolumeIds' in kwargs:
-            additional_volume_ids = kwargs['additionalVolumeIds']
-        if 'bootType' in kwargs:
-            boot_type = kwargs['bootType']
-        if 'bootscriptId' in kwargs:
-            bootscript_id = kwargs['bootscriptId']
-        if 'cloudInit' in kwargs:
-            cloud_init = kwargs['cloudInit']
-        if 'enableDynamicIp' in kwargs:
-            enable_dynamic_ip = kwargs['enableDynamicIp']
-        if 'enableIpv6' in kwargs:
-            enable_ipv6 = kwargs['enableIpv6']
-        if 'ipId' in kwargs:
-            ip_id = kwargs['ipId']
-        if 'ipIds' in kwargs:
-            ip_ids = kwargs['ipIds']
-        if 'ipv6Address' in kwargs:
-            ipv6_address = kwargs['ipv6Address']
-        if 'ipv6Gateway' in kwargs:
-            ipv6_gateway = kwargs['ipv6Gateway']
-        if 'ipv6PrefixLength' in kwargs:
-            ipv6_prefix_length = kwargs['ipv6PrefixLength']
-        if 'organizationId' in kwargs:
-            organization_id = kwargs['organizationId']
-        if 'placementGroupId' in kwargs:
-            placement_group_id = kwargs['placementGroupId']
-        if 'placementGroupPolicyRespected' in kwargs:
-            placement_group_policy_respected = kwargs['placementGroupPolicyRespected']
-        if 'privateIp' in kwargs:
-            private_ip = kwargs['privateIp']
-        if 'privateNetworks' in kwargs:
-            private_networks = kwargs['privateNetworks']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'publicIp' in kwargs:
-            public_ip = kwargs['publicIp']
-        if 'publicIps' in kwargs:
-            public_ips = kwargs['publicIps']
-        if 'replaceOnTypeChange' in kwargs:
-            replace_on_type_change = kwargs['replaceOnTypeChange']
-        if 'rootVolume' in kwargs:
-            root_volume = kwargs['rootVolume']
-        if 'routedIpEnabled' in kwargs:
-            routed_ip_enabled = kwargs['routedIpEnabled']
-        if 'securityGroupId' in kwargs:
-            security_group_id = kwargs['securityGroupId']
-        if 'userData' in kwargs:
-            user_data = kwargs['userData']
-
         if additional_volume_ids is not None:
-            _setter("additional_volume_ids", additional_volume_ids)
+            pulumi.set(__self__, "additional_volume_ids", additional_volume_ids)
         if boot_type is not None:
-            _setter("boot_type", boot_type)
+            pulumi.set(__self__, "boot_type", boot_type)
         if bootscript_id is not None:
-            _setter("bootscript_id", bootscript_id)
+            pulumi.set(__self__, "bootscript_id", bootscript_id)
         if cloud_init is not None:
-            _setter("cloud_init", cloud_init)
+            pulumi.set(__self__, "cloud_init", cloud_init)
         if enable_dynamic_ip is not None:
-            _setter("enable_dynamic_ip", enable_dynamic_ip)
+            pulumi.set(__self__, "enable_dynamic_ip", enable_dynamic_ip)
         if enable_ipv6 is not None:
-            _setter("enable_ipv6", enable_ipv6)
+            pulumi.set(__self__, "enable_ipv6", enable_ipv6)
         if image is not None:
-            _setter("image", image)
+            pulumi.set(__self__, "image", image)
         if ip_id is not None:
-            _setter("ip_id", ip_id)
+            pulumi.set(__self__, "ip_id", ip_id)
         if ip_ids is not None:
-            _setter("ip_ids", ip_ids)
+            pulumi.set(__self__, "ip_ids", ip_ids)
         if ipv6_address is not None:
-            _setter("ipv6_address", ipv6_address)
+            pulumi.set(__self__, "ipv6_address", ipv6_address)
         if ipv6_gateway is not None:
-            _setter("ipv6_gateway", ipv6_gateway)
+            pulumi.set(__self__, "ipv6_gateway", ipv6_gateway)
         if ipv6_prefix_length is not None:
-            _setter("ipv6_prefix_length", ipv6_prefix_length)
+            pulumi.set(__self__, "ipv6_prefix_length", ipv6_prefix_length)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if organization_id is not None:
-            _setter("organization_id", organization_id)
+            pulumi.set(__self__, "organization_id", organization_id)
         if placement_group_id is not None:
-            _setter("placement_group_id", placement_group_id)
+            pulumi.set(__self__, "placement_group_id", placement_group_id)
         if placement_group_policy_respected is not None:
-            _setter("placement_group_policy_respected", placement_group_policy_respected)
+            pulumi.set(__self__, "placement_group_policy_respected", placement_group_policy_respected)
         if private_ip is not None:
-            _setter("private_ip", private_ip)
+            pulumi.set(__self__, "private_ip", private_ip)
         if private_networks is not None:
-            _setter("private_networks", private_networks)
+            pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if public_ip is not None:
-            _setter("public_ip", public_ip)
+            pulumi.set(__self__, "public_ip", public_ip)
         if public_ips is not None:
-            _setter("public_ips", public_ips)
+            pulumi.set(__self__, "public_ips", public_ips)
         if replace_on_type_change is not None:
-            _setter("replace_on_type_change", replace_on_type_change)
+            pulumi.set(__self__, "replace_on_type_change", replace_on_type_change)
         if root_volume is not None:
-            _setter("root_volume", root_volume)
+            pulumi.set(__self__, "root_volume", root_volume)
         if routed_ip_enabled is not None:
-            _setter("routed_ip_enabled", routed_ip_enabled)
+            pulumi.set(__self__, "routed_ip_enabled", routed_ip_enabled)
         if security_group_id is not None:
-            _setter("security_group_id", security_group_id)
+            pulumi.set(__self__, "security_group_id", security_group_id)
         if state is not None:
-            _setter("state", state)
+            pulumi.set(__self__, "state", state)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
         if user_data is not None:
-            _setter("user_data", user_data)
+            pulumi.set(__self__, "user_data", user_data)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter(name="additionalVolumeIds")
@@ -910,6 +710,8 @@ class _InstanceServerState:
     def ip_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+
+        > `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         """
         return pulumi.get(self, "ip_ids")
 
@@ -1416,6 +1218,8 @@ class InstanceServer(pulumi.CustomResource):
                To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
         :param pulumi.Input[str] ip_id: The ID of the reserved IP that is attached to the server.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_ids: List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+               
+               > `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
                
@@ -1643,10 +1447,6 @@ class InstanceServer(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            InstanceServerArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -1699,11 +1499,6 @@ class InstanceServer(pulumi.CustomResource):
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["public_ips"] = public_ips
             __props__.__dict__["replace_on_type_change"] = replace_on_type_change
-            if root_volume is not None and not isinstance(root_volume, InstanceServerRootVolumeArgs):
-                root_volume = root_volume or {}
-                def _setter(key, value):
-                    root_volume[key] = value
-                InstanceServerRootVolumeArgs._configure(_setter, **root_volume)
             __props__.__dict__["root_volume"] = root_volume
             __props__.__dict__["routed_ip_enabled"] = routed_ip_enabled
             __props__.__dict__["security_group_id"] = security_group_id
@@ -1787,6 +1582,8 @@ class InstanceServer(pulumi.CustomResource):
                To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
         :param pulumi.Input[str] ip_id: The ID of the reserved IP that is attached to the server.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_ids: List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+               
+               > `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         :param pulumi.Input[str] ipv6_address: The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
         :param pulumi.Input[str] ipv6_gateway: The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
         :param pulumi.Input[int] ipv6_prefix_length: The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
@@ -1940,6 +1737,8 @@ class InstanceServer(pulumi.CustomResource):
     def ip_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+
+        > `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         """
         return pulumi.get(self, "ip_ids")
 

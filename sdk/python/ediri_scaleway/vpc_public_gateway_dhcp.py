@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['VpcPublicGatewayDhcpArgs', 'VpcPublicGatewayDhcp']
@@ -47,98 +47,35 @@ class VpcPublicGatewayDhcpArgs:
         :param pulumi.Input[int] valid_lifetime: For how long, in seconds, will DHCP entries will be valid. Defaults to 1h (3600s).
         :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway DHCP config should be created.
         """
-        VpcPublicGatewayDhcpArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            subnet=subnet,
-            address=address,
-            dns_local_name=dns_local_name,
-            dns_searches=dns_searches,
-            dns_servers_overrides=dns_servers_overrides,
-            enable_dynamic=enable_dynamic,
-            pool_high=pool_high,
-            pool_low=pool_low,
-            project_id=project_id,
-            push_default_route=push_default_route,
-            push_dns_server=push_dns_server,
-            rebind_timer=rebind_timer,
-            renew_timer=renew_timer,
-            valid_lifetime=valid_lifetime,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             subnet: pulumi.Input[str],
-             address: Optional[pulumi.Input[str]] = None,
-             dns_local_name: Optional[pulumi.Input[str]] = None,
-             dns_searches: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             dns_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             enable_dynamic: Optional[pulumi.Input[bool]] = None,
-             pool_high: Optional[pulumi.Input[str]] = None,
-             pool_low: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             push_default_route: Optional[pulumi.Input[bool]] = None,
-             push_dns_server: Optional[pulumi.Input[bool]] = None,
-             rebind_timer: Optional[pulumi.Input[int]] = None,
-             renew_timer: Optional[pulumi.Input[int]] = None,
-             valid_lifetime: Optional[pulumi.Input[int]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'dnsLocalName' in kwargs:
-            dns_local_name = kwargs['dnsLocalName']
-        if 'dnsSearches' in kwargs:
-            dns_searches = kwargs['dnsSearches']
-        if 'dnsServersOverrides' in kwargs:
-            dns_servers_overrides = kwargs['dnsServersOverrides']
-        if 'enableDynamic' in kwargs:
-            enable_dynamic = kwargs['enableDynamic']
-        if 'poolHigh' in kwargs:
-            pool_high = kwargs['poolHigh']
-        if 'poolLow' in kwargs:
-            pool_low = kwargs['poolLow']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'pushDefaultRoute' in kwargs:
-            push_default_route = kwargs['pushDefaultRoute']
-        if 'pushDnsServer' in kwargs:
-            push_dns_server = kwargs['pushDnsServer']
-        if 'rebindTimer' in kwargs:
-            rebind_timer = kwargs['rebindTimer']
-        if 'renewTimer' in kwargs:
-            renew_timer = kwargs['renewTimer']
-        if 'validLifetime' in kwargs:
-            valid_lifetime = kwargs['validLifetime']
-
-        _setter("subnet", subnet)
+        pulumi.set(__self__, "subnet", subnet)
         if address is not None:
-            _setter("address", address)
+            pulumi.set(__self__, "address", address)
         if dns_local_name is not None:
-            _setter("dns_local_name", dns_local_name)
+            pulumi.set(__self__, "dns_local_name", dns_local_name)
         if dns_searches is not None:
-            _setter("dns_searches", dns_searches)
+            pulumi.set(__self__, "dns_searches", dns_searches)
         if dns_servers_overrides is not None:
-            _setter("dns_servers_overrides", dns_servers_overrides)
+            pulumi.set(__self__, "dns_servers_overrides", dns_servers_overrides)
         if enable_dynamic is not None:
-            _setter("enable_dynamic", enable_dynamic)
+            pulumi.set(__self__, "enable_dynamic", enable_dynamic)
         if pool_high is not None:
-            _setter("pool_high", pool_high)
+            pulumi.set(__self__, "pool_high", pool_high)
         if pool_low is not None:
-            _setter("pool_low", pool_low)
+            pulumi.set(__self__, "pool_low", pool_low)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if push_default_route is not None:
-            _setter("push_default_route", push_default_route)
+            pulumi.set(__self__, "push_default_route", push_default_route)
         if push_dns_server is not None:
-            _setter("push_dns_server", push_dns_server)
+            pulumi.set(__self__, "push_dns_server", push_dns_server)
         if rebind_timer is not None:
-            _setter("rebind_timer", rebind_timer)
+            pulumi.set(__self__, "rebind_timer", rebind_timer)
         if renew_timer is not None:
-            _setter("renew_timer", renew_timer)
+            pulumi.set(__self__, "renew_timer", renew_timer)
         if valid_lifetime is not None:
-            _setter("valid_lifetime", valid_lifetime)
+            pulumi.set(__self__, "valid_lifetime", valid_lifetime)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter
@@ -363,117 +300,42 @@ class _VpcPublicGatewayDhcpState:
         :param pulumi.Input[int] valid_lifetime: For how long, in seconds, will DHCP entries will be valid. Defaults to 1h (3600s).
         :param pulumi.Input[str] zone: `zone`) The zone in which the public gateway DHCP config should be created.
         """
-        _VpcPublicGatewayDhcpState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            address=address,
-            created_at=created_at,
-            dns_local_name=dns_local_name,
-            dns_searches=dns_searches,
-            dns_servers_overrides=dns_servers_overrides,
-            enable_dynamic=enable_dynamic,
-            organization_id=organization_id,
-            pool_high=pool_high,
-            pool_low=pool_low,
-            project_id=project_id,
-            push_default_route=push_default_route,
-            push_dns_server=push_dns_server,
-            rebind_timer=rebind_timer,
-            renew_timer=renew_timer,
-            subnet=subnet,
-            updated_at=updated_at,
-            valid_lifetime=valid_lifetime,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             address: Optional[pulumi.Input[str]] = None,
-             created_at: Optional[pulumi.Input[str]] = None,
-             dns_local_name: Optional[pulumi.Input[str]] = None,
-             dns_searches: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             dns_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             enable_dynamic: Optional[pulumi.Input[bool]] = None,
-             organization_id: Optional[pulumi.Input[str]] = None,
-             pool_high: Optional[pulumi.Input[str]] = None,
-             pool_low: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             push_default_route: Optional[pulumi.Input[bool]] = None,
-             push_dns_server: Optional[pulumi.Input[bool]] = None,
-             rebind_timer: Optional[pulumi.Input[int]] = None,
-             renew_timer: Optional[pulumi.Input[int]] = None,
-             subnet: Optional[pulumi.Input[str]] = None,
-             updated_at: Optional[pulumi.Input[str]] = None,
-             valid_lifetime: Optional[pulumi.Input[int]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if 'dnsLocalName' in kwargs:
-            dns_local_name = kwargs['dnsLocalName']
-        if 'dnsSearches' in kwargs:
-            dns_searches = kwargs['dnsSearches']
-        if 'dnsServersOverrides' in kwargs:
-            dns_servers_overrides = kwargs['dnsServersOverrides']
-        if 'enableDynamic' in kwargs:
-            enable_dynamic = kwargs['enableDynamic']
-        if 'organizationId' in kwargs:
-            organization_id = kwargs['organizationId']
-        if 'poolHigh' in kwargs:
-            pool_high = kwargs['poolHigh']
-        if 'poolLow' in kwargs:
-            pool_low = kwargs['poolLow']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'pushDefaultRoute' in kwargs:
-            push_default_route = kwargs['pushDefaultRoute']
-        if 'pushDnsServer' in kwargs:
-            push_dns_server = kwargs['pushDnsServer']
-        if 'rebindTimer' in kwargs:
-            rebind_timer = kwargs['rebindTimer']
-        if 'renewTimer' in kwargs:
-            renew_timer = kwargs['renewTimer']
-        if 'updatedAt' in kwargs:
-            updated_at = kwargs['updatedAt']
-        if 'validLifetime' in kwargs:
-            valid_lifetime = kwargs['validLifetime']
-
         if address is not None:
-            _setter("address", address)
+            pulumi.set(__self__, "address", address)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if dns_local_name is not None:
-            _setter("dns_local_name", dns_local_name)
+            pulumi.set(__self__, "dns_local_name", dns_local_name)
         if dns_searches is not None:
-            _setter("dns_searches", dns_searches)
+            pulumi.set(__self__, "dns_searches", dns_searches)
         if dns_servers_overrides is not None:
-            _setter("dns_servers_overrides", dns_servers_overrides)
+            pulumi.set(__self__, "dns_servers_overrides", dns_servers_overrides)
         if enable_dynamic is not None:
-            _setter("enable_dynamic", enable_dynamic)
+            pulumi.set(__self__, "enable_dynamic", enable_dynamic)
         if organization_id is not None:
-            _setter("organization_id", organization_id)
+            pulumi.set(__self__, "organization_id", organization_id)
         if pool_high is not None:
-            _setter("pool_high", pool_high)
+            pulumi.set(__self__, "pool_high", pool_high)
         if pool_low is not None:
-            _setter("pool_low", pool_low)
+            pulumi.set(__self__, "pool_low", pool_low)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if push_default_route is not None:
-            _setter("push_default_route", push_default_route)
+            pulumi.set(__self__, "push_default_route", push_default_route)
         if push_dns_server is not None:
-            _setter("push_dns_server", push_dns_server)
+            pulumi.set(__self__, "push_dns_server", push_dns_server)
         if rebind_timer is not None:
-            _setter("rebind_timer", rebind_timer)
+            pulumi.set(__self__, "rebind_timer", rebind_timer)
         if renew_timer is not None:
-            _setter("renew_timer", renew_timer)
+            pulumi.set(__self__, "renew_timer", renew_timer)
         if subnet is not None:
-            _setter("subnet", subnet)
+            pulumi.set(__self__, "subnet", subnet)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
         if valid_lifetime is not None:
-            _setter("valid_lifetime", valid_lifetime)
+            pulumi.set(__self__, "valid_lifetime", valid_lifetime)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter
@@ -789,10 +651,6 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            VpcPublicGatewayDhcpArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

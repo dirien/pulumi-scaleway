@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -60,96 +60,39 @@ class BaremetalServerArgs:
         :param pulumi.Input[str] user: User used for the installation.
         :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
         """
-        BaremetalServerArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            offer=offer,
-            description=description,
-            hostname=hostname,
-            install_config_afterward=install_config_afterward,
-            name=name,
-            options=options,
-            os=os,
-            password=password,
-            private_networks=private_networks,
-            project_id=project_id,
-            reinstall_on_config_changes=reinstall_on_config_changes,
-            service_password=service_password,
-            service_user=service_user,
-            ssh_key_ids=ssh_key_ids,
-            tags=tags,
-            user=user,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             offer: pulumi.Input[str],
-             description: Optional[pulumi.Input[str]] = None,
-             hostname: Optional[pulumi.Input[str]] = None,
-             install_config_afterward: Optional[pulumi.Input[bool]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             options: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerOptionArgs']]]] = None,
-             os: Optional[pulumi.Input[str]] = None,
-             password: Optional[pulumi.Input[str]] = None,
-             private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             reinstall_on_config_changes: Optional[pulumi.Input[bool]] = None,
-             service_password: Optional[pulumi.Input[str]] = None,
-             service_user: Optional[pulumi.Input[str]] = None,
-             ssh_key_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             user: Optional[pulumi.Input[str]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'installConfigAfterward' in kwargs:
-            install_config_afterward = kwargs['installConfigAfterward']
-        if 'privateNetworks' in kwargs:
-            private_networks = kwargs['privateNetworks']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'reinstallOnConfigChanges' in kwargs:
-            reinstall_on_config_changes = kwargs['reinstallOnConfigChanges']
-        if 'servicePassword' in kwargs:
-            service_password = kwargs['servicePassword']
-        if 'serviceUser' in kwargs:
-            service_user = kwargs['serviceUser']
-        if 'sshKeyIds' in kwargs:
-            ssh_key_ids = kwargs['sshKeyIds']
-
-        _setter("offer", offer)
+        pulumi.set(__self__, "offer", offer)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if hostname is not None:
-            _setter("hostname", hostname)
+            pulumi.set(__self__, "hostname", hostname)
         if install_config_afterward is not None:
-            _setter("install_config_afterward", install_config_afterward)
+            pulumi.set(__self__, "install_config_afterward", install_config_afterward)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if options is not None:
-            _setter("options", options)
+            pulumi.set(__self__, "options", options)
         if os is not None:
-            _setter("os", os)
+            pulumi.set(__self__, "os", os)
         if password is not None:
-            _setter("password", password)
+            pulumi.set(__self__, "password", password)
         if private_networks is not None:
-            _setter("private_networks", private_networks)
+            pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if reinstall_on_config_changes is not None:
-            _setter("reinstall_on_config_changes", reinstall_on_config_changes)
+            pulumi.set(__self__, "reinstall_on_config_changes", reinstall_on_config_changes)
         if service_password is not None:
-            _setter("service_password", service_password)
+            pulumi.set(__self__, "service_password", service_password)
         if service_user is not None:
-            _setter("service_user", service_user)
+            pulumi.set(__self__, "service_user", service_user)
         if ssh_key_ids is not None:
-            _setter("ssh_key_ids", ssh_key_ids)
+            pulumi.set(__self__, "ssh_key_ids", ssh_key_ids)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if user is not None:
-            _setter("user", user)
+            pulumi.set(__self__, "user", user)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter
@@ -426,137 +369,56 @@ class _BaremetalServerState:
         :param pulumi.Input[str] user: User used for the installation.
         :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
         """
-        _BaremetalServerState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            description=description,
-            domain=domain,
-            hostname=hostname,
-            install_config_afterward=install_config_afterward,
-            ips=ips,
-            ipv4s=ipv4s,
-            ipv6s=ipv6s,
-            name=name,
-            offer=offer,
-            offer_id=offer_id,
-            offer_name=offer_name,
-            options=options,
-            organization_id=organization_id,
-            os=os,
-            os_name=os_name,
-            password=password,
-            private_networks=private_networks,
-            project_id=project_id,
-            reinstall_on_config_changes=reinstall_on_config_changes,
-            service_password=service_password,
-            service_user=service_user,
-            ssh_key_ids=ssh_key_ids,
-            tags=tags,
-            user=user,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             description: Optional[pulumi.Input[str]] = None,
-             domain: Optional[pulumi.Input[str]] = None,
-             hostname: Optional[pulumi.Input[str]] = None,
-             install_config_afterward: Optional[pulumi.Input[bool]] = None,
-             ips: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpArgs']]]] = None,
-             ipv4s: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv4Args']]]] = None,
-             ipv6s: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerIpv6Args']]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             offer: Optional[pulumi.Input[str]] = None,
-             offer_id: Optional[pulumi.Input[str]] = None,
-             offer_name: Optional[pulumi.Input[str]] = None,
-             options: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerOptionArgs']]]] = None,
-             organization_id: Optional[pulumi.Input[str]] = None,
-             os: Optional[pulumi.Input[str]] = None,
-             os_name: Optional[pulumi.Input[str]] = None,
-             password: Optional[pulumi.Input[str]] = None,
-             private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             reinstall_on_config_changes: Optional[pulumi.Input[bool]] = None,
-             service_password: Optional[pulumi.Input[str]] = None,
-             service_user: Optional[pulumi.Input[str]] = None,
-             ssh_key_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             user: Optional[pulumi.Input[str]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'installConfigAfterward' in kwargs:
-            install_config_afterward = kwargs['installConfigAfterward']
-        if 'offerId' in kwargs:
-            offer_id = kwargs['offerId']
-        if 'offerName' in kwargs:
-            offer_name = kwargs['offerName']
-        if 'organizationId' in kwargs:
-            organization_id = kwargs['organizationId']
-        if 'osName' in kwargs:
-            os_name = kwargs['osName']
-        if 'privateNetworks' in kwargs:
-            private_networks = kwargs['privateNetworks']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'reinstallOnConfigChanges' in kwargs:
-            reinstall_on_config_changes = kwargs['reinstallOnConfigChanges']
-        if 'servicePassword' in kwargs:
-            service_password = kwargs['servicePassword']
-        if 'serviceUser' in kwargs:
-            service_user = kwargs['serviceUser']
-        if 'sshKeyIds' in kwargs:
-            ssh_key_ids = kwargs['sshKeyIds']
-
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if domain is not None:
-            _setter("domain", domain)
+            pulumi.set(__self__, "domain", domain)
         if hostname is not None:
-            _setter("hostname", hostname)
+            pulumi.set(__self__, "hostname", hostname)
         if install_config_afterward is not None:
-            _setter("install_config_afterward", install_config_afterward)
+            pulumi.set(__self__, "install_config_afterward", install_config_afterward)
         if ips is not None:
-            _setter("ips", ips)
+            pulumi.set(__self__, "ips", ips)
         if ipv4s is not None:
-            _setter("ipv4s", ipv4s)
+            pulumi.set(__self__, "ipv4s", ipv4s)
         if ipv6s is not None:
-            _setter("ipv6s", ipv6s)
+            pulumi.set(__self__, "ipv6s", ipv6s)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if offer is not None:
-            _setter("offer", offer)
+            pulumi.set(__self__, "offer", offer)
         if offer_id is not None:
-            _setter("offer_id", offer_id)
+            pulumi.set(__self__, "offer_id", offer_id)
         if offer_name is not None:
-            _setter("offer_name", offer_name)
+            pulumi.set(__self__, "offer_name", offer_name)
         if options is not None:
-            _setter("options", options)
+            pulumi.set(__self__, "options", options)
         if organization_id is not None:
-            _setter("organization_id", organization_id)
+            pulumi.set(__self__, "organization_id", organization_id)
         if os is not None:
-            _setter("os", os)
+            pulumi.set(__self__, "os", os)
         if os_name is not None:
-            _setter("os_name", os_name)
+            pulumi.set(__self__, "os_name", os_name)
         if password is not None:
-            _setter("password", password)
+            pulumi.set(__self__, "password", password)
         if private_networks is not None:
-            _setter("private_networks", private_networks)
+            pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if reinstall_on_config_changes is not None:
-            _setter("reinstall_on_config_changes", reinstall_on_config_changes)
+            pulumi.set(__self__, "reinstall_on_config_changes", reinstall_on_config_changes)
         if service_password is not None:
-            _setter("service_password", service_password)
+            pulumi.set(__self__, "service_password", service_password)
         if service_user is not None:
-            _setter("service_user", service_user)
+            pulumi.set(__self__, "service_user", service_user)
         if ssh_key_ids is not None:
-            _setter("ssh_key_ids", ssh_key_ids)
+            pulumi.set(__self__, "ssh_key_ids", ssh_key_ids)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if user is not None:
-            _setter("user", user)
+            pulumi.set(__self__, "user", user)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter
@@ -1018,10 +880,6 @@ class BaremetalServer(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            BaremetalServerArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

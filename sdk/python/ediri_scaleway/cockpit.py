@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -23,25 +23,10 @@ class CockpitArgs:
         :param pulumi.Input[str] plan: Name or ID of the plan to use.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
         """
-        CockpitArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            plan=plan,
-            project_id=project_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             plan: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
         if plan is not None:
-            _setter("plan", plan)
+            pulumi.set(__self__, "plan", plan)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
 
     @property
     @pulumi.getter
@@ -77,46 +62,25 @@ class _CockpitState:
                  project_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Cockpit resources.
-        :param pulumi.Input[Sequence[pulumi.Input['CockpitEndpointArgs']]] endpoints: Endpoints
+        :param pulumi.Input[Sequence[pulumi.Input['CockpitEndpointArgs']]] endpoints: Endpoints.
         :param pulumi.Input[str] plan: Name or ID of the plan to use.
-        :param pulumi.Input[str] plan_id: The ID of the current plan
+        :param pulumi.Input[str] plan_id: The ID of the current plan.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
         """
-        _CockpitState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            endpoints=endpoints,
-            plan=plan,
-            plan_id=plan_id,
-            project_id=project_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['CockpitEndpointArgs']]]] = None,
-             plan: Optional[pulumi.Input[str]] = None,
-             plan_id: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'planId' in kwargs:
-            plan_id = kwargs['planId']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
         if endpoints is not None:
-            _setter("endpoints", endpoints)
+            pulumi.set(__self__, "endpoints", endpoints)
         if plan is not None:
-            _setter("plan", plan)
+            pulumi.set(__self__, "plan", plan)
         if plan_id is not None:
-            _setter("plan_id", plan_id)
+            pulumi.set(__self__, "plan_id", plan_id)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
 
     @property
     @pulumi.getter
     def endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CockpitEndpointArgs']]]]:
         """
-        Endpoints
+        Endpoints.
         """
         return pulumi.get(self, "endpoints")
 
@@ -140,7 +104,7 @@ class _CockpitState:
     @pulumi.getter(name="planId")
     def plan_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the current plan
+        The ID of the current plan.
         """
         return pulumi.get(self, "plan_id")
 
@@ -208,10 +172,6 @@ class Cockpit(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            CockpitArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -253,9 +213,9 @@ class Cockpit(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CockpitEndpointArgs']]]] endpoints: Endpoints
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CockpitEndpointArgs']]]] endpoints: Endpoints.
         :param pulumi.Input[str] plan: Name or ID of the plan to use.
-        :param pulumi.Input[str] plan_id: The ID of the current plan
+        :param pulumi.Input[str] plan_id: The ID of the current plan.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -272,7 +232,7 @@ class Cockpit(pulumi.CustomResource):
     @pulumi.getter
     def endpoints(self) -> pulumi.Output[Sequence['outputs.CockpitEndpoint']]:
         """
-        Endpoints
+        Endpoints.
         """
         return pulumi.get(self, "endpoints")
 
@@ -288,7 +248,7 @@ class Cockpit(pulumi.CustomResource):
     @pulumi.getter(name="planId")
     def plan_id(self) -> pulumi.Output[str]:
         """
-        The ID of the current plan
+        The ID of the current plan.
         """
         return pulumi.get(self, "plan_id")
 

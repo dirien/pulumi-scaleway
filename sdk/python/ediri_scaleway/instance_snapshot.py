@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -36,49 +36,20 @@ class InstanceSnapshotArgs:
         :param pulumi.Input[str] zone: `zone`) The zone in which
                the snapshot should be created.
         """
-        InstanceSnapshotArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            import_=import_,
-            name=name,
-            project_id=project_id,
-            tags=tags,
-            type=type,
-            volume_id=volume_id,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             import_: Optional[pulumi.Input['InstanceSnapshotImportArgs']] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             type: Optional[pulumi.Input[str]] = None,
-             volume_id: Optional[pulumi.Input[str]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'import' in kwargs:
-            import_ = kwargs['import']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'volumeId' in kwargs:
-            volume_id = kwargs['volumeId']
-
         if import_ is not None:
-            _setter("import_", import_)
+            pulumi.set(__self__, "import_", import_)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
         if volume_id is not None:
-            _setter("volume_id", volume_id)
+            pulumi.set(__self__, "volume_id", volume_id)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter(name="import")
@@ -197,67 +168,26 @@ class _InstanceSnapshotState:
         :param pulumi.Input[str] zone: `zone`) The zone in which
                the snapshot should be created.
         """
-        _InstanceSnapshotState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            created_at=created_at,
-            import_=import_,
-            name=name,
-            organization_id=organization_id,
-            project_id=project_id,
-            size_in_gb=size_in_gb,
-            tags=tags,
-            type=type,
-            volume_id=volume_id,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             created_at: Optional[pulumi.Input[str]] = None,
-             import_: Optional[pulumi.Input['InstanceSnapshotImportArgs']] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             organization_id: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             size_in_gb: Optional[pulumi.Input[int]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             type: Optional[pulumi.Input[str]] = None,
-             volume_id: Optional[pulumi.Input[str]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if 'import' in kwargs:
-            import_ = kwargs['import']
-        if 'organizationId' in kwargs:
-            organization_id = kwargs['organizationId']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'sizeInGb' in kwargs:
-            size_in_gb = kwargs['sizeInGb']
-        if 'volumeId' in kwargs:
-            volume_id = kwargs['volumeId']
-
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if import_ is not None:
-            _setter("import_", import_)
+            pulumi.set(__self__, "import_", import_)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if organization_id is not None:
-            _setter("organization_id", organization_id)
+            pulumi.set(__self__, "organization_id", organization_id)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if size_in_gb is not None:
-            _setter("size_in_gb", size_in_gb)
+            pulumi.set(__self__, "size_in_gb", size_in_gb)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
         if volume_id is not None:
-            _setter("volume_id", volume_id)
+            pulumi.set(__self__, "volume_id", volume_id)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -553,10 +483,6 @@ class InstanceSnapshot(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            InstanceSnapshotArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -578,11 +504,6 @@ class InstanceSnapshot(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = InstanceSnapshotArgs.__new__(InstanceSnapshotArgs)
 
-            if import_ is not None and not isinstance(import_, InstanceSnapshotImportArgs):
-                import_ = import_ or {}
-                def _setter(key, value):
-                    import_[key] = value
-                InstanceSnapshotImportArgs._configure(_setter, **import_)
             __props__.__dict__["import_"] = import_
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id

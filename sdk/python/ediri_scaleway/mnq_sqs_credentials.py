@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -27,33 +27,14 @@ class MnqSqsCredentialsArgs:
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the sqs is enabled for.
         :param pulumi.Input[str] region: `region`). The region in which sqs is enabled.
         """
-        MnqSqsCredentialsArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            permissions=permissions,
-            project_id=project_id,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[pulumi.Input[str]] = None,
-             permissions: Optional[pulumi.Input['MnqSqsCredentialsPermissionsArgs']] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if permissions is not None:
-            _setter("permissions", permissions)
+            pulumi.set(__self__, "permissions", permissions)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter
@@ -122,45 +103,18 @@ class _MnqSqsCredentialsState:
         :param pulumi.Input[str] region: `region`). The region in which sqs is enabled.
         :param pulumi.Input[str] secret_key: The secret value of the key.
         """
-        _MnqSqsCredentialsState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            access_key=access_key,
-            name=name,
-            permissions=permissions,
-            project_id=project_id,
-            region=region,
-            secret_key=secret_key,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             access_key: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             permissions: Optional[pulumi.Input['MnqSqsCredentialsPermissionsArgs']] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             secret_key: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'accessKey' in kwargs:
-            access_key = kwargs['accessKey']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'secretKey' in kwargs:
-            secret_key = kwargs['secretKey']
-
         if access_key is not None:
-            _setter("access_key", access_key)
+            pulumi.set(__self__, "access_key", access_key)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if permissions is not None:
-            _setter("permissions", permissions)
+            pulumi.set(__self__, "permissions", permissions)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if secret_key is not None:
-            _setter("secret_key", secret_key)
+            pulumi.set(__self__, "secret_key", secret_key)
 
     @property
     @pulumi.getter(name="accessKey")
@@ -330,10 +284,6 @@ class MnqSqsCredentials(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            MnqSqsCredentialsArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -353,11 +303,6 @@ class MnqSqsCredentials(pulumi.CustomResource):
             __props__ = MnqSqsCredentialsArgs.__new__(MnqSqsCredentialsArgs)
 
             __props__.__dict__["name"] = name
-            if permissions is not None and not isinstance(permissions, MnqSqsCredentialsPermissionsArgs):
-                permissions = permissions or {}
-                def _setter(key, value):
-                    permissions[key] = value
-                MnqSqsCredentialsPermissionsArgs._configure(_setter, **permissions)
             __props__.__dict__["permissions"] = permissions
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region

@@ -104,6 +104,9 @@ export class RdbInstance extends pulumi.CustomResource {
      *
      * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
      * interruption. Keep in mind that you cannot downgrade a Database Instance.
+     *
+     * > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
+     * and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
      */
     public readonly nodeType!: pulumi.Output<string>;
     /**
@@ -148,6 +151,8 @@ export class RdbInstance extends pulumi.CustomResource {
     public readonly userName!: pulumi.Output<string | undefined>;
     /**
      * Volume size (in GB) when `volumeType` is set to `bssd`.
+     *
+     * > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
      */
     public readonly volumeSizeInGb!: pulumi.Output<number>;
     /**
@@ -297,6 +302,9 @@ export interface RdbInstanceState {
      *
      * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
      * interruption. Keep in mind that you cannot downgrade a Database Instance.
+     *
+     * > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
+     * and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
      */
     nodeType?: pulumi.Input<string>;
     /**
@@ -341,6 +349,8 @@ export interface RdbInstanceState {
     userName?: pulumi.Input<string>;
     /**
      * Volume size (in GB) when `volumeType` is set to `bssd`.
+     *
+     * > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
      */
     volumeSizeInGb?: pulumi.Input<number>;
     /**
@@ -396,6 +406,9 @@ export interface RdbInstanceArgs {
      *
      * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
      * interruption. Keep in mind that you cannot downgrade a Database Instance.
+     *
+     * > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
+     * and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
      */
     nodeType: pulumi.Input<string>;
     /**
@@ -432,6 +445,8 @@ export interface RdbInstanceArgs {
     userName?: pulumi.Input<string>;
     /**
      * Volume size (in GB) when `volumeType` is set to `bssd`.
+     *
+     * > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
      */
     volumeSizeInGb?: pulumi.Input<number>;
     /**

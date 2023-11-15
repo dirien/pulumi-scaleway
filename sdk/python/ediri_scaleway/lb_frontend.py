@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -42,62 +42,21 @@ class LbFrontendArgs:
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
         :param pulumi.Input[str] timeout_client: Maximum inactivity time on the client side. (e.g.: `1s`)
         """
-        LbFrontendArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            backend_id=backend_id,
-            inbound_port=inbound_port,
-            lb_id=lb_id,
-            acls=acls,
-            certificate_ids=certificate_ids,
-            enable_http3=enable_http3,
-            external_acls=external_acls,
-            name=name,
-            timeout_client=timeout_client,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             backend_id: pulumi.Input[str],
-             inbound_port: pulumi.Input[int],
-             lb_id: pulumi.Input[str],
-             acls: Optional[pulumi.Input[Sequence[pulumi.Input['LbFrontendAclArgs']]]] = None,
-             certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             enable_http3: Optional[pulumi.Input[bool]] = None,
-             external_acls: Optional[pulumi.Input[bool]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             timeout_client: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'backendId' in kwargs:
-            backend_id = kwargs['backendId']
-        if 'inboundPort' in kwargs:
-            inbound_port = kwargs['inboundPort']
-        if 'lbId' in kwargs:
-            lb_id = kwargs['lbId']
-        if 'certificateIds' in kwargs:
-            certificate_ids = kwargs['certificateIds']
-        if 'enableHttp3' in kwargs:
-            enable_http3 = kwargs['enableHttp3']
-        if 'externalAcls' in kwargs:
-            external_acls = kwargs['externalAcls']
-        if 'timeoutClient' in kwargs:
-            timeout_client = kwargs['timeoutClient']
-
-        _setter("backend_id", backend_id)
-        _setter("inbound_port", inbound_port)
-        _setter("lb_id", lb_id)
+        pulumi.set(__self__, "backend_id", backend_id)
+        pulumi.set(__self__, "inbound_port", inbound_port)
+        pulumi.set(__self__, "lb_id", lb_id)
         if acls is not None:
-            _setter("acls", acls)
+            pulumi.set(__self__, "acls", acls)
         if certificate_ids is not None:
-            _setter("certificate_ids", certificate_ids)
+            pulumi.set(__self__, "certificate_ids", certificate_ids)
         if enable_http3 is not None:
-            _setter("enable_http3", enable_http3)
+            pulumi.set(__self__, "enable_http3", enable_http3)
         if external_acls is not None:
-            _setter("external_acls", external_acls)
+            pulumi.set(__self__, "external_acls", external_acls)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if timeout_client is not None:
-            _setter("timeout_client", timeout_client)
+            pulumi.set(__self__, "timeout_client", timeout_client)
 
     @property
     @pulumi.getter(name="backendId")
@@ -244,74 +203,29 @@ class _LbFrontendState:
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
         :param pulumi.Input[str] timeout_client: Maximum inactivity time on the client side. (e.g.: `1s`)
         """
-        _LbFrontendState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            acls=acls,
-            backend_id=backend_id,
-            certificate_id=certificate_id,
-            certificate_ids=certificate_ids,
-            enable_http3=enable_http3,
-            external_acls=external_acls,
-            inbound_port=inbound_port,
-            lb_id=lb_id,
-            name=name,
-            timeout_client=timeout_client,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             acls: Optional[pulumi.Input[Sequence[pulumi.Input['LbFrontendAclArgs']]]] = None,
-             backend_id: Optional[pulumi.Input[str]] = None,
-             certificate_id: Optional[pulumi.Input[str]] = None,
-             certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             enable_http3: Optional[pulumi.Input[bool]] = None,
-             external_acls: Optional[pulumi.Input[bool]] = None,
-             inbound_port: Optional[pulumi.Input[int]] = None,
-             lb_id: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             timeout_client: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'backendId' in kwargs:
-            backend_id = kwargs['backendId']
-        if 'certificateId' in kwargs:
-            certificate_id = kwargs['certificateId']
-        if 'certificateIds' in kwargs:
-            certificate_ids = kwargs['certificateIds']
-        if 'enableHttp3' in kwargs:
-            enable_http3 = kwargs['enableHttp3']
-        if 'externalAcls' in kwargs:
-            external_acls = kwargs['externalAcls']
-        if 'inboundPort' in kwargs:
-            inbound_port = kwargs['inboundPort']
-        if 'lbId' in kwargs:
-            lb_id = kwargs['lbId']
-        if 'timeoutClient' in kwargs:
-            timeout_client = kwargs['timeoutClient']
-
         if acls is not None:
-            _setter("acls", acls)
+            pulumi.set(__self__, "acls", acls)
         if backend_id is not None:
-            _setter("backend_id", backend_id)
+            pulumi.set(__self__, "backend_id", backend_id)
         if certificate_id is not None:
             warnings.warn("""Please use certificate_ids""", DeprecationWarning)
             pulumi.log.warn("""certificate_id is deprecated: Please use certificate_ids""")
         if certificate_id is not None:
-            _setter("certificate_id", certificate_id)
+            pulumi.set(__self__, "certificate_id", certificate_id)
         if certificate_ids is not None:
-            _setter("certificate_ids", certificate_ids)
+            pulumi.set(__self__, "certificate_ids", certificate_ids)
         if enable_http3 is not None:
-            _setter("enable_http3", enable_http3)
+            pulumi.set(__self__, "enable_http3", enable_http3)
         if external_acls is not None:
-            _setter("external_acls", external_acls)
+            pulumi.set(__self__, "external_acls", external_acls)
         if inbound_port is not None:
-            _setter("inbound_port", inbound_port)
+            pulumi.set(__self__, "inbound_port", inbound_port)
         if lb_id is not None:
-            _setter("lb_id", lb_id)
+            pulumi.set(__self__, "lb_id", lb_id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if timeout_client is not None:
-            _setter("timeout_client", timeout_client)
+            pulumi.set(__self__, "timeout_client", timeout_client)
 
     @property
     @pulumi.getter
@@ -540,10 +454,6 @@ class LbFrontend(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            LbFrontendArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

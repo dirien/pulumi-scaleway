@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -43,6 +43,9 @@ class RdbInstanceArgs:
                
                > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
                interruption. Keep in mind that you cannot downgrade a Database Instance.
+               
+               > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
+               and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
         :param pulumi.Input[bool] backup_same_region: Boolean to store logical backups in the same region as the database instance.
         :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours.
         :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days.
@@ -66,111 +69,44 @@ class RdbInstanceArgs:
                
                > **Important:** Updates to `user_name` will recreate the Database Instance.
         :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`.
+               
+               > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
         :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd` or `lssd`).
         """
-        RdbInstanceArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            engine=engine,
-            node_type=node_type,
-            backup_same_region=backup_same_region,
-            backup_schedule_frequency=backup_schedule_frequency,
-            backup_schedule_retention=backup_schedule_retention,
-            disable_backup=disable_backup,
-            init_settings=init_settings,
-            is_ha_cluster=is_ha_cluster,
-            name=name,
-            password=password,
-            private_network=private_network,
-            project_id=project_id,
-            region=region,
-            settings=settings,
-            tags=tags,
-            user_name=user_name,
-            volume_size_in_gb=volume_size_in_gb,
-            volume_type=volume_type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             engine: pulumi.Input[str],
-             node_type: pulumi.Input[str],
-             backup_same_region: Optional[pulumi.Input[bool]] = None,
-             backup_schedule_frequency: Optional[pulumi.Input[int]] = None,
-             backup_schedule_retention: Optional[pulumi.Input[int]] = None,
-             disable_backup: Optional[pulumi.Input[bool]] = None,
-             init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-             is_ha_cluster: Optional[pulumi.Input[bool]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             password: Optional[pulumi.Input[str]] = None,
-             private_network: Optional[pulumi.Input['RdbInstancePrivateNetworkArgs']] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             user_name: Optional[pulumi.Input[str]] = None,
-             volume_size_in_gb: Optional[pulumi.Input[int]] = None,
-             volume_type: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'nodeType' in kwargs:
-            node_type = kwargs['nodeType']
-        if 'backupSameRegion' in kwargs:
-            backup_same_region = kwargs['backupSameRegion']
-        if 'backupScheduleFrequency' in kwargs:
-            backup_schedule_frequency = kwargs['backupScheduleFrequency']
-        if 'backupScheduleRetention' in kwargs:
-            backup_schedule_retention = kwargs['backupScheduleRetention']
-        if 'disableBackup' in kwargs:
-            disable_backup = kwargs['disableBackup']
-        if 'initSettings' in kwargs:
-            init_settings = kwargs['initSettings']
-        if 'isHaCluster' in kwargs:
-            is_ha_cluster = kwargs['isHaCluster']
-        if 'privateNetwork' in kwargs:
-            private_network = kwargs['privateNetwork']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'userName' in kwargs:
-            user_name = kwargs['userName']
-        if 'volumeSizeInGb' in kwargs:
-            volume_size_in_gb = kwargs['volumeSizeInGb']
-        if 'volumeType' in kwargs:
-            volume_type = kwargs['volumeType']
-
-        _setter("engine", engine)
-        _setter("node_type", node_type)
+        pulumi.set(__self__, "engine", engine)
+        pulumi.set(__self__, "node_type", node_type)
         if backup_same_region is not None:
-            _setter("backup_same_region", backup_same_region)
+            pulumi.set(__self__, "backup_same_region", backup_same_region)
         if backup_schedule_frequency is not None:
-            _setter("backup_schedule_frequency", backup_schedule_frequency)
+            pulumi.set(__self__, "backup_schedule_frequency", backup_schedule_frequency)
         if backup_schedule_retention is not None:
-            _setter("backup_schedule_retention", backup_schedule_retention)
+            pulumi.set(__self__, "backup_schedule_retention", backup_schedule_retention)
         if disable_backup is not None:
-            _setter("disable_backup", disable_backup)
+            pulumi.set(__self__, "disable_backup", disable_backup)
         if init_settings is not None:
-            _setter("init_settings", init_settings)
+            pulumi.set(__self__, "init_settings", init_settings)
         if is_ha_cluster is not None:
-            _setter("is_ha_cluster", is_ha_cluster)
+            pulumi.set(__self__, "is_ha_cluster", is_ha_cluster)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if password is not None:
-            _setter("password", password)
+            pulumi.set(__self__, "password", password)
         if private_network is not None:
-            _setter("private_network", private_network)
+            pulumi.set(__self__, "private_network", private_network)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if settings is not None:
-            _setter("settings", settings)
+            pulumi.set(__self__, "settings", settings)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if user_name is not None:
-            _setter("user_name", user_name)
+            pulumi.set(__self__, "user_name", user_name)
         if volume_size_in_gb is not None:
-            _setter("volume_size_in_gb", volume_size_in_gb)
+            pulumi.set(__self__, "volume_size_in_gb", volume_size_in_gb)
         if volume_type is not None:
-            _setter("volume_type", volume_type)
+            pulumi.set(__self__, "volume_type", volume_type)
 
     @property
     @pulumi.getter
@@ -194,6 +130,9 @@ class RdbInstanceArgs:
 
         > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
         interruption. Keep in mind that you cannot downgrade a Database Instance.
+
+        > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
+        and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
         """
         return pulumi.get(self, "node_type")
 
@@ -382,6 +321,8 @@ class RdbInstanceArgs:
     def volume_size_in_gb(self) -> Optional[pulumi.Input[int]]:
         """
         Volume size (in GB) when `volume_type` is set to `bssd`.
+
+        > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
         """
         return pulumi.get(self, "volume_size_in_gb")
 
@@ -453,6 +394,9 @@ class _RdbInstanceState:
                
                > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
                interruption. Keep in mind that you cannot downgrade a Database Instance.
+               
+               > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
+               and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
         :param pulumi.Input[str] organization_id: The organization ID the Database Instance is associated with.
         :param pulumi.Input[str] password: Password for the first user of the database instance.
         :param pulumi.Input['RdbInstancePrivateNetworkArgs'] private_network: List of private networks endpoints of the database instance.
@@ -467,150 +411,61 @@ class _RdbInstanceState:
                
                > **Important:** Updates to `user_name` will recreate the Database Instance.
         :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`.
+               
+               > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
         :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd` or `lssd`).
         """
-        _RdbInstanceState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            backup_same_region=backup_same_region,
-            backup_schedule_frequency=backup_schedule_frequency,
-            backup_schedule_retention=backup_schedule_retention,
-            certificate=certificate,
-            disable_backup=disable_backup,
-            endpoint_ip=endpoint_ip,
-            endpoint_port=endpoint_port,
-            engine=engine,
-            init_settings=init_settings,
-            is_ha_cluster=is_ha_cluster,
-            load_balancers=load_balancers,
-            name=name,
-            node_type=node_type,
-            organization_id=organization_id,
-            password=password,
-            private_network=private_network,
-            project_id=project_id,
-            read_replicas=read_replicas,
-            region=region,
-            settings=settings,
-            tags=tags,
-            user_name=user_name,
-            volume_size_in_gb=volume_size_in_gb,
-            volume_type=volume_type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             backup_same_region: Optional[pulumi.Input[bool]] = None,
-             backup_schedule_frequency: Optional[pulumi.Input[int]] = None,
-             backup_schedule_retention: Optional[pulumi.Input[int]] = None,
-             certificate: Optional[pulumi.Input[str]] = None,
-             disable_backup: Optional[pulumi.Input[bool]] = None,
-             endpoint_ip: Optional[pulumi.Input[str]] = None,
-             endpoint_port: Optional[pulumi.Input[int]] = None,
-             engine: Optional[pulumi.Input[str]] = None,
-             init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-             is_ha_cluster: Optional[pulumi.Input[bool]] = None,
-             load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input['RdbInstanceLoadBalancerArgs']]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             node_type: Optional[pulumi.Input[str]] = None,
-             organization_id: Optional[pulumi.Input[str]] = None,
-             password: Optional[pulumi.Input[str]] = None,
-             private_network: Optional[pulumi.Input['RdbInstancePrivateNetworkArgs']] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             read_replicas: Optional[pulumi.Input[Sequence[pulumi.Input['RdbInstanceReadReplicaArgs']]]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             user_name: Optional[pulumi.Input[str]] = None,
-             volume_size_in_gb: Optional[pulumi.Input[int]] = None,
-             volume_type: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'backupSameRegion' in kwargs:
-            backup_same_region = kwargs['backupSameRegion']
-        if 'backupScheduleFrequency' in kwargs:
-            backup_schedule_frequency = kwargs['backupScheduleFrequency']
-        if 'backupScheduleRetention' in kwargs:
-            backup_schedule_retention = kwargs['backupScheduleRetention']
-        if 'disableBackup' in kwargs:
-            disable_backup = kwargs['disableBackup']
-        if 'endpointIp' in kwargs:
-            endpoint_ip = kwargs['endpointIp']
-        if 'endpointPort' in kwargs:
-            endpoint_port = kwargs['endpointPort']
-        if 'initSettings' in kwargs:
-            init_settings = kwargs['initSettings']
-        if 'isHaCluster' in kwargs:
-            is_ha_cluster = kwargs['isHaCluster']
-        if 'loadBalancers' in kwargs:
-            load_balancers = kwargs['loadBalancers']
-        if 'nodeType' in kwargs:
-            node_type = kwargs['nodeType']
-        if 'organizationId' in kwargs:
-            organization_id = kwargs['organizationId']
-        if 'privateNetwork' in kwargs:
-            private_network = kwargs['privateNetwork']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'readReplicas' in kwargs:
-            read_replicas = kwargs['readReplicas']
-        if 'userName' in kwargs:
-            user_name = kwargs['userName']
-        if 'volumeSizeInGb' in kwargs:
-            volume_size_in_gb = kwargs['volumeSizeInGb']
-        if 'volumeType' in kwargs:
-            volume_type = kwargs['volumeType']
-
         if backup_same_region is not None:
-            _setter("backup_same_region", backup_same_region)
+            pulumi.set(__self__, "backup_same_region", backup_same_region)
         if backup_schedule_frequency is not None:
-            _setter("backup_schedule_frequency", backup_schedule_frequency)
+            pulumi.set(__self__, "backup_schedule_frequency", backup_schedule_frequency)
         if backup_schedule_retention is not None:
-            _setter("backup_schedule_retention", backup_schedule_retention)
+            pulumi.set(__self__, "backup_schedule_retention", backup_schedule_retention)
         if certificate is not None:
-            _setter("certificate", certificate)
+            pulumi.set(__self__, "certificate", certificate)
         if disable_backup is not None:
-            _setter("disable_backup", disable_backup)
+            pulumi.set(__self__, "disable_backup", disable_backup)
         if endpoint_ip is not None:
             warnings.warn("""Please use the private_network or the load_balancer attribute""", DeprecationWarning)
             pulumi.log.warn("""endpoint_ip is deprecated: Please use the private_network or the load_balancer attribute""")
         if endpoint_ip is not None:
-            _setter("endpoint_ip", endpoint_ip)
+            pulumi.set(__self__, "endpoint_ip", endpoint_ip)
         if endpoint_port is not None:
-            _setter("endpoint_port", endpoint_port)
+            pulumi.set(__self__, "endpoint_port", endpoint_port)
         if engine is not None:
-            _setter("engine", engine)
+            pulumi.set(__self__, "engine", engine)
         if init_settings is not None:
-            _setter("init_settings", init_settings)
+            pulumi.set(__self__, "init_settings", init_settings)
         if is_ha_cluster is not None:
-            _setter("is_ha_cluster", is_ha_cluster)
+            pulumi.set(__self__, "is_ha_cluster", is_ha_cluster)
         if load_balancers is not None:
-            _setter("load_balancers", load_balancers)
+            pulumi.set(__self__, "load_balancers", load_balancers)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if node_type is not None:
-            _setter("node_type", node_type)
+            pulumi.set(__self__, "node_type", node_type)
         if organization_id is not None:
-            _setter("organization_id", organization_id)
+            pulumi.set(__self__, "organization_id", organization_id)
         if password is not None:
-            _setter("password", password)
+            pulumi.set(__self__, "password", password)
         if private_network is not None:
-            _setter("private_network", private_network)
+            pulumi.set(__self__, "private_network", private_network)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if read_replicas is not None:
-            _setter("read_replicas", read_replicas)
+            pulumi.set(__self__, "read_replicas", read_replicas)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if settings is not None:
-            _setter("settings", settings)
+            pulumi.set(__self__, "settings", settings)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if user_name is not None:
-            _setter("user_name", user_name)
+            pulumi.set(__self__, "user_name", user_name)
         if volume_size_in_gb is not None:
-            _setter("volume_size_in_gb", volume_size_in_gb)
+            pulumi.set(__self__, "volume_size_in_gb", volume_size_in_gb)
         if volume_type is not None:
-            _setter("volume_type", volume_type)
+            pulumi.set(__self__, "volume_type", volume_type)
 
     @property
     @pulumi.getter(name="backupSameRegion")
@@ -773,6 +628,9 @@ class _RdbInstanceState:
 
         > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
         interruption. Keep in mind that you cannot downgrade a Database Instance.
+
+        > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
+        and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
         """
         return pulumi.get(self, "node_type")
 
@@ -897,6 +755,8 @@ class _RdbInstanceState:
     def volume_size_in_gb(self) -> Optional[pulumi.Input[int]]:
         """
         Volume size (in GB) when `volume_type` is set to `bssd`.
+
+        > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
         """
         return pulumi.get(self, "volume_size_in_gb")
 
@@ -970,6 +830,9 @@ class RdbInstance(pulumi.CustomResource):
                
                > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
                interruption. Keep in mind that you cannot downgrade a Database Instance.
+               
+               > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
+               and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
         :param pulumi.Input[str] password: Password for the first user of the database instance.
         :param pulumi.Input[pulumi.InputType['RdbInstancePrivateNetworkArgs']] private_network: List of private networks endpoints of the database instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database
@@ -982,6 +845,8 @@ class RdbInstance(pulumi.CustomResource):
                
                > **Important:** Updates to `user_name` will recreate the Database Instance.
         :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`.
+               
+               > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
         :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd` or `lssd`).
         """
         ...
@@ -1009,10 +874,6 @@ class RdbInstance(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            RdbInstanceArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -1059,11 +920,6 @@ class RdbInstance(pulumi.CustomResource):
                 raise TypeError("Missing required property 'node_type'")
             __props__.__dict__["node_type"] = node_type
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
-            if private_network is not None and not isinstance(private_network, RdbInstancePrivateNetworkArgs):
-                private_network = private_network or {}
-                def _setter(key, value):
-                    private_network[key] = value
-                RdbInstancePrivateNetworkArgs._configure(_setter, **private_network)
             __props__.__dict__["private_network"] = private_network
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
@@ -1143,6 +999,9 @@ class RdbInstance(pulumi.CustomResource):
                
                > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
                interruption. Keep in mind that you cannot downgrade a Database Instance.
+               
+               > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
+               and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
         :param pulumi.Input[str] organization_id: The organization ID the Database Instance is associated with.
         :param pulumi.Input[str] password: Password for the first user of the database instance.
         :param pulumi.Input[pulumi.InputType['RdbInstancePrivateNetworkArgs']] private_network: List of private networks endpoints of the database instance.
@@ -1157,6 +1016,8 @@ class RdbInstance(pulumi.CustomResource):
                
                > **Important:** Updates to `user_name` will recreate the Database Instance.
         :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`.
+               
+               > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
         :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd` or `lssd`).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1302,6 +1163,9 @@ class RdbInstance(pulumi.CustomResource):
 
         > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
         interruption. Keep in mind that you cannot downgrade a Database Instance.
+
+        > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
+        and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
         """
         return pulumi.get(self, "node_type")
 
@@ -1386,6 +1250,8 @@ class RdbInstance(pulumi.CustomResource):
     def volume_size_in_gb(self) -> pulumi.Output[int]:
         """
         Volume size (in GB) when `volume_type` is set to `bssd`.
+
+        > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
         """
         return pulumi.get(self, "volume_size_in_gb")
 

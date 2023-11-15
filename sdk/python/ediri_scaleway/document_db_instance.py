@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['DocumentDBInstanceArgs', 'DocumentDBInstance']
@@ -52,75 +52,28 @@ class DocumentDBInstanceArgs:
         :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`.
         :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd` or `lssd`).
         """
-        DocumentDBInstanceArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            engine=engine,
-            node_type=node_type,
-            is_ha_cluster=is_ha_cluster,
-            name=name,
-            password=password,
-            project_id=project_id,
-            region=region,
-            tags=tags,
-            telemetry_enabled=telemetry_enabled,
-            user_name=user_name,
-            volume_size_in_gb=volume_size_in_gb,
-            volume_type=volume_type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             engine: pulumi.Input[str],
-             node_type: pulumi.Input[str],
-             is_ha_cluster: Optional[pulumi.Input[bool]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             password: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             telemetry_enabled: Optional[pulumi.Input[bool]] = None,
-             user_name: Optional[pulumi.Input[str]] = None,
-             volume_size_in_gb: Optional[pulumi.Input[int]] = None,
-             volume_type: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'nodeType' in kwargs:
-            node_type = kwargs['nodeType']
-        if 'isHaCluster' in kwargs:
-            is_ha_cluster = kwargs['isHaCluster']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'telemetryEnabled' in kwargs:
-            telemetry_enabled = kwargs['telemetryEnabled']
-        if 'userName' in kwargs:
-            user_name = kwargs['userName']
-        if 'volumeSizeInGb' in kwargs:
-            volume_size_in_gb = kwargs['volumeSizeInGb']
-        if 'volumeType' in kwargs:
-            volume_type = kwargs['volumeType']
-
-        _setter("engine", engine)
-        _setter("node_type", node_type)
+        pulumi.set(__self__, "engine", engine)
+        pulumi.set(__self__, "node_type", node_type)
         if is_ha_cluster is not None:
-            _setter("is_ha_cluster", is_ha_cluster)
+            pulumi.set(__self__, "is_ha_cluster", is_ha_cluster)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if password is not None:
-            _setter("password", password)
+            pulumi.set(__self__, "password", password)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if telemetry_enabled is not None:
-            _setter("telemetry_enabled", telemetry_enabled)
+            pulumi.set(__self__, "telemetry_enabled", telemetry_enabled)
         if user_name is not None:
-            _setter("user_name", user_name)
+            pulumi.set(__self__, "user_name", user_name)
         if volume_size_in_gb is not None:
-            _setter("volume_size_in_gb", volume_size_in_gb)
+            pulumi.set(__self__, "volume_size_in_gb", volume_size_in_gb)
         if volume_type is not None:
-            _setter("volume_type", volume_type)
+            pulumi.set(__self__, "volume_type", volume_type)
 
     @property
     @pulumi.getter
@@ -319,77 +272,30 @@ class _DocumentDBInstanceState:
         :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`.
         :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd` or `lssd`).
         """
-        _DocumentDBInstanceState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            engine=engine,
-            is_ha_cluster=is_ha_cluster,
-            name=name,
-            node_type=node_type,
-            password=password,
-            project_id=project_id,
-            region=region,
-            tags=tags,
-            telemetry_enabled=telemetry_enabled,
-            user_name=user_name,
-            volume_size_in_gb=volume_size_in_gb,
-            volume_type=volume_type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             engine: Optional[pulumi.Input[str]] = None,
-             is_ha_cluster: Optional[pulumi.Input[bool]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             node_type: Optional[pulumi.Input[str]] = None,
-             password: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             telemetry_enabled: Optional[pulumi.Input[bool]] = None,
-             user_name: Optional[pulumi.Input[str]] = None,
-             volume_size_in_gb: Optional[pulumi.Input[int]] = None,
-             volume_type: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'isHaCluster' in kwargs:
-            is_ha_cluster = kwargs['isHaCluster']
-        if 'nodeType' in kwargs:
-            node_type = kwargs['nodeType']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'telemetryEnabled' in kwargs:
-            telemetry_enabled = kwargs['telemetryEnabled']
-        if 'userName' in kwargs:
-            user_name = kwargs['userName']
-        if 'volumeSizeInGb' in kwargs:
-            volume_size_in_gb = kwargs['volumeSizeInGb']
-        if 'volumeType' in kwargs:
-            volume_type = kwargs['volumeType']
-
         if engine is not None:
-            _setter("engine", engine)
+            pulumi.set(__self__, "engine", engine)
         if is_ha_cluster is not None:
-            _setter("is_ha_cluster", is_ha_cluster)
+            pulumi.set(__self__, "is_ha_cluster", is_ha_cluster)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if node_type is not None:
-            _setter("node_type", node_type)
+            pulumi.set(__self__, "node_type", node_type)
         if password is not None:
-            _setter("password", password)
+            pulumi.set(__self__, "password", password)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if telemetry_enabled is not None:
-            _setter("telemetry_enabled", telemetry_enabled)
+            pulumi.set(__self__, "telemetry_enabled", telemetry_enabled)
         if user_name is not None:
-            _setter("user_name", user_name)
+            pulumi.set(__self__, "user_name", user_name)
         if volume_size_in_gb is not None:
-            _setter("volume_size_in_gb", volume_size_in_gb)
+            pulumi.set(__self__, "volume_size_in_gb", volume_size_in_gb)
         if volume_type is not None:
-            _setter("volume_type", volume_type)
+            pulumi.set(__self__, "volume_type", volume_type)
 
     @property
     @pulumi.getter
@@ -673,10 +579,6 @@ class DocumentDBInstance(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            DocumentDBInstanceArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

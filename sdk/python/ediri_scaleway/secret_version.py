@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['SecretVersionArgs', 'SecretVersion']
@@ -26,31 +26,12 @@ class SecretVersionArgs:
         :param pulumi.Input[str] region: `region`) The region
                in which the resource exists.
         """
-        SecretVersionArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            data=data,
-            secret_id=secret_id,
-            description=description,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             data: pulumi.Input[str],
-             secret_id: pulumi.Input[str],
-             description: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'secretId' in kwargs:
-            secret_id = kwargs['secretId']
-
-        _setter("data", data)
-        _setter("secret_id", secret_id)
+        pulumi.set(__self__, "data", data)
+        pulumi.set(__self__, "secret_id", secret_id)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter
@@ -125,53 +106,22 @@ class _SecretVersionState:
         :param pulumi.Input[str] status: The status of the Secret Version.
         :param pulumi.Input[str] updated_at: Date and time of secret version's last update (RFC 3339 format).
         """
-        _SecretVersionState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            created_at=created_at,
-            data=data,
-            description=description,
-            region=region,
-            revision=revision,
-            secret_id=secret_id,
-            status=status,
-            updated_at=updated_at,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             created_at: Optional[pulumi.Input[str]] = None,
-             data: Optional[pulumi.Input[str]] = None,
-             description: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             revision: Optional[pulumi.Input[str]] = None,
-             secret_id: Optional[pulumi.Input[str]] = None,
-             status: Optional[pulumi.Input[str]] = None,
-             updated_at: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if 'secretId' in kwargs:
-            secret_id = kwargs['secretId']
-        if 'updatedAt' in kwargs:
-            updated_at = kwargs['updatedAt']
-
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if data is not None:
-            _setter("data", data)
+            pulumi.set(__self__, "data", data)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if revision is not None:
-            _setter("revision", revision)
+            pulumi.set(__self__, "revision", revision)
         if secret_id is not None:
-            _setter("secret_id", secret_id)
+            pulumi.set(__self__, "secret_id", secret_id)
         if status is not None:
-            _setter("status", status)
+            pulumi.set(__self__, "status", status)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -323,10 +273,6 @@ class SecretVersion(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            SecretVersionArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

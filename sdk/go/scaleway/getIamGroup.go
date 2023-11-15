@@ -9,7 +9,6 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an existing IAM group. For more information, please
@@ -127,12 +126,6 @@ func (o LookupIamGroupResultOutput) ToLookupIamGroupResultOutput() LookupIamGrou
 
 func (o LookupIamGroupResultOutput) ToLookupIamGroupResultOutputWithContext(ctx context.Context) LookupIamGroupResultOutput {
 	return o
-}
-
-func (o LookupIamGroupResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupIamGroupResult] {
-	return pulumix.Output[LookupIamGroupResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupIamGroupResultOutput) ApplicationIds() pulumi.StringArrayOutput {
