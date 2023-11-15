@@ -9,7 +9,6 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a registry image.
@@ -135,12 +134,6 @@ func (o GetRegistryImageResultOutput) ToGetRegistryImageResultOutput() GetRegist
 
 func (o GetRegistryImageResultOutput) ToGetRegistryImageResultOutputWithContext(ctx context.Context) GetRegistryImageResultOutput {
 	return o
-}
-
-func (o GetRegistryImageResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetRegistryImageResult] {
-	return pulumix.Output[GetRegistryImageResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

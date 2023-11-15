@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['IamGroupMembershipArgs', 'IamGroupMembership']
@@ -25,32 +25,11 @@ class IamGroupMembershipArgs:
                
                - > Only one of `application_id` or `user_id` must be specified
         """
-        IamGroupMembershipArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            group_id=group_id,
-            application_id=application_id,
-            user_id=user_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             group_id: pulumi.Input[str],
-             application_id: Optional[pulumi.Input[str]] = None,
-             user_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'groupId' in kwargs:
-            group_id = kwargs['groupId']
-        if 'applicationId' in kwargs:
-            application_id = kwargs['applicationId']
-        if 'userId' in kwargs:
-            user_id = kwargs['userId']
-
-        _setter("group_id", group_id)
+        pulumi.set(__self__, "group_id", group_id)
         if application_id is not None:
-            _setter("application_id", application_id)
+            pulumi.set(__self__, "application_id", application_id)
         if user_id is not None:
-            _setter("user_id", user_id)
+            pulumi.set(__self__, "user_id", user_id)
 
     @property
     @pulumi.getter(name="groupId")
@@ -105,33 +84,12 @@ class _IamGroupMembershipState:
                
                - > Only one of `application_id` or `user_id` must be specified
         """
-        _IamGroupMembershipState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            application_id=application_id,
-            group_id=group_id,
-            user_id=user_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             application_id: Optional[pulumi.Input[str]] = None,
-             group_id: Optional[pulumi.Input[str]] = None,
-             user_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'applicationId' in kwargs:
-            application_id = kwargs['applicationId']
-        if 'groupId' in kwargs:
-            group_id = kwargs['groupId']
-        if 'userId' in kwargs:
-            user_id = kwargs['userId']
-
         if application_id is not None:
-            _setter("application_id", application_id)
+            pulumi.set(__self__, "application_id", application_id)
         if group_id is not None:
-            _setter("group_id", group_id)
+            pulumi.set(__self__, "group_id", group_id)
         if user_id is not None:
-            _setter("user_id", user_id)
+            pulumi.set(__self__, "user_id", user_id)
 
     @property
     @pulumi.getter(name="applicationId")
@@ -259,10 +217,6 @@ class IamGroupMembership(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            IamGroupMembershipArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

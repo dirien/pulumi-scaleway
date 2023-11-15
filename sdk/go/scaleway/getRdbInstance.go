@@ -9,7 +9,6 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
@@ -108,12 +107,6 @@ func (o LookupRdbInstanceResultOutput) ToLookupRdbInstanceResultOutput() LookupR
 
 func (o LookupRdbInstanceResultOutput) ToLookupRdbInstanceResultOutputWithContext(ctx context.Context) LookupRdbInstanceResultOutput {
 	return o
-}
-
-func (o LookupRdbInstanceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupRdbInstanceResult] {
-	return pulumix.Output[LookupRdbInstanceResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupRdbInstanceResultOutput) BackupSameRegion() pulumi.BoolOutput {

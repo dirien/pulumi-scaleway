@@ -9,7 +9,6 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a webhosting offer.
@@ -120,12 +119,6 @@ func (o GetWebHostOfferResultOutput) ToGetWebHostOfferResultOutput() GetWebHostO
 
 func (o GetWebHostOfferResultOutput) ToGetWebHostOfferResultOutputWithContext(ctx context.Context) GetWebHostOfferResultOutput {
 	return o
-}
-
-func (o GetWebHostOfferResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetWebHostOfferResult] {
-	return pulumix.Output[GetWebHostOfferResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The unique identifier used for billing.

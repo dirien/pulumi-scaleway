@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -44,77 +44,30 @@ class InstanceSecurityGroupArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags of the security group.
         :param pulumi.Input[str] zone: `zone`) The zone in which the security group should be created.
         """
-        InstanceSecurityGroupArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            description=description,
-            enable_default_security=enable_default_security,
-            external_rules=external_rules,
-            inbound_default_policy=inbound_default_policy,
-            inbound_rules=inbound_rules,
-            name=name,
-            outbound_default_policy=outbound_default_policy,
-            outbound_rules=outbound_rules,
-            project_id=project_id,
-            stateful=stateful,
-            tags=tags,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             description: Optional[pulumi.Input[str]] = None,
-             enable_default_security: Optional[pulumi.Input[bool]] = None,
-             external_rules: Optional[pulumi.Input[bool]] = None,
-             inbound_default_policy: Optional[pulumi.Input[str]] = None,
-             inbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupInboundRuleArgs']]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             outbound_default_policy: Optional[pulumi.Input[str]] = None,
-             outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupOutboundRuleArgs']]]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             stateful: Optional[pulumi.Input[bool]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'enableDefaultSecurity' in kwargs:
-            enable_default_security = kwargs['enableDefaultSecurity']
-        if 'externalRules' in kwargs:
-            external_rules = kwargs['externalRules']
-        if 'inboundDefaultPolicy' in kwargs:
-            inbound_default_policy = kwargs['inboundDefaultPolicy']
-        if 'inboundRules' in kwargs:
-            inbound_rules = kwargs['inboundRules']
-        if 'outboundDefaultPolicy' in kwargs:
-            outbound_default_policy = kwargs['outboundDefaultPolicy']
-        if 'outboundRules' in kwargs:
-            outbound_rules = kwargs['outboundRules']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if enable_default_security is not None:
-            _setter("enable_default_security", enable_default_security)
+            pulumi.set(__self__, "enable_default_security", enable_default_security)
         if external_rules is not None:
-            _setter("external_rules", external_rules)
+            pulumi.set(__self__, "external_rules", external_rules)
         if inbound_default_policy is not None:
-            _setter("inbound_default_policy", inbound_default_policy)
+            pulumi.set(__self__, "inbound_default_policy", inbound_default_policy)
         if inbound_rules is not None:
-            _setter("inbound_rules", inbound_rules)
+            pulumi.set(__self__, "inbound_rules", inbound_rules)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if outbound_default_policy is not None:
-            _setter("outbound_default_policy", outbound_default_policy)
+            pulumi.set(__self__, "outbound_default_policy", outbound_default_policy)
         if outbound_rules is not None:
-            _setter("outbound_rules", outbound_rules)
+            pulumi.set(__self__, "outbound_rules", outbound_rules)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if stateful is not None:
-            _setter("stateful", stateful)
+            pulumi.set(__self__, "stateful", stateful)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter
@@ -295,83 +248,32 @@ class _InstanceSecurityGroupState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags of the security group.
         :param pulumi.Input[str] zone: `zone`) The zone in which the security group should be created.
         """
-        _InstanceSecurityGroupState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            description=description,
-            enable_default_security=enable_default_security,
-            external_rules=external_rules,
-            inbound_default_policy=inbound_default_policy,
-            inbound_rules=inbound_rules,
-            name=name,
-            organization_id=organization_id,
-            outbound_default_policy=outbound_default_policy,
-            outbound_rules=outbound_rules,
-            project_id=project_id,
-            stateful=stateful,
-            tags=tags,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             description: Optional[pulumi.Input[str]] = None,
-             enable_default_security: Optional[pulumi.Input[bool]] = None,
-             external_rules: Optional[pulumi.Input[bool]] = None,
-             inbound_default_policy: Optional[pulumi.Input[str]] = None,
-             inbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupInboundRuleArgs']]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             organization_id: Optional[pulumi.Input[str]] = None,
-             outbound_default_policy: Optional[pulumi.Input[str]] = None,
-             outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupOutboundRuleArgs']]]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             stateful: Optional[pulumi.Input[bool]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'enableDefaultSecurity' in kwargs:
-            enable_default_security = kwargs['enableDefaultSecurity']
-        if 'externalRules' in kwargs:
-            external_rules = kwargs['externalRules']
-        if 'inboundDefaultPolicy' in kwargs:
-            inbound_default_policy = kwargs['inboundDefaultPolicy']
-        if 'inboundRules' in kwargs:
-            inbound_rules = kwargs['inboundRules']
-        if 'organizationId' in kwargs:
-            organization_id = kwargs['organizationId']
-        if 'outboundDefaultPolicy' in kwargs:
-            outbound_default_policy = kwargs['outboundDefaultPolicy']
-        if 'outboundRules' in kwargs:
-            outbound_rules = kwargs['outboundRules']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if enable_default_security is not None:
-            _setter("enable_default_security", enable_default_security)
+            pulumi.set(__self__, "enable_default_security", enable_default_security)
         if external_rules is not None:
-            _setter("external_rules", external_rules)
+            pulumi.set(__self__, "external_rules", external_rules)
         if inbound_default_policy is not None:
-            _setter("inbound_default_policy", inbound_default_policy)
+            pulumi.set(__self__, "inbound_default_policy", inbound_default_policy)
         if inbound_rules is not None:
-            _setter("inbound_rules", inbound_rules)
+            pulumi.set(__self__, "inbound_rules", inbound_rules)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if organization_id is not None:
-            _setter("organization_id", organization_id)
+            pulumi.set(__self__, "organization_id", organization_id)
         if outbound_default_policy is not None:
-            _setter("outbound_default_policy", outbound_default_policy)
+            pulumi.set(__self__, "outbound_default_policy", outbound_default_policy)
         if outbound_rules is not None:
-            _setter("outbound_rules", outbound_rules)
+            pulumi.set(__self__, "outbound_rules", outbound_rules)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if stateful is not None:
-            _setter("stateful", stateful)
+            pulumi.set(__self__, "stateful", stateful)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter
@@ -599,10 +501,6 @@ class InstanceSecurityGroup(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            InstanceSecurityGroupArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

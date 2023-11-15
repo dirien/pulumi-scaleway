@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -27,31 +27,12 @@ class ObjectBucketLockConfigurationArgs:
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The region you want to attach the resource to
         """
-        ObjectBucketLockConfigurationArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            bucket=bucket,
-            rule=rule,
-            project_id=project_id,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             bucket: pulumi.Input[str],
-             rule: pulumi.Input['ObjectBucketLockConfigurationRuleArgs'],
-             project_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
-        _setter("bucket", bucket)
-        _setter("rule", rule)
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "rule", rule)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter
@@ -116,33 +97,14 @@ class _ObjectBucketLockConfigurationState:
         :param pulumi.Input[str] region: The region you want to attach the resource to
         :param pulumi.Input['ObjectBucketLockConfigurationRuleArgs'] rule: Specifies the Object Lock rule for the specified object.
         """
-        _ObjectBucketLockConfigurationState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            bucket=bucket,
-            project_id=project_id,
-            region=region,
-            rule=rule,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             bucket: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             rule: Optional[pulumi.Input['ObjectBucketLockConfigurationRuleArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
         if bucket is not None:
-            _setter("bucket", bucket)
+            pulumi.set(__self__, "bucket", bucket)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if rule is not None:
-            _setter("rule", rule)
+            pulumi.set(__self__, "rule", rule)
 
     @property
     @pulumi.getter
@@ -230,10 +192,6 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ObjectBucketLockConfigurationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -257,11 +215,6 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
             __props__.__dict__["bucket"] = bucket
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
-            if rule is not None and not isinstance(rule, ObjectBucketLockConfigurationRuleArgs):
-                rule = rule or {}
-                def _setter(key, value):
-                    rule[key] = value
-                ObjectBucketLockConfigurationRuleArgs._configure(_setter, **rule)
             if rule is None and not opts.urn:
                 raise TypeError("Missing required property 'rule'")
             __props__.__dict__["rule"] = rule

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -43,73 +43,30 @@ class LbArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the load-balancers.
         :param pulumi.Input[str] zone: `zone`) The zone of the load-balancer.
         """
-        LbArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            type=type,
-            assign_flexible_ip=assign_flexible_ip,
-            description=description,
-            ip_id=ip_id,
-            name=name,
-            private_networks=private_networks,
-            project_id=project_id,
-            release_ip=release_ip,
-            ssl_compatibility_level=ssl_compatibility_level,
-            tags=tags,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             type: pulumi.Input[str],
-             assign_flexible_ip: Optional[pulumi.Input[bool]] = None,
-             description: Optional[pulumi.Input[str]] = None,
-             ip_id: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['LbPrivateNetworkArgs']]]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             release_ip: Optional[pulumi.Input[bool]] = None,
-             ssl_compatibility_level: Optional[pulumi.Input[str]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'assignFlexibleIp' in kwargs:
-            assign_flexible_ip = kwargs['assignFlexibleIp']
-        if 'ipId' in kwargs:
-            ip_id = kwargs['ipId']
-        if 'privateNetworks' in kwargs:
-            private_networks = kwargs['privateNetworks']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'releaseIp' in kwargs:
-            release_ip = kwargs['releaseIp']
-        if 'sslCompatibilityLevel' in kwargs:
-            ssl_compatibility_level = kwargs['sslCompatibilityLevel']
-
-        _setter("type", type)
+        pulumi.set(__self__, "type", type)
         if assign_flexible_ip is not None:
-            _setter("assign_flexible_ip", assign_flexible_ip)
+            pulumi.set(__self__, "assign_flexible_ip", assign_flexible_ip)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if ip_id is not None:
-            _setter("ip_id", ip_id)
+            pulumi.set(__self__, "ip_id", ip_id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if private_networks is not None:
-            _setter("private_networks", private_networks)
+            pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if release_ip is not None:
             warnings.warn("""The resource ip will be destroyed by it's own resource. Please set this to `false`""", DeprecationWarning)
             pulumi.log.warn("""release_ip is deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`""")
         if release_ip is not None:
-            _setter("release_ip", release_ip)
+            pulumi.set(__self__, "release_ip", release_ip)
         if ssl_compatibility_level is not None:
-            _setter("ssl_compatibility_level", ssl_compatibility_level)
+            pulumi.set(__self__, "ssl_compatibility_level", ssl_compatibility_level)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter
@@ -285,90 +242,37 @@ class _LbState:
         :param pulumi.Input[str] type: The type of the load-balancer. Please check the migration section to upgrade the type.
         :param pulumi.Input[str] zone: `zone`) The zone of the load-balancer.
         """
-        _LbState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            assign_flexible_ip=assign_flexible_ip,
-            description=description,
-            ip_address=ip_address,
-            ip_id=ip_id,
-            name=name,
-            organization_id=organization_id,
-            private_networks=private_networks,
-            project_id=project_id,
-            region=region,
-            release_ip=release_ip,
-            ssl_compatibility_level=ssl_compatibility_level,
-            tags=tags,
-            type=type,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             assign_flexible_ip: Optional[pulumi.Input[bool]] = None,
-             description: Optional[pulumi.Input[str]] = None,
-             ip_address: Optional[pulumi.Input[str]] = None,
-             ip_id: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             organization_id: Optional[pulumi.Input[str]] = None,
-             private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['LbPrivateNetworkArgs']]]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             release_ip: Optional[pulumi.Input[bool]] = None,
-             ssl_compatibility_level: Optional[pulumi.Input[str]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             type: Optional[pulumi.Input[str]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'assignFlexibleIp' in kwargs:
-            assign_flexible_ip = kwargs['assignFlexibleIp']
-        if 'ipAddress' in kwargs:
-            ip_address = kwargs['ipAddress']
-        if 'ipId' in kwargs:
-            ip_id = kwargs['ipId']
-        if 'organizationId' in kwargs:
-            organization_id = kwargs['organizationId']
-        if 'privateNetworks' in kwargs:
-            private_networks = kwargs['privateNetworks']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'releaseIp' in kwargs:
-            release_ip = kwargs['releaseIp']
-        if 'sslCompatibilityLevel' in kwargs:
-            ssl_compatibility_level = kwargs['sslCompatibilityLevel']
-
         if assign_flexible_ip is not None:
-            _setter("assign_flexible_ip", assign_flexible_ip)
+            pulumi.set(__self__, "assign_flexible_ip", assign_flexible_ip)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if ip_address is not None:
-            _setter("ip_address", ip_address)
+            pulumi.set(__self__, "ip_address", ip_address)
         if ip_id is not None:
-            _setter("ip_id", ip_id)
+            pulumi.set(__self__, "ip_id", ip_id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if organization_id is not None:
-            _setter("organization_id", organization_id)
+            pulumi.set(__self__, "organization_id", organization_id)
         if private_networks is not None:
-            _setter("private_networks", private_networks)
+            pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if release_ip is not None:
             warnings.warn("""The resource ip will be destroyed by it's own resource. Please set this to `false`""", DeprecationWarning)
             pulumi.log.warn("""release_ip is deprecated: The resource ip will be destroyed by it's own resource. Please set this to `false`""")
         if release_ip is not None:
-            _setter("release_ip", release_ip)
+            pulumi.set(__self__, "release_ip", release_ip)
         if ssl_compatibility_level is not None:
-            _setter("ssl_compatibility_level", ssl_compatibility_level)
+            pulumi.set(__self__, "ssl_compatibility_level", ssl_compatibility_level)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter(name="assignFlexibleIp")
@@ -853,10 +757,6 @@ class Lb(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            LbArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

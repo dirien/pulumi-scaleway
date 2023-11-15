@@ -9,7 +9,6 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a Kubernetes Cluster's Pool.
@@ -154,12 +153,6 @@ func (o LookupK8sPoolResultOutput) ToLookupK8sPoolResultOutput() LookupK8sPoolRe
 
 func (o LookupK8sPoolResultOutput) ToLookupK8sPoolResultOutputWithContext(ctx context.Context) LookupK8sPoolResultOutput {
 	return o
-}
-
-func (o LookupK8sPoolResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupK8sPoolResult] {
-	return pulumix.Output[LookupK8sPoolResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // True if the autohealing feature is enabled for this pool.

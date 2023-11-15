@@ -102,52 +102,64 @@ export interface BaremetalServerPrivateNetwork {
 
 export interface CockpitEndpoint {
     /**
-     * The alertmanager URL
+     * The alertmanager URL.
      */
     alertmanagerUrl: string;
     /**
-     * The grafana URL
+     * The grafana URL.
      */
     grafanaUrl: string;
     /**
-     * The logs URL
+     * The logs URL.
      */
     logsUrl: string;
     /**
-     * The metrics URL
+     * The metrics URL.
      */
     metricsUrl: string;
+    /**
+     * The traces URL.
+     */
+    tracesUrl: string;
 }
 
 export interface CockpitTokenScopes {
     /**
-     * Query logs
+     * Query logs.
      */
     queryLogs?: boolean;
     /**
-     * Query metrics
+     * Query metrics.
      */
     queryMetrics?: boolean;
     /**
-     * Setup alerts
+     * Query traces.
+     */
+    queryTraces?: boolean;
+    /**
+     * Setup alerts.
      */
     setupAlerts?: boolean;
     /**
-     * Setup logs rules
+     * Setup logs rules.
      */
     setupLogsRules?: boolean;
     /**
-     * Setup metrics rules
+     * Setup metrics rules.
      */
     setupMetricsRules?: boolean;
     /**
-     * Write logs
+     * Write logs.
      */
     writeLogs?: boolean;
     /**
-     * Write metrics
+     * Write metrics.
      */
     writeMetrics?: boolean;
+    /**
+     * Write traces.
+     */
+    writeTraces?: boolean;
 }
 
 export interface ContainerTriggerNats {
@@ -512,6 +524,7 @@ export interface GetCockpitEndpoint {
      * The metrics URL
      */
     metricsUrl: string;
+    tracesUrl: string;
 }
 
 export interface GetDomainRecordGeoIp {
@@ -853,9 +866,13 @@ export interface GetIpamIpResource {
      */
     id?: string;
     /**
-     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+     * The name of the resource to get the IP from.
      */
-    type?: string;
+    name?: string;
+    /**
+     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+     */
+    type: string;
 }
 
 export interface GetK8sClusterAutoUpgrade {
@@ -1591,6 +1608,14 @@ export interface GetRedisClusterPublicNetwork {
     port: number;
 }
 
+export interface GetTemDomainReputation {
+    previousScore: number;
+    previousScoredAt: string;
+    score: number;
+    scoredAt: string;
+    status: string;
+}
+
 export interface GetVpcGatewayNetworkIpamConfig {
     pushDefaultRoute: boolean;
 }
@@ -2017,6 +2042,40 @@ export interface IotRouteS3 {
     bucketRegion: string;
     objectPrefix?: string;
     strategy: string;
+}
+
+export interface IpamIpResource {
+    /**
+     * The ID of the resource that the IP is bound to.
+     */
+    id: string;
+    /**
+     * The MAC Address of the resource the IP is attached to.
+     */
+    macAddress: string;
+    /**
+     * The name of the resource the IP is attached to.
+     */
+    name: string;
+    /**
+     * The type of resource the IP is attached to.
+     */
+    type: string;
+}
+
+export interface IpamIpSource {
+    /**
+     * The private network the IP lives in if the IP is a private IP.
+     */
+    privateNetworkId: string;
+    /**
+     * The private network subnet the IP lives in if the IP is a private IP in a private network.
+     */
+    subnetId: string;
+    /**
+     * The zone the IP lives in if the IP is a public zoned one
+     */
+    zonal: string;
 }
 
 export interface K8sClusterAutoUpgrade {
@@ -2751,6 +2810,29 @@ export interface RedisClusterPublicNetwork {
      * TCP port of the endpoint.
      */
     port: number;
+}
+
+export interface TemDomainReputation {
+    /**
+     * The previously-calculated domain's reputation score.
+     */
+    previousScore: number;
+    /**
+     * The time and date the previous reputation score was calculated.
+     */
+    previousScoredAt: string;
+    /**
+     * A range from 0 to 100 that determines your domain's reputation score.
+     */
+    score: number;
+    /**
+     * The time and date the score was calculated.
+     */
+    scoredAt: string;
+    /**
+     * The status of the domain's reputation.
+     */
+    status: string;
 }
 
 export interface VpcGatewayNetworkIpamConfig {

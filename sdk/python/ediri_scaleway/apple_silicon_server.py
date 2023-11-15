@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['AppleSiliconServerArgs', 'AppleSiliconServer']
@@ -25,32 +25,13 @@ class AppleSiliconServerArgs:
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
-        AppleSiliconServerArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            type=type,
-            name=name,
-            project_id=project_id,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             type: pulumi.Input[str],
-             name: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
-        _setter("type", type)
+        pulumi.set(__self__, "type", type)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter
@@ -129,71 +110,28 @@ class _AppleSiliconServerState:
         :param pulumi.Input[str] vnc_url: VNC url use to connect remotely to the desktop GUI
         :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
-        _AppleSiliconServerState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            created_at=created_at,
-            deletable_at=deletable_at,
-            ip=ip,
-            name=name,
-            organization_id=organization_id,
-            project_id=project_id,
-            state=state,
-            type=type,
-            updated_at=updated_at,
-            vnc_url=vnc_url,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             created_at: Optional[pulumi.Input[str]] = None,
-             deletable_at: Optional[pulumi.Input[str]] = None,
-             ip: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             organization_id: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             state: Optional[pulumi.Input[str]] = None,
-             type: Optional[pulumi.Input[str]] = None,
-             updated_at: Optional[pulumi.Input[str]] = None,
-             vnc_url: Optional[pulumi.Input[str]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if 'deletableAt' in kwargs:
-            deletable_at = kwargs['deletableAt']
-        if 'organizationId' in kwargs:
-            organization_id = kwargs['organizationId']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'updatedAt' in kwargs:
-            updated_at = kwargs['updatedAt']
-        if 'vncUrl' in kwargs:
-            vnc_url = kwargs['vncUrl']
-
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if deletable_at is not None:
-            _setter("deletable_at", deletable_at)
+            pulumi.set(__self__, "deletable_at", deletable_at)
         if ip is not None:
-            _setter("ip", ip)
+            pulumi.set(__self__, "ip", ip)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if organization_id is not None:
-            _setter("organization_id", organization_id)
+            pulumi.set(__self__, "organization_id", organization_id)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if state is not None:
-            _setter("state", state)
+            pulumi.set(__self__, "state", state)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
         if vnc_url is not None:
-            _setter("vnc_url", vnc_url)
+            pulumi.set(__self__, "vnc_url", vnc_url)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -365,10 +303,6 @@ class AppleSiliconServer(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            AppleSiliconServerArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

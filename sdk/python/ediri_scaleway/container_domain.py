@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ContainerDomainArgs', 'ContainerDomain']
@@ -23,27 +23,10 @@ class ContainerDomainArgs:
         :param pulumi.Input[str] hostname: The hostname with a CNAME record.
         :param pulumi.Input[str] region: `region`) The region in which the container exists
         """
-        ContainerDomainArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            container_id=container_id,
-            hostname=hostname,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             container_id: pulumi.Input[str],
-             hostname: pulumi.Input[str],
-             region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'containerId' in kwargs:
-            container_id = kwargs['containerId']
-
-        _setter("container_id", container_id)
-        _setter("hostname", hostname)
+        pulumi.set(__self__, "container_id", container_id)
+        pulumi.set(__self__, "hostname", hostname)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="containerId")
@@ -96,33 +79,14 @@ class _ContainerDomainState:
         :param pulumi.Input[str] region: `region`) The region in which the container exists
         :param pulumi.Input[str] url: The URL used to query the container
         """
-        _ContainerDomainState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            container_id=container_id,
-            hostname=hostname,
-            region=region,
-            url=url,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             container_id: Optional[pulumi.Input[str]] = None,
-             hostname: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             url: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'containerId' in kwargs:
-            container_id = kwargs['containerId']
-
         if container_id is not None:
-            _setter("container_id", container_id)
+            pulumi.set(__self__, "container_id", container_id)
         if hostname is not None:
-            _setter("hostname", hostname)
+            pulumi.set(__self__, "hostname", hostname)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if url is not None:
-            _setter("url", url)
+            pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter(name="containerId")
@@ -312,10 +276,6 @@ class ContainerDomain(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ContainerDomainArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

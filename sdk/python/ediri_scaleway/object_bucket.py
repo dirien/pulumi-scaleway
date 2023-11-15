@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -42,68 +42,29 @@ class ObjectBucketArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
         :param pulumi.Input['ObjectBucketVersioningArgs'] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
-        ObjectBucketArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            acl=acl,
-            cors_rules=cors_rules,
-            force_destroy=force_destroy,
-            lifecycle_rules=lifecycle_rules,
-            name=name,
-            object_lock_enabled=object_lock_enabled,
-            project_id=project_id,
-            region=region,
-            tags=tags,
-            versioning=versioning,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             acl: Optional[pulumi.Input[str]] = None,
-             cors_rules: Optional[pulumi.Input[Sequence[pulumi.Input['ObjectBucketCorsRuleArgs']]]] = None,
-             force_destroy: Optional[pulumi.Input[bool]] = None,
-             lifecycle_rules: Optional[pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleArgs']]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             object_lock_enabled: Optional[pulumi.Input[bool]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-             versioning: Optional[pulumi.Input['ObjectBucketVersioningArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'corsRules' in kwargs:
-            cors_rules = kwargs['corsRules']
-        if 'forceDestroy' in kwargs:
-            force_destroy = kwargs['forceDestroy']
-        if 'lifecycleRules' in kwargs:
-            lifecycle_rules = kwargs['lifecycleRules']
-        if 'objectLockEnabled' in kwargs:
-            object_lock_enabled = kwargs['objectLockEnabled']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
         if acl is not None:
             warnings.warn("""ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""", DeprecationWarning)
             pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""")
         if acl is not None:
-            _setter("acl", acl)
+            pulumi.set(__self__, "acl", acl)
         if cors_rules is not None:
-            _setter("cors_rules", cors_rules)
+            pulumi.set(__self__, "cors_rules", cors_rules)
         if force_destroy is not None:
-            _setter("force_destroy", force_destroy)
+            pulumi.set(__self__, "force_destroy", force_destroy)
         if lifecycle_rules is not None:
-            _setter("lifecycle_rules", lifecycle_rules)
+            pulumi.set(__self__, "lifecycle_rules", lifecycle_rules)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if object_lock_enabled is not None:
-            _setter("object_lock_enabled", object_lock_enabled)
+            pulumi.set(__self__, "object_lock_enabled", object_lock_enabled)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if versioning is not None:
-            _setter("versioning", versioning)
+            pulumi.set(__self__, "versioning", versioning)
 
     @property
     @pulumi.getter
@@ -236,6 +197,7 @@ class ObjectBucketArgs:
 class _ObjectBucketState:
     def __init__(__self__, *,
                  acl: Optional[pulumi.Input[str]] = None,
+                 api_endpoint: Optional[pulumi.Input[str]] = None,
                  cors_rules: Optional[pulumi.Input[Sequence[pulumi.Input['ObjectBucketCorsRuleArgs']]]] = None,
                  endpoint: Optional[pulumi.Input[str]] = None,
                  force_destroy: Optional[pulumi.Input[bool]] = None,
@@ -249,6 +211,7 @@ class _ObjectBucketState:
         """
         Input properties used for looking up and filtering ObjectBucket resources.
         :param pulumi.Input[str] acl: (Deprecated) The canned ACL you want to apply to the bucket.
+        :param pulumi.Input[str] api_endpoint: API URL of the bucket
         :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketCorsRuleArgs']]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
         :param pulumi.Input[str] endpoint: The endpoint URL of the bucket
         :param pulumi.Input[bool] force_destroy: Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
@@ -263,72 +226,33 @@ class _ObjectBucketState:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
         :param pulumi.Input['ObjectBucketVersioningArgs'] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
-        _ObjectBucketState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            acl=acl,
-            cors_rules=cors_rules,
-            endpoint=endpoint,
-            force_destroy=force_destroy,
-            lifecycle_rules=lifecycle_rules,
-            name=name,
-            object_lock_enabled=object_lock_enabled,
-            project_id=project_id,
-            region=region,
-            tags=tags,
-            versioning=versioning,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             acl: Optional[pulumi.Input[str]] = None,
-             cors_rules: Optional[pulumi.Input[Sequence[pulumi.Input['ObjectBucketCorsRuleArgs']]]] = None,
-             endpoint: Optional[pulumi.Input[str]] = None,
-             force_destroy: Optional[pulumi.Input[bool]] = None,
-             lifecycle_rules: Optional[pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleArgs']]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             object_lock_enabled: Optional[pulumi.Input[bool]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-             versioning: Optional[pulumi.Input['ObjectBucketVersioningArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'corsRules' in kwargs:
-            cors_rules = kwargs['corsRules']
-        if 'forceDestroy' in kwargs:
-            force_destroy = kwargs['forceDestroy']
-        if 'lifecycleRules' in kwargs:
-            lifecycle_rules = kwargs['lifecycleRules']
-        if 'objectLockEnabled' in kwargs:
-            object_lock_enabled = kwargs['objectLockEnabled']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
         if acl is not None:
             warnings.warn("""ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""", DeprecationWarning)
             pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""")
         if acl is not None:
-            _setter("acl", acl)
+            pulumi.set(__self__, "acl", acl)
+        if api_endpoint is not None:
+            pulumi.set(__self__, "api_endpoint", api_endpoint)
         if cors_rules is not None:
-            _setter("cors_rules", cors_rules)
+            pulumi.set(__self__, "cors_rules", cors_rules)
         if endpoint is not None:
-            _setter("endpoint", endpoint)
+            pulumi.set(__self__, "endpoint", endpoint)
         if force_destroy is not None:
-            _setter("force_destroy", force_destroy)
+            pulumi.set(__self__, "force_destroy", force_destroy)
         if lifecycle_rules is not None:
-            _setter("lifecycle_rules", lifecycle_rules)
+            pulumi.set(__self__, "lifecycle_rules", lifecycle_rules)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if object_lock_enabled is not None:
-            _setter("object_lock_enabled", object_lock_enabled)
+            pulumi.set(__self__, "object_lock_enabled", object_lock_enabled)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if versioning is not None:
-            _setter("versioning", versioning)
+            pulumi.set(__self__, "versioning", versioning)
 
     @property
     @pulumi.getter
@@ -344,6 +268,18 @@ class _ObjectBucketState:
     @acl.setter
     def acl(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "acl", value)
+
+    @property
+    @pulumi.getter(name="apiEndpoint")
+    def api_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        API URL of the bucket
+        """
+        return pulumi.get(self, "api_endpoint")
+
+    @api_endpoint.setter
+    def api_endpoint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "api_endpoint", value)
 
     @property
     @pulumi.getter(name="corsRules")
@@ -707,10 +643,6 @@ class ObjectBucket(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ObjectBucketArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -744,12 +676,8 @@ class ObjectBucket(pulumi.CustomResource):
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
             __props__.__dict__["tags"] = tags
-            if versioning is not None and not isinstance(versioning, ObjectBucketVersioningArgs):
-                versioning = versioning or {}
-                def _setter(key, value):
-                    versioning[key] = value
-                ObjectBucketVersioningArgs._configure(_setter, **versioning)
             __props__.__dict__["versioning"] = versioning
+            __props__.__dict__["api_endpoint"] = None
             __props__.__dict__["endpoint"] = None
         super(ObjectBucket, __self__).__init__(
             'scaleway:index/objectBucket:ObjectBucket',
@@ -762,6 +690,7 @@ class ObjectBucket(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             acl: Optional[pulumi.Input[str]] = None,
+            api_endpoint: Optional[pulumi.Input[str]] = None,
             cors_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketCorsRuleArgs']]]]] = None,
             endpoint: Optional[pulumi.Input[str]] = None,
             force_destroy: Optional[pulumi.Input[bool]] = None,
@@ -780,6 +709,7 @@ class ObjectBucket(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] acl: (Deprecated) The canned ACL you want to apply to the bucket.
+        :param pulumi.Input[str] api_endpoint: API URL of the bucket
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ObjectBucketCorsRuleArgs']]]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
         :param pulumi.Input[str] endpoint: The endpoint URL of the bucket
         :param pulumi.Input[bool] force_destroy: Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
@@ -799,6 +729,7 @@ class ObjectBucket(pulumi.CustomResource):
         __props__ = _ObjectBucketState.__new__(_ObjectBucketState)
 
         __props__.__dict__["acl"] = acl
+        __props__.__dict__["api_endpoint"] = api_endpoint
         __props__.__dict__["cors_rules"] = cors_rules
         __props__.__dict__["endpoint"] = endpoint
         __props__.__dict__["force_destroy"] = force_destroy
@@ -821,6 +752,14 @@ class ObjectBucket(pulumi.CustomResource):
         pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""")
 
         return pulumi.get(self, "acl")
+
+    @property
+    @pulumi.getter(name="apiEndpoint")
+    def api_endpoint(self) -> pulumi.Output[str]:
+        """
+        API URL of the bucket
+        """
+        return pulumi.get(self, "api_endpoint")
 
     @property
     @pulumi.getter(name="corsRules")

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway RDB database backup.
@@ -256,12 +255,6 @@ func (i *RdbDatabaseBackup) ToRdbDatabaseBackupOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(RdbDatabaseBackupOutput)
 }
 
-func (i *RdbDatabaseBackup) ToOutput(ctx context.Context) pulumix.Output[*RdbDatabaseBackup] {
-	return pulumix.Output[*RdbDatabaseBackup]{
-		OutputState: i.ToRdbDatabaseBackupOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RdbDatabaseBackupArrayInput is an input type that accepts RdbDatabaseBackupArray and RdbDatabaseBackupArrayOutput values.
 // You can construct a concrete instance of `RdbDatabaseBackupArrayInput` via:
 //
@@ -285,12 +278,6 @@ func (i RdbDatabaseBackupArray) ToRdbDatabaseBackupArrayOutput() RdbDatabaseBack
 
 func (i RdbDatabaseBackupArray) ToRdbDatabaseBackupArrayOutputWithContext(ctx context.Context) RdbDatabaseBackupArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RdbDatabaseBackupArrayOutput)
-}
-
-func (i RdbDatabaseBackupArray) ToOutput(ctx context.Context) pulumix.Output[[]*RdbDatabaseBackup] {
-	return pulumix.Output[[]*RdbDatabaseBackup]{
-		OutputState: i.ToRdbDatabaseBackupArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RdbDatabaseBackupMapInput is an input type that accepts RdbDatabaseBackupMap and RdbDatabaseBackupMapOutput values.
@@ -318,12 +305,6 @@ func (i RdbDatabaseBackupMap) ToRdbDatabaseBackupMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(RdbDatabaseBackupMapOutput)
 }
 
-func (i RdbDatabaseBackupMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RdbDatabaseBackup] {
-	return pulumix.Output[map[string]*RdbDatabaseBackup]{
-		OutputState: i.ToRdbDatabaseBackupMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RdbDatabaseBackupOutput struct{ *pulumi.OutputState }
 
 func (RdbDatabaseBackupOutput) ElementType() reflect.Type {
@@ -336,12 +317,6 @@ func (o RdbDatabaseBackupOutput) ToRdbDatabaseBackupOutput() RdbDatabaseBackupOu
 
 func (o RdbDatabaseBackupOutput) ToRdbDatabaseBackupOutputWithContext(ctx context.Context) RdbDatabaseBackupOutput {
 	return o
-}
-
-func (o RdbDatabaseBackupOutput) ToOutput(ctx context.Context) pulumix.Output[*RdbDatabaseBackup] {
-	return pulumix.Output[*RdbDatabaseBackup]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Creation date (Format ISO 8601).
@@ -407,12 +382,6 @@ func (o RdbDatabaseBackupArrayOutput) ToRdbDatabaseBackupArrayOutputWithContext(
 	return o
 }
 
-func (o RdbDatabaseBackupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RdbDatabaseBackup] {
-	return pulumix.Output[[]*RdbDatabaseBackup]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RdbDatabaseBackupArrayOutput) Index(i pulumi.IntInput) RdbDatabaseBackupOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RdbDatabaseBackup {
 		return vs[0].([]*RdbDatabaseBackup)[vs[1].(int)]
@@ -431,12 +400,6 @@ func (o RdbDatabaseBackupMapOutput) ToRdbDatabaseBackupMapOutput() RdbDatabaseBa
 
 func (o RdbDatabaseBackupMapOutput) ToRdbDatabaseBackupMapOutputWithContext(ctx context.Context) RdbDatabaseBackupMapOutput {
 	return o
-}
-
-func (o RdbDatabaseBackupMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RdbDatabaseBackup] {
-	return pulumix.Output[map[string]*RdbDatabaseBackup]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RdbDatabaseBackupMapOutput) MapIndex(k pulumi.StringInput) RdbDatabaseBackupOutput {

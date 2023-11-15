@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['DocumentDBPrivateNetworkEndpointArgs', 'DocumentDBPrivateNetworkEndpoint']
@@ -31,43 +31,16 @@ class DocumentDBPrivateNetworkEndpointArgs:
         :param pulumi.Input[str] region: The region you want to attach the resource to
         :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
-        DocumentDBPrivateNetworkEndpointArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            instance_id=instance_id,
-            private_network_id=private_network_id,
-            ip_net=ip_net,
-            port=port,
-            region=region,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             instance_id: pulumi.Input[str],
-             private_network_id: pulumi.Input[str],
-             ip_net: Optional[pulumi.Input[str]] = None,
-             port: Optional[pulumi.Input[int]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-        if 'privateNetworkId' in kwargs:
-            private_network_id = kwargs['privateNetworkId']
-        if 'ipNet' in kwargs:
-            ip_net = kwargs['ipNet']
-
-        _setter("instance_id", instance_id)
-        _setter("private_network_id", private_network_id)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "private_network_id", private_network_id)
         if ip_net is not None:
-            _setter("ip_net", ip_net)
+            pulumi.set(__self__, "ip_net", ip_net)
         if port is not None:
-            _setter("port", port)
+            pulumi.set(__self__, "port", port)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -170,57 +143,24 @@ class _DocumentDBPrivateNetworkEndpointState:
         :param pulumi.Input[str] region: The region you want to attach the resource to
         :param pulumi.Input[str] zone: The zone you want to attach the resource to
         """
-        _DocumentDBPrivateNetworkEndpointState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            hostname=hostname,
-            instance_id=instance_id,
-            ip=ip,
-            ip_net=ip_net,
-            name=name,
-            port=port,
-            private_network_id=private_network_id,
-            region=region,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             hostname: Optional[pulumi.Input[str]] = None,
-             instance_id: Optional[pulumi.Input[str]] = None,
-             ip: Optional[pulumi.Input[str]] = None,
-             ip_net: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             port: Optional[pulumi.Input[int]] = None,
-             private_network_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-        if 'ipNet' in kwargs:
-            ip_net = kwargs['ipNet']
-        if 'privateNetworkId' in kwargs:
-            private_network_id = kwargs['privateNetworkId']
-
         if hostname is not None:
-            _setter("hostname", hostname)
+            pulumi.set(__self__, "hostname", hostname)
         if instance_id is not None:
-            _setter("instance_id", instance_id)
+            pulumi.set(__self__, "instance_id", instance_id)
         if ip is not None:
-            _setter("ip", ip)
+            pulumi.set(__self__, "ip", ip)
         if ip_net is not None:
-            _setter("ip_net", ip_net)
+            pulumi.set(__self__, "ip_net", ip_net)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if port is not None:
-            _setter("port", port)
+            pulumi.set(__self__, "port", port)
         if private_network_id is not None:
-            _setter("private_network_id", private_network_id)
+            pulumi.set(__self__, "private_network_id", private_network_id)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter
@@ -390,10 +330,6 @@ class DocumentDBPrivateNetworkEndpoint(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            DocumentDBPrivateNetworkEndpointArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -27,29 +27,10 @@ class RdbAclArgs:
                > **Important:** Updates to `instance_id` will recreate the Database ACL.
         :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
         """
-        RdbAclArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            acl_rules=acl_rules,
-            instance_id=instance_id,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             acl_rules: pulumi.Input[Sequence[pulumi.Input['RdbAclAclRuleArgs']]],
-             instance_id: pulumi.Input[str],
-             region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'aclRules' in kwargs:
-            acl_rules = kwargs['aclRules']
-        if 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-
-        _setter("acl_rules", acl_rules)
-        _setter("instance_id", instance_id)
+        pulumi.set(__self__, "acl_rules", acl_rules)
+        pulumi.set(__self__, "instance_id", instance_id)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="aclRules")
@@ -104,31 +85,12 @@ class _RdbAclState:
                > **Important:** Updates to `instance_id` will recreate the Database ACL.
         :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
         """
-        _RdbAclState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            acl_rules=acl_rules,
-            instance_id=instance_id,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             acl_rules: Optional[pulumi.Input[Sequence[pulumi.Input['RdbAclAclRuleArgs']]]] = None,
-             instance_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'aclRules' in kwargs:
-            acl_rules = kwargs['aclRules']
-        if 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-
         if acl_rules is not None:
-            _setter("acl_rules", acl_rules)
+            pulumi.set(__self__, "acl_rules", acl_rules)
         if instance_id is not None:
-            _setter("instance_id", instance_id)
+            pulumi.set(__self__, "instance_id", instance_id)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="aclRules")
@@ -258,10 +220,6 @@ class RdbAcl(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            RdbAclArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

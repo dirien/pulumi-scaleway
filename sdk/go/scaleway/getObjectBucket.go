@@ -9,7 +9,6 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about the Bucket.
@@ -96,8 +95,9 @@ type LookupObjectBucketArgs struct {
 
 // A collection of values returned by getObjectBucket.
 type LookupObjectBucketResult struct {
-	Acl       string                    `pulumi:"acl"`
-	CorsRules []GetObjectBucketCorsRule `pulumi:"corsRules"`
+	Acl         string                    `pulumi:"acl"`
+	ApiEndpoint string                    `pulumi:"apiEndpoint"`
+	CorsRules   []GetObjectBucketCorsRule `pulumi:"corsRules"`
 	// The endpoint URL of the bucket
 	Endpoint     string `pulumi:"endpoint"`
 	ForceDestroy bool   `pulumi:"forceDestroy"`
@@ -154,14 +154,12 @@ func (o LookupObjectBucketResultOutput) ToLookupObjectBucketResultOutputWithCont
 	return o
 }
 
-func (o LookupObjectBucketResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupObjectBucketResult] {
-	return pulumix.Output[LookupObjectBucketResult]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LookupObjectBucketResultOutput) Acl() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupObjectBucketResult) string { return v.Acl }).(pulumi.StringOutput)
+}
+
+func (o LookupObjectBucketResultOutput) ApiEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupObjectBucketResult) string { return v.ApiEndpoint }).(pulumi.StringOutput)
 }
 
 func (o LookupObjectBucketResultOutput) CorsRules() GetObjectBucketCorsRuleArrayOutput {

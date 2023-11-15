@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['FlexibleIpMacAddressArgs', 'FlexibleIpMacAddress']
@@ -26,33 +26,12 @@ class FlexibleIpMacAddressArgs:
                > **Important:** The flexible IPs need to be attached to the same server for the operation to work.
         :param pulumi.Input[str] zone: The zone of the Virtual Mac Address.
         """
-        FlexibleIpMacAddressArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            flexible_ip_id=flexible_ip_id,
-            type=type,
-            flexible_ip_ids_to_duplicates=flexible_ip_ids_to_duplicates,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             flexible_ip_id: pulumi.Input[str],
-             type: pulumi.Input[str],
-             flexible_ip_ids_to_duplicates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'flexibleIpId' in kwargs:
-            flexible_ip_id = kwargs['flexibleIpId']
-        if 'flexibleIpIdsToDuplicates' in kwargs:
-            flexible_ip_ids_to_duplicates = kwargs['flexibleIpIdsToDuplicates']
-
-        _setter("flexible_ip_id", flexible_ip_id)
-        _setter("type", type)
+        pulumi.set(__self__, "flexible_ip_id", flexible_ip_id)
+        pulumi.set(__self__, "type", type)
         if flexible_ip_ids_to_duplicates is not None:
-            _setter("flexible_ip_ids_to_duplicates", flexible_ip_ids_to_duplicates)
+            pulumi.set(__self__, "flexible_ip_ids_to_duplicates", flexible_ip_ids_to_duplicates)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter(name="flexibleIpId")
@@ -127,55 +106,22 @@ class _FlexibleIpMacAddressState:
         :param pulumi.Input[str] updated_at: The date at which the Virtual Mac Address was last updated (RFC 3339 format).
         :param pulumi.Input[str] zone: The zone of the Virtual Mac Address.
         """
-        _FlexibleIpMacAddressState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            address=address,
-            created_at=created_at,
-            flexible_ip_id=flexible_ip_id,
-            flexible_ip_ids_to_duplicates=flexible_ip_ids_to_duplicates,
-            status=status,
-            type=type,
-            updated_at=updated_at,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             address: Optional[pulumi.Input[str]] = None,
-             created_at: Optional[pulumi.Input[str]] = None,
-             flexible_ip_id: Optional[pulumi.Input[str]] = None,
-             flexible_ip_ids_to_duplicates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             status: Optional[pulumi.Input[str]] = None,
-             type: Optional[pulumi.Input[str]] = None,
-             updated_at: Optional[pulumi.Input[str]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if 'flexibleIpId' in kwargs:
-            flexible_ip_id = kwargs['flexibleIpId']
-        if 'flexibleIpIdsToDuplicates' in kwargs:
-            flexible_ip_ids_to_duplicates = kwargs['flexibleIpIdsToDuplicates']
-        if 'updatedAt' in kwargs:
-            updated_at = kwargs['updatedAt']
-
         if address is not None:
-            _setter("address", address)
+            pulumi.set(__self__, "address", address)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if flexible_ip_id is not None:
-            _setter("flexible_ip_id", flexible_ip_id)
+            pulumi.set(__self__, "flexible_ip_id", flexible_ip_id)
         if flexible_ip_ids_to_duplicates is not None:
-            _setter("flexible_ip_ids_to_duplicates", flexible_ip_ids_to_duplicates)
+            pulumi.set(__self__, "flexible_ip_ids_to_duplicates", flexible_ip_ids_to_duplicates)
         if status is not None:
-            _setter("status", status)
+            pulumi.set(__self__, "status", status)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter
@@ -407,10 +353,6 @@ class FlexibleIpMacAddress(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            FlexibleIpMacAddressArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

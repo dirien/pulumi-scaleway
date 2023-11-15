@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -37,65 +37,22 @@ class VpcGatewayNetworkArgs:
         :param pulumi.Input[str] static_address: Enable DHCP config on this network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] zone: `zone`) The zone in which the gateway network should be created.
         """
-        VpcGatewayNetworkArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            gateway_id=gateway_id,
-            private_network_id=private_network_id,
-            cleanup_dhcp=cleanup_dhcp,
-            dhcp_id=dhcp_id,
-            enable_dhcp=enable_dhcp,
-            enable_masquerade=enable_masquerade,
-            ipam_configs=ipam_configs,
-            static_address=static_address,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             gateway_id: pulumi.Input[str],
-             private_network_id: pulumi.Input[str],
-             cleanup_dhcp: Optional[pulumi.Input[bool]] = None,
-             dhcp_id: Optional[pulumi.Input[str]] = None,
-             enable_dhcp: Optional[pulumi.Input[bool]] = None,
-             enable_masquerade: Optional[pulumi.Input[bool]] = None,
-             ipam_configs: Optional[pulumi.Input[Sequence[pulumi.Input['VpcGatewayNetworkIpamConfigArgs']]]] = None,
-             static_address: Optional[pulumi.Input[str]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'gatewayId' in kwargs:
-            gateway_id = kwargs['gatewayId']
-        if 'privateNetworkId' in kwargs:
-            private_network_id = kwargs['privateNetworkId']
-        if 'cleanupDhcp' in kwargs:
-            cleanup_dhcp = kwargs['cleanupDhcp']
-        if 'dhcpId' in kwargs:
-            dhcp_id = kwargs['dhcpId']
-        if 'enableDhcp' in kwargs:
-            enable_dhcp = kwargs['enableDhcp']
-        if 'enableMasquerade' in kwargs:
-            enable_masquerade = kwargs['enableMasquerade']
-        if 'ipamConfigs' in kwargs:
-            ipam_configs = kwargs['ipamConfigs']
-        if 'staticAddress' in kwargs:
-            static_address = kwargs['staticAddress']
-
-        _setter("gateway_id", gateway_id)
-        _setter("private_network_id", private_network_id)
+        pulumi.set(__self__, "gateway_id", gateway_id)
+        pulumi.set(__self__, "private_network_id", private_network_id)
         if cleanup_dhcp is not None:
-            _setter("cleanup_dhcp", cleanup_dhcp)
+            pulumi.set(__self__, "cleanup_dhcp", cleanup_dhcp)
         if dhcp_id is not None:
-            _setter("dhcp_id", dhcp_id)
+            pulumi.set(__self__, "dhcp_id", dhcp_id)
         if enable_dhcp is not None:
-            _setter("enable_dhcp", enable_dhcp)
+            pulumi.set(__self__, "enable_dhcp", enable_dhcp)
         if enable_masquerade is not None:
-            _setter("enable_masquerade", enable_masquerade)
+            pulumi.set(__self__, "enable_masquerade", enable_masquerade)
         if ipam_configs is not None:
-            _setter("ipam_configs", ipam_configs)
+            pulumi.set(__self__, "ipam_configs", ipam_configs)
         if static_address is not None:
-            _setter("static_address", static_address)
+            pulumi.set(__self__, "static_address", static_address)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter(name="gatewayId")
@@ -238,89 +195,32 @@ class _VpcGatewayNetworkState:
         :param pulumi.Input[str] updated_at: The date and time of the last update of the gateway network.
         :param pulumi.Input[str] zone: `zone`) The zone in which the gateway network should be created.
         """
-        _VpcGatewayNetworkState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cleanup_dhcp=cleanup_dhcp,
-            created_at=created_at,
-            dhcp_id=dhcp_id,
-            enable_dhcp=enable_dhcp,
-            enable_masquerade=enable_masquerade,
-            gateway_id=gateway_id,
-            ipam_configs=ipam_configs,
-            mac_address=mac_address,
-            private_network_id=private_network_id,
-            static_address=static_address,
-            status=status,
-            updated_at=updated_at,
-            zone=zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cleanup_dhcp: Optional[pulumi.Input[bool]] = None,
-             created_at: Optional[pulumi.Input[str]] = None,
-             dhcp_id: Optional[pulumi.Input[str]] = None,
-             enable_dhcp: Optional[pulumi.Input[bool]] = None,
-             enable_masquerade: Optional[pulumi.Input[bool]] = None,
-             gateway_id: Optional[pulumi.Input[str]] = None,
-             ipam_configs: Optional[pulumi.Input[Sequence[pulumi.Input['VpcGatewayNetworkIpamConfigArgs']]]] = None,
-             mac_address: Optional[pulumi.Input[str]] = None,
-             private_network_id: Optional[pulumi.Input[str]] = None,
-             static_address: Optional[pulumi.Input[str]] = None,
-             status: Optional[pulumi.Input[str]] = None,
-             updated_at: Optional[pulumi.Input[str]] = None,
-             zone: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'cleanupDhcp' in kwargs:
-            cleanup_dhcp = kwargs['cleanupDhcp']
-        if 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if 'dhcpId' in kwargs:
-            dhcp_id = kwargs['dhcpId']
-        if 'enableDhcp' in kwargs:
-            enable_dhcp = kwargs['enableDhcp']
-        if 'enableMasquerade' in kwargs:
-            enable_masquerade = kwargs['enableMasquerade']
-        if 'gatewayId' in kwargs:
-            gateway_id = kwargs['gatewayId']
-        if 'ipamConfigs' in kwargs:
-            ipam_configs = kwargs['ipamConfigs']
-        if 'macAddress' in kwargs:
-            mac_address = kwargs['macAddress']
-        if 'privateNetworkId' in kwargs:
-            private_network_id = kwargs['privateNetworkId']
-        if 'staticAddress' in kwargs:
-            static_address = kwargs['staticAddress']
-        if 'updatedAt' in kwargs:
-            updated_at = kwargs['updatedAt']
-
         if cleanup_dhcp is not None:
-            _setter("cleanup_dhcp", cleanup_dhcp)
+            pulumi.set(__self__, "cleanup_dhcp", cleanup_dhcp)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if dhcp_id is not None:
-            _setter("dhcp_id", dhcp_id)
+            pulumi.set(__self__, "dhcp_id", dhcp_id)
         if enable_dhcp is not None:
-            _setter("enable_dhcp", enable_dhcp)
+            pulumi.set(__self__, "enable_dhcp", enable_dhcp)
         if enable_masquerade is not None:
-            _setter("enable_masquerade", enable_masquerade)
+            pulumi.set(__self__, "enable_masquerade", enable_masquerade)
         if gateway_id is not None:
-            _setter("gateway_id", gateway_id)
+            pulumi.set(__self__, "gateway_id", gateway_id)
         if ipam_configs is not None:
-            _setter("ipam_configs", ipam_configs)
+            pulumi.set(__self__, "ipam_configs", ipam_configs)
         if mac_address is not None:
-            _setter("mac_address", mac_address)
+            pulumi.set(__self__, "mac_address", mac_address)
         if private_network_id is not None:
-            _setter("private_network_id", private_network_id)
+            pulumi.set(__self__, "private_network_id", private_network_id)
         if static_address is not None:
-            _setter("static_address", static_address)
+            pulumi.set(__self__, "static_address", static_address)
         if status is not None:
-            _setter("status", status)
+            pulumi.set(__self__, "status", status)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
         if zone is not None:
-            _setter("zone", zone)
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter(name="cleanupDhcp")
@@ -672,10 +572,6 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            VpcGatewayNetworkArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

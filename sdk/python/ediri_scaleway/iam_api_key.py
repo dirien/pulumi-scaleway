@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['IamApiKeyArgs', 'IamApiKey']
@@ -30,43 +30,16 @@ class IamApiKeyArgs:
         :param pulumi.Input[str] user_id: ID of the user attached to the api key.
                Only one of the `application_id` and `user_id` should be specified.
         """
-        IamApiKeyArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            application_id=application_id,
-            default_project_id=default_project_id,
-            description=description,
-            expires_at=expires_at,
-            user_id=user_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             application_id: Optional[pulumi.Input[str]] = None,
-             default_project_id: Optional[pulumi.Input[str]] = None,
-             description: Optional[pulumi.Input[str]] = None,
-             expires_at: Optional[pulumi.Input[str]] = None,
-             user_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'applicationId' in kwargs:
-            application_id = kwargs['applicationId']
-        if 'defaultProjectId' in kwargs:
-            default_project_id = kwargs['defaultProjectId']
-        if 'expiresAt' in kwargs:
-            expires_at = kwargs['expiresAt']
-        if 'userId' in kwargs:
-            user_id = kwargs['userId']
-
         if application_id is not None:
-            _setter("application_id", application_id)
+            pulumi.set(__self__, "application_id", application_id)
         if default_project_id is not None:
-            _setter("default_project_id", default_project_id)
+            pulumi.set(__self__, "default_project_id", default_project_id)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if expires_at is not None:
-            _setter("expires_at", expires_at)
+            pulumi.set(__self__, "expires_at", expires_at)
         if user_id is not None:
-            _setter("user_id", user_id)
+            pulumi.set(__self__, "user_id", user_id)
 
     @property
     @pulumi.getter(name="applicationId")
@@ -163,77 +136,28 @@ class _IamApiKeyState:
         :param pulumi.Input[str] user_id: ID of the user attached to the api key.
                Only one of the `application_id` and `user_id` should be specified.
         """
-        _IamApiKeyState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            access_key=access_key,
-            application_id=application_id,
-            created_at=created_at,
-            creation_ip=creation_ip,
-            default_project_id=default_project_id,
-            description=description,
-            editable=editable,
-            expires_at=expires_at,
-            secret_key=secret_key,
-            updated_at=updated_at,
-            user_id=user_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             access_key: Optional[pulumi.Input[str]] = None,
-             application_id: Optional[pulumi.Input[str]] = None,
-             created_at: Optional[pulumi.Input[str]] = None,
-             creation_ip: Optional[pulumi.Input[str]] = None,
-             default_project_id: Optional[pulumi.Input[str]] = None,
-             description: Optional[pulumi.Input[str]] = None,
-             editable: Optional[pulumi.Input[bool]] = None,
-             expires_at: Optional[pulumi.Input[str]] = None,
-             secret_key: Optional[pulumi.Input[str]] = None,
-             updated_at: Optional[pulumi.Input[str]] = None,
-             user_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'accessKey' in kwargs:
-            access_key = kwargs['accessKey']
-        if 'applicationId' in kwargs:
-            application_id = kwargs['applicationId']
-        if 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if 'creationIp' in kwargs:
-            creation_ip = kwargs['creationIp']
-        if 'defaultProjectId' in kwargs:
-            default_project_id = kwargs['defaultProjectId']
-        if 'expiresAt' in kwargs:
-            expires_at = kwargs['expiresAt']
-        if 'secretKey' in kwargs:
-            secret_key = kwargs['secretKey']
-        if 'updatedAt' in kwargs:
-            updated_at = kwargs['updatedAt']
-        if 'userId' in kwargs:
-            user_id = kwargs['userId']
-
         if access_key is not None:
-            _setter("access_key", access_key)
+            pulumi.set(__self__, "access_key", access_key)
         if application_id is not None:
-            _setter("application_id", application_id)
+            pulumi.set(__self__, "application_id", application_id)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if creation_ip is not None:
-            _setter("creation_ip", creation_ip)
+            pulumi.set(__self__, "creation_ip", creation_ip)
         if default_project_id is not None:
-            _setter("default_project_id", default_project_id)
+            pulumi.set(__self__, "default_project_id", default_project_id)
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if editable is not None:
-            _setter("editable", editable)
+            pulumi.set(__self__, "editable", editable)
         if expires_at is not None:
-            _setter("expires_at", expires_at)
+            pulumi.set(__self__, "expires_at", expires_at)
         if secret_key is not None:
-            _setter("secret_key", secret_key)
+            pulumi.set(__self__, "secret_key", secret_key)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
         if user_id is not None:
-            _setter("user_id", user_id)
+            pulumi.set(__self__, "user_id", user_id)
 
     @property
     @pulumi.getter(name="accessKey")
@@ -457,10 +381,6 @@ class IamApiKey(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            IamApiKeyArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

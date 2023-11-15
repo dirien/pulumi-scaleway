@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['RdbUserArgs', 'RdbUser']
@@ -31,37 +31,14 @@ class RdbUserArgs:
                > **Important:** Updates to `name` will recreate the Database User.
         :param pulumi.Input[str] region: The Scaleway region this resource resides in.
         """
-        RdbUserArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            instance_id=instance_id,
-            password=password,
-            is_admin=is_admin,
-            name=name,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             instance_id: pulumi.Input[str],
-             password: pulumi.Input[str],
-             is_admin: Optional[pulumi.Input[bool]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-        if 'isAdmin' in kwargs:
-            is_admin = kwargs['isAdmin']
-
-        _setter("instance_id", instance_id)
-        _setter("password", password)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "password", password)
         if is_admin is not None:
-            _setter("is_admin", is_admin)
+            pulumi.set(__self__, "is_admin", is_admin)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -148,39 +125,16 @@ class _RdbUserState:
         :param pulumi.Input[str] password: Database User password.
         :param pulumi.Input[str] region: The Scaleway region this resource resides in.
         """
-        _RdbUserState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            instance_id=instance_id,
-            is_admin=is_admin,
-            name=name,
-            password=password,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             instance_id: Optional[pulumi.Input[str]] = None,
-             is_admin: Optional[pulumi.Input[bool]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             password: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-        if 'isAdmin' in kwargs:
-            is_admin = kwargs['isAdmin']
-
         if instance_id is not None:
-            _setter("instance_id", instance_id)
+            pulumi.set(__self__, "instance_id", instance_id)
         if is_admin is not None:
-            _setter("is_admin", is_admin)
+            pulumi.set(__self__, "is_admin", is_admin)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if password is not None:
-            _setter("password", password)
+            pulumi.set(__self__, "password", password)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -346,10 +300,6 @@ class RdbUser(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            RdbUserArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

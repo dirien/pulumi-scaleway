@@ -105,6 +105,9 @@ namespace ediri.Scaleway
         /// 
         /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
         /// interruption. Keep in mind that you cannot downgrade a Database Instance.
+        /// 
+        /// &gt; **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
+        /// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
         /// </summary>
         [Output("nodeType")]
         public Output<string> NodeType { get; private set; } = null!;
@@ -169,6 +172,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// Volume size (in GB) when `volume_type` is set to `bssd`.
+        /// 
+        /// &gt; **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
         /// </summary>
         [Output("volumeSizeInGb")]
         public Output<int> VolumeSizeInGb { get; private set; } = null!;
@@ -295,6 +300,9 @@ namespace ediri.Scaleway
         /// 
         /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
         /// interruption. Keep in mind that you cannot downgrade a Database Instance.
+        /// 
+        /// &gt; **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
+        /// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
         /// </summary>
         [Input("nodeType", required: true)]
         public Input<string> NodeType { get; set; } = null!;
@@ -369,6 +377,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// Volume size (in GB) when `volume_type` is set to `bssd`.
+        /// 
+        /// &gt; **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
         /// </summary>
         [Input("volumeSizeInGb")]
         public Input<int>? VolumeSizeInGb { get; set; }
@@ -482,6 +492,9 @@ namespace ediri.Scaleway
         /// 
         /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
         /// interruption. Keep in mind that you cannot downgrade a Database Instance.
+        /// 
+        /// &gt; **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
+        /// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
         /// </summary>
         [Input("nodeType")]
         public Input<string>? NodeType { get; set; }
@@ -574,6 +587,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// Volume size (in GB) when `volume_type` is set to `bssd`.
+        /// 
+        /// &gt; **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
         /// </summary>
         [Input("volumeSizeInGb")]
         public Input<int>? VolumeSizeInGb { get; set; }

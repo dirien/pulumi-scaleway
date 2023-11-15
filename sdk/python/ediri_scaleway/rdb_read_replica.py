@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -32,42 +32,15 @@ class RdbReadReplicaArgs:
                in which the Database read replica should be created.
         :param pulumi.Input[bool] same_zone: Defines whether to create the replica in the same availability zone as the main instance nodes or not.
         """
-        RdbReadReplicaArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            instance_id=instance_id,
-            direct_access=direct_access,
-            private_network=private_network,
-            region=region,
-            same_zone=same_zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             instance_id: pulumi.Input[str],
-             direct_access: Optional[pulumi.Input['RdbReadReplicaDirectAccessArgs']] = None,
-             private_network: Optional[pulumi.Input['RdbReadReplicaPrivateNetworkArgs']] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             same_zone: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-        if 'directAccess' in kwargs:
-            direct_access = kwargs['directAccess']
-        if 'privateNetwork' in kwargs:
-            private_network = kwargs['privateNetwork']
-        if 'sameZone' in kwargs:
-            same_zone = kwargs['sameZone']
-
-        _setter("instance_id", instance_id)
+        pulumi.set(__self__, "instance_id", instance_id)
         if direct_access is not None:
-            _setter("direct_access", direct_access)
+            pulumi.set(__self__, "direct_access", direct_access)
         if private_network is not None:
-            _setter("private_network", private_network)
+            pulumi.set(__self__, "private_network", private_network)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if same_zone is not None:
-            _setter("same_zone", same_zone)
+            pulumi.set(__self__, "same_zone", same_zone)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -152,43 +125,16 @@ class _RdbReadReplicaState:
                in which the Database read replica should be created.
         :param pulumi.Input[bool] same_zone: Defines whether to create the replica in the same availability zone as the main instance nodes or not.
         """
-        _RdbReadReplicaState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            direct_access=direct_access,
-            instance_id=instance_id,
-            private_network=private_network,
-            region=region,
-            same_zone=same_zone,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             direct_access: Optional[pulumi.Input['RdbReadReplicaDirectAccessArgs']] = None,
-             instance_id: Optional[pulumi.Input[str]] = None,
-             private_network: Optional[pulumi.Input['RdbReadReplicaPrivateNetworkArgs']] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             same_zone: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'directAccess' in kwargs:
-            direct_access = kwargs['directAccess']
-        if 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-        if 'privateNetwork' in kwargs:
-            private_network = kwargs['privateNetwork']
-        if 'sameZone' in kwargs:
-            same_zone = kwargs['sameZone']
-
         if direct_access is not None:
-            _setter("direct_access", direct_access)
+            pulumi.set(__self__, "direct_access", direct_access)
         if instance_id is not None:
-            _setter("instance_id", instance_id)
+            pulumi.set(__self__, "instance_id", instance_id)
         if private_network is not None:
-            _setter("private_network", private_network)
+            pulumi.set(__self__, "private_network", private_network)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if same_zone is not None:
-            _setter("same_zone", same_zone)
+            pulumi.set(__self__, "same_zone", same_zone)
 
     @property
     @pulumi.getter(name="directAccess")
@@ -410,10 +356,6 @@ class RdbReadReplica(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            RdbReadReplicaArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -433,20 +375,10 @@ class RdbReadReplica(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = RdbReadReplicaArgs.__new__(RdbReadReplicaArgs)
 
-            if direct_access is not None and not isinstance(direct_access, RdbReadReplicaDirectAccessArgs):
-                direct_access = direct_access or {}
-                def _setter(key, value):
-                    direct_access[key] = value
-                RdbReadReplicaDirectAccessArgs._configure(_setter, **direct_access)
             __props__.__dict__["direct_access"] = direct_access
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
-            if private_network is not None and not isinstance(private_network, RdbReadReplicaPrivateNetworkArgs):
-                private_network = private_network or {}
-                def _setter(key, value):
-                    private_network[key] = value
-                RdbReadReplicaPrivateNetworkArgs._configure(_setter, **private_network)
             __props__.__dict__["private_network"] = private_network
             __props__.__dict__["region"] = region
             __props__.__dict__["same_zone"] = same_zone

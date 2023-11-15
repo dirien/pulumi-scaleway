@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 
@@ -22,10 +22,13 @@ class GetObjectBucketResult:
     """
     A collection of values returned by getObjectBucket.
     """
-    def __init__(__self__, acl=None, cors_rules=None, endpoint=None, force_destroy=None, id=None, lifecycle_rules=None, name=None, object_lock_enabled=None, project_id=None, region=None, tags=None, versionings=None):
+    def __init__(__self__, acl=None, api_endpoint=None, cors_rules=None, endpoint=None, force_destroy=None, id=None, lifecycle_rules=None, name=None, object_lock_enabled=None, project_id=None, region=None, tags=None, versionings=None):
         if acl and not isinstance(acl, str):
             raise TypeError("Expected argument 'acl' to be a str")
         pulumi.set(__self__, "acl", acl)
+        if api_endpoint and not isinstance(api_endpoint, str):
+            raise TypeError("Expected argument 'api_endpoint' to be a str")
+        pulumi.set(__self__, "api_endpoint", api_endpoint)
         if cors_rules and not isinstance(cors_rules, list):
             raise TypeError("Expected argument 'cors_rules' to be a list")
         pulumi.set(__self__, "cors_rules", cors_rules)
@@ -64,6 +67,11 @@ class GetObjectBucketResult:
     @pulumi.getter
     def acl(self) -> str:
         return pulumi.get(self, "acl")
+
+    @property
+    @pulumi.getter(name="apiEndpoint")
+    def api_endpoint(self) -> str:
+        return pulumi.get(self, "api_endpoint")
 
     @property
     @pulumi.getter(name="corsRules")
@@ -134,6 +142,7 @@ class AwaitableGetObjectBucketResult(GetObjectBucketResult):
             yield self
         return GetObjectBucketResult(
             acl=self.acl,
+            api_endpoint=self.api_endpoint,
             cors_rules=self.cors_rules,
             endpoint=self.endpoint,
             force_destroy=self.force_destroy,
@@ -191,6 +200,7 @@ def get_object_bucket(name: Optional[str] = None,
 
     return AwaitableGetObjectBucketResult(
         acl=pulumi.get(__ret__, 'acl'),
+        api_endpoint=pulumi.get(__ret__, 'api_endpoint'),
         cors_rules=pulumi.get(__ret__, 'cors_rules'),
         endpoint=pulumi.get(__ret__, 'endpoint'),
         force_destroy=pulumi.get(__ret__, 'force_destroy'),

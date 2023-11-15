@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['RdbDatabaseBackupArgs', 'RdbDatabaseBackup']
@@ -31,39 +31,14 @@ class RdbDatabaseBackupArgs:
         :param pulumi.Input[str] name: Name of the database (e.g. `my-database`).
         :param pulumi.Input[str] region: `region`) The region in which the resource exists.
         """
-        RdbDatabaseBackupArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            database_name=database_name,
-            instance_id=instance_id,
-            expires_at=expires_at,
-            name=name,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             database_name: pulumi.Input[str],
-             instance_id: pulumi.Input[str],
-             expires_at: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'databaseName' in kwargs:
-            database_name = kwargs['databaseName']
-        if 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-        if 'expiresAt' in kwargs:
-            expires_at = kwargs['expiresAt']
-
-        _setter("database_name", database_name)
-        _setter("instance_id", instance_id)
+        pulumi.set(__self__, "database_name", database_name)
+        pulumi.set(__self__, "instance_id", instance_id)
         if expires_at is not None:
-            _setter("expires_at", expires_at)
+            pulumi.set(__self__, "expires_at", expires_at)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="databaseName")
@@ -158,63 +133,24 @@ class _RdbDatabaseBackupState:
         :param pulumi.Input[int] size: Size of the backup (in bytes).
         :param pulumi.Input[str] updated_at: Updated date (Format ISO 8601).
         """
-        _RdbDatabaseBackupState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            created_at=created_at,
-            database_name=database_name,
-            expires_at=expires_at,
-            instance_id=instance_id,
-            instance_name=instance_name,
-            name=name,
-            region=region,
-            size=size,
-            updated_at=updated_at,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             created_at: Optional[pulumi.Input[str]] = None,
-             database_name: Optional[pulumi.Input[str]] = None,
-             expires_at: Optional[pulumi.Input[str]] = None,
-             instance_id: Optional[pulumi.Input[str]] = None,
-             instance_name: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             size: Optional[pulumi.Input[int]] = None,
-             updated_at: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if 'databaseName' in kwargs:
-            database_name = kwargs['databaseName']
-        if 'expiresAt' in kwargs:
-            expires_at = kwargs['expiresAt']
-        if 'instanceId' in kwargs:
-            instance_id = kwargs['instanceId']
-        if 'instanceName' in kwargs:
-            instance_name = kwargs['instanceName']
-        if 'updatedAt' in kwargs:
-            updated_at = kwargs['updatedAt']
-
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if database_name is not None:
-            _setter("database_name", database_name)
+            pulumi.set(__self__, "database_name", database_name)
         if expires_at is not None:
-            _setter("expires_at", expires_at)
+            pulumi.set(__self__, "expires_at", expires_at)
         if instance_id is not None:
-            _setter("instance_id", instance_id)
+            pulumi.set(__self__, "instance_id", instance_id)
         if instance_name is not None:
-            _setter("instance_name", instance_name)
+            pulumi.set(__self__, "instance_name", instance_name)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if size is not None:
-            _setter("size", size)
+            pulumi.set(__self__, "size", size)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -442,10 +378,6 @@ class RdbDatabaseBackup(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            RdbDatabaseBackupArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

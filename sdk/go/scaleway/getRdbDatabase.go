@@ -9,7 +9,6 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about a RDB database.
@@ -113,12 +112,6 @@ func (o LookupRdbDatabaseResultOutput) ToLookupRdbDatabaseResultOutput() LookupR
 
 func (o LookupRdbDatabaseResultOutput) ToLookupRdbDatabaseResultOutputWithContext(ctx context.Context) LookupRdbDatabaseResultOutput {
 	return o
-}
-
-func (o LookupRdbDatabaseResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupRdbDatabaseResult] {
-	return pulumix.Output[LookupRdbDatabaseResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Import
@@ -61,6 +60,9 @@ type RdbInstance struct {
 	//
 	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
 	// interruption. Keep in mind that you cannot downgrade a Database Instance.
+	//
+	// > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
+	// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
 	// The organization ID the Database Instance is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
@@ -85,6 +87,8 @@ type RdbInstance struct {
 	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName pulumi.StringPtrOutput `pulumi:"userName"`
 	// Volume size (in GB) when `volumeType` is set to `bssd`.
+	//
+	// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 	VolumeSizeInGb pulumi.IntOutput `pulumi:"volumeSizeInGb"`
 	// Type of volume where data are stored (`bssd` or `lssd`).
 	VolumeType pulumi.StringPtrOutput `pulumi:"volumeType"`
@@ -169,6 +173,9 @@ type rdbInstanceState struct {
 	//
 	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
 	// interruption. Keep in mind that you cannot downgrade a Database Instance.
+	//
+	// > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
+	// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
 	NodeType *string `pulumi:"nodeType"`
 	// The organization ID the Database Instance is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
@@ -193,6 +200,8 @@ type rdbInstanceState struct {
 	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName *string `pulumi:"userName"`
 	// Volume size (in GB) when `volumeType` is set to `bssd`.
+	//
+	// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 	VolumeSizeInGb *int `pulumi:"volumeSizeInGb"`
 	// Type of volume where data are stored (`bssd` or `lssd`).
 	VolumeType *string `pulumi:"volumeType"`
@@ -235,6 +244,9 @@ type RdbInstanceState struct {
 	//
 	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
 	// interruption. Keep in mind that you cannot downgrade a Database Instance.
+	//
+	// > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
+	// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
 	NodeType pulumi.StringPtrInput
 	// The organization ID the Database Instance is associated with.
 	OrganizationId pulumi.StringPtrInput
@@ -259,6 +271,8 @@ type RdbInstanceState struct {
 	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName pulumi.StringPtrInput
 	// Volume size (in GB) when `volumeType` is set to `bssd`.
+	//
+	// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 	VolumeSizeInGb pulumi.IntPtrInput
 	// Type of volume where data are stored (`bssd` or `lssd`).
 	VolumeType pulumi.StringPtrInput
@@ -295,6 +309,9 @@ type rdbInstanceArgs struct {
 	//
 	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
 	// interruption. Keep in mind that you cannot downgrade a Database Instance.
+	//
+	// > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
+	// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
 	NodeType string `pulumi:"nodeType"`
 	// Password for the first user of the database instance.
 	Password *string `pulumi:"password"`
@@ -315,6 +332,8 @@ type rdbInstanceArgs struct {
 	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName *string `pulumi:"userName"`
 	// Volume size (in GB) when `volumeType` is set to `bssd`.
+	//
+	// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 	VolumeSizeInGb *int `pulumi:"volumeSizeInGb"`
 	// Type of volume where data are stored (`bssd` or `lssd`).
 	VolumeType *string `pulumi:"volumeType"`
@@ -348,6 +367,9 @@ type RdbInstanceArgs struct {
 	//
 	// > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
 	// interruption. Keep in mind that you cannot downgrade a Database Instance.
+	//
+	// > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
+	// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
 	NodeType pulumi.StringInput
 	// Password for the first user of the database instance.
 	Password pulumi.StringPtrInput
@@ -368,6 +390,8 @@ type RdbInstanceArgs struct {
 	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName pulumi.StringPtrInput
 	// Volume size (in GB) when `volumeType` is set to `bssd`.
+	//
+	// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 	VolumeSizeInGb pulumi.IntPtrInput
 	// Type of volume where data are stored (`bssd` or `lssd`).
 	VolumeType pulumi.StringPtrInput
@@ -396,12 +420,6 @@ func (i *RdbInstance) ToRdbInstanceOutputWithContext(ctx context.Context) RdbIns
 	return pulumi.ToOutputWithContext(ctx, i).(RdbInstanceOutput)
 }
 
-func (i *RdbInstance) ToOutput(ctx context.Context) pulumix.Output[*RdbInstance] {
-	return pulumix.Output[*RdbInstance]{
-		OutputState: i.ToRdbInstanceOutputWithContext(ctx).OutputState,
-	}
-}
-
 // RdbInstanceArrayInput is an input type that accepts RdbInstanceArray and RdbInstanceArrayOutput values.
 // You can construct a concrete instance of `RdbInstanceArrayInput` via:
 //
@@ -425,12 +443,6 @@ func (i RdbInstanceArray) ToRdbInstanceArrayOutput() RdbInstanceArrayOutput {
 
 func (i RdbInstanceArray) ToRdbInstanceArrayOutputWithContext(ctx context.Context) RdbInstanceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RdbInstanceArrayOutput)
-}
-
-func (i RdbInstanceArray) ToOutput(ctx context.Context) pulumix.Output[[]*RdbInstance] {
-	return pulumix.Output[[]*RdbInstance]{
-		OutputState: i.ToRdbInstanceArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // RdbInstanceMapInput is an input type that accepts RdbInstanceMap and RdbInstanceMapOutput values.
@@ -458,12 +470,6 @@ func (i RdbInstanceMap) ToRdbInstanceMapOutputWithContext(ctx context.Context) R
 	return pulumi.ToOutputWithContext(ctx, i).(RdbInstanceMapOutput)
 }
 
-func (i RdbInstanceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RdbInstance] {
-	return pulumix.Output[map[string]*RdbInstance]{
-		OutputState: i.ToRdbInstanceMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type RdbInstanceOutput struct{ *pulumi.OutputState }
 
 func (RdbInstanceOutput) ElementType() reflect.Type {
@@ -476,12 +482,6 @@ func (o RdbInstanceOutput) ToRdbInstanceOutput() RdbInstanceOutput {
 
 func (o RdbInstanceOutput) ToRdbInstanceOutputWithContext(ctx context.Context) RdbInstanceOutput {
 	return o
-}
-
-func (o RdbInstanceOutput) ToOutput(ctx context.Context) pulumix.Output[*RdbInstance] {
-	return pulumix.Output[*RdbInstance]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Boolean to store logical backups in the same region as the database instance.
@@ -556,6 +556,9 @@ func (o RdbInstanceOutput) Name() pulumi.StringOutput {
 //
 // > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
 // interruption. Keep in mind that you cannot downgrade a Database Instance.
+//
+// > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
+// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
 func (o RdbInstanceOutput) NodeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.StringOutput { return v.NodeType }).(pulumi.StringOutput)
 }
@@ -610,6 +613,8 @@ func (o RdbInstanceOutput) UserName() pulumi.StringPtrOutput {
 }
 
 // Volume size (in GB) when `volumeType` is set to `bssd`.
+//
+// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 func (o RdbInstanceOutput) VolumeSizeInGb() pulumi.IntOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.IntOutput { return v.VolumeSizeInGb }).(pulumi.IntOutput)
 }
@@ -633,12 +638,6 @@ func (o RdbInstanceArrayOutput) ToRdbInstanceArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o RdbInstanceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RdbInstance] {
-	return pulumix.Output[[]*RdbInstance]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o RdbInstanceArrayOutput) Index(i pulumi.IntInput) RdbInstanceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RdbInstance {
 		return vs[0].([]*RdbInstance)[vs[1].(int)]
@@ -657,12 +656,6 @@ func (o RdbInstanceMapOutput) ToRdbInstanceMapOutput() RdbInstanceMapOutput {
 
 func (o RdbInstanceMapOutput) ToRdbInstanceMapOutputWithContext(ctx context.Context) RdbInstanceMapOutput {
 	return o
-}
-
-func (o RdbInstanceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RdbInstance] {
-	return pulumix.Output[map[string]*RdbInstance]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o RdbInstanceMapOutput) MapIndex(k pulumi.StringInput) RdbInstanceOutput {

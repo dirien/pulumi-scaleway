@@ -460,6 +460,20 @@
                     }
                 }
             },
+            "scaleway_ipam_ip": {
+                "current": "scaleway:index/ipamIp:IpamIp",
+                "fields": {
+                    "resource": {
+                        "maxItemsOne": false
+                    },
+                    "source": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_k8s_cluster": {
                 "current": "scaleway:index/k8sCluster:K8sCluster",
                 "fields": {
@@ -884,7 +898,12 @@
                 "current": "scaleway:index/secretVersion:SecretVersion"
             },
             "scaleway_tem_domain": {
-                "current": "scaleway:index/temDomain:TemDomain"
+                "current": "scaleway:index/temDomain:TemDomain",
+                "fields": {
+                    "reputation": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "scaleway_vpc": {
                 "current": "scaleway:index/vpc:Vpc",
@@ -1355,6 +1374,9 @@
                 "fields": {
                     "resource": {
                         "maxItemsOne": true
+                    },
+                    "tags": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -1773,7 +1795,12 @@
                 "current": "scaleway:index/getSecretVersion:getSecretVersion"
             },
             "scaleway_tem_domain": {
-                "current": "scaleway:index/getTemDomain:getTemDomain"
+                "current": "scaleway:index/getTemDomain:getTemDomain",
+                "fields": {
+                    "reputation": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "scaleway_vpc": {
                 "current": "scaleway:index/getVpc:getVpc",
@@ -1939,6 +1966,7 @@
             "scaleway:index/iotHub:IotHub": "scaleway_iot_hub",
             "scaleway:index/iotNetwork:IotNetwork": "scaleway_iot_network",
             "scaleway:index/iotRoute:IotRoute": "scaleway_iot_route",
+            "scaleway:index/ipamIp:IpamIp": "scaleway_ipam_ip",
             "scaleway:index/k8sCluster:K8sCluster": "scaleway_k8s_cluster",
             "scaleway:index/k8sPool:K8sPool": "scaleway_k8s_pool",
             "scaleway:index/lb:Lb": "scaleway_lb",
@@ -2077,16 +2105,19 @@
                 "alertmanagerUrl": "alertmanager_url",
                 "grafanaUrl": "grafana_url",
                 "logsUrl": "logs_url",
-                "metricsUrl": "metrics_url"
+                "metricsUrl": "metrics_url",
+                "tracesUrl": "traces_url"
             },
             "scaleway:index/CockpitTokenScopes:CockpitTokenScopes": {
                 "queryLogs": "query_logs",
                 "queryMetrics": "query_metrics",
+                "queryTraces": "query_traces",
                 "setupAlerts": "setup_alerts",
                 "setupLogsRules": "setup_logs_rules",
                 "setupMetricsRules": "setup_metrics_rules",
                 "writeLogs": "write_logs",
-                "writeMetrics": "write_metrics"
+                "writeMetrics": "write_metrics",
+                "writeTraces": "write_traces"
             },
             "scaleway:index/ContainerTriggerNats:ContainerTriggerNats": {
                 "accountId": "account_id",
@@ -2157,6 +2188,13 @@
                 "bucketName": "bucket_name",
                 "bucketRegion": "bucket_region",
                 "objectPrefix": "object_prefix"
+            },
+            "scaleway:index/IpamIpResource:IpamIpResource": {
+                "macAddress": "mac_address"
+            },
+            "scaleway:index/IpamIpSource:IpamIpSource": {
+                "privateNetworkId": "private_network_id",
+                "subnetId": "subnet_id"
             },
             "scaleway:index/K8sClusterAutoUpgrade:K8sClusterAutoUpgrade": {
                 "maintenanceWindowDay": "maintenance_window_day",
@@ -2303,6 +2341,11 @@
             "scaleway:index/RedisClusterPrivateNetwork:RedisClusterPrivateNetwork": {
                 "endpointId": "endpoint_id",
                 "serviceIps": "service_ips"
+            },
+            "scaleway:index/TemDomainReputation:TemDomainReputation": {
+                "previousScore": "previous_score",
+                "previousScoredAt": "previous_scored_at",
+                "scoredAt": "scored_at"
             },
             "scaleway:index/VpcGatewayNetworkIpamConfig:VpcGatewayNetworkIpamConfig": {
                 "pushDefaultRoute": "push_default_route"
@@ -2593,7 +2636,8 @@
                 "alertmanagerUrl": "alertmanager_url",
                 "grafanaUrl": "grafana_url",
                 "logsUrl": "logs_url",
-                "metricsUrl": "metrics_url"
+                "metricsUrl": "metrics_url",
+                "tracesUrl": "traces_url"
             },
             "scaleway:index/getContainer:getContainer": {
                 "containerId": "container_id",
@@ -2895,7 +2939,9 @@
             },
             "scaleway:index/getIpamIp:getIpamIp": {
                 "macAddress": "mac_address",
-                "privateNetworkId": "private_network_id"
+                "organizationId": "organization_id",
+                "privateNetworkId": "private_network_id",
+                "projectId": "project_id"
             },
             "scaleway:index/getK8sCluster:getK8sCluster": {
                 "admissionPlugins": "admission_plugins",
@@ -3211,6 +3257,7 @@
                 "projectId": "project_id"
             },
             "scaleway:index/getObjectBucket:getObjectBucket": {
+                "apiEndpoint": "api_endpoint",
                 "corsRules": "cors_rule",
                 "forceDestroy": "force_destroy",
                 "lifecycleRules": "lifecycle_rule",
@@ -3335,8 +3382,10 @@
                 "domainId": "domain_id",
                 "lastError": "last_error",
                 "lastValidAt": "last_valid_at",
+                "mxBlackhole": "mx_blackhole",
                 "nextCheckAt": "next_check_at",
                 "projectId": "project_id",
+                "reputations": "reputation",
                 "revokedAt": "revoked_at",
                 "smtpHost": "smtp_host",
                 "smtpPort": "smtp_port",
@@ -3345,6 +3394,11 @@
                 "smtpsPort": "smtps_port",
                 "smtpsPortAlternative": "smtps_port_alternative",
                 "spfConfig": "spf_config"
+            },
+            "scaleway:index/getTemDomainReputation:getTemDomainReputation": {
+                "previousScore": "previous_score",
+                "previousScoredAt": "previous_scored_at",
+                "scoredAt": "scored_at"
             },
             "scaleway:index/getVpc:getVpc": {
                 "createdAt": "created_at",
@@ -3664,6 +3718,14 @@
                 "createdAt": "created_at",
                 "hubId": "hub_id"
             },
+            "scaleway:index/ipamIp:IpamIp": {
+                "createdAt": "created_at",
+                "isIpv6": "is_ipv6",
+                "projectId": "project_id",
+                "resources": "resource",
+                "sources": "source",
+                "updatedAt": "updated_at"
+            },
             "scaleway:index/k8sCluster:K8sCluster": {
                 "admissionPlugins": "admission_plugins",
                 "apiserverCertSans": "apiserver_cert_sans",
@@ -3821,6 +3883,7 @@
                 "visibilityTimeoutSeconds": "visibility_timeout_seconds"
             },
             "scaleway:index/objectBucket:ObjectBucket": {
+                "apiEndpoint": "api_endpoint",
                 "corsRules": "cors_rule",
                 "forceDestroy": "force_destroy",
                 "lifecycleRules": "lifecycle_rule",
@@ -3933,8 +3996,10 @@
                 "dkimConfig": "dkim_config",
                 "lastError": "last_error",
                 "lastValidAt": "last_valid_at",
+                "mxBlackhole": "mx_blackhole",
                 "nextCheckAt": "next_check_at",
                 "projectId": "project_id",
+                "reputations": "reputation",
                 "revokedAt": "revoked_at",
                 "smtpHost": "smtp_host",
                 "smtpPort": "smtp_port",

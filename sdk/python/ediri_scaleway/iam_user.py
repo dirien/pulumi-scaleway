@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['IamUserArgs', 'IamUser']
@@ -21,24 +21,9 @@ class IamUserArgs:
         :param pulumi.Input[str] email: The email of the IAM user.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the user is associated with.
         """
-        IamUserArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            email=email,
-            organization_id=organization_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             email: pulumi.Input[str],
-             organization_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'organizationId' in kwargs:
-            organization_id = kwargs['organizationId']
-
-        _setter("email", email)
+        pulumi.set(__self__, "email", email)
         if organization_id is not None:
-            _setter("organization_id", organization_id)
+            pulumi.set(__self__, "organization_id", organization_id)
 
     @property
     @pulumi.getter
@@ -91,65 +76,26 @@ class _IamUserState:
         :param pulumi.Input[str] type: The type of user. Check the possible values in the [api doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
         :param pulumi.Input[str] updated_at: The date and time of the last update of the iam user.
         """
-        _IamUserState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            account_root_user_id=account_root_user_id,
-            created_at=created_at,
-            deletable=deletable,
-            email=email,
-            last_login_at=last_login_at,
-            mfa=mfa,
-            organization_id=organization_id,
-            status=status,
-            type=type,
-            updated_at=updated_at,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             account_root_user_id: Optional[pulumi.Input[str]] = None,
-             created_at: Optional[pulumi.Input[str]] = None,
-             deletable: Optional[pulumi.Input[bool]] = None,
-             email: Optional[pulumi.Input[str]] = None,
-             last_login_at: Optional[pulumi.Input[str]] = None,
-             mfa: Optional[pulumi.Input[bool]] = None,
-             organization_id: Optional[pulumi.Input[str]] = None,
-             status: Optional[pulumi.Input[str]] = None,
-             type: Optional[pulumi.Input[str]] = None,
-             updated_at: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'accountRootUserId' in kwargs:
-            account_root_user_id = kwargs['accountRootUserId']
-        if 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if 'lastLoginAt' in kwargs:
-            last_login_at = kwargs['lastLoginAt']
-        if 'organizationId' in kwargs:
-            organization_id = kwargs['organizationId']
-        if 'updatedAt' in kwargs:
-            updated_at = kwargs['updatedAt']
-
         if account_root_user_id is not None:
-            _setter("account_root_user_id", account_root_user_id)
+            pulumi.set(__self__, "account_root_user_id", account_root_user_id)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if deletable is not None:
-            _setter("deletable", deletable)
+            pulumi.set(__self__, "deletable", deletable)
         if email is not None:
-            _setter("email", email)
+            pulumi.set(__self__, "email", email)
         if last_login_at is not None:
-            _setter("last_login_at", last_login_at)
+            pulumi.set(__self__, "last_login_at", last_login_at)
         if mfa is not None:
-            _setter("mfa", mfa)
+            pulumi.set(__self__, "mfa", mfa)
         if organization_id is not None:
-            _setter("organization_id", organization_id)
+            pulumi.set(__self__, "organization_id", organization_id)
         if status is not None:
-            _setter("status", status)
+            pulumi.set(__self__, "status", status)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter(name="accountRootUserId")
@@ -347,10 +293,6 @@ class IamUser(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            IamUserArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

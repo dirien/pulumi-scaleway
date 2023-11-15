@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -31,44 +31,17 @@ class ObjectBucketAclArgs:
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         """
-        ObjectBucketAclArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            bucket=bucket,
-            access_control_policy=access_control_policy,
-            acl=acl,
-            expected_bucket_owner=expected_bucket_owner,
-            project_id=project_id,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             bucket: pulumi.Input[str],
-             access_control_policy: Optional[pulumi.Input['ObjectBucketAclAccessControlPolicyArgs']] = None,
-             acl: Optional[pulumi.Input[str]] = None,
-             expected_bucket_owner: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'accessControlPolicy' in kwargs:
-            access_control_policy = kwargs['accessControlPolicy']
-        if 'expectedBucketOwner' in kwargs:
-            expected_bucket_owner = kwargs['expectedBucketOwner']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
-        _setter("bucket", bucket)
+        pulumi.set(__self__, "bucket", bucket)
         if access_control_policy is not None:
-            _setter("access_control_policy", access_control_policy)
+            pulumi.set(__self__, "access_control_policy", access_control_policy)
         if acl is not None:
-            _setter("acl", acl)
+            pulumi.set(__self__, "acl", acl)
         if expected_bucket_owner is not None:
-            _setter("expected_bucket_owner", expected_bucket_owner)
+            pulumi.set(__self__, "expected_bucket_owner", expected_bucket_owner)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter
@@ -161,45 +134,18 @@ class _ObjectBucketAclState:
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         """
-        _ObjectBucketAclState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            access_control_policy=access_control_policy,
-            acl=acl,
-            bucket=bucket,
-            expected_bucket_owner=expected_bucket_owner,
-            project_id=project_id,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             access_control_policy: Optional[pulumi.Input['ObjectBucketAclAccessControlPolicyArgs']] = None,
-             acl: Optional[pulumi.Input[str]] = None,
-             bucket: Optional[pulumi.Input[str]] = None,
-             expected_bucket_owner: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'accessControlPolicy' in kwargs:
-            access_control_policy = kwargs['accessControlPolicy']
-        if 'expectedBucketOwner' in kwargs:
-            expected_bucket_owner = kwargs['expectedBucketOwner']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
         if access_control_policy is not None:
-            _setter("access_control_policy", access_control_policy)
+            pulumi.set(__self__, "access_control_policy", access_control_policy)
         if acl is not None:
-            _setter("acl", acl)
+            pulumi.set(__self__, "acl", acl)
         if bucket is not None:
-            _setter("bucket", bucket)
+            pulumi.set(__self__, "bucket", bucket)
         if expected_bucket_owner is not None:
-            _setter("expected_bucket_owner", expected_bucket_owner)
+            pulumi.set(__self__, "expected_bucket_owner", expected_bucket_owner)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="accessControlPolicy")
@@ -499,10 +445,6 @@ class ObjectBucketAcl(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ObjectBucketAclArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -523,11 +465,6 @@ class ObjectBucketAcl(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ObjectBucketAclArgs.__new__(ObjectBucketAclArgs)
 
-            if access_control_policy is not None and not isinstance(access_control_policy, ObjectBucketAclAccessControlPolicyArgs):
-                access_control_policy = access_control_policy or {}
-                def _setter(key, value):
-                    access_control_policy[key] = value
-                ObjectBucketAclAccessControlPolicyArgs._configure(_setter, **access_control_policy)
             __props__.__dict__["access_control_policy"] = access_control_policy
             __props__.__dict__["acl"] = acl
             if bucket is None and not opts.urn:

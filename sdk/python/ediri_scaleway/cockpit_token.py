@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -21,39 +21,22 @@ class CockpitTokenArgs:
                  scopes: Optional[pulumi.Input['CockpitTokenScopesArgs']] = None):
         """
         The set of arguments for constructing a CockpitToken resource.
-        :param pulumi.Input[str] name: The name of the token
+        :param pulumi.Input[str] name: The name of the token.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
-        :param pulumi.Input['CockpitTokenScopesArgs'] scopes: Allowed scopes
+        :param pulumi.Input['CockpitTokenScopesArgs'] scopes: Allowed scopes.
         """
-        CockpitTokenArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            project_id=project_id,
-            scopes=scopes,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             scopes: Optional[pulumi.Input['CockpitTokenScopesArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if scopes is not None:
-            _setter("scopes", scopes)
+            pulumi.set(__self__, "scopes", scopes)
 
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the token
+        The name of the token.
         """
         return pulumi.get(self, "name")
 
@@ -77,7 +60,7 @@ class CockpitTokenArgs:
     @pulumi.getter
     def scopes(self) -> Optional[pulumi.Input['CockpitTokenScopesArgs']]:
         """
-        Allowed scopes
+        Allowed scopes.
         """
         return pulumi.get(self, "scopes")
 
@@ -95,46 +78,25 @@ class _CockpitTokenState:
                  secret_key: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering CockpitToken resources.
-        :param pulumi.Input[str] name: The name of the token
+        :param pulumi.Input[str] name: The name of the token.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
-        :param pulumi.Input['CockpitTokenScopesArgs'] scopes: Allowed scopes
-        :param pulumi.Input[str] secret_key: The secret key of the token
+        :param pulumi.Input['CockpitTokenScopesArgs'] scopes: Allowed scopes.
+        :param pulumi.Input[str] secret_key: The secret key of the token.
         """
-        _CockpitTokenState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            project_id=project_id,
-            scopes=scopes,
-            secret_key=secret_key,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             scopes: Optional[pulumi.Input['CockpitTokenScopesArgs']] = None,
-             secret_key: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'secretKey' in kwargs:
-            secret_key = kwargs['secretKey']
-
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if scopes is not None:
-            _setter("scopes", scopes)
+            pulumi.set(__self__, "scopes", scopes)
         if secret_key is not None:
-            _setter("secret_key", secret_key)
+            pulumi.set(__self__, "secret_key", secret_key)
 
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the token
+        The name of the token.
         """
         return pulumi.get(self, "name")
 
@@ -158,7 +120,7 @@ class _CockpitTokenState:
     @pulumi.getter
     def scopes(self) -> Optional[pulumi.Input['CockpitTokenScopesArgs']]:
         """
-        Allowed scopes
+        Allowed scopes.
         """
         return pulumi.get(self, "scopes")
 
@@ -170,7 +132,7 @@ class _CockpitTokenState:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The secret key of the token
+        The secret key of the token.
         """
         return pulumi.get(self, "secret_key")
 
@@ -232,9 +194,9 @@ class CockpitToken(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The name of the token
+        :param pulumi.Input[str] name: The name of the token.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
-        :param pulumi.Input[pulumi.InputType['CockpitTokenScopesArgs']] scopes: Allowed scopes
+        :param pulumi.Input[pulumi.InputType['CockpitTokenScopesArgs']] scopes: Allowed scopes.
         """
         ...
     @overload
@@ -294,10 +256,6 @@ class CockpitToken(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            CockpitTokenArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -317,11 +275,6 @@ class CockpitToken(pulumi.CustomResource):
 
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
-            if scopes is not None and not isinstance(scopes, CockpitTokenScopesArgs):
-                scopes = scopes or {}
-                def _setter(key, value):
-                    scopes[key] = value
-                CockpitTokenScopesArgs._configure(_setter, **scopes)
             __props__.__dict__["scopes"] = scopes
             __props__.__dict__["secret_key"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secretKey"])
@@ -347,10 +300,10 @@ class CockpitToken(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The name of the token
+        :param pulumi.Input[str] name: The name of the token.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
-        :param pulumi.Input[pulumi.InputType['CockpitTokenScopesArgs']] scopes: Allowed scopes
-        :param pulumi.Input[str] secret_key: The secret key of the token
+        :param pulumi.Input[pulumi.InputType['CockpitTokenScopesArgs']] scopes: Allowed scopes.
+        :param pulumi.Input[str] secret_key: The secret key of the token.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -366,7 +319,7 @@ class CockpitToken(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the token
+        The name of the token.
         """
         return pulumi.get(self, "name")
 
@@ -382,7 +335,7 @@ class CockpitToken(pulumi.CustomResource):
     @pulumi.getter
     def scopes(self) -> pulumi.Output['outputs.CockpitTokenScopes']:
         """
-        Allowed scopes
+        Allowed scopes.
         """
         return pulumi.get(self, "scopes")
 
@@ -390,7 +343,7 @@ class CockpitToken(pulumi.CustomResource):
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Output[str]:
         """
-        The secret key of the token
+        The secret key of the token.
         """
         return pulumi.get(self, "secret_key")
 

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway DocumentDB Database read replicas.
@@ -220,12 +219,6 @@ func (i *DocumentDBReadReplica) ToDocumentDBReadReplicaOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBReadReplicaOutput)
 }
 
-func (i *DocumentDBReadReplica) ToOutput(ctx context.Context) pulumix.Output[*DocumentDBReadReplica] {
-	return pulumix.Output[*DocumentDBReadReplica]{
-		OutputState: i.ToDocumentDBReadReplicaOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DocumentDBReadReplicaArrayInput is an input type that accepts DocumentDBReadReplicaArray and DocumentDBReadReplicaArrayOutput values.
 // You can construct a concrete instance of `DocumentDBReadReplicaArrayInput` via:
 //
@@ -249,12 +242,6 @@ func (i DocumentDBReadReplicaArray) ToDocumentDBReadReplicaArrayOutput() Documen
 
 func (i DocumentDBReadReplicaArray) ToDocumentDBReadReplicaArrayOutputWithContext(ctx context.Context) DocumentDBReadReplicaArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBReadReplicaArrayOutput)
-}
-
-func (i DocumentDBReadReplicaArray) ToOutput(ctx context.Context) pulumix.Output[[]*DocumentDBReadReplica] {
-	return pulumix.Output[[]*DocumentDBReadReplica]{
-		OutputState: i.ToDocumentDBReadReplicaArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DocumentDBReadReplicaMapInput is an input type that accepts DocumentDBReadReplicaMap and DocumentDBReadReplicaMapOutput values.
@@ -282,12 +269,6 @@ func (i DocumentDBReadReplicaMap) ToDocumentDBReadReplicaMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBReadReplicaMapOutput)
 }
 
-func (i DocumentDBReadReplicaMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DocumentDBReadReplica] {
-	return pulumix.Output[map[string]*DocumentDBReadReplica]{
-		OutputState: i.ToDocumentDBReadReplicaMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DocumentDBReadReplicaOutput struct{ *pulumi.OutputState }
 
 func (DocumentDBReadReplicaOutput) ElementType() reflect.Type {
@@ -300,12 +281,6 @@ func (o DocumentDBReadReplicaOutput) ToDocumentDBReadReplicaOutput() DocumentDBR
 
 func (o DocumentDBReadReplicaOutput) ToDocumentDBReadReplicaOutputWithContext(ctx context.Context) DocumentDBReadReplicaOutput {
 	return o
-}
-
-func (o DocumentDBReadReplicaOutput) ToOutput(ctx context.Context) pulumix.Output[*DocumentDBReadReplica] {
-	return pulumix.Output[*DocumentDBReadReplica]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Creates a direct access endpoint to documentdb replica.
@@ -345,12 +320,6 @@ func (o DocumentDBReadReplicaArrayOutput) ToDocumentDBReadReplicaArrayOutputWith
 	return o
 }
 
-func (o DocumentDBReadReplicaArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DocumentDBReadReplica] {
-	return pulumix.Output[[]*DocumentDBReadReplica]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DocumentDBReadReplicaArrayOutput) Index(i pulumi.IntInput) DocumentDBReadReplicaOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DocumentDBReadReplica {
 		return vs[0].([]*DocumentDBReadReplica)[vs[1].(int)]
@@ -369,12 +338,6 @@ func (o DocumentDBReadReplicaMapOutput) ToDocumentDBReadReplicaMapOutput() Docum
 
 func (o DocumentDBReadReplicaMapOutput) ToDocumentDBReadReplicaMapOutputWithContext(ctx context.Context) DocumentDBReadReplicaMapOutput {
 	return o
-}
-
-func (o DocumentDBReadReplicaMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DocumentDBReadReplica] {
-	return pulumix.Output[map[string]*DocumentDBReadReplica]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DocumentDBReadReplicaMapOutput) MapIndex(k pulumi.StringInput) DocumentDBReadReplicaOutput {

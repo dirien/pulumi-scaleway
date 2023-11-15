@@ -9,7 +9,6 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Get information about Scaleway Load-Balancer Frontends.
@@ -150,12 +149,6 @@ func (o LookupLbFrontendResultOutput) ToLookupLbFrontendResultOutput() LookupLbF
 
 func (o LookupLbFrontendResultOutput) ToLookupLbFrontendResultOutputWithContext(ctx context.Context) LookupLbFrontendResultOutput {
 	return o
-}
-
-func (o LookupLbFrontendResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupLbFrontendResult] {
-	return pulumix.Output[LookupLbFrontendResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupLbFrontendResultOutput) Acls() GetLbFrontendAclArrayOutput {

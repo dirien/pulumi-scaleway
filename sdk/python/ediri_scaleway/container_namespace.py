@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ContainerNamespaceArgs', 'ContainerNamespace']
@@ -33,54 +33,23 @@ class ContainerNamespaceArgs:
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The secret environment variables of the namespace.
         """
-        ContainerNamespaceArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            description=description,
-            destroy_registry=destroy_registry,
-            environment_variables=environment_variables,
-            name=name,
-            project_id=project_id,
-            region=region,
-            secret_environment_variables=secret_environment_variables,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             description: Optional[pulumi.Input[str]] = None,
-             destroy_registry: Optional[pulumi.Input[bool]] = None,
-             environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'destroyRegistry' in kwargs:
-            destroy_registry = kwargs['destroyRegistry']
-        if 'environmentVariables' in kwargs:
-            environment_variables = kwargs['environmentVariables']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'secretEnvironmentVariables' in kwargs:
-            secret_environment_variables = kwargs['secretEnvironmentVariables']
-
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if destroy_registry is not None:
             warnings.warn("""Registry namespace is automatically destroyed with namespace""", DeprecationWarning)
             pulumi.log.warn("""destroy_registry is deprecated: Registry namespace is automatically destroyed with namespace""")
         if destroy_registry is not None:
-            _setter("destroy_registry", destroy_registry)
+            pulumi.set(__self__, "destroy_registry", destroy_registry)
         if environment_variables is not None:
-            _setter("environment_variables", environment_variables)
+            pulumi.set(__self__, "environment_variables", environment_variables)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if secret_environment_variables is not None:
-            _setter("secret_environment_variables", secret_environment_variables)
+            pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
 
     @property
     @pulumi.getter
@@ -200,72 +169,29 @@ class _ContainerNamespaceState:
         :param pulumi.Input[str] registry_namespace_id: The registry namespace ID of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The secret environment variables of the namespace.
         """
-        _ContainerNamespaceState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            description=description,
-            destroy_registry=destroy_registry,
-            environment_variables=environment_variables,
-            name=name,
-            organization_id=organization_id,
-            project_id=project_id,
-            region=region,
-            registry_endpoint=registry_endpoint,
-            registry_namespace_id=registry_namespace_id,
-            secret_environment_variables=secret_environment_variables,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             description: Optional[pulumi.Input[str]] = None,
-             destroy_registry: Optional[pulumi.Input[bool]] = None,
-             environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             organization_id: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             registry_endpoint: Optional[pulumi.Input[str]] = None,
-             registry_namespace_id: Optional[pulumi.Input[str]] = None,
-             secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'destroyRegistry' in kwargs:
-            destroy_registry = kwargs['destroyRegistry']
-        if 'environmentVariables' in kwargs:
-            environment_variables = kwargs['environmentVariables']
-        if 'organizationId' in kwargs:
-            organization_id = kwargs['organizationId']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'registryEndpoint' in kwargs:
-            registry_endpoint = kwargs['registryEndpoint']
-        if 'registryNamespaceId' in kwargs:
-            registry_namespace_id = kwargs['registryNamespaceId']
-        if 'secretEnvironmentVariables' in kwargs:
-            secret_environment_variables = kwargs['secretEnvironmentVariables']
-
         if description is not None:
-            _setter("description", description)
+            pulumi.set(__self__, "description", description)
         if destroy_registry is not None:
             warnings.warn("""Registry namespace is automatically destroyed with namespace""", DeprecationWarning)
             pulumi.log.warn("""destroy_registry is deprecated: Registry namespace is automatically destroyed with namespace""")
         if destroy_registry is not None:
-            _setter("destroy_registry", destroy_registry)
+            pulumi.set(__self__, "destroy_registry", destroy_registry)
         if environment_variables is not None:
-            _setter("environment_variables", environment_variables)
+            pulumi.set(__self__, "environment_variables", environment_variables)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if organization_id is not None:
-            _setter("organization_id", organization_id)
+            pulumi.set(__self__, "organization_id", organization_id)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if registry_endpoint is not None:
-            _setter("registry_endpoint", registry_endpoint)
+            pulumi.set(__self__, "registry_endpoint", registry_endpoint)
         if registry_namespace_id is not None:
-            _setter("registry_namespace_id", registry_namespace_id)
+            pulumi.set(__self__, "registry_namespace_id", registry_namespace_id)
         if secret_environment_variables is not None:
-            _setter("secret_environment_variables", secret_environment_variables)
+            pulumi.set(__self__, "secret_environment_variables", secret_environment_variables)
 
     @property
     @pulumi.getter
@@ -480,10 +406,6 @@ class ContainerNamespace(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ContainerNamespaceArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

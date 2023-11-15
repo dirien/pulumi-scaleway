@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['CockpitGrafanaUserArgs', 'CockpitGrafanaUser']
@@ -23,27 +23,10 @@ class CockpitGrafanaUserArgs:
         :param pulumi.Input[str] role: The role of the grafana user. Must be `editor` or `viewer`.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
         """
-        CockpitGrafanaUserArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            login=login,
-            role=role,
-            project_id=project_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             login: pulumi.Input[str],
-             role: pulumi.Input[str],
-             project_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
-        _setter("login", login)
-        _setter("role", role)
+        pulumi.set(__self__, "login", login)
+        pulumi.set(__self__, "role", role)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
 
     @property
     @pulumi.getter
@@ -96,33 +79,14 @@ class _CockpitGrafanaUserState:
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cockpit is associated with.
         :param pulumi.Input[str] role: The role of the grafana user. Must be `editor` or `viewer`.
         """
-        _CockpitGrafanaUserState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            login=login,
-            password=password,
-            project_id=project_id,
-            role=role,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             login: Optional[pulumi.Input[str]] = None,
-             password: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             role: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
         if login is not None:
-            _setter("login", login)
+            pulumi.set(__self__, "login", login)
         if password is not None:
-            _setter("password", password)
+            pulumi.set(__self__, "password", password)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if role is not None:
-            _setter("role", role)
+            pulumi.set(__self__, "role", role)
 
     @property
     @pulumi.getter
@@ -260,10 +224,6 @@ class CockpitGrafanaUser(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            CockpitGrafanaUserArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

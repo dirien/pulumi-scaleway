@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -25,32 +25,11 @@ class InstanceSecurityGroupRulesArgs:
         :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesInboundRuleArgs']]] inbound_rules: A list of inbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesOutboundRuleArgs']]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
         """
-        InstanceSecurityGroupRulesArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            security_group_id=security_group_id,
-            inbound_rules=inbound_rules,
-            outbound_rules=outbound_rules,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             security_group_id: pulumi.Input[str],
-             inbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesInboundRuleArgs']]]] = None,
-             outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesOutboundRuleArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'securityGroupId' in kwargs:
-            security_group_id = kwargs['securityGroupId']
-        if 'inboundRules' in kwargs:
-            inbound_rules = kwargs['inboundRules']
-        if 'outboundRules' in kwargs:
-            outbound_rules = kwargs['outboundRules']
-
-        _setter("security_group_id", security_group_id)
+        pulumi.set(__self__, "security_group_id", security_group_id)
         if inbound_rules is not None:
-            _setter("inbound_rules", inbound_rules)
+            pulumi.set(__self__, "inbound_rules", inbound_rules)
         if outbound_rules is not None:
-            _setter("outbound_rules", outbound_rules)
+            pulumi.set(__self__, "outbound_rules", outbound_rules)
 
     @property
     @pulumi.getter(name="securityGroupId")
@@ -101,33 +80,12 @@ class _InstanceSecurityGroupRulesState:
         :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesOutboundRuleArgs']]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[str] security_group_id: The ID of the security group.
         """
-        _InstanceSecurityGroupRulesState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            inbound_rules=inbound_rules,
-            outbound_rules=outbound_rules,
-            security_group_id=security_group_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             inbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesInboundRuleArgs']]]] = None,
-             outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupRulesOutboundRuleArgs']]]] = None,
-             security_group_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'inboundRules' in kwargs:
-            inbound_rules = kwargs['inboundRules']
-        if 'outboundRules' in kwargs:
-            outbound_rules = kwargs['outboundRules']
-        if 'securityGroupId' in kwargs:
-            security_group_id = kwargs['securityGroupId']
-
         if inbound_rules is not None:
-            _setter("inbound_rules", inbound_rules)
+            pulumi.set(__self__, "inbound_rules", inbound_rules)
         if outbound_rules is not None:
-            _setter("outbound_rules", outbound_rules)
+            pulumi.set(__self__, "outbound_rules", outbound_rules)
         if security_group_id is not None:
-            _setter("security_group_id", security_group_id)
+            pulumi.set(__self__, "security_group_id", security_group_id)
 
     @property
     @pulumi.getter(name="inboundRules")
@@ -263,10 +221,6 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            InstanceSecurityGroupRulesArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['MnqSqsQueueArgs', 'MnqSqsQueue']
@@ -43,85 +43,30 @@ class MnqSqsQueueArgs:
         :param pulumi.Input[str] region: `region`). The region in which sqs is enabled.
         :param pulumi.Input[int] visibility_timeout_seconds: The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
         """
-        MnqSqsQueueArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            access_key=access_key,
-            secret_key=secret_key,
-            content_based_deduplication=content_based_deduplication,
-            endpoint=endpoint,
-            fifo_queue=fifo_queue,
-            message_max_age=message_max_age,
-            message_max_size=message_max_size,
-            name=name,
-            name_prefix=name_prefix,
-            project_id=project_id,
-            receive_wait_time_seconds=receive_wait_time_seconds,
-            region=region,
-            visibility_timeout_seconds=visibility_timeout_seconds,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             access_key: pulumi.Input[str],
-             secret_key: pulumi.Input[str],
-             content_based_deduplication: Optional[pulumi.Input[bool]] = None,
-             endpoint: Optional[pulumi.Input[str]] = None,
-             fifo_queue: Optional[pulumi.Input[bool]] = None,
-             message_max_age: Optional[pulumi.Input[int]] = None,
-             message_max_size: Optional[pulumi.Input[int]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             name_prefix: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             receive_wait_time_seconds: Optional[pulumi.Input[int]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             visibility_timeout_seconds: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'accessKey' in kwargs:
-            access_key = kwargs['accessKey']
-        if 'secretKey' in kwargs:
-            secret_key = kwargs['secretKey']
-        if 'contentBasedDeduplication' in kwargs:
-            content_based_deduplication = kwargs['contentBasedDeduplication']
-        if 'fifoQueue' in kwargs:
-            fifo_queue = kwargs['fifoQueue']
-        if 'messageMaxAge' in kwargs:
-            message_max_age = kwargs['messageMaxAge']
-        if 'messageMaxSize' in kwargs:
-            message_max_size = kwargs['messageMaxSize']
-        if 'namePrefix' in kwargs:
-            name_prefix = kwargs['namePrefix']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'receiveWaitTimeSeconds' in kwargs:
-            receive_wait_time_seconds = kwargs['receiveWaitTimeSeconds']
-        if 'visibilityTimeoutSeconds' in kwargs:
-            visibility_timeout_seconds = kwargs['visibilityTimeoutSeconds']
-
-        _setter("access_key", access_key)
-        _setter("secret_key", secret_key)
+        pulumi.set(__self__, "access_key", access_key)
+        pulumi.set(__self__, "secret_key", secret_key)
         if content_based_deduplication is not None:
-            _setter("content_based_deduplication", content_based_deduplication)
+            pulumi.set(__self__, "content_based_deduplication", content_based_deduplication)
         if endpoint is not None:
-            _setter("endpoint", endpoint)
+            pulumi.set(__self__, "endpoint", endpoint)
         if fifo_queue is not None:
-            _setter("fifo_queue", fifo_queue)
+            pulumi.set(__self__, "fifo_queue", fifo_queue)
         if message_max_age is not None:
-            _setter("message_max_age", message_max_age)
+            pulumi.set(__self__, "message_max_age", message_max_age)
         if message_max_size is not None:
-            _setter("message_max_size", message_max_size)
+            pulumi.set(__self__, "message_max_size", message_max_size)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if name_prefix is not None:
-            _setter("name_prefix", name_prefix)
+            pulumi.set(__self__, "name_prefix", name_prefix)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if receive_wait_time_seconds is not None:
-            _setter("receive_wait_time_seconds", receive_wait_time_seconds)
+            pulumi.set(__self__, "receive_wait_time_seconds", receive_wait_time_seconds)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if visibility_timeout_seconds is not None:
-            _setter("visibility_timeout_seconds", visibility_timeout_seconds)
+            pulumi.set(__self__, "visibility_timeout_seconds", visibility_timeout_seconds)
 
     @property
     @pulumi.getter(name="accessKey")
@@ -314,91 +259,34 @@ class _MnqSqsQueueState:
         :param pulumi.Input[str] url: The URL of the queue.
         :param pulumi.Input[int] visibility_timeout_seconds: The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
         """
-        _MnqSqsQueueState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            access_key=access_key,
-            content_based_deduplication=content_based_deduplication,
-            endpoint=endpoint,
-            fifo_queue=fifo_queue,
-            message_max_age=message_max_age,
-            message_max_size=message_max_size,
-            name=name,
-            name_prefix=name_prefix,
-            project_id=project_id,
-            receive_wait_time_seconds=receive_wait_time_seconds,
-            region=region,
-            secret_key=secret_key,
-            url=url,
-            visibility_timeout_seconds=visibility_timeout_seconds,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             access_key: Optional[pulumi.Input[str]] = None,
-             content_based_deduplication: Optional[pulumi.Input[bool]] = None,
-             endpoint: Optional[pulumi.Input[str]] = None,
-             fifo_queue: Optional[pulumi.Input[bool]] = None,
-             message_max_age: Optional[pulumi.Input[int]] = None,
-             message_max_size: Optional[pulumi.Input[int]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             name_prefix: Optional[pulumi.Input[str]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             receive_wait_time_seconds: Optional[pulumi.Input[int]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             secret_key: Optional[pulumi.Input[str]] = None,
-             url: Optional[pulumi.Input[str]] = None,
-             visibility_timeout_seconds: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'accessKey' in kwargs:
-            access_key = kwargs['accessKey']
-        if 'contentBasedDeduplication' in kwargs:
-            content_based_deduplication = kwargs['contentBasedDeduplication']
-        if 'fifoQueue' in kwargs:
-            fifo_queue = kwargs['fifoQueue']
-        if 'messageMaxAge' in kwargs:
-            message_max_age = kwargs['messageMaxAge']
-        if 'messageMaxSize' in kwargs:
-            message_max_size = kwargs['messageMaxSize']
-        if 'namePrefix' in kwargs:
-            name_prefix = kwargs['namePrefix']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'receiveWaitTimeSeconds' in kwargs:
-            receive_wait_time_seconds = kwargs['receiveWaitTimeSeconds']
-        if 'secretKey' in kwargs:
-            secret_key = kwargs['secretKey']
-        if 'visibilityTimeoutSeconds' in kwargs:
-            visibility_timeout_seconds = kwargs['visibilityTimeoutSeconds']
-
         if access_key is not None:
-            _setter("access_key", access_key)
+            pulumi.set(__self__, "access_key", access_key)
         if content_based_deduplication is not None:
-            _setter("content_based_deduplication", content_based_deduplication)
+            pulumi.set(__self__, "content_based_deduplication", content_based_deduplication)
         if endpoint is not None:
-            _setter("endpoint", endpoint)
+            pulumi.set(__self__, "endpoint", endpoint)
         if fifo_queue is not None:
-            _setter("fifo_queue", fifo_queue)
+            pulumi.set(__self__, "fifo_queue", fifo_queue)
         if message_max_age is not None:
-            _setter("message_max_age", message_max_age)
+            pulumi.set(__self__, "message_max_age", message_max_age)
         if message_max_size is not None:
-            _setter("message_max_size", message_max_size)
+            pulumi.set(__self__, "message_max_size", message_max_size)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if name_prefix is not None:
-            _setter("name_prefix", name_prefix)
+            pulumi.set(__self__, "name_prefix", name_prefix)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if receive_wait_time_seconds is not None:
-            _setter("receive_wait_time_seconds", receive_wait_time_seconds)
+            pulumi.set(__self__, "receive_wait_time_seconds", receive_wait_time_seconds)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if secret_key is not None:
-            _setter("secret_key", secret_key)
+            pulumi.set(__self__, "secret_key", secret_key)
         if url is not None:
-            _setter("url", url)
+            pulumi.set(__self__, "url", url)
         if visibility_timeout_seconds is not None:
-            _setter("visibility_timeout_seconds", visibility_timeout_seconds)
+            pulumi.set(__self__, "visibility_timeout_seconds", visibility_timeout_seconds)
 
     @property
     @pulumi.getter(name="accessKey")
@@ -692,10 +580,6 @@ class MnqSqsQueue(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            MnqSqsQueueArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

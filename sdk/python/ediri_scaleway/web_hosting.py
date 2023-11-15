@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -33,46 +33,17 @@ class WebHostingArgs:
         :param pulumi.Input[str] region: `region`) The region of the Hosting.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the hosting.
         """
-        WebHostingArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            domain=domain,
-            email=email,
-            offer_id=offer_id,
-            option_ids=option_ids,
-            project_id=project_id,
-            region=region,
-            tags=tags,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             domain: pulumi.Input[str],
-             email: pulumi.Input[str],
-             offer_id: pulumi.Input[str],
-             option_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'offerId' in kwargs:
-            offer_id = kwargs['offerId']
-        if 'optionIds' in kwargs:
-            option_ids = kwargs['optionIds']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-
-        _setter("domain", domain)
-        _setter("email", email)
-        _setter("offer_id", offer_id)
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "email", email)
+        pulumi.set(__self__, "offer_id", offer_id)
         if option_ids is not None:
-            _setter("option_ids", option_ids)
+            pulumi.set(__self__, "option_ids", option_ids)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter
@@ -201,109 +172,42 @@ class _WebHostingState:
         :param pulumi.Input[str] updated_at: Date and time of hosting's last update (RFC 3339 format).
         :param pulumi.Input[str] username: The main hosting cPanel username.
         """
-        _WebHostingState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cpanel_urls=cpanel_urls,
-            created_at=created_at,
-            dns_status=dns_status,
-            domain=domain,
-            email=email,
-            offer_id=offer_id,
-            offer_name=offer_name,
-            option_ids=option_ids,
-            options=options,
-            organization_id=organization_id,
-            platform_hostname=platform_hostname,
-            platform_number=platform_number,
-            project_id=project_id,
-            region=region,
-            status=status,
-            tags=tags,
-            updated_at=updated_at,
-            username=username,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cpanel_urls: Optional[pulumi.Input[Sequence[pulumi.Input['WebHostingCpanelUrlArgs']]]] = None,
-             created_at: Optional[pulumi.Input[str]] = None,
-             dns_status: Optional[pulumi.Input[str]] = None,
-             domain: Optional[pulumi.Input[str]] = None,
-             email: Optional[pulumi.Input[str]] = None,
-             offer_id: Optional[pulumi.Input[str]] = None,
-             offer_name: Optional[pulumi.Input[str]] = None,
-             option_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             options: Optional[pulumi.Input[Sequence[pulumi.Input['WebHostingOptionArgs']]]] = None,
-             organization_id: Optional[pulumi.Input[str]] = None,
-             platform_hostname: Optional[pulumi.Input[str]] = None,
-             platform_number: Optional[pulumi.Input[int]] = None,
-             project_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             status: Optional[pulumi.Input[str]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             updated_at: Optional[pulumi.Input[str]] = None,
-             username: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'cpanelUrls' in kwargs:
-            cpanel_urls = kwargs['cpanelUrls']
-        if 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if 'dnsStatus' in kwargs:
-            dns_status = kwargs['dnsStatus']
-        if 'offerId' in kwargs:
-            offer_id = kwargs['offerId']
-        if 'offerName' in kwargs:
-            offer_name = kwargs['offerName']
-        if 'optionIds' in kwargs:
-            option_ids = kwargs['optionIds']
-        if 'organizationId' in kwargs:
-            organization_id = kwargs['organizationId']
-        if 'platformHostname' in kwargs:
-            platform_hostname = kwargs['platformHostname']
-        if 'platformNumber' in kwargs:
-            platform_number = kwargs['platformNumber']
-        if 'projectId' in kwargs:
-            project_id = kwargs['projectId']
-        if 'updatedAt' in kwargs:
-            updated_at = kwargs['updatedAt']
-
         if cpanel_urls is not None:
-            _setter("cpanel_urls", cpanel_urls)
+            pulumi.set(__self__, "cpanel_urls", cpanel_urls)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if dns_status is not None:
-            _setter("dns_status", dns_status)
+            pulumi.set(__self__, "dns_status", dns_status)
         if domain is not None:
-            _setter("domain", domain)
+            pulumi.set(__self__, "domain", domain)
         if email is not None:
-            _setter("email", email)
+            pulumi.set(__self__, "email", email)
         if offer_id is not None:
-            _setter("offer_id", offer_id)
+            pulumi.set(__self__, "offer_id", offer_id)
         if offer_name is not None:
-            _setter("offer_name", offer_name)
+            pulumi.set(__self__, "offer_name", offer_name)
         if option_ids is not None:
-            _setter("option_ids", option_ids)
+            pulumi.set(__self__, "option_ids", option_ids)
         if options is not None:
-            _setter("options", options)
+            pulumi.set(__self__, "options", options)
         if organization_id is not None:
-            _setter("organization_id", organization_id)
+            pulumi.set(__self__, "organization_id", organization_id)
         if platform_hostname is not None:
-            _setter("platform_hostname", platform_hostname)
+            pulumi.set(__self__, "platform_hostname", platform_hostname)
         if platform_number is not None:
-            _setter("platform_number", platform_number)
+            pulumi.set(__self__, "platform_number", platform_number)
         if project_id is not None:
-            _setter("project_id", project_id)
+            pulumi.set(__self__, "project_id", project_id)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if status is not None:
-            _setter("status", status)
+            pulumi.set(__self__, "status", status)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if updated_at is not None:
-            _setter("updated_at", updated_at)
+            pulumi.set(__self__, "updated_at", updated_at)
         if username is not None:
-            _setter("username", username)
+            pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter(name="cpanelUrls")
@@ -623,10 +527,6 @@ class WebHosting(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            WebHostingArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

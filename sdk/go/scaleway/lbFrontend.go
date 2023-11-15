@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Creates and manages Scaleway Load-Balancer Frontends. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
@@ -264,12 +263,6 @@ func (i *LbFrontend) ToLbFrontendOutputWithContext(ctx context.Context) LbFronte
 	return pulumi.ToOutputWithContext(ctx, i).(LbFrontendOutput)
 }
 
-func (i *LbFrontend) ToOutput(ctx context.Context) pulumix.Output[*LbFrontend] {
-	return pulumix.Output[*LbFrontend]{
-		OutputState: i.ToLbFrontendOutputWithContext(ctx).OutputState,
-	}
-}
-
 // LbFrontendArrayInput is an input type that accepts LbFrontendArray and LbFrontendArrayOutput values.
 // You can construct a concrete instance of `LbFrontendArrayInput` via:
 //
@@ -293,12 +286,6 @@ func (i LbFrontendArray) ToLbFrontendArrayOutput() LbFrontendArrayOutput {
 
 func (i LbFrontendArray) ToLbFrontendArrayOutputWithContext(ctx context.Context) LbFrontendArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LbFrontendArrayOutput)
-}
-
-func (i LbFrontendArray) ToOutput(ctx context.Context) pulumix.Output[[]*LbFrontend] {
-	return pulumix.Output[[]*LbFrontend]{
-		OutputState: i.ToLbFrontendArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // LbFrontendMapInput is an input type that accepts LbFrontendMap and LbFrontendMapOutput values.
@@ -326,12 +313,6 @@ func (i LbFrontendMap) ToLbFrontendMapOutputWithContext(ctx context.Context) LbF
 	return pulumi.ToOutputWithContext(ctx, i).(LbFrontendMapOutput)
 }
 
-func (i LbFrontendMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LbFrontend] {
-	return pulumix.Output[map[string]*LbFrontend]{
-		OutputState: i.ToLbFrontendMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type LbFrontendOutput struct{ *pulumi.OutputState }
 
 func (LbFrontendOutput) ElementType() reflect.Type {
@@ -344,12 +325,6 @@ func (o LbFrontendOutput) ToLbFrontendOutput() LbFrontendOutput {
 
 func (o LbFrontendOutput) ToLbFrontendOutputWithContext(ctx context.Context) LbFrontendOutput {
 	return o
-}
-
-func (o LbFrontendOutput) ToOutput(ctx context.Context) pulumix.Output[*LbFrontend] {
-	return pulumix.Output[*LbFrontend]{
-		OutputState: o.OutputState,
-	}
 }
 
 // A list of ACL rules to apply to the load-balancer frontend.  Defined below.
@@ -423,12 +398,6 @@ func (o LbFrontendArrayOutput) ToLbFrontendArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o LbFrontendArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LbFrontend] {
-	return pulumix.Output[[]*LbFrontend]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o LbFrontendArrayOutput) Index(i pulumi.IntInput) LbFrontendOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LbFrontend {
 		return vs[0].([]*LbFrontend)[vs[1].(int)]
@@ -447,12 +416,6 @@ func (o LbFrontendMapOutput) ToLbFrontendMapOutput() LbFrontendMapOutput {
 
 func (o LbFrontendMapOutput) ToLbFrontendMapOutputWithContext(ctx context.Context) LbFrontendMapOutput {
 	return o
-}
-
-func (o LbFrontendMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LbFrontend] {
-	return pulumix.Output[map[string]*LbFrontend]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LbFrontendMapOutput) MapIndex(k pulumi.StringInput) LbFrontendOutput {

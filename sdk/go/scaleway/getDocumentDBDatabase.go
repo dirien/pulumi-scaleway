@@ -9,7 +9,6 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about DocumentDB database. More on our official [site](https://www.scaleway.com/en/developers/api/document_db/)
@@ -114,12 +113,6 @@ func (o LookupDocumentDBDatabaseResultOutput) ToLookupDocumentDBDatabaseResultOu
 
 func (o LookupDocumentDBDatabaseResultOutput) ToLookupDocumentDBDatabaseResultOutputWithContext(ctx context.Context) LookupDocumentDBDatabaseResultOutput {
 	return o
-}
-
-func (o LookupDocumentDBDatabaseResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDocumentDBDatabaseResult] {
-	return pulumix.Output[LookupDocumentDBDatabaseResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

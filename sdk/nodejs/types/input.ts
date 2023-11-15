@@ -102,52 +102,64 @@ export interface BaremetalServerPrivateNetwork {
 
 export interface CockpitEndpoint {
     /**
-     * The alertmanager URL
+     * The alertmanager URL.
      */
     alertmanagerUrl?: pulumi.Input<string>;
     /**
-     * The grafana URL
+     * The grafana URL.
      */
     grafanaUrl?: pulumi.Input<string>;
     /**
-     * The logs URL
+     * The logs URL.
      */
     logsUrl?: pulumi.Input<string>;
     /**
-     * The metrics URL
+     * The metrics URL.
      */
     metricsUrl?: pulumi.Input<string>;
+    /**
+     * The traces URL.
+     */
+    tracesUrl?: pulumi.Input<string>;
 }
 
 export interface CockpitTokenScopes {
     /**
-     * Query logs
+     * Query logs.
      */
     queryLogs?: pulumi.Input<boolean>;
     /**
-     * Query metrics
+     * Query metrics.
      */
     queryMetrics?: pulumi.Input<boolean>;
     /**
-     * Setup alerts
+     * Query traces.
+     */
+    queryTraces?: pulumi.Input<boolean>;
+    /**
+     * Setup alerts.
      */
     setupAlerts?: pulumi.Input<boolean>;
     /**
-     * Setup logs rules
+     * Setup logs rules.
      */
     setupLogsRules?: pulumi.Input<boolean>;
     /**
-     * Setup metrics rules
+     * Setup metrics rules.
      */
     setupMetricsRules?: pulumi.Input<boolean>;
     /**
-     * Write logs
+     * Write logs.
      */
     writeLogs?: pulumi.Input<boolean>;
     /**
-     * Write metrics
+     * Write metrics.
      */
     writeMetrics?: pulumi.Input<boolean>;
+    /**
+     * Write traces.
+     */
+    writeTraces?: pulumi.Input<boolean>;
 }
 
 export interface ContainerTriggerNats {
@@ -356,9 +368,13 @@ export interface GetIpamIpResource {
      */
     id?: string;
     /**
-     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+     * The name of the resource to get the IP from.
      */
-    type?: string;
+    name?: string;
+    /**
+     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+     */
+    type: string;
 }
 
 export interface GetIpamIpResourceArgs {
@@ -367,9 +383,13 @@ export interface GetIpamIpResourceArgs {
      */
     id?: pulumi.Input<string>;
     /**
-     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.
+     * The name of the resource to get the IP from.
      */
-    type?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    /**
+     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+     */
+    type: pulumi.Input<string>;
 }
 
 export interface IamPolicyRule {
@@ -682,6 +702,40 @@ export interface IotRouteS3 {
     bucketRegion: pulumi.Input<string>;
     objectPrefix?: pulumi.Input<string>;
     strategy: pulumi.Input<string>;
+}
+
+export interface IpamIpResource {
+    /**
+     * The ID of the resource that the IP is bound to.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * The MAC Address of the resource the IP is attached to.
+     */
+    macAddress?: pulumi.Input<string>;
+    /**
+     * The name of the resource the IP is attached to.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * The type of resource the IP is attached to.
+     */
+    type?: pulumi.Input<string>;
+}
+
+export interface IpamIpSource {
+    /**
+     * The private network the IP lives in if the IP is a private IP.
+     */
+    privateNetworkId?: pulumi.Input<string>;
+    /**
+     * The private network subnet the IP lives in if the IP is a private IP in a private network.
+     */
+    subnetId?: pulumi.Input<string>;
+    /**
+     * The zone the IP lives in if the IP is a public zoned one
+     */
+    zonal?: pulumi.Input<string>;
 }
 
 export interface K8sClusterAutoUpgrade {
@@ -1416,6 +1470,29 @@ export interface RedisClusterPublicNetwork {
      * TCP port of the endpoint.
      */
     port?: pulumi.Input<number>;
+}
+
+export interface TemDomainReputation {
+    /**
+     * The previously-calculated domain's reputation score.
+     */
+    previousScore?: pulumi.Input<number>;
+    /**
+     * The time and date the previous reputation score was calculated.
+     */
+    previousScoredAt?: pulumi.Input<string>;
+    /**
+     * A range from 0 to 100 that determines your domain's reputation score.
+     */
+    score?: pulumi.Input<number>;
+    /**
+     * The time and date the score was calculated.
+     */
+    scoredAt?: pulumi.Input<string>;
+    /**
+     * The status of the domain's reputation.
+     */
+    status?: pulumi.Input<string>;
 }
 
 export interface VpcGatewayNetworkIpamConfig {

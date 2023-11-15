@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -30,40 +30,15 @@ class MnqCredentialArgs:
                in which the namespace should be created.
         :param pulumi.Input['MnqCredentialSqsSnsCredentialsArgs'] sqs_sns_credentials: Credential used to connect to the SQS/SNS service.
         """
-        MnqCredentialArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            namespace_id=namespace_id,
-            name=name,
-            nats_credentials=nats_credentials,
-            region=region,
-            sqs_sns_credentials=sqs_sns_credentials,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             namespace_id: pulumi.Input[str],
-             name: Optional[pulumi.Input[str]] = None,
-             nats_credentials: Optional[pulumi.Input['MnqCredentialNatsCredentialsArgs']] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             sqs_sns_credentials: Optional[pulumi.Input['MnqCredentialSqsSnsCredentialsArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'namespaceId' in kwargs:
-            namespace_id = kwargs['namespaceId']
-        if 'natsCredentials' in kwargs:
-            nats_credentials = kwargs['natsCredentials']
-        if 'sqsSnsCredentials' in kwargs:
-            sqs_sns_credentials = kwargs['sqsSnsCredentials']
-
-        _setter("namespace_id", namespace_id)
+        pulumi.set(__self__, "namespace_id", namespace_id)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if nats_credentials is not None:
-            _setter("nats_credentials", nats_credentials)
+            pulumi.set(__self__, "nats_credentials", nats_credentials)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if sqs_sns_credentials is not None:
-            _setter("sqs_sns_credentials", sqs_sns_credentials)
+            pulumi.set(__self__, "sqs_sns_credentials", sqs_sns_credentials)
 
     @property
     @pulumi.getter(name="namespaceId")
@@ -146,45 +121,18 @@ class _MnqCredentialState:
                in which the namespace should be created.
         :param pulumi.Input['MnqCredentialSqsSnsCredentialsArgs'] sqs_sns_credentials: Credential used to connect to the SQS/SNS service.
         """
-        _MnqCredentialState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            name=name,
-            namespace_id=namespace_id,
-            nats_credentials=nats_credentials,
-            protocol=protocol,
-            region=region,
-            sqs_sns_credentials=sqs_sns_credentials,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             name: Optional[pulumi.Input[str]] = None,
-             namespace_id: Optional[pulumi.Input[str]] = None,
-             nats_credentials: Optional[pulumi.Input['MnqCredentialNatsCredentialsArgs']] = None,
-             protocol: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             sqs_sns_credentials: Optional[pulumi.Input['MnqCredentialSqsSnsCredentialsArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
-             **kwargs):
-        if 'namespaceId' in kwargs:
-            namespace_id = kwargs['namespaceId']
-        if 'natsCredentials' in kwargs:
-            nats_credentials = kwargs['natsCredentials']
-        if 'sqsSnsCredentials' in kwargs:
-            sqs_sns_credentials = kwargs['sqsSnsCredentials']
-
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if namespace_id is not None:
-            _setter("namespace_id", namespace_id)
+            pulumi.set(__self__, "namespace_id", namespace_id)
         if nats_credentials is not None:
-            _setter("nats_credentials", nats_credentials)
+            pulumi.set(__self__, "nats_credentials", nats_credentials)
         if protocol is not None:
-            _setter("protocol", protocol)
+            pulumi.set(__self__, "protocol", protocol)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if sqs_sns_credentials is not None:
-            _setter("sqs_sns_credentials", sqs_sns_credentials)
+            pulumi.set(__self__, "sqs_sns_credentials", sqs_sns_credentials)
 
     @property
     @pulumi.getter
@@ -314,10 +262,6 @@ class MnqCredential(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            MnqCredentialArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -341,18 +285,8 @@ class MnqCredential(pulumi.CustomResource):
             if namespace_id is None and not opts.urn:
                 raise TypeError("Missing required property 'namespace_id'")
             __props__.__dict__["namespace_id"] = namespace_id
-            if nats_credentials is not None and not isinstance(nats_credentials, MnqCredentialNatsCredentialsArgs):
-                nats_credentials = nats_credentials or {}
-                def _setter(key, value):
-                    nats_credentials[key] = value
-                MnqCredentialNatsCredentialsArgs._configure(_setter, **nats_credentials)
             __props__.__dict__["nats_credentials"] = nats_credentials
             __props__.__dict__["region"] = region
-            if sqs_sns_credentials is not None and not isinstance(sqs_sns_credentials, MnqCredentialSqsSnsCredentialsArgs):
-                sqs_sns_credentials = sqs_sns_credentials or {}
-                def _setter(key, value):
-                    sqs_sns_credentials[key] = value
-                MnqCredentialSqsSnsCredentialsArgs._configure(_setter, **sqs_sns_credentials)
             __props__.__dict__["sqs_sns_credentials"] = sqs_sns_credentials
             __props__.__dict__["protocol"] = None
         super(MnqCredential, __self__).__init__(

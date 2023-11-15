@@ -9,7 +9,6 @@ import (
 
 	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Gets information about an IOT Hub.
@@ -127,12 +126,6 @@ func (o LookupIotHubResultOutput) ToLookupIotHubResultOutput() LookupIotHubResul
 
 func (o LookupIotHubResultOutput) ToLookupIotHubResultOutputWithContext(ctx context.Context) LookupIotHubResultOutput {
 	return o
-}
-
-func (o LookupIotHubResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupIotHubResult] {
-	return pulumix.Output[LookupIotHubResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o LookupIotHubResultOutput) ConnectedDeviceCount() pulumi.IntOutput {
