@@ -297,19 +297,23 @@
             "properties": {
                 "alertmanagerUrl": {
                     "type": "string",
-                    "description": "The alertmanager URL\n"
+                    "description": "The alertmanager URL.\n"
                 },
                 "grafanaUrl": {
                     "type": "string",
-                    "description": "The grafana URL\n"
+                    "description": "The grafana URL.\n"
                 },
                 "logsUrl": {
                     "type": "string",
-                    "description": "The logs URL\n"
+                    "description": "The logs URL.\n"
                 },
                 "metricsUrl": {
                     "type": "string",
-                    "description": "The metrics URL\n"
+                    "description": "The metrics URL.\n"
+                },
+                "tracesUrl": {
+                    "type": "string",
+                    "description": "The traces URL.\n"
                 }
             },
             "type": "object",
@@ -319,7 +323,8 @@
                         "alertmanagerUrl",
                         "grafanaUrl",
                         "logsUrl",
-                        "metricsUrl"
+                        "metricsUrl",
+                        "tracesUrl"
                     ]
                 }
             }
@@ -328,37 +333,47 @@
             "properties": {
                 "queryLogs": {
                     "type": "boolean",
-                    "description": "Query logs\n",
+                    "description": "Query logs.\n",
                     "willReplaceOnChanges": true
                 },
                 "queryMetrics": {
                     "type": "boolean",
-                    "description": "Query metrics\n",
+                    "description": "Query metrics.\n",
+                    "willReplaceOnChanges": true
+                },
+                "queryTraces": {
+                    "type": "boolean",
+                    "description": "Query traces.\n",
                     "willReplaceOnChanges": true
                 },
                 "setupAlerts": {
                     "type": "boolean",
-                    "description": "Setup alerts\n",
+                    "description": "Setup alerts.\n",
                     "willReplaceOnChanges": true
                 },
                 "setupLogsRules": {
                     "type": "boolean",
-                    "description": "Setup logs rules\n",
+                    "description": "Setup logs rules.\n",
                     "willReplaceOnChanges": true
                 },
                 "setupMetricsRules": {
                     "type": "boolean",
-                    "description": "Setup metrics rules\n",
+                    "description": "Setup metrics rules.\n",
                     "willReplaceOnChanges": true
                 },
                 "writeLogs": {
                     "type": "boolean",
-                    "description": "Write logs\n",
+                    "description": "Write logs.\n",
                     "willReplaceOnChanges": true
                 },
                 "writeMetrics": {
                     "type": "boolean",
-                    "description": "Write metrics\n",
+                    "description": "Write metrics.\n",
+                    "willReplaceOnChanges": true
+                },
+                "writeTraces": {
+                    "type": "boolean",
+                    "description": "Write traces.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -690,6 +705,63 @@
                         "projectId",
                         "queue",
                         "region"
+                    ]
+                }
+            }
+        },
+        "scaleway:index/IamIpResource:IamIpResource": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the resource that the IP is bound to.\n"
+                },
+                "macAddress": {
+                    "type": "string",
+                    "description": "The MAC Address of the resource the IP is attached to.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the resource the IP is attached to.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of resource the IP is attached to.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "id",
+                        "macAddress",
+                        "name",
+                        "type"
+                    ]
+                }
+            }
+        },
+        "scaleway:index/IamIpSource:IamIpSource": {
+            "properties": {
+                "privateNetworkId": {
+                    "type": "string",
+                    "description": "The private network the IP lives in if the IP is a private IP.\n"
+                },
+                "subnetId": {
+                    "type": "string",
+                    "description": "The private network subnet the IP lives in if the IP is a private IP in a private network.\n"
+                },
+                "zonal": {
+                    "type": "string",
+                    "description": "The zone the IP lives in if the IP is a public zoned one\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "privateNetworkId",
+                        "subnetId",
+                        "zonal"
                     ]
                 }
             }
@@ -2417,6 +2489,42 @@
                 }
             }
         },
+        "scaleway:index/TemDomainReputation:TemDomainReputation": {
+            "properties": {
+                "previousScore": {
+                    "type": "integer",
+                    "description": "The previously-calculated domain's reputation score.\n"
+                },
+                "previousScoredAt": {
+                    "type": "string",
+                    "description": "The time and date the previous reputation score was calculated.\n"
+                },
+                "score": {
+                    "type": "integer",
+                    "description": "A range from 0 to 100 that determines your domain's reputation score.\n"
+                },
+                "scoredAt": {
+                    "type": "string",
+                    "description": "The time and date the score was calculated.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The status of the domain's reputation.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "previousScore",
+                        "previousScoredAt",
+                        "score",
+                        "scoredAt",
+                        "status"
+                    ]
+                }
+            }
+        },
         "scaleway:index/VpcGatewayNetworkIpamConfig:VpcGatewayNetworkIpamConfig": {
             "properties": {
                 "pushDefaultRoute": {
@@ -2895,6 +3003,9 @@
                 "metricsUrl": {
                     "type": "string",
                     "description": "The metrics URL\n"
+                },
+                "tracesUrl": {
+                    "type": "string"
                 }
             },
             "type": "object",
@@ -2902,7 +3013,8 @@
                 "alertmanagerUrl",
                 "grafanaUrl",
                 "logsUrl",
-                "metricsUrl"
+                "metricsUrl",
+                "tracesUrl"
             ],
             "language": {
                 "nodejs": {
@@ -3605,12 +3717,19 @@
                     "type": "string",
                     "description": "The ID of the resource that the IP is bound to.\n"
                 },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the resource to get the IP from.\n"
+                },
                 "type": {
                     "type": "string",
-                    "description": "The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.\n"
+                    "description": "The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.\n"
                 }
             },
-            "type": "object"
+            "type": "object",
+            "required": [
+                "type"
+            ]
         },
         "scaleway:index/getK8sClusterAutoUpgrade:getK8sClusterAutoUpgrade": {
             "properties": {
@@ -5135,6 +5254,38 @@
                 }
             }
         },
+        "scaleway:index/getTemDomainReputation:getTemDomainReputation": {
+            "properties": {
+                "previousScore": {
+                    "type": "integer"
+                },
+                "previousScoredAt": {
+                    "type": "string"
+                },
+                "score": {
+                    "type": "integer"
+                },
+                "scoredAt": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "previousScore",
+                "previousScoredAt",
+                "score",
+                "scoredAt",
+                "status"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "scaleway:index/getVpcGatewayNetworkIpamConfig:getVpcGatewayNetworkIpamConfig": {
             "properties": {
                 "pushDefaultRoute": {
@@ -6195,7 +6346,7 @@
                     "items": {
                         "$ref": "#/types/scaleway:index/CockpitEndpoint:CockpitEndpoint"
                     },
-                    "description": "Endpoints\n"
+                    "description": "Endpoints.\n"
                 },
                 "plan": {
                     "type": "string",
@@ -6203,7 +6354,7 @@
                 },
                 "planId": {
                     "type": "string",
-                    "description": "The ID of the current plan\n"
+                    "description": "The ID of the current plan.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -6234,7 +6385,7 @@
                         "items": {
                             "$ref": "#/types/scaleway:index/CockpitEndpoint:CockpitEndpoint"
                         },
-                        "description": "Endpoints\n"
+                        "description": "Endpoints.\n"
                     },
                     "plan": {
                         "type": "string",
@@ -6242,7 +6393,7 @@
                     },
                     "planId": {
                         "type": "string",
-                        "description": "The ID of the current plan\n"
+                        "description": "The ID of the current plan.\n"
                     },
                     "projectId": {
                         "type": "string",
@@ -6333,7 +6484,7 @@
             "properties": {
                 "name": {
                     "type": "string",
-                    "description": "The name of the token\n"
+                    "description": "The name of the token.\n"
                 },
                 "projectId": {
                     "type": "string",
@@ -6341,11 +6492,11 @@
                 },
                 "scopes": {
                     "$ref": "#/types/scaleway:index/CockpitTokenScopes:CockpitTokenScopes",
-                    "description": "Allowed scopes\n"
+                    "description": "Allowed scopes.\n"
                 },
                 "secretKey": {
                     "type": "string",
-                    "description": "The secret key of the token\n",
+                    "description": "The secret key of the token.\n",
                     "secret": true
                 }
             },
@@ -6358,7 +6509,7 @@
             "inputProperties": {
                 "name": {
                     "type": "string",
-                    "description": "The name of the token\n",
+                    "description": "The name of the token.\n",
                     "willReplaceOnChanges": true
                 },
                 "projectId": {
@@ -6368,7 +6519,7 @@
                 },
                 "scopes": {
                     "$ref": "#/types/scaleway:index/CockpitTokenScopes:CockpitTokenScopes",
-                    "description": "Allowed scopes\n",
+                    "description": "Allowed scopes.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -6377,7 +6528,7 @@
                 "properties": {
                     "name": {
                         "type": "string",
-                        "description": "The name of the token\n",
+                        "description": "The name of the token.\n",
                         "willReplaceOnChanges": true
                     },
                     "projectId": {
@@ -6387,12 +6538,12 @@
                     },
                     "scopes": {
                         "$ref": "#/types/scaleway:index/CockpitTokenScopes:CockpitTokenScopes",
-                        "description": "Allowed scopes\n",
+                        "description": "Allowed scopes.\n",
                         "willReplaceOnChanges": true
                     },
                     "secretKey": {
                         "type": "string",
-                        "description": "The secret key of the token\n",
+                        "description": "The secret key of the token.\n",
                         "secret": true
                     }
                 },
@@ -9732,6 +9883,168 @@
                 "type": "object"
             }
         },
+        "scaleway:index/iamIp:IamIp": {
+            "description": "Books and manages Scaleway IPAM IPs.\n\n## Example\n\n### Basic\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst vpc01 = new scaleway.Vpc(\"vpc01\", {});\nconst pn01 = new scaleway.VpcPrivateNetwork(\"pn01\", {\n    vpcId: vpc01.id,\n    ipv4Subnet: {\n        subnet: \"172.16.32.0/22\",\n    },\n});\nconst ip01 = new scaleway.IamIp(\"ip01\", {sources: [{\n    privateNetworkId: pn01.id,\n}]});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nvpc01 = scaleway.Vpc(\"vpc01\")\npn01 = scaleway.VpcPrivateNetwork(\"pn01\",\n    vpc_id=vpc01.id,\n    ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(\n        subnet=\"172.16.32.0/22\",\n    ))\nip01 = scaleway.IamIp(\"ip01\", sources=[scaleway.IamIpSourceArgs(\n    private_network_id=pn01.id,\n)])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var vpc01 = new Scaleway.Vpc(\"vpc01\");\n\n    var pn01 = new Scaleway.VpcPrivateNetwork(\"pn01\", new()\n    {\n        VpcId = vpc01.Id,\n        Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs\n        {\n            Subnet = \"172.16.32.0/22\",\n        },\n    });\n\n    var ip01 = new Scaleway.IamIp(\"ip01\", new()\n    {\n        Sources = new[]\n        {\n            new Scaleway.Inputs.IamIpSourceArgs\n            {\n                PrivateNetworkId = pn01.Id,\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tvpc01, err := scaleway.NewVpc(ctx, \"vpc01\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpn01, err := scaleway.NewVpcPrivateNetwork(ctx, \"pn01\", \u0026scaleway.VpcPrivateNetworkArgs{\n\t\t\tVpcId: vpc01.ID(),\n\t\t\tIpv4Subnet: \u0026scaleway.VpcPrivateNetworkIpv4SubnetArgs{\n\t\t\t\tSubnet: pulumi.String(\"172.16.32.0/22\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewIamIp(ctx, \"ip01\", \u0026scaleway.IamIpArgs{\n\t\t\tSources: scaleway.IamIpSourceArray{\n\t\t\t\t\u0026scaleway.IamIpSourceArgs{\n\t\t\t\t\tPrivateNetworkId: pn01.ID(),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.Vpc;\nimport com.pulumi.scaleway.VpcPrivateNetwork;\nimport com.pulumi.scaleway.VpcPrivateNetworkArgs;\nimport com.pulumi.scaleway.inputs.VpcPrivateNetworkIpv4SubnetArgs;\nimport com.pulumi.scaleway.IamIp;\nimport com.pulumi.scaleway.IamIpArgs;\nimport com.pulumi.scaleway.inputs.IamIpSourceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var vpc01 = new Vpc(\"vpc01\");\n\n        var pn01 = new VpcPrivateNetwork(\"pn01\", VpcPrivateNetworkArgs.builder()        \n            .vpcId(vpc01.id())\n            .ipv4Subnet(VpcPrivateNetworkIpv4SubnetArgs.builder()\n                .subnet(\"172.16.32.0/22\")\n                .build())\n            .build());\n\n        var ip01 = new IamIp(\"ip01\", IamIpArgs.builder()        \n            .sources(IamIpSourceArgs.builder()\n                .privateNetworkId(pn01.id())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  vpc01:\n    type: scaleway:Vpc\n  pn01:\n    type: scaleway:VpcPrivateNetwork\n    properties:\n      vpcId: ${vpc01.id}\n      ipv4Subnet:\n        subnet: 172.16.32.0/22\n  ip01:\n    type: scaleway:IamIp\n    properties:\n      sources:\n        - privateNetworkId: ${pn01.id}\n```\n\n### Request a specific IPv4\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst vpc01 = new scaleway.Vpc(\"vpc01\", {});\nconst pn01 = new scaleway.VpcPrivateNetwork(\"pn01\", {\n    vpcId: vpc01.id,\n    ipv4Subnet: {\n        subnet: \"172.16.32.0/22\",\n    },\n});\nconst ip01 = new scaleway.IamIp(\"ip01\", {\n    address: \"172.16.32.7/22\",\n    sources: [{\n        privateNetworkId: pn01.id,\n    }],\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nvpc01 = scaleway.Vpc(\"vpc01\")\npn01 = scaleway.VpcPrivateNetwork(\"pn01\",\n    vpc_id=vpc01.id,\n    ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(\n        subnet=\"172.16.32.0/22\",\n    ))\nip01 = scaleway.IamIp(\"ip01\",\n    address=\"172.16.32.7/22\",\n    sources=[scaleway.IamIpSourceArgs(\n        private_network_id=pn01.id,\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var vpc01 = new Scaleway.Vpc(\"vpc01\");\n\n    var pn01 = new Scaleway.VpcPrivateNetwork(\"pn01\", new()\n    {\n        VpcId = vpc01.Id,\n        Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs\n        {\n            Subnet = \"172.16.32.0/22\",\n        },\n    });\n\n    var ip01 = new Scaleway.IamIp(\"ip01\", new()\n    {\n        Address = \"172.16.32.7/22\",\n        Sources = new[]\n        {\n            new Scaleway.Inputs.IamIpSourceArgs\n            {\n                PrivateNetworkId = pn01.Id,\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tvpc01, err := scaleway.NewVpc(ctx, \"vpc01\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpn01, err := scaleway.NewVpcPrivateNetwork(ctx, \"pn01\", \u0026scaleway.VpcPrivateNetworkArgs{\n\t\t\tVpcId: vpc01.ID(),\n\t\t\tIpv4Subnet: \u0026scaleway.VpcPrivateNetworkIpv4SubnetArgs{\n\t\t\t\tSubnet: pulumi.String(\"172.16.32.0/22\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewIamIp(ctx, \"ip01\", \u0026scaleway.IamIpArgs{\n\t\t\tAddress: pulumi.String(\"172.16.32.7/22\"),\n\t\t\tSources: scaleway.IamIpSourceArray{\n\t\t\t\t\u0026scaleway.IamIpSourceArgs{\n\t\t\t\t\tPrivateNetworkId: pn01.ID(),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.Vpc;\nimport com.pulumi.scaleway.VpcPrivateNetwork;\nimport com.pulumi.scaleway.VpcPrivateNetworkArgs;\nimport com.pulumi.scaleway.inputs.VpcPrivateNetworkIpv4SubnetArgs;\nimport com.pulumi.scaleway.IamIp;\nimport com.pulumi.scaleway.IamIpArgs;\nimport com.pulumi.scaleway.inputs.IamIpSourceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var vpc01 = new Vpc(\"vpc01\");\n\n        var pn01 = new VpcPrivateNetwork(\"pn01\", VpcPrivateNetworkArgs.builder()        \n            .vpcId(vpc01.id())\n            .ipv4Subnet(VpcPrivateNetworkIpv4SubnetArgs.builder()\n                .subnet(\"172.16.32.0/22\")\n                .build())\n            .build());\n\n        var ip01 = new IamIp(\"ip01\", IamIpArgs.builder()        \n            .address(\"172.16.32.7/22\")\n            .sources(IamIpSourceArgs.builder()\n                .privateNetworkId(pn01.id())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  vpc01:\n    type: scaleway:Vpc\n  pn01:\n    type: scaleway:VpcPrivateNetwork\n    properties:\n      vpcId: ${vpc01.id}\n      ipv4Subnet:\n        subnet: 172.16.32.0/22\n  ip01:\n    type: scaleway:IamIp\n    properties:\n      address: 172.16.32.7/22\n      sources:\n        - privateNetworkId: ${pn01.id}\n```\n\n### Request an IPv6\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst vpc01 = new scaleway.Vpc(\"vpc01\", {});\nconst pn01 = new scaleway.VpcPrivateNetwork(\"pn01\", {\n    vpcId: vpc01.id,\n    ipv6Subnets: [{\n        subnet: \"fd46:78ab:30b8:177c::/64\",\n    }],\n});\nconst ip01 = new scaleway.IamIp(\"ip01\", {\n    isIpv6: true,\n    sources: [{\n        privateNetworkId: pn01.id,\n    }],\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nvpc01 = scaleway.Vpc(\"vpc01\")\npn01 = scaleway.VpcPrivateNetwork(\"pn01\",\n    vpc_id=vpc01.id,\n    ipv6_subnets=[scaleway.VpcPrivateNetworkIpv6SubnetArgs(\n        subnet=\"fd46:78ab:30b8:177c::/64\",\n    )])\nip01 = scaleway.IamIp(\"ip01\",\n    is_ipv6=True,\n    sources=[scaleway.IamIpSourceArgs(\n        private_network_id=pn01.id,\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var vpc01 = new Scaleway.Vpc(\"vpc01\");\n\n    var pn01 = new Scaleway.VpcPrivateNetwork(\"pn01\", new()\n    {\n        VpcId = vpc01.Id,\n        Ipv6Subnets = new[]\n        {\n            new Scaleway.Inputs.VpcPrivateNetworkIpv6SubnetArgs\n            {\n                Subnet = \"fd46:78ab:30b8:177c::/64\",\n            },\n        },\n    });\n\n    var ip01 = new Scaleway.IamIp(\"ip01\", new()\n    {\n        IsIpv6 = true,\n        Sources = new[]\n        {\n            new Scaleway.Inputs.IamIpSourceArgs\n            {\n                PrivateNetworkId = pn01.Id,\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tvpc01, err := scaleway.NewVpc(ctx, \"vpc01\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpn01, err := scaleway.NewVpcPrivateNetwork(ctx, \"pn01\", \u0026scaleway.VpcPrivateNetworkArgs{\n\t\t\tVpcId: vpc01.ID(),\n\t\t\tIpv6Subnets: scaleway.VpcPrivateNetworkIpv6SubnetArray{\n\t\t\t\t\u0026scaleway.VpcPrivateNetworkIpv6SubnetArgs{\n\t\t\t\t\tSubnet: pulumi.String(\"fd46:78ab:30b8:177c::/64\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewIamIp(ctx, \"ip01\", \u0026scaleway.IamIpArgs{\n\t\t\tIsIpv6: pulumi.Bool(true),\n\t\t\tSources: scaleway.IamIpSourceArray{\n\t\t\t\t\u0026scaleway.IamIpSourceArgs{\n\t\t\t\t\tPrivateNetworkId: pn01.ID(),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.Vpc;\nimport com.pulumi.scaleway.VpcPrivateNetwork;\nimport com.pulumi.scaleway.VpcPrivateNetworkArgs;\nimport com.pulumi.scaleway.inputs.VpcPrivateNetworkIpv6SubnetArgs;\nimport com.pulumi.scaleway.IamIp;\nimport com.pulumi.scaleway.IamIpArgs;\nimport com.pulumi.scaleway.inputs.IamIpSourceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var vpc01 = new Vpc(\"vpc01\");\n\n        var pn01 = new VpcPrivateNetwork(\"pn01\", VpcPrivateNetworkArgs.builder()        \n            .vpcId(vpc01.id())\n            .ipv6Subnets(VpcPrivateNetworkIpv6SubnetArgs.builder()\n                .subnet(\"fd46:78ab:30b8:177c::/64\")\n                .build())\n            .build());\n\n        var ip01 = new IamIp(\"ip01\", IamIpArgs.builder()        \n            .isIpv6(true)\n            .sources(IamIpSourceArgs.builder()\n                .privateNetworkId(pn01.id())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  vpc01:\n    type: scaleway:Vpc\n  pn01:\n    type: scaleway:VpcPrivateNetwork\n    properties:\n      vpcId: ${vpc01.id}\n      ipv6Subnets:\n        - subnet: fd46:78ab:30b8:177c::/64\n  ip01:\n    type: scaleway:IamIp\n    properties:\n      isIpv6: true\n      sources:\n        - privateNetworkId: ${pn01.id}\n```\n\n\n## Import\n\nIPAM IPs can be imported using the `{region}/{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/iamIp:IamIp ip_demo fr-par/11111111-1111-1111-1111-111111111111\n```\n\n ",
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "description": "Request a specific IP in the requested source pool.\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "Date and time of IP's creation (RFC 3339 format).\n"
+                },
+                "isIpv6": {
+                    "type": "boolean",
+                    "description": "Defines whether to request an IPv6 instead of an IPv4.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "`project_id`) The ID of the project the IP is associated with.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "`region`) The region of the IP.\n"
+                },
+                "resources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/scaleway:index/IamIpResource:IamIpResource"
+                    },
+                    "description": "The IP resource.\n"
+                },
+                "sources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/scaleway:index/IamIpSource:IamIpSource"
+                    },
+                    "description": "The source in which to book the IP.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The tags associated with the IP.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Date and time of IP's last update (RFC 3339 format).\n"
+                },
+                "zone": {
+                    "type": "string",
+                    "description": "The zone of the IP.\n"
+                }
+            },
+            "required": [
+                "address",
+                "createdAt",
+                "projectId",
+                "region",
+                "resources",
+                "sources",
+                "updatedAt",
+                "zone"
+            ],
+            "inputProperties": {
+                "address": {
+                    "type": "string",
+                    "description": "Request a specific IP in the requested source pool.\n",
+                    "willReplaceOnChanges": true
+                },
+                "isIpv6": {
+                    "type": "boolean",
+                    "description": "Defines whether to request an IPv6 instead of an IPv4.\n",
+                    "willReplaceOnChanges": true
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "`project_id`) The ID of the project the IP is associated with.\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "`region`) The region of the IP.\n",
+                    "willReplaceOnChanges": true
+                },
+                "sources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/scaleway:index/IamIpSource:IamIpSource"
+                    },
+                    "description": "The source in which to book the IP.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The tags associated with the IP.\n"
+                }
+            },
+            "requiredInputs": [
+                "sources"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering IamIp resources.\n",
+                "properties": {
+                    "address": {
+                        "type": "string",
+                        "description": "Request a specific IP in the requested source pool.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Date and time of IP's creation (RFC 3339 format).\n"
+                    },
+                    "isIpv6": {
+                        "type": "boolean",
+                        "description": "Defines whether to request an IPv6 instead of an IPv4.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "`project_id`) The ID of the project the IP is associated with.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "`region`) The region of the IP.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "resources": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/scaleway:index/IamIpResource:IamIpResource"
+                        },
+                        "description": "The IP resource.\n"
+                    },
+                    "sources": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/scaleway:index/IamIpSource:IamIpSource"
+                        },
+                        "description": "The source in which to book the IP.\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The tags associated with the IP.\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "Date and time of IP's last update (RFC 3339 format).\n"
+                    },
+                    "zone": {
+                        "type": "string",
+                        "description": "The zone of the IP.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "scaleway:index/iamPolicy:IamPolicy": {
             "description": "Creates and manages Scaleway IAM Policies. For more information, see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#policies-54b8a7).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Create a policy for an organization's project\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst default = scaleway.getAccountProject({\n    name: \"default\",\n});\nconst app = new scaleway.IamApplication(\"app\", {});\nconst objectReadOnly = new scaleway.IamPolicy(\"objectReadOnly\", {\n    description: \"gives app readonly access to object storage in project\",\n    applicationId: app.id,\n    rules: [{\n        projectIds: [_default.then(_default =\u003e _default.id)],\n        permissionSetNames: [\"ObjectStorageReadOnly\"],\n    }],\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\nimport pulumi_scaleway as scaleway\n\ndefault = scaleway.get_account_project(name=\"default\")\napp = scaleway.IamApplication(\"app\")\nobject_read_only = scaleway.IamPolicy(\"objectReadOnly\",\n    description=\"gives app readonly access to object storage in project\",\n    application_id=app.id,\n    rules=[scaleway.IamPolicyRuleArgs(\n        project_ids=[default.id],\n        permission_set_names=[\"ObjectStorageReadOnly\"],\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @default = Scaleway.GetAccountProject.Invoke(new()\n    {\n        Name = \"default\",\n    });\n\n    var app = new Scaleway.IamApplication(\"app\");\n\n    var objectReadOnly = new Scaleway.IamPolicy(\"objectReadOnly\", new()\n    {\n        Description = \"gives app readonly access to object storage in project\",\n        ApplicationId = app.Id,\n        Rules = new[]\n        {\n            new Scaleway.Inputs.IamPolicyRuleArgs\n            {\n                ProjectIds = new[]\n                {\n                    @default.Apply(@default =\u003e @default.Apply(getAccountProjectResult =\u003e getAccountProjectResult.Id)),\n                },\n                PermissionSetNames = new[]\n                {\n                    \"ObjectStorageReadOnly\",\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_default, err := scaleway.LookupAccountProject(ctx, \u0026scaleway.LookupAccountProjectArgs{\n\t\t\tName: pulumi.StringRef(\"default\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tapp, err := scaleway.NewIamApplication(ctx, \"app\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewIamPolicy(ctx, \"objectReadOnly\", \u0026scaleway.IamPolicyArgs{\n\t\t\tDescription:   pulumi.String(\"gives app readonly access to object storage in project\"),\n\t\t\tApplicationId: app.ID(),\n\t\t\tRules: scaleway.IamPolicyRuleArray{\n\t\t\t\t\u0026scaleway.IamPolicyRuleArgs{\n\t\t\t\t\tProjectIds: pulumi.StringArray{\n\t\t\t\t\t\t*pulumi.String(_default.Id),\n\t\t\t\t\t},\n\t\t\t\t\tPermissionSetNames: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"ObjectStorageReadOnly\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetAccountProjectArgs;\nimport com.pulumi.scaleway.IamApplication;\nimport com.pulumi.scaleway.IamPolicy;\nimport com.pulumi.scaleway.IamPolicyArgs;\nimport com.pulumi.scaleway.inputs.IamPolicyRuleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var default = ScalewayFunctions.getAccountProject(GetAccountProjectArgs.builder()\n            .name(\"default\")\n            .build());\n\n        var app = new IamApplication(\"app\");\n\n        var objectReadOnly = new IamPolicy(\"objectReadOnly\", IamPolicyArgs.builder()        \n            .description(\"gives app readonly access to object storage in project\")\n            .applicationId(app.id())\n            .rules(IamPolicyRuleArgs.builder()\n                .projectIds(default_.id())\n                .permissionSetNames(\"ObjectStorageReadOnly\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  app:\n    type: scaleway:IamApplication\n  objectReadOnly:\n    type: scaleway:IamPolicy\n    properties:\n      description: gives app readonly access to object storage in project\n      applicationId: ${app.id}\n      rules:\n        - projectIds:\n            - ${default.id}\n          permissionSetNames:\n            - ObjectStorageReadOnly\nvariables:\n  default:\n    fn::invoke:\n      Function: scaleway:getAccountProject\n      Arguments:\n        name: default\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nPolicies can be imported using the `{id}`, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/iamPolicy:IamPolicy main 11111111-1111-1111-1111-111111111111\n```\n\n ",
             "properties": {
@@ -11045,7 +11358,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.\n"
+                    "description": "List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.\n\n\u003e `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.\n"
                 },
                 "ipv6Address": {
                     "type": "string",
@@ -11205,7 +11518,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.\n"
+                    "description": "List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.\n\n\u003e `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.\n"
                 },
                 "name": {
                     "type": "string",
@@ -11324,7 +11637,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.\n"
+                        "description": "List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.\n\n\u003e `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.\n"
                     },
                     "ipv6Address": {
                         "type": "string",
@@ -15128,6 +15441,10 @@
                     "description": "(Deprecated) The canned ACL you want to apply to the bucket.\n",
                     "deprecationMessage": "ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead."
                 },
+                "apiEndpoint": {
+                    "type": "string",
+                    "description": "API URL of the bucket\n"
+                },
                 "corsRules": {
                     "type": "array",
                     "items": {
@@ -15179,6 +15496,7 @@
                 }
             },
             "required": [
+                "apiEndpoint",
                 "endpoint",
                 "name",
                 "projectId",
@@ -15248,6 +15566,10 @@
                         "type": "string",
                         "description": "(Deprecated) The canned ACL you want to apply to the bucket.\n",
                         "deprecationMessage": "ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead."
+                    },
+                    "apiEndpoint": {
+                        "type": "string",
+                        "description": "API URL of the bucket\n"
                     },
                     "corsRules": {
                         "type": "array",
@@ -15485,7 +15807,7 @@
             }
         },
         "scaleway:index/objectBucketPolicy:ObjectBucketPolicy": {
-            "description": "Creates and manages Scaleway object storage bucket policy.\nFor more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/using-bucket-policies/).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst bucket = new scaleway.ObjectBucket(\"bucket\", {});\nconst main = new scaleway.IamApplication(\"main\", {description: \"a description\"});\nconst policy = new scaleway.ObjectBucketPolicy(\"policy\", {\n    bucket: bucket.name,\n    policy: pulumi.all([main.id, bucket.name, bucket.name]).apply(([id, bucketName, bucketName1]) =\u003e JSON.stringify({\n        Version: \"2023-04-17\",\n        Id: \"MyBucketPolicy\",\n        Statement: [{\n            Sid: \"Delegate access\",\n            Effect: \"Allow\",\n            Principal: {\n                SCW: `application_id:${id}`,\n            },\n            Action: \"s3:ListBucket\",\n            Resource: [\n                bucketName,\n                `${bucketName1}/*`,\n            ],\n        }],\n    })),\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\nimport json\n\nbucket = scaleway.ObjectBucket(\"bucket\")\nmain = scaleway.IamApplication(\"main\", description=\"a description\")\npolicy = scaleway.ObjectBucketPolicy(\"policy\",\n    bucket=bucket.name,\n    policy=pulumi.Output.all(main.id, bucket.name, bucket.name).apply(lambda id, bucketName, bucketName1: json.dumps({\n        \"Version\": \"2023-04-17\",\n        \"Id\": \"MyBucketPolicy\",\n        \"Statement\": [{\n            \"Sid\": \"Delegate access\",\n            \"Effect\": \"Allow\",\n            \"Principal\": {\n                \"SCW\": f\"application_id:{id}\",\n            },\n            \"Action\": \"s3:ListBucket\",\n            \"Resource\": [\n                bucket_name,\n                f\"{bucket_name1}/*\",\n            ],\n        }],\n    })))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var bucket = new Scaleway.ObjectBucket(\"bucket\");\n\n    var main = new Scaleway.IamApplication(\"main\", new()\n    {\n        Description = \"a description\",\n    });\n\n    var policy = new Scaleway.ObjectBucketPolicy(\"policy\", new()\n    {\n        Bucket = bucket.Name,\n        Policy = Output.Tuple(main.Id, bucket.Name, bucket.Name).Apply(values =\u003e\n        {\n            var id = values.Item1;\n            var bucketName = values.Item2;\n            var bucketName1 = values.Item3;\n            return JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n            {\n                [\"Version\"] = \"2023-04-17\",\n                [\"Id\"] = \"MyBucketPolicy\",\n                [\"Statement\"] = new[]\n                {\n                    new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"Sid\"] = \"Delegate access\",\n                        [\"Effect\"] = \"Allow\",\n                        [\"Principal\"] = new Dictionary\u003cstring, object?\u003e\n                        {\n                            [\"SCW\"] = $\"application_id:{id}\",\n                        },\n                        [\"Action\"] = \"s3:ListBucket\",\n                        [\"Resource\"] = new[]\n                        {\n                            bucketName,\n                            $\"{bucketName1}/*\",\n                        },\n                    },\n                },\n            });\n        }),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tbucket, err := scaleway.NewObjectBucket(ctx, \"bucket\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmain, err := scaleway.NewIamApplication(ctx, \"main\", \u0026scaleway.IamApplicationArgs{\n\t\t\tDescription: pulumi.String(\"a description\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewObjectBucketPolicy(ctx, \"policy\", \u0026scaleway.ObjectBucketPolicyArgs{\n\t\t\tBucket: bucket.Name,\n\t\t\tPolicy: pulumi.All(main.ID(), bucket.Name, bucket.Name).ApplyT(func(_args []interface{}) (string, error) {\n\t\t\t\tid := _args[0].(string)\n\t\t\t\tbucketName := _args[1].(string)\n\t\t\t\tbucketName1 := _args[2].(string)\n\t\t\t\tvar _zero string\n\t\t\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\t\t\"Version\": \"2023-04-17\",\n\t\t\t\t\t\"Id\":      \"MyBucketPolicy\",\n\t\t\t\t\t\"Statement\": []map[string]interface{}{\n\t\t\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\t\t\"Sid\":    \"Delegate access\",\n\t\t\t\t\t\t\t\"Effect\": \"Allow\",\n\t\t\t\t\t\t\t\"Principal\": map[string]interface{}{\n\t\t\t\t\t\t\t\t\"SCW\": fmt.Sprintf(\"application_id:%v\", id),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\"Action\": \"s3:ListBucket\",\n\t\t\t\t\t\t\t\"Resource\": []string{\n\t\t\t\t\t\t\t\tbucketName,\n\t\t\t\t\t\t\t\tfmt.Sprintf(\"%v/*\", bucketName1),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t})\n\t\t\t\tif err != nil {\n\t\t\t\t\treturn _zero, err\n\t\t\t\t}\n\t\t\t\tjson0 := string(tmpJSON0)\n\t\t\t\treturn json0, nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ObjectBucket;\nimport com.pulumi.scaleway.IamApplication;\nimport com.pulumi.scaleway.IamApplicationArgs;\nimport com.pulumi.scaleway.ObjectBucketPolicy;\nimport com.pulumi.scaleway.ObjectBucketPolicyArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var bucket = new ObjectBucket(\"bucket\");\n\n        var main = new IamApplication(\"main\", IamApplicationArgs.builder()        \n            .description(\"a description\")\n            .build());\n\n        var policy = new ObjectBucketPolicy(\"policy\", ObjectBucketPolicyArgs.builder()        \n            .bucket(bucket.name())\n            .policy(Output.tuple(main.id(), bucket.name(), bucket.name()).applyValue(values -\u003e {\n                var id = values.t1;\n                var bucketName = values.t2;\n                var bucketName1 = values.t3;\n                return serializeJson(\n                    jsonObject(\n                        jsonProperty(\"Version\", \"2023-04-17\"),\n                        jsonProperty(\"Id\", \"MyBucketPolicy\"),\n                        jsonProperty(\"Statement\", jsonArray(jsonObject(\n                            jsonProperty(\"Sid\", \"Delegate access\"),\n                            jsonProperty(\"Effect\", \"Allow\"),\n                            jsonProperty(\"Principal\", jsonObject(\n                                jsonProperty(\"SCW\", String.format(\"application_id:%s\", id))\n                            )),\n                            jsonProperty(\"Action\", \"s3:ListBucket\"),\n                            jsonProperty(\"Resource\", jsonArray(\n                                bucketName, \n                                String.format(\"%s/*\", bucketName1)\n                            ))\n                        )))\n                    ));\n            }))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  bucket:\n    type: scaleway:ObjectBucket\n  main:\n    type: scaleway:IamApplication\n    properties:\n      description: a description\n  policy:\n    type: scaleway:ObjectBucketPolicy\n    properties:\n      bucket: ${bucket.name}\n      policy:\n        fn::toJSON:\n          Version: 2023-04-17\n          Id: MyBucketPolicy\n          Statement:\n            - Sid: Delegate access\n              Effect: Allow\n              Principal:\n                SCW: application_id:${main.id}\n              Action: s3:ListBucket\n              Resource:\n                - ${bucket.name}\n                - ${bucket.name}/*\n```\n{{% /example %}}\n{{% /examples %}}\n## Example with aws provider\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ObjectBucket;\nimport com.pulumi.aws.iam.IamFunctions;\nimport com.pulumi.aws.iam.inputs.GetPolicyDocumentArgs;\nimport com.pulumi.scaleway.ObjectBucketPolicy;\nimport com.pulumi.scaleway.ObjectBucketPolicyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var bucket = new ObjectBucket(\"bucket\");\n\n        final var policy = IamFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()\n            .version(\"2023-04-17\")\n            .id(\"MyBucketPolicy\")\n            .statements(GetPolicyDocumentStatementArgs.builder()\n                .sid(\"Delegate access\")\n                .effect(\"Allow\")\n                .principals(GetPolicyDocumentStatementPrincipalArgs.builder()\n                    .type(\"SCW\")\n                    .identifiers(\"application_id:\u003cAPPLICATION_ID\u003e\")\n                    .build())\n                .actions(\"s3:ListBucket\")\n                .resources(                \n                    bucket.name(),\n                    bucket.name().applyValue(name -\u003e String.format(\"%s/*\", name)))\n                .build())\n            .build());\n\n        var main = new ObjectBucketPolicy(\"main\", ObjectBucketPolicyArgs.builder()        \n            .bucket(bucket.name())\n            .policy(policy.applyValue(getPolicyDocumentResult -\u003e getPolicyDocumentResult).applyValue(policy -\u003e policy.applyValue(getPolicyDocumentResult -\u003e getPolicyDocumentResult.json())))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  bucket:\n    type: scaleway:ObjectBucket\n  main:\n    type: scaleway:ObjectBucketPolicy\n    properties:\n      bucket: ${bucket.name}\n      policy: ${policy.json}\nvariables:\n  policy:\n    fn::invoke:\n      Function: aws:iam:getPolicyDocument\n      Arguments:\n        version: 2023-04-17\n        id: MyBucketPolicy\n        statements:\n          - sid: Delegate access\n            effect: Allow\n            principals:\n              - type: SCW\n                identifiers:\n                  - application_id:\u003cAPPLICATION_ID\u003e\n            actions:\n              - s3:ListBucket\n            resources:\n              - ${bucket.name}\n              - ${bucket.name}/*\n```\n\n\n## Import\n\nBuckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/objectBucketPolicy:ObjectBucketPolicy some_bucket fr-par/some-bucket\n```\n\n ",
+            "description": "Creates and manages Scaleway object storage bucket policy.\nFor more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst bucket = new scaleway.ObjectBucket(\"bucket\", {});\nconst main = new scaleway.IamApplication(\"main\", {description: \"a description\"});\nconst policy = new scaleway.ObjectBucketPolicy(\"policy\", {\n    bucket: bucket.name,\n    policy: pulumi.all([main.id, bucket.name, bucket.name]).apply(([id, bucketName, bucketName1]) =\u003e JSON.stringify({\n        Version: \"2023-04-17\",\n        Id: \"MyBucketPolicy\",\n        Statement: [{\n            Sid: \"Delegate access\",\n            Effect: \"Allow\",\n            Principal: {\n                SCW: `application_id:${id}`,\n            },\n            Action: \"s3:ListBucket\",\n            Resource: [\n                bucketName,\n                `${bucketName1}/*`,\n            ],\n        }],\n    })),\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\nimport json\n\nbucket = scaleway.ObjectBucket(\"bucket\")\nmain = scaleway.IamApplication(\"main\", description=\"a description\")\npolicy = scaleway.ObjectBucketPolicy(\"policy\",\n    bucket=bucket.name,\n    policy=pulumi.Output.all(main.id, bucket.name, bucket.name).apply(lambda id, bucketName, bucketName1: json.dumps({\n        \"Version\": \"2023-04-17\",\n        \"Id\": \"MyBucketPolicy\",\n        \"Statement\": [{\n            \"Sid\": \"Delegate access\",\n            \"Effect\": \"Allow\",\n            \"Principal\": {\n                \"SCW\": f\"application_id:{id}\",\n            },\n            \"Action\": \"s3:ListBucket\",\n            \"Resource\": [\n                bucket_name,\n                f\"{bucket_name1}/*\",\n            ],\n        }],\n    })))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var bucket = new Scaleway.ObjectBucket(\"bucket\");\n\n    var main = new Scaleway.IamApplication(\"main\", new()\n    {\n        Description = \"a description\",\n    });\n\n    var policy = new Scaleway.ObjectBucketPolicy(\"policy\", new()\n    {\n        Bucket = bucket.Name,\n        Policy = Output.Tuple(main.Id, bucket.Name, bucket.Name).Apply(values =\u003e\n        {\n            var id = values.Item1;\n            var bucketName = values.Item2;\n            var bucketName1 = values.Item3;\n            return JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n            {\n                [\"Version\"] = \"2023-04-17\",\n                [\"Id\"] = \"MyBucketPolicy\",\n                [\"Statement\"] = new[]\n                {\n                    new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"Sid\"] = \"Delegate access\",\n                        [\"Effect\"] = \"Allow\",\n                        [\"Principal\"] = new Dictionary\u003cstring, object?\u003e\n                        {\n                            [\"SCW\"] = $\"application_id:{id}\",\n                        },\n                        [\"Action\"] = \"s3:ListBucket\",\n                        [\"Resource\"] = new[]\n                        {\n                            bucketName,\n                            $\"{bucketName1}/*\",\n                        },\n                    },\n                },\n            });\n        }),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tbucket, err := scaleway.NewObjectBucket(ctx, \"bucket\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmain, err := scaleway.NewIamApplication(ctx, \"main\", \u0026scaleway.IamApplicationArgs{\n\t\t\tDescription: pulumi.String(\"a description\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewObjectBucketPolicy(ctx, \"policy\", \u0026scaleway.ObjectBucketPolicyArgs{\n\t\t\tBucket: bucket.Name,\n\t\t\tPolicy: pulumi.All(main.ID(), bucket.Name, bucket.Name).ApplyT(func(_args []interface{}) (string, error) {\n\t\t\t\tid := _args[0].(string)\n\t\t\t\tbucketName := _args[1].(string)\n\t\t\t\tbucketName1 := _args[2].(string)\n\t\t\t\tvar _zero string\n\t\t\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\t\t\"Version\": \"2023-04-17\",\n\t\t\t\t\t\"Id\":      \"MyBucketPolicy\",\n\t\t\t\t\t\"Statement\": []map[string]interface{}{\n\t\t\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\t\t\"Sid\":    \"Delegate access\",\n\t\t\t\t\t\t\t\"Effect\": \"Allow\",\n\t\t\t\t\t\t\t\"Principal\": map[string]interface{}{\n\t\t\t\t\t\t\t\t\"SCW\": fmt.Sprintf(\"application_id:%v\", id),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\"Action\": \"s3:ListBucket\",\n\t\t\t\t\t\t\t\"Resource\": []string{\n\t\t\t\t\t\t\t\tbucketName,\n\t\t\t\t\t\t\t\tfmt.Sprintf(\"%v/*\", bucketName1),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t})\n\t\t\t\tif err != nil {\n\t\t\t\t\treturn _zero, err\n\t\t\t\t}\n\t\t\t\tjson0 := string(tmpJSON0)\n\t\t\t\treturn json0, nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ObjectBucket;\nimport com.pulumi.scaleway.IamApplication;\nimport com.pulumi.scaleway.IamApplicationArgs;\nimport com.pulumi.scaleway.ObjectBucketPolicy;\nimport com.pulumi.scaleway.ObjectBucketPolicyArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var bucket = new ObjectBucket(\"bucket\");\n\n        var main = new IamApplication(\"main\", IamApplicationArgs.builder()        \n            .description(\"a description\")\n            .build());\n\n        var policy = new ObjectBucketPolicy(\"policy\", ObjectBucketPolicyArgs.builder()        \n            .bucket(bucket.name())\n            .policy(Output.tuple(main.id(), bucket.name(), bucket.name()).applyValue(values -\u003e {\n                var id = values.t1;\n                var bucketName = values.t2;\n                var bucketName1 = values.t3;\n                return serializeJson(\n                    jsonObject(\n                        jsonProperty(\"Version\", \"2023-04-17\"),\n                        jsonProperty(\"Id\", \"MyBucketPolicy\"),\n                        jsonProperty(\"Statement\", jsonArray(jsonObject(\n                            jsonProperty(\"Sid\", \"Delegate access\"),\n                            jsonProperty(\"Effect\", \"Allow\"),\n                            jsonProperty(\"Principal\", jsonObject(\n                                jsonProperty(\"SCW\", String.format(\"application_id:%s\", id))\n                            )),\n                            jsonProperty(\"Action\", \"s3:ListBucket\"),\n                            jsonProperty(\"Resource\", jsonArray(\n                                bucketName, \n                                String.format(\"%s/*\", bucketName1)\n                            ))\n                        )))\n                    ));\n            }))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  bucket:\n    type: scaleway:ObjectBucket\n  main:\n    type: scaleway:IamApplication\n    properties:\n      description: a description\n  policy:\n    type: scaleway:ObjectBucketPolicy\n    properties:\n      bucket: ${bucket.name}\n      policy:\n        fn::toJSON:\n          Version: 2023-04-17\n          Id: MyBucketPolicy\n          Statement:\n            - Sid: Delegate access\n              Effect: Allow\n              Principal:\n                SCW: application_id:${main.id}\n              Action: s3:ListBucket\n              Resource:\n                - ${bucket.name}\n                - ${bucket.name}/*\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nBuckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash\n\n```sh\n $ pulumi import scaleway:index/objectBucketPolicy:ObjectBucketPolicy some_bucket fr-par/some-bucket\n```\n\n ",
             "properties": {
                 "bucket": {
                     "type": "string",
@@ -16202,7 +16524,7 @@
                 },
                 "nodeType": {
                     "type": "string",
-                    "description": "The type of database instance you want to create (e.g. `db-dev-s`).\n\n\u003e **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any\ninterruption. Keep in mind that you cannot downgrade a Database Instance.\n"
+                    "description": "The type of database instance you want to create (e.g. `db-dev-s`).\n\n\u003e **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any\ninterruption. Keep in mind that you cannot downgrade a Database Instance.\n\n\u003e **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,\nand if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.\n"
                 },
                 "organizationId": {
                     "type": "string",
@@ -16252,7 +16574,7 @@
                 },
                 "volumeSizeInGb": {
                     "type": "integer",
-                    "description": "Volume size (in GB) when `volume_type` is set to `bssd`.\n"
+                    "description": "Volume size (in GB) when `volume_type` is set to `bssd`.\n\n\u003e **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.\n"
                 },
                 "volumeType": {
                     "type": "string",
@@ -16317,7 +16639,7 @@
                 },
                 "nodeType": {
                     "type": "string",
-                    "description": "The type of database instance you want to create (e.g. `db-dev-s`).\n\n\u003e **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any\ninterruption. Keep in mind that you cannot downgrade a Database Instance.\n"
+                    "description": "The type of database instance you want to create (e.g. `db-dev-s`).\n\n\u003e **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any\ninterruption. Keep in mind that you cannot downgrade a Database Instance.\n\n\u003e **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,\nand if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.\n"
                 },
                 "password": {
                     "type": "string",
@@ -16359,7 +16681,7 @@
                 },
                 "volumeSizeInGb": {
                     "type": "integer",
-                    "description": "Volume size (in GB) when `volume_type` is set to `bssd`.\n"
+                    "description": "Volume size (in GB) when `volume_type` is set to `bssd`.\n\n\u003e **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.\n"
                 },
                 "volumeType": {
                     "type": "string",
@@ -16432,7 +16754,7 @@
                     },
                     "nodeType": {
                         "type": "string",
-                        "description": "The type of database instance you want to create (e.g. `db-dev-s`).\n\n\u003e **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any\ninterruption. Keep in mind that you cannot downgrade a Database Instance.\n"
+                        "description": "The type of database instance you want to create (e.g. `db-dev-s`).\n\n\u003e **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any\ninterruption. Keep in mind that you cannot downgrade a Database Instance.\n\n\u003e **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,\nand if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.\n"
                     },
                     "organizationId": {
                         "type": "string",
@@ -16485,7 +16807,7 @@
                     },
                     "volumeSizeInGb": {
                         "type": "integer",
-                        "description": "Volume size (in GB) when `volume_type` is set to `bssd`.\n"
+                        "description": "Volume size (in GB) when `volume_type` is set to `bssd`.\n\n\u003e **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.\n"
                     },
                     "volumeType": {
                         "type": "string",
@@ -17396,6 +17718,10 @@
                     "type": "string",
                     "description": "The date and time the domain was last found to be valid (RFC 3339 format).\n"
                 },
+                "mxBlackhole": {
+                    "type": "string",
+                    "description": "The Scaleway's blackhole MX server to use if you do not have one.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "The domain name, must not be used in another Transactional Email Domain.\n\u003e **Important:** Updates to `name` will recreate the domain.\n"
@@ -17412,33 +17738,40 @@
                     "type": "string",
                     "description": "`region`). The region in which the domain should be created.\n"
                 },
+                "reputations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/scaleway:index/TemDomainReputation:TemDomainReputation"
+                    },
+                    "description": "The domain's reputation.\n"
+                },
                 "revokedAt": {
                     "type": "string",
                     "description": "The date and time of the revocation of the domain (RFC 3339 format).\n"
                 },
                 "smtpHost": {
                     "type": "string",
-                    "description": "SMTP host to use to send emails\n"
+                    "description": "The SMTP host to use to send emails.\n"
                 },
                 "smtpPort": {
                     "type": "integer",
-                    "description": "SMTP port to use to send emails over TLS. (Port 587)\n"
+                    "description": "The SMTP port to use to send emails over TLS.\n"
                 },
                 "smtpPortAlternative": {
                     "type": "integer",
-                    "description": "SMTP port to use to send emails over TLS. (Port 2587)\n"
+                    "description": "The SMTP port to use to send emails over TLS.\n"
                 },
                 "smtpPortUnsecure": {
                     "type": "integer",
-                    "description": "SMTP port to use to send emails. (Port 25)\n"
+                    "description": "The SMTP port to use to send emails.\n"
                 },
                 "smtpsPort": {
                     "type": "integer",
-                    "description": "SMTPS port to use to send emails over TLS Wrapper. (Port 465)\n"
+                    "description": "The SMTPS port to use to send emails over TLS Wrapper.\n"
                 },
                 "smtpsPortAlternative": {
                     "type": "integer",
-                    "description": "SMTPS port to use to send emails over TLS Wrapper. (Port 2465)\n"
+                    "description": "The SMTPS port to use to send emails over TLS Wrapper.\n"
                 },
                 "spfConfig": {
                     "type": "string",
@@ -17446,7 +17779,7 @@
                 },
                 "status": {
                     "type": "string",
-                    "description": "The status of the Transaction Email Domain.\n"
+                    "description": "The status of the domain's reputation.\n"
                 }
             },
             "required": [
@@ -17455,10 +17788,12 @@
                 "dkimConfig",
                 "lastError",
                 "lastValidAt",
+                "mxBlackhole",
                 "name",
                 "nextCheckAt",
                 "projectId",
                 "region",
+                "reputations",
                 "revokedAt",
                 "smtpHost",
                 "smtpPort",
@@ -17518,6 +17853,10 @@
                         "type": "string",
                         "description": "The date and time the domain was last found to be valid (RFC 3339 format).\n"
                     },
+                    "mxBlackhole": {
+                        "type": "string",
+                        "description": "The Scaleway's blackhole MX server to use if you do not have one.\n"
+                    },
                     "name": {
                         "type": "string",
                         "description": "The domain name, must not be used in another Transactional Email Domain.\n\u003e **Important:** Updates to `name` will recreate the domain.\n",
@@ -17537,33 +17876,40 @@
                         "description": "`region`). The region in which the domain should be created.\n",
                         "willReplaceOnChanges": true
                     },
+                    "reputations": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/scaleway:index/TemDomainReputation:TemDomainReputation"
+                        },
+                        "description": "The domain's reputation.\n"
+                    },
                     "revokedAt": {
                         "type": "string",
                         "description": "The date and time of the revocation of the domain (RFC 3339 format).\n"
                     },
                     "smtpHost": {
                         "type": "string",
-                        "description": "SMTP host to use to send emails\n"
+                        "description": "The SMTP host to use to send emails.\n"
                     },
                     "smtpPort": {
                         "type": "integer",
-                        "description": "SMTP port to use to send emails over TLS. (Port 587)\n"
+                        "description": "The SMTP port to use to send emails over TLS.\n"
                     },
                     "smtpPortAlternative": {
                         "type": "integer",
-                        "description": "SMTP port to use to send emails over TLS. (Port 2587)\n"
+                        "description": "The SMTP port to use to send emails over TLS.\n"
                     },
                     "smtpPortUnsecure": {
                         "type": "integer",
-                        "description": "SMTP port to use to send emails. (Port 25)\n"
+                        "description": "The SMTP port to use to send emails.\n"
                     },
                     "smtpsPort": {
                         "type": "integer",
-                        "description": "SMTPS port to use to send emails over TLS Wrapper. (Port 465)\n"
+                        "description": "The SMTPS port to use to send emails over TLS Wrapper.\n"
                     },
                     "smtpsPortAlternative": {
                         "type": "integer",
-                        "description": "SMTPS port to use to send emails over TLS Wrapper. (Port 2465)\n"
+                        "description": "The SMTPS port to use to send emails over TLS Wrapper.\n"
                     },
                     "spfConfig": {
                         "type": "string",
@@ -17571,7 +17917,7 @@
                     },
                     "status": {
                         "type": "string",
-                        "description": "The status of the Transaction Email Domain.\n"
+                        "description": "The status of the domain's reputation.\n"
                     }
                 },
                 "type": "object"
@@ -18093,6 +18439,10 @@
                     "type": "string",
                     "description": "`project_id`) The ID of the project the public gateway is associated with.\n"
                 },
+                "status": {
+                    "type": "string",
+                    "description": "The status of the public gateway.\n"
+                },
                 "tags": {
                     "type": "array",
                     "items": {
@@ -18128,6 +18478,7 @@
                 "name",
                 "organizationId",
                 "projectId",
+                "status",
                 "type",
                 "updatedAt",
                 "zone"
@@ -18167,7 +18518,8 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The gateway type.\n"
+                    "description": "The gateway type.\n",
+                    "willReplaceOnChanges": true
                 },
                 "upstreamDnsServers": {
                     "type": "array",
@@ -18221,6 +18573,10 @@
                         "description": "`project_id`) The ID of the project the public gateway is associated with.\n",
                         "willReplaceOnChanges": true
                     },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the public gateway.\n"
+                    },
                     "tags": {
                         "type": "array",
                         "items": {
@@ -18230,7 +18586,8 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "The gateway type.\n"
+                        "description": "The gateway type.\n",
+                        "willReplaceOnChanges": true
                     },
                     "updatedAt": {
                         "type": "string",
@@ -22129,7 +22486,7 @@
             }
         },
         "scaleway:index/getIpamIp:getIpamIp": {
-            "description": "Gets information about IP managed by IPAM service. IPAM service is used for dhcp bundled in VPCs' private networks.\n\n## Examples\n\n### Instance Private Network IP\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\n// Get Instance IP in a private network\nconst nic = new scaleway.InstancePrivateNic(\"nic\", {\n    serverId: scaleway_instance_server.server.id,\n    privateNetworkId: scaleway_vpc_private_network.pn.id,\n});\nconst byMac = scaleway.getIpamIpOutput({\n    macAddress: nic.macAddress,\n    type: \"ipv4\",\n});\nconst byId = scaleway.getIpamIpOutput({\n    resource: {\n        id: nic.id,\n        type: \"instance_private_nic\",\n    },\n    type: \"ipv4\",\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\nimport pulumi_scaleway as scaleway\n\n# Get Instance IP in a private network\nnic = scaleway.InstancePrivateNic(\"nic\",\n    server_id=scaleway_instance_server[\"server\"][\"id\"],\n    private_network_id=scaleway_vpc_private_network[\"pn\"][\"id\"])\nby_mac = scaleway.get_ipam_ip_output(mac_address=nic.mac_address,\n    type=\"ipv4\")\nby_id = scaleway.get_ipam_ip_output(resource=scaleway.GetIpamIpResourceArgs(\n        id=nic.id,\n        type=\"instance_private_nic\",\n    ),\n    type=\"ipv4\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Get Instance IP in a private network\n    var nic = new Scaleway.InstancePrivateNic(\"nic\", new()\n    {\n        ServerId = scaleway_instance_server.Server.Id,\n        PrivateNetworkId = scaleway_vpc_private_network.Pn.Id,\n    });\n\n    var byMac = Scaleway.GetIpamIp.Invoke(new()\n    {\n        MacAddress = nic.MacAddress,\n        Type = \"ipv4\",\n    });\n\n    var byId = Scaleway.GetIpamIp.Invoke(new()\n    {\n        Resource = new Scaleway.Inputs.GetIpamIpResourceInputArgs\n        {\n            Id = nic.Id,\n            Type = \"instance_private_nic\",\n        },\n        Type = \"ipv4\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tnic, err := scaleway.NewInstancePrivateNic(ctx, \"nic\", \u0026scaleway.InstancePrivateNicArgs{\n\t\t\tServerId:         pulumi.Any(scaleway_instance_server.Server.Id),\n\t\t\tPrivateNetworkId: pulumi.Any(scaleway_vpc_private_network.Pn.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = scaleway.GetIpamIpOutput(ctx, scaleway.GetIpamIpOutputArgs{\n\t\t\tMacAddress: nic.MacAddress,\n\t\t\tType:       pulumi.String(\"ipv4\"),\n\t\t}, nil)\n\t\t_ = scaleway.GetIpamIpOutput(ctx, scaleway.GetIpamIpOutputArgs{\n\t\t\tResource: \u0026scaleway.GetIpamIpResourceArgs{\n\t\t\t\tId:   nic.ID(),\n\t\t\t\tType: pulumi.String(\"instance_private_nic\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"ipv4\"),\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.InstancePrivateNic;\nimport com.pulumi.scaleway.InstancePrivateNicArgs;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetIpamIpArgs;\nimport com.pulumi.scaleway.inputs.GetIpamIpResourceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var nic = new InstancePrivateNic(\"nic\", InstancePrivateNicArgs.builder()        \n            .serverId(scaleway_instance_server.server().id())\n            .privateNetworkId(scaleway_vpc_private_network.pn().id())\n            .build());\n\n        final var byMac = ScalewayFunctions.getIpamIp(GetIpamIpArgs.builder()\n            .macAddress(nic.macAddress())\n            .type(\"ipv4\")\n            .build());\n\n        final var byId = ScalewayFunctions.getIpamIp(GetIpamIpArgs.builder()\n            .resource(GetIpamIpResourceArgs.builder()\n                .id(nic.id())\n                .type(\"instance_private_nic\")\n                .build())\n            .type(\"ipv4\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Get Instance IP in a private network\n  nic:\n    type: scaleway:InstancePrivateNic\n    properties:\n      serverId: ${scaleway_instance_server.server.id}\n      privateNetworkId: ${scaleway_vpc_private_network.pn.id}\nvariables:\n  byMac:\n    fn::invoke:\n      Function: scaleway:getIpamIp\n      Arguments:\n        macAddress: ${nic.macAddress}\n        type: ipv4\n  byId:\n    fn::invoke:\n      Function: scaleway:getIpamIp\n      Arguments:\n        resource:\n          id: ${nic.id}\n          type: instance_private_nic\n        type: ipv4\n```\n",
+            "description": "Gets information about IP managed by IPAM service. IPAM service is used for dhcp bundled in VPCs' private networks.\n\n## Examples\n\n### Instance Private Network IP\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\n// Find the private IPv4 using resource name\nconst pn = new scaleway.VpcPrivateNetwork(\"pn\", {});\n// Get Instance IP in a private network\nconst nic = new scaleway.InstancePrivateNic(\"nic\", {\n    serverId: scaleway_instance_server.server.id,\n    privateNetworkId: pn.id,\n});\nconst byMac = scaleway.getIpamIpOutput({\n    macAddress: nic.macAddress,\n    type: \"ipv4\",\n});\nconst byId = scaleway.getIpamIpOutput({\n    resource: {\n        id: nic.id,\n        type: \"instance_private_nic\",\n    },\n    type: \"ipv4\",\n});\nconst main = new scaleway.RdbInstance(\"main\", {\n    nodeType: \"DB-DEV-S\",\n    engine: \"PostgreSQL-15\",\n    isHaCluster: true,\n    disableBackup: true,\n    userName: \"my_initial_user\",\n    password: \"thiZ_is_v\u0026ry_s3cret\",\n    privateNetwork: {\n        pnId: pn.id,\n    },\n});\nconst byName = scaleway.getIpamIpOutput({\n    resource: {\n        name: main.name,\n        type: \"rdb_instance\",\n    },\n    type: \"ipv4\",\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\nimport pulumi_scaleway as scaleway\n\n# Find the private IPv4 using resource name\npn = scaleway.VpcPrivateNetwork(\"pn\")\n# Get Instance IP in a private network\nnic = scaleway.InstancePrivateNic(\"nic\",\n    server_id=scaleway_instance_server[\"server\"][\"id\"],\n    private_network_id=pn.id)\nby_mac = scaleway.get_ipam_ip_output(mac_address=nic.mac_address,\n    type=\"ipv4\")\nby_id = scaleway.get_ipam_ip_output(resource=scaleway.GetIpamIpResourceArgs(\n        id=nic.id,\n        type=\"instance_private_nic\",\n    ),\n    type=\"ipv4\")\nmain = scaleway.RdbInstance(\"main\",\n    node_type=\"DB-DEV-S\",\n    engine=\"PostgreSQL-15\",\n    is_ha_cluster=True,\n    disable_backup=True,\n    user_name=\"my_initial_user\",\n    password=\"thiZ_is_v\u0026ry_s3cret\",\n    private_network=scaleway.RdbInstancePrivateNetworkArgs(\n        pn_id=pn.id,\n    ))\nby_name = scaleway.get_ipam_ip_output(resource=scaleway.GetIpamIpResourceArgs(\n        name=main.name,\n        type=\"rdb_instance\",\n    ),\n    type=\"ipv4\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Find the private IPv4 using resource name\n    var pn = new Scaleway.VpcPrivateNetwork(\"pn\");\n\n    // Get Instance IP in a private network\n    var nic = new Scaleway.InstancePrivateNic(\"nic\", new()\n    {\n        ServerId = scaleway_instance_server.Server.Id,\n        PrivateNetworkId = pn.Id,\n    });\n\n    var byMac = Scaleway.GetIpamIp.Invoke(new()\n    {\n        MacAddress = nic.MacAddress,\n        Type = \"ipv4\",\n    });\n\n    var byId = Scaleway.GetIpamIp.Invoke(new()\n    {\n        Resource = new Scaleway.Inputs.GetIpamIpResourceInputArgs\n        {\n            Id = nic.Id,\n            Type = \"instance_private_nic\",\n        },\n        Type = \"ipv4\",\n    });\n\n    var main = new Scaleway.RdbInstance(\"main\", new()\n    {\n        NodeType = \"DB-DEV-S\",\n        Engine = \"PostgreSQL-15\",\n        IsHaCluster = true,\n        DisableBackup = true,\n        UserName = \"my_initial_user\",\n        Password = \"thiZ_is_v\u0026ry_s3cret\",\n        PrivateNetwork = new Scaleway.Inputs.RdbInstancePrivateNetworkArgs\n        {\n            PnId = pn.Id,\n        },\n    });\n\n    var byName = Scaleway.GetIpamIp.Invoke(new()\n    {\n        Resource = new Scaleway.Inputs.GetIpamIpResourceInputArgs\n        {\n            Name = main.Name,\n            Type = \"rdb_instance\",\n        },\n        Type = \"ipv4\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tpn, err := scaleway.NewVpcPrivateNetwork(ctx, \"pn\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tnic, err := scaleway.NewInstancePrivateNic(ctx, \"nic\", \u0026scaleway.InstancePrivateNicArgs{\n\t\t\tServerId:         pulumi.Any(scaleway_instance_server.Server.Id),\n\t\t\tPrivateNetworkId: pn.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = scaleway.GetIpamIpOutput(ctx, scaleway.GetIpamIpOutputArgs{\n\t\t\tMacAddress: nic.MacAddress,\n\t\t\tType:       pulumi.String(\"ipv4\"),\n\t\t}, nil)\n\t\t_ = scaleway.GetIpamIpOutput(ctx, scaleway.GetIpamIpOutputArgs{\n\t\t\tResource: \u0026scaleway.GetIpamIpResourceArgs{\n\t\t\t\tId:   nic.ID(),\n\t\t\t\tType: pulumi.String(\"instance_private_nic\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"ipv4\"),\n\t\t}, nil)\n\t\tmain, err := scaleway.NewRdbInstance(ctx, \"main\", \u0026scaleway.RdbInstanceArgs{\n\t\t\tNodeType:      pulumi.String(\"DB-DEV-S\"),\n\t\t\tEngine:        pulumi.String(\"PostgreSQL-15\"),\n\t\t\tIsHaCluster:   pulumi.Bool(true),\n\t\t\tDisableBackup: pulumi.Bool(true),\n\t\t\tUserName:      pulumi.String(\"my_initial_user\"),\n\t\t\tPassword:      pulumi.String(\"thiZ_is_v\u0026ry_s3cret\"),\n\t\t\tPrivateNetwork: \u0026scaleway.RdbInstancePrivateNetworkArgs{\n\t\t\t\tPnId: pn.ID(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = scaleway.GetIpamIpOutput(ctx, scaleway.GetIpamIpOutputArgs{\n\t\t\tResource: \u0026scaleway.GetIpamIpResourceArgs{\n\t\t\t\tName: main.Name,\n\t\t\t\tType: pulumi.String(\"rdb_instance\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"ipv4\"),\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.VpcPrivateNetwork;\nimport com.pulumi.scaleway.InstancePrivateNic;\nimport com.pulumi.scaleway.InstancePrivateNicArgs;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetIpamIpArgs;\nimport com.pulumi.scaleway.inputs.GetIpamIpResourceArgs;\nimport com.pulumi.scaleway.RdbInstance;\nimport com.pulumi.scaleway.RdbInstanceArgs;\nimport com.pulumi.scaleway.inputs.RdbInstancePrivateNetworkArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pn = new VpcPrivateNetwork(\"pn\");\n\n        var nic = new InstancePrivateNic(\"nic\", InstancePrivateNicArgs.builder()        \n            .serverId(scaleway_instance_server.server().id())\n            .privateNetworkId(pn.id())\n            .build());\n\n        final var byMac = ScalewayFunctions.getIpamIp(GetIpamIpArgs.builder()\n            .macAddress(nic.macAddress())\n            .type(\"ipv4\")\n            .build());\n\n        final var byId = ScalewayFunctions.getIpamIp(GetIpamIpArgs.builder()\n            .resource(GetIpamIpResourceArgs.builder()\n                .id(nic.id())\n                .type(\"instance_private_nic\")\n                .build())\n            .type(\"ipv4\")\n            .build());\n\n        var main = new RdbInstance(\"main\", RdbInstanceArgs.builder()        \n            .nodeType(\"DB-DEV-S\")\n            .engine(\"PostgreSQL-15\")\n            .isHaCluster(true)\n            .disableBackup(true)\n            .userName(\"my_initial_user\")\n            .password(\"thiZ_is_v\u0026ry_s3cret\")\n            .privateNetwork(RdbInstancePrivateNetworkArgs.builder()\n                .pnId(pn.id())\n                .build())\n            .build());\n\n        final var byName = ScalewayFunctions.getIpamIp(GetIpamIpArgs.builder()\n            .resource(GetIpamIpResourceArgs.builder()\n                .name(main.name())\n                .type(\"rdb_instance\")\n                .build())\n            .type(\"ipv4\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Get Instance IP in a private network\n  nic:\n    type: scaleway:InstancePrivateNic\n    properties:\n      serverId: ${scaleway_instance_server.server.id}\n      privateNetworkId: ${pn.id}\n  # Find the private IPv4 using resource name\n  pn:\n    type: scaleway:VpcPrivateNetwork\n  main:\n    type: scaleway:RdbInstance\n    properties:\n      nodeType: DB-DEV-S\n      engine: PostgreSQL-15\n      isHaCluster: true\n      disableBackup: true\n      userName: my_initial_user\n      password: thiZ_is_v\u0026ry_s3cret\n      privateNetwork:\n        pnId: ${pn.id}\nvariables:\n  byMac:\n    fn::invoke:\n      Function: scaleway:getIpamIp\n      Arguments:\n        macAddress: ${nic.macAddress}\n        type: ipv4\n  byId:\n    fn::invoke:\n      Function: scaleway:getIpamIp\n      Arguments:\n        resource:\n          id: ${nic.id}\n          type: instance_private_nic\n        type: ipv4\n  byName:\n    fn::invoke:\n      Function: scaleway:getIpamIp\n      Arguments:\n        resource:\n          name: ${main.name}\n          type: rdb_instance\n        type: ipv4\n```\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getIpamIp.\n",
                 "properties": {
@@ -22141,6 +22498,11 @@
                         "type": "string",
                         "description": "The ID of the private network the IP belong to.\n"
                     },
+                    "projectId": {
+                        "type": "string",
+                        "description": "`project_id`) The ID of the project the IP is associated with.\n",
+                        "willReplaceOnChanges": true
+                    },
                     "region": {
                         "type": "string",
                         "description": "`region`) The region in which the IP exists.\n",
@@ -22148,11 +22510,23 @@
                     },
                     "resource": {
                         "$ref": "#/types/scaleway:index/getIpamIpResource:getIpamIpResource",
-                        "description": "Filter by resource ID and type, both attributes must be set\n"
+                        "description": "Filter by resource ID, type or name. If specified, `type` is required, and at least one of `id` or `name` must be set.\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The tags associated with the IP.\nAs datasource only returns one IP, the search with given tags must return only one result.\n"
                     },
                     "type": {
                         "type": "string",
-                        "description": "The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1alpha1#pkg-constants) with type list.\n"
+                        "description": "The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.\n"
+                    },
+                    "zonal": {
+                        "type": "string",
+                        "description": "Only IPs that are zonal, and in this zone, will be returned.\n",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object",
@@ -22174,7 +22548,13 @@
                     "macAddress": {
                         "type": "string"
                     },
+                    "organizationId": {
+                        "type": "string"
+                    },
                     "privateNetworkId": {
+                        "type": "string"
+                    },
+                    "projectId": {
                         "type": "string"
                     },
                     "region": {
@@ -22183,15 +22563,27 @@
                     "resource": {
                         "$ref": "#/types/scaleway:index/getIpamIpResource:getIpamIpResource"
                     },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
                     "type": {
+                        "type": "string"
+                    },
+                    "zonal": {
                         "type": "string"
                     }
                 },
                 "type": "object",
                 "required": [
                     "address",
+                    "organizationId",
+                    "projectId",
                     "region",
                     "type",
+                    "zonal",
                     "id"
                 ]
             }
@@ -23661,6 +24053,9 @@
                     "acl": {
                         "type": "string"
                     },
+                    "apiEndpoint": {
+                        "type": "string"
+                    },
                     "corsRules": {
                         "type": "array",
                         "items": {
@@ -23712,6 +24107,7 @@
                 "type": "object",
                 "required": [
                     "acl",
+                    "apiEndpoint",
                     "corsRules",
                     "endpoint",
                     "forceDestroy",
@@ -24609,16 +25005,17 @@
             }
         },
         "scaleway:index/getTemDomain:getTemDomain": {
-            "description": "Gets information about a transactional email domain.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetTemDomainArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myDomain = ScalewayFunctions.getTemDomain(GetTemDomainArgs.builder()\n            .id(\"11111111-1111-1111-1111-111111111111\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  myDomain:\n    fn::invoke:\n      Function: scaleway:getTemDomain\n      Arguments:\n        id: 11111111-1111-1111-1111-111111111111\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Gets information about a transactional email domain.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst myDomain = scaleway.getTemDomain({\n    domainId: \"11111111-1111-1111-1111-111111111111\",\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\n\nmy_domain = scaleway.get_tem_domain(domain_id=\"11111111-1111-1111-1111-111111111111\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myDomain = Scaleway.GetTemDomain.Invoke(new()\n    {\n        DomainId = \"11111111-1111-1111-1111-111111111111\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.LookupTemDomain(ctx, \u0026scaleway.LookupTemDomainArgs{\n\t\t\tDomainId: pulumi.StringRef(\"11111111-1111-1111-1111-111111111111\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetTemDomainArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myDomain = ScalewayFunctions.getTemDomain(GetTemDomainArgs.builder()\n            .domainId(\"11111111-1111-1111-1111-111111111111\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  myDomain:\n    fn::invoke:\n      Function: scaleway:getTemDomain\n      Arguments:\n        domainId: 11111111-1111-1111-1111-111111111111\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getTemDomain.\n",
                 "properties": {
                     "domainId": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The domain id.\nOnly one of `name` and `domain_id` should be specified.\n"
                     },
                     "name": {
                         "type": "string",
-                        "description": "The domain name.\nOnly one of `name` and `id` should be specified.\n"
+                        "description": "The domain name.\nOnly one of `name` and `domain_id` should be specified.\n"
                     },
                     "region": {
                         "type": "string",
@@ -24634,12 +25031,10 @@
                         "type": "boolean"
                     },
                     "createdAt": {
-                        "type": "string",
-                        "description": "The date and time of the Transaction Email Domain's creation (RFC 3339 format).\n"
+                        "type": "string"
                     },
                     "dkimConfig": {
-                        "type": "string",
-                        "description": "The DKIM public key, as should be recorded in the DNS zone.\n"
+                        "type": "string"
                     },
                     "domainId": {
                         "type": "string"
@@ -24649,19 +25044,19 @@
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
                     "lastError": {
-                        "type": "string",
-                        "description": "The error message if the last check failed.\n"
+                        "type": "string"
                     },
                     "lastValidAt": {
-                        "type": "string",
-                        "description": "The date and time the domain was last found to be valid (RFC 3339 format).\n"
+                        "type": "string"
+                    },
+                    "mxBlackhole": {
+                        "type": "string"
                     },
                     "name": {
                         "type": "string"
                     },
                     "nextCheckAt": {
-                        "type": "string",
-                        "description": "The date and time of the next scheduled check (RFC 3339 format).\n"
+                        "type": "string"
                     },
                     "projectId": {
                         "type": "string"
@@ -24669,41 +25064,38 @@
                     "region": {
                         "type": "string"
                     },
+                    "reputations": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/scaleway:index/getTemDomainReputation:getTemDomainReputation"
+                        }
+                    },
                     "revokedAt": {
-                        "type": "string",
-                        "description": "The date and time of the revocation of the domain (RFC 3339 format).\n"
+                        "type": "string"
                     },
                     "smtpHost": {
-                        "type": "string",
-                        "description": "The SMTP host to use to send emails.\n"
+                        "type": "string"
                     },
                     "smtpPort": {
-                        "type": "integer",
-                        "description": "The SMTP port to use to send emails over TLS.\n"
+                        "type": "integer"
                     },
                     "smtpPortAlternative": {
-                        "type": "integer",
-                        "description": "The SMTP port to use to send emails over TLS.\n"
+                        "type": "integer"
                     },
                     "smtpPortUnsecure": {
-                        "type": "integer",
-                        "description": "The SMTP port to use to send emails.\n"
+                        "type": "integer"
                     },
                     "smtpsPort": {
-                        "type": "integer",
-                        "description": "The SMTPS port to use to send emails over TLS Wrapper.\n"
+                        "type": "integer"
                     },
                     "smtpsPortAlternative": {
-                        "type": "integer",
-                        "description": "The SMTPS port to use to send emails over TLS Wrapper.\n"
+                        "type": "integer"
                     },
                     "spfConfig": {
-                        "type": "string",
-                        "description": "The snippet of the SPF record that should be registered in the DNS zone.\n"
+                        "type": "string"
                     },
                     "status": {
-                        "type": "string",
-                        "description": "The status of the Transaction Email Domain.\n"
+                        "type": "string"
                     }
                 },
                 "type": "object",
@@ -24713,8 +25105,10 @@
                     "dkimConfig",
                     "lastError",
                     "lastValidAt",
+                    "mxBlackhole",
                     "nextCheckAt",
                     "projectId",
+                    "reputations",
                     "revokedAt",
                     "smtpHost",
                     "smtpPort",
@@ -25047,6 +25441,9 @@
                     "publicGatewayId": {
                         "type": "string"
                     },
+                    "status": {
+                        "type": "string"
+                    },
                     "tags": {
                         "type": "array",
                         "items": {
@@ -25078,6 +25475,7 @@
                     "ipId",
                     "organizationId",
                     "projectId",
+                    "status",
                     "tags",
                     "type",
                     "updatedAt",
