@@ -462,6 +462,13 @@
             },
             "scaleway_ipam_ip": {
                 "current": "scaleway:index/iamIp:IamIp",
+                "past": [
+                    {
+                        "name": "scaleway:index/iamIp:IamIp",
+                        "inCodegen": true,
+                        "majorVersion": 0
+                    }
+                ],
                 "fields": {
                     "resource": {
                         "maxItemsOne": false
@@ -1948,7 +1955,7 @@
             "scaleway:index/iamApplication:IamApplication": "scaleway_iam_application",
             "scaleway:index/iamGroup:IamGroup": "scaleway_iam_group",
             "scaleway:index/iamGroupMembership:IamGroupMembership": "scaleway_iam_group_membership",
-            "scaleway:index/iamIp:IamIp": "scaleway_ipam_ip",
+            "scaleway:index/iamIp:IamIp": "scaleway_ipam_ip_legacy",
             "scaleway:index/iamPolicy:IamPolicy": "scaleway_iam_policy",
             "scaleway:index/iamSshKey:IamSshKey": "scaleway_iam_ssh_key",
             "scaleway:index/iamUser:IamUser": "scaleway_iam_user",
@@ -1967,6 +1974,7 @@
             "scaleway:index/iotHub:IotHub": "scaleway_iot_hub",
             "scaleway:index/iotNetwork:IotNetwork": "scaleway_iot_network",
             "scaleway:index/iotRoute:IotRoute": "scaleway_iot_route",
+            "scaleway:index/ipamIp:IpamIp": "scaleway_ipam_ip",
             "scaleway:index/k8sCluster:K8sCluster": "scaleway_k8s_cluster",
             "scaleway:index/k8sPool:K8sPool": "scaleway_k8s_pool",
             "scaleway:index/lb:Lb": "scaleway_lb",
@@ -2195,6 +2203,13 @@
                 "bucketName": "bucket_name",
                 "bucketRegion": "bucket_region",
                 "objectPrefix": "object_prefix"
+            },
+            "scaleway:index/IpamIpResource:IpamIpResource": {
+                "macAddress": "mac_address"
+            },
+            "scaleway:index/IpamIpSource:IpamIpSource": {
+                "privateNetworkId": "private_network_id",
+                "subnetId": "subnet_id"
             },
             "scaleway:index/K8sClusterAutoUpgrade:K8sClusterAutoUpgrade": {
                 "maintenanceWindowDay": "maintenance_window_day",
@@ -3725,6 +3740,14 @@
             "scaleway:index/iotRoute:IotRoute": {
                 "createdAt": "created_at",
                 "hubId": "hub_id"
+            },
+            "scaleway:index/ipamIp:IpamIp": {
+                "createdAt": "created_at",
+                "isIpv6": "is_ipv6",
+                "projectId": "project_id",
+                "resources": "resource",
+                "sources": "source",
+                "updatedAt": "updated_at"
             },
             "scaleway:index/k8sCluster:K8sCluster": {
                 "admissionPlugins": "admission_plugins",
