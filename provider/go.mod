@@ -8,7 +8,7 @@ replace github.com/pulumi/pulumi/pkg/v3 => github.com/pulumi/pulumi/pkg/v3 v3.94
 
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.65.0
-	github.com/pulumi/pulumi/sdk/v3 v3.94.0
+	github.com/pulumi/pulumi/sdk/v3 v3.94.2
 	github.com/scaleway/terraform-provider-scaleway/v2 v2.33.0
 )
 
