@@ -124,7 +124,7 @@ import (
 //						},
 //						Transitions: scaleway.ObjectBucketLifecycleRuleTransitionArray{
 //							&scaleway.ObjectBucketLifecycleRuleTransitionArgs{
-//								Days:         pulumi.Int(0),
+//								Days:         pulumi.Int(1),
 //								StorageClass: pulumi.String("GLACIER"),
 //							},
 //						},
@@ -191,6 +191,9 @@ type ObjectBucket struct {
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// A list of tags (key / value) for the bucket.
+	//
+	// * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+	// Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
 	Tags pulumi.StringMapOutput `pulumi:"tags"`
 	// A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
 	Versioning ObjectBucketVersioningOutput `pulumi:"versioning"`
@@ -252,6 +255,9 @@ type objectBucketState struct {
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region *string `pulumi:"region"`
 	// A list of tags (key / value) for the bucket.
+	//
+	// * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+	// Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
 	Tags map[string]string `pulumi:"tags"`
 	// A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
 	Versioning *ObjectBucketVersioning `pulumi:"versioning"`
@@ -284,6 +290,9 @@ type ObjectBucketState struct {
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringPtrInput
 	// A list of tags (key / value) for the bucket.
+	//
+	// * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+	// Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
 	Tags pulumi.StringMapInput
 	// A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
 	Versioning ObjectBucketVersioningPtrInput
@@ -316,6 +325,9 @@ type objectBucketArgs struct {
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region *string `pulumi:"region"`
 	// A list of tags (key / value) for the bucket.
+	//
+	// * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+	// Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
 	Tags map[string]string `pulumi:"tags"`
 	// A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
 	Versioning *ObjectBucketVersioning `pulumi:"versioning"`
@@ -345,6 +357,9 @@ type ObjectBucketArgs struct {
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringPtrInput
 	// A list of tags (key / value) for the bucket.
+	//
+	// * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+	// Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
 	Tags pulumi.StringMapInput
 	// A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
 	Versioning ObjectBucketVersioningPtrInput
@@ -493,6 +508,9 @@ func (o ObjectBucketOutput) Region() pulumi.StringOutput {
 }
 
 // A list of tags (key / value) for the bucket.
+//
+// * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+// Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
 func (o ObjectBucketOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ObjectBucket) pulumi.StringMapOutput { return v.Tags }).(pulumi.StringMapOutput)
 }

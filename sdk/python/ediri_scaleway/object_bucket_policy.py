@@ -185,7 +185,7 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         bucket = scaleway.ObjectBucket("bucket")
         main = scaleway.IamApplication("main", description="a description")
         policy = scaleway.ObjectBucketPolicy("policy",
-            bucket=bucket.name,
+            bucket=bucket.id,
             policy=pulumi.Output.all(main.id, bucket.name, bucket.name).apply(lambda id, bucketName, bucketName1: json.dumps({
                 "Version": "2023-04-17",
                 "Id": "MyBucketPolicy",
@@ -241,7 +241,7 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         bucket = scaleway.ObjectBucket("bucket")
         main = scaleway.IamApplication("main", description="a description")
         policy = scaleway.ObjectBucketPolicy("policy",
-            bucket=bucket.name,
+            bucket=bucket.id,
             policy=pulumi.Output.all(main.id, bucket.name, bucket.name).apply(lambda id, bucketName, bucketName1: json.dumps({
                 "Version": "2023-04-17",
                 "Id": "MyBucketPolicy",

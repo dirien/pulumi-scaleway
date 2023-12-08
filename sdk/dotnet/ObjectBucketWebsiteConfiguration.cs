@@ -58,7 +58,7 @@ namespace ediri.Scaleway
     /// 
     ///     var mainObjectBucketPolicy = new Scaleway.ObjectBucketPolicy("mainObjectBucketPolicy", new()
     ///     {
-    ///         Bucket = mainObjectBucket.Name,
+    ///         Bucket = mainObjectBucket.Id,
     ///         Policy = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
     ///             ["Version"] = "2012-10-17",

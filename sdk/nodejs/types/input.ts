@@ -1081,60 +1081,6 @@ export interface LbPrivateNetwork {
     zone?: pulumi.Input<string>;
 }
 
-export interface MnqCredentialNatsCredentials {
-    /**
-     * Raw content of the NATS credentials file.
-     */
-    content?: pulumi.Input<string>;
-}
-
-export interface MnqCredentialSqsSnsCredentials {
-    /**
-     * The ID of the key.
-     */
-    accessKey?: pulumi.Input<string>;
-    /**
-     * List of permissions associated to this Credential. Only one of permissions may be set.
-     */
-    permissions?: pulumi.Input<inputs.MnqCredentialSqsSnsCredentialsPermissions>;
-    /**
-     * The Secret value of the key.
-     */
-    secretKey?: pulumi.Input<string>;
-}
-
-export interface MnqCredentialSqsSnsCredentialsPermissions {
-    /**
-     * . Defines if user can manage the associated resource(s).
-     */
-    canManage?: pulumi.Input<boolean>;
-    /**
-     * . Defines if user can publish messages to the service.
-     */
-    canPublish?: pulumi.Input<boolean>;
-    /**
-     * . Defines if user can receive messages from the service.
-     */
-    canReceive?: pulumi.Input<boolean>;
-}
-
-export interface MnqQueueNats {
-    credentials: pulumi.Input<string>;
-    endpoint?: pulumi.Input<string>;
-    retentionPolicy?: pulumi.Input<string>;
-}
-
-export interface MnqQueueSqs {
-    accessKey: pulumi.Input<string>;
-    contentBasedDeduplication?: pulumi.Input<boolean>;
-    endpoint?: pulumi.Input<string>;
-    fifoQueue?: pulumi.Input<boolean>;
-    receiveWaitTimeSeconds?: pulumi.Input<number>;
-    secretKey: pulumi.Input<string>;
-    url?: pulumi.Input<string>;
-    visibilityTimeoutSeconds?: pulumi.Input<number>;
-}
-
 export interface MnqSqsCredentialsPermissions {
     /**
      * . Defines if user can manage the associated resource(s).
@@ -1497,7 +1443,11 @@ export interface TemDomainReputation {
 
 export interface VpcGatewayNetworkIpamConfig {
     /**
-     * Defines whether the default route is enabled on that Gateway Network. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+     * Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
+     */
+    ipamIpId?: pulumi.Input<string>;
+    /**
+     * Defines whether the default route is enabled on that Gateway Network.
      */
     pushDefaultRoute?: pulumi.Input<boolean>;
 }

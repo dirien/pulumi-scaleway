@@ -67,11 +67,6 @@ __all__ = [
     'LbFrontendAclActionRedirect',
     'LbFrontendAclMatch',
     'LbPrivateNetwork',
-    'MnqCredentialNatsCredentials',
-    'MnqCredentialSqsSnsCredentials',
-    'MnqCredentialSqsSnsCredentialsPermissions',
-    'MnqQueueNats',
-    'MnqQueueSqs',
     'MnqSqsCredentialsPermissions',
     'ObjectBucketAclAccessControlPolicy',
     'ObjectBucketAclAccessControlPolicyGrant',
@@ -3989,290 +3984,6 @@ class LbPrivateNetwork(dict):
 
 
 @pulumi.output_type
-class MnqCredentialNatsCredentials(dict):
-    def __init__(__self__, *,
-                 content: Optional[str] = None):
-        """
-        :param str content: Raw content of the NATS credentials file.
-        """
-        if content is not None:
-            pulumi.set(__self__, "content", content)
-
-    @property
-    @pulumi.getter
-    def content(self) -> Optional[str]:
-        """
-        Raw content of the NATS credentials file.
-        """
-        return pulumi.get(self, "content")
-
-
-@pulumi.output_type
-class MnqCredentialSqsSnsCredentials(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "accessKey":
-            suggest = "access_key"
-        elif key == "secretKey":
-            suggest = "secret_key"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in MnqCredentialSqsSnsCredentials. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        MnqCredentialSqsSnsCredentials.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        MnqCredentialSqsSnsCredentials.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 access_key: Optional[str] = None,
-                 permissions: Optional['outputs.MnqCredentialSqsSnsCredentialsPermissions'] = None,
-                 secret_key: Optional[str] = None):
-        """
-        :param str access_key: The ID of the key.
-        :param 'MnqCredentialSqsSnsCredentialsPermissionsArgs' permissions: List of permissions associated to this Credential. Only one of permissions may be set.
-        :param str secret_key: The Secret value of the key.
-        """
-        if access_key is not None:
-            pulumi.set(__self__, "access_key", access_key)
-        if permissions is not None:
-            pulumi.set(__self__, "permissions", permissions)
-        if secret_key is not None:
-            pulumi.set(__self__, "secret_key", secret_key)
-
-    @property
-    @pulumi.getter(name="accessKey")
-    def access_key(self) -> Optional[str]:
-        """
-        The ID of the key.
-        """
-        return pulumi.get(self, "access_key")
-
-    @property
-    @pulumi.getter
-    def permissions(self) -> Optional['outputs.MnqCredentialSqsSnsCredentialsPermissions']:
-        """
-        List of permissions associated to this Credential. Only one of permissions may be set.
-        """
-        return pulumi.get(self, "permissions")
-
-    @property
-    @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[str]:
-        """
-        The Secret value of the key.
-        """
-        return pulumi.get(self, "secret_key")
-
-
-@pulumi.output_type
-class MnqCredentialSqsSnsCredentialsPermissions(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "canManage":
-            suggest = "can_manage"
-        elif key == "canPublish":
-            suggest = "can_publish"
-        elif key == "canReceive":
-            suggest = "can_receive"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in MnqCredentialSqsSnsCredentialsPermissions. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        MnqCredentialSqsSnsCredentialsPermissions.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        MnqCredentialSqsSnsCredentialsPermissions.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 can_manage: Optional[bool] = None,
-                 can_publish: Optional[bool] = None,
-                 can_receive: Optional[bool] = None):
-        """
-        :param bool can_manage: . Defines if user can manage the associated resource(s).
-        :param bool can_publish: . Defines if user can publish messages to the service.
-        :param bool can_receive: . Defines if user can receive messages from the service.
-        """
-        if can_manage is not None:
-            pulumi.set(__self__, "can_manage", can_manage)
-        if can_publish is not None:
-            pulumi.set(__self__, "can_publish", can_publish)
-        if can_receive is not None:
-            pulumi.set(__self__, "can_receive", can_receive)
-
-    @property
-    @pulumi.getter(name="canManage")
-    def can_manage(self) -> Optional[bool]:
-        """
-        . Defines if user can manage the associated resource(s).
-        """
-        return pulumi.get(self, "can_manage")
-
-    @property
-    @pulumi.getter(name="canPublish")
-    def can_publish(self) -> Optional[bool]:
-        """
-        . Defines if user can publish messages to the service.
-        """
-        return pulumi.get(self, "can_publish")
-
-    @property
-    @pulumi.getter(name="canReceive")
-    def can_receive(self) -> Optional[bool]:
-        """
-        . Defines if user can receive messages from the service.
-        """
-        return pulumi.get(self, "can_receive")
-
-
-@pulumi.output_type
-class MnqQueueNats(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "retentionPolicy":
-            suggest = "retention_policy"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in MnqQueueNats. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        MnqQueueNats.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        MnqQueueNats.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 credentials: str,
-                 endpoint: Optional[str] = None,
-                 retention_policy: Optional[str] = None):
-        pulumi.set(__self__, "credentials", credentials)
-        if endpoint is not None:
-            pulumi.set(__self__, "endpoint", endpoint)
-        if retention_policy is not None:
-            pulumi.set(__self__, "retention_policy", retention_policy)
-
-    @property
-    @pulumi.getter
-    def credentials(self) -> str:
-        return pulumi.get(self, "credentials")
-
-    @property
-    @pulumi.getter
-    def endpoint(self) -> Optional[str]:
-        return pulumi.get(self, "endpoint")
-
-    @property
-    @pulumi.getter(name="retentionPolicy")
-    def retention_policy(self) -> Optional[str]:
-        return pulumi.get(self, "retention_policy")
-
-
-@pulumi.output_type
-class MnqQueueSqs(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "accessKey":
-            suggest = "access_key"
-        elif key == "secretKey":
-            suggest = "secret_key"
-        elif key == "contentBasedDeduplication":
-            suggest = "content_based_deduplication"
-        elif key == "fifoQueue":
-            suggest = "fifo_queue"
-        elif key == "receiveWaitTimeSeconds":
-            suggest = "receive_wait_time_seconds"
-        elif key == "visibilityTimeoutSeconds":
-            suggest = "visibility_timeout_seconds"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in MnqQueueSqs. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        MnqQueueSqs.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        MnqQueueSqs.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 access_key: str,
-                 secret_key: str,
-                 content_based_deduplication: Optional[bool] = None,
-                 endpoint: Optional[str] = None,
-                 fifo_queue: Optional[bool] = None,
-                 receive_wait_time_seconds: Optional[int] = None,
-                 url: Optional[str] = None,
-                 visibility_timeout_seconds: Optional[int] = None):
-        pulumi.set(__self__, "access_key", access_key)
-        pulumi.set(__self__, "secret_key", secret_key)
-        if content_based_deduplication is not None:
-            pulumi.set(__self__, "content_based_deduplication", content_based_deduplication)
-        if endpoint is not None:
-            pulumi.set(__self__, "endpoint", endpoint)
-        if fifo_queue is not None:
-            pulumi.set(__self__, "fifo_queue", fifo_queue)
-        if receive_wait_time_seconds is not None:
-            pulumi.set(__self__, "receive_wait_time_seconds", receive_wait_time_seconds)
-        if url is not None:
-            pulumi.set(__self__, "url", url)
-        if visibility_timeout_seconds is not None:
-            pulumi.set(__self__, "visibility_timeout_seconds", visibility_timeout_seconds)
-
-    @property
-    @pulumi.getter(name="accessKey")
-    def access_key(self) -> str:
-        return pulumi.get(self, "access_key")
-
-    @property
-    @pulumi.getter(name="secretKey")
-    def secret_key(self) -> str:
-        return pulumi.get(self, "secret_key")
-
-    @property
-    @pulumi.getter(name="contentBasedDeduplication")
-    def content_based_deduplication(self) -> Optional[bool]:
-        return pulumi.get(self, "content_based_deduplication")
-
-    @property
-    @pulumi.getter
-    def endpoint(self) -> Optional[str]:
-        return pulumi.get(self, "endpoint")
-
-    @property
-    @pulumi.getter(name="fifoQueue")
-    def fifo_queue(self) -> Optional[bool]:
-        return pulumi.get(self, "fifo_queue")
-
-    @property
-    @pulumi.getter(name="receiveWaitTimeSeconds")
-    def receive_wait_time_seconds(self) -> Optional[int]:
-        return pulumi.get(self, "receive_wait_time_seconds")
-
-    @property
-    @pulumi.getter
-    def url(self) -> Optional[str]:
-        return pulumi.get(self, "url")
-
-    @property
-    @pulumi.getter(name="visibilityTimeoutSeconds")
-    def visibility_timeout_seconds(self) -> Optional[int]:
-        return pulumi.get(self, "visibility_timeout_seconds")
-
-
-@pulumi.output_type
 class MnqSqsCredentialsPermissions(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -5591,7 +5302,9 @@ class VpcGatewayNetworkIpamConfig(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "pushDefaultRoute":
+        if key == "ipamIpId":
+            suggest = "ipam_ip_id"
+        elif key == "pushDefaultRoute":
             suggest = "push_default_route"
 
         if suggest:
@@ -5606,18 +5319,30 @@ class VpcGatewayNetworkIpamConfig(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 ipam_ip_id: Optional[str] = None,
                  push_default_route: Optional[bool] = None):
         """
-        :param bool push_default_route: Defines whether the default route is enabled on that Gateway Network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        :param str ipam_ip_id: Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
+        :param bool push_default_route: Defines whether the default route is enabled on that Gateway Network.
         """
+        if ipam_ip_id is not None:
+            pulumi.set(__self__, "ipam_ip_id", ipam_ip_id)
         if push_default_route is not None:
             pulumi.set(__self__, "push_default_route", push_default_route)
+
+    @property
+    @pulumi.getter(name="ipamIpId")
+    def ipam_ip_id(self) -> Optional[str]:
+        """
+        Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
+        """
+        return pulumi.get(self, "ipam_ip_id")
 
     @property
     @pulumi.getter(name="pushDefaultRoute")
     def push_default_route(self) -> Optional[bool]:
         """
-        Defines whether the default route is enabled on that Gateway Network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        Defines whether the default route is enabled on that Gateway Network.
         """
         return pulumi.get(self, "push_default_route")
 
@@ -9783,8 +9508,15 @@ class GetTemDomainReputationResult(dict):
 @pulumi.output_type
 class GetVpcGatewayNetworkIpamConfigResult(dict):
     def __init__(__self__, *,
+                 ipam_ip_id: str,
                  push_default_route: bool):
+        pulumi.set(__self__, "ipam_ip_id", ipam_ip_id)
         pulumi.set(__self__, "push_default_route", push_default_route)
+
+    @property
+    @pulumi.getter(name="ipamIpId")
+    def ipam_ip_id(self) -> str:
+        return pulumi.get(self, "ipam_ip_id")
 
     @property
     @pulumi.getter(name="pushDefaultRoute")

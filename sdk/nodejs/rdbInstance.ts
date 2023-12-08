@@ -64,6 +64,10 @@ export class RdbInstance extends pulumi.CustomResource {
      */
     public readonly disableBackup!: pulumi.Output<boolean | undefined>;
     /**
+     * Disable the default public endpoint
+     */
+    public readonly disablePublicEndpoint!: pulumi.Output<boolean | undefined>;
+    /**
      * (Deprecated) The IP of the Database Instance.
      *
      * @deprecated Please use the private_network or the load_balancer attribute
@@ -178,6 +182,7 @@ export class RdbInstance extends pulumi.CustomResource {
             resourceInputs["backupScheduleRetention"] = state ? state.backupScheduleRetention : undefined;
             resourceInputs["certificate"] = state ? state.certificate : undefined;
             resourceInputs["disableBackup"] = state ? state.disableBackup : undefined;
+            resourceInputs["disablePublicEndpoint"] = state ? state.disablePublicEndpoint : undefined;
             resourceInputs["endpointIp"] = state ? state.endpointIp : undefined;
             resourceInputs["endpointPort"] = state ? state.endpointPort : undefined;
             resourceInputs["engine"] = state ? state.engine : undefined;
@@ -209,6 +214,7 @@ export class RdbInstance extends pulumi.CustomResource {
             resourceInputs["backupScheduleFrequency"] = args ? args.backupScheduleFrequency : undefined;
             resourceInputs["backupScheduleRetention"] = args ? args.backupScheduleRetention : undefined;
             resourceInputs["disableBackup"] = args ? args.disableBackup : undefined;
+            resourceInputs["disablePublicEndpoint"] = args ? args.disablePublicEndpoint : undefined;
             resourceInputs["engine"] = args ? args.engine : undefined;
             resourceInputs["initSettings"] = args ? args.initSettings : undefined;
             resourceInputs["isHaCluster"] = args ? args.isHaCluster : undefined;
@@ -261,6 +267,10 @@ export interface RdbInstanceState {
      * Disable automated backup for the database instance.
      */
     disableBackup?: pulumi.Input<boolean>;
+    /**
+     * Disable the default public endpoint
+     */
+    disablePublicEndpoint?: pulumi.Input<boolean>;
     /**
      * (Deprecated) The IP of the Database Instance.
      *
@@ -379,6 +389,10 @@ export interface RdbInstanceArgs {
      * Disable automated backup for the database instance.
      */
     disableBackup?: pulumi.Input<boolean>;
+    /**
+     * Disable the default public endpoint
+     */
+    disablePublicEndpoint?: pulumi.Input<boolean>;
     /**
      * Database Instance's engine version (e.g. `PostgreSQL-11`).
      *

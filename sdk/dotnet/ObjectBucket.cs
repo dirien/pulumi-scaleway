@@ -120,7 +120,7 @@ namespace ediri.Scaleway
     ///                 {
     ///                     new Scaleway.Inputs.ObjectBucketLifecycleRuleTransitionArgs
     ///                     {
-    ///                         Days = 0,
+    ///                         Days = 1,
     ///                         StorageClass = "GLACIER",
     ///                     },
     ///                 },
@@ -219,6 +219,9 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// A list of tags (key / value) for the bucket.
+        /// 
+        /// * &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+        /// Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableDictionary<string, string>?> Tags { get; private set; } = null!;
@@ -344,6 +347,9 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// A list of tags (key / value) for the bucket.
+        /// 
+        /// * &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+        /// Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         /// </summary>
         public InputMap<string> Tags
         {
@@ -445,6 +451,9 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// A list of tags (key / value) for the bucket.
+        /// 
+        /// * &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+        /// Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         /// </summary>
         public InputMap<string> Tags
         {

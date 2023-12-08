@@ -49,6 +49,7 @@ export interface GetRdbInstanceResult {
     readonly backupScheduleRetention: number;
     readonly certificate: string;
     readonly disableBackup: boolean;
+    readonly disablePublicEndpoint: boolean;
     readonly endpointIp: string;
     readonly endpointPort: number;
     readonly engine: string;

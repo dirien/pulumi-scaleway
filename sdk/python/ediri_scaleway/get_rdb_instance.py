@@ -22,7 +22,7 @@ class GetRdbInstanceResult:
     """
     A collection of values returned by getRdbInstance.
     """
-    def __init__(__self__, backup_same_region=None, backup_schedule_frequency=None, backup_schedule_retention=None, certificate=None, disable_backup=None, endpoint_ip=None, endpoint_port=None, engine=None, id=None, init_settings=None, instance_id=None, is_ha_cluster=None, load_balancers=None, name=None, node_type=None, organization_id=None, password=None, private_networks=None, project_id=None, read_replicas=None, region=None, settings=None, tags=None, user_name=None, volume_size_in_gb=None, volume_type=None):
+    def __init__(__self__, backup_same_region=None, backup_schedule_frequency=None, backup_schedule_retention=None, certificate=None, disable_backup=None, disable_public_endpoint=None, endpoint_ip=None, endpoint_port=None, engine=None, id=None, init_settings=None, instance_id=None, is_ha_cluster=None, load_balancers=None, name=None, node_type=None, organization_id=None, password=None, private_networks=None, project_id=None, read_replicas=None, region=None, settings=None, tags=None, user_name=None, volume_size_in_gb=None, volume_type=None):
         if backup_same_region and not isinstance(backup_same_region, bool):
             raise TypeError("Expected argument 'backup_same_region' to be a bool")
         pulumi.set(__self__, "backup_same_region", backup_same_region)
@@ -38,6 +38,9 @@ class GetRdbInstanceResult:
         if disable_backup and not isinstance(disable_backup, bool):
             raise TypeError("Expected argument 'disable_backup' to be a bool")
         pulumi.set(__self__, "disable_backup", disable_backup)
+        if disable_public_endpoint and not isinstance(disable_public_endpoint, bool):
+            raise TypeError("Expected argument 'disable_public_endpoint' to be a bool")
+        pulumi.set(__self__, "disable_public_endpoint", disable_public_endpoint)
         if endpoint_ip and not isinstance(endpoint_ip, str):
             raise TypeError("Expected argument 'endpoint_ip' to be a str")
         pulumi.set(__self__, "endpoint_ip", endpoint_ip)
@@ -126,6 +129,11 @@ class GetRdbInstanceResult:
     @pulumi.getter(name="disableBackup")
     def disable_backup(self) -> bool:
         return pulumi.get(self, "disable_backup")
+
+    @property
+    @pulumi.getter(name="disablePublicEndpoint")
+    def disable_public_endpoint(self) -> bool:
+        return pulumi.get(self, "disable_public_endpoint")
 
     @property
     @pulumi.getter(name="endpointIp")
@@ -247,6 +255,7 @@ class AwaitableGetRdbInstanceResult(GetRdbInstanceResult):
             backup_schedule_retention=self.backup_schedule_retention,
             certificate=self.certificate,
             disable_backup=self.disable_backup,
+            disable_public_endpoint=self.disable_public_endpoint,
             endpoint_ip=self.endpoint_ip,
             endpoint_port=self.endpoint_port,
             engine=self.engine,
@@ -297,6 +306,7 @@ def get_rdb_instance(instance_id: Optional[str] = None,
         backup_schedule_retention=pulumi.get(__ret__, 'backup_schedule_retention'),
         certificate=pulumi.get(__ret__, 'certificate'),
         disable_backup=pulumi.get(__ret__, 'disable_backup'),
+        disable_public_endpoint=pulumi.get(__ret__, 'disable_public_endpoint'),
         endpoint_ip=pulumi.get(__ret__, 'endpoint_ip'),
         endpoint_port=pulumi.get(__ret__, 'endpoint_port'),
         engine=pulumi.get(__ret__, 'engine'),

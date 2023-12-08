@@ -13,7 +13,7 @@ import (
 )
 
 // Creates and manages Scaleway DocumentDB database.
-// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db).
 //
 // ## Examples
 //

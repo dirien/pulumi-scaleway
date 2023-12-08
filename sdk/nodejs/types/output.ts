@@ -1617,6 +1617,7 @@ export interface GetTemDomainReputation {
 }
 
 export interface GetVpcGatewayNetworkIpamConfig {
+    ipamIpId: string;
     pushDefaultRoute: boolean;
 }
 
@@ -2421,60 +2422,6 @@ export interface LbPrivateNetwork {
     zone: string;
 }
 
-export interface MnqCredentialNatsCredentials {
-    /**
-     * Raw content of the NATS credentials file.
-     */
-    content: string;
-}
-
-export interface MnqCredentialSqsSnsCredentials {
-    /**
-     * The ID of the key.
-     */
-    accessKey: string;
-    /**
-     * List of permissions associated to this Credential. Only one of permissions may be set.
-     */
-    permissions?: outputs.MnqCredentialSqsSnsCredentialsPermissions;
-    /**
-     * The Secret value of the key.
-     */
-    secretKey: string;
-}
-
-export interface MnqCredentialSqsSnsCredentialsPermissions {
-    /**
-     * . Defines if user can manage the associated resource(s).
-     */
-    canManage?: boolean;
-    /**
-     * . Defines if user can publish messages to the service.
-     */
-    canPublish?: boolean;
-    /**
-     * . Defines if user can receive messages from the service.
-     */
-    canReceive?: boolean;
-}
-
-export interface MnqQueueNats {
-    credentials: string;
-    endpoint?: string;
-    retentionPolicy?: string;
-}
-
-export interface MnqQueueSqs {
-    accessKey: string;
-    contentBasedDeduplication?: boolean;
-    endpoint?: string;
-    fifoQueue?: boolean;
-    receiveWaitTimeSeconds?: number;
-    secretKey: string;
-    url: string;
-    visibilityTimeoutSeconds?: number;
-}
-
 export interface MnqSqsCredentialsPermissions {
     /**
      * . Defines if user can manage the associated resource(s).
@@ -2837,7 +2784,11 @@ export interface TemDomainReputation {
 
 export interface VpcGatewayNetworkIpamConfig {
     /**
-     * Defines whether the default route is enabled on that Gateway Network. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+     * Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
+     */
+    ipamIpId: string;
+    /**
+     * Defines whether the default route is enabled on that Gateway Network.
      */
     pushDefaultRoute?: boolean;
 }

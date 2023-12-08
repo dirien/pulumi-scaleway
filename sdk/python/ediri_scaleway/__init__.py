@@ -9,6 +9,8 @@ from .account_project import *
 from .account_ssh_key import *
 from .apple_silicon_server import *
 from .baremetal_server import *
+from .block_snapshot import *
+from .block_volume import *
 from .cockpit import *
 from .cockpit_grafana_user import *
 from .cockpit_token import *
@@ -43,6 +45,8 @@ from .get_baremetal_os import *
 from .get_baremetal_server import *
 from .get_billing_consumptions import *
 from .get_billing_invoices import *
+from .get_block_snapshot import *
+from .get_block_volume import *
 from .get_cockpit import *
 from .get_cockpit_plan import *
 from .get_container import *
@@ -135,6 +139,7 @@ from .iot_hub import *
 from .iot_network import *
 from .iot_route import *
 from .ipam_ip import *
+from .job_definition import *
 from .k8s_cluster import *
 from .k8s_pool import *
 from .lb import *
@@ -144,11 +149,8 @@ from .lb_certificate import *
 from .lb_frontend import *
 from .lb_ip import *
 from .lb_route import *
-from .mnq_credential import *
-from .mnq_namespace import *
 from .mnq_nats_account import *
 from .mnq_nats_credentials import *
-from .mnq_queue import *
 from .mnq_sqs import *
 from .mnq_sqs_credentials import *
 from .mnq_sqs_queue import *
@@ -224,6 +226,22 @@ _utilities.register(
   "fqn": "ediri_scaleway",
   "classes": {
    "scaleway:index/baremetalServer:BaremetalServer": "BaremetalServer"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/blockSnapshot",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/blockSnapshot:BlockSnapshot": "BlockSnapshot"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/blockVolume",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/blockVolume:BlockVolume": "BlockVolume"
   }
  },
  {
@@ -612,6 +630,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/jobDefinition",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/jobDefinition:JobDefinition": "JobDefinition"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/k8sCluster",
   "fqn": "ediri_scaleway",
   "classes": {
@@ -684,22 +710,6 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
-  "mod": "index/mnqCredential",
-  "fqn": "ediri_scaleway",
-  "classes": {
-   "scaleway:index/mnqCredential:MnqCredential": "MnqCredential"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/mnqNamespace",
-  "fqn": "ediri_scaleway",
-  "classes": {
-   "scaleway:index/mnqNamespace:MnqNamespace": "MnqNamespace"
-  }
- },
- {
-  "pkg": "scaleway",
   "mod": "index/mnqNatsAccount",
   "fqn": "ediri_scaleway",
   "classes": {
@@ -712,14 +722,6 @@ _utilities.register(
   "fqn": "ediri_scaleway",
   "classes": {
    "scaleway:index/mnqNatsCredentials:MnqNatsCredentials": "MnqNatsCredentials"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/mnqQueue",
-  "fqn": "ediri_scaleway",
-  "classes": {
-   "scaleway:index/mnqQueue:MnqQueue": "MnqQueue"
   }
  },
  {
