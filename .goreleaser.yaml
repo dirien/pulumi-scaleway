@@ -2,9 +2,9 @@ archives:
   - id: archive
     name_template: '{{ .Binary }}-{{ .Tag }}-{{ .Os }}-{{ .Arch }}'
 
-#before:
-#  hooks:
-#    - make tfgen
+before:
+  hooks:
+    - make tfgen
 builds:
   - binary: pulumi-resource-scaleway
     dir: provider
