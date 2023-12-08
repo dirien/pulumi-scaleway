@@ -43,7 +43,7 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.NewObjectBucketPolicy(ctx, "policy", &scaleway.ObjectBucketPolicyArgs{
-//				Bucket: bucket.Name,
+//				Bucket: bucket.ID(),
 //				Policy: pulumi.All(main.ID(), bucket.Name, bucket.Name).ApplyT(func(_args []interface{}) (string, error) {
 //					id := _args[0].(string)
 //					bucketName := _args[1].(string)

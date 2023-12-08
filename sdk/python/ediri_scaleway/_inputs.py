@@ -66,11 +66,6 @@ __all__ = [
     'LbFrontendAclActionRedirectArgs',
     'LbFrontendAclMatchArgs',
     'LbPrivateNetworkArgs',
-    'MnqCredentialNatsCredentialsArgs',
-    'MnqCredentialSqsSnsCredentialsArgs',
-    'MnqCredentialSqsSnsCredentialsPermissionsArgs',
-    'MnqQueueNatsArgs',
-    'MnqQueueSqsArgs',
     'MnqSqsCredentialsPermissionsArgs',
     'ObjectBucketAclAccessControlPolicyArgs',
     'ObjectBucketAclAccessControlPolicyGrantArgs',
@@ -4108,278 +4103,6 @@ class LbPrivateNetworkArgs:
 
 
 @pulumi.input_type
-class MnqCredentialNatsCredentialsArgs:
-    def __init__(__self__, *,
-                 content: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] content: Raw content of the NATS credentials file.
-        """
-        if content is not None:
-            pulumi.set(__self__, "content", content)
-
-    @property
-    @pulumi.getter
-    def content(self) -> Optional[pulumi.Input[str]]:
-        """
-        Raw content of the NATS credentials file.
-        """
-        return pulumi.get(self, "content")
-
-    @content.setter
-    def content(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "content", value)
-
-
-@pulumi.input_type
-class MnqCredentialSqsSnsCredentialsArgs:
-    def __init__(__self__, *,
-                 access_key: Optional[pulumi.Input[str]] = None,
-                 permissions: Optional[pulumi.Input['MnqCredentialSqsSnsCredentialsPermissionsArgs']] = None,
-                 secret_key: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] access_key: The ID of the key.
-        :param pulumi.Input['MnqCredentialSqsSnsCredentialsPermissionsArgs'] permissions: List of permissions associated to this Credential. Only one of permissions may be set.
-        :param pulumi.Input[str] secret_key: The Secret value of the key.
-        """
-        if access_key is not None:
-            pulumi.set(__self__, "access_key", access_key)
-        if permissions is not None:
-            pulumi.set(__self__, "permissions", permissions)
-        if secret_key is not None:
-            pulumi.set(__self__, "secret_key", secret_key)
-
-    @property
-    @pulumi.getter(name="accessKey")
-    def access_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ID of the key.
-        """
-        return pulumi.get(self, "access_key")
-
-    @access_key.setter
-    def access_key(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "access_key", value)
-
-    @property
-    @pulumi.getter
-    def permissions(self) -> Optional[pulumi.Input['MnqCredentialSqsSnsCredentialsPermissionsArgs']]:
-        """
-        List of permissions associated to this Credential. Only one of permissions may be set.
-        """
-        return pulumi.get(self, "permissions")
-
-    @permissions.setter
-    def permissions(self, value: Optional[pulumi.Input['MnqCredentialSqsSnsCredentialsPermissionsArgs']]):
-        pulumi.set(self, "permissions", value)
-
-    @property
-    @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[pulumi.Input[str]]:
-        """
-        The Secret value of the key.
-        """
-        return pulumi.get(self, "secret_key")
-
-    @secret_key.setter
-    def secret_key(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "secret_key", value)
-
-
-@pulumi.input_type
-class MnqCredentialSqsSnsCredentialsPermissionsArgs:
-    def __init__(__self__, *,
-                 can_manage: Optional[pulumi.Input[bool]] = None,
-                 can_publish: Optional[pulumi.Input[bool]] = None,
-                 can_receive: Optional[pulumi.Input[bool]] = None):
-        """
-        :param pulumi.Input[bool] can_manage: . Defines if user can manage the associated resource(s).
-        :param pulumi.Input[bool] can_publish: . Defines if user can publish messages to the service.
-        :param pulumi.Input[bool] can_receive: . Defines if user can receive messages from the service.
-        """
-        if can_manage is not None:
-            pulumi.set(__self__, "can_manage", can_manage)
-        if can_publish is not None:
-            pulumi.set(__self__, "can_publish", can_publish)
-        if can_receive is not None:
-            pulumi.set(__self__, "can_receive", can_receive)
-
-    @property
-    @pulumi.getter(name="canManage")
-    def can_manage(self) -> Optional[pulumi.Input[bool]]:
-        """
-        . Defines if user can manage the associated resource(s).
-        """
-        return pulumi.get(self, "can_manage")
-
-    @can_manage.setter
-    def can_manage(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "can_manage", value)
-
-    @property
-    @pulumi.getter(name="canPublish")
-    def can_publish(self) -> Optional[pulumi.Input[bool]]:
-        """
-        . Defines if user can publish messages to the service.
-        """
-        return pulumi.get(self, "can_publish")
-
-    @can_publish.setter
-    def can_publish(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "can_publish", value)
-
-    @property
-    @pulumi.getter(name="canReceive")
-    def can_receive(self) -> Optional[pulumi.Input[bool]]:
-        """
-        . Defines if user can receive messages from the service.
-        """
-        return pulumi.get(self, "can_receive")
-
-    @can_receive.setter
-    def can_receive(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "can_receive", value)
-
-
-@pulumi.input_type
-class MnqQueueNatsArgs:
-    def __init__(__self__, *,
-                 credentials: pulumi.Input[str],
-                 endpoint: Optional[pulumi.Input[str]] = None,
-                 retention_policy: Optional[pulumi.Input[str]] = None):
-        pulumi.set(__self__, "credentials", credentials)
-        if endpoint is not None:
-            pulumi.set(__self__, "endpoint", endpoint)
-        if retention_policy is not None:
-            pulumi.set(__self__, "retention_policy", retention_policy)
-
-    @property
-    @pulumi.getter
-    def credentials(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "credentials")
-
-    @credentials.setter
-    def credentials(self, value: pulumi.Input[str]):
-        pulumi.set(self, "credentials", value)
-
-    @property
-    @pulumi.getter
-    def endpoint(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "endpoint")
-
-    @endpoint.setter
-    def endpoint(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "endpoint", value)
-
-    @property
-    @pulumi.getter(name="retentionPolicy")
-    def retention_policy(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "retention_policy")
-
-    @retention_policy.setter
-    def retention_policy(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "retention_policy", value)
-
-
-@pulumi.input_type
-class MnqQueueSqsArgs:
-    def __init__(__self__, *,
-                 access_key: pulumi.Input[str],
-                 secret_key: pulumi.Input[str],
-                 content_based_deduplication: Optional[pulumi.Input[bool]] = None,
-                 endpoint: Optional[pulumi.Input[str]] = None,
-                 fifo_queue: Optional[pulumi.Input[bool]] = None,
-                 receive_wait_time_seconds: Optional[pulumi.Input[int]] = None,
-                 url: Optional[pulumi.Input[str]] = None,
-                 visibility_timeout_seconds: Optional[pulumi.Input[int]] = None):
-        pulumi.set(__self__, "access_key", access_key)
-        pulumi.set(__self__, "secret_key", secret_key)
-        if content_based_deduplication is not None:
-            pulumi.set(__self__, "content_based_deduplication", content_based_deduplication)
-        if endpoint is not None:
-            pulumi.set(__self__, "endpoint", endpoint)
-        if fifo_queue is not None:
-            pulumi.set(__self__, "fifo_queue", fifo_queue)
-        if receive_wait_time_seconds is not None:
-            pulumi.set(__self__, "receive_wait_time_seconds", receive_wait_time_seconds)
-        if url is not None:
-            pulumi.set(__self__, "url", url)
-        if visibility_timeout_seconds is not None:
-            pulumi.set(__self__, "visibility_timeout_seconds", visibility_timeout_seconds)
-
-    @property
-    @pulumi.getter(name="accessKey")
-    def access_key(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "access_key")
-
-    @access_key.setter
-    def access_key(self, value: pulumi.Input[str]):
-        pulumi.set(self, "access_key", value)
-
-    @property
-    @pulumi.getter(name="secretKey")
-    def secret_key(self) -> pulumi.Input[str]:
-        return pulumi.get(self, "secret_key")
-
-    @secret_key.setter
-    def secret_key(self, value: pulumi.Input[str]):
-        pulumi.set(self, "secret_key", value)
-
-    @property
-    @pulumi.getter(name="contentBasedDeduplication")
-    def content_based_deduplication(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "content_based_deduplication")
-
-    @content_based_deduplication.setter
-    def content_based_deduplication(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "content_based_deduplication", value)
-
-    @property
-    @pulumi.getter
-    def endpoint(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "endpoint")
-
-    @endpoint.setter
-    def endpoint(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "endpoint", value)
-
-    @property
-    @pulumi.getter(name="fifoQueue")
-    def fifo_queue(self) -> Optional[pulumi.Input[bool]]:
-        return pulumi.get(self, "fifo_queue")
-
-    @fifo_queue.setter
-    def fifo_queue(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "fifo_queue", value)
-
-    @property
-    @pulumi.getter(name="receiveWaitTimeSeconds")
-    def receive_wait_time_seconds(self) -> Optional[pulumi.Input[int]]:
-        return pulumi.get(self, "receive_wait_time_seconds")
-
-    @receive_wait_time_seconds.setter
-    def receive_wait_time_seconds(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "receive_wait_time_seconds", value)
-
-    @property
-    @pulumi.getter
-    def url(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "url")
-
-    @url.setter
-    def url(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "url", value)
-
-    @property
-    @pulumi.getter(name="visibilityTimeoutSeconds")
-    def visibility_timeout_seconds(self) -> Optional[pulumi.Input[int]]:
-        return pulumi.get(self, "visibility_timeout_seconds")
-
-    @visibility_timeout_seconds.setter
-    def visibility_timeout_seconds(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "visibility_timeout_seconds", value)
-
-
-@pulumi.input_type
 class MnqSqsCredentialsPermissionsArgs:
     def __init__(__self__, *,
                  can_manage: Optional[pulumi.Input[bool]] = None,
@@ -5769,18 +5492,34 @@ class TemDomainReputationArgs:
 @pulumi.input_type
 class VpcGatewayNetworkIpamConfigArgs:
     def __init__(__self__, *,
+                 ipam_ip_id: Optional[pulumi.Input[str]] = None,
                  push_default_route: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[bool] push_default_route: Defines whether the default route is enabled on that Gateway Network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        :param pulumi.Input[str] ipam_ip_id: Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
+        :param pulumi.Input[bool] push_default_route: Defines whether the default route is enabled on that Gateway Network.
         """
+        if ipam_ip_id is not None:
+            pulumi.set(__self__, "ipam_ip_id", ipam_ip_id)
         if push_default_route is not None:
             pulumi.set(__self__, "push_default_route", push_default_route)
+
+    @property
+    @pulumi.getter(name="ipamIpId")
+    def ipam_ip_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
+        """
+        return pulumi.get(self, "ipam_ip_id")
+
+    @ipam_ip_id.setter
+    def ipam_ip_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipam_ip_id", value)
 
     @property
     @pulumi.getter(name="pushDefaultRoute")
     def push_default_route(self) -> Optional[pulumi.Input[bool]]:
         """
-        Defines whether the default route is enabled on that Gateway Network. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        Defines whether the default route is enabled on that Gateway Network.
         """
         return pulumi.get(self, "push_default_route")
 

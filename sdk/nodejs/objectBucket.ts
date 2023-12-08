@@ -75,7 +75,7 @@ import * as utilities from "./utilities";
  *                 tag1: "value1",
  *             },
  *             transitions: [{
- *                 days: 0,
+ *                 days: 1,
  *                 storageClass: "GLACIER",
  *             }],
  *         },
@@ -177,6 +177,9 @@ export class ObjectBucket extends pulumi.CustomResource {
     public readonly region!: pulumi.Output<string>;
     /**
      * A list of tags (key / value) for the bucket.
+     *
+     * * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+     * Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
      */
     public readonly tags!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -280,6 +283,9 @@ export interface ObjectBucketState {
     region?: pulumi.Input<string>;
     /**
      * A list of tags (key / value) for the bucket.
+     *
+     * * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+     * Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -331,6 +337,9 @@ export interface ObjectBucketArgs {
     region?: pulumi.Input<string>;
     /**
      * A list of tags (key / value) for the bucket.
+     *
+     * * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+     * Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**

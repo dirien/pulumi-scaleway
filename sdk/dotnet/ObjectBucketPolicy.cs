@@ -34,7 +34,7 @@ namespace ediri.Scaleway
     /// 
     ///     var policy = new Scaleway.ObjectBucketPolicy("policy", new()
     ///     {
-    ///         Bucket = bucket.Name,
+    ///         Bucket = bucket.Id,
     ///         Policy = Output.Tuple(main.Id, bucket.Name, bucket.Name).Apply(values =&gt;
     ///         {
     ///             var id = values.Item1;

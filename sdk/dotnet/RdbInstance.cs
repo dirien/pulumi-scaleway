@@ -53,6 +53,12 @@ namespace ediri.Scaleway
         public Output<bool?> DisableBackup { get; private set; } = null!;
 
         /// <summary>
+        /// Disable the default public endpoint
+        /// </summary>
+        [Output("disablePublicEndpoint")]
+        public Output<bool?> DisablePublicEndpoint { get; private set; } = null!;
+
+        /// <summary>
         /// (Deprecated) The IP of the Database Instance.
         /// </summary>
         [Output("endpointIp")]
@@ -260,6 +266,12 @@ namespace ediri.Scaleway
         public Input<bool>? DisableBackup { get; set; }
 
         /// <summary>
+        /// Disable the default public endpoint
+        /// </summary>
+        [Input("disablePublicEndpoint")]
+        public Input<bool>? DisablePublicEndpoint { get; set; }
+
+        /// <summary>
         /// Database Instance's engine version (e.g. `PostgreSQL-11`).
         /// 
         /// &gt; **Important:** Updates to `engine` will recreate the Database Instance.
@@ -426,6 +438,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("disableBackup")]
         public Input<bool>? DisableBackup { get; set; }
+
+        /// <summary>
+        /// Disable the default public endpoint
+        /// </summary>
+        [Input("disablePublicEndpoint")]
+        public Input<bool>? DisablePublicEndpoint { get; set; }
 
         /// <summary>
         /// (Deprecated) The IP of the Database Instance.

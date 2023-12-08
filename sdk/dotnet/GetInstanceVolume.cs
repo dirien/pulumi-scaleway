@@ -131,7 +131,6 @@ namespace ediri.Scaleway
     public sealed class GetInstanceVolumeResult
     {
         public readonly string FromSnapshotId;
-        public readonly string FromVolumeId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -152,8 +151,6 @@ namespace ediri.Scaleway
         [OutputConstructor]
         private GetInstanceVolumeResult(
             string fromSnapshotId,
-
-            string fromVolumeId,
 
             string id,
 
@@ -176,7 +173,6 @@ namespace ediri.Scaleway
             string? zone)
         {
             FromSnapshotId = fromSnapshotId;
-            FromVolumeId = fromVolumeId;
             Id = id;
             Name = name;
             OrganizationId = organizationId;

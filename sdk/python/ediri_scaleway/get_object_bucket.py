@@ -174,7 +174,7 @@ def get_object_bucket(name: Optional[str] = None,
     main = scaleway.ObjectBucket("main", tags={
         "foo": "bar",
     })
-    selected = scaleway.get_object_bucket(name="bucket.test.com")
+    selected = scaleway.get_object_bucket_output(name=main.id)
     ```
     ### Fetching the bucket from a specific project
 
@@ -187,9 +187,8 @@ def get_object_bucket(name: Optional[str] = None,
     ```
 
 
-    :param str name: The bucket name.
     :param str project_id: `project_id`) The ID of the project the bucket is associated with.
-    :param str region: `region`) The region in which the Object Storage exists.
+    :param str region: `region`) The region in which the bucket exists.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -233,7 +232,7 @@ def get_object_bucket_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     main = scaleway.ObjectBucket("main", tags={
         "foo": "bar",
     })
-    selected = scaleway.get_object_bucket(name="bucket.test.com")
+    selected = scaleway.get_object_bucket_output(name=main.id)
     ```
     ### Fetching the bucket from a specific project
 
@@ -246,8 +245,7 @@ def get_object_bucket_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     ```
 
 
-    :param str name: The bucket name.
     :param str project_id: `project_id`) The ID of the project the bucket is associated with.
-    :param str region: `region`) The region in which the Object Storage exists.
+    :param str region: `region`) The region in which the bucket exists.
     """
     ...

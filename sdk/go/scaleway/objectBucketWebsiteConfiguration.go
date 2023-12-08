@@ -93,7 +93,7 @@ import (
 //			}
 //			json0 := string(tmpJSON0)
 //			_, err = scaleway.NewObjectBucketPolicy(ctx, "mainObjectBucketPolicy", &scaleway.ObjectBucketPolicyArgs{
-//				Bucket: mainObjectBucket.Name,
+//				Bucket: mainObjectBucket.ID(),
 //				Policy: pulumi.String(json0),
 //			})
 //			if err != nil {

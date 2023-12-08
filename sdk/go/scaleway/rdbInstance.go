@@ -34,6 +34,8 @@ type RdbInstance struct {
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
 	// Disable automated backup for the database instance.
 	DisableBackup pulumi.BoolPtrOutput `pulumi:"disableBackup"`
+	// Disable the default public endpoint
+	DisablePublicEndpoint pulumi.BoolPtrOutput `pulumi:"disablePublicEndpoint"`
 	// (Deprecated) The IP of the Database Instance.
 	//
 	// Deprecated: Please use the private_network or the load_balancer attribute
@@ -147,6 +149,8 @@ type rdbInstanceState struct {
 	Certificate *string `pulumi:"certificate"`
 	// Disable automated backup for the database instance.
 	DisableBackup *bool `pulumi:"disableBackup"`
+	// Disable the default public endpoint
+	DisablePublicEndpoint *bool `pulumi:"disablePublicEndpoint"`
 	// (Deprecated) The IP of the Database Instance.
 	//
 	// Deprecated: Please use the private_network or the load_balancer attribute
@@ -218,6 +222,8 @@ type RdbInstanceState struct {
 	Certificate pulumi.StringPtrInput
 	// Disable automated backup for the database instance.
 	DisableBackup pulumi.BoolPtrInput
+	// Disable the default public endpoint
+	DisablePublicEndpoint pulumi.BoolPtrInput
 	// (Deprecated) The IP of the Database Instance.
 	//
 	// Deprecated: Please use the private_network or the load_balancer attribute
@@ -291,6 +297,8 @@ type rdbInstanceArgs struct {
 	BackupScheduleRetention *int `pulumi:"backupScheduleRetention"`
 	// Disable automated backup for the database instance.
 	DisableBackup *bool `pulumi:"disableBackup"`
+	// Disable the default public endpoint
+	DisablePublicEndpoint *bool `pulumi:"disablePublicEndpoint"`
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	//
 	// > **Important:** Updates to `engine` will recreate the Database Instance.
@@ -349,6 +357,8 @@ type RdbInstanceArgs struct {
 	BackupScheduleRetention pulumi.IntPtrInput
 	// Disable automated backup for the database instance.
 	DisableBackup pulumi.BoolPtrInput
+	// Disable the default public endpoint
+	DisablePublicEndpoint pulumi.BoolPtrInput
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	//
 	// > **Important:** Updates to `engine` will recreate the Database Instance.
@@ -507,6 +517,11 @@ func (o RdbInstanceOutput) Certificate() pulumi.StringOutput {
 // Disable automated backup for the database instance.
 func (o RdbInstanceOutput) DisableBackup() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.BoolPtrOutput { return v.DisableBackup }).(pulumi.BoolPtrOutput)
+}
+
+// Disable the default public endpoint
+func (o RdbInstanceOutput) DisablePublicEndpoint() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RdbInstance) pulumi.BoolPtrOutput { return v.DisablePublicEndpoint }).(pulumi.BoolPtrOutput)
 }
 
 // (Deprecated) The IP of the Database Instance.

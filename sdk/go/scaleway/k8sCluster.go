@@ -30,9 +30,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			hedy, err := scaleway.NewVpcPrivateNetwork(ctx, "hedy", nil)
+//			if err != nil {
+//				return err
+//			}
 //			jack, err := scaleway.NewK8sCluster(ctx, "jack", &scaleway.K8sClusterArgs{
 //				Version:                   pulumi.String("1.24.3"),
 //				Cni:                       pulumi.String("cilium"),
+//				PrivateNetworkId:          hedy.ID(),
 //				DeleteAdditionalResources: pulumi.Bool(false),
 //			})
 //			if err != nil {
@@ -106,6 +111,10 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			hedy, err := scaleway.NewVpcPrivateNetwork(ctx, "hedy", nil)
+//			if err != nil {
+//				return err
+//			}
 //			johnK8sCluster, err := scaleway.NewK8sCluster(ctx, "johnK8sCluster", &scaleway.K8sClusterArgs{
 //				Description: pulumi.String("my awesome cluster"),
 //				Version:     pulumi.String("1.24.3"),
@@ -114,6 +123,7 @@ import (
 //					pulumi.String("i'm an awesome tag"),
 //					pulumi.String("yay"),
 //				},
+//				PrivateNetworkId:          hedy.ID(),
 //				DeleteAdditionalResources: pulumi.Bool(false),
 //				AutoscalerConfig: &scaleway.K8sClusterAutoscalerConfigArgs{
 //					DisableScaleDown:             pulumi.Bool(false),
@@ -191,10 +201,10 @@ type K8sCluster struct {
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// The ID of the private network of the cluster.
 	//
-	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-	// Any subsequent change after this field got set will prompt for cluster recreation.
+	// > **Important:** Changes to this field will recreate a new resource.
 	//
-	// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+	// > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
+	// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
 	PrivateNetworkId pulumi.StringPtrOutput `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -298,10 +308,10 @@ type k8sClusterState struct {
 	OrganizationId *string `pulumi:"organizationId"`
 	// The ID of the private network of the cluster.
 	//
-	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-	// Any subsequent change after this field got set will prompt for cluster recreation.
+	// > **Important:** Changes to this field will recreate a new resource.
 	//
-	// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+	// > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
+	// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -363,10 +373,10 @@ type K8sClusterState struct {
 	OrganizationId pulumi.StringPtrInput
 	// The ID of the private network of the cluster.
 	//
-	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-	// Any subsequent change after this field got set will prompt for cluster recreation.
+	// > **Important:** Changes to this field will recreate a new resource.
 	//
-	// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+	// > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
+	// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
 	PrivateNetworkId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -424,10 +434,10 @@ type k8sClusterArgs struct {
 	OpenIdConnectConfig *K8sClusterOpenIdConnectConfig `pulumi:"openIdConnectConfig"`
 	// The ID of the private network of the cluster.
 	//
-	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-	// Any subsequent change after this field got set will prompt for cluster recreation.
+	// > **Important:** Changes to this field will recreate a new resource.
 	//
-	// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+	// > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
+	// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -474,10 +484,10 @@ type K8sClusterArgs struct {
 	OpenIdConnectConfig K8sClusterOpenIdConnectConfigPtrInput
 	// The ID of the private network of the cluster.
 	//
-	// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-	// Any subsequent change after this field got set will prompt for cluster recreation.
+	// > **Important:** Changes to this field will recreate a new resource.
 	//
-	// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+	// > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
+	// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
 	PrivateNetworkId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -659,10 +669,10 @@ func (o K8sClusterOutput) OrganizationId() pulumi.StringOutput {
 
 // The ID of the private network of the cluster.
 //
-// > **Important:** This field can be set at cluster creation or later to migrate to a Private Network.
-// Any subsequent change after this field got set will prompt for cluster recreation.
+// > **Important:** Changes to this field will recreate a new resource.
 //
-// > Also, you should only use **regional** Private Networks with Kapsule clusters, otherwise you will get an error saying that the Private Network can't be found.
+// > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
+// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
 func (o K8sClusterOutput) PrivateNetworkId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *K8sCluster) pulumi.StringPtrOutput { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
 }

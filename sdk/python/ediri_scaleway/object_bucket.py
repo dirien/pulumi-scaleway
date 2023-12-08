@@ -40,6 +40,9 @@ class ObjectBucketArgs:
                Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
+               
+               * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+               Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         :param pulumi.Input['ObjectBucketVersioningArgs'] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
         if acl is not None:
@@ -173,6 +176,9 @@ class ObjectBucketArgs:
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A list of tags (key / value) for the bucket.
+
+        * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+        Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         """
         return pulumi.get(self, "tags")
 
@@ -224,6 +230,9 @@ class _ObjectBucketState:
                Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
+               
+               * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+               Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         :param pulumi.Input['ObjectBucketVersioningArgs'] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
         if acl is not None:
@@ -385,6 +394,9 @@ class _ObjectBucketState:
     def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A list of tags (key / value) for the bucket.
+
+        * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+        Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         """
         return pulumi.get(self, "tags")
 
@@ -490,7 +502,7 @@ class ObjectBucket(pulumi.CustomResource):
                         "tag1": "value1",
                     },
                     transitions=[scaleway.ObjectBucketLifecycleRuleTransitionArgs(
-                        days=0,
+                        days=1,
                         storage_class="GLACIER",
                     )],
                 ),
@@ -530,6 +542,9 @@ class ObjectBucket(pulumi.CustomResource):
                Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
+               
+               * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+               Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         :param pulumi.Input[pulumi.InputType['ObjectBucketVersioningArgs']] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
         ...
@@ -607,7 +622,7 @@ class ObjectBucket(pulumi.CustomResource):
                         "tag1": "value1",
                     },
                     transitions=[scaleway.ObjectBucketLifecycleRuleTransitionArgs(
-                        days=0,
+                        days=1,
                         storage_class="GLACIER",
                     )],
                 ),
@@ -722,6 +737,9 @@ class ObjectBucket(pulumi.CustomResource):
                Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: A list of tags (key / value) for the bucket.
+               
+               * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+               Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         :param pulumi.Input[pulumi.InputType['ObjectBucketVersioningArgs']] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -833,6 +851,9 @@ class ObjectBucket(pulumi.CustomResource):
     def tags(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         A list of tags (key / value) for the bucket.
+
+        * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
+        Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         """
         return pulumi.get(self, "tags")
 

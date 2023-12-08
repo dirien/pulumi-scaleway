@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewObjectBucket(ctx, "main", &scaleway.ObjectBucketArgs{
+//			main, err := scaleway.NewObjectBucket(ctx, "main", &scaleway.ObjectBucketArgs{
 //				Tags: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
 //				},
@@ -36,12 +36,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.LookupObjectBucket(ctx, &scaleway.LookupObjectBucketArgs{
-//				Name: pulumi.StringRef("bucket.test.com"),
+//			_ = scaleway.LookupObjectBucketOutput(ctx, scaleway.GetObjectBucketOutputArgs{
+//				Name: main.ID(),
 //			}, nil)
-//			if err != nil {
-//				return err
-//			}
 //			return nil
 //		})
 //	}
@@ -85,11 +82,10 @@ func LookupObjectBucket(ctx *pulumi.Context, args *LookupObjectBucketArgs, opts 
 
 // A collection of arguments for invoking getObjectBucket.
 type LookupObjectBucketArgs struct {
-	// The bucket name.
 	Name *string `pulumi:"name"`
 	// `projectId`) The ID of the project the bucket is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`) The region in which the Object Storage exists.
+	// `region`) The region in which the bucket exists.
 	Region *string `pulumi:"region"`
 }
 
@@ -127,11 +123,10 @@ func LookupObjectBucketOutput(ctx *pulumi.Context, args LookupObjectBucketOutput
 
 // A collection of arguments for invoking getObjectBucket.
 type LookupObjectBucketOutputArgs struct {
-	// The bucket name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// `projectId`) The ID of the project the bucket is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// `region`) The region in which the Object Storage exists.
+	// `region`) The region in which the bucket exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 

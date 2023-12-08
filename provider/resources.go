@@ -183,9 +183,6 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_lb_frontend":                         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "LbFrontend")},
 			"scaleway_lb_ip":                               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "LbIp")},
 			"scaleway_lb_route":                            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "LbRoute")},
-			"scaleway_mnq_credential":                      {Tok: tfbridge.MakeResource(mainPkg, mainMod, "MnqCredential")},
-			"scaleway_mnq_namespace":                       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "MnqNamespace")},
-			"scaleway_mnq_queue":                           {Tok: tfbridge.MakeResource(mainPkg, mainMod, "MnqQueue")},
 			"scaleway_object":                              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ObjectItem")},
 			"scaleway_object_bucket":                       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ObjectBucket")},
 			"scaleway_object_bucket_acl":                   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ObjectBucketAcl")},
@@ -231,6 +228,9 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_mnq_sqs_credentials":                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "MnqSqsCredentials")},
 			"scaleway_mnq_sqs_queue":                       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "MnqSqsQueue")},
 			"scaleway_ipam_ip":								{Tok: tfbridge.MakeResource(mainPkg, mainMod, "IpamIp")},
+			"scaleway_block_snapshot":						{Tok: tfbridge.MakeResource(mainPkg, mainMod, "BlockSnapshot")},
+			"scaleway_block_volume":						{Tok: tfbridge.MakeResource(mainPkg, mainMod, "BlockVolume")},
+			"scaleway_job_definition":						{Tok: tfbridge.MakeResource(mainPkg, mainMod, "JobDefinition")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"scaleway_account_project":                     {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAccountProject")},
@@ -311,6 +311,8 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_billing_consumptions":				{Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getBillingConsumptions")},
 			"scaleway_billing_invoices":					{Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getBillingInvoices")},
 			"scaleway_mnq_sqs":								{Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getMnqSqs")},
+			"scaleway_block_snapshot":						{Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getBlockSnapshot")},
+			"scaleway_block_volume":						{Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getBlockVolume")},
 		},
 		TFProviderModuleVersion: "v2",
 		JavaScript: &tfbridge.JavaScriptInfo{

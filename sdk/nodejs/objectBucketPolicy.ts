@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * const bucket = new scaleway.ObjectBucket("bucket", {});
  * const main = new scaleway.IamApplication("main", {description: "a description"});
  * const policy = new scaleway.ObjectBucketPolicy("policy", {
- *     bucket: bucket.name,
+ *     bucket: bucket.id,
  *     policy: pulumi.all([main.id, bucket.name, bucket.name]).apply(([id, bucketName, bucketName1]) => JSON.stringify({
  *         Version: "2023-04-17",
  *         Id: "MyBucketPolicy",

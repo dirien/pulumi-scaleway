@@ -25,6 +25,16 @@ export type BaremetalServer = import("./baremetalServer").BaremetalServer;
 export const BaremetalServer: typeof import("./baremetalServer").BaremetalServer = null as any;
 utilities.lazyLoad(exports, ["BaremetalServer"], () => require("./baremetalServer"));
 
+export { BlockSnapshotArgs, BlockSnapshotState } from "./blockSnapshot";
+export type BlockSnapshot = import("./blockSnapshot").BlockSnapshot;
+export const BlockSnapshot: typeof import("./blockSnapshot").BlockSnapshot = null as any;
+utilities.lazyLoad(exports, ["BlockSnapshot"], () => require("./blockSnapshot"));
+
+export { BlockVolumeArgs, BlockVolumeState } from "./blockVolume";
+export type BlockVolume = import("./blockVolume").BlockVolume;
+export const BlockVolume: typeof import("./blockVolume").BlockVolume = null as any;
+utilities.lazyLoad(exports, ["BlockVolume"], () => require("./blockVolume"));
+
 export { CockpitArgs, CockpitState } from "./cockpit";
 export type Cockpit = import("./cockpit").Cockpit;
 export const Cockpit: typeof import("./cockpit").Cockpit = null as any;
@@ -194,6 +204,16 @@ export { GetBillingInvoicesArgs, GetBillingInvoicesResult, GetBillingInvoicesOut
 export const getBillingInvoices: typeof import("./getBillingInvoices").getBillingInvoices = null as any;
 export const getBillingInvoicesOutput: typeof import("./getBillingInvoices").getBillingInvoicesOutput = null as any;
 utilities.lazyLoad(exports, ["getBillingInvoices","getBillingInvoicesOutput"], () => require("./getBillingInvoices"));
+
+export { GetBlockSnapshotArgs, GetBlockSnapshotResult, GetBlockSnapshotOutputArgs } from "./getBlockSnapshot";
+export const getBlockSnapshot: typeof import("./getBlockSnapshot").getBlockSnapshot = null as any;
+export const getBlockSnapshotOutput: typeof import("./getBlockSnapshot").getBlockSnapshotOutput = null as any;
+utilities.lazyLoad(exports, ["getBlockSnapshot","getBlockSnapshotOutput"], () => require("./getBlockSnapshot"));
+
+export { GetBlockVolumeArgs, GetBlockVolumeResult, GetBlockVolumeOutputArgs } from "./getBlockVolume";
+export const getBlockVolume: typeof import("./getBlockVolume").getBlockVolume = null as any;
+export const getBlockVolumeOutput: typeof import("./getBlockVolume").getBlockVolumeOutput = null as any;
+utilities.lazyLoad(exports, ["getBlockVolume","getBlockVolumeOutput"], () => require("./getBlockVolume"));
 
 export { GetCockpitArgs, GetCockpitResult, GetCockpitOutputArgs } from "./getCockpit";
 export const getCockpit: typeof import("./getCockpit").getCockpit = null as any;
@@ -655,6 +675,11 @@ export type IpamIp = import("./ipamIp").IpamIp;
 export const IpamIp: typeof import("./ipamIp").IpamIp = null as any;
 utilities.lazyLoad(exports, ["IpamIp"], () => require("./ipamIp"));
 
+export { JobDefinitionArgs, JobDefinitionState } from "./jobDefinition";
+export type JobDefinition = import("./jobDefinition").JobDefinition;
+export const JobDefinition: typeof import("./jobDefinition").JobDefinition = null as any;
+utilities.lazyLoad(exports, ["JobDefinition"], () => require("./jobDefinition"));
+
 export { K8sClusterArgs, K8sClusterState } from "./k8sCluster";
 export type K8sCluster = import("./k8sCluster").K8sCluster;
 export const K8sCluster: typeof import("./k8sCluster").K8sCluster = null as any;
@@ -700,16 +725,6 @@ export type LbRoute = import("./lbRoute").LbRoute;
 export const LbRoute: typeof import("./lbRoute").LbRoute = null as any;
 utilities.lazyLoad(exports, ["LbRoute"], () => require("./lbRoute"));
 
-export { MnqCredentialArgs, MnqCredentialState } from "./mnqCredential";
-export type MnqCredential = import("./mnqCredential").MnqCredential;
-export const MnqCredential: typeof import("./mnqCredential").MnqCredential = null as any;
-utilities.lazyLoad(exports, ["MnqCredential"], () => require("./mnqCredential"));
-
-export { MnqNamespaceArgs, MnqNamespaceState } from "./mnqNamespace";
-export type MnqNamespace = import("./mnqNamespace").MnqNamespace;
-export const MnqNamespace: typeof import("./mnqNamespace").MnqNamespace = null as any;
-utilities.lazyLoad(exports, ["MnqNamespace"], () => require("./mnqNamespace"));
-
 export { MnqNatsAccountArgs, MnqNatsAccountState } from "./mnqNatsAccount";
 export type MnqNatsAccount = import("./mnqNatsAccount").MnqNatsAccount;
 export const MnqNatsAccount: typeof import("./mnqNatsAccount").MnqNatsAccount = null as any;
@@ -719,11 +734,6 @@ export { MnqNatsCredentialsArgs, MnqNatsCredentialsState } from "./mnqNatsCreden
 export type MnqNatsCredentials = import("./mnqNatsCredentials").MnqNatsCredentials;
 export const MnqNatsCredentials: typeof import("./mnqNatsCredentials").MnqNatsCredentials = null as any;
 utilities.lazyLoad(exports, ["MnqNatsCredentials"], () => require("./mnqNatsCredentials"));
-
-export { MnqQueueArgs, MnqQueueState } from "./mnqQueue";
-export type MnqQueue = import("./mnqQueue").MnqQueue;
-export const MnqQueue: typeof import("./mnqQueue").MnqQueue = null as any;
-utilities.lazyLoad(exports, ["MnqQueue"], () => require("./mnqQueue"));
 
 export { MnqSqsArgs, MnqSqsState } from "./mnqSqs";
 export type MnqSqs = import("./mnqSqs").MnqSqs;
@@ -907,6 +917,10 @@ const _module = {
                 return new AppleSiliconServer(name, <any>undefined, { urn })
             case "scaleway:index/baremetalServer:BaremetalServer":
                 return new BaremetalServer(name, <any>undefined, { urn })
+            case "scaleway:index/blockSnapshot:BlockSnapshot":
+                return new BlockSnapshot(name, <any>undefined, { urn })
+            case "scaleway:index/blockVolume:BlockVolume":
+                return new BlockVolume(name, <any>undefined, { urn })
             case "scaleway:index/cockpit:Cockpit":
                 return new Cockpit(name, <any>undefined, { urn })
             case "scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser":
@@ -1003,6 +1017,8 @@ const _module = {
                 return new IotRoute(name, <any>undefined, { urn })
             case "scaleway:index/ipamIp:IpamIp":
                 return new IpamIp(name, <any>undefined, { urn })
+            case "scaleway:index/jobDefinition:JobDefinition":
+                return new JobDefinition(name, <any>undefined, { urn })
             case "scaleway:index/k8sCluster:K8sCluster":
                 return new K8sCluster(name, <any>undefined, { urn })
             case "scaleway:index/k8sPool:K8sPool":
@@ -1021,16 +1037,10 @@ const _module = {
                 return new LbIp(name, <any>undefined, { urn })
             case "scaleway:index/lbRoute:LbRoute":
                 return new LbRoute(name, <any>undefined, { urn })
-            case "scaleway:index/mnqCredential:MnqCredential":
-                return new MnqCredential(name, <any>undefined, { urn })
-            case "scaleway:index/mnqNamespace:MnqNamespace":
-                return new MnqNamespace(name, <any>undefined, { urn })
             case "scaleway:index/mnqNatsAccount:MnqNatsAccount":
                 return new MnqNatsAccount(name, <any>undefined, { urn })
             case "scaleway:index/mnqNatsCredentials:MnqNatsCredentials":
                 return new MnqNatsCredentials(name, <any>undefined, { urn })
-            case "scaleway:index/mnqQueue:MnqQueue":
-                return new MnqQueue(name, <any>undefined, { urn })
             case "scaleway:index/mnqSqs:MnqSqs":
                 return new MnqSqs(name, <any>undefined, { urn })
             case "scaleway:index/mnqSqsCredentials:MnqSqsCredentials":
@@ -1102,6 +1112,8 @@ pulumi.runtime.registerResourceModule("scaleway", "index/accountProject", _modul
 pulumi.runtime.registerResourceModule("scaleway", "index/accountSshKey", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/appleSiliconServer", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/baremetalServer", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/blockSnapshot", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/blockVolume", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpit", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpitGrafanaUser", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/cockpitToken", _module)
@@ -1150,6 +1162,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/iotHub", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iotNetwork", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iotRoute", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/ipamIp", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/jobDefinition", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/k8sCluster", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/k8sPool", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/lb", _module)
@@ -1159,11 +1172,8 @@ pulumi.runtime.registerResourceModule("scaleway", "index/lbCertificate", _module
 pulumi.runtime.registerResourceModule("scaleway", "index/lbFrontend", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/lbIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/lbRoute", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/mnqCredential", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/mnqNamespace", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqNatsAccount", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqNatsCredentials", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/mnqQueue", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqSqs", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqSqsCredentials", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqSqsQueue", _module)

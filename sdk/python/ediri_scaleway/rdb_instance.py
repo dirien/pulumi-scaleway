@@ -22,6 +22,7 @@ class RdbInstanceArgs:
                  backup_schedule_frequency: Optional[pulumi.Input[int]] = None,
                  backup_schedule_retention: Optional[pulumi.Input[int]] = None,
                  disable_backup: Optional[pulumi.Input[bool]] = None,
+                 disable_public_endpoint: Optional[pulumi.Input[bool]] = None,
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -50,6 +51,7 @@ class RdbInstanceArgs:
         :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours.
         :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days.
         :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance.
+        :param pulumi.Input[bool] disable_public_endpoint: Disable the default public endpoint
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] init_settings: Map of engine settings to be set at database initialisation.
                
                > **Important:** Updates to `init_settings` will recreate the Database Instance.
@@ -83,6 +85,8 @@ class RdbInstanceArgs:
             pulumi.set(__self__, "backup_schedule_retention", backup_schedule_retention)
         if disable_backup is not None:
             pulumi.set(__self__, "disable_backup", disable_backup)
+        if disable_public_endpoint is not None:
+            pulumi.set(__self__, "disable_public_endpoint", disable_public_endpoint)
         if init_settings is not None:
             pulumi.set(__self__, "init_settings", init_settings)
         if is_ha_cluster is not None:
@@ -187,6 +191,18 @@ class RdbInstanceArgs:
     @disable_backup.setter
     def disable_backup(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "disable_backup", value)
+
+    @property
+    @pulumi.getter(name="disablePublicEndpoint")
+    def disable_public_endpoint(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disable the default public endpoint
+        """
+        return pulumi.get(self, "disable_public_endpoint")
+
+    @disable_public_endpoint.setter
+    def disable_public_endpoint(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_public_endpoint", value)
 
     @property
     @pulumi.getter(name="initSettings")
@@ -351,6 +367,7 @@ class _RdbInstanceState:
                  backup_schedule_retention: Optional[pulumi.Input[int]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  disable_backup: Optional[pulumi.Input[bool]] = None,
+                 disable_public_endpoint: Optional[pulumi.Input[bool]] = None,
                  endpoint_ip: Optional[pulumi.Input[str]] = None,
                  endpoint_port: Optional[pulumi.Input[int]] = None,
                  engine: Optional[pulumi.Input[str]] = None,
@@ -377,6 +394,7 @@ class _RdbInstanceState:
         :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days.
         :param pulumi.Input[str] certificate: Certificate of the database instance.
         :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance.
+        :param pulumi.Input[bool] disable_public_endpoint: Disable the default public endpoint
         :param pulumi.Input[str] endpoint_ip: (Deprecated) The IP of the Database Instance.
         :param pulumi.Input[int] endpoint_port: (Deprecated) The port of the Database Instance.
         :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
@@ -425,6 +443,8 @@ class _RdbInstanceState:
             pulumi.set(__self__, "certificate", certificate)
         if disable_backup is not None:
             pulumi.set(__self__, "disable_backup", disable_backup)
+        if disable_public_endpoint is not None:
+            pulumi.set(__self__, "disable_public_endpoint", disable_public_endpoint)
         if endpoint_ip is not None:
             warnings.warn("""Please use the private_network or the load_balancer attribute""", DeprecationWarning)
             pulumi.log.warn("""endpoint_ip is deprecated: Please use the private_network or the load_balancer attribute""")
@@ -526,6 +546,18 @@ class _RdbInstanceState:
     @disable_backup.setter
     def disable_backup(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "disable_backup", value)
+
+    @property
+    @pulumi.getter(name="disablePublicEndpoint")
+    def disable_public_endpoint(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disable the default public endpoint
+        """
+        return pulumi.get(self, "disable_public_endpoint")
+
+    @disable_public_endpoint.setter
+    def disable_public_endpoint(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_public_endpoint", value)
 
     @property
     @pulumi.getter(name="endpointIp")
@@ -786,6 +818,7 @@ class RdbInstance(pulumi.CustomResource):
                  backup_schedule_frequency: Optional[pulumi.Input[int]] = None,
                  backup_schedule_retention: Optional[pulumi.Input[int]] = None,
                  disable_backup: Optional[pulumi.Input[bool]] = None,
+                 disable_public_endpoint: Optional[pulumi.Input[bool]] = None,
                  engine: Optional[pulumi.Input[str]] = None,
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[bool]] = None,
@@ -816,6 +849,7 @@ class RdbInstance(pulumi.CustomResource):
         :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours.
         :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days.
         :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance.
+        :param pulumi.Input[bool] disable_public_endpoint: Disable the default public endpoint
         :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
                
                > **Important:** Updates to `engine` will recreate the Database Instance.
@@ -883,6 +917,7 @@ class RdbInstance(pulumi.CustomResource):
                  backup_schedule_frequency: Optional[pulumi.Input[int]] = None,
                  backup_schedule_retention: Optional[pulumi.Input[int]] = None,
                  disable_backup: Optional[pulumi.Input[bool]] = None,
+                 disable_public_endpoint: Optional[pulumi.Input[bool]] = None,
                  engine: Optional[pulumi.Input[str]] = None,
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[bool]] = None,
@@ -910,6 +945,7 @@ class RdbInstance(pulumi.CustomResource):
             __props__.__dict__["backup_schedule_frequency"] = backup_schedule_frequency
             __props__.__dict__["backup_schedule_retention"] = backup_schedule_retention
             __props__.__dict__["disable_backup"] = disable_backup
+            __props__.__dict__["disable_public_endpoint"] = disable_public_endpoint
             if engine is None and not opts.urn:
                 raise TypeError("Missing required property 'engine'")
             __props__.__dict__["engine"] = engine
@@ -951,6 +987,7 @@ class RdbInstance(pulumi.CustomResource):
             backup_schedule_retention: Optional[pulumi.Input[int]] = None,
             certificate: Optional[pulumi.Input[str]] = None,
             disable_backup: Optional[pulumi.Input[bool]] = None,
+            disable_public_endpoint: Optional[pulumi.Input[bool]] = None,
             endpoint_ip: Optional[pulumi.Input[str]] = None,
             endpoint_port: Optional[pulumi.Input[int]] = None,
             engine: Optional[pulumi.Input[str]] = None,
@@ -982,6 +1019,7 @@ class RdbInstance(pulumi.CustomResource):
         :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days.
         :param pulumi.Input[str] certificate: Certificate of the database instance.
         :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance.
+        :param pulumi.Input[bool] disable_public_endpoint: Disable the default public endpoint
         :param pulumi.Input[str] endpoint_ip: (Deprecated) The IP of the Database Instance.
         :param pulumi.Input[int] endpoint_port: (Deprecated) The port of the Database Instance.
         :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
@@ -1029,6 +1067,7 @@ class RdbInstance(pulumi.CustomResource):
         __props__.__dict__["backup_schedule_retention"] = backup_schedule_retention
         __props__.__dict__["certificate"] = certificate
         __props__.__dict__["disable_backup"] = disable_backup
+        __props__.__dict__["disable_public_endpoint"] = disable_public_endpoint
         __props__.__dict__["endpoint_ip"] = endpoint_ip
         __props__.__dict__["endpoint_port"] = endpoint_port
         __props__.__dict__["engine"] = engine
@@ -1089,6 +1128,14 @@ class RdbInstance(pulumi.CustomResource):
         Disable automated backup for the database instance.
         """
         return pulumi.get(self, "disable_backup")
+
+    @property
+    @pulumi.getter(name="disablePublicEndpoint")
+    def disable_public_endpoint(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Disable the default public endpoint
+        """
+        return pulumi.get(self, "disable_public_endpoint")
 
     @property
     @pulumi.getter(name="endpointIp")

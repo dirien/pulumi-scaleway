@@ -14,6 +14,8 @@ import (
 
 // Creates and manages Scaleway IAM Policies. For more information, see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#policies-54b8a7).
 //
+// > You can find a detailed list of all permission sets available at Scaleway in the permission sets [reference page](https://www.scaleway.com/en/docs/identity-and-access-management/iam/reference-content/permission-sets/).
+//
 // ## Example Usage
 // ### Create a policy for an organization's project
 //
@@ -84,7 +86,7 @@ type IamPolicy struct {
 	Editable pulumi.BoolOutput `pulumi:"editable"`
 	// ID of the Group the policy will be linked to
 	GroupId pulumi.StringPtrOutput `pulumi:"groupId"`
-	// .The name of the iam policy.
+	// The name of the iam policy.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// If the policy doesn't apply to a principal.
 	//
@@ -94,6 +96,8 @@ type IamPolicy struct {
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// List of rules in the policy.
 	Rules IamPolicyRuleArrayOutput `pulumi:"rules"`
+	// The tags associated with the iam policy.
+	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the last update of the policy.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// ID of the User the policy will be linked to
@@ -143,7 +147,7 @@ type iamPolicyState struct {
 	Editable *bool `pulumi:"editable"`
 	// ID of the Group the policy will be linked to
 	GroupId *string `pulumi:"groupId"`
-	// .The name of the iam policy.
+	// The name of the iam policy.
 	Name *string `pulumi:"name"`
 	// If the policy doesn't apply to a principal.
 	//
@@ -153,6 +157,8 @@ type iamPolicyState struct {
 	OrganizationId *string `pulumi:"organizationId"`
 	// List of rules in the policy.
 	Rules []IamPolicyRule `pulumi:"rules"`
+	// The tags associated with the iam policy.
+	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the policy.
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// ID of the User the policy will be linked to
@@ -170,7 +176,7 @@ type IamPolicyState struct {
 	Editable pulumi.BoolPtrInput
 	// ID of the Group the policy will be linked to
 	GroupId pulumi.StringPtrInput
-	// .The name of the iam policy.
+	// The name of the iam policy.
 	Name pulumi.StringPtrInput
 	// If the policy doesn't apply to a principal.
 	//
@@ -180,6 +186,8 @@ type IamPolicyState struct {
 	OrganizationId pulumi.StringPtrInput
 	// List of rules in the policy.
 	Rules IamPolicyRuleArrayInput
+	// The tags associated with the iam policy.
+	Tags pulumi.StringArrayInput
 	// The date and time of the last update of the policy.
 	UpdatedAt pulumi.StringPtrInput
 	// ID of the User the policy will be linked to
@@ -197,7 +205,7 @@ type iamPolicyArgs struct {
 	Description *string `pulumi:"description"`
 	// ID of the Group the policy will be linked to
 	GroupId *string `pulumi:"groupId"`
-	// .The name of the iam policy.
+	// The name of the iam policy.
 	Name *string `pulumi:"name"`
 	// If the policy doesn't apply to a principal.
 	//
@@ -207,6 +215,8 @@ type iamPolicyArgs struct {
 	OrganizationId *string `pulumi:"organizationId"`
 	// List of rules in the policy.
 	Rules []IamPolicyRule `pulumi:"rules"`
+	// The tags associated with the iam policy.
+	Tags []string `pulumi:"tags"`
 	// ID of the User the policy will be linked to
 	UserId *string `pulumi:"userId"`
 }
@@ -219,7 +229,7 @@ type IamPolicyArgs struct {
 	Description pulumi.StringPtrInput
 	// ID of the Group the policy will be linked to
 	GroupId pulumi.StringPtrInput
-	// .The name of the iam policy.
+	// The name of the iam policy.
 	Name pulumi.StringPtrInput
 	// If the policy doesn't apply to a principal.
 	//
@@ -229,6 +239,8 @@ type IamPolicyArgs struct {
 	OrganizationId pulumi.StringPtrInput
 	// List of rules in the policy.
 	Rules IamPolicyRuleArrayInput
+	// The tags associated with the iam policy.
+	Tags pulumi.StringArrayInput
 	// ID of the User the policy will be linked to
 	UserId pulumi.StringPtrInput
 }
@@ -345,7 +357,7 @@ func (o IamPolicyOutput) GroupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IamPolicy) pulumi.StringPtrOutput { return v.GroupId }).(pulumi.StringPtrOutput)
 }
 
-// .The name of the iam policy.
+// The name of the iam policy.
 func (o IamPolicyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -365,6 +377,11 @@ func (o IamPolicyOutput) OrganizationId() pulumi.StringOutput {
 // List of rules in the policy.
 func (o IamPolicyOutput) Rules() IamPolicyRuleArrayOutput {
 	return o.ApplyT(func(v *IamPolicy) IamPolicyRuleArrayOutput { return v.Rules }).(IamPolicyRuleArrayOutput)
+}
+
+// The tags associated with the iam policy.
+func (o IamPolicyOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *IamPolicy) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 // The date and time of the last update of the policy.
