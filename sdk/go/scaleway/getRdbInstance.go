@@ -30,6 +30,8 @@ type LookupRdbInstanceArgs struct {
 	// The name of the RDB instance.
 	// Only one of `name` and `instanceId` should be specified.
 	Name *string `pulumi:"name"`
+	// The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the RDB instance exists.
 	Region *string `pulumi:"region"`
 }
@@ -41,7 +43,6 @@ type LookupRdbInstanceResult struct {
 	BackupScheduleRetention int    `pulumi:"backupScheduleRetention"`
 	Certificate             string `pulumi:"certificate"`
 	DisableBackup           bool   `pulumi:"disableBackup"`
-	DisablePublicEndpoint   bool   `pulumi:"disablePublicEndpoint"`
 	EndpointIp              string `pulumi:"endpointIp"`
 	EndpointPort            int    `pulumi:"endpointPort"`
 	Engine                  string `pulumi:"engine"`
@@ -87,6 +88,8 @@ type LookupRdbInstanceOutputArgs struct {
 	// The name of the RDB instance.
 	// Only one of `name` and `instanceId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region in which the RDB instance exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -128,10 +131,6 @@ func (o LookupRdbInstanceResultOutput) Certificate() pulumi.StringOutput {
 
 func (o LookupRdbInstanceResultOutput) DisableBackup() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupRdbInstanceResult) bool { return v.DisableBackup }).(pulumi.BoolOutput)
-}
-
-func (o LookupRdbInstanceResultOutput) DisablePublicEndpoint() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupRdbInstanceResult) bool { return v.DisablePublicEndpoint }).(pulumi.BoolOutput)
 }
 
 func (o LookupRdbInstanceResultOutput) EndpointIp() pulumi.StringOutput {

@@ -242,7 +242,7 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
 
         main_object_bucket = scaleway.ObjectBucket("mainObjectBucket", acl="public-read")
         main_object_bucket_website_configuration = scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration",
-            bucket=main_object_bucket.name,
+            bucket=main_object_bucket.id,
             index_document=scaleway.ObjectBucketWebsiteConfigurationIndexDocumentArgs(
                 suffix="index.html",
             ))
@@ -269,7 +269,7 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
                 }],
             }))
         main_object_bucket_website_configuration = scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration",
-            bucket=main_object_bucket.name,
+            bucket=main_object_bucket.id,
             index_document=scaleway.ObjectBucketWebsiteConfigurationIndexDocumentArgs(
                 suffix="index.html",
             ))
@@ -331,7 +331,7 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
 
         main_object_bucket = scaleway.ObjectBucket("mainObjectBucket", acl="public-read")
         main_object_bucket_website_configuration = scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration",
-            bucket=main_object_bucket.name,
+            bucket=main_object_bucket.id,
             index_document=scaleway.ObjectBucketWebsiteConfigurationIndexDocumentArgs(
                 suffix="index.html",
             ))
@@ -358,7 +358,7 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
                 }],
             }))
         main_object_bucket_website_configuration = scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration",
-            bucket=main_object_bucket.name,
+            bucket=main_object_bucket.id,
             index_document=scaleway.ObjectBucketWebsiteConfigurationIndexDocumentArgs(
                 suffix="index.html",
             ))

@@ -66,6 +66,7 @@ __all__ = [
     'LbFrontendAclActionRedirectArgs',
     'LbFrontendAclMatchArgs',
     'LbPrivateNetworkArgs',
+    'MnqSnsCredentialsPermissionsArgs',
     'MnqSqsCredentialsPermissionsArgs',
     'ObjectBucketAclAccessControlPolicyArgs',
     'ObjectBucketAclAccessControlPolicyGrantArgs',
@@ -3442,6 +3443,7 @@ class LbAclMatchArgs:
         :param pulumi.Input[str] http_filter: The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
                It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
                Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
+        :param pulumi.Input[str] http_filter_option: If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] http_filter_values: A list of possible values to match for the given HTTP filter.
                Keep in mind that in the case of `http_header_match` the HTTP header field name is case-insensitive.
         :param pulumi.Input[bool] invert: If set to `true`, the condition will be of type "unless".
@@ -3475,6 +3477,9 @@ class LbAclMatchArgs:
     @property
     @pulumi.getter(name="httpFilterOption")
     def http_filter_option(self) -> Optional[pulumi.Input[str]]:
+        """
+        If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
+        """
         return pulumi.get(self, "http_filter_option")
 
     @http_filter_option.setter
@@ -3943,6 +3948,7 @@ class LbFrontendAclMatchArgs:
         :param pulumi.Input[str] http_filter: The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
                It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
                Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
+        :param pulumi.Input[str] http_filter_option: If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] http_filter_values: A list of possible values to match for the given HTTP filter.
                Keep in mind that in the case of `http_header_match` the HTTP header field name is case-insensitive.
         :param pulumi.Input[bool] invert: If set to `true`, the condition will be of type "unless".
@@ -3976,6 +3982,9 @@ class LbFrontendAclMatchArgs:
     @property
     @pulumi.getter(name="httpFilterOption")
     def http_filter_option(self) -> Optional[pulumi.Input[str]]:
+        """
+        If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
+        """
         return pulumi.get(self, "http_filter_option")
 
     @http_filter_option.setter
@@ -4100,6 +4109,61 @@ class LbPrivateNetworkArgs:
     @zone.setter
     def zone(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "zone", value)
+
+
+@pulumi.input_type
+class MnqSnsCredentialsPermissionsArgs:
+    def __init__(__self__, *,
+                 can_manage: Optional[pulumi.Input[bool]] = None,
+                 can_publish: Optional[pulumi.Input[bool]] = None,
+                 can_receive: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] can_manage: . Defines if user can manage the associated resource(s).
+        :param pulumi.Input[bool] can_publish: . Defines if user can publish messages to the service.
+        :param pulumi.Input[bool] can_receive: . Defines if user can receive messages from the service.
+        """
+        if can_manage is not None:
+            pulumi.set(__self__, "can_manage", can_manage)
+        if can_publish is not None:
+            pulumi.set(__self__, "can_publish", can_publish)
+        if can_receive is not None:
+            pulumi.set(__self__, "can_receive", can_receive)
+
+    @property
+    @pulumi.getter(name="canManage")
+    def can_manage(self) -> Optional[pulumi.Input[bool]]:
+        """
+        . Defines if user can manage the associated resource(s).
+        """
+        return pulumi.get(self, "can_manage")
+
+    @can_manage.setter
+    def can_manage(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "can_manage", value)
+
+    @property
+    @pulumi.getter(name="canPublish")
+    def can_publish(self) -> Optional[pulumi.Input[bool]]:
+        """
+        . Defines if user can publish messages to the service.
+        """
+        return pulumi.get(self, "can_publish")
+
+    @can_publish.setter
+    def can_publish(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "can_publish", value)
+
+    @property
+    @pulumi.getter(name="canReceive")
+    def can_receive(self) -> Optional[pulumi.Input[bool]]:
+        """
+        . Defines if user can receive messages from the service.
+        """
+        return pulumi.get(self, "can_receive")
+
+    @can_receive.setter
+    def can_receive(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "can_receive", value)
 
 
 @pulumi.input_type
@@ -4811,6 +4875,7 @@ class RdbInstanceLoadBalancerArgs:
 class RdbInstancePrivateNetworkArgs:
     def __init__(__self__, *,
                  pn_id: pulumi.Input[str],
+                 enable_ipam: Optional[pulumi.Input[bool]] = None,
                  endpoint_id: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
@@ -4819,6 +4884,8 @@ class RdbInstancePrivateNetworkArgs:
                  port: Optional[pulumi.Input[int]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[str] pn_id: The ID of the private network.
+        :param pulumi.Input[bool] enable_ipam: Whether the endpoint should be configured with IPAM. Defaults to `false` if `ip_net` is defined, `true` otherwise.
         :param pulumi.Input[str] endpoint_id: The ID of the endpoint.
         :param pulumi.Input[str] hostname: Hostname of the endpoint.
         :param pulumi.Input[str] ip: IPv4 address on the network.
@@ -4826,6 +4893,8 @@ class RdbInstancePrivateNetworkArgs:
         :param pulumi.Input[int] port: Port in the Private Network.
         """
         pulumi.set(__self__, "pn_id", pn_id)
+        if enable_ipam is not None:
+            pulumi.set(__self__, "enable_ipam", enable_ipam)
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
         if hostname is not None:
@@ -4844,11 +4913,26 @@ class RdbInstancePrivateNetworkArgs:
     @property
     @pulumi.getter(name="pnId")
     def pn_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the private network.
+        """
         return pulumi.get(self, "pn_id")
 
     @pn_id.setter
     def pn_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "pn_id", value)
+
+    @property
+    @pulumi.getter(name="enableIpam")
+    def enable_ipam(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the endpoint should be configured with IPAM. Defaults to `false` if `ip_net` is defined, `true` otherwise.
+        """
+        return pulumi.get(self, "enable_ipam")
+
+    @enable_ipam.setter
+    def enable_ipam(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_ipam", value)
 
     @property
     @pulumi.getter(name="endpointId")

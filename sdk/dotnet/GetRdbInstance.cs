@@ -43,6 +43,12 @@ namespace ediri.Scaleway
         public string? Name { get; set; }
 
         /// <summary>
+        /// The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// `region`) The region in which the RDB instance exists.
         /// </summary>
         [Input("region")]
@@ -71,6 +77,12 @@ namespace ediri.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
         /// `region`) The region in which the RDB instance exists.
         /// </summary>
         [Input("region")]
@@ -91,7 +103,6 @@ namespace ediri.Scaleway
         public readonly int BackupScheduleRetention;
         public readonly string Certificate;
         public readonly bool DisableBackup;
-        public readonly bool DisablePublicEndpoint;
         public readonly string EndpointIp;
         public readonly int EndpointPort;
         public readonly string Engine;
@@ -128,8 +139,6 @@ namespace ediri.Scaleway
             string certificate,
 
             bool disableBackup,
-
-            bool disablePublicEndpoint,
 
             string endpointIp,
 
@@ -178,7 +187,6 @@ namespace ediri.Scaleway
             BackupScheduleRetention = backupScheduleRetention;
             Certificate = certificate;
             DisableBackup = disableBackup;
-            DisablePublicEndpoint = disablePublicEndpoint;
             EndpointIp = endpointIp;
             EndpointPort = endpointPort;
             Engine = engine;

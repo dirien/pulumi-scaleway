@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  *
  * const mainObjectBucket = new scaleway.ObjectBucket("mainObjectBucket", {acl: "public-read"});
  * const mainObjectBucketWebsiteConfiguration = new scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration", {
- *     bucket: mainObjectBucket.name,
+ *     bucket: mainObjectBucket.id,
  *     indexDocument: {
  *         suffix: "index.html",
  *     },
@@ -46,7 +46,7 @@ import * as utilities from "./utilities";
  *     }),
  * });
  * const mainObjectBucketWebsiteConfiguration = new scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration", {
- *     bucket: mainObjectBucket.name,
+ *     bucket: mainObjectBucket.id,
  *     indexDocument: {
  *         suffix: "index.html",
  *     },

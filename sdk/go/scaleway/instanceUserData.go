@@ -44,7 +44,7 @@ import (
 //				"cloud-init": "#cloud-config\napt-update: true\napt-upgrade: true\n",
 //				"foo":        "bar",
 //			}
-//			if param := cfg.GetBool("userData"); param != nil {
+//			if param := cfg.GetObject("userData"); param != nil {
 //				userData = param
 //			}
 //			mainInstanceServer, err := scaleway.NewInstanceServer(ctx, "mainInstanceServer", &scaleway.InstanceServerArgs{

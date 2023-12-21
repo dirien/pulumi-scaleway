@@ -1052,6 +1052,9 @@ export interface GetLbAclsAclMatch {
      * The matched HTTP filter.
      */
     httpFilter: string;
+    /**
+     * A list of possible values for the HTTP filter based on the HTTP header.
+     */
     httpFilterOption: string;
     /**
      * The possible values matched for a given HTTP filter.
@@ -1553,6 +1556,7 @@ export interface GetRdbInstanceLoadBalancer {
 }
 
 export interface GetRdbInstancePrivateNetwork {
+    enableIpam: boolean;
     endpointId: string;
     hostname: string;
     ip: string;
@@ -2252,6 +2256,9 @@ export interface LbAclMatch {
      * Possible values are: `aclHttpFilterNone`, `pathBegin`, `pathEnd`, `httpHeaderMatch` or `regex`.
      */
     httpFilter?: string;
+    /**
+     * If you have `httpFilter` at `httpHeaderMatch`, you can use this field to filter on the HTTP header's value.
+     */
     httpFilterOption?: string;
     /**
      * A list of possible values to match for the given HTTP filter.
@@ -2386,6 +2393,9 @@ export interface LbFrontendAclMatch {
      * Possible values are: `aclHttpFilterNone`, `pathBegin`, `pathEnd`, `httpHeaderMatch` or `regex`.
      */
     httpFilter?: string;
+    /**
+     * If you have `httpFilter` at `httpHeaderMatch`, you can use this field to filter on the HTTP header's value.
+     */
     httpFilterOption?: string;
     /**
      * A list of possible values to match for the given HTTP filter.
@@ -2420,6 +2430,21 @@ export interface LbPrivateNetwork {
      * `zone`) The zone of the load-balancer.
      */
     zone: string;
+}
+
+export interface MnqSnsCredentialsPermissions {
+    /**
+     * . Defines if user can manage the associated resource(s).
+     */
+    canManage: boolean;
+    /**
+     * . Defines if user can publish messages to the service.
+     */
+    canPublish: boolean;
+    /**
+     * . Defines if user can receive messages from the service.
+     */
+    canReceive: boolean;
 }
 
 export interface MnqSqsCredentialsPermissions {
@@ -2605,6 +2630,10 @@ export interface RdbInstanceLoadBalancer {
 
 export interface RdbInstancePrivateNetwork {
     /**
+     * Whether the endpoint should be configured with IPAM. Defaults to `false` if `ipNet` is defined, `true` otherwise.
+     */
+    enableIpam: boolean;
+    /**
      * The ID of the endpoint.
      */
     endpointId: string;
@@ -2621,6 +2650,9 @@ export interface RdbInstancePrivateNetwork {
      * The name of the Database Instance.
      */
     name: string;
+    /**
+     * The ID of the private network.
+     */
     pnId: string;
     /**
      * Port in the Private Network.

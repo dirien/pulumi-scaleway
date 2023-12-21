@@ -34,8 +34,8 @@ namespace ediri.Scaleway
     ///         ProjectId = mainMnqSqs.ProjectId,
     ///         Permissions = new Scaleway.Inputs.MnqSqsCredentialsPermissionsArgs
     ///         {
-    ///             CanManage = false,
-    ///             CanReceive = true,
+    ///             CanManage = true,
+    ///             CanReceive = false,
     ///             CanPublish = false,
     ///         },
     ///     });
@@ -43,7 +43,7 @@ namespace ediri.Scaleway
     ///     var mainMnqSqsQueue = new Scaleway.MnqSqsQueue("mainMnqSqsQueue", new()
     ///     {
     ///         ProjectId = mainMnqSqs.ProjectId,
-    ///         Endpoint = mainMnqSqs.Endpoint,
+    ///         SqsEndpoint = mainMnqSqs.Endpoint,
     ///         AccessKey = mainMnqSqsCredentials.AccessKey,
     ///         SecretKey = mainMnqSqsCredentials.SecretKey,
     ///     });
@@ -73,12 +73,6 @@ namespace ediri.Scaleway
         /// </summary>
         [Output("contentBasedDeduplication")]
         public Output<bool> ContentBasedDeduplication { get; private set; } = null!;
-
-        /// <summary>
-        /// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-        /// </summary>
-        [Output("endpoint")]
-        public Output<string?> Endpoint { get; private set; } = null!;
 
         /// <summary>
         /// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
@@ -133,6 +127,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Output("secretKey")]
         public Output<string> SecretKey { get; private set; } = null!;
+
+        /// <summary>
+        /// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+        /// </summary>
+        [Output("sqsEndpoint")]
+        public Output<string?> SqsEndpoint { get; private set; } = null!;
 
         /// <summary>
         /// The URL of the queue.
@@ -221,12 +221,6 @@ namespace ediri.Scaleway
         public Input<bool>? ContentBasedDeduplication { get; set; }
 
         /// <summary>
-        /// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-        /// </summary>
-        [Input("endpoint")]
-        public Input<string>? Endpoint { get; set; }
-
-        /// <summary>
         /// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
         /// </summary>
         [Input("fifoQueue")]
@@ -291,6 +285,12 @@ namespace ediri.Scaleway
         }
 
         /// <summary>
+        /// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+        /// </summary>
+        [Input("sqsEndpoint")]
+        public Input<string>? SqsEndpoint { get; set; }
+
+        /// <summary>
         /// The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
         /// </summary>
         [Input("visibilityTimeoutSeconds")]
@@ -325,12 +325,6 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("contentBasedDeduplication")]
         public Input<bool>? ContentBasedDeduplication { get; set; }
-
-        /// <summary>
-        /// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `http://sqs-sns.mnq.{region}.scw.cloud`.
-        /// </summary>
-        [Input("endpoint")]
-        public Input<string>? Endpoint { get; set; }
 
         /// <summary>
         /// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
@@ -395,6 +389,12 @@ namespace ediri.Scaleway
                 _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
+        /// </summary>
+        [Input("sqsEndpoint")]
+        public Input<string>? SqsEndpoint { get; set; }
 
         /// <summary>
         /// The URL of the queue.

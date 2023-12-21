@@ -31,7 +31,7 @@ namespace ediri.Scaleway
     /// 
     ///     var mainObjectBucketWebsiteConfiguration = new Scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration", new()
     ///     {
-    ///         Bucket = mainObjectBucket.Name,
+    ///         Bucket = mainObjectBucket.Id,
     ///         IndexDocument = new Scaleway.Inputs.ObjectBucketWebsiteConfigurationIndexDocumentArgs
     ///         {
     ///             Suffix = "index.html",
@@ -85,7 +85,7 @@ namespace ediri.Scaleway
     /// 
     ///     var mainObjectBucketWebsiteConfiguration = new Scaleway.ObjectBucketWebsiteConfiguration("mainObjectBucketWebsiteConfiguration", new()
     ///     {
-    ///         Bucket = mainObjectBucket.Name,
+    ///         Bucket = mainObjectBucket.Id,
     ///         IndexDocument = new Scaleway.Inputs.ObjectBucketWebsiteConfigurationIndexDocumentArgs
     ///         {
     ///             Suffix = "index.html",

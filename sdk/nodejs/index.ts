@@ -735,6 +735,26 @@ export type MnqNatsCredentials = import("./mnqNatsCredentials").MnqNatsCredentia
 export const MnqNatsCredentials: typeof import("./mnqNatsCredentials").MnqNatsCredentials = null as any;
 utilities.lazyLoad(exports, ["MnqNatsCredentials"], () => require("./mnqNatsCredentials"));
 
+export { MnqSnsArgs, MnqSnsState } from "./mnqSns";
+export type MnqSns = import("./mnqSns").MnqSns;
+export const MnqSns: typeof import("./mnqSns").MnqSns = null as any;
+utilities.lazyLoad(exports, ["MnqSns"], () => require("./mnqSns"));
+
+export { MnqSnsCredentialsArgs, MnqSnsCredentialsState } from "./mnqSnsCredentials";
+export type MnqSnsCredentials = import("./mnqSnsCredentials").MnqSnsCredentials;
+export const MnqSnsCredentials: typeof import("./mnqSnsCredentials").MnqSnsCredentials = null as any;
+utilities.lazyLoad(exports, ["MnqSnsCredentials"], () => require("./mnqSnsCredentials"));
+
+export { MnqSnsTopicArgs, MnqSnsTopicState } from "./mnqSnsTopic";
+export type MnqSnsTopic = import("./mnqSnsTopic").MnqSnsTopic;
+export const MnqSnsTopic: typeof import("./mnqSnsTopic").MnqSnsTopic = null as any;
+utilities.lazyLoad(exports, ["MnqSnsTopic"], () => require("./mnqSnsTopic"));
+
+export { MnqSnsTopicSubscriptionArgs, MnqSnsTopicSubscriptionState } from "./mnqSnsTopicSubscription";
+export type MnqSnsTopicSubscription = import("./mnqSnsTopicSubscription").MnqSnsTopicSubscription;
+export const MnqSnsTopicSubscription: typeof import("./mnqSnsTopicSubscription").MnqSnsTopicSubscription = null as any;
+utilities.lazyLoad(exports, ["MnqSnsTopicSubscription"], () => require("./mnqSnsTopicSubscription"));
+
 export { MnqSqsArgs, MnqSqsState } from "./mnqSqs";
 export type MnqSqs = import("./mnqSqs").MnqSqs;
 export const MnqSqs: typeof import("./mnqSqs").MnqSqs = null as any;
@@ -1041,6 +1061,14 @@ const _module = {
                 return new MnqNatsAccount(name, <any>undefined, { urn })
             case "scaleway:index/mnqNatsCredentials:MnqNatsCredentials":
                 return new MnqNatsCredentials(name, <any>undefined, { urn })
+            case "scaleway:index/mnqSns:MnqSns":
+                return new MnqSns(name, <any>undefined, { urn })
+            case "scaleway:index/mnqSnsCredentials:MnqSnsCredentials":
+                return new MnqSnsCredentials(name, <any>undefined, { urn })
+            case "scaleway:index/mnqSnsTopic:MnqSnsTopic":
+                return new MnqSnsTopic(name, <any>undefined, { urn })
+            case "scaleway:index/mnqSnsTopicSubscription:MnqSnsTopicSubscription":
+                return new MnqSnsTopicSubscription(name, <any>undefined, { urn })
             case "scaleway:index/mnqSqs:MnqSqs":
                 return new MnqSqs(name, <any>undefined, { urn })
             case "scaleway:index/mnqSqsCredentials:MnqSqsCredentials":
@@ -1174,6 +1202,10 @@ pulumi.runtime.registerResourceModule("scaleway", "index/lbIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/lbRoute", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqNatsAccount", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqNatsCredentials", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mnqSns", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mnqSnsCredentials", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mnqSnsTopic", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/mnqSnsTopicSubscription", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqSqs", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqSqsCredentials", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/mnqSqsQueue", _module)

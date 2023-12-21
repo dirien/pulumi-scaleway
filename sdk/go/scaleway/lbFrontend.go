@@ -44,6 +44,119 @@ import (
 //
 // ```
 //
+// ## With ACLs
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewLbFrontend(ctx, "frontend01", &scaleway.LbFrontendArgs{
+//				LbId:        pulumi.Any(scaleway_lb.Lb01.Id),
+//				BackendId:   pulumi.Any(scaleway_lb_backend.Backend01.Id),
+//				InboundPort: pulumi.Int(80),
+//				Acls: scaleway.LbFrontendAclArray{
+//					&scaleway.LbFrontendAclArgs{
+//						Name: pulumi.String("blacklist wellknwon IPs"),
+//						Action: &scaleway.LbFrontendAclActionArgs{
+//							Type: pulumi.String("allow"),
+//						},
+//						Match: &scaleway.LbFrontendAclMatchArgs{
+//							IpSubnets: pulumi.StringArray{
+//								pulumi.String("192.168.0.1"),
+//								pulumi.String("192.168.0.2"),
+//								pulumi.String("192.168.10.0/24"),
+//							},
+//						},
+//					},
+//					&scaleway.LbFrontendAclArgs{
+//						Action: &scaleway.LbFrontendAclActionArgs{
+//							Type: pulumi.String("deny"),
+//						},
+//						Match: &scaleway.LbFrontendAclMatchArgs{
+//							IpSubnets: pulumi.StringArray{
+//								pulumi.String("51.51.51.51"),
+//							},
+//							HttpFilter: pulumi.String("regex"),
+//							HttpFilterValues: pulumi.StringArray{
+//								pulumi.String("^foo*bar$"),
+//							},
+//						},
+//					},
+//					&scaleway.LbFrontendAclArgs{
+//						Action: &scaleway.LbFrontendAclActionArgs{
+//							Type: pulumi.String("allow"),
+//						},
+//						Match: &scaleway.LbFrontendAclMatchArgs{
+//							HttpFilter: pulumi.String("path_begin"),
+//							HttpFilterValues: pulumi.StringArray{
+//								pulumi.String("foo"),
+//								pulumi.String("bar"),
+//							},
+//						},
+//					},
+//					&scaleway.LbFrontendAclArgs{
+//						Action: &scaleway.LbFrontendAclActionArgs{
+//							Type: pulumi.String("allow"),
+//						},
+//						Match: &scaleway.LbFrontendAclMatchArgs{
+//							HttpFilter: pulumi.String("path_begin"),
+//							HttpFilterValues: pulumi.StringArray{
+//								pulumi.String("hi"),
+//							},
+//							Invert: pulumi.Bool(true),
+//						},
+//					},
+//					&scaleway.LbFrontendAclArgs{
+//						Action: &scaleway.LbFrontendAclActionArgs{
+//							Type: pulumi.String("allow"),
+//						},
+//						Match: &scaleway.LbFrontendAclMatchArgs{
+//							HttpFilter:       pulumi.String("http_header_match"),
+//							HttpFilterValues: pulumi.StringArray("foo"),
+//							HttpFilterOption: pulumi.String("bar"),
+//						},
+//					},
+//					&scaleway.LbFrontendAclArgs{
+//						Action: &scaleway.LbFrontendAclActionArgs{
+//							Type: pulumi.String("redirect"),
+//							Redirects: scaleway.LbFrontendAclActionRedirectArray{
+//								&scaleway.LbFrontendAclActionRedirectArgs{
+//									Type:   pulumi.String("location"),
+//									Target: pulumi.String("https://example.com"),
+//									Code:   pulumi.Int(307),
+//								},
+//							},
+//						},
+//						Match: &scaleway.LbFrontendAclMatchArgs{
+//							IpSubnets: pulumi.StringArray{
+//								pulumi.String("10.0.0.10"),
+//							},
+//							HttpFilter: pulumi.String("path_begin"),
+//							HttpFilterValues: pulumi.StringArray{
+//								pulumi.String("foo"),
+//								pulumi.String("bar"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g. bash

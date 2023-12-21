@@ -16,6 +16,7 @@ export function getRdbInstance(args?: GetRdbInstanceArgs, opts?: pulumi.InvokeOp
     return pulumi.runtime.invoke("scaleway:index/getRdbInstance:getRdbInstance", {
         "instanceId": args.instanceId,
         "name": args.name,
+        "projectId": args.projectId,
         "region": args.region,
     }, opts);
 }
@@ -35,6 +36,10 @@ export interface GetRdbInstanceArgs {
      */
     name?: string;
     /**
+     * The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+     */
+    projectId?: string;
+    /**
      * `region`) The region in which the RDB instance exists.
      */
     region?: string;
@@ -49,7 +54,6 @@ export interface GetRdbInstanceResult {
     readonly backupScheduleRetention: number;
     readonly certificate: string;
     readonly disableBackup: boolean;
-    readonly disablePublicEndpoint: boolean;
     readonly endpointIp: string;
     readonly endpointPort: number;
     readonly engine: string;
@@ -96,6 +100,10 @@ export interface GetRdbInstanceOutputArgs {
      * Only one of `name` and `instanceId` should be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * `region`) The region in which the RDB instance exists.
      */
