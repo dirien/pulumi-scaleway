@@ -239,6 +239,73 @@ import (
 //	}
 //
 // ```
+// ### Example with AWS provider
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"fmt"
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/iam"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_default, err := scaleway.LookupAccountProject(ctx, &scaleway.LookupAccountProjectArgs{
+//				Name: pulumi.StringRef("default"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			bucket, err := scaleway.NewObjectBucket(ctx, "bucket", nil)
+//			if err != nil {
+//				return err
+//			}
+//			policy := iam.GetPolicyDocumentOutput(ctx, iam.GetPolicyDocumentOutputArgs{
+//				Version: pulumi.String("2012-10-17"),
+//				Statements: iam.GetPolicyDocumentStatementArray{
+//					&iam.GetPolicyDocumentStatementArgs{
+//						Sid:    pulumi.String("Delegate access"),
+//						Effect: pulumi.String("Allow"),
+//						Principals: iam.GetPolicyDocumentStatementPrincipalArray{
+//							&iam.GetPolicyDocumentStatementPrincipalArgs{
+//								Type: pulumi.String("SCW"),
+//								Identifiers: pulumi.StringArray{
+//									pulumi.String(fmt.Sprintf("project_id:%v", _default.Id)),
+//								},
+//							},
+//						},
+//						Actions: pulumi.StringArray{
+//							pulumi.String("s3:ListBucket"),
+//						},
+//						Resources: pulumi.StringArray{
+//							bucket.Name,
+//							bucket.Name.ApplyT(func(name string) (string, error) {
+//								return fmt.Sprintf("%v/*", name), nil
+//							}).(pulumi.StringOutput),
+//						},
+//					},
+//				},
+//			}, nil)
+//			_, err = scaleway.NewObjectBucketPolicy(ctx, "main", &scaleway.ObjectBucketPolicyArgs{
+//				Bucket: bucket.ID(),
+//				Policy: policy.ApplyT(func(policy iam.GetPolicyDocumentResult) (*string, error) {
+//					return &policy.Json, nil
+//				}).(pulumi.StringPtrOutput),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 // ### Example with deprecated version 2012-10-17
 //
 // ```go
