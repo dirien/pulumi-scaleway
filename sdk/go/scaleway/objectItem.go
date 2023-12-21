@@ -27,7 +27,7 @@ import (
 type ObjectItem struct {
 	pulumi.CustomResourceState
 
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content pulumi.StringPtrOutput `pulumi:"content"`
@@ -89,7 +89,7 @@ func GetObjectItem(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ObjectItem resources.
 type objectItemState struct {
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket *string `pulumi:"bucket"`
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content *string `pulumi:"content"`
@@ -116,7 +116,7 @@ type objectItemState struct {
 }
 
 type ObjectItemState struct {
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringPtrInput
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content pulumi.StringPtrInput
@@ -147,7 +147,7 @@ func (ObjectItemState) ElementType() reflect.Type {
 }
 
 type objectItemArgs struct {
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket string `pulumi:"bucket"`
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content *string `pulumi:"content"`
@@ -175,7 +175,7 @@ type objectItemArgs struct {
 
 // The set of arguments for constructing a ObjectItem resource.
 type ObjectItemArgs struct {
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringInput
 	// The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
 	Content pulumi.StringPtrInput
@@ -288,7 +288,7 @@ func (o ObjectItemOutput) ToObjectItemOutputWithContext(ctx context.Context) Obj
 	return o
 }
 
-// The name of the bucket.
+// The bucket's name or regional ID.
 func (o ObjectItemOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectItem) pulumi.StringOutput { return v.Bucket }).(pulumi.StringOutput)
 }

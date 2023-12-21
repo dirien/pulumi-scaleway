@@ -15,7 +15,7 @@ import (
 type ObjectBucketLockConfiguration struct {
 	pulumi.CustomResourceState
 
-	// The bucket name.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
 	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -61,7 +61,7 @@ func GetObjectBucketLockConfiguration(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ObjectBucketLockConfiguration resources.
 type objectBucketLockConfigurationState struct {
-	// The bucket name.
+	// The bucket's name or regional ID.
 	Bucket *string `pulumi:"bucket"`
 	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
@@ -72,7 +72,7 @@ type objectBucketLockConfigurationState struct {
 }
 
 type ObjectBucketLockConfigurationState struct {
-	// The bucket name.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringPtrInput
 	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
@@ -87,7 +87,7 @@ func (ObjectBucketLockConfigurationState) ElementType() reflect.Type {
 }
 
 type objectBucketLockConfigurationArgs struct {
-	// The bucket name.
+	// The bucket's name or regional ID.
 	Bucket string `pulumi:"bucket"`
 	// The project_id you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
@@ -99,7 +99,7 @@ type objectBucketLockConfigurationArgs struct {
 
 // The set of arguments for constructing a ObjectBucketLockConfiguration resource.
 type ObjectBucketLockConfigurationArgs struct {
-	// The bucket name.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringInput
 	// The project_id you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
@@ -196,7 +196,7 @@ func (o ObjectBucketLockConfigurationOutput) ToObjectBucketLockConfigurationOutp
 	return o
 }
 
-// The bucket name.
+// The bucket's name or regional ID.
 func (o ObjectBucketLockConfigurationOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucketLockConfiguration) pulumi.StringOutput { return v.Bucket }).(pulumi.StringOutput)
 }

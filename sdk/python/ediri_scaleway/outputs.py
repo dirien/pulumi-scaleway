@@ -67,6 +67,7 @@ __all__ = [
     'LbFrontendAclActionRedirect',
     'LbFrontendAclMatch',
     'LbPrivateNetwork',
+    'MnqSnsCredentialsPermissions',
     'MnqSqsCredentialsPermissions',
     'ObjectBucketAclAccessControlPolicy',
     'ObjectBucketAclAccessControlPolicyGrant',
@@ -3342,6 +3343,7 @@ class LbAclMatch(dict):
         :param str http_filter: The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
                It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
                Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
+        :param str http_filter_option: If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
         :param Sequence[str] http_filter_values: A list of possible values to match for the given HTTP filter.
                Keep in mind that in the case of `http_header_match` the HTTP header field name is case-insensitive.
         :param bool invert: If set to `true`, the condition will be of type "unless".
@@ -3371,6 +3373,9 @@ class LbAclMatch(dict):
     @property
     @pulumi.getter(name="httpFilterOption")
     def http_filter_option(self) -> Optional[str]:
+        """
+        If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
+        """
         return pulumi.get(self, "http_filter_option")
 
     @property
@@ -3843,6 +3848,7 @@ class LbFrontendAclMatch(dict):
         :param str http_filter: The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
                It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
                Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
+        :param str http_filter_option: If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
         :param Sequence[str] http_filter_values: A list of possible values to match for the given HTTP filter.
                Keep in mind that in the case of `http_header_match` the HTTP header field name is case-insensitive.
         :param bool invert: If set to `true`, the condition will be of type "unless".
@@ -3872,6 +3878,9 @@ class LbFrontendAclMatch(dict):
     @property
     @pulumi.getter(name="httpFilterOption")
     def http_filter_option(self) -> Optional[str]:
+        """
+        If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
+        """
         return pulumi.get(self, "http_filter_option")
 
     @property
@@ -3981,6 +3990,70 @@ class LbPrivateNetwork(dict):
         `zone`) The zone of the load-balancer.
         """
         return pulumi.get(self, "zone")
+
+
+@pulumi.output_type
+class MnqSnsCredentialsPermissions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "canManage":
+            suggest = "can_manage"
+        elif key == "canPublish":
+            suggest = "can_publish"
+        elif key == "canReceive":
+            suggest = "can_receive"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MnqSnsCredentialsPermissions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MnqSnsCredentialsPermissions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MnqSnsCredentialsPermissions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 can_manage: Optional[bool] = None,
+                 can_publish: Optional[bool] = None,
+                 can_receive: Optional[bool] = None):
+        """
+        :param bool can_manage: . Defines if user can manage the associated resource(s).
+        :param bool can_publish: . Defines if user can publish messages to the service.
+        :param bool can_receive: . Defines if user can receive messages from the service.
+        """
+        if can_manage is not None:
+            pulumi.set(__self__, "can_manage", can_manage)
+        if can_publish is not None:
+            pulumi.set(__self__, "can_publish", can_publish)
+        if can_receive is not None:
+            pulumi.set(__self__, "can_receive", can_receive)
+
+    @property
+    @pulumi.getter(name="canManage")
+    def can_manage(self) -> Optional[bool]:
+        """
+        . Defines if user can manage the associated resource(s).
+        """
+        return pulumi.get(self, "can_manage")
+
+    @property
+    @pulumi.getter(name="canPublish")
+    def can_publish(self) -> Optional[bool]:
+        """
+        . Defines if user can publish messages to the service.
+        """
+        return pulumi.get(self, "can_publish")
+
+    @property
+    @pulumi.getter(name="canReceive")
+    def can_receive(self) -> Optional[bool]:
+        """
+        . Defines if user can receive messages from the service.
+        """
+        return pulumi.get(self, "can_receive")
 
 
 @pulumi.output_type
@@ -4679,6 +4752,8 @@ class RdbInstancePrivateNetwork(dict):
         suggest = None
         if key == "pnId":
             suggest = "pn_id"
+        elif key == "enableIpam":
+            suggest = "enable_ipam"
         elif key == "endpointId":
             suggest = "endpoint_id"
         elif key == "ipNet":
@@ -4697,6 +4772,7 @@ class RdbInstancePrivateNetwork(dict):
 
     def __init__(__self__, *,
                  pn_id: str,
+                 enable_ipam: Optional[bool] = None,
                  endpoint_id: Optional[str] = None,
                  hostname: Optional[str] = None,
                  ip: Optional[str] = None,
@@ -4705,6 +4781,8 @@ class RdbInstancePrivateNetwork(dict):
                  port: Optional[int] = None,
                  zone: Optional[str] = None):
         """
+        :param str pn_id: The ID of the private network.
+        :param bool enable_ipam: Whether the endpoint should be configured with IPAM. Defaults to `false` if `ip_net` is defined, `true` otherwise.
         :param str endpoint_id: The ID of the endpoint.
         :param str hostname: Hostname of the endpoint.
         :param str ip: IPv4 address on the network.
@@ -4712,6 +4790,8 @@ class RdbInstancePrivateNetwork(dict):
         :param int port: Port in the Private Network.
         """
         pulumi.set(__self__, "pn_id", pn_id)
+        if enable_ipam is not None:
+            pulumi.set(__self__, "enable_ipam", enable_ipam)
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
         if hostname is not None:
@@ -4730,7 +4810,18 @@ class RdbInstancePrivateNetwork(dict):
     @property
     @pulumi.getter(name="pnId")
     def pn_id(self) -> str:
+        """
+        The ID of the private network.
+        """
         return pulumi.get(self, "pn_id")
+
+    @property
+    @pulumi.getter(name="enableIpam")
+    def enable_ipam(self) -> Optional[bool]:
+        """
+        Whether the endpoint should be configured with IPAM. Defaults to `false` if `ip_net` is defined, `true` otherwise.
+        """
+        return pulumi.get(self, "enable_ipam")
 
     @property
     @pulumi.getter(name="endpointId")
@@ -7717,6 +7808,7 @@ class GetLbAclsAclMatchResult(dict):
                  ip_subnets: Sequence[str]):
         """
         :param str http_filter: The matched HTTP filter.
+        :param str http_filter_option: A list of possible values for the HTTP filter based on the HTTP header.
         :param Sequence[str] http_filter_values: The possible values matched for a given HTTP filter.
         :param bool invert: The condition will be of type "unless" if invert is set to `true`
         :param Sequence[str] ip_subnets: A list of matched IPs or CIDR v4/v6 addresses of the client of the session.
@@ -7738,6 +7830,9 @@ class GetLbAclsAclMatchResult(dict):
     @property
     @pulumi.getter(name="httpFilterOption")
     def http_filter_option(self) -> str:
+        """
+        A list of possible values for the HTTP filter based on the HTTP header.
+        """
         return pulumi.get(self, "http_filter_option")
 
     @property
@@ -9258,6 +9353,7 @@ class GetRdbInstanceLoadBalancerResult(dict):
 @pulumi.output_type
 class GetRdbInstancePrivateNetworkResult(dict):
     def __init__(__self__, *,
+                 enable_ipam: bool,
                  endpoint_id: str,
                  hostname: str,
                  ip: str,
@@ -9270,6 +9366,7 @@ class GetRdbInstancePrivateNetworkResult(dict):
         :param str name: The name of the RDB instance.
                Only one of `name` and `instance_id` should be specified.
         """
+        pulumi.set(__self__, "enable_ipam", enable_ipam)
         pulumi.set(__self__, "endpoint_id", endpoint_id)
         pulumi.set(__self__, "hostname", hostname)
         pulumi.set(__self__, "ip", ip)
@@ -9278,6 +9375,11 @@ class GetRdbInstancePrivateNetworkResult(dict):
         pulumi.set(__self__, "pn_id", pn_id)
         pulumi.set(__self__, "port", port)
         pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter(name="enableIpam")
+    def enable_ipam(self) -> bool:
+        return pulumi.get(self, "enable_ipam")
 
     @property
     @pulumi.getter(name="endpointId")

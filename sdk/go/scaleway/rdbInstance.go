@@ -12,6 +12,117 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates and manages Scaleway Database Instances.
+// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+//
+// ## Examples
+//
+// ### Example Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewRdbInstance(ctx, "main", &scaleway.RdbInstanceArgs{
+//				DisableBackup: pulumi.Bool(true),
+//				Engine:        pulumi.String("PostgreSQL-11"),
+//				IsHaCluster:   pulumi.Bool(true),
+//				NodeType:      pulumi.String("DB-DEV-S"),
+//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
+//				UserName:      pulumi.String("my_initial_user"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Example with Settings
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewRdbInstance(ctx, "main", &scaleway.RdbInstanceArgs{
+//				DisableBackup: pulumi.Bool(true),
+//				Engine:        pulumi.String("MySQL-8"),
+//				InitSettings: pulumi.StringMap{
+//					"lower_case_table_names": pulumi.String("1"),
+//				},
+//				NodeType: pulumi.String("db-dev-s"),
+//				Password: pulumi.String("thiZ_is_v&ry_s3cret"),
+//				Settings: pulumi.StringMap{
+//					"max_connections": pulumi.String("350"),
+//				},
+//				UserName: pulumi.String("my_initial_user"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Example with backup schedule
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewRdbInstance(ctx, "main", &scaleway.RdbInstanceArgs{
+//				BackupScheduleFrequency: pulumi.Int(24),
+//				BackupScheduleRetention: pulumi.Int(7),
+//				DisableBackup:           pulumi.Bool(false),
+//				Engine:                  pulumi.String("PostgreSQL-11"),
+//				IsHaCluster:             pulumi.Bool(true),
+//				NodeType:                pulumi.String("DB-DEV-S"),
+//				Password:                pulumi.String("thiZ_is_v&ry_s3cret"),
+//				UserName:                pulumi.String("my_initial_user"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Limitations
+//
+// The Managed Database product is only compliant with the private network in the default availability zone (AZ).
+// i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
+// section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
+//
 // ## Import
 //
 // Database Instance can be imported using the `{region}/{id}`, e.g. bash
@@ -34,8 +145,6 @@ type RdbInstance struct {
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
 	// Disable automated backup for the database instance.
 	DisableBackup pulumi.BoolPtrOutput `pulumi:"disableBackup"`
-	// Disable the default public endpoint
-	DisablePublicEndpoint pulumi.BoolPtrOutput `pulumi:"disablePublicEndpoint"`
 	// (Deprecated) The IP of the Database Instance.
 	//
 	// Deprecated: Please use the private_network or the load_balancer attribute
@@ -49,12 +158,15 @@ type RdbInstance struct {
 	// Map of engine settings to be set at database initialisation.
 	//
 	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
+	//
+	// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
 	InitSettings pulumi.StringMapOutput `pulumi:"initSettings"`
 	// Enable or disable high availability for the database instance.
 	//
 	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster pulumi.BoolPtrOutput `pulumi:"isHaCluster"`
-	// List of load balancer endpoints of the database instance.
+	// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+	// This block must be defined if you want a public endpoint in addition to your private endpoint.
 	LoadBalancers RdbInstanceLoadBalancerArrayOutput `pulumi:"loadBalancers"`
 	// The name of the Database Instance.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -87,7 +199,7 @@ type RdbInstance struct {
 	// Identifier for the first user of the database instance.
 	//
 	// > **Important:** Updates to `userName` will recreate the Database Instance.
-	UserName pulumi.StringPtrOutput `pulumi:"userName"`
+	UserName pulumi.StringOutput `pulumi:"userName"`
 	// Volume size (in GB) when `volumeType` is set to `bssd`.
 	//
 	// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
@@ -149,8 +261,6 @@ type rdbInstanceState struct {
 	Certificate *string `pulumi:"certificate"`
 	// Disable automated backup for the database instance.
 	DisableBackup *bool `pulumi:"disableBackup"`
-	// Disable the default public endpoint
-	DisablePublicEndpoint *bool `pulumi:"disablePublicEndpoint"`
 	// (Deprecated) The IP of the Database Instance.
 	//
 	// Deprecated: Please use the private_network or the load_balancer attribute
@@ -164,12 +274,15 @@ type rdbInstanceState struct {
 	// Map of engine settings to be set at database initialisation.
 	//
 	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
+	//
+	// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
 	InitSettings map[string]string `pulumi:"initSettings"`
 	// Enable or disable high availability for the database instance.
 	//
 	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster *bool `pulumi:"isHaCluster"`
-	// List of load balancer endpoints of the database instance.
+	// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+	// This block must be defined if you want a public endpoint in addition to your private endpoint.
 	LoadBalancers []RdbInstanceLoadBalancer `pulumi:"loadBalancers"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
@@ -222,8 +335,6 @@ type RdbInstanceState struct {
 	Certificate pulumi.StringPtrInput
 	// Disable automated backup for the database instance.
 	DisableBackup pulumi.BoolPtrInput
-	// Disable the default public endpoint
-	DisablePublicEndpoint pulumi.BoolPtrInput
 	// (Deprecated) The IP of the Database Instance.
 	//
 	// Deprecated: Please use the private_network or the load_balancer attribute
@@ -237,12 +348,15 @@ type RdbInstanceState struct {
 	// Map of engine settings to be set at database initialisation.
 	//
 	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
+	//
+	// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
 	InitSettings pulumi.StringMapInput
 	// Enable or disable high availability for the database instance.
 	//
 	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster pulumi.BoolPtrInput
-	// List of load balancer endpoints of the database instance.
+	// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+	// This block must be defined if you want a public endpoint in addition to your private endpoint.
 	LoadBalancers RdbInstanceLoadBalancerArrayInput
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput
@@ -297,8 +411,6 @@ type rdbInstanceArgs struct {
 	BackupScheduleRetention *int `pulumi:"backupScheduleRetention"`
 	// Disable automated backup for the database instance.
 	DisableBackup *bool `pulumi:"disableBackup"`
-	// Disable the default public endpoint
-	DisablePublicEndpoint *bool `pulumi:"disablePublicEndpoint"`
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	//
 	// > **Important:** Updates to `engine` will recreate the Database Instance.
@@ -306,11 +418,16 @@ type rdbInstanceArgs struct {
 	// Map of engine settings to be set at database initialisation.
 	//
 	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
+	//
+	// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
 	InitSettings map[string]string `pulumi:"initSettings"`
 	// Enable or disable high availability for the database instance.
 	//
 	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster *bool `pulumi:"isHaCluster"`
+	// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+	// This block must be defined if you want a public endpoint in addition to your private endpoint.
+	LoadBalancers []RdbInstanceLoadBalancer `pulumi:"loadBalancers"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
 	// The type of database instance you want to create (e.g. `db-dev-s`).
@@ -357,8 +474,6 @@ type RdbInstanceArgs struct {
 	BackupScheduleRetention pulumi.IntPtrInput
 	// Disable automated backup for the database instance.
 	DisableBackup pulumi.BoolPtrInput
-	// Disable the default public endpoint
-	DisablePublicEndpoint pulumi.BoolPtrInput
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	//
 	// > **Important:** Updates to `engine` will recreate the Database Instance.
@@ -366,11 +481,16 @@ type RdbInstanceArgs struct {
 	// Map of engine settings to be set at database initialisation.
 	//
 	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
+	//
+	// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
 	InitSettings pulumi.StringMapInput
 	// Enable or disable high availability for the database instance.
 	//
 	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster pulumi.BoolPtrInput
+	// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+	// This block must be defined if you want a public endpoint in addition to your private endpoint.
+	LoadBalancers RdbInstanceLoadBalancerArrayInput
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput
 	// The type of database instance you want to create (e.g. `db-dev-s`).
@@ -519,11 +639,6 @@ func (o RdbInstanceOutput) DisableBackup() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.BoolPtrOutput { return v.DisableBackup }).(pulumi.BoolPtrOutput)
 }
 
-// Disable the default public endpoint
-func (o RdbInstanceOutput) DisablePublicEndpoint() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *RdbInstance) pulumi.BoolPtrOutput { return v.DisablePublicEndpoint }).(pulumi.BoolPtrOutput)
-}
-
 // (Deprecated) The IP of the Database Instance.
 //
 // Deprecated: Please use the private_network or the load_balancer attribute
@@ -546,6 +661,8 @@ func (o RdbInstanceOutput) Engine() pulumi.StringOutput {
 // Map of engine settings to be set at database initialisation.
 //
 // > **Important:** Updates to `initSettings` will recreate the Database Instance.
+//
+// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
 func (o RdbInstanceOutput) InitSettings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.StringMapOutput { return v.InitSettings }).(pulumi.StringMapOutput)
 }
@@ -557,7 +674,8 @@ func (o RdbInstanceOutput) IsHaCluster() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.BoolPtrOutput { return v.IsHaCluster }).(pulumi.BoolPtrOutput)
 }
 
-// List of load balancer endpoints of the database instance.
+// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+// This block must be defined if you want a public endpoint in addition to your private endpoint.
 func (o RdbInstanceOutput) LoadBalancers() RdbInstanceLoadBalancerArrayOutput {
 	return o.ApplyT(func(v *RdbInstance) RdbInstanceLoadBalancerArrayOutput { return v.LoadBalancers }).(RdbInstanceLoadBalancerArrayOutput)
 }
@@ -623,8 +741,8 @@ func (o RdbInstanceOutput) Tags() pulumi.StringArrayOutput {
 // Identifier for the first user of the database instance.
 //
 // > **Important:** Updates to `userName` will recreate the Database Instance.
-func (o RdbInstanceOutput) UserName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *RdbInstance) pulumi.StringPtrOutput { return v.UserName }).(pulumi.StringPtrOutput)
+func (o RdbInstanceOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v *RdbInstance) pulumi.StringOutput { return v.UserName }).(pulumi.StringOutput)
 }
 
 // Volume size (in GB) when `volumeType` is set to `bssd`.

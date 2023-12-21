@@ -11,6 +11,95 @@ using Pulumi;
 namespace ediri.Scaleway
 {
     /// <summary>
+    /// Creates and manages Scaleway Database Instances.
+    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+    /// 
+    /// ## Examples
+    /// 
+    /// ### Example Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.RdbInstance("main", new()
+    ///     {
+    ///         DisableBackup = true,
+    ///         Engine = "PostgreSQL-11",
+    ///         IsHaCluster = true,
+    ///         NodeType = "DB-DEV-S",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         UserName = "my_initial_user",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Example with Settings
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.RdbInstance("main", new()
+    ///     {
+    ///         DisableBackup = true,
+    ///         Engine = "MySQL-8",
+    ///         InitSettings = 
+    ///         {
+    ///             { "lower_case_table_names", "1" },
+    ///         },
+    ///         NodeType = "db-dev-s",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         Settings = 
+    ///         {
+    ///             { "max_connections", "350" },
+    ///         },
+    ///         UserName = "my_initial_user",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Example with backup schedule
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.RdbInstance("main", new()
+    ///     {
+    ///         BackupScheduleFrequency = 24,
+    ///         BackupScheduleRetention = 7,
+    ///         DisableBackup = false,
+    ///         Engine = "PostgreSQL-11",
+    ///         IsHaCluster = true,
+    ///         NodeType = "DB-DEV-S",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         UserName = "my_initial_user",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Limitations
+    /// 
+    /// The Managed Database product is only compliant with the private network in the default availability zone (AZ).
+    /// i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
+    /// section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
+    /// 
     /// ## Import
     /// 
     /// Database Instance can be imported using the `{region}/{id}`, e.g. bash
@@ -53,12 +142,6 @@ namespace ediri.Scaleway
         public Output<bool?> DisableBackup { get; private set; } = null!;
 
         /// <summary>
-        /// Disable the default public endpoint
-        /// </summary>
-        [Output("disablePublicEndpoint")]
-        public Output<bool?> DisablePublicEndpoint { get; private set; } = null!;
-
-        /// <summary>
         /// (Deprecated) The IP of the Database Instance.
         /// </summary>
         [Output("endpointIp")]
@@ -82,6 +165,8 @@ namespace ediri.Scaleway
         /// Map of engine settings to be set at database initialisation.
         /// 
         /// &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
+        /// 
+        /// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
         /// </summary>
         [Output("initSettings")]
         public Output<ImmutableDictionary<string, string>?> InitSettings { get; private set; } = null!;
@@ -95,7 +180,8 @@ namespace ediri.Scaleway
         public Output<bool?> IsHaCluster { get; private set; } = null!;
 
         /// <summary>
-        /// List of load balancer endpoints of the database instance.
+        /// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+        /// This block must be defined if you want a public endpoint in addition to your private endpoint.
         /// </summary>
         [Output("loadBalancers")]
         public Output<ImmutableArray<Outputs.RdbInstanceLoadBalancer>> LoadBalancers { get; private set; } = null!;
@@ -174,7 +260,7 @@ namespace ediri.Scaleway
         /// &gt; **Important:** Updates to `user_name` will recreate the Database Instance.
         /// </summary>
         [Output("userName")]
-        public Output<string?> UserName { get; private set; } = null!;
+        public Output<string> UserName { get; private set; } = null!;
 
         /// <summary>
         /// Volume size (in GB) when `volume_type` is set to `bssd`.
@@ -266,12 +352,6 @@ namespace ediri.Scaleway
         public Input<bool>? DisableBackup { get; set; }
 
         /// <summary>
-        /// Disable the default public endpoint
-        /// </summary>
-        [Input("disablePublicEndpoint")]
-        public Input<bool>? DisablePublicEndpoint { get; set; }
-
-        /// <summary>
         /// Database Instance's engine version (e.g. `PostgreSQL-11`).
         /// 
         /// &gt; **Important:** Updates to `engine` will recreate the Database Instance.
@@ -286,6 +366,8 @@ namespace ediri.Scaleway
         /// Map of engine settings to be set at database initialisation.
         /// 
         /// &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
+        /// 
+        /// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
         /// </summary>
         public InputMap<string> InitSettings
         {
@@ -300,6 +382,19 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("isHaCluster")]
         public Input<bool>? IsHaCluster { get; set; }
+
+        [Input("loadBalancers")]
+        private InputList<Inputs.RdbInstanceLoadBalancerArgs>? _loadBalancers;
+
+        /// <summary>
+        /// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+        /// This block must be defined if you want a public endpoint in addition to your private endpoint.
+        /// </summary>
+        public InputList<Inputs.RdbInstanceLoadBalancerArgs> LoadBalancers
+        {
+            get => _loadBalancers ?? (_loadBalancers = new InputList<Inputs.RdbInstanceLoadBalancerArgs>());
+            set => _loadBalancers = value;
+        }
 
         /// <summary>
         /// The name of the Database Instance.
@@ -440,12 +535,6 @@ namespace ediri.Scaleway
         public Input<bool>? DisableBackup { get; set; }
 
         /// <summary>
-        /// Disable the default public endpoint
-        /// </summary>
-        [Input("disablePublicEndpoint")]
-        public Input<bool>? DisablePublicEndpoint { get; set; }
-
-        /// <summary>
         /// (Deprecated) The IP of the Database Instance.
         /// </summary>
         [Input("endpointIp")]
@@ -472,6 +561,8 @@ namespace ediri.Scaleway
         /// Map of engine settings to be set at database initialisation.
         /// 
         /// &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
+        /// 
+        /// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
         /// </summary>
         public InputMap<string> InitSettings
         {
@@ -491,7 +582,8 @@ namespace ediri.Scaleway
         private InputList<Inputs.RdbInstanceLoadBalancerGetArgs>? _loadBalancers;
 
         /// <summary>
-        /// List of load balancer endpoints of the database instance.
+        /// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
+        /// This block must be defined if you want a public endpoint in addition to your private endpoint.
         /// </summary>
         public InputList<Inputs.RdbInstanceLoadBalancerGetArgs> LoadBalancers
         {

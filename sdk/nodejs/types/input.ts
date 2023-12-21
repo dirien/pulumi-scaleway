@@ -911,6 +911,9 @@ export interface LbAclMatch {
      * Possible values are: `aclHttpFilterNone`, `pathBegin`, `pathEnd`, `httpHeaderMatch` or `regex`.
      */
     httpFilter?: pulumi.Input<string>;
+    /**
+     * If you have `httpFilter` at `httpHeaderMatch`, you can use this field to filter on the HTTP header's value.
+     */
     httpFilterOption?: pulumi.Input<string>;
     /**
      * A list of possible values to match for the given HTTP filter.
@@ -1045,6 +1048,9 @@ export interface LbFrontendAclMatch {
      * Possible values are: `aclHttpFilterNone`, `pathBegin`, `pathEnd`, `httpHeaderMatch` or `regex`.
      */
     httpFilter?: pulumi.Input<string>;
+    /**
+     * If you have `httpFilter` at `httpHeaderMatch`, you can use this field to filter on the HTTP header's value.
+     */
     httpFilterOption?: pulumi.Input<string>;
     /**
      * A list of possible values to match for the given HTTP filter.
@@ -1079,6 +1085,21 @@ export interface LbPrivateNetwork {
      * `zone`) The zone of the load-balancer.
      */
     zone?: pulumi.Input<string>;
+}
+
+export interface MnqSnsCredentialsPermissions {
+    /**
+     * . Defines if user can manage the associated resource(s).
+     */
+    canManage?: pulumi.Input<boolean>;
+    /**
+     * . Defines if user can publish messages to the service.
+     */
+    canPublish?: pulumi.Input<boolean>;
+    /**
+     * . Defines if user can receive messages from the service.
+     */
+    canReceive?: pulumi.Input<boolean>;
 }
 
 export interface MnqSqsCredentialsPermissions {
@@ -1264,6 +1285,10 @@ export interface RdbInstanceLoadBalancer {
 
 export interface RdbInstancePrivateNetwork {
     /**
+     * Whether the endpoint should be configured with IPAM. Defaults to `false` if `ipNet` is defined, `true` otherwise.
+     */
+    enableIpam?: pulumi.Input<boolean>;
+    /**
      * The ID of the endpoint.
      */
     endpointId?: pulumi.Input<string>;
@@ -1280,6 +1305,9 @@ export interface RdbInstancePrivateNetwork {
      * The name of the Database Instance.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the private network.
+     */
     pnId: pulumi.Input<string>;
     /**
      * Port in the Private Network.

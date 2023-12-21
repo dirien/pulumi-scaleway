@@ -723,6 +723,23 @@
                     }
                 }
             },
+            "scaleway_mnq_sns": {
+                "current": "scaleway:index/mnqSns:MnqSns"
+            },
+            "scaleway_mnq_sns_credentials": {
+                "current": "scaleway:index/mnqSnsCredentials:MnqSnsCredentials",
+                "fields": {
+                    "permissions": {
+                        "maxItemsOne": true
+                    }
+                }
+            },
+            "scaleway_mnq_sns_topic": {
+                "current": "scaleway:index/mnqSnsTopic:MnqSnsTopic"
+            },
+            "scaleway_mnq_sns_topic_subscription": {
+                "current": "scaleway:index/mnqSnsTopicSubscription:MnqSnsTopicSubscription"
+            },
             "scaleway_mnq_sqs": {
                 "current": "scaleway:index/mnqSqs:MnqSqs"
             },
@@ -2035,6 +2052,10 @@
             "scaleway:index/lbRoute:LbRoute": "scaleway_lb_route",
             "scaleway:index/mnqNatsAccount:MnqNatsAccount": "scaleway_mnq_nats_account",
             "scaleway:index/mnqNatsCredentials:MnqNatsCredentials": "scaleway_mnq_nats_credentials",
+            "scaleway:index/mnqSns:MnqSns": "scaleway_mnq_sns",
+            "scaleway:index/mnqSnsCredentials:MnqSnsCredentials": "scaleway_mnq_sns_credentials",
+            "scaleway:index/mnqSnsTopic:MnqSnsTopic": "scaleway_mnq_sns_topic",
+            "scaleway:index/mnqSnsTopicSubscription:MnqSnsTopicSubscription": "scaleway_mnq_sns_topic_subscription",
             "scaleway:index/mnqSqs:MnqSqs": "scaleway_mnq_sqs",
             "scaleway:index/mnqSqsCredentials:MnqSqsCredentials": "scaleway_mnq_sqs_credentials",
             "scaleway:index/mnqSqsQueue:MnqSqsQueue": "scaleway_mnq_sqs_queue",
@@ -2327,6 +2348,11 @@
                 "privateNetworkId": "private_network_id",
                 "staticConfig": "static_config"
             },
+            "scaleway:index/MnqSnsCredentialsPermissions:MnqSnsCredentialsPermissions": {
+                "canManage": "can_manage",
+                "canPublish": "can_publish",
+                "canReceive": "can_receive"
+            },
             "scaleway:index/MnqSqsCredentialsPermissions:MnqSqsCredentialsPermissions": {
                 "canManage": "can_manage",
                 "canPublish": "can_publish",
@@ -2362,6 +2388,7 @@
                 "endpointId": "endpoint_id"
             },
             "scaleway:index/RdbInstancePrivateNetwork:RdbInstancePrivateNetwork": {
+                "enableIpam": "enable_ipam",
                 "endpointId": "endpoint_id",
                 "ipNet": "ip_net",
                 "pnId": "pn_id"
@@ -3360,7 +3387,6 @@
                 "backupScheduleFrequency": "backup_schedule_frequency",
                 "backupScheduleRetention": "backup_schedule_retention",
                 "disableBackup": "disable_backup",
-                "disablePublicEndpoint": "disable_public_endpoint",
                 "endpointIp": "endpoint_ip",
                 "endpointPort": "endpoint_port",
                 "initSettings": "init_settings",
@@ -3380,6 +3406,7 @@
                 "endpointId": "endpoint_id"
             },
             "scaleway:index/getRdbInstancePrivateNetwork:getRdbInstancePrivateNetwork": {
+                "enableIpam": "enable_ipam",
                 "endpointId": "endpoint_id",
                 "ipNet": "ip_net",
                 "pnId": "pn_id"
@@ -3410,7 +3437,8 @@
                 "imageId": "image_id",
                 "namespaceId": "namespace_id",
                 "organizationId": "organization_id",
-                "projectId": "project_id"
+                "projectId": "project_id",
+                "updatedAt": "updated_at"
             },
             "scaleway:index/getRegistryNamespace:getRegistryNamespace": {
                 "isPublic": "is_public",
@@ -3909,6 +3937,32 @@
             "scaleway:index/mnqNatsCredentials:MnqNatsCredentials": {
                 "accountId": "account_id"
             },
+            "scaleway:index/mnqSns:MnqSns": {
+                "projectId": "project_id"
+            },
+            "scaleway:index/mnqSnsCredentials:MnqSnsCredentials": {
+                "accessKey": "access_key",
+                "projectId": "project_id",
+                "secretKey": "secret_key"
+            },
+            "scaleway:index/mnqSnsTopic:MnqSnsTopic": {
+                "accessKey": "access_key",
+                "contentBasedDeduplication": "content_based_deduplication",
+                "fifoTopic": "fifo_topic",
+                "namePrefix": "name_prefix",
+                "projectId": "project_id",
+                "secretKey": "secret_key",
+                "snsEndpoint": "sns_endpoint"
+            },
+            "scaleway:index/mnqSnsTopicSubscription:MnqSnsTopicSubscription": {
+                "accessKey": "access_key",
+                "projectId": "project_id",
+                "redrivePolicy": "redrive_policy",
+                "secretKey": "secret_key",
+                "snsEndpoint": "sns_endpoint",
+                "topicArn": "topic_arn",
+                "topicId": "topic_id"
+            },
             "scaleway:index/mnqSqs:MnqSqs": {
                 "projectId": "project_id"
             },
@@ -3927,6 +3981,7 @@
                 "projectId": "project_id",
                 "receiveWaitTimeSeconds": "receive_wait_time_seconds",
                 "secretKey": "secret_key",
+                "sqsEndpoint": "sqs_endpoint",
                 "visibilityTimeoutSeconds": "visibility_timeout_seconds"
             },
             "scaleway:index/objectBucket:ObjectBucket": {
@@ -3980,7 +4035,6 @@
                 "backupScheduleFrequency": "backup_schedule_frequency",
                 "backupScheduleRetention": "backup_schedule_retention",
                 "disableBackup": "disable_backup",
-                "disablePublicEndpoint": "disable_public_endpoint",
                 "endpointIp": "endpoint_ip",
                 "endpointPort": "endpoint_port",
                 "initSettings": "init_settings",

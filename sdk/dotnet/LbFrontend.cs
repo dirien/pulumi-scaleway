@@ -35,6 +35,139 @@ namespace ediri.Scaleway
     /// });
     /// ```
     /// 
+    /// ## With ACLs
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var frontend01 = new Scaleway.LbFrontend("frontend01", new()
+    ///     {
+    ///         LbId = scaleway_lb.Lb01.Id,
+    ///         BackendId = scaleway_lb_backend.Backend01.Id,
+    ///         InboundPort = 80,
+    ///         Acls = new[]
+    ///         {
+    ///             new Scaleway.Inputs.LbFrontendAclArgs
+    ///             {
+    ///                 Name = "blacklist wellknwon IPs",
+    ///                 Action = new Scaleway.Inputs.LbFrontendAclActionArgs
+    ///                 {
+    ///                     Type = "allow",
+    ///                 },
+    ///                 Match = new Scaleway.Inputs.LbFrontendAclMatchArgs
+    ///                 {
+    ///                     IpSubnets = new[]
+    ///                     {
+    ///                         "192.168.0.1",
+    ///                         "192.168.0.2",
+    ///                         "192.168.10.0/24",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Scaleway.Inputs.LbFrontendAclArgs
+    ///             {
+    ///                 Action = new Scaleway.Inputs.LbFrontendAclActionArgs
+    ///                 {
+    ///                     Type = "deny",
+    ///                 },
+    ///                 Match = new Scaleway.Inputs.LbFrontendAclMatchArgs
+    ///                 {
+    ///                     IpSubnets = new[]
+    ///                     {
+    ///                         "51.51.51.51",
+    ///                     },
+    ///                     HttpFilter = "regex",
+    ///                     HttpFilterValues = new[]
+    ///                     {
+    ///                         "^foo*bar$",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Scaleway.Inputs.LbFrontendAclArgs
+    ///             {
+    ///                 Action = new Scaleway.Inputs.LbFrontendAclActionArgs
+    ///                 {
+    ///                     Type = "allow",
+    ///                 },
+    ///                 Match = new Scaleway.Inputs.LbFrontendAclMatchArgs
+    ///                 {
+    ///                     HttpFilter = "path_begin",
+    ///                     HttpFilterValues = new[]
+    ///                     {
+    ///                         "foo",
+    ///                         "bar",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Scaleway.Inputs.LbFrontendAclArgs
+    ///             {
+    ///                 Action = new Scaleway.Inputs.LbFrontendAclActionArgs
+    ///                 {
+    ///                     Type = "allow",
+    ///                 },
+    ///                 Match = new Scaleway.Inputs.LbFrontendAclMatchArgs
+    ///                 {
+    ///                     HttpFilter = "path_begin",
+    ///                     HttpFilterValues = new[]
+    ///                     {
+    ///                         "hi",
+    ///                     },
+    ///                     Invert = true,
+    ///                 },
+    ///             },
+    ///             new Scaleway.Inputs.LbFrontendAclArgs
+    ///             {
+    ///                 Action = new Scaleway.Inputs.LbFrontendAclActionArgs
+    ///                 {
+    ///                     Type = "allow",
+    ///                 },
+    ///                 Match = new Scaleway.Inputs.LbFrontendAclMatchArgs
+    ///                 {
+    ///                     HttpFilter = "http_header_match",
+    ///                     HttpFilterValues = "foo",
+    ///                     HttpFilterOption = "bar",
+    ///                 },
+    ///             },
+    ///             new Scaleway.Inputs.LbFrontendAclArgs
+    ///             {
+    ///                 Action = new Scaleway.Inputs.LbFrontendAclActionArgs
+    ///                 {
+    ///                     Type = "redirect",
+    ///                     Redirects = new[]
+    ///                     {
+    ///                         new Scaleway.Inputs.LbFrontendAclActionRedirectArgs
+    ///                         {
+    ///                             Type = "location",
+    ///                             Target = "https://example.com",
+    ///                             Code = 307,
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Match = new Scaleway.Inputs.LbFrontendAclMatchArgs
+    ///                 {
+    ///                     IpSubnets = new[]
+    ///                     {
+    ///                         "10.0.0.10",
+    ///                     },
+    ///                     HttpFilter = "path_begin",
+    ///                     HttpFilterValues = new[]
+    ///                     {
+    ///                         "foo",
+    ///                         "bar",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g. bash

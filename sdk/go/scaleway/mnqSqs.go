@@ -19,6 +19,8 @@ import (
 //
 // ### Basic
 //
+// # Activate SQS for default project
+//
 // ```go
 // package main
 //
@@ -35,8 +37,34 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// # Activate SQS for a specific project
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			project, err := scaleway.LookupAccountProject(ctx, &scaleway.LookupAccountProjectArgs{
+//				Name: pulumi.StringRef("default"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
 //			_, err = scaleway.NewMnqSqs(ctx, "forProject", &scaleway.MnqSqsArgs{
-//				ProjectId: pulumi.Any(scaleway_account_project.Main.Id),
+//				ProjectId: *pulumi.String(project.Id),
 //			})
 //			if err != nil {
 //				return err

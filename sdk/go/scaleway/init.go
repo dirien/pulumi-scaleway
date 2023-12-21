@@ -153,6 +153,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &MnqNatsAccount{}
 	case "scaleway:index/mnqNatsCredentials:MnqNatsCredentials":
 		r = &MnqNatsCredentials{}
+	case "scaleway:index/mnqSns:MnqSns":
+		r = &MnqSns{}
+	case "scaleway:index/mnqSnsCredentials:MnqSnsCredentials":
+		r = &MnqSnsCredentials{}
+	case "scaleway:index/mnqSnsTopic:MnqSnsTopic":
+		r = &MnqSnsTopic{}
+	case "scaleway:index/mnqSnsTopicSubscription:MnqSnsTopicSubscription":
+		r = &MnqSnsTopicSubscription{}
 	case "scaleway:index/mnqSqs:MnqSqs":
 		r = &MnqSqs{}
 	case "scaleway:index/mnqSqsCredentials:MnqSqsCredentials":
@@ -574,6 +582,26 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/mnqNatsCredentials",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mnqSns",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mnqSnsCredentials",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mnqSnsTopic",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mnqSnsTopicSubscription",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

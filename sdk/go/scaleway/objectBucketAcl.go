@@ -31,7 +31,7 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.NewObjectBucketAcl(ctx, "main", &scaleway.ObjectBucketAclArgs{
-//				Bucket: pulumi.Any(scaleway_object_bucket.Main.Name),
+//				Bucket: pulumi.Any(scaleway_object_bucket.Main.Id),
 //				Acl:    pulumi.String("private"),
 //			})
 //			if err != nil {
@@ -61,7 +61,7 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.NewObjectBucketAcl(ctx, "mainObjectBucketAcl", &scaleway.ObjectBucketAclArgs{
-//				Bucket: mainObjectBucket.Name,
+//				Bucket: mainObjectBucket.ID(),
 //				AccessControlPolicy: &scaleway.ObjectBucketAclAccessControlPolicyArgs{
 //					Grants: scaleway.ObjectBucketAclAccessControlPolicyGrantArray{
 //						&scaleway.ObjectBucketAclAccessControlPolicyGrantArgs{
@@ -151,7 +151,7 @@ type ObjectBucketAcl struct {
 	AccessControlPolicy ObjectBucketAclAccessControlPolicyOutput `pulumi:"accessControlPolicy"`
 	// The canned ACL you want to apply to the bucket.
 	Acl pulumi.StringPtrOutput `pulumi:"acl"`
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner pulumi.StringPtrOutput `pulumi:"expectedBucketOwner"`
@@ -198,7 +198,7 @@ type objectBucketAclState struct {
 	AccessControlPolicy *ObjectBucketAclAccessControlPolicy `pulumi:"accessControlPolicy"`
 	// The canned ACL you want to apply to the bucket.
 	Acl *string `pulumi:"acl"`
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket *string `pulumi:"bucket"`
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner *string `pulumi:"expectedBucketOwner"`
@@ -213,7 +213,7 @@ type ObjectBucketAclState struct {
 	AccessControlPolicy ObjectBucketAclAccessControlPolicyPtrInput
 	// The canned ACL you want to apply to the bucket.
 	Acl pulumi.StringPtrInput
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringPtrInput
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner pulumi.StringPtrInput
@@ -232,7 +232,7 @@ type objectBucketAclArgs struct {
 	AccessControlPolicy *ObjectBucketAclAccessControlPolicy `pulumi:"accessControlPolicy"`
 	// The canned ACL you want to apply to the bucket.
 	Acl *string `pulumi:"acl"`
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket string `pulumi:"bucket"`
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner *string `pulumi:"expectedBucketOwner"`
@@ -248,7 +248,7 @@ type ObjectBucketAclArgs struct {
 	AccessControlPolicy ObjectBucketAclAccessControlPolicyPtrInput
 	// The canned ACL you want to apply to the bucket.
 	Acl pulumi.StringPtrInput
-	// The name of the bucket.
+	// The bucket's name or regional ID.
 	Bucket pulumi.StringInput
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner pulumi.StringPtrInput
@@ -355,7 +355,7 @@ func (o ObjectBucketAclOutput) Acl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketAcl) pulumi.StringPtrOutput { return v.Acl }).(pulumi.StringPtrOutput)
 }
 
-// The name of the bucket.
+// The bucket's name or regional ID.
 func (o ObjectBucketAclOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucketAcl) pulumi.StringOutput { return v.Bucket }).(pulumi.StringOutput)
 }

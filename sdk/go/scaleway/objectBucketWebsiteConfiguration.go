@@ -36,7 +36,7 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.NewObjectBucketWebsiteConfiguration(ctx, "mainObjectBucketWebsiteConfiguration", &scaleway.ObjectBucketWebsiteConfigurationArgs{
-//				Bucket: mainObjectBucket.Name,
+//				Bucket: mainObjectBucket.ID(),
 //				IndexDocument: &scaleway.ObjectBucketWebsiteConfigurationIndexDocumentArgs{
 //					Suffix: pulumi.String("index.html"),
 //				},
@@ -100,7 +100,7 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.NewObjectBucketWebsiteConfiguration(ctx, "mainObjectBucketWebsiteConfiguration", &scaleway.ObjectBucketWebsiteConfigurationArgs{
-//				Bucket: mainObjectBucket.Name,
+//				Bucket: mainObjectBucket.ID(),
 //				IndexDocument: &scaleway.ObjectBucketWebsiteConfigurationIndexDocumentArgs{
 //					Suffix: pulumi.String("index.html"),
 //				},

@@ -7400,7 +7400,8 @@ type LbAclMatch struct {
 	// The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
 	// It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
 	// Possible values are: `aclHttpFilterNone`, `pathBegin`, `pathEnd`, `httpHeaderMatch` or `regex`.
-	HttpFilter       *string `pulumi:"httpFilter"`
+	HttpFilter *string `pulumi:"httpFilter"`
+	// If you have `httpFilter` at `httpHeaderMatch`, you can use this field to filter on the HTTP header's value.
 	HttpFilterOption *string `pulumi:"httpFilterOption"`
 	// A list of possible values to match for the given HTTP filter.
 	// Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case-insensitive.
@@ -7426,7 +7427,8 @@ type LbAclMatchArgs struct {
 	// The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
 	// It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
 	// Possible values are: `aclHttpFilterNone`, `pathBegin`, `pathEnd`, `httpHeaderMatch` or `regex`.
-	HttpFilter       pulumi.StringPtrInput `pulumi:"httpFilter"`
+	HttpFilter pulumi.StringPtrInput `pulumi:"httpFilter"`
+	// If you have `httpFilter` at `httpHeaderMatch`, you can use this field to filter on the HTTP header's value.
 	HttpFilterOption pulumi.StringPtrInput `pulumi:"httpFilterOption"`
 	// A list of possible values to match for the given HTTP filter.
 	// Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case-insensitive.
@@ -7521,6 +7523,7 @@ func (o LbAclMatchOutput) HttpFilter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LbAclMatch) *string { return v.HttpFilter }).(pulumi.StringPtrOutput)
 }
 
+// If you have `httpFilter` at `httpHeaderMatch`, you can use this field to filter on the HTTP header's value.
 func (o LbAclMatchOutput) HttpFilterOption() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LbAclMatch) *string { return v.HttpFilterOption }).(pulumi.StringPtrOutput)
 }
@@ -7577,6 +7580,7 @@ func (o LbAclMatchPtrOutput) HttpFilter() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// If you have `httpFilter` at `httpHeaderMatch`, you can use this field to filter on the HTTP header's value.
 func (o LbAclMatchPtrOutput) HttpFilterOption() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LbAclMatch) *string {
 		if v == nil {
@@ -8764,7 +8768,8 @@ type LbFrontendAclMatch struct {
 	// The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
 	// It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
 	// Possible values are: `aclHttpFilterNone`, `pathBegin`, `pathEnd`, `httpHeaderMatch` or `regex`.
-	HttpFilter       *string `pulumi:"httpFilter"`
+	HttpFilter *string `pulumi:"httpFilter"`
+	// If you have `httpFilter` at `httpHeaderMatch`, you can use this field to filter on the HTTP header's value.
 	HttpFilterOption *string `pulumi:"httpFilterOption"`
 	// A list of possible values to match for the given HTTP filter.
 	// Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case-insensitive.
@@ -8790,7 +8795,8 @@ type LbFrontendAclMatchArgs struct {
 	// The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
 	// It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
 	// Possible values are: `aclHttpFilterNone`, `pathBegin`, `pathEnd`, `httpHeaderMatch` or `regex`.
-	HttpFilter       pulumi.StringPtrInput `pulumi:"httpFilter"`
+	HttpFilter pulumi.StringPtrInput `pulumi:"httpFilter"`
+	// If you have `httpFilter` at `httpHeaderMatch`, you can use this field to filter on the HTTP header's value.
 	HttpFilterOption pulumi.StringPtrInput `pulumi:"httpFilterOption"`
 	// A list of possible values to match for the given HTTP filter.
 	// Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case-insensitive.
@@ -8834,6 +8840,7 @@ func (o LbFrontendAclMatchOutput) HttpFilter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LbFrontendAclMatch) *string { return v.HttpFilter }).(pulumi.StringPtrOutput)
 }
 
+// If you have `httpFilter` at `httpHeaderMatch`, you can use this field to filter on the HTTP header's value.
 func (o LbFrontendAclMatchOutput) HttpFilterOption() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LbFrontendAclMatch) *string { return v.HttpFilterOption }).(pulumi.StringPtrOutput)
 }
@@ -8982,6 +8989,181 @@ func (o LbPrivateNetworkArrayOutput) Index(i pulumi.IntInput) LbPrivateNetworkOu
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LbPrivateNetwork {
 		return vs[0].([]LbPrivateNetwork)[vs[1].(int)]
 	}).(LbPrivateNetworkOutput)
+}
+
+type MnqSnsCredentialsPermissions struct {
+	// . Defines if user can manage the associated resource(s).
+	CanManage *bool `pulumi:"canManage"`
+	// . Defines if user can publish messages to the service.
+	CanPublish *bool `pulumi:"canPublish"`
+	// . Defines if user can receive messages from the service.
+	CanReceive *bool `pulumi:"canReceive"`
+}
+
+// MnqSnsCredentialsPermissionsInput is an input type that accepts MnqSnsCredentialsPermissionsArgs and MnqSnsCredentialsPermissionsOutput values.
+// You can construct a concrete instance of `MnqSnsCredentialsPermissionsInput` via:
+//
+//	MnqSnsCredentialsPermissionsArgs{...}
+type MnqSnsCredentialsPermissionsInput interface {
+	pulumi.Input
+
+	ToMnqSnsCredentialsPermissionsOutput() MnqSnsCredentialsPermissionsOutput
+	ToMnqSnsCredentialsPermissionsOutputWithContext(context.Context) MnqSnsCredentialsPermissionsOutput
+}
+
+type MnqSnsCredentialsPermissionsArgs struct {
+	// . Defines if user can manage the associated resource(s).
+	CanManage pulumi.BoolPtrInput `pulumi:"canManage"`
+	// . Defines if user can publish messages to the service.
+	CanPublish pulumi.BoolPtrInput `pulumi:"canPublish"`
+	// . Defines if user can receive messages from the service.
+	CanReceive pulumi.BoolPtrInput `pulumi:"canReceive"`
+}
+
+func (MnqSnsCredentialsPermissionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MnqSnsCredentialsPermissions)(nil)).Elem()
+}
+
+func (i MnqSnsCredentialsPermissionsArgs) ToMnqSnsCredentialsPermissionsOutput() MnqSnsCredentialsPermissionsOutput {
+	return i.ToMnqSnsCredentialsPermissionsOutputWithContext(context.Background())
+}
+
+func (i MnqSnsCredentialsPermissionsArgs) ToMnqSnsCredentialsPermissionsOutputWithContext(ctx context.Context) MnqSnsCredentialsPermissionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MnqSnsCredentialsPermissionsOutput)
+}
+
+func (i MnqSnsCredentialsPermissionsArgs) ToMnqSnsCredentialsPermissionsPtrOutput() MnqSnsCredentialsPermissionsPtrOutput {
+	return i.ToMnqSnsCredentialsPermissionsPtrOutputWithContext(context.Background())
+}
+
+func (i MnqSnsCredentialsPermissionsArgs) ToMnqSnsCredentialsPermissionsPtrOutputWithContext(ctx context.Context) MnqSnsCredentialsPermissionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MnqSnsCredentialsPermissionsOutput).ToMnqSnsCredentialsPermissionsPtrOutputWithContext(ctx)
+}
+
+// MnqSnsCredentialsPermissionsPtrInput is an input type that accepts MnqSnsCredentialsPermissionsArgs, MnqSnsCredentialsPermissionsPtr and MnqSnsCredentialsPermissionsPtrOutput values.
+// You can construct a concrete instance of `MnqSnsCredentialsPermissionsPtrInput` via:
+//
+//	        MnqSnsCredentialsPermissionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type MnqSnsCredentialsPermissionsPtrInput interface {
+	pulumi.Input
+
+	ToMnqSnsCredentialsPermissionsPtrOutput() MnqSnsCredentialsPermissionsPtrOutput
+	ToMnqSnsCredentialsPermissionsPtrOutputWithContext(context.Context) MnqSnsCredentialsPermissionsPtrOutput
+}
+
+type mnqSnsCredentialsPermissionsPtrType MnqSnsCredentialsPermissionsArgs
+
+func MnqSnsCredentialsPermissionsPtr(v *MnqSnsCredentialsPermissionsArgs) MnqSnsCredentialsPermissionsPtrInput {
+	return (*mnqSnsCredentialsPermissionsPtrType)(v)
+}
+
+func (*mnqSnsCredentialsPermissionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MnqSnsCredentialsPermissions)(nil)).Elem()
+}
+
+func (i *mnqSnsCredentialsPermissionsPtrType) ToMnqSnsCredentialsPermissionsPtrOutput() MnqSnsCredentialsPermissionsPtrOutput {
+	return i.ToMnqSnsCredentialsPermissionsPtrOutputWithContext(context.Background())
+}
+
+func (i *mnqSnsCredentialsPermissionsPtrType) ToMnqSnsCredentialsPermissionsPtrOutputWithContext(ctx context.Context) MnqSnsCredentialsPermissionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MnqSnsCredentialsPermissionsPtrOutput)
+}
+
+type MnqSnsCredentialsPermissionsOutput struct{ *pulumi.OutputState }
+
+func (MnqSnsCredentialsPermissionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MnqSnsCredentialsPermissions)(nil)).Elem()
+}
+
+func (o MnqSnsCredentialsPermissionsOutput) ToMnqSnsCredentialsPermissionsOutput() MnqSnsCredentialsPermissionsOutput {
+	return o
+}
+
+func (o MnqSnsCredentialsPermissionsOutput) ToMnqSnsCredentialsPermissionsOutputWithContext(ctx context.Context) MnqSnsCredentialsPermissionsOutput {
+	return o
+}
+
+func (o MnqSnsCredentialsPermissionsOutput) ToMnqSnsCredentialsPermissionsPtrOutput() MnqSnsCredentialsPermissionsPtrOutput {
+	return o.ToMnqSnsCredentialsPermissionsPtrOutputWithContext(context.Background())
+}
+
+func (o MnqSnsCredentialsPermissionsOutput) ToMnqSnsCredentialsPermissionsPtrOutputWithContext(ctx context.Context) MnqSnsCredentialsPermissionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MnqSnsCredentialsPermissions) *MnqSnsCredentialsPermissions {
+		return &v
+	}).(MnqSnsCredentialsPermissionsPtrOutput)
+}
+
+// . Defines if user can manage the associated resource(s).
+func (o MnqSnsCredentialsPermissionsOutput) CanManage() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v MnqSnsCredentialsPermissions) *bool { return v.CanManage }).(pulumi.BoolPtrOutput)
+}
+
+// . Defines if user can publish messages to the service.
+func (o MnqSnsCredentialsPermissionsOutput) CanPublish() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v MnqSnsCredentialsPermissions) *bool { return v.CanPublish }).(pulumi.BoolPtrOutput)
+}
+
+// . Defines if user can receive messages from the service.
+func (o MnqSnsCredentialsPermissionsOutput) CanReceive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v MnqSnsCredentialsPermissions) *bool { return v.CanReceive }).(pulumi.BoolPtrOutput)
+}
+
+type MnqSnsCredentialsPermissionsPtrOutput struct{ *pulumi.OutputState }
+
+func (MnqSnsCredentialsPermissionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MnqSnsCredentialsPermissions)(nil)).Elem()
+}
+
+func (o MnqSnsCredentialsPermissionsPtrOutput) ToMnqSnsCredentialsPermissionsPtrOutput() MnqSnsCredentialsPermissionsPtrOutput {
+	return o
+}
+
+func (o MnqSnsCredentialsPermissionsPtrOutput) ToMnqSnsCredentialsPermissionsPtrOutputWithContext(ctx context.Context) MnqSnsCredentialsPermissionsPtrOutput {
+	return o
+}
+
+func (o MnqSnsCredentialsPermissionsPtrOutput) Elem() MnqSnsCredentialsPermissionsOutput {
+	return o.ApplyT(func(v *MnqSnsCredentialsPermissions) MnqSnsCredentialsPermissions {
+		if v != nil {
+			return *v
+		}
+		var ret MnqSnsCredentialsPermissions
+		return ret
+	}).(MnqSnsCredentialsPermissionsOutput)
+}
+
+// . Defines if user can manage the associated resource(s).
+func (o MnqSnsCredentialsPermissionsPtrOutput) CanManage() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *MnqSnsCredentialsPermissions) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.CanManage
+	}).(pulumi.BoolPtrOutput)
+}
+
+// . Defines if user can publish messages to the service.
+func (o MnqSnsCredentialsPermissionsPtrOutput) CanPublish() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *MnqSnsCredentialsPermissions) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.CanPublish
+	}).(pulumi.BoolPtrOutput)
+}
+
+// . Defines if user can receive messages from the service.
+func (o MnqSnsCredentialsPermissionsPtrOutput) CanReceive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *MnqSnsCredentialsPermissions) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.CanReceive
+	}).(pulumi.BoolPtrOutput)
 }
 
 type MnqSqsCredentialsPermissions struct {
@@ -11222,6 +11404,8 @@ func (o RdbInstanceLoadBalancerArrayOutput) Index(i pulumi.IntInput) RdbInstance
 }
 
 type RdbInstancePrivateNetwork struct {
+	// Whether the endpoint should be configured with IPAM. Defaults to `false` if `ipNet` is defined, `true` otherwise.
+	EnableIpam *bool `pulumi:"enableIpam"`
 	// The ID of the endpoint.
 	EndpointId *string `pulumi:"endpointId"`
 	// Hostname of the endpoint.
@@ -11231,7 +11415,8 @@ type RdbInstancePrivateNetwork struct {
 	IpNet *string `pulumi:"ipNet"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
-	PnId string  `pulumi:"pnId"`
+	// The ID of the private network.
+	PnId string `pulumi:"pnId"`
 	// Port in the Private Network.
 	Port *int    `pulumi:"port"`
 	Zone *string `pulumi:"zone"`
@@ -11249,6 +11434,8 @@ type RdbInstancePrivateNetworkInput interface {
 }
 
 type RdbInstancePrivateNetworkArgs struct {
+	// Whether the endpoint should be configured with IPAM. Defaults to `false` if `ipNet` is defined, `true` otherwise.
+	EnableIpam pulumi.BoolPtrInput `pulumi:"enableIpam"`
 	// The ID of the endpoint.
 	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
 	// Hostname of the endpoint.
@@ -11258,7 +11445,8 @@ type RdbInstancePrivateNetworkArgs struct {
 	IpNet pulumi.StringPtrInput `pulumi:"ipNet"`
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	PnId pulumi.StringInput    `pulumi:"pnId"`
+	// The ID of the private network.
+	PnId pulumi.StringInput `pulumi:"pnId"`
 	// Port in the Private Network.
 	Port pulumi.IntPtrInput    `pulumi:"port"`
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
@@ -11341,6 +11529,11 @@ func (o RdbInstancePrivateNetworkOutput) ToRdbInstancePrivateNetworkPtrOutputWit
 	}).(RdbInstancePrivateNetworkPtrOutput)
 }
 
+// Whether the endpoint should be configured with IPAM. Defaults to `false` if `ipNet` is defined, `true` otherwise.
+func (o RdbInstancePrivateNetworkOutput) EnableIpam() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v RdbInstancePrivateNetwork) *bool { return v.EnableIpam }).(pulumi.BoolPtrOutput)
+}
+
 // The ID of the endpoint.
 func (o RdbInstancePrivateNetworkOutput) EndpointId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RdbInstancePrivateNetwork) *string { return v.EndpointId }).(pulumi.StringPtrOutput)
@@ -11365,6 +11558,7 @@ func (o RdbInstancePrivateNetworkOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RdbInstancePrivateNetwork) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// The ID of the private network.
 func (o RdbInstancePrivateNetworkOutput) PnId() pulumi.StringOutput {
 	return o.ApplyT(func(v RdbInstancePrivateNetwork) string { return v.PnId }).(pulumi.StringOutput)
 }
@@ -11400,6 +11594,16 @@ func (o RdbInstancePrivateNetworkPtrOutput) Elem() RdbInstancePrivateNetworkOutp
 		var ret RdbInstancePrivateNetwork
 		return ret
 	}).(RdbInstancePrivateNetworkOutput)
+}
+
+// Whether the endpoint should be configured with IPAM. Defaults to `false` if `ipNet` is defined, `true` otherwise.
+func (o RdbInstancePrivateNetworkPtrOutput) EnableIpam() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RdbInstancePrivateNetwork) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.EnableIpam
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The ID of the endpoint.
@@ -11451,6 +11655,7 @@ func (o RdbInstancePrivateNetworkPtrOutput) Name() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The ID of the private network.
 func (o RdbInstancePrivateNetworkPtrOutput) PnId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RdbInstancePrivateNetwork) *string {
 		if v == nil {
@@ -18460,7 +18665,8 @@ func (o GetLbAclsAclActionRedirectArrayOutput) Index(i pulumi.IntInput) GetLbAcl
 
 type GetLbAclsAclMatch struct {
 	// The matched HTTP filter.
-	HttpFilter       string `pulumi:"httpFilter"`
+	HttpFilter string `pulumi:"httpFilter"`
+	// A list of possible values for the HTTP filter based on the HTTP header.
 	HttpFilterOption string `pulumi:"httpFilterOption"`
 	// The possible values matched for a given HTTP filter.
 	HttpFilterValues []string `pulumi:"httpFilterValues"`
@@ -18483,7 +18689,8 @@ type GetLbAclsAclMatchInput interface {
 
 type GetLbAclsAclMatchArgs struct {
 	// The matched HTTP filter.
-	HttpFilter       pulumi.StringInput `pulumi:"httpFilter"`
+	HttpFilter pulumi.StringInput `pulumi:"httpFilter"`
+	// A list of possible values for the HTTP filter based on the HTTP header.
 	HttpFilterOption pulumi.StringInput `pulumi:"httpFilterOption"`
 	// The possible values matched for a given HTTP filter.
 	HttpFilterValues pulumi.StringArrayInput `pulumi:"httpFilterValues"`
@@ -18549,6 +18756,7 @@ func (o GetLbAclsAclMatchOutput) HttpFilter() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbAclsAclMatch) string { return v.HttpFilter }).(pulumi.StringOutput)
 }
 
+// A list of possible values for the HTTP filter based on the HTTP header.
 func (o GetLbAclsAclMatchOutput) HttpFilterOption() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbAclsAclMatch) string { return v.HttpFilterOption }).(pulumi.StringOutput)
 }
@@ -21902,6 +22110,7 @@ func (o GetRdbInstanceLoadBalancerArrayOutput) Index(i pulumi.IntInput) GetRdbIn
 }
 
 type GetRdbInstancePrivateNetwork struct {
+	EnableIpam bool   `pulumi:"enableIpam"`
 	EndpointId string `pulumi:"endpointId"`
 	Hostname   string `pulumi:"hostname"`
 	Ip         string `pulumi:"ip"`
@@ -21926,6 +22135,7 @@ type GetRdbInstancePrivateNetworkInput interface {
 }
 
 type GetRdbInstancePrivateNetworkArgs struct {
+	EnableIpam pulumi.BoolInput   `pulumi:"enableIpam"`
 	EndpointId pulumi.StringInput `pulumi:"endpointId"`
 	Hostname   pulumi.StringInput `pulumi:"hostname"`
 	Ip         pulumi.StringInput `pulumi:"ip"`
@@ -21987,6 +22197,10 @@ func (o GetRdbInstancePrivateNetworkOutput) ToGetRdbInstancePrivateNetworkOutput
 
 func (o GetRdbInstancePrivateNetworkOutput) ToGetRdbInstancePrivateNetworkOutputWithContext(ctx context.Context) GetRdbInstancePrivateNetworkOutput {
 	return o
+}
+
+func (o GetRdbInstancePrivateNetworkOutput) EnableIpam() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRdbInstancePrivateNetwork) bool { return v.EnableIpam }).(pulumi.BoolOutput)
 }
 
 func (o GetRdbInstancePrivateNetworkOutput) EndpointId() pulumi.StringOutput {
@@ -23624,6 +23838,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LbFrontendAclMatchInput)(nil)).Elem(), LbFrontendAclMatchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LbPrivateNetworkInput)(nil)).Elem(), LbPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LbPrivateNetworkArrayInput)(nil)).Elem(), LbPrivateNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MnqSnsCredentialsPermissionsInput)(nil)).Elem(), MnqSnsCredentialsPermissionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MnqSnsCredentialsPermissionsPtrInput)(nil)).Elem(), MnqSnsCredentialsPermissionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqSqsCredentialsPermissionsInput)(nil)).Elem(), MnqSqsCredentialsPermissionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqSqsCredentialsPermissionsPtrInput)(nil)).Elem(), MnqSqsCredentialsPermissionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketAclAccessControlPolicyInput)(nil)).Elem(), ObjectBucketAclAccessControlPolicyArgs{})
@@ -23950,6 +24166,8 @@ func init() {
 	pulumi.RegisterOutputType(LbFrontendAclMatchOutput{})
 	pulumi.RegisterOutputType(LbPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(LbPrivateNetworkArrayOutput{})
+	pulumi.RegisterOutputType(MnqSnsCredentialsPermissionsOutput{})
+	pulumi.RegisterOutputType(MnqSnsCredentialsPermissionsPtrOutput{})
 	pulumi.RegisterOutputType(MnqSqsCredentialsPermissionsOutput{})
 	pulumi.RegisterOutputType(MnqSqsCredentialsPermissionsPtrOutput{})
 	pulumi.RegisterOutputType(ObjectBucketAclAccessControlPolicyOutput{})

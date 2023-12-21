@@ -231,6 +231,10 @@ func Provider() tfbridge.ProviderInfo {
 			"scaleway_block_snapshot":						{Tok: tfbridge.MakeResource(mainPkg, mainMod, "BlockSnapshot")},
 			"scaleway_block_volume":						{Tok: tfbridge.MakeResource(mainPkg, mainMod, "BlockVolume")},
 			"scaleway_job_definition":						{Tok: tfbridge.MakeResource(mainPkg, mainMod, "JobDefinition")},
+			"scaleway_mnq_sns":								{Tok: tfbridge.MakeResource(mainPkg, mainMod, "MnqSns")},
+			"scaleway_mnq_sns_credentials":					{Tok: tfbridge.MakeResource(mainPkg, mainMod, "MnqSnsCredentials")},
+			"scaleway_mnq_sns_topic":						{Tok: tfbridge.MakeResource(mainPkg, mainMod, "MnqSnsTopic")},
+			"scaleway_mnq_sns_topic_subscription":			{Tok: tfbridge.MakeResource(mainPkg, mainMod, "MnqSnsTopicSubscription")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"scaleway_account_project":                     {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAccountProject")},

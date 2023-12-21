@@ -151,6 +151,10 @@ from .lb_ip import *
 from .lb_route import *
 from .mnq_nats_account import *
 from .mnq_nats_credentials import *
+from .mnq_sns import *
+from .mnq_sns_credentials import *
+from .mnq_sns_topic import *
+from .mnq_sns_topic_subscription import *
 from .mnq_sqs import *
 from .mnq_sqs_credentials import *
 from .mnq_sqs_queue import *
@@ -722,6 +726,38 @@ _utilities.register(
   "fqn": "ediri_scaleway",
   "classes": {
    "scaleway:index/mnqNatsCredentials:MnqNatsCredentials": "MnqNatsCredentials"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mnqSns",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/mnqSns:MnqSns": "MnqSns"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mnqSnsCredentials",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/mnqSnsCredentials:MnqSnsCredentials": "MnqSnsCredentials"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mnqSnsTopic",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/mnqSnsTopic:MnqSnsTopic": "MnqSnsTopic"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mnqSnsTopicSubscription",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/mnqSnsTopicSubscription:MnqSnsTopicSubscription": "MnqSnsTopicSubscription"
   }
  },
  {

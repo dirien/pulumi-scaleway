@@ -202,6 +202,10 @@ namespace ediri.Scaleway
         /// </summary>
         public readonly ImmutableArray<string> Tags;
         /// <summary>
+        /// The date the image of the last update
+        /// </summary>
+        public readonly string UpdatedAt;
+        /// <summary>
         /// The privacy policy of the registry image.
         /// </summary>
         public readonly string Visibility;
@@ -226,6 +230,8 @@ namespace ediri.Scaleway
 
             ImmutableArray<string> tags,
 
+            string updatedAt,
+
             string visibility)
         {
             Id = id;
@@ -237,6 +243,7 @@ namespace ediri.Scaleway
             Region = region;
             Size = size;
             Tags = tags;
+            UpdatedAt = updatedAt;
             Visibility = visibility;
         }
     }
