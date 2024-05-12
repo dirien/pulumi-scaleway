@@ -5,7 +5,14 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	prov "github.com/hashicorp/terraform-plugin-framework/provider"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	scaleway "github.com/scaleway/terraform-provider-scaleway/v2/internal/provider"
 )
+
+func NewProvider() *schema.Provider {
+	p := scaleway.Provider(scaleway.DefaultConfig())
+	return p()
+}
 
 var _ prov.Provider = &ScalewayProvider{}
 
