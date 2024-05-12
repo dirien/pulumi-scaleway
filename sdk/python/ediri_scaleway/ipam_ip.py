@@ -125,6 +125,7 @@ class _IpamIpState:
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  resources: Optional[pulumi.Input[Sequence[pulumi.Input['IpamIpResourceArgs']]]] = None,
+                 reverses: Optional[pulumi.Input[Sequence[pulumi.Input['IpamIpReverseArgs']]]] = None,
                  sources: Optional[pulumi.Input[Sequence[pulumi.Input['IpamIpSourceArgs']]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
@@ -137,6 +138,7 @@ class _IpamIpState:
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
         :param pulumi.Input[str] region: `region`) The region of the IP.
         :param pulumi.Input[Sequence[pulumi.Input['IpamIpResourceArgs']]] resources: The IP resource.
+        :param pulumi.Input[Sequence[pulumi.Input['IpamIpReverseArgs']]] reverses: The reverses DNS for this IP.
         :param pulumi.Input[Sequence[pulumi.Input['IpamIpSourceArgs']]] sources: The source in which to book the IP.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the IP.
         :param pulumi.Input[str] updated_at: Date and time of IP's last update (RFC 3339 format).
@@ -154,6 +156,8 @@ class _IpamIpState:
             pulumi.set(__self__, "region", region)
         if resources is not None:
             pulumi.set(__self__, "resources", resources)
+        if reverses is not None:
+            pulumi.set(__self__, "reverses", reverses)
         if sources is not None:
             pulumi.set(__self__, "sources", sources)
         if tags is not None:
@@ -234,6 +238,18 @@ class _IpamIpState:
     @resources.setter
     def resources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['IpamIpResourceArgs']]]]):
         pulumi.set(self, "resources", value)
+
+    @property
+    @pulumi.getter
+    def reverses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['IpamIpReverseArgs']]]]:
+        """
+        The reverses DNS for this IP.
+        """
+        return pulumi.get(self, "reverses")
+
+    @reverses.setter
+    def reverses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['IpamIpReverseArgs']]]]):
+        pulumi.set(self, "reverses", value)
 
     @property
     @pulumi.getter
@@ -491,6 +507,7 @@ class IpamIp(pulumi.CustomResource):
             __props__.__dict__["tags"] = tags
             __props__.__dict__["created_at"] = None
             __props__.__dict__["resources"] = None
+            __props__.__dict__["reverses"] = None
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["zone"] = None
         super(IpamIp, __self__).__init__(
@@ -509,6 +526,7 @@ class IpamIp(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             resources: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamIpResourceArgs']]]]] = None,
+            reverses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamIpReverseArgs']]]]] = None,
             sources: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamIpSourceArgs']]]]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
@@ -526,6 +544,7 @@ class IpamIp(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the IP is associated with.
         :param pulumi.Input[str] region: `region`) The region of the IP.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamIpResourceArgs']]]] resources: The IP resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamIpReverseArgs']]]] reverses: The reverses DNS for this IP.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpamIpSourceArgs']]]] sources: The source in which to book the IP.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the IP.
         :param pulumi.Input[str] updated_at: Date and time of IP's last update (RFC 3339 format).
@@ -541,6 +560,7 @@ class IpamIp(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
         __props__.__dict__["resources"] = resources
+        __props__.__dict__["reverses"] = reverses
         __props__.__dict__["sources"] = sources
         __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
@@ -594,6 +614,14 @@ class IpamIp(pulumi.CustomResource):
         The IP resource.
         """
         return pulumi.get(self, "resources")
+
+    @property
+    @pulumi.getter
+    def reverses(self) -> pulumi.Output[Sequence['outputs.IpamIpReverse']]:
+        """
+        The reverses DNS for this IP.
+        """
+        return pulumi.get(self, "reverses")
 
     @property
     @pulumi.getter

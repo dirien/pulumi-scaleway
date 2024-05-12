@@ -510,14 +510,41 @@ export interface GetBaremetalServerPrivateNetwork {
 }
 
 export interface GetBillingConsumptionsConsumption {
-    category: string;
-    description: string;
-    operationPath: string;
+    /**
+     * Consumed quantity
+     */
+    billedQuantity: string;
+    /**
+     * Name of consumption category
+     */
+    categoryName: string;
+    /**
+     * The product name
+     */
+    productName: string;
+    /**
+     * Project ID of the consumption
+     */
     projectId: string;
+    /**
+     * Unique identifier of the product
+     */
+    sku: string;
+    /**
+     * Unit of consumed quantity
+     */
+    unit: string;
+    /**
+     * Monetary value of the consumption
+     */
     value: string;
 }
 
 export interface GetBillingInvoicesInvoice {
+    /**
+     * The billing period of the invoice in the YYYY-MM format.
+     */
+    billingPeriod: string;
     /**
      * The payment time limit, set according to the Organization's payment conditions (RFC 3339 format).
      */
@@ -539,13 +566,41 @@ export interface GetBillingInvoicesInvoice {
      */
     number: number;
     /**
+     * The organization name.
+     */
+    organizationName: string;
+    /**
+     * The name of the seller (Scaleway).
+     */
+    sellerName: string;
+    /**
      * The start date of the billing period (RFC 3339 format).
      */
     startDate: string;
     /**
+     * The state of the invoice.
+     */
+    state: string;
+    /**
+     * The end date of the billing period (RFC 3339 format).
+     */
+    stopDate: string;
+    /**
+     * The total discount amount of the invoice.
+     */
+    totalDiscount: string;
+    /**
+     * The total tax amount of the invoice.
+     */
+    totalTax: string;
+    /**
      * The total amount, taxed.
      */
     totalTaxed: string;
+    /**
+     * The total amount of the invoice before applying the discount.
+     */
+    totalUndiscount: string;
     /**
      * The total amount, untaxed.
      */
@@ -2591,6 +2646,17 @@ export interface IpamIpResource {
      * The type of resource the IP is attached to.
      */
     type: string;
+}
+
+export interface IpamIpReverse {
+    /**
+     * Request a specific IP in the requested source pool.
+     */
+    address: string;
+    /**
+     * The reverse domain name.
+     */
+    hostname: string;
 }
 
 export interface IpamIpSource {

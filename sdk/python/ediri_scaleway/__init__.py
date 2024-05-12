@@ -141,6 +141,7 @@ from .iot_hub import *
 from .iot_network import *
 from .iot_route import *
 from .ipam_ip import *
+from .ipam_ip_reverse_dns import *
 from .job_definition import *
 from .k8s_cluster import *
 from .k8s_pool import *
@@ -633,6 +634,14 @@ _utilities.register(
   "fqn": "ediri_scaleway",
   "classes": {
    "scaleway:index/ipamIp:IpamIp": "IpamIp"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/ipamIpReverseDns",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/ipamIpReverseDns:IpamIpReverseDns": "IpamIpReverseDns"
   }
  },
  {

@@ -285,7 +285,7 @@ namespace ediri.Scaleway
         public Output<string> UserName { get; private set; } = null!;
 
         /// <summary>
-        /// Volume size (in GB) when `volume_type` is set to `bssd`.
+        /// Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
         /// 
         /// &gt; **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
         /// </summary>
@@ -293,7 +293,7 @@ namespace ediri.Scaleway
         public Output<int> VolumeSizeInGb { get; private set; } = null!;
 
         /// <summary>
-        /// Type of volume where data are stored (`bssd` or `lssd`).
+        /// Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
         /// </summary>
         [Output("volumeType")]
         public Output<string?> VolumeType { get; private set; } = null!;
@@ -500,7 +500,7 @@ namespace ediri.Scaleway
         public Input<string>? UserName { get; set; }
 
         /// <summary>
-        /// Volume size (in GB) when `volume_type` is set to `bssd`.
+        /// Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
         /// 
         /// &gt; **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
         /// </summary>
@@ -508,7 +508,7 @@ namespace ediri.Scaleway
         public Input<int>? VolumeSizeInGb { get; set; }
 
         /// <summary>
-        /// Type of volume where data are stored (`bssd` or `lssd`).
+        /// Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
         /// </summary>
         [Input("volumeType")]
         public Input<string>? VolumeType { get; set; }
@@ -708,7 +708,7 @@ namespace ediri.Scaleway
         public Input<string>? UserName { get; set; }
 
         /// <summary>
-        /// Volume size (in GB) when `volume_type` is set to `bssd`.
+        /// Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
         /// 
         /// &gt; **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
         /// </summary>
@@ -716,7 +716,7 @@ namespace ediri.Scaleway
         public Input<int>? VolumeSizeInGb { get; set; }
 
         /// <summary>
-        /// Type of volume where data are stored (`bssd` or `lssd`).
+        /// Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
         /// </summary>
         [Input("volumeType")]
         public Input<string>? VolumeType { get; set; }

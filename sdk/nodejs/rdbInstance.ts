@@ -234,13 +234,13 @@ export class RdbInstance extends pulumi.CustomResource {
      */
     public readonly userName!: pulumi.Output<string>;
     /**
-     * Volume size (in GB) when `volumeType` is set to `bssd`.
+     * Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
      *
      * > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
      */
     public readonly volumeSizeInGb!: pulumi.Output<number>;
     /**
-     * Type of volume where data are stored (`bssd` or `lssd`).
+     * Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
      */
     public readonly volumeType!: pulumi.Output<string | undefined>;
 
@@ -430,13 +430,13 @@ export interface RdbInstanceState {
      */
     userName?: pulumi.Input<string>;
     /**
-     * Volume size (in GB) when `volumeType` is set to `bssd`.
+     * Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
      *
      * > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
      */
     volumeSizeInGb?: pulumi.Input<number>;
     /**
-     * Type of volume where data are stored (`bssd` or `lssd`).
+     * Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
      */
     volumeType?: pulumi.Input<string>;
 }
@@ -528,13 +528,13 @@ export interface RdbInstanceArgs {
      */
     userName?: pulumi.Input<string>;
     /**
-     * Volume size (in GB) when `volumeType` is set to `bssd`.
+     * Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
      *
      * > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
      */
     volumeSizeInGb?: pulumi.Input<number>;
     /**
-     * Type of volume where data are stored (`bssd` or `lssd`).
+     * Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
      */
     volumeType?: pulumi.Input<string>;
 }

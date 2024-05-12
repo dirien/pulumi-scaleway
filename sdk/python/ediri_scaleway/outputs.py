@@ -47,6 +47,7 @@ __all__ = [
     'IotRouteRest',
     'IotRouteS3',
     'IpamIpResource',
+    'IpamIpReverse',
     'IpamIpSource',
     'K8sClusterAutoUpgrade',
     'K8sClusterAutoscalerConfig',
@@ -2727,6 +2728,37 @@ class IpamIpResource(dict):
         The type of resource the IP is attached to.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class IpamIpReverse(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 hostname: Optional[str] = None):
+        """
+        :param str address: Request a specific IP in the requested source pool.
+        :param str hostname: The reverse domain name.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        Request a specific IP in the requested source pool.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> Optional[str]:
+        """
+        The reverse domain name.
+        """
+        return pulumi.get(self, "hostname")
 
 
 @pulumi.output_type
@@ -6304,72 +6336,148 @@ class GetBaremetalServerPrivateNetworkResult(dict):
 @pulumi.output_type
 class GetBillingConsumptionsConsumptionResult(dict):
     def __init__(__self__, *,
-                 category: str,
-                 description: str,
-                 operation_path: str,
+                 billed_quantity: str,
+                 category_name: str,
+                 product_name: str,
                  project_id: str,
+                 sku: str,
+                 unit: str,
                  value: str):
-        pulumi.set(__self__, "category", category)
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "operation_path", operation_path)
+        """
+        :param str billed_quantity: Consumed quantity
+        :param str category_name: Name of consumption category
+        :param str product_name: The product name
+        :param str project_id: Project ID of the consumption
+        :param str sku: Unique identifier of the product
+        :param str unit: Unit of consumed quantity
+        :param str value: Monetary value of the consumption
+        """
+        pulumi.set(__self__, "billed_quantity", billed_quantity)
+        pulumi.set(__self__, "category_name", category_name)
+        pulumi.set(__self__, "product_name", product_name)
         pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "sku", sku)
+        pulumi.set(__self__, "unit", unit)
         pulumi.set(__self__, "value", value)
 
     @property
-    @pulumi.getter
-    def category(self) -> str:
-        return pulumi.get(self, "category")
+    @pulumi.getter(name="billedQuantity")
+    def billed_quantity(self) -> str:
+        """
+        Consumed quantity
+        """
+        return pulumi.get(self, "billed_quantity")
 
     @property
-    @pulumi.getter
-    def description(self) -> str:
-        return pulumi.get(self, "description")
+    @pulumi.getter(name="categoryName")
+    def category_name(self) -> str:
+        """
+        Name of consumption category
+        """
+        return pulumi.get(self, "category_name")
 
     @property
-    @pulumi.getter(name="operationPath")
-    def operation_path(self) -> str:
-        return pulumi.get(self, "operation_path")
+    @pulumi.getter(name="productName")
+    def product_name(self) -> str:
+        """
+        The product name
+        """
+        return pulumi.get(self, "product_name")
 
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
+        """
+        Project ID of the consumption
+        """
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter
+    def sku(self) -> str:
+        """
+        Unique identifier of the product
+        """
+        return pulumi.get(self, "sku")
+
+    @property
+    @pulumi.getter
+    def unit(self) -> str:
+        """
+        Unit of consumed quantity
+        """
+        return pulumi.get(self, "unit")
+
+    @property
+    @pulumi.getter
     def value(self) -> str:
+        """
+        Monetary value of the consumption
+        """
         return pulumi.get(self, "value")
 
 
 @pulumi.output_type
 class GetBillingInvoicesInvoiceResult(dict):
     def __init__(__self__, *,
+                 billing_period: str,
                  due_date: str,
                  id: str,
                  invoice_type: str,
                  issued_date: str,
                  number: int,
+                 organization_name: str,
+                 seller_name: str,
                  start_date: str,
+                 state: str,
+                 stop_date: str,
+                 total_discount: str,
+                 total_tax: str,
                  total_taxed: str,
+                 total_undiscount: str,
                  total_untaxed: str):
         """
+        :param str billing_period: The billing period of the invoice in the YYYY-MM format.
         :param str due_date: The payment time limit, set according to the Organization's payment conditions (RFC 3339 format).
         :param str id: The associated invoice ID.
         :param str invoice_type: Invoices with the given type are listed. Valid values are `periodic` and `purchase`.
         :param str issued_date: The date when the invoice was sent to the customer (RFC 3339 format).
         :param int number: The invoice number.
+        :param str organization_name: The organization name.
+        :param str seller_name: The name of the seller (Scaleway).
         :param str start_date: The start date of the billing period (RFC 3339 format).
+        :param str state: The state of the invoice.
+        :param str stop_date: The end date of the billing period (RFC 3339 format).
+        :param str total_discount: The total discount amount of the invoice.
+        :param str total_tax: The total tax amount of the invoice.
         :param str total_taxed: The total amount, taxed.
+        :param str total_undiscount: The total amount of the invoice before applying the discount.
         :param str total_untaxed: The total amount, untaxed.
         """
+        pulumi.set(__self__, "billing_period", billing_period)
         pulumi.set(__self__, "due_date", due_date)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "invoice_type", invoice_type)
         pulumi.set(__self__, "issued_date", issued_date)
         pulumi.set(__self__, "number", number)
+        pulumi.set(__self__, "organization_name", organization_name)
+        pulumi.set(__self__, "seller_name", seller_name)
         pulumi.set(__self__, "start_date", start_date)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "stop_date", stop_date)
+        pulumi.set(__self__, "total_discount", total_discount)
+        pulumi.set(__self__, "total_tax", total_tax)
         pulumi.set(__self__, "total_taxed", total_taxed)
+        pulumi.set(__self__, "total_undiscount", total_undiscount)
         pulumi.set(__self__, "total_untaxed", total_untaxed)
+
+    @property
+    @pulumi.getter(name="billingPeriod")
+    def billing_period(self) -> str:
+        """
+        The billing period of the invoice in the YYYY-MM format.
+        """
+        return pulumi.get(self, "billing_period")
 
     @property
     @pulumi.getter(name="dueDate")
@@ -6412,6 +6520,22 @@ class GetBillingInvoicesInvoiceResult(dict):
         return pulumi.get(self, "number")
 
     @property
+    @pulumi.getter(name="organizationName")
+    def organization_name(self) -> str:
+        """
+        The organization name.
+        """
+        return pulumi.get(self, "organization_name")
+
+    @property
+    @pulumi.getter(name="sellerName")
+    def seller_name(self) -> str:
+        """
+        The name of the seller (Scaleway).
+        """
+        return pulumi.get(self, "seller_name")
+
+    @property
     @pulumi.getter(name="startDate")
     def start_date(self) -> str:
         """
@@ -6420,12 +6544,52 @@ class GetBillingInvoicesInvoiceResult(dict):
         return pulumi.get(self, "start_date")
 
     @property
+    @pulumi.getter
+    def state(self) -> str:
+        """
+        The state of the invoice.
+        """
+        return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter(name="stopDate")
+    def stop_date(self) -> str:
+        """
+        The end date of the billing period (RFC 3339 format).
+        """
+        return pulumi.get(self, "stop_date")
+
+    @property
+    @pulumi.getter(name="totalDiscount")
+    def total_discount(self) -> str:
+        """
+        The total discount amount of the invoice.
+        """
+        return pulumi.get(self, "total_discount")
+
+    @property
+    @pulumi.getter(name="totalTax")
+    def total_tax(self) -> str:
+        """
+        The total tax amount of the invoice.
+        """
+        return pulumi.get(self, "total_tax")
+
+    @property
     @pulumi.getter(name="totalTaxed")
     def total_taxed(self) -> str:
         """
         The total amount, taxed.
         """
         return pulumi.get(self, "total_taxed")
+
+    @property
+    @pulumi.getter(name="totalUndiscount")
+    def total_undiscount(self) -> str:
+        """
+        The total amount of the invoice before applying the discount.
+        """
+        return pulumi.get(self, "total_undiscount")
 
     @property
     @pulumi.getter(name="totalUntaxed")

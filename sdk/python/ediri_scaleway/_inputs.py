@@ -46,6 +46,7 @@ __all__ = [
     'IotRouteRestArgs',
     'IotRouteS3Args',
     'IpamIpResourceArgs',
+    'IpamIpReverseArgs',
     'IpamIpSourceArgs',
     'K8sClusterAutoUpgradeArgs',
     'K8sClusterAutoscalerConfigArgs',
@@ -2851,6 +2852,45 @@ class IpamIpResourceArgs:
     @type.setter
     def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class IpamIpReverseArgs:
+    def __init__(__self__, *,
+                 address: Optional[pulumi.Input[str]] = None,
+                 hostname: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] address: Request a specific IP in the requested source pool.
+        :param pulumi.Input[str] hostname: The reverse domain name.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Request a specific IP in the requested source pool.
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "address", value)
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> Optional[pulumi.Input[str]]:
+        """
+        The reverse domain name.
+        """
+        return pulumi.get(self, "hostname")
+
+    @hostname.setter
+    def hostname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hostname", value)
 
 
 @pulumi.input_type

@@ -173,6 +173,8 @@ type IpamIp struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The IP resource.
 	Resources IpamIpResourceArrayOutput `pulumi:"resources"`
+	// The reverses DNS for this IP.
+	Reverses IpamIpReverseArrayOutput `pulumi:"reverses"`
 	// The source in which to book the IP.
 	Sources IpamIpSourceArrayOutput `pulumi:"sources"`
 	// The tags associated with the IP.
@@ -228,6 +230,8 @@ type ipamIpState struct {
 	Region *string `pulumi:"region"`
 	// The IP resource.
 	Resources []IpamIpResource `pulumi:"resources"`
+	// The reverses DNS for this IP.
+	Reverses []IpamIpReverse `pulumi:"reverses"`
 	// The source in which to book the IP.
 	Sources []IpamIpSource `pulumi:"sources"`
 	// The tags associated with the IP.
@@ -251,6 +255,8 @@ type IpamIpState struct {
 	Region pulumi.StringPtrInput
 	// The IP resource.
 	Resources IpamIpResourceArrayInput
+	// The reverses DNS for this IP.
+	Reverses IpamIpReverseArrayInput
 	// The source in which to book the IP.
 	Sources IpamIpSourceArrayInput
 	// The tags associated with the IP.
@@ -411,6 +417,11 @@ func (o IpamIpOutput) Region() pulumi.StringOutput {
 // The IP resource.
 func (o IpamIpOutput) Resources() IpamIpResourceArrayOutput {
 	return o.ApplyT(func(v *IpamIp) IpamIpResourceArrayOutput { return v.Resources }).(IpamIpResourceArrayOutput)
+}
+
+// The reverses DNS for this IP.
+func (o IpamIpOutput) Reverses() IpamIpReverseArrayOutput {
+	return o.ApplyT(func(v *IpamIp) IpamIpReverseArrayOutput { return v.Reverses }).(IpamIpReverseArrayOutput)
 }
 
 // The source in which to book the IP.

@@ -129,6 +129,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &IotRoute{}
 	case "scaleway:index/ipamIp:IpamIp":
 		r = &IpamIp{}
+	case "scaleway:index/ipamIpReverseDns:IpamIpReverseDns":
+		r = &IpamIpReverseDns{}
 	case "scaleway:index/jobDefinition:JobDefinition":
 		r = &JobDefinition{}
 	case "scaleway:index/k8sCluster:K8sCluster":
@@ -524,6 +526,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/ipamIp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/ipamIpReverseDns",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -8,13 +8,13 @@ replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraf
 
 replace github.com/scaleway/terraform-provider-scaleway/v2/shim => ./shim
 
-replace github.com/scaleway/scaleway-sdk-go => github.com/scaleway/scaleway-sdk-go v1.0.0-beta.22.0.20240109155607-70eec6dc9637
+replace github.com/scaleway/scaleway-sdk-go => github.com/scaleway/scaleway-sdk-go v1.0.0-beta.22.0.20240111155519-dc916e73b792
 
 require (
 	github.com/pulumi/pulumi-terraform-bridge/pf v0.35.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.82.0
 	github.com/pulumi/pulumi/sdk/v3 v3.114.0
-	github.com/scaleway/terraform-provider-scaleway/v2 v2.36.0
+	github.com/scaleway/terraform-provider-scaleway/v2 v2.37.0
 	github.com/scaleway/terraform-provider-scaleway/v2/shim v0.0.0-00010101000000-000000000000
 )
 

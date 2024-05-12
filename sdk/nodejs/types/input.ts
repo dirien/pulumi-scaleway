@@ -818,6 +818,17 @@ export interface IpamIpResource {
     type?: pulumi.Input<string>;
 }
 
+export interface IpamIpReverse {
+    /**
+     * Request a specific IP in the requested source pool.
+     */
+    address?: pulumi.Input<string>;
+    /**
+     * The reverse domain name.
+     */
+    hostname?: pulumi.Input<string>;
+}
+
 export interface IpamIpSource {
     /**
      * The private network the IP lives in if the IP is a private IP.

@@ -195,7 +195,7 @@ export const getBaremetalServer: typeof import("./getBaremetalServer").getBareme
 export const getBaremetalServerOutput: typeof import("./getBaremetalServer").getBaremetalServerOutput = null as any;
 utilities.lazyLoad(exports, ["getBaremetalServer","getBaremetalServerOutput"], () => require("./getBaremetalServer"));
 
-export { GetBillingConsumptionsResult } from "./getBillingConsumptions";
+export { GetBillingConsumptionsArgs, GetBillingConsumptionsResult, GetBillingConsumptionsOutputArgs } from "./getBillingConsumptions";
 export const getBillingConsumptions: typeof import("./getBillingConsumptions").getBillingConsumptions = null as any;
 export const getBillingConsumptionsOutput: typeof import("./getBillingConsumptions").getBillingConsumptionsOutput = null as any;
 utilities.lazyLoad(exports, ["getBillingConsumptions","getBillingConsumptionsOutput"], () => require("./getBillingConsumptions"));
@@ -685,6 +685,11 @@ export type IpamIp = import("./ipamIp").IpamIp;
 export const IpamIp: typeof import("./ipamIp").IpamIp = null as any;
 utilities.lazyLoad(exports, ["IpamIp"], () => require("./ipamIp"));
 
+export { IpamIpReverseDnsArgs, IpamIpReverseDnsState } from "./ipamIpReverseDns";
+export type IpamIpReverseDns = import("./ipamIpReverseDns").IpamIpReverseDns;
+export const IpamIpReverseDns: typeof import("./ipamIpReverseDns").IpamIpReverseDns = null as any;
+utilities.lazyLoad(exports, ["IpamIpReverseDns"], () => require("./ipamIpReverseDns"));
+
 export { JobDefinitionArgs, JobDefinitionState } from "./jobDefinition";
 export type JobDefinition = import("./jobDefinition").JobDefinition;
 export const JobDefinition: typeof import("./jobDefinition").JobDefinition = null as any;
@@ -1052,6 +1057,8 @@ const _module = {
                 return new IotRoute(name, <any>undefined, { urn })
             case "scaleway:index/ipamIp:IpamIp":
                 return new IpamIp(name, <any>undefined, { urn })
+            case "scaleway:index/ipamIpReverseDns:IpamIpReverseDns":
+                return new IpamIpReverseDns(name, <any>undefined, { urn })
             case "scaleway:index/jobDefinition:JobDefinition":
                 return new JobDefinition(name, <any>undefined, { urn })
             case "scaleway:index/k8sCluster:K8sCluster":
@@ -1207,6 +1214,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/iotHub", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iotNetwork", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/iotRoute", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/ipamIp", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/ipamIpReverseDns", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/jobDefinition", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/k8sCluster", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/k8sPool", _module)

@@ -2040,6 +2040,7 @@
             "scaleway:index/iotNetwork:IotNetwork": 0,
             "scaleway:index/iotRoute:IotRoute": 0,
             "scaleway:index/ipamIp:IpamIp": 0,
+            "scaleway:index/ipamIpReverseDns:IpamIpReverseDns": 0,
             "scaleway:index/jobDefinition:JobDefinition": 0,
             "scaleway:index/k8sCluster:K8sCluster": 0,
             "scaleway:index/k8sPool:K8sPool": 0,
