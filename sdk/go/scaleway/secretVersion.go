@@ -12,14 +12,59 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates and manages Scaleway Secret Versions.
+// For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/#secret-versions-079501).
+//
+// ## Example Usage
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := scaleway.NewSecret(ctx, "main", &scaleway.SecretArgs{
+//				Description: pulumi.String("barr"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("foo"),
+//					pulumi.String("terraform"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewSecretVersion(ctx, "v1", &scaleway.SecretVersionArgs{
+//				Description: pulumi.String("version1"),
+//				SecretId:    main.ID(),
+//				Data:        pulumi.String("my_new_secret"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
-// The Secret Version can be imported using the `{region}/{id}/{revision}`, e.g. ~> **Important:** Be aware if you import with revision `latest` you will overwrite the version you used before. bash
+// The Secret Version can be imported using the `{region}/{id}/{revision}`, e.g.
+//
+// ~> **Important:** Be aware if you import with revision `latest` you will overwrite the version you used before.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/secretVersion:SecretVersion main fr-par/11111111-1111-1111-1111-111111111111/2
-//
+// $ pulumi import scaleway:index/secretVersion:SecretVersion main fr-par/11111111-1111-1111-1111-111111111111/2
 // ```
 type SecretVersion struct {
 	pulumi.CustomResourceState

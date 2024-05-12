@@ -43,10 +43,12 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Cockpits can be imported using the token ID, e.g. bash
+ * Cockpits can be imported using the token ID, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/cockpitToken:CockpitToken main 11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/cockpitToken:CockpitToken main 11111111-1111-1111-1111-111111111111
  * ```
  */
 export class CockpitToken extends pulumi.CustomResource {

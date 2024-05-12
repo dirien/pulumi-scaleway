@@ -12,7 +12,7 @@ namespace ediri.Scaleway.Outputs
 {
 
     [OutputType]
-    public sealed class DocumentDBReadReplicaPrivateNetwork
+    public sealed class DocumentdbReadReplicaPrivateNetwork
     {
         /// <summary>
         /// The ID of the endpoint of the read replica.
@@ -44,10 +44,13 @@ namespace ediri.Scaleway.Outputs
         /// service if not set.
         /// </summary>
         public readonly string? ServiceIp;
+        /// <summary>
+        /// Private network zone
+        /// </summary>
         public readonly string? Zone;
 
         [OutputConstructor]
-        private DocumentDBReadReplicaPrivateNetwork(
+        private DocumentdbReadReplicaPrivateNetwork(
             string? endpointId,
 
             string? hostname,

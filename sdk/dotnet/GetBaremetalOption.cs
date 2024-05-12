@@ -16,9 +16,7 @@ namespace ediri.Scaleway
         /// Gets information about a baremetal option.
         /// For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -40,8 +38,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetBaremetalOptionResult> InvokeAsync(GetBaremetalOptionArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBaremetalOptionResult>("scaleway:index/getBaremetalOption:getBaremetalOption", args ?? new GetBaremetalOptionArgs(), options.WithDefaults());
@@ -50,9 +46,7 @@ namespace ediri.Scaleway
         /// Gets information about a baremetal option.
         /// For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -74,8 +68,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetBaremetalOptionResult> Invoke(GetBaremetalOptionInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBaremetalOptionResult>("scaleway:index/getBaremetalOption:getBaremetalOption", args ?? new GetBaremetalOptionInvokeArgs(), options.WithDefaults());

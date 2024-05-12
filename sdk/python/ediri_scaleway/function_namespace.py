@@ -291,7 +291,7 @@ class FunctionNamespace(pulumi.CustomResource):
         Creates and manages Scaleway Function Namespace.
         For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -304,10 +304,12 @@ class FunctionNamespace(pulumi.CustomResource):
 
         ## Import
 
-        Namespaces can be imported using the `{region}/{id}`, e.g. bash
+        Namespaces can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/functionNamespace:FunctionNamespace main fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/functionNamespace:FunctionNamespace main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -331,7 +333,7 @@ class FunctionNamespace(pulumi.CustomResource):
         Creates and manages Scaleway Function Namespace.
         For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -344,10 +346,12 @@ class FunctionNamespace(pulumi.CustomResource):
 
         ## Import
 
-        Namespaces can be imported using the `{region}/{id}`, e.g. bash
+        Namespaces can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/functionNamespace:FunctionNamespace main fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/functionNamespace:FunctionNamespace main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

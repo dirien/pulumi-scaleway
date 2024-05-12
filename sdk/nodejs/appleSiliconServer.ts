@@ -49,11 +49,11 @@ export class AppleSiliconServer extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organizationId you want to attach the resource to
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -144,11 +144,11 @@ export interface AppleSiliconServerState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organizationId you want to attach the resource to
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -182,7 +182,7 @@ export interface AppleSiliconServerArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**

@@ -11,16 +11,23 @@ using Pulumi;
 namespace ediri.Scaleway
 {
     /// <summary>
+    /// Creates and manages Scaleway Database Private Network Endpoint.
+    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+    /// 
+    /// ## Example Usage
+    /// 
     /// ## Import
     /// 
-    /// Database Instance Endpoint can be imported using the `{region}/{endpoint_id}`, e.g. bash
+    /// Database Instance Endpoint can be imported using the `{region}/{endpoint_id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint end fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint end fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
-    [ScalewayResourceType("scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint")]
-    public partial class DocumentDBPrivateNetworkEndpoint : global::Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint")]
+    public partial class DocumentdbPrivateNetworkEndpoint : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Hostname of the endpoint.
@@ -80,19 +87,19 @@ namespace ediri.Scaleway
 
 
         /// <summary>
-        /// Create a DocumentDBPrivateNetworkEndpoint resource with the given unique name, arguments, and options.
+        /// Create a DocumentdbPrivateNetworkEndpoint resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public DocumentDBPrivateNetworkEndpoint(string name, DocumentDBPrivateNetworkEndpointArgs args, CustomResourceOptions? options = null)
-            : base("scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint", name, args ?? new DocumentDBPrivateNetworkEndpointArgs(), MakeResourceOptions(options, ""))
+        public DocumentdbPrivateNetworkEndpoint(string name, DocumentdbPrivateNetworkEndpointArgs args, CustomResourceOptions? options = null)
+            : base("scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint", name, args ?? new DocumentdbPrivateNetworkEndpointArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private DocumentDBPrivateNetworkEndpoint(string name, Input<string> id, DocumentDBPrivateNetworkEndpointState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint", name, state, MakeResourceOptions(options, id))
+        private DocumentdbPrivateNetworkEndpoint(string name, Input<string> id, DocumentdbPrivateNetworkEndpointState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -109,7 +116,7 @@ namespace ediri.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing DocumentDBPrivateNetworkEndpoint resource's state with the given name, ID, and optional extra
+        /// Get an existing DocumentdbPrivateNetworkEndpoint resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -117,13 +124,13 @@ namespace ediri.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static DocumentDBPrivateNetworkEndpoint Get(string name, Input<string> id, DocumentDBPrivateNetworkEndpointState? state = null, CustomResourceOptions? options = null)
+        public static DocumentdbPrivateNetworkEndpoint Get(string name, Input<string> id, DocumentdbPrivateNetworkEndpointState? state = null, CustomResourceOptions? options = null)
         {
-            return new DocumentDBPrivateNetworkEndpoint(name, id, state, options);
+            return new DocumentdbPrivateNetworkEndpoint(name, id, state, options);
         }
     }
 
-    public sealed class DocumentDBPrivateNetworkEndpointArgs : global::Pulumi.ResourceArgs
+    public sealed class DocumentdbPrivateNetworkEndpointArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// UUID of the documentdb instance.
@@ -163,13 +170,13 @@ namespace ediri.Scaleway
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
-        public DocumentDBPrivateNetworkEndpointArgs()
+        public DocumentdbPrivateNetworkEndpointArgs()
         {
         }
-        public static new DocumentDBPrivateNetworkEndpointArgs Empty => new DocumentDBPrivateNetworkEndpointArgs();
+        public static new DocumentdbPrivateNetworkEndpointArgs Empty => new DocumentdbPrivateNetworkEndpointArgs();
     }
 
-    public sealed class DocumentDBPrivateNetworkEndpointState : global::Pulumi.ResourceArgs
+    public sealed class DocumentdbPrivateNetworkEndpointState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Hostname of the endpoint.
@@ -227,9 +234,9 @@ namespace ediri.Scaleway
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
-        public DocumentDBPrivateNetworkEndpointState()
+        public DocumentdbPrivateNetworkEndpointState()
         {
         }
-        public static new DocumentDBPrivateNetworkEndpointState Empty => new DocumentDBPrivateNetworkEndpointState();
+        public static new DocumentdbPrivateNetworkEndpointState Empty => new DocumentdbPrivateNetworkEndpointState();
     }
 }

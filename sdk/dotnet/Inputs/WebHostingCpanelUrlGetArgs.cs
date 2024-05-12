@@ -11,7 +11,7 @@ using Pulumi;
 namespace ediri.Scaleway.Inputs
 {
 
-    public sealed class WebHostingCpanelUrlGetArgs : global::Pulumi.ResourceArgs
+    public sealed class WebhostingCpanelUrlGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The URL of the Dashboard.
@@ -25,9 +25,9 @@ namespace ediri.Scaleway.Inputs
         [Input("webmail")]
         public Input<string>? Webmail { get; set; }
 
-        public WebHostingCpanelUrlGetArgs()
+        public WebhostingCpanelUrlGetArgs()
         {
         }
-        public static new WebHostingCpanelUrlGetArgs Empty => new WebHostingCpanelUrlGetArgs();
+        public static new WebhostingCpanelUrlGetArgs Empty => new WebhostingCpanelUrlGetArgs();
     }
 }

@@ -12,16 +12,21 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates and manages Scaleway Database Private Network Endpoint.
+// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+//
+// ## Example Usage
+//
 // ## Import
 //
-// Database Instance Endpoint can be imported using the `{region}/{endpoint_id}`, e.g. bash
+// Database Instance Endpoint can be imported using the `{region}/{endpoint_id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint end fr-par/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint end fr-par/11111111-1111-1111-1111-111111111111
 // ```
-type DocumentDBPrivateNetworkEndpoint struct {
+type DocumentdbPrivateNetworkEndpoint struct {
 	pulumi.CustomResourceState
 
 	// Hostname of the endpoint.
@@ -46,9 +51,9 @@ type DocumentDBPrivateNetworkEndpoint struct {
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
-// NewDocumentDBPrivateNetworkEndpoint registers a new resource with the given unique name, arguments, and options.
-func NewDocumentDBPrivateNetworkEndpoint(ctx *pulumi.Context,
-	name string, args *DocumentDBPrivateNetworkEndpointArgs, opts ...pulumi.ResourceOption) (*DocumentDBPrivateNetworkEndpoint, error) {
+// NewDocumentdbPrivateNetworkEndpoint registers a new resource with the given unique name, arguments, and options.
+func NewDocumentdbPrivateNetworkEndpoint(ctx *pulumi.Context,
+	name string, args *DocumentdbPrivateNetworkEndpointArgs, opts ...pulumi.ResourceOption) (*DocumentdbPrivateNetworkEndpoint, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -60,28 +65,28 @@ func NewDocumentDBPrivateNetworkEndpoint(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'PrivateNetworkId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
-	var resource DocumentDBPrivateNetworkEndpoint
-	err := ctx.RegisterResource("scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint", name, args, &resource, opts...)
+	var resource DocumentdbPrivateNetworkEndpoint
+	err := ctx.RegisterResource("scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetDocumentDBPrivateNetworkEndpoint gets an existing DocumentDBPrivateNetworkEndpoint resource's state with the given name, ID, and optional
+// GetDocumentdbPrivateNetworkEndpoint gets an existing DocumentdbPrivateNetworkEndpoint resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetDocumentDBPrivateNetworkEndpoint(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *DocumentDBPrivateNetworkEndpointState, opts ...pulumi.ResourceOption) (*DocumentDBPrivateNetworkEndpoint, error) {
-	var resource DocumentDBPrivateNetworkEndpoint
-	err := ctx.ReadResource("scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint", name, id, state, &resource, opts...)
+func GetDocumentdbPrivateNetworkEndpoint(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *DocumentdbPrivateNetworkEndpointState, opts ...pulumi.ResourceOption) (*DocumentdbPrivateNetworkEndpoint, error) {
+	var resource DocumentdbPrivateNetworkEndpoint
+	err := ctx.ReadResource("scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering DocumentDBPrivateNetworkEndpoint resources.
-type documentDBPrivateNetworkEndpointState struct {
+// Input properties used for looking up and filtering DocumentdbPrivateNetworkEndpoint resources.
+type documentdbPrivateNetworkEndpointState struct {
 	// Hostname of the endpoint.
 	Hostname *string `pulumi:"hostname"`
 	// UUID of the documentdb instance.
@@ -104,7 +109,7 @@ type documentDBPrivateNetworkEndpointState struct {
 	Zone *string `pulumi:"zone"`
 }
 
-type DocumentDBPrivateNetworkEndpointState struct {
+type DocumentdbPrivateNetworkEndpointState struct {
 	// Hostname of the endpoint.
 	Hostname pulumi.StringPtrInput
 	// UUID of the documentdb instance.
@@ -127,11 +132,11 @@ type DocumentDBPrivateNetworkEndpointState struct {
 	Zone pulumi.StringPtrInput
 }
 
-func (DocumentDBPrivateNetworkEndpointState) ElementType() reflect.Type {
-	return reflect.TypeOf((*documentDBPrivateNetworkEndpointState)(nil)).Elem()
+func (DocumentdbPrivateNetworkEndpointState) ElementType() reflect.Type {
+	return reflect.TypeOf((*documentdbPrivateNetworkEndpointState)(nil)).Elem()
 }
 
-type documentDBPrivateNetworkEndpointArgs struct {
+type documentdbPrivateNetworkEndpointArgs struct {
 	// UUID of the documentdb instance.
 	InstanceId string `pulumi:"instanceId"`
 	// The IP network address within the private subnet. This must be an IPv4 address with a
@@ -148,8 +153,8 @@ type documentDBPrivateNetworkEndpointArgs struct {
 	Zone *string `pulumi:"zone"`
 }
 
-// The set of arguments for constructing a DocumentDBPrivateNetworkEndpoint resource.
-type DocumentDBPrivateNetworkEndpointArgs struct {
+// The set of arguments for constructing a DocumentdbPrivateNetworkEndpoint resource.
+type DocumentdbPrivateNetworkEndpointArgs struct {
 	// UUID of the documentdb instance.
 	InstanceId pulumi.StringInput
 	// The IP network address within the private subnet. This must be an IPv4 address with a
@@ -166,185 +171,185 @@ type DocumentDBPrivateNetworkEndpointArgs struct {
 	Zone pulumi.StringPtrInput
 }
 
-func (DocumentDBPrivateNetworkEndpointArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*documentDBPrivateNetworkEndpointArgs)(nil)).Elem()
+func (DocumentdbPrivateNetworkEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*documentdbPrivateNetworkEndpointArgs)(nil)).Elem()
 }
 
-type DocumentDBPrivateNetworkEndpointInput interface {
+type DocumentdbPrivateNetworkEndpointInput interface {
 	pulumi.Input
 
-	ToDocumentDBPrivateNetworkEndpointOutput() DocumentDBPrivateNetworkEndpointOutput
-	ToDocumentDBPrivateNetworkEndpointOutputWithContext(ctx context.Context) DocumentDBPrivateNetworkEndpointOutput
+	ToDocumentdbPrivateNetworkEndpointOutput() DocumentdbPrivateNetworkEndpointOutput
+	ToDocumentdbPrivateNetworkEndpointOutputWithContext(ctx context.Context) DocumentdbPrivateNetworkEndpointOutput
 }
 
-func (*DocumentDBPrivateNetworkEndpoint) ElementType() reflect.Type {
-	return reflect.TypeOf((**DocumentDBPrivateNetworkEndpoint)(nil)).Elem()
+func (*DocumentdbPrivateNetworkEndpoint) ElementType() reflect.Type {
+	return reflect.TypeOf((**DocumentdbPrivateNetworkEndpoint)(nil)).Elem()
 }
 
-func (i *DocumentDBPrivateNetworkEndpoint) ToDocumentDBPrivateNetworkEndpointOutput() DocumentDBPrivateNetworkEndpointOutput {
-	return i.ToDocumentDBPrivateNetworkEndpointOutputWithContext(context.Background())
+func (i *DocumentdbPrivateNetworkEndpoint) ToDocumentdbPrivateNetworkEndpointOutput() DocumentdbPrivateNetworkEndpointOutput {
+	return i.ToDocumentdbPrivateNetworkEndpointOutputWithContext(context.Background())
 }
 
-func (i *DocumentDBPrivateNetworkEndpoint) ToDocumentDBPrivateNetworkEndpointOutputWithContext(ctx context.Context) DocumentDBPrivateNetworkEndpointOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBPrivateNetworkEndpointOutput)
+func (i *DocumentdbPrivateNetworkEndpoint) ToDocumentdbPrivateNetworkEndpointOutputWithContext(ctx context.Context) DocumentdbPrivateNetworkEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbPrivateNetworkEndpointOutput)
 }
 
-// DocumentDBPrivateNetworkEndpointArrayInput is an input type that accepts DocumentDBPrivateNetworkEndpointArray and DocumentDBPrivateNetworkEndpointArrayOutput values.
-// You can construct a concrete instance of `DocumentDBPrivateNetworkEndpointArrayInput` via:
+// DocumentdbPrivateNetworkEndpointArrayInput is an input type that accepts DocumentdbPrivateNetworkEndpointArray and DocumentdbPrivateNetworkEndpointArrayOutput values.
+// You can construct a concrete instance of `DocumentdbPrivateNetworkEndpointArrayInput` via:
 //
-//	DocumentDBPrivateNetworkEndpointArray{ DocumentDBPrivateNetworkEndpointArgs{...} }
-type DocumentDBPrivateNetworkEndpointArrayInput interface {
+//	DocumentdbPrivateNetworkEndpointArray{ DocumentdbPrivateNetworkEndpointArgs{...} }
+type DocumentdbPrivateNetworkEndpointArrayInput interface {
 	pulumi.Input
 
-	ToDocumentDBPrivateNetworkEndpointArrayOutput() DocumentDBPrivateNetworkEndpointArrayOutput
-	ToDocumentDBPrivateNetworkEndpointArrayOutputWithContext(context.Context) DocumentDBPrivateNetworkEndpointArrayOutput
+	ToDocumentdbPrivateNetworkEndpointArrayOutput() DocumentdbPrivateNetworkEndpointArrayOutput
+	ToDocumentdbPrivateNetworkEndpointArrayOutputWithContext(context.Context) DocumentdbPrivateNetworkEndpointArrayOutput
 }
 
-type DocumentDBPrivateNetworkEndpointArray []DocumentDBPrivateNetworkEndpointInput
+type DocumentdbPrivateNetworkEndpointArray []DocumentdbPrivateNetworkEndpointInput
 
-func (DocumentDBPrivateNetworkEndpointArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*DocumentDBPrivateNetworkEndpoint)(nil)).Elem()
+func (DocumentdbPrivateNetworkEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DocumentdbPrivateNetworkEndpoint)(nil)).Elem()
 }
 
-func (i DocumentDBPrivateNetworkEndpointArray) ToDocumentDBPrivateNetworkEndpointArrayOutput() DocumentDBPrivateNetworkEndpointArrayOutput {
-	return i.ToDocumentDBPrivateNetworkEndpointArrayOutputWithContext(context.Background())
+func (i DocumentdbPrivateNetworkEndpointArray) ToDocumentdbPrivateNetworkEndpointArrayOutput() DocumentdbPrivateNetworkEndpointArrayOutput {
+	return i.ToDocumentdbPrivateNetworkEndpointArrayOutputWithContext(context.Background())
 }
 
-func (i DocumentDBPrivateNetworkEndpointArray) ToDocumentDBPrivateNetworkEndpointArrayOutputWithContext(ctx context.Context) DocumentDBPrivateNetworkEndpointArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBPrivateNetworkEndpointArrayOutput)
+func (i DocumentdbPrivateNetworkEndpointArray) ToDocumentdbPrivateNetworkEndpointArrayOutputWithContext(ctx context.Context) DocumentdbPrivateNetworkEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbPrivateNetworkEndpointArrayOutput)
 }
 
-// DocumentDBPrivateNetworkEndpointMapInput is an input type that accepts DocumentDBPrivateNetworkEndpointMap and DocumentDBPrivateNetworkEndpointMapOutput values.
-// You can construct a concrete instance of `DocumentDBPrivateNetworkEndpointMapInput` via:
+// DocumentdbPrivateNetworkEndpointMapInput is an input type that accepts DocumentdbPrivateNetworkEndpointMap and DocumentdbPrivateNetworkEndpointMapOutput values.
+// You can construct a concrete instance of `DocumentdbPrivateNetworkEndpointMapInput` via:
 //
-//	DocumentDBPrivateNetworkEndpointMap{ "key": DocumentDBPrivateNetworkEndpointArgs{...} }
-type DocumentDBPrivateNetworkEndpointMapInput interface {
+//	DocumentdbPrivateNetworkEndpointMap{ "key": DocumentdbPrivateNetworkEndpointArgs{...} }
+type DocumentdbPrivateNetworkEndpointMapInput interface {
 	pulumi.Input
 
-	ToDocumentDBPrivateNetworkEndpointMapOutput() DocumentDBPrivateNetworkEndpointMapOutput
-	ToDocumentDBPrivateNetworkEndpointMapOutputWithContext(context.Context) DocumentDBPrivateNetworkEndpointMapOutput
+	ToDocumentdbPrivateNetworkEndpointMapOutput() DocumentdbPrivateNetworkEndpointMapOutput
+	ToDocumentdbPrivateNetworkEndpointMapOutputWithContext(context.Context) DocumentdbPrivateNetworkEndpointMapOutput
 }
 
-type DocumentDBPrivateNetworkEndpointMap map[string]DocumentDBPrivateNetworkEndpointInput
+type DocumentdbPrivateNetworkEndpointMap map[string]DocumentdbPrivateNetworkEndpointInput
 
-func (DocumentDBPrivateNetworkEndpointMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*DocumentDBPrivateNetworkEndpoint)(nil)).Elem()
+func (DocumentdbPrivateNetworkEndpointMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DocumentdbPrivateNetworkEndpoint)(nil)).Elem()
 }
 
-func (i DocumentDBPrivateNetworkEndpointMap) ToDocumentDBPrivateNetworkEndpointMapOutput() DocumentDBPrivateNetworkEndpointMapOutput {
-	return i.ToDocumentDBPrivateNetworkEndpointMapOutputWithContext(context.Background())
+func (i DocumentdbPrivateNetworkEndpointMap) ToDocumentdbPrivateNetworkEndpointMapOutput() DocumentdbPrivateNetworkEndpointMapOutput {
+	return i.ToDocumentdbPrivateNetworkEndpointMapOutputWithContext(context.Background())
 }
 
-func (i DocumentDBPrivateNetworkEndpointMap) ToDocumentDBPrivateNetworkEndpointMapOutputWithContext(ctx context.Context) DocumentDBPrivateNetworkEndpointMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBPrivateNetworkEndpointMapOutput)
+func (i DocumentdbPrivateNetworkEndpointMap) ToDocumentdbPrivateNetworkEndpointMapOutputWithContext(ctx context.Context) DocumentdbPrivateNetworkEndpointMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbPrivateNetworkEndpointMapOutput)
 }
 
-type DocumentDBPrivateNetworkEndpointOutput struct{ *pulumi.OutputState }
+type DocumentdbPrivateNetworkEndpointOutput struct{ *pulumi.OutputState }
 
-func (DocumentDBPrivateNetworkEndpointOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DocumentDBPrivateNetworkEndpoint)(nil)).Elem()
+func (DocumentdbPrivateNetworkEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DocumentdbPrivateNetworkEndpoint)(nil)).Elem()
 }
 
-func (o DocumentDBPrivateNetworkEndpointOutput) ToDocumentDBPrivateNetworkEndpointOutput() DocumentDBPrivateNetworkEndpointOutput {
+func (o DocumentdbPrivateNetworkEndpointOutput) ToDocumentdbPrivateNetworkEndpointOutput() DocumentdbPrivateNetworkEndpointOutput {
 	return o
 }
 
-func (o DocumentDBPrivateNetworkEndpointOutput) ToDocumentDBPrivateNetworkEndpointOutputWithContext(ctx context.Context) DocumentDBPrivateNetworkEndpointOutput {
+func (o DocumentdbPrivateNetworkEndpointOutput) ToDocumentdbPrivateNetworkEndpointOutputWithContext(ctx context.Context) DocumentdbPrivateNetworkEndpointOutput {
 	return o
 }
 
 // Hostname of the endpoint.
-func (o DocumentDBPrivateNetworkEndpointOutput) Hostname() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBPrivateNetworkEndpoint) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
+func (o DocumentdbPrivateNetworkEndpointOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpoint) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
 }
 
 // UUID of the documentdb instance.
-func (o DocumentDBPrivateNetworkEndpointOutput) InstanceId() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBPrivateNetworkEndpoint) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
+func (o DocumentdbPrivateNetworkEndpointOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpoint) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
 // IPv4 address on the network.
-func (o DocumentDBPrivateNetworkEndpointOutput) Ip() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBPrivateNetworkEndpoint) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
+func (o DocumentdbPrivateNetworkEndpointOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpoint) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
 }
 
 // The IP network address within the private subnet. This must be an IPv4 address with a
 // CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
 // service if not set.
-func (o DocumentDBPrivateNetworkEndpointOutput) IpNet() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBPrivateNetworkEndpoint) pulumi.StringOutput { return v.IpNet }).(pulumi.StringOutput)
+func (o DocumentdbPrivateNetworkEndpointOutput) IpNet() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpoint) pulumi.StringOutput { return v.IpNet }).(pulumi.StringOutput)
 }
 
 // Name of the endpoint.
-func (o DocumentDBPrivateNetworkEndpointOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBPrivateNetworkEndpoint) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+func (o DocumentdbPrivateNetworkEndpointOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpoint) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 // Port in the Private Network.
-func (o DocumentDBPrivateNetworkEndpointOutput) Port() pulumi.IntOutput {
-	return o.ApplyT(func(v *DocumentDBPrivateNetworkEndpoint) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+func (o DocumentdbPrivateNetworkEndpointOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpoint) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
 }
 
 // The ID of the private network.
-func (o DocumentDBPrivateNetworkEndpointOutput) PrivateNetworkId() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBPrivateNetworkEndpoint) pulumi.StringOutput { return v.PrivateNetworkId }).(pulumi.StringOutput)
+func (o DocumentdbPrivateNetworkEndpointOutput) PrivateNetworkId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpoint) pulumi.StringOutput { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
 // The region you want to attach the resource to
-func (o DocumentDBPrivateNetworkEndpointOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBPrivateNetworkEndpoint) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o DocumentdbPrivateNetworkEndpointOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpoint) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The zone you want to attach the resource to
-func (o DocumentDBPrivateNetworkEndpointOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBPrivateNetworkEndpoint) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o DocumentdbPrivateNetworkEndpointOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpoint) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }
 
-type DocumentDBPrivateNetworkEndpointArrayOutput struct{ *pulumi.OutputState }
+type DocumentdbPrivateNetworkEndpointArrayOutput struct{ *pulumi.OutputState }
 
-func (DocumentDBPrivateNetworkEndpointArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*DocumentDBPrivateNetworkEndpoint)(nil)).Elem()
+func (DocumentdbPrivateNetworkEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DocumentdbPrivateNetworkEndpoint)(nil)).Elem()
 }
 
-func (o DocumentDBPrivateNetworkEndpointArrayOutput) ToDocumentDBPrivateNetworkEndpointArrayOutput() DocumentDBPrivateNetworkEndpointArrayOutput {
+func (o DocumentdbPrivateNetworkEndpointArrayOutput) ToDocumentdbPrivateNetworkEndpointArrayOutput() DocumentdbPrivateNetworkEndpointArrayOutput {
 	return o
 }
 
-func (o DocumentDBPrivateNetworkEndpointArrayOutput) ToDocumentDBPrivateNetworkEndpointArrayOutputWithContext(ctx context.Context) DocumentDBPrivateNetworkEndpointArrayOutput {
+func (o DocumentdbPrivateNetworkEndpointArrayOutput) ToDocumentdbPrivateNetworkEndpointArrayOutputWithContext(ctx context.Context) DocumentdbPrivateNetworkEndpointArrayOutput {
 	return o
 }
 
-func (o DocumentDBPrivateNetworkEndpointArrayOutput) Index(i pulumi.IntInput) DocumentDBPrivateNetworkEndpointOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DocumentDBPrivateNetworkEndpoint {
-		return vs[0].([]*DocumentDBPrivateNetworkEndpoint)[vs[1].(int)]
-	}).(DocumentDBPrivateNetworkEndpointOutput)
+func (o DocumentdbPrivateNetworkEndpointArrayOutput) Index(i pulumi.IntInput) DocumentdbPrivateNetworkEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DocumentdbPrivateNetworkEndpoint {
+		return vs[0].([]*DocumentdbPrivateNetworkEndpoint)[vs[1].(int)]
+	}).(DocumentdbPrivateNetworkEndpointOutput)
 }
 
-type DocumentDBPrivateNetworkEndpointMapOutput struct{ *pulumi.OutputState }
+type DocumentdbPrivateNetworkEndpointMapOutput struct{ *pulumi.OutputState }
 
-func (DocumentDBPrivateNetworkEndpointMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*DocumentDBPrivateNetworkEndpoint)(nil)).Elem()
+func (DocumentdbPrivateNetworkEndpointMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DocumentdbPrivateNetworkEndpoint)(nil)).Elem()
 }
 
-func (o DocumentDBPrivateNetworkEndpointMapOutput) ToDocumentDBPrivateNetworkEndpointMapOutput() DocumentDBPrivateNetworkEndpointMapOutput {
+func (o DocumentdbPrivateNetworkEndpointMapOutput) ToDocumentdbPrivateNetworkEndpointMapOutput() DocumentdbPrivateNetworkEndpointMapOutput {
 	return o
 }
 
-func (o DocumentDBPrivateNetworkEndpointMapOutput) ToDocumentDBPrivateNetworkEndpointMapOutputWithContext(ctx context.Context) DocumentDBPrivateNetworkEndpointMapOutput {
+func (o DocumentdbPrivateNetworkEndpointMapOutput) ToDocumentdbPrivateNetworkEndpointMapOutputWithContext(ctx context.Context) DocumentdbPrivateNetworkEndpointMapOutput {
 	return o
 }
 
-func (o DocumentDBPrivateNetworkEndpointMapOutput) MapIndex(k pulumi.StringInput) DocumentDBPrivateNetworkEndpointOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DocumentDBPrivateNetworkEndpoint {
-		return vs[0].(map[string]*DocumentDBPrivateNetworkEndpoint)[vs[1].(string)]
-	}).(DocumentDBPrivateNetworkEndpointOutput)
+func (o DocumentdbPrivateNetworkEndpointMapOutput) MapIndex(k pulumi.StringInput) DocumentdbPrivateNetworkEndpointOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DocumentdbPrivateNetworkEndpoint {
+		return vs[0].(map[string]*DocumentdbPrivateNetworkEndpoint)[vs[1].(string)]
+	}).(DocumentdbPrivateNetworkEndpointOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBPrivateNetworkEndpointInput)(nil)).Elem(), &DocumentDBPrivateNetworkEndpoint{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBPrivateNetworkEndpointArrayInput)(nil)).Elem(), DocumentDBPrivateNetworkEndpointArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBPrivateNetworkEndpointMapInput)(nil)).Elem(), DocumentDBPrivateNetworkEndpointMap{})
-	pulumi.RegisterOutputType(DocumentDBPrivateNetworkEndpointOutput{})
-	pulumi.RegisterOutputType(DocumentDBPrivateNetworkEndpointArrayOutput{})
-	pulumi.RegisterOutputType(DocumentDBPrivateNetworkEndpointMapOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbPrivateNetworkEndpointInput)(nil)).Elem(), &DocumentdbPrivateNetworkEndpoint{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbPrivateNetworkEndpointArrayInput)(nil)).Elem(), DocumentdbPrivateNetworkEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbPrivateNetworkEndpointMapInput)(nil)).Elem(), DocumentdbPrivateNetworkEndpointMap{})
+	pulumi.RegisterOutputType(DocumentdbPrivateNetworkEndpointOutput{})
+	pulumi.RegisterOutputType(DocumentdbPrivateNetworkEndpointArrayOutput{})
+	pulumi.RegisterOutputType(DocumentdbPrivateNetworkEndpointMapOutput{})
 }

@@ -54,7 +54,7 @@ namespace ediri.Scaleway
     ///         Permission = "all",
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
     ///             mainRdbUser,
     ///             mainRdbDatabase,
@@ -66,10 +66,12 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g. bash
+    /// The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/rdbPrivilege:RdbPrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
+    /// $ pulumi import scaleway:index/rdbPrivilege:RdbPrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/rdbPrivilege:RdbPrivilege")]

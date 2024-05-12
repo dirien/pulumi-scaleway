@@ -15,9 +15,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about a RDB database.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -35,8 +33,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetRdbDatabaseResult> InvokeAsync(GetRdbDatabaseArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRdbDatabaseResult>("scaleway:index/getRdbDatabase:getRdbDatabase", args ?? new GetRdbDatabaseArgs(), options.WithDefaults());
@@ -44,9 +40,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about a RDB database.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -64,8 +58,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetRdbDatabaseResult> Invoke(GetRdbDatabaseInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRdbDatabaseResult>("scaleway:index/getRdbDatabase:getRdbDatabase", args ?? new GetRdbDatabaseInvokeArgs(), options.WithDefaults());

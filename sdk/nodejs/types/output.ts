@@ -11,7 +11,7 @@ export interface BaremetalServerIp {
      */
     address: string;
     /**
-     * The id of the private network to attach.
+     * The ID of the IPv6.
      */
     id: string;
     /**
@@ -30,7 +30,7 @@ export interface BaremetalServerIpv4 {
      */
     address: string;
     /**
-     * The id of the private network to attach.
+     * The ID of the IPv6.
      */
     id: string;
     /**
@@ -49,7 +49,7 @@ export interface BaremetalServerIpv6 {
      */
     address: string;
     /**
-     * The id of the private network to attach.
+     * The ID of the IPv6.
      */
     id: string;
     /**
@@ -68,7 +68,7 @@ export interface BaremetalServerOption {
      */
     expiresAt: string;
     /**
-     * The id of the private network to attach.
+     * The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
      */
     id: string;
     /**
@@ -172,7 +172,7 @@ export interface ContainerTriggerNats {
      */
     projectId: string;
     /**
-     * `region`). The region in which the namespace should be created.
+     * Region where the mnq nats account is, defaults to provider's region
      */
     region: string;
     /**
@@ -187,7 +187,7 @@ export interface ContainerTriggerSqs {
      */
     namespaceId?: string;
     /**
-     * ID of the project that contain the mnq nats account, defaults to provider's project
+     * ID of the project where sqs is enabled, defaults to provider's project
      */
     projectId: string;
     /**
@@ -195,12 +195,12 @@ export interface ContainerTriggerSqs {
      */
     queue: string;
     /**
-     * `region`). The region in which the namespace should be created.
+     * Region where sqs is enabled, defaults to provider's region
      */
     region: string;
 }
 
-export interface DocumentDBReadReplicaDirectAccess {
+export interface DocumentdbReadReplicaDirectAccess {
     /**
      * The ID of the endpoint of the read replica.
      */
@@ -223,7 +223,7 @@ export interface DocumentDBReadReplicaDirectAccess {
     port: number;
 }
 
-export interface DocumentDBReadReplicaPrivateNetwork {
+export interface DocumentdbReadReplicaPrivateNetwork {
     /**
      * The ID of the endpoint of the read replica.
      */
@@ -254,23 +254,26 @@ export interface DocumentDBReadReplicaPrivateNetwork {
      * service if not set.
      */
     serviceIp: string;
+    /**
+     * Private network zone
+     */
     zone: string;
 }
 
 export interface DomainRecordGeoIp {
     /**
-     * The list of matches. *(Can be more than 1)*
+     * The list of matches
      */
     matches: outputs.DomainRecordGeoIpMatch[];
 }
 
 export interface DomainRecordGeoIpMatch {
     /**
-     * List of continents (eg: `EU` for Europe, `NA` for North America, `AS` for Asia...). [List of all continents code](https://api.scaleway.com/domain-private/v2beta1/continents)
+     * List of continents (eg: EU for Europe, NA for North America, AS for Asia...). List of all continents code: https://api.scaleway.com/domain-private/v2beta1/continents
      */
     continents?: string[];
     /**
-     * List of countries (eg: `FR` for France, `US` for the United States, `GB` for Great Britain...). [List of all countries code](https://api.scaleway.com/domain-private/v2beta1/countries)
+     * List of countries (eg: FR for France, US for the United States, GB for Great Britain...). List of all countries code: https://api.scaleway.com/domain-private/v2beta1/countries
      */
     countries?: string[];
     /**
@@ -281,7 +284,7 @@ export interface DomainRecordGeoIpMatch {
 
 export interface DomainRecordHttpService {
     /**
-     * List of IPs to check
+     * IPs to check
      */
     ips: string[];
     /**
@@ -289,11 +292,11 @@ export interface DomainRecordHttpService {
      */
     mustContain: string;
     /**
-     * Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
+     * Strategy to return an IP from the IPs list
      */
     strategy: string;
     /**
-     * URL to match the `mustContain` text to validate an IP
+     * URL to match the mustContain text to validate an IP
      */
     url: string;
     /**
@@ -319,7 +322,7 @@ export interface DomainRecordWeighted {
      */
     ip: string;
     /**
-     * The weight of the IP as an integer UInt32.
+     * The weight of the IP
      */
     weight: number;
 }
@@ -334,7 +337,7 @@ export interface FunctionTriggerNats {
      */
     projectId: string;
     /**
-     * `region`). The region in which the namespace should be created.
+     * Region where the mnq nats account is, defaults to provider's region
      */
     region: string;
     /**
@@ -349,7 +352,7 @@ export interface FunctionTriggerSqs {
      */
     namespaceId?: string;
     /**
-     * ID of the project that contain the mnq nats account, defaults to provider's project
+     * ID of the project that contain the mnq namespace, defaults to provider's project
      */
     projectId: string;
     /**
@@ -357,7 +360,7 @@ export interface FunctionTriggerSqs {
      */
     queue: string;
     /**
-     * `region`). The region in which the namespace should be created.
+     * Region where the mnq namespace is, defaults to provider's region
      */
     region: string;
 }
@@ -412,36 +415,66 @@ export interface GetBaremetalOfferMemory {
 }
 
 export interface GetBaremetalServerIp {
+    /**
+     * The IPv6 address
+     */
     address: string;
     /**
      * The ID of the server.
      */
     id: string;
+    /**
+     * The Reverse of the IPv6
+     */
     reverse: string;
+    /**
+     * The version of the IPv6
+     */
     version: string;
 }
 
 export interface GetBaremetalServerIpv4 {
+    /**
+     * The IPv6 address
+     */
     address: string;
     /**
      * The ID of the server.
      */
     id: string;
+    /**
+     * The Reverse of the IPv6
+     */
     reverse: string;
+    /**
+     * The version of the IPv6
+     */
     version: string;
 }
 
 export interface GetBaremetalServerIpv6 {
+    /**
+     * The IPv6 address
+     */
     address: string;
     /**
      * The ID of the server.
      */
     id: string;
+    /**
+     * The Reverse of the IPv6
+     */
     reverse: string;
+    /**
+     * The version of the IPv6
+     */
     version: string;
 }
 
 export interface GetBaremetalServerOption {
+    /**
+     * Auto expire the option after this date
+     */
     expiresAt: string;
     /**
      * The ID of the server.
@@ -454,13 +487,25 @@ export interface GetBaremetalServerOption {
 }
 
 export interface GetBaremetalServerPrivateNetwork {
+    /**
+     * The date and time of the creation of the private network
+     */
     createdAt: string;
     /**
      * The ID of the server.
      */
     id: string;
+    /**
+     * The private network status
+     */
     status: string;
+    /**
+     * The date and time of the last update of the private network
+     */
     updatedAt: string;
+    /**
+     * The VLAN ID associated to the private network
+     */
     vlan: number;
 }
 
@@ -524,15 +569,27 @@ export interface GetCockpitEndpoint {
      * The metrics URL
      */
     metricsUrl: string;
+    /**
+     * The traces URL
+     */
     tracesUrl: string;
 }
 
 export interface GetDomainRecordGeoIp {
+    /**
+     * The list of matches
+     */
     matches: outputs.GetDomainRecordGeoIpMatch[];
 }
 
 export interface GetDomainRecordGeoIpMatch {
+    /**
+     * List of continents (eg: EU for Europe, NA for North America, AS for Asia...). List of all continents code: https://api.scaleway.com/domain-private/v2beta1/continents
+     */
     continents: string[];
+    /**
+     * List of countries (eg: FR for France, US for the United States, GB for Great Britain...). List of all countries code: https://api.scaleway.com/domain-private/v2beta1/countries
+     */
     countries: string[];
     /**
      * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
@@ -542,10 +599,25 @@ export interface GetDomainRecordGeoIpMatch {
 }
 
 export interface GetDomainRecordHttpService {
+    /**
+     * IPs to check
+     */
     ips: string[];
+    /**
+     * Text to search
+     */
     mustContain: string;
+    /**
+     * Strategy to return an IP from the IPs list
+     */
     strategy: string;
+    /**
+     * URL to match the mustContain text to validate an IP
+     */
     url: string;
+    /**
+     * User-agent used when checking the URL
+     */
     userAgent: string;
 }
 
@@ -555,11 +627,20 @@ export interface GetDomainRecordView {
      * Cannot be used with `recordId`.
      */
     data: string;
+    /**
+     * The subnet of the view
+     */
     subnet: string;
 }
 
 export interface GetDomainRecordWeighted {
+    /**
+     * The weighted IP
+     */
     ip: string;
+    /**
+     * The weight of the IP
+     */
     weight: number;
 }
 
@@ -659,6 +740,9 @@ export interface GetInstanceSecurityGroupInboundRule {
      * The port this rule apply to. If no port is specified, rule will apply to all port.
      */
     port: number;
+    /**
+     * Computed port range for this rule (e.g: 1-1024, 22-22)
+     */
     portRange: string;
     /**
      * The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
@@ -683,6 +767,9 @@ export interface GetInstanceSecurityGroupOutboundRule {
      * The port this rule apply to. If no port is specified, rule will apply to all port.
      */
     port: number;
+    /**
+     * Computed port range for this rule (e.g: 1-1024, 22-22)
+     */
     portRange: string;
     /**
      * The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
@@ -691,8 +778,17 @@ export interface GetInstanceSecurityGroupOutboundRule {
 }
 
 export interface GetInstanceServerPrivateNetwork {
+    /**
+     * MAC address of the NIC
+     */
     macAddress: string;
+    /**
+     * The Private Network ID
+     */
     pnId: string;
+    /**
+     * The private NIC state
+     */
     status: string;
     /**
      * `zone`) The zone in which the server exists.
@@ -712,6 +808,9 @@ export interface GetInstanceServerPublicIp {
 }
 
 export interface GetInstanceServerRootVolume {
+    /**
+     * Set the volume where the boot the server
+     */
     boot: boolean;
     /**
      * Forces deletion of the root volume on instance termination.
@@ -729,6 +828,9 @@ export interface GetInstanceServerRootVolume {
      * The volume ID of the root volume of the server.
      */
     volumeId: string;
+    /**
+     * Volume type of the root volume
+     */
     volumeType: string;
 }
 
@@ -836,31 +938,134 @@ export interface GetInstanceServersServerPublicIp {
 }
 
 export interface GetInstanceSnapshotImport {
+    /**
+     * Bucket containing qcow
+     */
     bucket: string;
+    /**
+     * Key of the qcow file in the specified bucket
+     */
     key: string;
 }
 
 export interface GetIotDeviceCertificate {
+    /**
+     * X509 PEM encoded certificate of the device
+     */
     crt: string;
+    /**
+     * X509 PEM encoded key of the device
+     */
     key: string;
 }
 
 export interface GetIotDeviceMessageFilter {
+    /**
+     * Rule to restrict topics the device can publish to
+     */
     publishes: outputs.GetIotDeviceMessageFilterPublish[];
+    /**
+     * Rule to restrict topics the device can subscribe to
+     */
     subscribes: outputs.GetIotDeviceMessageFilterSubscribe[];
 }
 
 export interface GetIotDeviceMessageFilterPublish {
+    /**
+     * Publish message filter policy
+     */
     policy: string;
+    /**
+     * List of topics in the set
+     */
     topics: string[];
 }
 
 export interface GetIotDeviceMessageFilterSubscribe {
+    /**
+     * Subscribe message filter policy
+     */
     policy: string;
+    /**
+     * List of topics in the set
+     */
     topics: string[];
 }
 
 export interface GetIpamIpResource {
+    /**
+     * The ID of the resource that the IP is bound to.
+     */
+    id?: string;
+    /**
+     * The name of the resource to get the IP from.
+     */
+    name?: string;
+    /**
+     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+     */
+    type: string;
+}
+
+export interface GetIpamIpsIp {
+    /**
+     * The Scaleway internal IP address of the server.
+     */
+    address: string;
+    /**
+     * The date and time of the creation of the IP.
+     */
+    createdAt: string;
+    /**
+     * The ID of the resource.
+     */
+    id: string;
+    /**
+     * The ID of the project used as filter.
+     */
+    projectId: string;
+    /**
+     * The region used as filter.
+     */
+    region: string;
+    /**
+     * Filter by resource ID, type or name.
+     */
+    resources: outputs.GetIpamIpsIpResource[];
+    /**
+     * The tags used as filter.
+     */
+    tags: string[];
+    /**
+     * The date and time of the last update of the IP.
+     */
+    updatedAt: string;
+    /**
+     * The zone in which the IP is.
+     */
+    zone: string;
+}
+
+export interface GetIpamIpsIpResource {
+    /**
+     * The ID of the resource that the IP is bound to.
+     */
+    id: string;
+    /**
+     * The Mac Address used as filter.
+     */
+    macAddress: string;
+    /**
+     * The name of the resource to get the IP from.
+     */
+    name: string;
+    /**
+     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+     */
+    type: string;
+}
+
+export interface GetIpamIpsResource {
     /**
      * The ID of the resource that the IP is bound to.
      */
@@ -915,6 +1120,9 @@ export interface GetK8sClusterAutoscalerConfig {
      * True if ignoring DaemonSet pods when calculating resource utilization for scaling down is enabled.
      */
     ignoreDaemonsetsUtilization: boolean;
+    /**
+     * Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node
+     */
     maxGracefulTerminationSec: number;
     /**
      * The duration after scale up that scale down evaluation resumes.
@@ -924,6 +1132,9 @@ export interface GetK8sClusterAutoscalerConfig {
      * The duration a node should be unneeded before it is eligible for scale down.
      */
     scaleDownUnneededTime: string;
+    /**
+     * Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
+     */
     scaleDownUtilizationThreshold: number;
 }
 
@@ -947,12 +1158,33 @@ export interface GetK8sClusterKubeconfig {
 }
 
 export interface GetK8sClusterOpenIdConnectConfig {
+    /**
+     * A client id that all tokens must be issued for
+     */
     clientId: string;
+    /**
+     * JWT claim to use as the user's group
+     */
     groupsClaims: string[];
+    /**
+     * Prefix prepended to group claims
+     */
     groupsPrefix: string;
+    /**
+     * URL of the provider which allows the API server to discover public signing keys
+     */
     issuerUrl: string;
+    /**
+     * Multiple key=value pairs that describes a required claim in the ID Token
+     */
     requiredClaims: string[];
+    /**
+     * JWT claim to use as the user name
+     */
     usernameClaim: string;
+    /**
+     * Prefix prepended to username
+     */
     usernamePrefix: string;
 }
 
@@ -976,7 +1208,13 @@ export interface GetK8sPoolNode {
 }
 
 export interface GetK8sPoolUpgradePolicy {
+    /**
+     * The maximum number of nodes to be created during the upgrade
+     */
     maxSurge: number;
+    /**
+     * The maximum number of nodes that can be not ready at the same time
+     */
     maxUnavailable: number;
 }
 
@@ -1071,10 +1309,25 @@ export interface GetLbAclsAclMatch {
 }
 
 export interface GetLbBackendHealthCheckHttp {
+    /**
+     * The expected HTTP status code
+     */
     code: number;
+    /**
+     * The HTTP host header to use for HC requests
+     */
     hostHeader: string;
+    /**
+     * The HTTP method to use for HC requests
+     */
     method: string;
+    /**
+     * The SNI to use for HC requests over SSL
+     */
     sni: string;
+    /**
+     * The HTTPS endpoint URL to call for HC requests
+     */
     uri: string;
 }
 
@@ -1215,43 +1468,97 @@ export interface GetLbBackendsBackendHealthCheckTcp {
 }
 
 export interface GetLbCertificateCustomCertificate {
+    /**
+     * The full PEM-formatted certificate chain
+     */
     certificateChain: string;
 }
 
 export interface GetLbCertificateLetsencrypt {
+    /**
+     * The main domain name of the certificate
+     */
     commonName: string;
+    /**
+     * The alternative domain names of the certificate
+     */
     subjectAlternativeNames: string[];
 }
 
 export interface GetLbFrontendAcl {
+    /**
+     * Action to undertake when an ACL filter matches
+     */
     actions: outputs.GetLbFrontendAclAction[];
+    /**
+     * Date and time of ACL's creation (RFC 3339 format)
+     */
     createdAt: string;
+    /**
+     * Description of the ACL
+     */
     description: string;
+    /**
+     * The ACL match rule
+     */
     matches: outputs.GetLbFrontendAclMatch[];
     /**
      * The name of the frontend.
      * - When using the `name` you should specify the `lb-id`
      */
     name: string;
+    /**
+     * Date and time of ACL's update (RFC 3339 format)
+     */
     updatedAt: string;
 }
 
 export interface GetLbFrontendAclAction {
+    /**
+     * Redirect parameters when using an ACL with `redirect` action
+     */
     redirects: outputs.GetLbFrontendAclActionRedirect[];
+    /**
+     * The action type
+     */
     type: string;
 }
 
 export interface GetLbFrontendAclActionRedirect {
+    /**
+     * The HTTP redirect code to use
+     */
     code: number;
+    /**
+     * An URL can be used in case of a location redirect
+     */
     target: string;
+    /**
+     * The redirect type
+     */
     type: string;
 }
 
 export interface GetLbFrontendAclMatch {
+    /**
+     * The HTTP filter to match
+     */
     httpFilter: string;
+    /**
+     * You can use this field with httpHeaderMatch acl type to set the header name to filter
+     */
     httpFilterOption: string;
+    /**
+     * A list of possible values to match for the given HTTP filter
+     */
     httpFilterValues: string[];
+    /**
+     * If set to true, the condition will be of type "unless"
+     */
     invert: boolean;
+    /**
+     * A list of IPs or CIDR v4/v6 addresses of the client of the session to match
+     */
     ipSubnets: string[];
 }
 
@@ -1332,9 +1639,21 @@ export interface GetLbIpsIp {
 }
 
 export interface GetLbPrivateNetwork {
+    /**
+     * Set to true if you want to let DHCP assign IP addresses
+     */
     dhcpConfig: boolean;
+    /**
+     * The Private Network ID
+     */
     privateNetworkId: string;
+    /**
+     * Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
+     */
     staticConfigs: string[];
+    /**
+     * The status of private network connection
+     */
     status: string;
     /**
      * (Defaults to provider `zone`) The zone in which the LB exists.
@@ -1507,28 +1826,58 @@ export interface GetObjectBucketCorsRule {
 }
 
 export interface GetObjectBucketLifecycleRule {
+    /**
+     * Specifies the number of days after initiating a multipart upload when the multipart upload must be completed
+     */
     abortIncompleteMultipartUploadDays: number;
+    /**
+     * Specifies if the configuration rule is Enabled or Disabled
+     */
     enabled: boolean;
+    /**
+     * Specifies a period in the object's expire
+     */
     expirations: outputs.GetObjectBucketLifecycleRuleExpiration[];
     /**
      * The unique name of the bucket.
      */
     id: string;
+    /**
+     * The prefix identifying one or more objects to which the rule applies
+     */
     prefix: string;
+    /**
+     * The tags associated with the bucket lifecycle
+     */
     tags: {[key: string]: string};
+    /**
+     * Define when objects transition to another storage class
+     */
     transitions: outputs.GetObjectBucketLifecycleRuleTransition[];
 }
 
 export interface GetObjectBucketLifecycleRuleExpiration {
+    /**
+     * Specifies the number of days after object creation when the specific rule action takes effect
+     */
     days: number;
 }
 
 export interface GetObjectBucketLifecycleRuleTransition {
+    /**
+     * Specifies the number of days after object creation when the specific rule action takes effect
+     */
     days: number;
+    /**
+     * Specifies the Scaleway Object Storage class to which you want the object to transition
+     */
     storageClass: string;
 }
 
 export interface GetObjectBucketVersioning {
+    /**
+     * Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state
+     */
     enabled: boolean;
 }
 
@@ -1544,58 +1893,112 @@ export interface GetRdbAclAclRule {
 }
 
 export interface GetRdbInstanceLoadBalancer {
+    /**
+     * The endpoint ID
+     */
     endpointId: string;
+    /**
+     * The hostname of your endpoint
+     */
     hostname: string;
+    /**
+     * The IP of your load balancer service
+     */
     ip: string;
     /**
      * The name of the RDB instance.
      * Only one of `name` and `instanceId` should be specified.
      */
     name: string;
+    /**
+     * The port of your load balancer service
+     */
     port: number;
 }
 
 export interface GetRdbInstancePrivateNetwork {
+    /**
+     * Whether or not the private network endpoint should be configured with IPAM
+     */
     enableIpam: boolean;
+    /**
+     * The endpoint ID
+     */
     endpointId: string;
+    /**
+     * The hostname of your endpoint
+     */
     hostname: string;
+    /**
+     * The IP of your Instance within the private service
+     */
     ip: string;
+    /**
+     * The IP with the given mask within the private subnet
+     */
     ipNet: string;
     /**
      * The name of the RDB instance.
      * Only one of `name` and `instanceId` should be specified.
      */
     name: string;
+    /**
+     * The private network ID
+     */
     pnId: string;
+    /**
+     * The port of your private service
+     */
     port: number;
+    /**
+     * The zone you want to attach the resource to
+     */
     zone: string;
 }
 
 export interface GetRdbInstanceReadReplica {
+    /**
+     * IP of the replica
+     */
     ip: string;
     /**
      * The name of the RDB instance.
      * Only one of `name` and `instanceId` should be specified.
      */
     name: string;
+    /**
+     * Port of the replica
+     */
     port: number;
 }
 
 export interface GetRedisClusterAcl {
+    /**
+     * Description of the rule.
+     */
     description: string;
     /**
      * The ID of the Redis cluster.
      */
     id: string;
+    /**
+     * IPv4 network address of the rule (IP network in a CIDR format).
+     */
     ip: string;
 }
 
 export interface GetRedisClusterPrivateNetwork {
+    /**
+     * UUID of the endpoint to be connected to the cluster
+     */
     endpointId: string;
     /**
      * The ID of the Redis cluster.
      */
     id: string;
+    /**
+     * List of IPv4 addresses of the private network with a CIDR notation
+     */
     serviceIps: string[];
     /**
      * `region`) The zone in which the server exists.
@@ -1609,45 +2012,105 @@ export interface GetRedisClusterPublicNetwork {
      */
     id: string;
     ips: string[];
+    /**
+     * TCP port of the endpoint
+     */
     port: number;
 }
 
 export interface GetTemDomainReputation {
+    /**
+     * The previously-calculated domain's reputation score
+     */
     previousScore: number;
+    /**
+     * Time and date the previous reputation score was calculated
+     */
     previousScoredAt: string;
+    /**
+     * A range from 0 to 100 that determines your domain's reputation score
+     */
     score: number;
+    /**
+     * Time and date the score was calculated
+     */
     scoredAt: string;
+    /**
+     * Status of the domain's reputation
+     */
     status: string;
 }
 
 export interface GetVpcGatewayNetworkIpamConfig {
+    /**
+     * Use this IPAM-booked IP ID as the Gateway's IP in this Private Network
+     */
     ipamIpId: string;
+    /**
+     * Defines whether the default route is enabled on that Gateway Network
+     */
     pushDefaultRoute: boolean;
 }
 
 export interface GetVpcPrivateNetworkIpv4Subnet {
+    /**
+     * The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet
+     */
     address: string;
+    /**
+     * The date and time of the creation of the subnet
+     */
     createdAt: string;
     /**
      * The ID of the private network.
      */
     id: string;
+    /**
+     * The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
+     */
     prefixLength: number;
+    /**
+     * The subnet CIDR
+     */
     subnet: string;
+    /**
+     * The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+     */
     subnetMask: string;
+    /**
+     * The date and time of the last update of the subnet
+     */
     updatedAt: string;
 }
 
 export interface GetVpcPrivateNetworkIpv6Subnet {
+    /**
+     * The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet
+     */
     address: string;
+    /**
+     * The date and time of the creation of the subnet
+     */
     createdAt: string;
     /**
      * The ID of the private network.
      */
     id: string;
+    /**
+     * The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
+     */
     prefixLength: number;
+    /**
+     * The subnet CIDR
+     */
     subnet: string;
+    /**
+     * The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
+     */
     subnetMask: string;
+    /**
+     * The date and time of the last update of the subnet
+     */
     updatedAt: string;
 }
 
@@ -1688,7 +2151,12 @@ export interface GetVpcsVpc {
     updateAt: string;
 }
 
-export interface GetWebHostOfferProduct {
+export interface GetWebhostingCpanelUrl {
+    dashboard: string;
+    webmail: string;
+}
+
+export interface GetWebhostingOfferProduct {
     /**
      * The quota of databases.
      */
@@ -1727,11 +2195,6 @@ export interface GetWebHostOfferProduct {
     vCpu: number;
 }
 
-export interface GetWebhostingCpanelUrl {
-    dashboard: string;
-    webmail: string;
-}
-
 export interface GetWebhostingOption {
     id: string;
     name: string;
@@ -1739,13 +2202,17 @@ export interface GetWebhostingOption {
 
 export interface IamPolicyRule {
     /**
-     * ID of organization scoped to the rule.
+     * ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
      */
     organizationId?: string;
     /**
      * Names of permission sets bound to the rule.
      *
      * **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+     *
+     * ```shell
+     * $ scw iam permission-set list
+     * ```
      */
     permissionSetNames: string[];
     /**
@@ -1819,7 +2286,7 @@ export interface InstanceSecurityGroupInboundRule {
     /**
      * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
      *
-     * @deprecated Ip address is deprecated. Please use ip_range instead
+     * @deprecated Ip address is deprecated. Please use ipRange instead
      */
     ip?: string;
     /**
@@ -1830,6 +2297,9 @@ export interface InstanceSecurityGroupInboundRule {
      * The port this rule applies to. If no `port` nor `portRange` are specified, the rule will apply to all port. Only one of `port` and `portRange` should be specified.
      */
     port?: number;
+    /**
+     * Computed port range for this rule (e.g: 1-1024, 22-22)
+     */
     portRange?: string;
     /**
      * The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
@@ -1839,26 +2309,29 @@ export interface InstanceSecurityGroupInboundRule {
 
 export interface InstanceSecurityGroupOutboundRule {
     /**
-     * The action to take when rule match. Possible values are: `accept` or `drop`.
+     * Action when rule match request (drop or accept)
      */
     action: string;
     /**
-     * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     * Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ipRange should be provided
      *
-     * @deprecated Ip address is deprecated. Please use ip_range instead
+     * @deprecated Ip address is deprecated. Please use ipRange instead
      */
     ip?: string;
     /**
-     * The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     * Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ipRange should be provided
      */
     ipRange?: string;
     /**
-     * The port this rule applies to. If no `port` nor `portRange` are specified, the rule will apply to all port. Only one of `port` and `portRange` should be specified.
+     * Network port for this rule
      */
     port?: number;
+    /**
+     * Computed port range for this rule (e.g: 1-1024, 22-22)
+     */
     portRange?: string;
     /**
-     * The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+     * Protocol for this rule (TCP, UDP, ICMP or ANY)
      */
     protocol?: string;
 }
@@ -1871,7 +2344,7 @@ export interface InstanceSecurityGroupRulesInboundRule {
     /**
      * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
      *
-     * @deprecated Ip address is deprecated. Please use ip_range instead
+     * @deprecated Ip address is deprecated. Please use ipRange instead
      */
     ip?: string;
     /**
@@ -1882,6 +2355,9 @@ export interface InstanceSecurityGroupRulesInboundRule {
      * The port this rule apply to. If no port is specified, rule will apply to all port.
      */
     port?: number;
+    /**
+     * Computed port range for this rule (e.g: 1-1024, 22-22)
+     */
     portRange?: string;
     /**
      * The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
@@ -1891,33 +2367,45 @@ export interface InstanceSecurityGroupRulesInboundRule {
 
 export interface InstanceSecurityGroupRulesOutboundRule {
     /**
-     * The action to take when rule match. Possible values are: `accept` or `drop`.
+     * Action when rule match request (drop or accept)
      */
     action: string;
     /**
-     * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     * Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ipRange should be provided
      *
-     * @deprecated Ip address is deprecated. Please use ip_range instead
+     * @deprecated Ip address is deprecated. Please use ipRange instead
      */
     ip?: string;
     /**
-     * The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     * Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ipRange should be provided
      */
     ipRange?: string;
     /**
-     * The port this rule apply to. If no port is specified, rule will apply to all port.
+     * Network port for this rule
      */
     port?: number;
+    /**
+     * Computed port range for this rule (e.g: 1-1024, 22-22)
+     */
     portRange?: string;
     /**
-     * The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+     * Protocol for this rule (TCP, UDP, ICMP or ANY)
      */
     protocol?: string;
 }
 
 export interface InstanceServerPrivateNetwork {
+    /**
+     * MAC address of the NIC
+     */
     macAddress: string;
+    /**
+     * The Private Network ID
+     */
     pnId: string;
+    /**
+     * The private NIC state
+     */
     status: string;
     /**
      * `zone`) The zone in which the server should be created.
@@ -1937,6 +2425,9 @@ export interface InstanceServerPublicIp {
 }
 
 export interface InstanceServerRootVolume {
+    /**
+     * Set the volume where the boot the server
+     */
     boot?: boolean;
     /**
      * Forces deletion of the root volume on instance termination.
@@ -1979,6 +2470,9 @@ export interface InstanceSnapshotImport {
 }
 
 export interface IotDeviceCertificate {
+    /**
+     * X509 PEM encoded certificate of the device
+     */
     crt: string;
     /**
      * The private key of the device, in case it is generated by Scaleway.
@@ -1999,53 +2493,84 @@ export interface IotDeviceMessageFilters {
 
 export interface IotDeviceMessageFiltersPublish {
     /**
-     * Same as publish rules.
+     * Publish message filter policy
      */
     policy?: string;
     /**
-     * Same as publish rules.
-     *
-     * - `certificate.crt` - (Optional) The certificate of the device, either generated by Scaleway or provided.
-     *
-     * > **Important:** Updates to `certificate.crt` will disconnect connected devices and the previous certificate will be deleted and won't be recoverable.
+     * List of topics in the set
      */
     topics?: string[];
 }
 
 export interface IotDeviceMessageFiltersSubscribe {
     /**
-     * Same as publish rules.
+     * Subscribe message filter policy
      */
     policy?: string;
     /**
-     * Same as publish rules.
-     *
-     * - `certificate.crt` - (Optional) The certificate of the device, either generated by Scaleway or provided.
-     *
-     * > **Important:** Updates to `certificate.crt` will disconnect connected devices and the previous certificate will be deleted and won't be recoverable.
+     * List of topics in the set
      */
     topics?: string[];
 }
 
 export interface IotRouteDatabase {
+    /**
+     * The database name (e.g. `measurements`).
+     */
     dbname: string;
+    /**
+     * The database hostname. Can be an IP or a FQDN.
+     */
     host: string;
+    /**
+     * The database password.
+     */
     password: string;
+    /**
+     * The database port (e.g. `5432`)
+     */
     port: number;
+    /**
+     * The SQL query that will be executed when receiving a message ($TOPIC and $PAYLOAD variables are available, see documentation, e.g. `INSERT INTO mytable(date, topic, value) VALUES (NOW(), $TOPIC, $PAYLOAD)`).
+     */
     query: string;
+    /**
+     * The database username.
+     */
     username: string;
 }
 
 export interface IotRouteRest {
+    /**
+     * a map of the extra headers to send with the HTTP call (e.g. `X-Header = Value`).
+     */
     headers: {[key: string]: string};
+    /**
+     * The URI of the Rest endpoint (e.g. `https://internal.mycompany.com/ingest/mqttdata`).
+     */
     uri: string;
+    /**
+     * The HTTP Verb used to call Rest URI (e.g. `post`).
+     */
     verb: string;
 }
 
 export interface IotRouteS3 {
+    /**
+     * The name of the S3 route's destination bucket (e.g. `my-object-storage`).
+     */
     bucketName: string;
+    /**
+     * The region of the S3 route's destination bucket (e.g. `fr-par`).
+     */
     bucketRegion: string;
+    /**
+     * The string to prefix object names with (e.g. `mykeyprefix-`).
+     */
     objectPrefix?: string;
+    /**
+     * How the S3 route's objects will be created (e.g. `perTopic`). See [documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Messages-Store-Strategies) for behaviour details.
+     */
     strategy: string;
 }
 
@@ -2236,15 +2761,15 @@ export interface LbAclAction {
 
 export interface LbAclActionRedirect {
     /**
-     * The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+     * The HTTP redirect code to use
      */
     code?: number;
     /**
-     * An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+     * An URL can be used in case of a location redirect
      */
     target?: string;
     /**
-     * The redirect type. Possible values are: `location` or `scheme`.
+     * The redirect type
      */
     type?: string;
 }
@@ -2277,42 +2802,42 @@ export interface LbAclMatch {
 
 export interface LbBackendHealthCheckHttp {
     /**
-     * The expected HTTP status code.
+     * The expected HTTP status code
      */
     code?: number;
     /**
-     * The HTTP host header to use for HC requests.
+     * The HTTP host header to use for HC requests
      */
     hostHeader?: string;
     /**
-     * The HTTP method to use for HC requests.
+     * The HTTP method to use for HC requests
      */
     method?: string;
     /**
-     * The HTTPS endpoint URL to call for HC requests.
+     * The HTTP endpoint URL to call for HC requests
      */
     uri: string;
 }
 
 export interface LbBackendHealthCheckHttps {
     /**
-     * The expected HTTP status code.
+     * The expected HTTP status code
      */
     code?: number;
     /**
-     * The HTTP host header to use for HC requests.
+     * The HTTP host header to use for HC requests
      */
     hostHeader?: string;
     /**
-     * The HTTP method to use for HC requests.
+     * The HTTP method to use for HC requests
      */
     method?: string;
     /**
-     * The SNI to use for HC requests over SSL.
+     * The SNI to use for HC requests over SSL
      */
     sni?: string;
     /**
-     * The HTTPS endpoint URL to call for HC requests.
+     * The HTTPS endpoint URL to call for HC requests
      */
     uri: string;
 }
@@ -2322,22 +2847,18 @@ export interface LbBackendHealthCheckTcp {
 
 export interface LbCertificateCustomCertificate {
     /**
-     * Full PEM-formatted certificate chain.
-     *
-     * > **Important:** Updates to `customCertificate` will recreate the load-balancer certificate.
+     * The full PEM-formatted certificate chain
      */
     certificateChain: string;
 }
 
 export interface LbCertificateLetsencrypt {
     /**
-     * Main domain of the certificate. A new certificate will be created if this field is changed.
+     * Main domain of the certificate
      */
     commonName: string;
     /**
-     * Array of alternative domain names.  A new certificate will be created if this field is changed.
-     *
-     * > **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
+     * The alternative domain names of the certificate
      */
     subjectAlternativeNames?: string[];
 }
@@ -2347,7 +2868,13 @@ export interface LbFrontendAcl {
      * Action to undertake when an ACL filter matches.
      */
     action: outputs.LbFrontendAclAction;
+    /**
+     * Date and time of ACL's creation (RFC 3339 format)
+     */
     createdAt: string;
+    /**
+     * Description of the ACL
+     */
     description?: string;
     /**
      * The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
@@ -2357,6 +2884,9 @@ export interface LbFrontendAcl {
      * The ACL name. If not provided it will be randomly generated.
      */
     name: string;
+    /**
+     * Date and time of ACL's update (RFC 3339 format)
+     */
     updatedAt: string;
 }
 
@@ -2373,15 +2903,15 @@ export interface LbFrontendAclAction {
 
 export interface LbFrontendAclActionRedirect {
     /**
-     * The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+     * The HTTP redirect code to use
      */
     code?: number;
     /**
-     * An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+     * An URL can be used in case of a location redirect
      */
     target?: string;
     /**
-     * The redirect type. Possible values are: `location` or `scheme`.
+     * The redirect type
      */
     type?: string;
 }
@@ -2425,6 +2955,9 @@ export interface LbPrivateNetwork {
      * (Optional) Define a local ip address of your choice for the load balancer instance. See below.
      */
     staticConfig?: string;
+    /**
+     * The status of private network connection
+     */
     status: string;
     /**
      * `zone`) The zone of the load-balancer.
@@ -2464,11 +2997,20 @@ export interface MnqSqsCredentialsPermissions {
 
 export interface ObjectBucketAclAccessControlPolicy {
     grants?: outputs.ObjectBucketAclAccessControlPolicyGrant[];
+    /**
+     * Configuration block of the bucket project owner's display organization ID.
+     */
     owner: outputs.ObjectBucketAclAccessControlPolicyOwner;
 }
 
 export interface ObjectBucketAclAccessControlPolicyGrant {
+    /**
+     * Configuration block for the project being granted permissions.
+     */
     grantee?: outputs.ObjectBucketAclAccessControlPolicyGrantGrantee;
+    /**
+     * Logging permissions assigned to the grantee for the bucket.
+     */
     permission: string;
 }
 
@@ -2478,10 +3020,16 @@ export interface ObjectBucketAclAccessControlPolicyGrantGrantee {
      * The `region`,`bucket` and `acl` separated by (`/`).
      */
     id: string;
+    /**
+     * Type of grantee. Valid values: `CanonicalUser`
+     */
     type: string;
 }
 
 export interface ObjectBucketAclAccessControlPolicyOwner {
+    /**
+     * The project ID of the grantee.
+     */
     displayName: string;
     /**
      * The `region`,`bucket` and `acl` separated by (`/`).
@@ -2570,12 +3118,24 @@ export interface ObjectBucketLifecycleRuleTransition {
 }
 
 export interface ObjectBucketLockConfigurationRule {
+    /**
+     * The default retention for the lock.
+     */
     defaultRetention: outputs.ObjectBucketLockConfigurationRuleDefaultRetention;
 }
 
 export interface ObjectBucketLockConfigurationRuleDefaultRetention {
+    /**
+     * The number of days that you want to specify for the default retention period.
+     */
     days?: number;
+    /**
+     * The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
+     */
     mode: string;
+    /**
+     * The number of years that you want to specify for the default retention period.
+     */
     years?: number;
 }
 
@@ -2587,10 +3147,18 @@ export interface ObjectBucketVersioning {
 }
 
 export interface ObjectBucketWebsiteConfigurationErrorDocument {
+    /**
+     * The object key name to use when a 4XX class error occurs.
+     */
     key: string;
 }
 
 export interface ObjectBucketWebsiteConfigurationIndexDocument {
+    /**
+     * A suffix that is appended to a request that is for a directory on the website endpoint.
+     *
+     * > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
+     */
     suffix: string;
 }
 
@@ -2630,7 +3198,7 @@ export interface RdbInstanceLoadBalancer {
 
 export interface RdbInstancePrivateNetwork {
     /**
-     * Whether the endpoint should be configured with IPAM. Defaults to `false` if `ipNet` is defined, `true` otherwise.
+     * Whether or not the private network endpoint should be configured with IPAM
      */
     enableIpam: boolean;
     /**
@@ -2645,19 +3213,25 @@ export interface RdbInstancePrivateNetwork {
      * IPv4 address on the network.
      */
     ip: string;
+    /**
+     * The IP with the given mask within the private subnet
+     */
     ipNet: string;
     /**
      * The name of the Database Instance.
      */
     name: string;
     /**
-     * The ID of the private network.
+     * The private network ID
      */
     pnId: string;
     /**
      * Port in the Private Network.
      */
     port: number;
+    /**
+     * The zone you want to attach the resource to
+     */
     zone: string;
 }
 
@@ -2701,6 +3275,10 @@ export interface RdbReadReplicaDirectAccess {
 
 export interface RdbReadReplicaPrivateNetwork {
     /**
+     * Whether or not the private network endpoint should be configured with IPAM
+     */
+    enableIpam?: boolean;
+    /**
      * The ID of the endpoint of the read replica.
      */
     endpointId: string;
@@ -2730,6 +3308,9 @@ export interface RdbReadReplicaPrivateNetwork {
      * service if not set.
      */
     serviceIp: string;
+    /**
+     * Private network zone
+     */
     zone: string;
 }
 
@@ -2741,7 +3322,7 @@ export interface RedisClusterAcl {
      */
     description: string;
     /**
-     * The UUID of the private network resource.
+     * (Required) The UUID of the endpoint.
      */
     id: string;
     /**
@@ -2778,7 +3359,7 @@ export interface RedisClusterPrivateNetwork {
 
 export interface RedisClusterPublicNetwork {
     /**
-     * The UUID of the private network resource.
+     * (Required) The UUID of the endpoint.
      */
     id: string;
     /**
@@ -2887,7 +3468,7 @@ export interface VpcPrivateNetworkIpv6Subnet {
     updatedAt: string;
 }
 
-export interface WebHostingCpanelUrl {
+export interface WebhostingCpanelUrl {
     /**
      * The URL of the Dashboard.
      */
@@ -2898,7 +3479,7 @@ export interface WebHostingCpanelUrl {
     webmail: string;
 }
 
-export interface WebHostingOption {
+export interface WebhostingOption {
     /**
      * The option ID.
      */

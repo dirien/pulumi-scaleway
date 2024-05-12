@@ -15,7 +15,7 @@ import (
 // Creates and manages Scaleway Domain zone.\
 // For more information, see [the documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/configure-dns-zones/).
 //
-// ## Examples
+// ## Example Usage
 //
 // ```go
 // package main
@@ -44,12 +44,12 @@ import (
 //
 // ## Import
 //
-// Zone can be imported using the `{subdomain}.{domain}`, e.g. bash
+// Zone can be imported using the `{subdomain}.{domain}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/domainZone:DomainZone test test.scaleway-terraform.com
-//
+// $ pulumi import scaleway:index/domainZone:DomainZone test test.scaleway-terraform.com
 // ```
 type DomainZone struct {
 	pulumi.CustomResourceState

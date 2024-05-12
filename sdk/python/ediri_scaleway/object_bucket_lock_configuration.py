@@ -166,7 +166,56 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
                  rule: Optional[pulumi.Input[pulumi.InputType['ObjectBucketLockConfigurationRuleArgs']]] = None,
                  __props__=None):
         """
-        Create a ObjectBucketLockConfiguration resource with the given unique name, props, and options.
+        Provides an Object bucket lock configuration resource.
+        For more information, see [Setting up object lock](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/).
+
+        ## Example Usage
+
+        ### Configure an Object Lock for a new bucket
+
+        Please note that `object_lock_enabled` must be set to `true` before configuring the lock.
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        main_object_bucket = scaleway.ObjectBucket("mainObjectBucket",
+            acl="public-read",
+            object_lock_enabled=True)
+        main_object_bucket_lock_configuration = scaleway.ObjectBucketLockConfiguration("mainObjectBucketLockConfiguration",
+            bucket=main_object_bucket.name,
+            rule=scaleway.ObjectBucketLockConfigurationRuleArgs(
+                default_retention=scaleway.ObjectBucketLockConfigurationRuleDefaultRetentionArgs(
+                    mode="GOVERNANCE",
+                    days=1,
+                ),
+            ))
+        ```
+
+        ### Configure an Object Lock for an existing bucket
+
+        You should [contact Scaleway support](https://console.scaleway.com/support/tickets/create) to enable object lock on an existing bucket.
+
+        ## Import
+
+        Bucket lock configurations can be imported using the `{region}/{bucketName}` identifier, e.g.
+
+        bash
+
+        ```sh
+        $ pulumi import scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration some_bucket fr-par/some-bucket
+        ```
+
+        ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+
+        If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
+
+        bash
+
+        ```sh
+        $ pulumi import scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
@@ -181,7 +230,56 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
                  args: ObjectBucketLockConfigurationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ObjectBucketLockConfiguration resource with the given unique name, props, and options.
+        Provides an Object bucket lock configuration resource.
+        For more information, see [Setting up object lock](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/).
+
+        ## Example Usage
+
+        ### Configure an Object Lock for a new bucket
+
+        Please note that `object_lock_enabled` must be set to `true` before configuring the lock.
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        main_object_bucket = scaleway.ObjectBucket("mainObjectBucket",
+            acl="public-read",
+            object_lock_enabled=True)
+        main_object_bucket_lock_configuration = scaleway.ObjectBucketLockConfiguration("mainObjectBucketLockConfiguration",
+            bucket=main_object_bucket.name,
+            rule=scaleway.ObjectBucketLockConfigurationRuleArgs(
+                default_retention=scaleway.ObjectBucketLockConfigurationRuleDefaultRetentionArgs(
+                    mode="GOVERNANCE",
+                    days=1,
+                ),
+            ))
+        ```
+
+        ### Configure an Object Lock for an existing bucket
+
+        You should [contact Scaleway support](https://console.scaleway.com/support/tickets/create) to enable object lock on an existing bucket.
+
+        ## Import
+
+        Bucket lock configurations can be imported using the `{region}/{bucketName}` identifier, e.g.
+
+        bash
+
+        ```sh
+        $ pulumi import scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration some_bucket fr-par/some-bucket
+        ```
+
+        ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+
+        If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
+
+        bash
+
+        ```sh
+        $ pulumi import scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
+        ```
+
         :param str resource_name: The name of the resource.
         :param ObjectBucketLockConfigurationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

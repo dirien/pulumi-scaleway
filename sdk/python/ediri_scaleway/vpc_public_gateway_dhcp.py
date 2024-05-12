@@ -579,7 +579,7 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
         Creates and manages Scaleway VPC Public Gateway DHCP.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-c05544).
 
-        ## Example
+        ## Example Usage
 
         ```python
         import pulumi
@@ -590,10 +590,12 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
 
         ## Import
 
-        Public gateway DHCP config can be imported using the `{zone}/{id}`, e.g. bash
+        Public gateway DHCP config can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -624,7 +626,7 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
         Creates and manages Scaleway VPC Public Gateway DHCP.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#dhcp-c05544).
 
-        ## Example
+        ## Example Usage
 
         ```python
         import pulumi
@@ -635,10 +637,12 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
 
         ## Import
 
-        Public gateway DHCP config can be imported using the `{zone}/{id}`, e.g. bash
+        Public gateway DHCP config can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp main fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

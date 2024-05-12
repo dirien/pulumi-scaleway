@@ -59,8 +59,10 @@ func LookupBaremetalServer(ctx *pulumi.Context, args *LookupBaremetalServerArgs,
 // A collection of arguments for invoking getBaremetalServer.
 type LookupBaremetalServerArgs struct {
 	// The server name. Only one of `name` and `serverId` should be specified.
-	Name     *string `pulumi:"name"`
-	ServerId *string `pulumi:"serverId"`
+	Name *string `pulumi:"name"`
+	// The ID of the project the baremetal server is associated with.
+	ProjectId *string `pulumi:"projectId"`
+	ServerId  *string `pulumi:"serverId"`
 	// `zone`) The zone in which the server exists.
 	Zone *string `pulumi:"zone"`
 }
@@ -86,7 +88,7 @@ type LookupBaremetalServerResult struct {
 	OsName                   string                             `pulumi:"osName"`
 	Password                 string                             `pulumi:"password"`
 	PrivateNetworks          []GetBaremetalServerPrivateNetwork `pulumi:"privateNetworks"`
-	ProjectId                string                             `pulumi:"projectId"`
+	ProjectId                *string                            `pulumi:"projectId"`
 	ReinstallOnConfigChanges bool                               `pulumi:"reinstallOnConfigChanges"`
 	ServerId                 *string                            `pulumi:"serverId"`
 	ServicePassword          string                             `pulumi:"servicePassword"`
@@ -113,8 +115,10 @@ func LookupBaremetalServerOutput(ctx *pulumi.Context, args LookupBaremetalServer
 // A collection of arguments for invoking getBaremetalServer.
 type LookupBaremetalServerOutputArgs struct {
 	// The server name. Only one of `name` and `serverId` should be specified.
-	Name     pulumi.StringPtrInput `pulumi:"name"`
-	ServerId pulumi.StringPtrInput `pulumi:"serverId"`
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the project the baremetal server is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	ServerId  pulumi.StringPtrInput `pulumi:"serverId"`
 	// `zone`) The zone in which the server exists.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
@@ -211,8 +215,8 @@ func (o LookupBaremetalServerResultOutput) PrivateNetworks() GetBaremetalServerP
 	return o.ApplyT(func(v LookupBaremetalServerResult) []GetBaremetalServerPrivateNetwork { return v.PrivateNetworks }).(GetBaremetalServerPrivateNetworkArrayOutput)
 }
 
-func (o LookupBaremetalServerResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupBaremetalServerResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupBaremetalServerResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupBaremetalServerResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupBaremetalServerResultOutput) ReinstallOnConfigChanges() pulumi.BoolOutput {

@@ -15,9 +15,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about an RDB backup.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -45,8 +43,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetRdbDatabaseBackupResult> InvokeAsync(GetRdbDatabaseBackupArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRdbDatabaseBackupResult>("scaleway:index/getRdbDatabaseBackup:getRdbDatabaseBackup", args ?? new GetRdbDatabaseBackupArgs(), options.WithDefaults());
@@ -54,9 +50,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about an RDB backup.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -84,8 +78,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetRdbDatabaseBackupResult> Invoke(GetRdbDatabaseBackupInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRdbDatabaseBackupResult>("scaleway:index/getRdbDatabaseBackup:getRdbDatabaseBackup", args ?? new GetRdbDatabaseBackupInvokeArgs(), options.WithDefaults());
@@ -115,7 +107,13 @@ namespace ediri.Scaleway
         public string? Name { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the Database Instance should be created.
+        /// The ID of the project the Database Backup is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
+        /// `region`) The region in which the Database Backup is associated with.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -149,7 +147,13 @@ namespace ediri.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the Database Instance should be created.
+        /// The ID of the project the Database Backup is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// `region`) The region in which the Database Backup is associated with.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -175,6 +179,7 @@ namespace ediri.Scaleway
         public readonly string? InstanceId;
         public readonly string InstanceName;
         public readonly string? Name;
+        public readonly string? ProjectId;
         public readonly string? Region;
         public readonly int Size;
         public readonly string UpdatedAt;
@@ -197,6 +202,8 @@ namespace ediri.Scaleway
 
             string? name,
 
+            string? projectId,
+
             string? region,
 
             int size,
@@ -211,6 +218,7 @@ namespace ediri.Scaleway
             InstanceId = instanceId;
             InstanceName = instanceName;
             Name = name;
+            ProjectId = projectId;
             Region = region;
             Size = size;
             UpdatedAt = updatedAt;

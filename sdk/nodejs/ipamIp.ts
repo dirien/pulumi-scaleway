@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
 /**
  * Books and manages Scaleway IPAM IPs.
  *
- * ## Example
+ * ## Example Usage
  *
  * ### Basic
  *
@@ -73,10 +73,12 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * IPAM IPs can be imported using the `{region}/{id}`, e.g. bash
+ * IPAM IPs can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/ipamIp:IpamIp ip_demo fr-par/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/ipamIp:IpamIp ip_demo fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class IpamIp extends pulumi.CustomResource {

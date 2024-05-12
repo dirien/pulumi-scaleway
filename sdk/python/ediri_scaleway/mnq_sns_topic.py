@@ -369,7 +369,7 @@ class MnqSnsTopic(pulumi.CustomResource):
         For further information please check
         our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -391,10 +391,12 @@ class MnqSnsTopic(pulumi.CustomResource):
 
         ## Import
 
-        SNS topic can be imported using the `{region}/{project-id}/{topic-name}`, e.g. bash
+        SNS topic can be imported using the `{region}/{project-id}/{topic-name}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/mnqSnsTopic:MnqSnsTopic main fr-par/11111111111111111111111111111111/my-topic
+        $ pulumi import scaleway:index/mnqSnsTopic:MnqSnsTopic main fr-par/11111111111111111111111111111111/my-topic
         ```
 
         :param str resource_name: The name of the resource.
@@ -421,7 +423,7 @@ class MnqSnsTopic(pulumi.CustomResource):
         For further information please check
         our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -443,10 +445,12 @@ class MnqSnsTopic(pulumi.CustomResource):
 
         ## Import
 
-        SNS topic can be imported using the `{region}/{project-id}/{topic-name}`, e.g. bash
+        SNS topic can be imported using the `{region}/{project-id}/{topic-name}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/mnqSnsTopic:MnqSnsTopic main fr-par/11111111111111111111111111111111/my-topic
+        $ pulumi import scaleway:index/mnqSnsTopic:MnqSnsTopic main fr-par/11111111111111111111111111111111/my-topic
         ```
 
         :param str resource_name: The name of the resource.

@@ -18,9 +18,8 @@ namespace ediri.Scaleway
         /// 
         /// You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
+        /// 
         /// ### Use the latest version
         /// 
         /// ```csharp
@@ -38,8 +37,7 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% example %}}
+        /// 
         /// ### Use a specific version
         /// 
         /// ```csharp
@@ -57,8 +55,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetK8sVersionResult> InvokeAsync(GetK8sVersionArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetK8sVersionResult>("scaleway:index/getK8sVersion:getK8sVersion", args ?? new GetK8sVersionArgs(), options.WithDefaults());
@@ -69,9 +65,8 @@ namespace ediri.Scaleway
         /// 
         /// You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
+        /// 
         /// ### Use the latest version
         /// 
         /// ```csharp
@@ -89,8 +84,7 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% example %}}
+        /// 
         /// ### Use a specific version
         /// 
         /// ```csharp
@@ -108,8 +102,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetK8sVersionResult> Invoke(GetK8sVersionInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetK8sVersionResult>("scaleway:index/getK8sVersion:getK8sVersion", args ?? new GetK8sVersionInvokeArgs(), options.WithDefaults());

@@ -15,9 +15,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about a Scaleway Cockpit plan.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -40,8 +38,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetCockpitPlanResult> InvokeAsync(GetCockpitPlanArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCockpitPlanResult>("scaleway:index/getCockpitPlan:getCockpitPlan", args ?? new GetCockpitPlanArgs(), options.WithDefaults());
@@ -49,9 +45,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about a Scaleway Cockpit plan.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -74,8 +68,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetCockpitPlanResult> Invoke(GetCockpitPlanInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCockpitPlanResult>("scaleway:index/getCockpitPlan:getCockpitPlan", args ?? new GetCockpitPlanInvokeArgs(), options.WithDefaults());

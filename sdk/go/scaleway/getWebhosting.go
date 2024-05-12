@@ -27,13 +27,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.GetWebhosting(ctx, &scaleway.GetWebhostingArgs{
+//			_, err := scaleway.LookupWebhosting(ctx, &scaleway.LookupWebhostingArgs{
 //				Domain: pulumi.StringRef("foobar.com"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.GetWebhosting(ctx, &scaleway.GetWebhostingArgs{
+//			_, err = scaleway.LookupWebhosting(ctx, &scaleway.LookupWebhostingArgs{
 //				WebhostingId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
@@ -44,9 +44,9 @@ import (
 //	}
 //
 // ```
-func GetWebhosting(ctx *pulumi.Context, args *GetWebhostingArgs, opts ...pulumi.InvokeOption) (*GetWebhostingResult, error) {
+func LookupWebhosting(ctx *pulumi.Context, args *LookupWebhostingArgs, opts ...pulumi.InvokeOption) (*LookupWebhostingResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetWebhostingResult
+	var rv LookupWebhostingResult
 	err := ctx.Invoke("scaleway:index/getWebhosting:getWebhosting", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -55,7 +55,7 @@ func GetWebhosting(ctx *pulumi.Context, args *GetWebhostingArgs, opts ...pulumi.
 }
 
 // A collection of arguments for invoking getWebhosting.
-type GetWebhostingArgs struct {
+type LookupWebhostingArgs struct {
 	// The hosting domain name. Only one of `domain` and `webhostingId` should be specified.
 	Domain *string `pulumi:"domain"`
 	// The ID of the organization the hosting is associated with.
@@ -67,7 +67,7 @@ type GetWebhostingArgs struct {
 }
 
 // A collection of values returned by getWebhosting.
-type GetWebhostingResult struct {
+type LookupWebhostingResult struct {
 	CpanelUrls []GetWebhostingCpanelUrl `pulumi:"cpanelUrls"`
 	CreatedAt  string                   `pulumi:"createdAt"`
 	DnsStatus  string                   `pulumi:"dnsStatus"`
@@ -91,21 +91,21 @@ type GetWebhostingResult struct {
 	WebhostingId     *string               `pulumi:"webhostingId"`
 }
 
-func GetWebhostingOutput(ctx *pulumi.Context, args GetWebhostingOutputArgs, opts ...pulumi.InvokeOption) GetWebhostingResultOutput {
+func LookupWebhostingOutput(ctx *pulumi.Context, args LookupWebhostingOutputArgs, opts ...pulumi.InvokeOption) LookupWebhostingResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetWebhostingResult, error) {
-			args := v.(GetWebhostingArgs)
-			r, err := GetWebhosting(ctx, &args, opts...)
-			var s GetWebhostingResult
+		ApplyT(func(v interface{}) (LookupWebhostingResult, error) {
+			args := v.(LookupWebhostingArgs)
+			r, err := LookupWebhosting(ctx, &args, opts...)
+			var s LookupWebhostingResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(GetWebhostingResultOutput)
+		}).(LookupWebhostingResultOutput)
 }
 
 // A collection of arguments for invoking getWebhosting.
-type GetWebhostingOutputArgs struct {
+type LookupWebhostingOutputArgs struct {
 	// The hosting domain name. Only one of `domain` and `webhostingId` should be specified.
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
 	// The ID of the organization the hosting is associated with.
@@ -116,106 +116,106 @@ type GetWebhostingOutputArgs struct {
 	WebhostingId pulumi.StringPtrInput `pulumi:"webhostingId"`
 }
 
-func (GetWebhostingOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetWebhostingArgs)(nil)).Elem()
+func (LookupWebhostingOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupWebhostingArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getWebhosting.
-type GetWebhostingResultOutput struct{ *pulumi.OutputState }
+type LookupWebhostingResultOutput struct{ *pulumi.OutputState }
 
-func (GetWebhostingResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetWebhostingResult)(nil)).Elem()
+func (LookupWebhostingResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupWebhostingResult)(nil)).Elem()
 }
 
-func (o GetWebhostingResultOutput) ToGetWebhostingResultOutput() GetWebhostingResultOutput {
+func (o LookupWebhostingResultOutput) ToLookupWebhostingResultOutput() LookupWebhostingResultOutput {
 	return o
 }
 
-func (o GetWebhostingResultOutput) ToGetWebhostingResultOutputWithContext(ctx context.Context) GetWebhostingResultOutput {
+func (o LookupWebhostingResultOutput) ToLookupWebhostingResultOutputWithContext(ctx context.Context) LookupWebhostingResultOutput {
 	return o
 }
 
-func (o GetWebhostingResultOutput) CpanelUrls() GetWebhostingCpanelUrlArrayOutput {
-	return o.ApplyT(func(v GetWebhostingResult) []GetWebhostingCpanelUrl { return v.CpanelUrls }).(GetWebhostingCpanelUrlArrayOutput)
+func (o LookupWebhostingResultOutput) CpanelUrls() GetWebhostingCpanelUrlArrayOutput {
+	return o.ApplyT(func(v LookupWebhostingResult) []GetWebhostingCpanelUrl { return v.CpanelUrls }).(GetWebhostingCpanelUrlArrayOutput)
 }
 
-func (o GetWebhostingResultOutput) CreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v GetWebhostingResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+func (o LookupWebhostingResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebhostingResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-func (o GetWebhostingResultOutput) DnsStatus() pulumi.StringOutput {
-	return o.ApplyT(func(v GetWebhostingResult) string { return v.DnsStatus }).(pulumi.StringOutput)
+func (o LookupWebhostingResultOutput) DnsStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebhostingResult) string { return v.DnsStatus }).(pulumi.StringOutput)
 }
 
-func (o GetWebhostingResultOutput) Domain() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetWebhostingResult) *string { return v.Domain }).(pulumi.StringPtrOutput)
+func (o LookupWebhostingResultOutput) Domain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupWebhostingResult) *string { return v.Domain }).(pulumi.StringPtrOutput)
 }
 
-func (o GetWebhostingResultOutput) Email() pulumi.StringOutput {
-	return o.ApplyT(func(v GetWebhostingResult) string { return v.Email }).(pulumi.StringOutput)
+func (o LookupWebhostingResultOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebhostingResult) string { return v.Email }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
-func (o GetWebhostingResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetWebhostingResult) string { return v.Id }).(pulumi.StringOutput)
+func (o LookupWebhostingResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebhostingResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o GetWebhostingResultOutput) OfferId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetWebhostingResult) string { return v.OfferId }).(pulumi.StringOutput)
+func (o LookupWebhostingResultOutput) OfferId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebhostingResult) string { return v.OfferId }).(pulumi.StringOutput)
 }
 
-func (o GetWebhostingResultOutput) OfferName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetWebhostingResult) string { return v.OfferName }).(pulumi.StringOutput)
+func (o LookupWebhostingResultOutput) OfferName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebhostingResult) string { return v.OfferName }).(pulumi.StringOutput)
 }
 
-func (o GetWebhostingResultOutput) OptionIds() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetWebhostingResult) []string { return v.OptionIds }).(pulumi.StringArrayOutput)
+func (o LookupWebhostingResultOutput) OptionIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupWebhostingResult) []string { return v.OptionIds }).(pulumi.StringArrayOutput)
 }
 
-func (o GetWebhostingResultOutput) Options() GetWebhostingOptionArrayOutput {
-	return o.ApplyT(func(v GetWebhostingResult) []GetWebhostingOption { return v.Options }).(GetWebhostingOptionArrayOutput)
+func (o LookupWebhostingResultOutput) Options() GetWebhostingOptionArrayOutput {
+	return o.ApplyT(func(v LookupWebhostingResult) []GetWebhostingOption { return v.Options }).(GetWebhostingOptionArrayOutput)
 }
 
-func (o GetWebhostingResultOutput) OrganizationId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetWebhostingResult) string { return v.OrganizationId }).(pulumi.StringOutput)
+func (o LookupWebhostingResultOutput) OrganizationId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebhostingResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-func (o GetWebhostingResultOutput) PlatformHostname() pulumi.StringOutput {
-	return o.ApplyT(func(v GetWebhostingResult) string { return v.PlatformHostname }).(pulumi.StringOutput)
+func (o LookupWebhostingResultOutput) PlatformHostname() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebhostingResult) string { return v.PlatformHostname }).(pulumi.StringOutput)
 }
 
-func (o GetWebhostingResultOutput) PlatformNumber() pulumi.IntOutput {
-	return o.ApplyT(func(v GetWebhostingResult) int { return v.PlatformNumber }).(pulumi.IntOutput)
+func (o LookupWebhostingResultOutput) PlatformNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupWebhostingResult) int { return v.PlatformNumber }).(pulumi.IntOutput)
 }
 
-func (o GetWebhostingResultOutput) ProjectId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetWebhostingResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
+func (o LookupWebhostingResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupWebhostingResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
-func (o GetWebhostingResultOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetWebhostingResult) string { return v.Region }).(pulumi.StringOutput)
+func (o LookupWebhostingResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebhostingResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
-func (o GetWebhostingResultOutput) Status() pulumi.StringOutput {
-	return o.ApplyT(func(v GetWebhostingResult) string { return v.Status }).(pulumi.StringOutput)
+func (o LookupWebhostingResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebhostingResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
-func (o GetWebhostingResultOutput) Tags() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetWebhostingResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
+func (o LookupWebhostingResultOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupWebhostingResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-func (o GetWebhostingResultOutput) UpdatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v GetWebhostingResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
+func (o LookupWebhostingResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebhostingResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-func (o GetWebhostingResultOutput) Username() pulumi.StringOutput {
-	return o.ApplyT(func(v GetWebhostingResult) string { return v.Username }).(pulumi.StringOutput)
+func (o LookupWebhostingResultOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupWebhostingResult) string { return v.Username }).(pulumi.StringOutput)
 }
 
-func (o GetWebhostingResultOutput) WebhostingId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetWebhostingResult) *string { return v.WebhostingId }).(pulumi.StringPtrOutput)
+func (o LookupWebhostingResultOutput) WebhostingId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupWebhostingResult) *string { return v.WebhostingId }).(pulumi.StringPtrOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetWebhostingResultOutput{})
+	pulumi.RegisterOutputType(LookupWebhostingResultOutput{})
 }

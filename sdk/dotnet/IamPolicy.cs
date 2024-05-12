@@ -16,6 +16,7 @@ namespace ediri.Scaleway
     /// &gt; You can find a detailed list of all permission sets available at Scaleway in the permission sets [reference page](https://www.scaleway.com/en/docs/identity-and-access-management/iam/reference-content/permission-sets/).
     /// 
     /// ## Example Usage
+    /// 
     /// ### Create a policy for an organization's project
     /// 
     /// ```csharp
@@ -57,12 +58,46 @@ namespace ediri.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Create a policy for all current and future projects in an organization
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var app = new Scaleway.IamApplication("app");
+    /// 
+    ///     var objectReadOnly = new Scaleway.IamPolicy("objectReadOnly", new()
+    ///     {
+    ///         Description = "gives app readonly access to object storage in project",
+    ///         ApplicationId = app.Id,
+    ///         Rules = new[]
+    ///         {
+    ///             new Scaleway.Inputs.IamPolicyRuleArgs
+    ///             {
+    ///                 OrganizationId = app.OrganizationId,
+    ///                 PermissionSetNames = new[]
+    ///                 {
+    ///                     "ObjectStorageReadOnly",
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
-    /// Policies can be imported using the `{id}`, e.g. bash
+    /// Policies can be imported using the `{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/iamPolicy:IamPolicy main 11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/iamPolicy:IamPolicy main 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/iamPolicy:IamPolicy")]
@@ -113,7 +148,7 @@ namespace ediri.Scaleway
         public Output<bool?> NoPrincipal { get; private set; } = null!;
 
         /// <summary>
-        /// ID of organization scoped to the rule.
+        /// `organization_id`) The ID of the organization the policy is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
@@ -222,7 +257,7 @@ namespace ediri.Scaleway
         public Input<bool>? NoPrincipal { get; set; }
 
         /// <summary>
-        /// ID of organization scoped to the rule.
+        /// `organization_id`) The ID of the organization the policy is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
@@ -310,7 +345,7 @@ namespace ediri.Scaleway
         public Input<bool>? NoPrincipal { get; set; }
 
         /// <summary>
-        /// ID of organization scoped to the rule.
+        /// `organization_id`) The ID of the organization the policy is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }

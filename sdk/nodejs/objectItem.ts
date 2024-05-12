@@ -10,10 +10,22 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, e.g. bash
+ * Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file
+ * $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file
+ * ```
+ *
+ * ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+ *
+ * If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
+ *
+ * bash
+ *
+ * ```sh
+ * $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
  * ```
  */
 export class ObjectItem extends pulumi.CustomResource {
@@ -73,7 +85,7 @@ export class ObjectItem extends pulumi.CustomResource {
      */
     public readonly metadata!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * `projectId`) The ID of the project the bucket is associated with.
+     * The projectId you want to attach the resource to
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -177,7 +189,7 @@ export interface ObjectItemState {
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * `projectId`) The ID of the project the bucket is associated with.
+     * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -231,7 +243,7 @@ export interface ObjectItemArgs {
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * `projectId`) The ID of the project the bucket is associated with.
+     * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**

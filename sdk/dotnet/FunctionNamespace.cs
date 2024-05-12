@@ -14,7 +14,7 @@ namespace ediri.Scaleway
     /// Creates and manages Scaleway Function Namespace.
     /// For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
@@ -36,10 +36,12 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Namespaces can be imported using the `{region}/{id}`, e.g. bash
+    /// Namespaces can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/functionNamespace:FunctionNamespace main fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/functionNamespace:FunctionNamespace main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/functionNamespace:FunctionNamespace")]

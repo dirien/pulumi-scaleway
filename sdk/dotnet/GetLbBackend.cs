@@ -16,9 +16,7 @@ namespace ediri.Scaleway
         /// Get information about Scaleway Load-Balancer Backends.
         /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -57,8 +55,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetLbBackendResult> InvokeAsync(GetLbBackendArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLbBackendResult>("scaleway:index/getLbBackend:getLbBackend", args ?? new GetLbBackendArgs(), options.WithDefaults());
@@ -67,9 +63,7 @@ namespace ediri.Scaleway
         /// Get information about Scaleway Load-Balancer Backends.
         /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -108,8 +102,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetLbBackendResult> Invoke(GetLbBackendInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLbBackendResult>("scaleway:index/getLbBackend:getLbBackend", args ?? new GetLbBackendInvokeArgs(), options.WithDefaults());

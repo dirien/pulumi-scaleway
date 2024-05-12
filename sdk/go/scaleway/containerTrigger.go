@@ -15,7 +15,7 @@ import (
 // Creates and manages Scaleway Container Triggers.
 // For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### SQS
 //
@@ -81,12 +81,12 @@ import (
 //
 // ## Import
 //
-// Container Triggers can be imported using the `{region}/{id}`, e.g. bash
+// Container Triggers can be imported using the `{region}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/containerTrigger:ContainerTrigger main fr-par/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/containerTrigger:ContainerTrigger main fr-par/11111111-1111-1111-1111-111111111111
 // ```
 type ContainerTrigger struct {
 	pulumi.CustomResourceState

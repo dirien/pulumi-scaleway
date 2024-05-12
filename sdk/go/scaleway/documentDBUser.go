@@ -15,7 +15,7 @@ import (
 // Creates and manages Scaleway Database DocumentDB Users.
 // For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
@@ -39,7 +39,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDocumentDBUser(ctx, "dbAdmin", &scaleway.DocumentDBUserArgs{
+//			_, err = scaleway.NewDocumentdbUser(ctx, "dbAdmin", &scaleway.DocumentdbUserArgs{
 //				InstanceId: pulumi.String("11111111-1111-1111-1111-111111111111"),
 //				Password:   dbPassword.Result,
 //				IsAdmin:    pulumi.Bool(true),
@@ -55,14 +55,14 @@ import (
 //
 // ## Import
 //
-// Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g. bash
+// Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/documentDBUser:DocumentDBUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
-//
+// $ pulumi import scaleway:index/documentdbUser:DocumentdbUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
 // ```
-type DocumentDBUser struct {
+type DocumentdbUser struct {
 	pulumi.CustomResourceState
 
 	// UUID of the documentDB instance.
@@ -81,9 +81,9 @@ type DocumentDBUser struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 }
 
-// NewDocumentDBUser registers a new resource with the given unique name, arguments, and options.
-func NewDocumentDBUser(ctx *pulumi.Context,
-	name string, args *DocumentDBUserArgs, opts ...pulumi.ResourceOption) (*DocumentDBUser, error) {
+// NewDocumentdbUser registers a new resource with the given unique name, arguments, and options.
+func NewDocumentdbUser(ctx *pulumi.Context,
+	name string, args *DocumentdbUserArgs, opts ...pulumi.ResourceOption) (*DocumentdbUser, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -102,28 +102,28 @@ func NewDocumentDBUser(ctx *pulumi.Context,
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
-	var resource DocumentDBUser
-	err := ctx.RegisterResource("scaleway:index/documentDBUser:DocumentDBUser", name, args, &resource, opts...)
+	var resource DocumentdbUser
+	err := ctx.RegisterResource("scaleway:index/documentdbUser:DocumentdbUser", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetDocumentDBUser gets an existing DocumentDBUser resource's state with the given name, ID, and optional
+// GetDocumentdbUser gets an existing DocumentdbUser resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetDocumentDBUser(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *DocumentDBUserState, opts ...pulumi.ResourceOption) (*DocumentDBUser, error) {
-	var resource DocumentDBUser
-	err := ctx.ReadResource("scaleway:index/documentDBUser:DocumentDBUser", name, id, state, &resource, opts...)
+func GetDocumentdbUser(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *DocumentdbUserState, opts ...pulumi.ResourceOption) (*DocumentdbUser, error) {
+	var resource DocumentdbUser
+	err := ctx.ReadResource("scaleway:index/documentdbUser:DocumentdbUser", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering DocumentDBUser resources.
-type documentDBUserState struct {
+// Input properties used for looking up and filtering DocumentdbUser resources.
+type documentdbUserState struct {
 	// UUID of the documentDB instance.
 	//
 	// > **Important:** Updates to `instanceId` will recreate the Database User.
@@ -140,7 +140,7 @@ type documentDBUserState struct {
 	Region *string `pulumi:"region"`
 }
 
-type DocumentDBUserState struct {
+type DocumentdbUserState struct {
 	// UUID of the documentDB instance.
 	//
 	// > **Important:** Updates to `instanceId` will recreate the Database User.
@@ -157,11 +157,11 @@ type DocumentDBUserState struct {
 	Region pulumi.StringPtrInput
 }
 
-func (DocumentDBUserState) ElementType() reflect.Type {
-	return reflect.TypeOf((*documentDBUserState)(nil)).Elem()
+func (DocumentdbUserState) ElementType() reflect.Type {
+	return reflect.TypeOf((*documentdbUserState)(nil)).Elem()
 }
 
-type documentDBUserArgs struct {
+type documentdbUserArgs struct {
 	// UUID of the documentDB instance.
 	//
 	// > **Important:** Updates to `instanceId` will recreate the Database User.
@@ -178,8 +178,8 @@ type documentDBUserArgs struct {
 	Region *string `pulumi:"region"`
 }
 
-// The set of arguments for constructing a DocumentDBUser resource.
-type DocumentDBUserArgs struct {
+// The set of arguments for constructing a DocumentdbUser resource.
+type DocumentdbUserArgs struct {
 	// UUID of the documentDB instance.
 	//
 	// > **Important:** Updates to `instanceId` will recreate the Database User.
@@ -196,167 +196,167 @@ type DocumentDBUserArgs struct {
 	Region pulumi.StringPtrInput
 }
 
-func (DocumentDBUserArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*documentDBUserArgs)(nil)).Elem()
+func (DocumentdbUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*documentdbUserArgs)(nil)).Elem()
 }
 
-type DocumentDBUserInput interface {
+type DocumentdbUserInput interface {
 	pulumi.Input
 
-	ToDocumentDBUserOutput() DocumentDBUserOutput
-	ToDocumentDBUserOutputWithContext(ctx context.Context) DocumentDBUserOutput
+	ToDocumentdbUserOutput() DocumentdbUserOutput
+	ToDocumentdbUserOutputWithContext(ctx context.Context) DocumentdbUserOutput
 }
 
-func (*DocumentDBUser) ElementType() reflect.Type {
-	return reflect.TypeOf((**DocumentDBUser)(nil)).Elem()
+func (*DocumentdbUser) ElementType() reflect.Type {
+	return reflect.TypeOf((**DocumentdbUser)(nil)).Elem()
 }
 
-func (i *DocumentDBUser) ToDocumentDBUserOutput() DocumentDBUserOutput {
-	return i.ToDocumentDBUserOutputWithContext(context.Background())
+func (i *DocumentdbUser) ToDocumentdbUserOutput() DocumentdbUserOutput {
+	return i.ToDocumentdbUserOutputWithContext(context.Background())
 }
 
-func (i *DocumentDBUser) ToDocumentDBUserOutputWithContext(ctx context.Context) DocumentDBUserOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBUserOutput)
+func (i *DocumentdbUser) ToDocumentdbUserOutputWithContext(ctx context.Context) DocumentdbUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbUserOutput)
 }
 
-// DocumentDBUserArrayInput is an input type that accepts DocumentDBUserArray and DocumentDBUserArrayOutput values.
-// You can construct a concrete instance of `DocumentDBUserArrayInput` via:
+// DocumentdbUserArrayInput is an input type that accepts DocumentdbUserArray and DocumentdbUserArrayOutput values.
+// You can construct a concrete instance of `DocumentdbUserArrayInput` via:
 //
-//	DocumentDBUserArray{ DocumentDBUserArgs{...} }
-type DocumentDBUserArrayInput interface {
+//	DocumentdbUserArray{ DocumentdbUserArgs{...} }
+type DocumentdbUserArrayInput interface {
 	pulumi.Input
 
-	ToDocumentDBUserArrayOutput() DocumentDBUserArrayOutput
-	ToDocumentDBUserArrayOutputWithContext(context.Context) DocumentDBUserArrayOutput
+	ToDocumentdbUserArrayOutput() DocumentdbUserArrayOutput
+	ToDocumentdbUserArrayOutputWithContext(context.Context) DocumentdbUserArrayOutput
 }
 
-type DocumentDBUserArray []DocumentDBUserInput
+type DocumentdbUserArray []DocumentdbUserInput
 
-func (DocumentDBUserArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*DocumentDBUser)(nil)).Elem()
+func (DocumentdbUserArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DocumentdbUser)(nil)).Elem()
 }
 
-func (i DocumentDBUserArray) ToDocumentDBUserArrayOutput() DocumentDBUserArrayOutput {
-	return i.ToDocumentDBUserArrayOutputWithContext(context.Background())
+func (i DocumentdbUserArray) ToDocumentdbUserArrayOutput() DocumentdbUserArrayOutput {
+	return i.ToDocumentdbUserArrayOutputWithContext(context.Background())
 }
 
-func (i DocumentDBUserArray) ToDocumentDBUserArrayOutputWithContext(ctx context.Context) DocumentDBUserArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBUserArrayOutput)
+func (i DocumentdbUserArray) ToDocumentdbUserArrayOutputWithContext(ctx context.Context) DocumentdbUserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbUserArrayOutput)
 }
 
-// DocumentDBUserMapInput is an input type that accepts DocumentDBUserMap and DocumentDBUserMapOutput values.
-// You can construct a concrete instance of `DocumentDBUserMapInput` via:
+// DocumentdbUserMapInput is an input type that accepts DocumentdbUserMap and DocumentdbUserMapOutput values.
+// You can construct a concrete instance of `DocumentdbUserMapInput` via:
 //
-//	DocumentDBUserMap{ "key": DocumentDBUserArgs{...} }
-type DocumentDBUserMapInput interface {
+//	DocumentdbUserMap{ "key": DocumentdbUserArgs{...} }
+type DocumentdbUserMapInput interface {
 	pulumi.Input
 
-	ToDocumentDBUserMapOutput() DocumentDBUserMapOutput
-	ToDocumentDBUserMapOutputWithContext(context.Context) DocumentDBUserMapOutput
+	ToDocumentdbUserMapOutput() DocumentdbUserMapOutput
+	ToDocumentdbUserMapOutputWithContext(context.Context) DocumentdbUserMapOutput
 }
 
-type DocumentDBUserMap map[string]DocumentDBUserInput
+type DocumentdbUserMap map[string]DocumentdbUserInput
 
-func (DocumentDBUserMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*DocumentDBUser)(nil)).Elem()
+func (DocumentdbUserMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DocumentdbUser)(nil)).Elem()
 }
 
-func (i DocumentDBUserMap) ToDocumentDBUserMapOutput() DocumentDBUserMapOutput {
-	return i.ToDocumentDBUserMapOutputWithContext(context.Background())
+func (i DocumentdbUserMap) ToDocumentdbUserMapOutput() DocumentdbUserMapOutput {
+	return i.ToDocumentdbUserMapOutputWithContext(context.Background())
 }
 
-func (i DocumentDBUserMap) ToDocumentDBUserMapOutputWithContext(ctx context.Context) DocumentDBUserMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBUserMapOutput)
+func (i DocumentdbUserMap) ToDocumentdbUserMapOutputWithContext(ctx context.Context) DocumentdbUserMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbUserMapOutput)
 }
 
-type DocumentDBUserOutput struct{ *pulumi.OutputState }
+type DocumentdbUserOutput struct{ *pulumi.OutputState }
 
-func (DocumentDBUserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DocumentDBUser)(nil)).Elem()
+func (DocumentdbUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DocumentdbUser)(nil)).Elem()
 }
 
-func (o DocumentDBUserOutput) ToDocumentDBUserOutput() DocumentDBUserOutput {
+func (o DocumentdbUserOutput) ToDocumentdbUserOutput() DocumentdbUserOutput {
 	return o
 }
 
-func (o DocumentDBUserOutput) ToDocumentDBUserOutputWithContext(ctx context.Context) DocumentDBUserOutput {
+func (o DocumentdbUserOutput) ToDocumentdbUserOutputWithContext(ctx context.Context) DocumentdbUserOutput {
 	return o
 }
 
 // UUID of the documentDB instance.
 //
 // > **Important:** Updates to `instanceId` will recreate the Database User.
-func (o DocumentDBUserOutput) InstanceId() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBUser) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
+func (o DocumentdbUserOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbUser) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
 // Grant admin permissions to the Database User.
-func (o DocumentDBUserOutput) IsAdmin() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *DocumentDBUser) pulumi.BoolPtrOutput { return v.IsAdmin }).(pulumi.BoolPtrOutput)
+func (o DocumentdbUserOutput) IsAdmin() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DocumentdbUser) pulumi.BoolPtrOutput { return v.IsAdmin }).(pulumi.BoolPtrOutput)
 }
 
 // Database Username.
 //
 // > **Important:** Updates to `name` will recreate the Database User.
-func (o DocumentDBUserOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBUser) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+func (o DocumentdbUserOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbUser) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 // Database User password.
-func (o DocumentDBUserOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBUser) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
+func (o DocumentdbUserOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbUser) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
 }
 
 // The Scaleway region this resource resides in.
-func (o DocumentDBUserOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBUser) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o DocumentdbUserOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbUser) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-type DocumentDBUserArrayOutput struct{ *pulumi.OutputState }
+type DocumentdbUserArrayOutput struct{ *pulumi.OutputState }
 
-func (DocumentDBUserArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*DocumentDBUser)(nil)).Elem()
+func (DocumentdbUserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DocumentdbUser)(nil)).Elem()
 }
 
-func (o DocumentDBUserArrayOutput) ToDocumentDBUserArrayOutput() DocumentDBUserArrayOutput {
+func (o DocumentdbUserArrayOutput) ToDocumentdbUserArrayOutput() DocumentdbUserArrayOutput {
 	return o
 }
 
-func (o DocumentDBUserArrayOutput) ToDocumentDBUserArrayOutputWithContext(ctx context.Context) DocumentDBUserArrayOutput {
+func (o DocumentdbUserArrayOutput) ToDocumentdbUserArrayOutputWithContext(ctx context.Context) DocumentdbUserArrayOutput {
 	return o
 }
 
-func (o DocumentDBUserArrayOutput) Index(i pulumi.IntInput) DocumentDBUserOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DocumentDBUser {
-		return vs[0].([]*DocumentDBUser)[vs[1].(int)]
-	}).(DocumentDBUserOutput)
+func (o DocumentdbUserArrayOutput) Index(i pulumi.IntInput) DocumentdbUserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DocumentdbUser {
+		return vs[0].([]*DocumentdbUser)[vs[1].(int)]
+	}).(DocumentdbUserOutput)
 }
 
-type DocumentDBUserMapOutput struct{ *pulumi.OutputState }
+type DocumentdbUserMapOutput struct{ *pulumi.OutputState }
 
-func (DocumentDBUserMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*DocumentDBUser)(nil)).Elem()
+func (DocumentdbUserMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DocumentdbUser)(nil)).Elem()
 }
 
-func (o DocumentDBUserMapOutput) ToDocumentDBUserMapOutput() DocumentDBUserMapOutput {
+func (o DocumentdbUserMapOutput) ToDocumentdbUserMapOutput() DocumentdbUserMapOutput {
 	return o
 }
 
-func (o DocumentDBUserMapOutput) ToDocumentDBUserMapOutputWithContext(ctx context.Context) DocumentDBUserMapOutput {
+func (o DocumentdbUserMapOutput) ToDocumentdbUserMapOutputWithContext(ctx context.Context) DocumentdbUserMapOutput {
 	return o
 }
 
-func (o DocumentDBUserMapOutput) MapIndex(k pulumi.StringInput) DocumentDBUserOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DocumentDBUser {
-		return vs[0].(map[string]*DocumentDBUser)[vs[1].(string)]
-	}).(DocumentDBUserOutput)
+func (o DocumentdbUserMapOutput) MapIndex(k pulumi.StringInput) DocumentdbUserOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DocumentdbUser {
+		return vs[0].(map[string]*DocumentdbUser)[vs[1].(string)]
+	}).(DocumentdbUserOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBUserInput)(nil)).Elem(), &DocumentDBUser{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBUserArrayInput)(nil)).Elem(), DocumentDBUserArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBUserMapInput)(nil)).Elem(), DocumentDBUserMap{})
-	pulumi.RegisterOutputType(DocumentDBUserOutput{})
-	pulumi.RegisterOutputType(DocumentDBUserArrayOutput{})
-	pulumi.RegisterOutputType(DocumentDBUserMapOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbUserInput)(nil)).Elem(), &DocumentdbUser{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbUserArrayInput)(nil)).Elem(), DocumentdbUserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbUserMapInput)(nil)).Elem(), DocumentdbUserMap{})
+	pulumi.RegisterOutputType(DocumentdbUserOutput{})
+	pulumi.RegisterOutputType(DocumentdbUserArrayOutput{})
+	pulumi.RegisterOutputType(DocumentdbUserMapOutput{})
 }

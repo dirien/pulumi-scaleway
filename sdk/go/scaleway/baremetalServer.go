@@ -14,7 +14,7 @@ import (
 
 // Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
@@ -41,7 +41,7 @@ import (
 //				Offer: pulumi.String("GP-BM1-S"),
 //				Os:    pulumi.String("d17d6872-0412-45d9-a198-af82c34d3c5c"),
 //				SshKeyIds: pulumi.StringArray{
-//					*pulumi.String(main.Id),
+//					pulumi.String(main.Id),
 //				},
 //			})
 //			if err != nil {
@@ -76,7 +76,7 @@ import (
 //			}
 //			_, err = scaleway.NewBaremetalServer(ctx, "base", &scaleway.BaremetalServerArgs{
 //				Zone:                   pulumi.String("fr-par-2"),
-//				Offer:                  *pulumi.String(myOffer.OfferId),
+//				Offer:                  pulumi.String(myOffer.OfferId),
 //				InstallConfigAfterward: pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -90,12 +90,12 @@ import (
 //
 // ## Import
 //
-// Baremetal servers can be imported using the `{zone}/{id}`, e.g. bash
+// Baremetal servers can be imported using the `{zone}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/baremetalServer:BaremetalServer web fr-par-2/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/baremetalServer:BaremetalServer web fr-par-2/11111111-1111-1111-1111-111111111111
 // ```
 type BaremetalServer struct {
 	pulumi.CustomResourceState

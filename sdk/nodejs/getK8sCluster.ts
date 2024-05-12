@@ -27,6 +27,7 @@ export function getK8sCluster(args?: GetK8sClusterArgs, opts?: pulumi.InvokeOpti
     return pulumi.runtime.invoke("scaleway:index/getK8sCluster:getK8sCluster", {
         "clusterId": args.clusterId,
         "name": args.name,
+        "projectId": args.projectId,
         "region": args.region,
     }, opts);
 }
@@ -43,6 +44,10 @@ export interface GetK8sClusterArgs {
      * The cluster name. Only one of `name` and `clusterId` should be specified.
      */
     name?: string;
+    /**
+     * The ID of the project the cluster is associated with.
+     */
+    projectId?: string;
     /**
      * `region`) The region in which the cluster exists.
      */
@@ -102,10 +107,7 @@ export interface GetK8sClusterResult {
      * The ID of the private network of the cluster.
      */
     readonly privateNetworkId: string;
-    /**
-     * The ID of the project the cluster is associated with.
-     */
-    readonly projectId: string;
+    readonly projectId?: string;
     /**
      * The region in which the cluster is.
      */
@@ -169,6 +171,10 @@ export interface GetK8sClusterOutputArgs {
      * The cluster name. Only one of `name` and `clusterId` should be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the project the cluster is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * `region`) The region in which the cluster exists.
      */

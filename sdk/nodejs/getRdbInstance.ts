@@ -70,7 +70,7 @@ export interface GetRdbInstanceResult {
     readonly organizationId: string;
     readonly password: string;
     readonly privateNetworks: outputs.GetRdbInstancePrivateNetwork[];
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly readReplicas: outputs.GetRdbInstanceReadReplica[];
     readonly region?: string;
     readonly settings: {[key: string]: string};

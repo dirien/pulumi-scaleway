@@ -12,7 +12,7 @@ namespace ediri.Scaleway.Outputs
 {
 
     [OutputType]
-    public sealed class GetWebHostOfferProductResult
+    public sealed class GetWebhostingOfferProductResult
     {
         /// <summary>
         /// The quota of databases.
@@ -52,7 +52,7 @@ namespace ediri.Scaleway.Outputs
         public readonly int VCpu;
 
         [OutputConstructor]
-        private GetWebHostOfferProductResult(
+        private GetWebhostingOfferProductResult(
             int databasesQuota,
 
             int emailAccountsQuota,

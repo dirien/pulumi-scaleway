@@ -24,6 +24,7 @@ func LookupBlockSnapshot(ctx *pulumi.Context, args *LookupBlockSnapshotArgs, opt
 // A collection of arguments for invoking getBlockSnapshot.
 type LookupBlockSnapshotArgs struct {
 	Name       *string `pulumi:"name"`
+	ProjectId  *string `pulumi:"projectId"`
 	SnapshotId *string `pulumi:"snapshotId"`
 	VolumeId   *string `pulumi:"volumeId"`
 	Zone       *string `pulumi:"zone"`
@@ -34,7 +35,7 @@ type LookupBlockSnapshotResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id         string   `pulumi:"id"`
 	Name       *string  `pulumi:"name"`
-	ProjectId  string   `pulumi:"projectId"`
+	ProjectId  *string  `pulumi:"projectId"`
 	SnapshotId *string  `pulumi:"snapshotId"`
 	Tags       []string `pulumi:"tags"`
 	VolumeId   *string  `pulumi:"volumeId"`
@@ -57,6 +58,7 @@ func LookupBlockSnapshotOutput(ctx *pulumi.Context, args LookupBlockSnapshotOutp
 // A collection of arguments for invoking getBlockSnapshot.
 type LookupBlockSnapshotOutputArgs struct {
 	Name       pulumi.StringPtrInput `pulumi:"name"`
+	ProjectId  pulumi.StringPtrInput `pulumi:"projectId"`
 	SnapshotId pulumi.StringPtrInput `pulumi:"snapshotId"`
 	VolumeId   pulumi.StringPtrInput `pulumi:"volumeId"`
 	Zone       pulumi.StringPtrInput `pulumi:"zone"`
@@ -90,8 +92,8 @@ func (o LookupBlockSnapshotResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupBlockSnapshotResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupBlockSnapshotResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupBlockSnapshotResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupBlockSnapshotResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupBlockSnapshotResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupBlockSnapshotResultOutput) SnapshotId() pulumi.StringPtrOutput {

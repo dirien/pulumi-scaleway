@@ -15,7 +15,7 @@ namespace ediri.Scaleway
     /// For further information please check
     /// our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/nats-overview/)
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
@@ -39,10 +39,12 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Namespaces can be imported using the `{region}/{id}`, e.g. bash
+    /// Namespaces can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/mnqNatsCredentials:MnqNatsCredentials main fr-par/11111111111111111111111111111111
+    /// $ pulumi import scaleway:index/mnqNatsCredentials:MnqNatsCredentials main fr-par/11111111111111111111111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/mnqNatsCredentials:MnqNatsCredentials")]

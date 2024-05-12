@@ -37,9 +37,6 @@ export interface GetObjectBucketPolicyArgs {
      * The bucket name.
      */
     bucket: string;
-    /**
-     * `projectId`) The ID of the project the bucket is associated with.
-     */
     projectId?: string;
     /**
      * `region`) The region in which the Object Storage exists.
@@ -90,9 +87,6 @@ export interface GetObjectBucketPolicyOutputArgs {
      * The bucket name.
      */
     bucket: pulumi.Input<string>;
-    /**
-     * `projectId`) The ID of the project the bucket is associated with.
-     */
     projectId?: pulumi.Input<string>;
     /**
      * `region`) The region in which the Object Storage exists.

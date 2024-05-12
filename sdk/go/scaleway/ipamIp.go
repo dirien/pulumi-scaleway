@@ -14,7 +14,7 @@ import (
 
 // Books and manages Scaleway IPAM IPs.
 //
-// ## Example
+// ## Example Usage
 //
 // ### Basic
 //
@@ -151,12 +151,12 @@ import (
 //
 // ## Import
 //
-// IPAM IPs can be imported using the `{region}/{id}`, e.g. bash
+// IPAM IPs can be imported using the `{region}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/ipamIp:IpamIp ip_demo fr-par/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/ipamIp:IpamIp ip_demo fr-par/11111111-1111-1111-1111-111111111111
 // ```
 type IpamIp struct {
 	pulumi.CustomResourceState

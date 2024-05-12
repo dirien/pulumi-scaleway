@@ -14,7 +14,7 @@ namespace ediri.Scaleway.Inputs
     public sealed class RedisClusterPublicNetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The UUID of the private network resource.
+        /// (Required) The UUID of the endpoint.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }

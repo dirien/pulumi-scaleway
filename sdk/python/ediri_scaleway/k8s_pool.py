@@ -798,10 +798,12 @@ class K8sPool(pulumi.CustomResource):
         """
         ## Import
 
-        Kubernetes pools can be imported using the `{region}/{id}`, e.g. bash
+        Kubernetes pools can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/k8sPool:K8sPool mypool fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/k8sPool:K8sPool mypool fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -845,10 +847,12 @@ class K8sPool(pulumi.CustomResource):
         """
         ## Import
 
-        Kubernetes pools can be imported using the `{region}/{id}`, e.g. bash
+        Kubernetes pools can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/k8sPool:K8sPool mypool fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/k8sPool:K8sPool mypool fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

@@ -10,7 +10,7 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway DocumentDB Database read replicas.
  * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@ediri/scaleway";
  *
- * const replica = new scaleway.DocumentDBReadReplica("replica", {
+ * const replica = new scaleway.DocumentdbReadReplica("replica", {
  *     directAccess: {},
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  * });
@@ -31,7 +31,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@ediri/scaleway";
  *
  * const pn = new scaleway.VpcPrivateNetwork("pn", {});
- * const replica = new scaleway.DocumentDBReadReplica("replica", {
+ * const replica = new scaleway.DocumentdbReadReplica("replica", {
  *     instanceId: scaleway_rdb_instance.instance.id,
  *     privateNetwork: {
  *         privateNetworkId: pn.id,
@@ -42,15 +42,17 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Database Read replica can be imported using the `{region}/{id}`, e.g. bash
+ * Database Read replica can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/documentDBReadReplica:DocumentDBReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/documentdbReadReplica:DocumentdbReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
-export class DocumentDBReadReplica extends pulumi.CustomResource {
+export class DocumentdbReadReplica extends pulumi.CustomResource {
     /**
-     * Get an existing DocumentDBReadReplica resource's state with the given name, ID, and optional extra
+     * Get an existing DocumentdbReadReplica resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -58,28 +60,28 @@ export class DocumentDBReadReplica extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DocumentDBReadReplicaState, opts?: pulumi.CustomResourceOptions): DocumentDBReadReplica {
-        return new DocumentDBReadReplica(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DocumentdbReadReplicaState, opts?: pulumi.CustomResourceOptions): DocumentdbReadReplica {
+        return new DocumentdbReadReplica(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/documentDBReadReplica:DocumentDBReadReplica';
+    public static readonly __pulumiType = 'scaleway:index/documentdbReadReplica:DocumentdbReadReplica';
 
     /**
-     * Returns true if the given object is an instance of DocumentDBReadReplica.  This is designed to work even
+     * Returns true if the given object is an instance of DocumentdbReadReplica.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is DocumentDBReadReplica {
+    public static isInstance(obj: any): obj is DocumentdbReadReplica {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === DocumentDBReadReplica.__pulumiType;
+        return obj['__pulumiType'] === DocumentdbReadReplica.__pulumiType;
     }
 
     /**
      * Creates a direct access endpoint to documentdb replica.
      */
-    public readonly directAccess!: pulumi.Output<outputs.DocumentDBReadReplicaDirectAccess | undefined>;
+    public readonly directAccess!: pulumi.Output<outputs.DocumentdbReadReplicaDirectAccess | undefined>;
     /**
      * UUID of the documentdb instance.
      *
@@ -89,7 +91,7 @@ export class DocumentDBReadReplica extends pulumi.CustomResource {
     /**
      * Create an endpoint in a private network.
      */
-    public readonly privateNetwork!: pulumi.Output<outputs.DocumentDBReadReplicaPrivateNetwork | undefined>;
+    public readonly privateNetwork!: pulumi.Output<outputs.DocumentdbReadReplicaPrivateNetwork | undefined>;
     /**
      * `region`) The region
      * in which the Database read replica should be created.
@@ -97,24 +99,24 @@ export class DocumentDBReadReplica extends pulumi.CustomResource {
     public readonly region!: pulumi.Output<string>;
 
     /**
-     * Create a DocumentDBReadReplica resource with the given unique name, arguments, and options.
+     * Create a DocumentdbReadReplica resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: DocumentDBReadReplicaArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: DocumentDBReadReplicaArgs | DocumentDBReadReplicaState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: DocumentdbReadReplicaArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: DocumentdbReadReplicaArgs | DocumentdbReadReplicaState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as DocumentDBReadReplicaState | undefined;
+            const state = argsOrState as DocumentdbReadReplicaState | undefined;
             resourceInputs["directAccess"] = state ? state.directAccess : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["privateNetwork"] = state ? state.privateNetwork : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
         } else {
-            const args = argsOrState as DocumentDBReadReplicaArgs | undefined;
+            const args = argsOrState as DocumentdbReadReplicaArgs | undefined;
             if ((!args || args.instanceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
@@ -124,18 +126,18 @@ export class DocumentDBReadReplica extends pulumi.CustomResource {
             resourceInputs["region"] = args ? args.region : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(DocumentDBReadReplica.__pulumiType, name, resourceInputs, opts);
+        super(DocumentdbReadReplica.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering DocumentDBReadReplica resources.
+ * Input properties used for looking up and filtering DocumentdbReadReplica resources.
  */
-export interface DocumentDBReadReplicaState {
+export interface DocumentdbReadReplicaState {
     /**
      * Creates a direct access endpoint to documentdb replica.
      */
-    directAccess?: pulumi.Input<inputs.DocumentDBReadReplicaDirectAccess>;
+    directAccess?: pulumi.Input<inputs.DocumentdbReadReplicaDirectAccess>;
     /**
      * UUID of the documentdb instance.
      *
@@ -145,7 +147,7 @@ export interface DocumentDBReadReplicaState {
     /**
      * Create an endpoint in a private network.
      */
-    privateNetwork?: pulumi.Input<inputs.DocumentDBReadReplicaPrivateNetwork>;
+    privateNetwork?: pulumi.Input<inputs.DocumentdbReadReplicaPrivateNetwork>;
     /**
      * `region`) The region
      * in which the Database read replica should be created.
@@ -154,13 +156,13 @@ export interface DocumentDBReadReplicaState {
 }
 
 /**
- * The set of arguments for constructing a DocumentDBReadReplica resource.
+ * The set of arguments for constructing a DocumentdbReadReplica resource.
  */
-export interface DocumentDBReadReplicaArgs {
+export interface DocumentdbReadReplicaArgs {
     /**
      * Creates a direct access endpoint to documentdb replica.
      */
-    directAccess?: pulumi.Input<inputs.DocumentDBReadReplicaDirectAccess>;
+    directAccess?: pulumi.Input<inputs.DocumentdbReadReplicaDirectAccess>;
     /**
      * UUID of the documentdb instance.
      *
@@ -170,7 +172,7 @@ export interface DocumentDBReadReplicaArgs {
     /**
      * Create an endpoint in a private network.
      */
-    privateNetwork?: pulumi.Input<inputs.DocumentDBReadReplicaPrivateNetwork>;
+    privateNetwork?: pulumi.Input<inputs.DocumentdbReadReplicaPrivateNetwork>;
     /**
      * `region`) The region
      * in which the Database read replica should be created.

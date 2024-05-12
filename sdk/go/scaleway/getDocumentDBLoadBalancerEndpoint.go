@@ -11,115 +11,158 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func GetDocumentDBLoadBalancerEndpoint(ctx *pulumi.Context, args *GetDocumentDBLoadBalancerEndpointArgs, opts ...pulumi.InvokeOption) (*GetDocumentDBLoadBalancerEndpointResult, error) {
+// Gets information about an DocumentDB load balancer endpoint.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.GetDocumentdbLoadBalancerEndpoint(ctx, &scaleway.GetDocumentdbLoadBalancerEndpointArgs{
+//				InstanceId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+func GetDocumentdbLoadBalancerEndpoint(ctx *pulumi.Context, args *GetDocumentdbLoadBalancerEndpointArgs, opts ...pulumi.InvokeOption) (*GetDocumentdbLoadBalancerEndpointResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv GetDocumentDBLoadBalancerEndpointResult
-	err := ctx.Invoke("scaleway:index/getDocumentDBLoadBalancerEndpoint:getDocumentDBLoadBalancerEndpoint", args, &rv, opts...)
+	var rv GetDocumentdbLoadBalancerEndpointResult
+	err := ctx.Invoke("scaleway:index/getDocumentdbLoadBalancerEndpoint:getDocumentdbLoadBalancerEndpoint", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &rv, nil
 }
 
-// A collection of arguments for invoking getDocumentDBLoadBalancerEndpoint.
-type GetDocumentDBLoadBalancerEndpointArgs struct {
-	InstanceId   *string `pulumi:"instanceId"`
+// A collection of arguments for invoking getDocumentdbLoadBalancerEndpoint.
+type GetDocumentdbLoadBalancerEndpointArgs struct {
+	// The DocumentDB Instance on which the endpoint is attached. Only one of `instanceName` and `instanceId` should be specified.
+	InstanceId *string `pulumi:"instanceId"`
+	// The DocumentDB Instance Name on which the endpoint is attached. Only one of `instanceName` and `instanceId` should be specified.
 	InstanceName *string `pulumi:"instanceName"`
-	ProjectId    *string `pulumi:"projectId"`
-	Region       *string `pulumi:"region"`
+	// The ID of the project the DocumentDB endpoint is associated with.
+	ProjectId *string `pulumi:"projectId"`
+	// `region`) The region in which the DocumentDB endpoint exists.
+	Region *string `pulumi:"region"`
 }
 
-// A collection of values returned by getDocumentDBLoadBalancerEndpoint.
-type GetDocumentDBLoadBalancerEndpointResult struct {
+// A collection of values returned by getDocumentdbLoadBalancerEndpoint.
+type GetDocumentdbLoadBalancerEndpointResult struct {
+	// The hostname of your endpoint.
 	Hostname string `pulumi:"hostname"`
 	// The provider-assigned unique ID for this managed resource.
 	Id           string `pulumi:"id"`
 	InstanceId   string `pulumi:"instanceId"`
 	InstanceName string `pulumi:"instanceName"`
-	Ip           string `pulumi:"ip"`
-	Name         string `pulumi:"name"`
-	Port         int    `pulumi:"port"`
-	ProjectId    string `pulumi:"projectId"`
-	Region       string `pulumi:"region"`
+	// The IP of your load balancer service.
+	Ip string `pulumi:"ip"`
+	// The name of your load balancer service.
+	Name string `pulumi:"name"`
+	// The port of your load balancer service.
+	Port      int    `pulumi:"port"`
+	ProjectId string `pulumi:"projectId"`
+	Region    string `pulumi:"region"`
 }
 
-func GetDocumentDBLoadBalancerEndpointOutput(ctx *pulumi.Context, args GetDocumentDBLoadBalancerEndpointOutputArgs, opts ...pulumi.InvokeOption) GetDocumentDBLoadBalancerEndpointResultOutput {
+func GetDocumentdbLoadBalancerEndpointOutput(ctx *pulumi.Context, args GetDocumentdbLoadBalancerEndpointOutputArgs, opts ...pulumi.InvokeOption) GetDocumentdbLoadBalancerEndpointResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetDocumentDBLoadBalancerEndpointResult, error) {
-			args := v.(GetDocumentDBLoadBalancerEndpointArgs)
-			r, err := GetDocumentDBLoadBalancerEndpoint(ctx, &args, opts...)
-			var s GetDocumentDBLoadBalancerEndpointResult
+		ApplyT(func(v interface{}) (GetDocumentdbLoadBalancerEndpointResult, error) {
+			args := v.(GetDocumentdbLoadBalancerEndpointArgs)
+			r, err := GetDocumentdbLoadBalancerEndpoint(ctx, &args, opts...)
+			var s GetDocumentdbLoadBalancerEndpointResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(GetDocumentDBLoadBalancerEndpointResultOutput)
+		}).(GetDocumentdbLoadBalancerEndpointResultOutput)
 }
 
-// A collection of arguments for invoking getDocumentDBLoadBalancerEndpoint.
-type GetDocumentDBLoadBalancerEndpointOutputArgs struct {
-	InstanceId   pulumi.StringPtrInput `pulumi:"instanceId"`
+// A collection of arguments for invoking getDocumentdbLoadBalancerEndpoint.
+type GetDocumentdbLoadBalancerEndpointOutputArgs struct {
+	// The DocumentDB Instance on which the endpoint is attached. Only one of `instanceName` and `instanceId` should be specified.
+	InstanceId pulumi.StringPtrInput `pulumi:"instanceId"`
+	// The DocumentDB Instance Name on which the endpoint is attached. Only one of `instanceName` and `instanceId` should be specified.
 	InstanceName pulumi.StringPtrInput `pulumi:"instanceName"`
-	ProjectId    pulumi.StringPtrInput `pulumi:"projectId"`
-	Region       pulumi.StringPtrInput `pulumi:"region"`
+	// The ID of the project the DocumentDB endpoint is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// `region`) The region in which the DocumentDB endpoint exists.
+	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
-func (GetDocumentDBLoadBalancerEndpointOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDocumentDBLoadBalancerEndpointArgs)(nil)).Elem()
+func (GetDocumentdbLoadBalancerEndpointOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDocumentdbLoadBalancerEndpointArgs)(nil)).Elem()
 }
 
-// A collection of values returned by getDocumentDBLoadBalancerEndpoint.
-type GetDocumentDBLoadBalancerEndpointResultOutput struct{ *pulumi.OutputState }
+// A collection of values returned by getDocumentdbLoadBalancerEndpoint.
+type GetDocumentdbLoadBalancerEndpointResultOutput struct{ *pulumi.OutputState }
 
-func (GetDocumentDBLoadBalancerEndpointResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetDocumentDBLoadBalancerEndpointResult)(nil)).Elem()
+func (GetDocumentdbLoadBalancerEndpointResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDocumentdbLoadBalancerEndpointResult)(nil)).Elem()
 }
 
-func (o GetDocumentDBLoadBalancerEndpointResultOutput) ToGetDocumentDBLoadBalancerEndpointResultOutput() GetDocumentDBLoadBalancerEndpointResultOutput {
+func (o GetDocumentdbLoadBalancerEndpointResultOutput) ToGetDocumentdbLoadBalancerEndpointResultOutput() GetDocumentdbLoadBalancerEndpointResultOutput {
 	return o
 }
 
-func (o GetDocumentDBLoadBalancerEndpointResultOutput) ToGetDocumentDBLoadBalancerEndpointResultOutputWithContext(ctx context.Context) GetDocumentDBLoadBalancerEndpointResultOutput {
+func (o GetDocumentdbLoadBalancerEndpointResultOutput) ToGetDocumentdbLoadBalancerEndpointResultOutputWithContext(ctx context.Context) GetDocumentdbLoadBalancerEndpointResultOutput {
 	return o
 }
 
-func (o GetDocumentDBLoadBalancerEndpointResultOutput) Hostname() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDocumentDBLoadBalancerEndpointResult) string { return v.Hostname }).(pulumi.StringOutput)
+// The hostname of your endpoint.
+func (o GetDocumentdbLoadBalancerEndpointResultOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDocumentdbLoadBalancerEndpointResult) string { return v.Hostname }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
-func (o GetDocumentDBLoadBalancerEndpointResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDocumentDBLoadBalancerEndpointResult) string { return v.Id }).(pulumi.StringOutput)
+func (o GetDocumentdbLoadBalancerEndpointResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDocumentdbLoadBalancerEndpointResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o GetDocumentDBLoadBalancerEndpointResultOutput) InstanceId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDocumentDBLoadBalancerEndpointResult) string { return v.InstanceId }).(pulumi.StringOutput)
+func (o GetDocumentdbLoadBalancerEndpointResultOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDocumentdbLoadBalancerEndpointResult) string { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-func (o GetDocumentDBLoadBalancerEndpointResultOutput) InstanceName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDocumentDBLoadBalancerEndpointResult) string { return v.InstanceName }).(pulumi.StringOutput)
+func (o GetDocumentdbLoadBalancerEndpointResultOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDocumentdbLoadBalancerEndpointResult) string { return v.InstanceName }).(pulumi.StringOutput)
 }
 
-func (o GetDocumentDBLoadBalancerEndpointResultOutput) Ip() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDocumentDBLoadBalancerEndpointResult) string { return v.Ip }).(pulumi.StringOutput)
+// The IP of your load balancer service.
+func (o GetDocumentdbLoadBalancerEndpointResultOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDocumentdbLoadBalancerEndpointResult) string { return v.Ip }).(pulumi.StringOutput)
 }
 
-func (o GetDocumentDBLoadBalancerEndpointResultOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDocumentDBLoadBalancerEndpointResult) string { return v.Name }).(pulumi.StringOutput)
+// The name of your load balancer service.
+func (o GetDocumentdbLoadBalancerEndpointResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDocumentdbLoadBalancerEndpointResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o GetDocumentDBLoadBalancerEndpointResultOutput) Port() pulumi.IntOutput {
-	return o.ApplyT(func(v GetDocumentDBLoadBalancerEndpointResult) int { return v.Port }).(pulumi.IntOutput)
+// The port of your load balancer service.
+func (o GetDocumentdbLoadBalancerEndpointResultOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDocumentdbLoadBalancerEndpointResult) int { return v.Port }).(pulumi.IntOutput)
 }
 
-func (o GetDocumentDBLoadBalancerEndpointResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDocumentDBLoadBalancerEndpointResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o GetDocumentdbLoadBalancerEndpointResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDocumentdbLoadBalancerEndpointResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o GetDocumentDBLoadBalancerEndpointResultOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDocumentDBLoadBalancerEndpointResult) string { return v.Region }).(pulumi.StringOutput)
+func (o GetDocumentdbLoadBalancerEndpointResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDocumentdbLoadBalancerEndpointResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetDocumentDBLoadBalancerEndpointResultOutput{})
+	pulumi.RegisterOutputType(GetDocumentdbLoadBalancerEndpointResultOutput{})
 }

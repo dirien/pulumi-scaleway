@@ -61,6 +61,7 @@ namespace ediri.Scaleway
     /// 
     /// });
     /// ```
+    /// 
     /// ## Protocols
     /// 
     /// The supported protocols are:
@@ -99,10 +100,12 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Container can be imported using the `{region}/{id}`, e.g. bash
+    /// Container can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/container:Container main fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/container:Container main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/container:Container")]

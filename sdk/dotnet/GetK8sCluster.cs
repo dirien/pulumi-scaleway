@@ -15,9 +15,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about a Kubernetes Cluster.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -34,8 +32,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetK8sClusterResult> InvokeAsync(GetK8sClusterArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetK8sClusterResult>("scaleway:index/getK8sCluster:getK8sCluster", args ?? new GetK8sClusterArgs(), options.WithDefaults());
@@ -43,9 +39,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about a Kubernetes Cluster.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -62,8 +56,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetK8sClusterResult> Invoke(GetK8sClusterInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetK8sClusterResult>("scaleway:index/getK8sCluster:getK8sCluster", args ?? new GetK8sClusterInvokeArgs(), options.WithDefaults());
@@ -83,6 +75,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the cluster is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
 
         /// <summary>
         /// `region`) The region in which the cluster exists.
@@ -109,6 +107,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the cluster is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// `region`) The region in which the cluster exists.
@@ -175,10 +179,7 @@ namespace ediri.Scaleway
         /// The ID of the private network of the cluster.
         /// </summary>
         public readonly string PrivateNetworkId;
-        /// <summary>
-        /// The ID of the project the cluster is associated with.
-        /// </summary>
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         /// <summary>
         /// The region in which the cluster is.
         /// </summary>
@@ -246,7 +247,7 @@ namespace ediri.Scaleway
 
             string privateNetworkId,
 
-            string projectId,
+            string? projectId,
 
             string? region,
 

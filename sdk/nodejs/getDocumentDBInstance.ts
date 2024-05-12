@@ -13,26 +13,27 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const db = scaleway.getDocumentDBInstance({
+ * const db = scaleway.getDocumentdbInstance({
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
-export function getDocumentDBInstance(args?: GetDocumentDBInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetDocumentDBInstanceResult> {
+export function getDocumentdbInstance(args?: GetDocumentdbInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetDocumentdbInstanceResult> {
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("scaleway:index/getDocumentDBInstance:getDocumentDBInstance", {
+    return pulumi.runtime.invoke("scaleway:index/getDocumentdbInstance:getDocumentdbInstance", {
         "instanceId": args.instanceId,
         "name": args.name,
+        "projectId": args.projectId,
         "region": args.region,
     }, opts);
 }
 
 /**
- * A collection of arguments for invoking getDocumentDBInstance.
+ * A collection of arguments for invoking getDocumentdbInstance.
  */
-export interface GetDocumentDBInstanceArgs {
+export interface GetDocumentdbInstanceArgs {
     /**
      * The DocumentDB instance ID.
      * Only one of `name` and `instanceId` should be specified.
@@ -44,15 +45,19 @@ export interface GetDocumentDBInstanceArgs {
      */
     name?: string;
     /**
+     * The ID of the project the DocumentDB instance is associated with.
+     */
+    projectId?: string;
+    /**
      * `region`) The region in which the DocumentDB instance exists.
      */
     region?: string;
 }
 
 /**
- * A collection of values returned by getDocumentDBInstance.
+ * A collection of values returned by getDocumentdbInstance.
  */
-export interface GetDocumentDBInstanceResult {
+export interface GetDocumentdbInstanceResult {
     readonly engine: string;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -63,7 +68,7 @@ export interface GetDocumentDBInstanceResult {
     readonly name?: string;
     readonly nodeType: string;
     readonly password: string;
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly region?: string;
     readonly tags: string[];
     readonly telemetryEnabled: boolean;
@@ -80,19 +85,19 @@ export interface GetDocumentDBInstanceResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const db = scaleway.getDocumentDBInstance({
+ * const db = scaleway.getDocumentdbInstance({
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
-export function getDocumentDBInstanceOutput(args?: GetDocumentDBInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDocumentDBInstanceResult> {
-    return pulumi.output(args).apply((a: any) => getDocumentDBInstance(a, opts))
+export function getDocumentdbInstanceOutput(args?: GetDocumentdbInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDocumentdbInstanceResult> {
+    return pulumi.output(args).apply((a: any) => getDocumentdbInstance(a, opts))
 }
 
 /**
- * A collection of arguments for invoking getDocumentDBInstance.
+ * A collection of arguments for invoking getDocumentdbInstance.
  */
-export interface GetDocumentDBInstanceOutputArgs {
+export interface GetDocumentdbInstanceOutputArgs {
     /**
      * The DocumentDB instance ID.
      * Only one of `name` and `instanceId` should be specified.
@@ -103,6 +108,10 @@ export interface GetDocumentDBInstanceOutputArgs {
      * Only one of `name` and `instanceId` should be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the project the DocumentDB instance is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * `region`) The region in which the DocumentDB instance exists.
      */

@@ -13,16 +13,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const main = scaleway.getDocumentDBDatabase({
+ * const main = scaleway.getDocumentdbDatabase({
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  *     name: "foobar",
  * });
  * ```
  */
-export function getDocumentDBDatabase(args: GetDocumentDBDatabaseArgs, opts?: pulumi.InvokeOptions): Promise<GetDocumentDBDatabaseResult> {
+export function getDocumentdbDatabase(args: GetDocumentdbDatabaseArgs, opts?: pulumi.InvokeOptions): Promise<GetDocumentdbDatabaseResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("scaleway:index/getDocumentDBDatabase:getDocumentDBDatabase", {
+    return pulumi.runtime.invoke("scaleway:index/getDocumentdbDatabase:getDocumentdbDatabase", {
         "instanceId": args.instanceId,
         "name": args.name,
         "region": args.region,
@@ -30,9 +30,9 @@ export function getDocumentDBDatabase(args: GetDocumentDBDatabaseArgs, opts?: pu
 }
 
 /**
- * A collection of arguments for invoking getDocumentDBDatabase.
+ * A collection of arguments for invoking getDocumentdbDatabase.
  */
-export interface GetDocumentDBDatabaseArgs {
+export interface GetDocumentdbDatabaseArgs {
     /**
      * The DocumentDB instance ID.
      */
@@ -45,9 +45,9 @@ export interface GetDocumentDBDatabaseArgs {
 }
 
 /**
- * A collection of values returned by getDocumentDBDatabase.
+ * A collection of values returned by getDocumentdbDatabase.
  */
-export interface GetDocumentDBDatabaseResult {
+export interface GetDocumentdbDatabaseResult {
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -78,20 +78,20 @@ export interface GetDocumentDBDatabaseResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const main = scaleway.getDocumentDBDatabase({
+ * const main = scaleway.getDocumentdbDatabase({
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  *     name: "foobar",
  * });
  * ```
  */
-export function getDocumentDBDatabaseOutput(args: GetDocumentDBDatabaseOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDocumentDBDatabaseResult> {
-    return pulumi.output(args).apply((a: any) => getDocumentDBDatabase(a, opts))
+export function getDocumentdbDatabaseOutput(args: GetDocumentdbDatabaseOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDocumentdbDatabaseResult> {
+    return pulumi.output(args).apply((a: any) => getDocumentdbDatabase(a, opts))
 }
 
 /**
- * A collection of arguments for invoking getDocumentDBDatabase.
+ * A collection of arguments for invoking getDocumentdbDatabase.
  */
-export interface GetDocumentDBDatabaseOutputArgs {
+export interface GetDocumentdbDatabaseOutputArgs {
     /**
      * The DocumentDB instance ID.
      */

@@ -14,7 +14,13 @@ namespace ediri.Scaleway.Outputs
     [OutputType]
     public sealed class GetLbCertificateLetsencryptResult
     {
+        /// <summary>
+        /// The main domain name of the certificate
+        /// </summary>
         public readonly string CommonName;
+        /// <summary>
+        /// The alternative domain names of the certificate
+        /// </summary>
         public readonly ImmutableArray<string> SubjectAlternativeNames;
 
         [OutputConstructor]

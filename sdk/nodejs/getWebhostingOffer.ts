@@ -15,19 +15,19 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const byName = scaleway.getWebHostOffer({
+ * const byName = scaleway.getWebhostingOffer({
  *     name: "performance",
  * });
- * const byId = scaleway.getWebHostOffer({
+ * const byId = scaleway.getWebhostingOffer({
  *     offerId: "de2426b4-a9e9-11ec-b909-0242ac120002",
  * });
  * ```
  */
-export function getWebHostOffer(args?: GetWebHostOfferArgs, opts?: pulumi.InvokeOptions): Promise<GetWebHostOfferResult> {
+export function getWebhostingOffer(args?: GetWebhostingOfferArgs, opts?: pulumi.InvokeOptions): Promise<GetWebhostingOfferResult> {
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("scaleway:index/getWebHostOffer:getWebHostOffer", {
+    return pulumi.runtime.invoke("scaleway:index/getWebhostingOffer:getWebhostingOffer", {
         "name": args.name,
         "offerId": args.offerId,
         "region": args.region,
@@ -35,9 +35,9 @@ export function getWebHostOffer(args?: GetWebHostOfferArgs, opts?: pulumi.Invoke
 }
 
 /**
- * A collection of arguments for invoking getWebHostOffer.
+ * A collection of arguments for invoking getWebhostingOffer.
  */
-export interface GetWebHostOfferArgs {
+export interface GetWebhostingOfferArgs {
     /**
      * The offer name. Only one of `name` and `offerId` should be specified.
      */
@@ -53,9 +53,9 @@ export interface GetWebHostOfferArgs {
 }
 
 /**
- * A collection of values returned by getWebHostOffer.
+ * A collection of values returned by getWebhostingOffer.
  */
-export interface GetWebHostOfferResult {
+export interface GetWebhostingOfferResult {
     /**
      * The unique identifier used for billing.
      */
@@ -73,7 +73,7 @@ export interface GetWebHostOfferResult {
     /**
      * The offer product.
      */
-    readonly products: outputs.GetWebHostOfferProduct[];
+    readonly products: outputs.GetWebhostingOfferProduct[];
     readonly region: string;
 }
 /**
@@ -85,22 +85,22 @@ export interface GetWebHostOfferResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const byName = scaleway.getWebHostOffer({
+ * const byName = scaleway.getWebhostingOffer({
  *     name: "performance",
  * });
- * const byId = scaleway.getWebHostOffer({
+ * const byId = scaleway.getWebhostingOffer({
  *     offerId: "de2426b4-a9e9-11ec-b909-0242ac120002",
  * });
  * ```
  */
-export function getWebHostOfferOutput(args?: GetWebHostOfferOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetWebHostOfferResult> {
-    return pulumi.output(args).apply((a: any) => getWebHostOffer(a, opts))
+export function getWebhostingOfferOutput(args?: GetWebhostingOfferOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetWebhostingOfferResult> {
+    return pulumi.output(args).apply((a: any) => getWebhostingOffer(a, opts))
 }
 
 /**
- * A collection of arguments for invoking getWebHostOffer.
+ * A collection of arguments for invoking getWebhostingOffer.
  */
-export interface GetWebHostOfferOutputArgs {
+export interface GetWebhostingOfferOutputArgs {
     /**
      * The offer name. Only one of `name` and `offerId` should be specified.
      */

@@ -20,7 +20,7 @@ namespace ediri.Scaleway.Inputs
         public Input<string>? Address { get; set; }
 
         /// <summary>
-        /// The id of the private network to attach.
+        /// The ID of the IPv6.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }

@@ -15,9 +15,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about an instance volume.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -34,8 +32,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetInstanceVolumeResult> InvokeAsync(GetInstanceVolumeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetInstanceVolumeResult>("scaleway:index/getInstanceVolume:getInstanceVolume", args ?? new GetInstanceVolumeArgs(), options.WithDefaults());
@@ -43,9 +39,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about an instance volume.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -62,8 +56,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetInstanceVolumeResult> Invoke(GetInstanceVolumeInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInstanceVolumeResult>("scaleway:index/getInstanceVolume:getInstanceVolume", args ?? new GetInstanceVolumeInvokeArgs(), options.WithDefaults());
@@ -78,6 +70,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the volume is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
 
         /// <summary>
         /// The volume id.
@@ -106,6 +104,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the volume is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The volume id.
@@ -140,7 +144,7 @@ namespace ediri.Scaleway
         /// The ID of the organization the volume is associated with.
         /// </summary>
         public readonly string OrganizationId;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly string ServerId;
         public readonly int SizeInGb;
         public readonly ImmutableArray<string> Tags;
@@ -158,7 +162,7 @@ namespace ediri.Scaleway
 
             string organizationId,
 
-            string projectId,
+            string? projectId,
 
             string serverId,
 

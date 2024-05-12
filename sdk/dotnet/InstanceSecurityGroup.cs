@@ -13,10 +13,12 @@ namespace ediri.Scaleway
     /// <summary>
     /// ## Import
     /// 
-    /// Instance security group can be imported using the `{zone}/{id}`, e.g. bash
+    /// Instance security group can be imported using the `{zone}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/instanceSecurityGroup:InstanceSecurityGroup web fr-par-1/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/instanceSecurityGroup:InstanceSecurityGroup web fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/instanceSecurityGroup:InstanceSecurityGroup")]
@@ -90,7 +92,7 @@ namespace ediri.Scaleway
         public Output<bool?> Stateful { get; private set; } = null!;
 
         /// <summary>
-        /// The tags of the security group.
+        /// The tags associated with the security group
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
@@ -225,7 +227,7 @@ namespace ediri.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags of the security group.
+        /// The tags associated with the security group
         /// </summary>
         public InputList<string> Tags
         {
@@ -330,7 +332,7 @@ namespace ediri.Scaleway
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags of the security group.
+        /// The tags associated with the security group
         /// </summary>
         public InputList<string> Tags
         {

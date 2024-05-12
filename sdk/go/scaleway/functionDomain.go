@@ -15,7 +15,7 @@ import (
 // Creates and manages Scaleway Function Domain bindings.
 // For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
@@ -63,12 +63,12 @@ import (
 //
 // ## Import
 //
-// Domain can be imported using the `{region}/{id}`, e.g. bash
+// Domain can be imported using the `{region}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/functionDomain:FunctionDomain main fr-par/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/functionDomain:FunctionDomain main fr-par/11111111-1111-1111-1111-111111111111
 // ```
 type FunctionDomain struct {
 	pulumi.CustomResourceState

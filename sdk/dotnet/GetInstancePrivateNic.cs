@@ -15,9 +15,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about an instance private NIC.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -50,8 +48,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetInstancePrivateNicResult> InvokeAsync(GetInstancePrivateNicArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetInstancePrivateNicResult>("scaleway:index/getInstancePrivateNic:getInstancePrivateNic", args ?? new GetInstancePrivateNicArgs(), options.WithDefaults());
@@ -59,9 +55,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about an instance private NIC.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -94,8 +88,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetInstancePrivateNicResult> Invoke(GetInstancePrivateNicInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInstancePrivateNicResult>("scaleway:index/getInstancePrivateNic:getInstancePrivateNic", args ?? new GetInstancePrivateNicInvokeArgs(), options.WithDefaults());

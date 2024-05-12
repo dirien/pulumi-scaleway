@@ -15,9 +15,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about an existing IAM application.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -39,8 +37,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetIamApplicationResult> InvokeAsync(GetIamApplicationArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetIamApplicationResult>("scaleway:index/getIamApplication:getIamApplication", args ?? new GetIamApplicationArgs(), options.WithDefaults());
@@ -48,9 +44,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about an existing IAM application.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -72,8 +66,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetIamApplicationResult> Invoke(GetIamApplicationInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetIamApplicationResult>("scaleway:index/getIamApplication:getIamApplication", args ?? new GetIamApplicationInvokeArgs(), options.WithDefaults());

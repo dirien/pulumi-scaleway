@@ -15,7 +15,7 @@ namespace ediri.Scaleway.Outputs
     public sealed class RdbInstancePrivateNetwork
     {
         /// <summary>
-        /// Whether the endpoint should be configured with IPAM. Defaults to `false` if `ip_net` is defined, `true` otherwise.
+        /// Whether or not the private network endpoint should be configured with IPAM
         /// </summary>
         public readonly bool? EnableIpam;
         /// <summary>
@@ -30,19 +30,25 @@ namespace ediri.Scaleway.Outputs
         /// IPv4 address on the network.
         /// </summary>
         public readonly string? Ip;
+        /// <summary>
+        /// The IP with the given mask within the private subnet
+        /// </summary>
         public readonly string? IpNet;
         /// <summary>
         /// The name of the Database Instance.
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// The ID of the private network.
+        /// The private network ID
         /// </summary>
         public readonly string PnId;
         /// <summary>
         /// Port in the Private Network.
         /// </summary>
         public readonly int? Port;
+        /// <summary>
+        /// The zone you want to attach the resource to
+        /// </summary>
         public readonly string? Zone;
 
         [OutputConstructor]

@@ -7,6 +7,62 @@ import * as utilities from "./utilities";
 /**
  * Gets information about a public gateway PAT rule. For further information please check the
  * API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-8faeea)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@ediri/scaleway";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const sg01 = new scaleway.InstanceSecurityGroup("sg01", {
+ *     inboundDefaultPolicy: "drop",
+ *     outboundDefaultPolicy: "accept",
+ *     inboundRules: [{
+ *         action: "accept",
+ *         port: 22,
+ *         protocol: "TCP",
+ *     }],
+ * });
+ * const srv01 = new scaleway.InstanceServer("srv01", {
+ *     type: "PLAY2-NANO",
+ *     image: "ubuntu_jammy",
+ *     securityGroupId: sg01.id,
+ * });
+ * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {});
+ * const pnic01 = new scaleway.InstancePrivateNic("pnic01", {
+ *     serverId: srv01.id,
+ *     privateNetworkId: pn01.id,
+ * });
+ * const dhcp01 = new scaleway.VpcPublicGatewayDhcp("dhcp01", {subnet: "192.168.0.0/24"});
+ * const ip01 = new scaleway.VpcPublicGatewayIp("ip01", {});
+ * const pg01 = new scaleway.VpcPublicGateway("pg01", {
+ *     type: "VPC-GW-S",
+ *     ipId: ip01.id,
+ * });
+ * const gn01 = new scaleway.VpcGatewayNetwork("gn01", {
+ *     gatewayId: pg01.id,
+ *     privateNetworkId: pn01.id,
+ *     dhcpId: dhcp01.id,
+ *     cleanupDhcp: true,
+ *     enableMasquerade: true,
+ * });
+ * const rsv01 = new scaleway.VpcPublicGatewayDhcpReservation("rsv01", {
+ *     gatewayNetworkId: gn01.id,
+ *     macAddress: pnic01.macAddress,
+ *     ipAddress: "192.168.0.7",
+ * });
+ * const pat01 = new scaleway.VpcPublicGatewayPatRule("pat01", {
+ *     gatewayId: pg01.id,
+ *     privateIp: rsv01.ipAddress,
+ *     privatePort: 22,
+ *     publicPort: 2202,
+ *     protocol: "tcp",
+ * });
+ * const main = scaleway.getVpcPublicGatewayPatRuleOutput({
+ *     patRuleId: pat01.id,
+ * });
+ * ```
  */
 export function getVpcPublicGatewayPatRule(args: GetVpcPublicGatewayPatRuleArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicGatewayPatRuleResult> {
 
@@ -69,6 +125,62 @@ export interface GetVpcPublicGatewayPatRuleResult {
 /**
  * Gets information about a public gateway PAT rule. For further information please check the
  * API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-8faeea)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@ediri/scaleway";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const sg01 = new scaleway.InstanceSecurityGroup("sg01", {
+ *     inboundDefaultPolicy: "drop",
+ *     outboundDefaultPolicy: "accept",
+ *     inboundRules: [{
+ *         action: "accept",
+ *         port: 22,
+ *         protocol: "TCP",
+ *     }],
+ * });
+ * const srv01 = new scaleway.InstanceServer("srv01", {
+ *     type: "PLAY2-NANO",
+ *     image: "ubuntu_jammy",
+ *     securityGroupId: sg01.id,
+ * });
+ * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {});
+ * const pnic01 = new scaleway.InstancePrivateNic("pnic01", {
+ *     serverId: srv01.id,
+ *     privateNetworkId: pn01.id,
+ * });
+ * const dhcp01 = new scaleway.VpcPublicGatewayDhcp("dhcp01", {subnet: "192.168.0.0/24"});
+ * const ip01 = new scaleway.VpcPublicGatewayIp("ip01", {});
+ * const pg01 = new scaleway.VpcPublicGateway("pg01", {
+ *     type: "VPC-GW-S",
+ *     ipId: ip01.id,
+ * });
+ * const gn01 = new scaleway.VpcGatewayNetwork("gn01", {
+ *     gatewayId: pg01.id,
+ *     privateNetworkId: pn01.id,
+ *     dhcpId: dhcp01.id,
+ *     cleanupDhcp: true,
+ *     enableMasquerade: true,
+ * });
+ * const rsv01 = new scaleway.VpcPublicGatewayDhcpReservation("rsv01", {
+ *     gatewayNetworkId: gn01.id,
+ *     macAddress: pnic01.macAddress,
+ *     ipAddress: "192.168.0.7",
+ * });
+ * const pat01 = new scaleway.VpcPublicGatewayPatRule("pat01", {
+ *     gatewayId: pg01.id,
+ *     privateIp: rsv01.ipAddress,
+ *     privatePort: 22,
+ *     publicPort: 2202,
+ *     protocol: "tcp",
+ * });
+ * const main = scaleway.getVpcPublicGatewayPatRuleOutput({
+ *     patRuleId: pat01.id,
+ * });
+ * ```
  */
 export function getVpcPublicGatewayPatRuleOutput(args: GetVpcPublicGatewayPatRuleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPublicGatewayPatRuleResult> {
     return pulumi.output(args).apply((a: any) => getVpcPublicGatewayPatRule(a, opts))

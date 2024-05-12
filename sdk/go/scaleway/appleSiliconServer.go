@@ -23,9 +23,9 @@ type AppleSiliconServer struct {
 	Ip pulumi.StringOutput `pulumi:"ip"`
 	// Name of the server
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// The organizationId you want to attach the resource to
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The state of the server
 	State pulumi.StringOutput `pulumi:"state"`
@@ -80,9 +80,9 @@ type appleSiliconServerState struct {
 	Ip *string `pulumi:"ip"`
 	// Name of the server
 	Name *string `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// The organizationId you want to attach the resource to
 	OrganizationId *string `pulumi:"organizationId"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// The state of the server
 	State *string `pulumi:"state"`
@@ -105,9 +105,9 @@ type AppleSiliconServerState struct {
 	Ip pulumi.StringPtrInput
 	// Name of the server
 	Name pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// The organizationId you want to attach the resource to
 	OrganizationId pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// The state of the server
 	State pulumi.StringPtrInput
@@ -128,7 +128,7 @@ func (AppleSiliconServerState) ElementType() reflect.Type {
 type appleSiliconServerArgs struct {
 	// Name of the server
 	Name *string `pulumi:"name"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// Type of the server
 	Type string `pulumi:"type"`
@@ -140,7 +140,7 @@ type appleSiliconServerArgs struct {
 type AppleSiliconServerArgs struct {
 	// Name of the server
 	Name pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// Type of the server
 	Type pulumi.StringInput
@@ -255,12 +255,12 @@ func (o AppleSiliconServerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSiliconServer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The organization_id you want to attach the resource to
+// The organizationId you want to attach the resource to
 func (o AppleSiliconServerOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSiliconServer) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The project_id you want to attach the resource to
+// The projectId you want to attach the resource to
 func (o AppleSiliconServerOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSiliconServer) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

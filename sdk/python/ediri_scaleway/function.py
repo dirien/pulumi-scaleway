@@ -35,10 +35,9 @@ class FunctionArgs:
         """
         The set of arguments for constructing a Function resource.
         :param pulumi.Input[str] handler: Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
-        :param pulumi.Input[str] namespace_id: The namespace ID associated with this function
+        :param pulumi.Input[str] namespace_id: The namespace ID the function is associated with.
         :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
         :param pulumi.Input[str] runtime: Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
-        :param pulumi.Input[bool] deploy: Define if the function should be deployed, terraform will wait for function to be deployed
         :param pulumi.Input[str] description: The description of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function.
         :param pulumi.Input[str] http_option: HTTP traffic configuration
@@ -104,7 +103,7 @@ class FunctionArgs:
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> pulumi.Input[str]:
         """
-        The namespace ID associated with this function
+        The namespace ID the function is associated with.
         """
         return pulumi.get(self, "namespace_id")
 
@@ -139,9 +138,6 @@ class FunctionArgs:
     @property
     @pulumi.getter
     def deploy(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Define if the function should be deployed, terraform will wait for function to be deployed
-        """
         return pulumi.get(self, "deploy")
 
     @deploy.setter
@@ -334,7 +330,6 @@ class _FunctionState:
         """
         Input properties used for looking up and filtering Function resources.
         :param pulumi.Input[int] cpu_limit: The CPU limit in mCPU for your function. More infos on resources [here](https://developers.scaleway.com/en/products/functions/api/#functions)
-        :param pulumi.Input[bool] deploy: Define if the function should be deployed, terraform will wait for function to be deployed
         :param pulumi.Input[str] description: The description of the function.
         :param pulumi.Input[str] domain_name: The native domain name of the function
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function.
@@ -346,7 +341,7 @@ class _FunctionState:
         :param pulumi.Input[str] name: The unique name of the function.
                
                > **Important** Updates to `name` will recreate the function.
-        :param pulumi.Input[str] namespace_id: The namespace ID associated with this function
+        :param pulumi.Input[str] namespace_id: The namespace ID the function is associated with.
         :param pulumi.Input[str] organization_id: The organization ID the function is associated with.
         :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
@@ -415,9 +410,6 @@ class _FunctionState:
     @property
     @pulumi.getter
     def deploy(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Define if the function should be deployed, terraform will wait for function to be deployed
-        """
         return pulumi.get(self, "deploy")
 
     @deploy.setter
@@ -538,7 +530,7 @@ class _FunctionState:
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The namespace ID associated with this function
+        The namespace ID the function is associated with.
         """
         return pulumi.get(self, "namespace_id")
 
@@ -683,7 +675,7 @@ class Function(pulumi.CustomResource):
         Creates and manages Scaleway Functions.
         For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -701,15 +693,16 @@ class Function(pulumi.CustomResource):
 
         ## Import
 
-        Functions can be imported using the `{region}/{id}`, e.g. bash
+        Functions can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/function:Function main fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/function:Function main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] deploy: Define if the function should be deployed, terraform will wait for function to be deployed
         :param pulumi.Input[str] description: The description of the function.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function.
         :param pulumi.Input[str] handler: Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
@@ -720,7 +713,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] name: The unique name of the function.
                
                > **Important** Updates to `name` will recreate the function.
-        :param pulumi.Input[str] namespace_id: The namespace ID associated with this function
+        :param pulumi.Input[str] namespace_id: The namespace ID the function is associated with.
         :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
@@ -740,7 +733,7 @@ class Function(pulumi.CustomResource):
         Creates and manages Scaleway Functions.
         For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -758,10 +751,12 @@ class Function(pulumi.CustomResource):
 
         ## Import
 
-        Functions can be imported using the `{region}/{id}`, e.g. bash
+        Functions can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/function:Function main fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/function:Function main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -876,7 +871,6 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] cpu_limit: The CPU limit in mCPU for your function. More infos on resources [here](https://developers.scaleway.com/en/products/functions/api/#functions)
-        :param pulumi.Input[bool] deploy: Define if the function should be deployed, terraform will wait for function to be deployed
         :param pulumi.Input[str] description: The description of the function.
         :param pulumi.Input[str] domain_name: The native domain name of the function
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the function.
@@ -888,7 +882,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] name: The unique name of the function.
                
                > **Important** Updates to `name` will recreate the function.
-        :param pulumi.Input[str] namespace_id: The namespace ID associated with this function
+        :param pulumi.Input[str] namespace_id: The namespace ID the function is associated with.
         :param pulumi.Input[str] organization_id: The organization ID the function is associated with.
         :param pulumi.Input[str] privacy: Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
@@ -937,9 +931,6 @@ class Function(pulumi.CustomResource):
     @property
     @pulumi.getter
     def deploy(self) -> pulumi.Output[Optional[bool]]:
-        """
-        Define if the function should be deployed, terraform will wait for function to be deployed
-        """
         return pulumi.get(self, "deploy")
 
     @property
@@ -1020,7 +1011,7 @@ class Function(pulumi.CustomResource):
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> pulumi.Output[str]:
         """
-        The namespace ID associated with this function
+        The namespace ID the function is associated with.
         """
         return pulumi.get(self, "namespace_id")
 

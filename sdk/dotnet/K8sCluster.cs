@@ -13,7 +13,7 @@ namespace ediri.Scaleway
     /// <summary>
     /// Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
@@ -128,10 +128,12 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Kubernetes clusters can be imported using the `{region}/{id}`, e.g. bash
+    /// Kubernetes clusters can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/k8sCluster:K8sCluster mycluster fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/k8sCluster:K8sCluster mycluster fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/k8sCluster:K8sCluster")]
@@ -181,7 +183,7 @@ namespace ediri.Scaleway
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        /// Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
         /// &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
         /// If you prefer keeping it, you should instead set it as `false`.
         /// </summary>
@@ -390,7 +392,7 @@ namespace ediri.Scaleway
         public Input<string> Cni { get; set; } = null!;
 
         /// <summary>
-        /// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        /// Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
         /// &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
         /// If you prefer keeping it, you should instead set it as `false`.
         /// </summary>
@@ -544,7 +546,7 @@ namespace ediri.Scaleway
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        /// Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
         /// &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
         /// If you prefer keeping it, you should instead set it as `false`.
         /// </summary>

@@ -11,7 +11,7 @@ using Pulumi;
 namespace ediri.Scaleway.Inputs
 {
 
-    public sealed class WebHostingOptionArgs : global::Pulumi.ResourceArgs
+    public sealed class WebhostingOptionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The option ID.
@@ -25,9 +25,9 @@ namespace ediri.Scaleway.Inputs
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        public WebHostingOptionArgs()
+        public WebhostingOptionArgs()
         {
         }
-        public static new WebHostingOptionArgs Empty => new WebHostingOptionArgs();
+        public static new WebhostingOptionArgs Empty => new WebhostingOptionArgs();
     }
 }

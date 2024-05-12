@@ -11,7 +11,7 @@ using Pulumi;
 namespace ediri.Scaleway.Inputs
 {
 
-    public sealed class DocumentDBReadReplicaPrivateNetworkArgs : global::Pulumi.ResourceArgs
+    public sealed class DocumentdbReadReplicaPrivateNetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the endpoint of the read replica.
@@ -57,12 +57,15 @@ namespace ediri.Scaleway.Inputs
         [Input("serviceIp")]
         public Input<string>? ServiceIp { get; set; }
 
+        /// <summary>
+        /// Private network zone
+        /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
-        public DocumentDBReadReplicaPrivateNetworkArgs()
+        public DocumentdbReadReplicaPrivateNetworkArgs()
         {
         }
-        public static new DocumentDBReadReplicaPrivateNetworkArgs Empty => new DocumentDBReadReplicaPrivateNetworkArgs();
+        public static new DocumentdbReadReplicaPrivateNetworkArgs Empty => new DocumentdbReadReplicaPrivateNetworkArgs();
     }
 }

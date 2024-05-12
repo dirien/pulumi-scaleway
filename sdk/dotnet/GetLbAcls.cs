@@ -15,9 +15,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about multiple Load Balancer ACLs.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -40,8 +38,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetLbAclsResult> InvokeAsync(GetLbAclsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLbAclsResult>("scaleway:index/getLbAcls:getLbAcls", args ?? new GetLbAclsArgs(), options.WithDefaults());
@@ -49,9 +45,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about multiple Load Balancer ACLs.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -74,8 +68,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetLbAclsResult> Invoke(GetLbAclsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLbAclsResult>("scaleway:index/getLbAcls:getLbAcls", args ?? new GetLbAclsInvokeArgs(), options.WithDefaults());

@@ -51,18 +51,18 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ContainerToken{}
 	case "scaleway:index/containerTrigger:ContainerTrigger":
 		r = &ContainerTrigger{}
-	case "scaleway:index/documentDBDatabase:DocumentDBDatabase":
-		r = &DocumentDBDatabase{}
-	case "scaleway:index/documentDBInstance:DocumentDBInstance":
-		r = &DocumentDBInstance{}
-	case "scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint":
-		r = &DocumentDBPrivateNetworkEndpoint{}
-	case "scaleway:index/documentDBPrivilege:DocumentDBPrivilege":
-		r = &DocumentDBPrivilege{}
-	case "scaleway:index/documentDBReadReplica:DocumentDBReadReplica":
-		r = &DocumentDBReadReplica{}
-	case "scaleway:index/documentDBUser:DocumentDBUser":
-		r = &DocumentDBUser{}
+	case "scaleway:index/documentdbDatabase:DocumentdbDatabase":
+		r = &DocumentdbDatabase{}
+	case "scaleway:index/documentdbInstance:DocumentdbInstance":
+		r = &DocumentdbInstance{}
+	case "scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint":
+		r = &DocumentdbPrivateNetworkEndpoint{}
+	case "scaleway:index/documentdbPrivilege:DocumentdbPrivilege":
+		r = &DocumentdbPrivilege{}
+	case "scaleway:index/documentdbReadReplica:DocumentdbReadReplica":
+		r = &DocumentdbReadReplica{}
+	case "scaleway:index/documentdbUser:DocumentdbUser":
+		r = &DocumentdbUser{}
 	case "scaleway:index/domainRecord:DomainRecord":
 		r = &DomainRecord{}
 	case "scaleway:index/domainZone:DomainZone":
@@ -197,6 +197,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RedisCluster{}
 	case "scaleway:index/registryNamespace:RegistryNamespace":
 		r = &RegistryNamespace{}
+	case "scaleway:index/sdbSqlDatabase:SdbSqlDatabase":
+		r = &SdbSqlDatabase{}
 	case "scaleway:index/secret:Secret":
 		r = &Secret{}
 	case "scaleway:index/secretVersion:SecretVersion":
@@ -221,8 +223,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &VpcPublicGatewayIpReverseDns{}
 	case "scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule":
 		r = &VpcPublicGatewayPatRule{}
-	case "scaleway:index/webHosting:WebHosting":
-		r = &WebHosting{}
+	case "scaleway:index/webhosting:Webhosting":
+		r = &Webhosting{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -331,32 +333,32 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
-		"index/documentDBDatabase",
+		"index/documentdbDatabase",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
-		"index/documentDBInstance",
+		"index/documentdbInstance",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
-		"index/documentDBPrivateNetworkEndpoint",
+		"index/documentdbPrivateNetworkEndpoint",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
-		"index/documentDBPrivilege",
+		"index/documentdbPrivilege",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
-		"index/documentDBReadReplica",
+		"index/documentdbReadReplica",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
-		"index/documentDBUser",
+		"index/documentdbUser",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -696,6 +698,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/sdbSqlDatabase",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/secret",
 		&module{version},
 	)
@@ -756,7 +763,7 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
-		"index/webHosting",
+		"index/webhosting",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

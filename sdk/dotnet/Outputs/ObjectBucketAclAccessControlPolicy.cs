@@ -15,6 +15,9 @@ namespace ediri.Scaleway.Outputs
     public sealed class ObjectBucketAclAccessControlPolicy
     {
         public readonly ImmutableArray<Outputs.ObjectBucketAclAccessControlPolicyGrant> Grants;
+        /// <summary>
+        /// Configuration block of the bucket project owner's display organization ID.
+        /// </summary>
         public readonly Outputs.ObjectBucketAclAccessControlPolicyOwner Owner;
 
         [OutputConstructor]

@@ -12,7 +12,7 @@ namespace ediri.Scaleway.Outputs
 {
 
     [OutputType]
-    public sealed class WebHostingCpanelUrl
+    public sealed class WebhostingCpanelUrl
     {
         /// <summary>
         /// The URL of the Dashboard.
@@ -24,7 +24,7 @@ namespace ediri.Scaleway.Outputs
         public readonly string? Webmail;
 
         [OutputConstructor]
-        private WebHostingCpanelUrl(
+        private WebhostingCpanelUrl(
             string? dashboard,
 
             string? webmail)

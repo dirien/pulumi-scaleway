@@ -15,9 +15,7 @@ namespace ediri.Scaleway.Outputs
     public sealed class LbCertificateCustomCertificate
     {
         /// <summary>
-        /// Full PEM-formatted certificate chain.
-        /// 
-        /// &gt; **Important:** Updates to `custom_certificate` will recreate the load-balancer certificate.
+        /// The full PEM-formatted certificate chain
         /// </summary>
         public readonly string CertificateChain;
 

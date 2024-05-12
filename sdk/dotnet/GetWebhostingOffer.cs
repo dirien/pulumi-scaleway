@@ -10,14 +10,12 @@ using Pulumi;
 
 namespace ediri.Scaleway
 {
-    public static class GetWebHostOffer
+    public static class GetWebhostingOffer
     {
         /// <summary>
         /// Gets information about a webhosting offer.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -27,30 +25,26 @@ namespace ediri.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var byName = Scaleway.GetWebHostOffer.Invoke(new()
+        ///     var byName = Scaleway.GetWebhostingOffer.Invoke(new()
         ///     {
         ///         Name = "performance",
         ///     });
         /// 
-        ///     var byId = Scaleway.GetWebHostOffer.Invoke(new()
+        ///     var byId = Scaleway.GetWebhostingOffer.Invoke(new()
         ///     {
         ///         OfferId = "de2426b4-a9e9-11ec-b909-0242ac120002",
         ///     });
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
-        public static Task<GetWebHostOfferResult> InvokeAsync(GetWebHostOfferArgs? args = null, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetWebHostOfferResult>("scaleway:index/getWebHostOffer:getWebHostOffer", args ?? new GetWebHostOfferArgs(), options.WithDefaults());
+        public static Task<GetWebhostingOfferResult> InvokeAsync(GetWebhostingOfferArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetWebhostingOfferResult>("scaleway:index/getWebhostingOffer:getWebhostingOffer", args ?? new GetWebhostingOfferArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about a webhosting offer.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -60,27 +54,25 @@ namespace ediri.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var byName = Scaleway.GetWebHostOffer.Invoke(new()
+        ///     var byName = Scaleway.GetWebhostingOffer.Invoke(new()
         ///     {
         ///         Name = "performance",
         ///     });
         /// 
-        ///     var byId = Scaleway.GetWebHostOffer.Invoke(new()
+        ///     var byId = Scaleway.GetWebhostingOffer.Invoke(new()
         ///     {
         ///         OfferId = "de2426b4-a9e9-11ec-b909-0242ac120002",
         ///     });
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
-        public static Output<GetWebHostOfferResult> Invoke(GetWebHostOfferInvokeArgs? args = null, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetWebHostOfferResult>("scaleway:index/getWebHostOffer:getWebHostOffer", args ?? new GetWebHostOfferInvokeArgs(), options.WithDefaults());
+        public static Output<GetWebhostingOfferResult> Invoke(GetWebhostingOfferInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetWebhostingOfferResult>("scaleway:index/getWebhostingOffer:getWebhostingOffer", args ?? new GetWebhostingOfferInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetWebHostOfferArgs : global::Pulumi.InvokeArgs
+    public sealed class GetWebhostingOfferArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The offer name. Only one of `name` and `offer_id` should be specified.
@@ -100,13 +92,13 @@ namespace ediri.Scaleway
         [Input("region")]
         public string? Region { get; set; }
 
-        public GetWebHostOfferArgs()
+        public GetWebhostingOfferArgs()
         {
         }
-        public static new GetWebHostOfferArgs Empty => new GetWebHostOfferArgs();
+        public static new GetWebhostingOfferArgs Empty => new GetWebhostingOfferArgs();
     }
 
-    public sealed class GetWebHostOfferInvokeArgs : global::Pulumi.InvokeArgs
+    public sealed class GetWebhostingOfferInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The offer name. Only one of `name` and `offer_id` should be specified.
@@ -126,15 +118,15 @@ namespace ediri.Scaleway
         [Input("region")]
         public Input<string>? Region { get; set; }
 
-        public GetWebHostOfferInvokeArgs()
+        public GetWebhostingOfferInvokeArgs()
         {
         }
-        public static new GetWebHostOfferInvokeArgs Empty => new GetWebHostOfferInvokeArgs();
+        public static new GetWebhostingOfferInvokeArgs Empty => new GetWebhostingOfferInvokeArgs();
     }
 
 
     [OutputType]
-    public sealed class GetWebHostOfferResult
+    public sealed class GetWebhostingOfferResult
     {
         /// <summary>
         /// The unique identifier used for billing.
@@ -153,11 +145,11 @@ namespace ediri.Scaleway
         /// <summary>
         /// The offer product.
         /// </summary>
-        public readonly ImmutableArray<Outputs.GetWebHostOfferProductResult> Products;
+        public readonly ImmutableArray<Outputs.GetWebhostingOfferProductResult> Products;
         public readonly string Region;
 
         [OutputConstructor]
-        private GetWebHostOfferResult(
+        private GetWebhostingOfferResult(
             string billingOperationPath,
 
             string id,
@@ -168,7 +160,7 @@ namespace ediri.Scaleway
 
             string price,
 
-            ImmutableArray<Outputs.GetWebHostOfferProductResult> products,
+            ImmutableArray<Outputs.GetWebhostingOfferProductResult> products,
 
             string region)
         {

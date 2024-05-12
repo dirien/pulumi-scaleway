@@ -16,7 +16,7 @@ import (
 //
 // Please check our [FAQ - Instances](https://www.scaleway.com/en/docs/faq/instances).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
@@ -266,7 +266,7 @@ import (
 //
 // ### Root volume configuration
 //
-// #### Resized block volume with installed image
+// ### Resized block volume with installed image
 //
 // ```go
 // package main
@@ -297,7 +297,7 @@ import (
 //
 // ```
 //
-// #### From snapshot
+// ### From snapshot
 //
 // ```go
 // package main
@@ -318,7 +318,7 @@ import (
 //				return err
 //			}
 //			fromSnapshotInstanceVolume, err := scaleway.NewInstanceVolume(ctx, "fromSnapshotInstanceVolume", &scaleway.InstanceVolumeArgs{
-//				FromSnapshotId: *pulumi.String(snapshot.Id),
+//				FromSnapshotId: pulumi.String(snapshot.Id),
 //				Type:           pulumi.String("b_ssd"),
 //			})
 //			if err != nil {
@@ -355,12 +355,12 @@ import (
 //
 // ## Import
 //
-// Instance servers can be imported using the `{zone}/{id}`, e.g. bash
+// Instance servers can be imported using the `{zone}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
 type InstanceServer struct {
 	pulumi.CustomResourceState

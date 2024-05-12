@@ -13,6 +13,107 @@ import (
 
 // Gets information about a public gateway PAT rule. For further information please check the
 // API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-8faeea)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			sg01, err := scaleway.NewInstanceSecurityGroup(ctx, "sg01", &scaleway.InstanceSecurityGroupArgs{
+//				InboundDefaultPolicy:  pulumi.String("drop"),
+//				OutboundDefaultPolicy: pulumi.String("accept"),
+//				InboundRules: scaleway.InstanceSecurityGroupInboundRuleArray{
+//					&scaleway.InstanceSecurityGroupInboundRuleArgs{
+//						Action:   pulumi.String("accept"),
+//						Port:     pulumi.Int(22),
+//						Protocol: pulumi.String("TCP"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			srv01, err := scaleway.NewInstanceServer(ctx, "srv01", &scaleway.InstanceServerArgs{
+//				Type:            pulumi.String("PLAY2-NANO"),
+//				Image:           pulumi.String("ubuntu_jammy"),
+//				SecurityGroupId: sg01.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", nil)
+//			if err != nil {
+//				return err
+//			}
+//			pnic01, err := scaleway.NewInstancePrivateNic(ctx, "pnic01", &scaleway.InstancePrivateNicArgs{
+//				ServerId:         srv01.ID(),
+//				PrivateNetworkId: pn01.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			dhcp01, err := scaleway.NewVpcPublicGatewayDhcp(ctx, "dhcp01", &scaleway.VpcPublicGatewayDhcpArgs{
+//				Subnet: pulumi.String("192.168.0.0/24"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ip01, err := scaleway.NewVpcPublicGatewayIp(ctx, "ip01", nil)
+//			if err != nil {
+//				return err
+//			}
+//			pg01, err := scaleway.NewVpcPublicGateway(ctx, "pg01", &scaleway.VpcPublicGatewayArgs{
+//				Type: pulumi.String("VPC-GW-S"),
+//				IpId: ip01.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			gn01, err := scaleway.NewVpcGatewayNetwork(ctx, "gn01", &scaleway.VpcGatewayNetworkArgs{
+//				GatewayId:        pg01.ID(),
+//				PrivateNetworkId: pn01.ID(),
+//				DhcpId:           dhcp01.ID(),
+//				CleanupDhcp:      pulumi.Bool(true),
+//				EnableMasquerade: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			rsv01, err := scaleway.NewVpcPublicGatewayDhcpReservation(ctx, "rsv01", &scaleway.VpcPublicGatewayDhcpReservationArgs{
+//				GatewayNetworkId: gn01.ID(),
+//				MacAddress:       pnic01.MacAddress,
+//				IpAddress:        pulumi.String("192.168.0.7"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			pat01, err := scaleway.NewVpcPublicGatewayPatRule(ctx, "pat01", &scaleway.VpcPublicGatewayPatRuleArgs{
+//				GatewayId:   pg01.ID(),
+//				PrivateIp:   rsv01.IpAddress,
+//				PrivatePort: pulumi.Int(22),
+//				PublicPort:  pulumi.Int(2202),
+//				Protocol:    pulumi.String("tcp"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = scaleway.LookupVpcPublicGatewayPatRuleOutput(ctx, scaleway.GetVpcPublicGatewayPatRuleOutputArgs{
+//				PatRuleId: pat01.ID(),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupVpcPublicGatewayPatRule(ctx *pulumi.Context, args *LookupVpcPublicGatewayPatRuleArgs, opts ...pulumi.InvokeOption) (*LookupVpcPublicGatewayPatRuleResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPublicGatewayPatRuleResult

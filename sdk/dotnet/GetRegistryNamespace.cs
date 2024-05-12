@@ -15,9 +15,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about a registry namespace.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -34,8 +32,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetRegistryNamespaceResult> InvokeAsync(GetRegistryNamespaceArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRegistryNamespaceResult>("scaleway:index/getRegistryNamespace:getRegistryNamespace", args ?? new GetRegistryNamespaceArgs(), options.WithDefaults());
@@ -43,9 +39,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about a registry namespace.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -62,8 +56,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetRegistryNamespaceResult> Invoke(GetRegistryNamespaceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRegistryNamespaceResult>("scaleway:index/getRegistryNamespace:getRegistryNamespace", args ?? new GetRegistryNamespaceInvokeArgs(), options.WithDefaults());
@@ -85,6 +77,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("namespaceId")]
         public string? NamespaceId { get; set; }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the namespace is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
 
         /// <summary>
         /// `region`) The region in which the namespace exists.
@@ -113,6 +111,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("namespaceId")]
         public Input<string>? NamespaceId { get; set; }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the namespace is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// `region`) The region in which the namespace exists.
@@ -149,7 +153,7 @@ namespace ediri.Scaleway
         /// The organization ID the namespace is associated with.
         /// </summary>
         public readonly string OrganizationId;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly string? Region;
 
         [OutputConstructor]
@@ -168,7 +172,7 @@ namespace ediri.Scaleway
 
             string organizationId,
 
-            string projectId,
+            string? projectId,
 
             string? region)
         {

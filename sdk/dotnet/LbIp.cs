@@ -14,7 +14,7 @@ namespace ediri.Scaleway
     /// Creates and manages Scaleway Load-Balancers IPs.
     /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
@@ -36,10 +36,12 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// IPs can be imported using the `{zone}/{id}`, e.g. bash
+    /// IPs can be imported using the `{zone}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/lbIp:LbIp ip01 fr-par-1/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/lbIp:LbIp ip01 fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/lbIp:LbIp")]

@@ -46,8 +46,8 @@ class ObjectBucketArgs:
         :param pulumi.Input['ObjectBucketVersioningArgs'] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
         if acl is not None:
-            warnings.warn("""ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""", DeprecationWarning)
-            pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""")
+            warnings.warn("""ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""", DeprecationWarning)
+            pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""")
         if acl is not None:
             pulumi.set(__self__, "acl", acl)
         if cors_rules is not None:
@@ -75,8 +75,8 @@ class ObjectBucketArgs:
         """
         (Deprecated) The canned ACL you want to apply to the bucket.
         """
-        warnings.warn("""ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""", DeprecationWarning)
-        pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""")
+        warnings.warn("""ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""", DeprecationWarning)
+        pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""")
 
         return pulumi.get(self, "acl")
 
@@ -236,8 +236,8 @@ class _ObjectBucketState:
         :param pulumi.Input['ObjectBucketVersioningArgs'] versioning: A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
         """
         if acl is not None:
-            warnings.warn("""ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""", DeprecationWarning)
-            pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""")
+            warnings.warn("""ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""", DeprecationWarning)
+            pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""")
         if acl is not None:
             pulumi.set(__self__, "acl", acl)
         if api_endpoint is not None:
@@ -269,8 +269,8 @@ class _ObjectBucketState:
         """
         (Deprecated) The canned ACL you want to apply to the bucket.
         """
-        warnings.warn("""ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""", DeprecationWarning)
-        pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""")
+        warnings.warn("""ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""", DeprecationWarning)
+        pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""")
 
         return pulumi.get(self, "acl")
 
@@ -447,6 +447,7 @@ class ObjectBucket(pulumi.CustomResource):
             "key": "value",
         })
         ```
+
         ### Creating the bucket in a specific project
 
         ```python
@@ -455,6 +456,7 @@ class ObjectBucket(pulumi.CustomResource):
 
         some_bucket = scaleway.ObjectBucket("someBucket", project_id="11111111-1111-1111-1111-111111111111")
         ```
+
         ### Using object lifecycle
 
         ```python
@@ -516,16 +518,20 @@ class ObjectBucket(pulumi.CustomResource):
 
         ## Import
 
-        Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
+        Buckets can be imported using the `{region}/{bucketName}` identifier, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
+        $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
         ```
 
-         If you are importing a bucket from a specific project (that is not your default project), you can use the following syntaxbash
+        If you are importing a bucket from a specific project (that is not your default project), you can use the following syntax:
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -567,6 +573,7 @@ class ObjectBucket(pulumi.CustomResource):
             "key": "value",
         })
         ```
+
         ### Creating the bucket in a specific project
 
         ```python
@@ -575,6 +582,7 @@ class ObjectBucket(pulumi.CustomResource):
 
         some_bucket = scaleway.ObjectBucket("someBucket", project_id="11111111-1111-1111-1111-111111111111")
         ```
+
         ### Using object lifecycle
 
         ```python
@@ -636,16 +644,20 @@ class ObjectBucket(pulumi.CustomResource):
 
         ## Import
 
-        Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
+        Buckets can be imported using the `{region}/{bucketName}` identifier, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
+        $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
         ```
 
-         If you are importing a bucket from a specific project (that is not your default project), you can use the following syntaxbash
+        If you are importing a bucket from a specific project (that is not your default project), you can use the following syntax:
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -766,8 +778,8 @@ class ObjectBucket(pulumi.CustomResource):
         """
         (Deprecated) The canned ACL you want to apply to the bucket.
         """
-        warnings.warn("""ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""", DeprecationWarning)
-        pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.""")
+        warnings.warn("""ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""", DeprecationWarning)
+        pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""")
 
         return pulumi.get(self, "acl")
 

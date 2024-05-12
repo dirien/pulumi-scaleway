@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway Functions.
  * For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
@@ -27,10 +27,12 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Functions can be imported using the `{region}/{id}`, e.g. bash
+ * Functions can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/function:Function main fr-par/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/function:Function main fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class Function extends pulumi.CustomResource {
@@ -65,9 +67,6 @@ export class Function extends pulumi.CustomResource {
      * The CPU limit in mCPU for your function. More infos on resources [here](https://developers.scaleway.com/en/products/functions/api/#functions)
      */
     public /*out*/ readonly cpuLimit!: pulumi.Output<number>;
-    /**
-     * Define if the function should be deployed, terraform will wait for function to be deployed
-     */
     public readonly deploy!: pulumi.Output<boolean | undefined>;
     /**
      * The description of the function.
@@ -108,7 +107,7 @@ export class Function extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The namespace ID associated with this function
+     * The namespace ID the function is associated with.
      */
     public readonly namespaceId!: pulumi.Output<string>;
     /**
@@ -233,9 +232,6 @@ export interface FunctionState {
      * The CPU limit in mCPU for your function. More infos on resources [here](https://developers.scaleway.com/en/products/functions/api/#functions)
      */
     cpuLimit?: pulumi.Input<number>;
-    /**
-     * Define if the function should be deployed, terraform will wait for function to be deployed
-     */
     deploy?: pulumi.Input<boolean>;
     /**
      * The description of the function.
@@ -276,7 +272,7 @@ export interface FunctionState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The namespace ID associated with this function
+     * The namespace ID the function is associated with.
      */
     namespaceId?: pulumi.Input<string>;
     /**
@@ -321,9 +317,6 @@ export interface FunctionState {
  * The set of arguments for constructing a Function resource.
  */
 export interface FunctionArgs {
-    /**
-     * Define if the function should be deployed, terraform will wait for function to be deployed
-     */
     deploy?: pulumi.Input<boolean>;
     /**
      * The description of the function.
@@ -360,7 +353,7 @@ export interface FunctionArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The namespace ID associated with this function
+     * The namespace ID the function is associated with.
      */
     namespaceId: pulumi.Input<string>;
     /**

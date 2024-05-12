@@ -11,7 +11,7 @@ using Pulumi;
 namespace ediri.Scaleway.Inputs
 {
 
-    public sealed class DocumentDBReadReplicaDirectAccessGetArgs : global::Pulumi.ResourceArgs
+    public sealed class DocumentdbReadReplicaDirectAccessGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the endpoint of the read replica.
@@ -43,9 +43,9 @@ namespace ediri.Scaleway.Inputs
         [Input("port")]
         public Input<int>? Port { get; set; }
 
-        public DocumentDBReadReplicaDirectAccessGetArgs()
+        public DocumentdbReadReplicaDirectAccessGetArgs()
         {
         }
-        public static new DocumentDBReadReplicaDirectAccessGetArgs Empty => new DocumentDBReadReplicaDirectAccessGetArgs();
+        public static new DocumentdbReadReplicaDirectAccessGetArgs Empty => new DocumentdbReadReplicaDirectAccessGetArgs();
     }
 }

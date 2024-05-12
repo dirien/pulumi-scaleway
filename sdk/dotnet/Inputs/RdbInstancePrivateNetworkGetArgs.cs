@@ -14,7 +14,7 @@ namespace ediri.Scaleway.Inputs
     public sealed class RdbInstancePrivateNetworkGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether the endpoint should be configured with IPAM. Defaults to `false` if `ip_net` is defined, `true` otherwise.
+        /// Whether or not the private network endpoint should be configured with IPAM
         /// </summary>
         [Input("enableIpam")]
         public Input<bool>? EnableIpam { get; set; }
@@ -37,6 +37,9 @@ namespace ediri.Scaleway.Inputs
         [Input("ip")]
         public Input<string>? Ip { get; set; }
 
+        /// <summary>
+        /// The IP with the given mask within the private subnet
+        /// </summary>
         [Input("ipNet")]
         public Input<string>? IpNet { get; set; }
 
@@ -47,7 +50,7 @@ namespace ediri.Scaleway.Inputs
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The ID of the private network.
+        /// The private network ID
         /// </summary>
         [Input("pnId", required: true)]
         public Input<string> PnId { get; set; } = null!;
@@ -58,6 +61,9 @@ namespace ediri.Scaleway.Inputs
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// The zone you want to attach the resource to
+        /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 

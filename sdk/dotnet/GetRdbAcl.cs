@@ -15,9 +15,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about the RDB instance network Access Control List.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -34,8 +32,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetRdbAclResult> InvokeAsync(GetRdbAclArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRdbAclResult>("scaleway:index/getRdbAcl:getRdbAcl", args ?? new GetRdbAclArgs(), options.WithDefaults());
@@ -43,9 +39,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about the RDB instance network Access Control List.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -62,8 +56,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetRdbAclResult> Invoke(GetRdbAclInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRdbAclResult>("scaleway:index/getRdbAcl:getRdbAcl", args ?? new GetRdbAclInvokeArgs(), options.WithDefaults());

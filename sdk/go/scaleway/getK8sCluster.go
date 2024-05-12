@@ -54,6 +54,8 @@ type LookupK8sClusterArgs struct {
 	ClusterId *string `pulumi:"clusterId"`
 	// The cluster name. Only one of `name` and `clusterId` should be specified.
 	Name *string `pulumi:"name"`
+	// The ID of the project the cluster is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the cluster exists.
 	Region *string `pulumi:"region"`
 }
@@ -86,9 +88,8 @@ type LookupK8sClusterResult struct {
 	// The ID of the organization the cluster is associated with.
 	OrganizationId string `pulumi:"organizationId"`
 	// The ID of the private network of the cluster.
-	PrivateNetworkId string `pulumi:"privateNetworkId"`
-	// The ID of the project the cluster is associated with.
-	ProjectId string `pulumi:"projectId"`
+	PrivateNetworkId string  `pulumi:"privateNetworkId"`
+	ProjectId        *string `pulumi:"projectId"`
 	// The region in which the cluster is.
 	Region *string `pulumi:"region"`
 	// The status of the Kubernetes cluster.
@@ -126,6 +127,8 @@ type LookupK8sClusterOutputArgs struct {
 	ClusterId pulumi.StringPtrInput `pulumi:"clusterId"`
 	// The cluster name. Only one of `name` and `clusterId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the project the cluster is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region in which the cluster exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -224,9 +227,8 @@ func (o LookupK8sClusterResultOutput) PrivateNetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupK8sClusterResult) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
-// The ID of the project the cluster is associated with.
-func (o LookupK8sClusterResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupK8sClusterResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupK8sClusterResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupK8sClusterResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 // The region in which the cluster is.

@@ -10,7 +10,7 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway Database Instances.
  * For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Example Basic
  *
@@ -67,6 +67,24 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Examples of endpoints configuration
+ *
+ * RDB Instances can have a maximum of 1 public endpoint and 1 private endpoint. It can have both, or none.
+ *
+ * ### Default: 1 public endpoint
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@ediri/scaleway";
+ *
+ * const main = new scaleway.RdbInstance("main", {
+ *     engine: "PostgreSQL-11",
+ *     nodeType: "db-dev-s",
+ * });
+ * ```
+ *
+ * > If nothing is defined, your instance will have a default public load-balancer endpoint
+ *
  * ## Limitations
  *
  * The Managed Database product is only compliant with the private network in the default availability zone (AZ).
@@ -75,10 +93,12 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Database Instance can be imported using the `{region}/{id}`, e.g. bash
+ * Database Instance can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/rdbInstance:RdbInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/rdbInstance:RdbInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class RdbInstance extends pulumi.CustomResource {
@@ -110,15 +130,15 @@ export class RdbInstance extends pulumi.CustomResource {
     }
 
     /**
-     * Boolean to store logical backups in the same region as the database instance.
+     * Boolean to store logical backups in the same region as the database instance
      */
     public readonly backupSameRegion!: pulumi.Output<boolean>;
     /**
-     * Backup schedule frequency in hours.
+     * Backup schedule frequency in hours
      */
     public readonly backupScheduleFrequency!: pulumi.Output<number>;
     /**
-     * Backup schedule retention in days.
+     * Backup schedule retention in days
      */
     public readonly backupScheduleRetention!: pulumi.Output<number>;
     /**
@@ -126,13 +146,13 @@ export class RdbInstance extends pulumi.CustomResource {
      */
     public /*out*/ readonly certificate!: pulumi.Output<string>;
     /**
-     * Disable automated backup for the database instance.
+     * Disable automated backup for the database instance
      */
     public readonly disableBackup!: pulumi.Output<boolean | undefined>;
     /**
      * (Deprecated) The IP of the Database Instance.
      *
-     * @deprecated Please use the private_network or the load_balancer attribute
+     * @deprecated Please use the privateNetwork or the loadBalancer attribute
      */
     public /*out*/ readonly endpointIp!: pulumi.Output<string>;
     /**
@@ -147,10 +167,6 @@ export class RdbInstance extends pulumi.CustomResource {
     public readonly engine!: pulumi.Output<string>;
     /**
      * Map of engine settings to be set at database initialisation.
-     *
-     * > **Important:** Updates to `initSettings` will recreate the Database Instance.
-     *
-     * Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
      */
     public readonly initSettings!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -160,8 +176,7 @@ export class RdbInstance extends pulumi.CustomResource {
      */
     public readonly isHaCluster!: pulumi.Output<boolean | undefined>;
     /**
-     * List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
-     * This block must be defined if you want a public endpoint in addition to your private endpoint.
+     * List of load balancer endpoints of the database instance.
      */
     public readonly loadBalancers!: pulumi.Output<outputs.RdbInstanceLoadBalancer[]>;
     /**
@@ -205,7 +220,7 @@ export class RdbInstance extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * Map of engine settings to be set. Using this option will override default config.
+     * Map of engine settings to be set on a running instance.
      */
     public readonly settings!: pulumi.Output<{[key: string]: string}>;
     /**
@@ -311,15 +326,15 @@ export class RdbInstance extends pulumi.CustomResource {
  */
 export interface RdbInstanceState {
     /**
-     * Boolean to store logical backups in the same region as the database instance.
+     * Boolean to store logical backups in the same region as the database instance
      */
     backupSameRegion?: pulumi.Input<boolean>;
     /**
-     * Backup schedule frequency in hours.
+     * Backup schedule frequency in hours
      */
     backupScheduleFrequency?: pulumi.Input<number>;
     /**
-     * Backup schedule retention in days.
+     * Backup schedule retention in days
      */
     backupScheduleRetention?: pulumi.Input<number>;
     /**
@@ -327,13 +342,13 @@ export interface RdbInstanceState {
      */
     certificate?: pulumi.Input<string>;
     /**
-     * Disable automated backup for the database instance.
+     * Disable automated backup for the database instance
      */
     disableBackup?: pulumi.Input<boolean>;
     /**
      * (Deprecated) The IP of the Database Instance.
      *
-     * @deprecated Please use the private_network or the load_balancer attribute
+     * @deprecated Please use the privateNetwork or the loadBalancer attribute
      */
     endpointIp?: pulumi.Input<string>;
     /**
@@ -348,10 +363,6 @@ export interface RdbInstanceState {
     engine?: pulumi.Input<string>;
     /**
      * Map of engine settings to be set at database initialisation.
-     *
-     * > **Important:** Updates to `initSettings` will recreate the Database Instance.
-     *
-     * Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
      */
     initSettings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -361,8 +372,7 @@ export interface RdbInstanceState {
      */
     isHaCluster?: pulumi.Input<boolean>;
     /**
-     * List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
-     * This block must be defined if you want a public endpoint in addition to your private endpoint.
+     * List of load balancer endpoints of the database instance.
      */
     loadBalancers?: pulumi.Input<pulumi.Input<inputs.RdbInstanceLoadBalancer>[]>;
     /**
@@ -406,7 +416,7 @@ export interface RdbInstanceState {
      */
     region?: pulumi.Input<string>;
     /**
-     * Map of engine settings to be set. Using this option will override default config.
+     * Map of engine settings to be set on a running instance.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -436,19 +446,19 @@ export interface RdbInstanceState {
  */
 export interface RdbInstanceArgs {
     /**
-     * Boolean to store logical backups in the same region as the database instance.
+     * Boolean to store logical backups in the same region as the database instance
      */
     backupSameRegion?: pulumi.Input<boolean>;
     /**
-     * Backup schedule frequency in hours.
+     * Backup schedule frequency in hours
      */
     backupScheduleFrequency?: pulumi.Input<number>;
     /**
-     * Backup schedule retention in days.
+     * Backup schedule retention in days
      */
     backupScheduleRetention?: pulumi.Input<number>;
     /**
-     * Disable automated backup for the database instance.
+     * Disable automated backup for the database instance
      */
     disableBackup?: pulumi.Input<boolean>;
     /**
@@ -459,10 +469,6 @@ export interface RdbInstanceArgs {
     engine: pulumi.Input<string>;
     /**
      * Map of engine settings to be set at database initialisation.
-     *
-     * > **Important:** Updates to `initSettings` will recreate the Database Instance.
-     *
-     * Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
      */
     initSettings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -472,8 +478,7 @@ export interface RdbInstanceArgs {
      */
     isHaCluster?: pulumi.Input<boolean>;
     /**
-     * List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
-     * This block must be defined if you want a public endpoint in addition to your private endpoint.
+     * List of load balancer endpoints of the database instance.
      */
     loadBalancers?: pulumi.Input<pulumi.Input<inputs.RdbInstanceLoadBalancer>[]>;
     /**
@@ -509,7 +514,7 @@ export interface RdbInstanceArgs {
      */
     region?: pulumi.Input<string>;
     /**
-     * Map of engine settings to be set. Using this option will override default config.
+     * Map of engine settings to be set on a running instance.
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**

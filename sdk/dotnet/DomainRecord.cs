@@ -14,7 +14,7 @@ namespace ediri.Scaleway
     /// Creates and manages Scaleway Domain record.\
     /// For more information, see [the documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
@@ -243,10 +243,12 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Record can be imported using the `{dns_zone}/{id}`, e.g. bash
+    /// Record can be imported using the `{dns_zone}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/domainRecord:DomainRecord www subdomain.domain.tld/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/domainRecord:DomainRecord www subdomain.domain.tld/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/domainRecord:DomainRecord")]
@@ -265,13 +267,19 @@ namespace ediri.Scaleway
         public Output<string> DnsZone { get; private set; } = null!;
 
         /// <summary>
-        /// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
+        /// The FQDN of the record.
+        /// </summary>
+        [Output("fqdn")]
+        public Output<string> Fqdn { get; private set; } = null!;
+
+        /// <summary>
+        /// Return record based on client localisation
         /// </summary>
         [Output("geoIp")]
         public Output<Outputs.DomainRecordGeoIp?> GeoIp { get; private set; } = null!;
 
         /// <summary>
-        /// The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
+        /// Return record based on client localisation
         /// </summary>
         [Output("httpService")]
         public Output<Outputs.DomainRecordHttpService?> HttpService { get; private set; } = null!;
@@ -319,13 +327,13 @@ namespace ediri.Scaleway
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
+        /// Return record based on client subnet
         /// </summary>
         [Output("views")]
         public Output<ImmutableArray<Outputs.DomainRecordView>> Views { get; private set; } = null!;
 
         /// <summary>
-        /// You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
+        /// Return record based on weight
         /// </summary>
         [Output("weighteds")]
         public Output<ImmutableArray<Outputs.DomainRecordWeighted>> Weighteds { get; private set; } = null!;
@@ -390,13 +398,13 @@ namespace ediri.Scaleway
         public Input<string> DnsZone { get; set; } = null!;
 
         /// <summary>
-        /// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
+        /// Return record based on client localisation
         /// </summary>
         [Input("geoIp")]
         public Input<Inputs.DomainRecordGeoIpArgs>? GeoIp { get; set; }
 
         /// <summary>
-        /// The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
+        /// Return record based on client localisation
         /// </summary>
         [Input("httpService")]
         public Input<Inputs.DomainRecordHttpServiceArgs>? HttpService { get; set; }
@@ -441,7 +449,7 @@ namespace ediri.Scaleway
         private InputList<Inputs.DomainRecordViewArgs>? _views;
 
         /// <summary>
-        /// The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
+        /// Return record based on client subnet
         /// </summary>
         public InputList<Inputs.DomainRecordViewArgs> Views
         {
@@ -453,7 +461,7 @@ namespace ediri.Scaleway
         private InputList<Inputs.DomainRecordWeightedArgs>? _weighteds;
 
         /// <summary>
-        /// You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
+        /// Return record based on weight
         /// </summary>
         public InputList<Inputs.DomainRecordWeightedArgs> Weighteds
         {
@@ -482,13 +490,19 @@ namespace ediri.Scaleway
         public Input<string>? DnsZone { get; set; }
 
         /// <summary>
-        /// The Geo IP feature provides DNS resolution, based on the user’s geographical location. You can define a default IP that resolves if no Geo IP rule matches, and specify IPs for each geographical zone. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#geo-ip-records)
+        /// The FQDN of the record.
+        /// </summary>
+        [Input("fqdn")]
+        public Input<string>? Fqdn { get; set; }
+
+        /// <summary>
+        /// Return record based on client localisation
         /// </summary>
         [Input("geoIp")]
         public Input<Inputs.DomainRecordGeoIpGetArgs>? GeoIp { get; set; }
 
         /// <summary>
-        /// The DNS service checks the provided URL on the configured IPs and resolves the request to one of the IPs by excluding the ones not responding to the given string to check. [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#healthcheck-records)
+        /// Return record based on client localisation
         /// </summary>
         [Input("httpService")]
         public Input<Inputs.DomainRecordHttpServiceGetArgs>? HttpService { get; set; }
@@ -539,7 +553,7 @@ namespace ediri.Scaleway
         private InputList<Inputs.DomainRecordViewGetArgs>? _views;
 
         /// <summary>
-        /// The answer to a DNS request is based on the client’s (resolver) subnet. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#views-records)
+        /// Return record based on client subnet
         /// </summary>
         public InputList<Inputs.DomainRecordViewGetArgs> Views
         {
@@ -551,7 +565,7 @@ namespace ediri.Scaleway
         private InputList<Inputs.DomainRecordWeightedGetArgs>? _weighteds;
 
         /// <summary>
-        /// You provide a list of IPs with their corresponding weights. These weights are used to proportionally direct requests to each IP. Depending on the weight of a record more or fewer requests are answered with its related IP compared to the others in the list. *(Can be more than 1)* [Documentation and usage example](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/#weight-records)
+        /// Return record based on weight
         /// </summary>
         public InputList<Inputs.DomainRecordWeightedGetArgs> Weighteds
         {

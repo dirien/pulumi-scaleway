@@ -42,7 +42,8 @@ import (
 //	}
 //
 // ```
-// ## Example with Grants
+//
+// ### With Grants
 //
 // ```go
 // package main
@@ -135,15 +136,23 @@ import (
 //
 // ## Import
 //
-// Buckets can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g. bash
+// Bucket ACLs can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket
-//
+// $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket/private
 // ```
 //
-//	/private
+// ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+//
+// If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
+//
+// bash
+//
+// ```sh
+// $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket/private@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
+// ```
 type ObjectBucketAcl struct {
 	pulumi.CustomResourceState
 
@@ -155,7 +164,7 @@ type ObjectBucketAcl struct {
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner pulumi.StringPtrOutput `pulumi:"expectedBucketOwner"`
-	// `projectId`) The ID of the project the bucket is associated with.
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -202,7 +211,7 @@ type objectBucketAclState struct {
 	Bucket *string `pulumi:"bucket"`
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner *string `pulumi:"expectedBucketOwner"`
-	// `projectId`) The ID of the project the bucket is associated with.
+	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region *string `pulumi:"region"`
@@ -217,7 +226,7 @@ type ObjectBucketAclState struct {
 	Bucket pulumi.StringPtrInput
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner pulumi.StringPtrInput
-	// `projectId`) The ID of the project the bucket is associated with.
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringPtrInput
@@ -236,7 +245,7 @@ type objectBucketAclArgs struct {
 	Bucket string `pulumi:"bucket"`
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner *string `pulumi:"expectedBucketOwner"`
-	// `projectId`) The ID of the project the bucket is associated with.
+	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region *string `pulumi:"region"`
@@ -252,7 +261,7 @@ type ObjectBucketAclArgs struct {
 	Bucket pulumi.StringInput
 	// The project ID of the expected bucket owner.
 	ExpectedBucketOwner pulumi.StringPtrInput
-	// `projectId`) The ID of the project the bucket is associated with.
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
 	Region pulumi.StringPtrInput
@@ -365,7 +374,7 @@ func (o ObjectBucketAclOutput) ExpectedBucketOwner() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketAcl) pulumi.StringPtrOutput { return v.ExpectedBucketOwner }).(pulumi.StringPtrOutput)
 }
 
-// `projectId`) The ID of the project the bucket is associated with.
+// The projectId you want to attach the resource to
 func (o ObjectBucketAclOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ObjectBucketAcl) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@ediri/scaleway";
  *
- * const main = new scaleway.DocumentDBPrivilege("main", {
+ * const main = new scaleway.DocumentdbPrivilege("main", {
  *     databaseName: "my-db-name",
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  *     permission: "all",
@@ -24,15 +24,17 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g. bash
+ * The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/documentDBPrivilege:DocumentDBPrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
+ * $ pulumi import scaleway:index/documentdbPrivilege:DocumentdbPrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
  * ```
  */
-export class DocumentDBPrivilege extends pulumi.CustomResource {
+export class DocumentdbPrivilege extends pulumi.CustomResource {
     /**
-     * Get an existing DocumentDBPrivilege resource's state with the given name, ID, and optional extra
+     * Get an existing DocumentdbPrivilege resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -40,22 +42,22 @@ export class DocumentDBPrivilege extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DocumentDBPrivilegeState, opts?: pulumi.CustomResourceOptions): DocumentDBPrivilege {
-        return new DocumentDBPrivilege(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DocumentdbPrivilegeState, opts?: pulumi.CustomResourceOptions): DocumentdbPrivilege {
+        return new DocumentdbPrivilege(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/documentDBPrivilege:DocumentDBPrivilege';
+    public static readonly __pulumiType = 'scaleway:index/documentdbPrivilege:DocumentdbPrivilege';
 
     /**
-     * Returns true if the given object is an instance of DocumentDBPrivilege.  This is designed to work even
+     * Returns true if the given object is an instance of DocumentdbPrivilege.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is DocumentDBPrivilege {
+    public static isInstance(obj: any): obj is DocumentdbPrivilege {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === DocumentDBPrivilege.__pulumiType;
+        return obj['__pulumiType'] === DocumentdbPrivilege.__pulumiType;
     }
 
     /**
@@ -80,25 +82,25 @@ export class DocumentDBPrivilege extends pulumi.CustomResource {
     public readonly userName!: pulumi.Output<string>;
 
     /**
-     * Create a DocumentDBPrivilege resource with the given unique name, arguments, and options.
+     * Create a DocumentdbPrivilege resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: DocumentDBPrivilegeArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: DocumentDBPrivilegeArgs | DocumentDBPrivilegeState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: DocumentdbPrivilegeArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: DocumentdbPrivilegeArgs | DocumentdbPrivilegeState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as DocumentDBPrivilegeState | undefined;
+            const state = argsOrState as DocumentdbPrivilegeState | undefined;
             resourceInputs["databaseName"] = state ? state.databaseName : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["permission"] = state ? state.permission : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["userName"] = state ? state.userName : undefined;
         } else {
-            const args = argsOrState as DocumentDBPrivilegeArgs | undefined;
+            const args = argsOrState as DocumentdbPrivilegeArgs | undefined;
             if ((!args || args.databaseName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'databaseName'");
             }
@@ -118,14 +120,14 @@ export class DocumentDBPrivilege extends pulumi.CustomResource {
             resourceInputs["userName"] = args ? args.userName : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(DocumentDBPrivilege.__pulumiType, name, resourceInputs, opts);
+        super(DocumentdbPrivilege.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering DocumentDBPrivilege resources.
+ * Input properties used for looking up and filtering DocumentdbPrivilege resources.
  */
-export interface DocumentDBPrivilegeState {
+export interface DocumentdbPrivilegeState {
     /**
      * Name of the database (e.g. `my-db-name`).
      */
@@ -149,9 +151,9 @@ export interface DocumentDBPrivilegeState {
 }
 
 /**
- * The set of arguments for constructing a DocumentDBPrivilege resource.
+ * The set of arguments for constructing a DocumentdbPrivilege resource.
  */
-export interface DocumentDBPrivilegeArgs {
+export interface DocumentdbPrivilegeArgs {
     /**
      * Name of the database (e.g. `my-db-name`).
      */

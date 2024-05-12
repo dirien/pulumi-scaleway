@@ -14,7 +14,7 @@ import (
 // Creates and manages Scaleway Load-Balancers IPs.
 // For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
@@ -44,12 +44,12 @@ import (
 //
 // ## Import
 //
-// IPs can be imported using the `{zone}/{id}`, e.g. bash
+// IPs can be imported using the `{zone}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/lbIp:LbIp ip01 fr-par-1/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/lbIp:LbIp ip01 fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
 type LbIp struct {
 	pulumi.CustomResourceState
@@ -58,7 +58,7 @@ type LbIp struct {
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
 	// The associated load-balance ID if any
 	LbId pulumi.StringOutput `pulumi:"lbId"`
-	// The organization_id you want to attach the resource to
+	// The organizationId you want to attach the resource to
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// `projectId`) The ID of the project the IP is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -104,7 +104,7 @@ type lbIpState struct {
 	IpAddress *string `pulumi:"ipAddress"`
 	// The associated load-balance ID if any
 	LbId *string `pulumi:"lbId"`
-	// The organization_id you want to attach the resource to
+	// The organizationId you want to attach the resource to
 	OrganizationId *string `pulumi:"organizationId"`
 	// `projectId`) The ID of the project the IP is associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -121,7 +121,7 @@ type LbIpState struct {
 	IpAddress pulumi.StringPtrInput
 	// The associated load-balance ID if any
 	LbId pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// The organizationId you want to attach the resource to
 	OrganizationId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the IP is associated with.
 	ProjectId pulumi.StringPtrInput
@@ -253,7 +253,7 @@ func (o LbIpOutput) LbId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbIp) pulumi.StringOutput { return v.LbId }).(pulumi.StringOutput)
 }
 
-// The organization_id you want to attach the resource to
+// The organizationId you want to attach the resource to
 func (o LbIpOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbIp) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }

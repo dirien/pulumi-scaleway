@@ -13,6 +13,9 @@ namespace ediri.Scaleway.Inputs
 
     public sealed class InstanceServerRootVolumeGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Set the volume where the boot the server
+        /// </summary>
         [Input("boot")]
         public Input<bool>? Boot { get; set; }
 

@@ -9,17 +9,17 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
-__all__ = ['DocumentDBDatabaseArgs', 'DocumentDBDatabase']
+__all__ = ['DocumentdbDatabaseArgs', 'DocumentdbDatabase']
 
 @pulumi.input_type
-class DocumentDBDatabaseArgs:
+class DocumentdbDatabaseArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[str],
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a DocumentDBDatabase resource.
+        The set of arguments for constructing a DocumentdbDatabase resource.
         :param pulumi.Input[str] instance_id: UUID of the documentdb instance.
                
                > **Important:** Updates to `instance_id` will recreate the Database.
@@ -87,7 +87,7 @@ class DocumentDBDatabaseArgs:
 
 
 @pulumi.input_type
-class _DocumentDBDatabaseState:
+class _DocumentdbDatabaseState:
     def __init__(__self__, *,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  managed: Optional[pulumi.Input[bool]] = None,
@@ -97,7 +97,7 @@ class _DocumentDBDatabaseState:
                  region: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None):
         """
-        Input properties used for looking up and filtering DocumentDBDatabase resources.
+        Input properties used for looking up and filtering DocumentdbDatabase resources.
         :param pulumi.Input[str] instance_id: UUID of the documentdb instance.
                
                > **Important:** Updates to `instance_id` will recreate the Database.
@@ -210,7 +210,7 @@ class _DocumentDBDatabaseState:
         pulumi.set(self, "size", value)
 
 
-class DocumentDBDatabase(pulumi.CustomResource):
+class DocumentdbDatabase(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -224,7 +224,7 @@ class DocumentDBDatabase(pulumi.CustomResource):
         Creates and manages Scaleway DocumentDB database.
         For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -232,15 +232,17 @@ class DocumentDBDatabase(pulumi.CustomResource):
         import pulumi
         import ediri_scaleway as scaleway
 
-        main = scaleway.DocumentDBDatabase("main", instance_id="11111111-1111-1111-1111-111111111111")
+        main = scaleway.DocumentdbDatabase("main", instance_id="11111111-1111-1111-1111-111111111111")
         ```
 
         ## Import
 
-        DocumentDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g. bash
+        DocumentDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/documentDBDatabase:DocumentDBDatabase mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
+        $ pulumi import scaleway:index/documentdbDatabase:DocumentdbDatabase mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
         ```
 
         :param str resource_name: The name of the resource.
@@ -256,13 +258,13 @@ class DocumentDBDatabase(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: DocumentDBDatabaseArgs,
+                 args: DocumentdbDatabaseArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway DocumentDB database.
         For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -270,24 +272,26 @@ class DocumentDBDatabase(pulumi.CustomResource):
         import pulumi
         import ediri_scaleway as scaleway
 
-        main = scaleway.DocumentDBDatabase("main", instance_id="11111111-1111-1111-1111-111111111111")
+        main = scaleway.DocumentdbDatabase("main", instance_id="11111111-1111-1111-1111-111111111111")
         ```
 
         ## Import
 
-        DocumentDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g. bash
+        DocumentDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/documentDBDatabase:DocumentDBDatabase mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
+        $ pulumi import scaleway:index/documentdbDatabase:DocumentdbDatabase mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
         ```
 
         :param str resource_name: The name of the resource.
-        :param DocumentDBDatabaseArgs args: The arguments to use to populate this resource's properties.
+        :param DocumentdbDatabaseArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(DocumentDBDatabaseArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(DocumentdbDatabaseArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -307,7 +311,7 @@ class DocumentDBDatabase(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = DocumentDBDatabaseArgs.__new__(DocumentDBDatabaseArgs)
+            __props__ = DocumentdbDatabaseArgs.__new__(DocumentdbDatabaseArgs)
 
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
@@ -318,8 +322,8 @@ class DocumentDBDatabase(pulumi.CustomResource):
             __props__.__dict__["managed"] = None
             __props__.__dict__["owner"] = None
             __props__.__dict__["size"] = None
-        super(DocumentDBDatabase, __self__).__init__(
-            'scaleway:index/documentDBDatabase:DocumentDBDatabase',
+        super(DocumentdbDatabase, __self__).__init__(
+            'scaleway:index/documentdbDatabase:DocumentdbDatabase',
             resource_name,
             __props__,
             opts)
@@ -334,9 +338,9 @@ class DocumentDBDatabase(pulumi.CustomResource):
             owner: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
-            size: Optional[pulumi.Input[str]] = None) -> 'DocumentDBDatabase':
+            size: Optional[pulumi.Input[str]] = None) -> 'DocumentdbDatabase':
         """
-        Get an existing DocumentDBDatabase resource's state with the given name, id, and optional extra
+        Get an existing DocumentdbDatabase resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -354,7 +358,7 @@ class DocumentDBDatabase(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _DocumentDBDatabaseState.__new__(_DocumentDBDatabaseState)
+        __props__ = _DocumentdbDatabaseState.__new__(_DocumentdbDatabaseState)
 
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["managed"] = managed
@@ -363,7 +367,7 @@ class DocumentDBDatabase(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
         __props__.__dict__["size"] = size
-        return DocumentDBDatabase(resource_name, opts=opts, __props__=__props__)
+        return DocumentdbDatabase(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="instanceId")

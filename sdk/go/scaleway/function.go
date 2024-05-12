@@ -15,7 +15,7 @@ import (
 // Creates and manages Scaleway Functions.
 // For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
@@ -54,20 +54,19 @@ import (
 //
 // ## Import
 //
-// Functions can be imported using the `{region}/{id}`, e.g. bash
+// Functions can be imported using the `{region}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/function:Function main fr-par/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/function:Function main fr-par/11111111-1111-1111-1111-111111111111
 // ```
 type Function struct {
 	pulumi.CustomResourceState
 
 	// The CPU limit in mCPU for your function. More infos on resources [here](https://developers.scaleway.com/en/products/functions/api/#functions)
-	CpuLimit pulumi.IntOutput `pulumi:"cpuLimit"`
-	// Define if the function should be deployed, terraform will wait for function to be deployed
-	Deploy pulumi.BoolPtrOutput `pulumi:"deploy"`
+	CpuLimit pulumi.IntOutput     `pulumi:"cpuLimit"`
+	Deploy   pulumi.BoolPtrOutput `pulumi:"deploy"`
 	// The description of the function.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The native domain name of the function
@@ -88,7 +87,7 @@ type Function struct {
 	//
 	// > **Important** Updates to `name` will recreate the function.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The namespace ID associated with this function
+	// The namespace ID the function is associated with.
 	NamespaceId pulumi.StringOutput `pulumi:"namespaceId"`
 	// The organization ID the function is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
@@ -160,9 +159,8 @@ func GetFunction(ctx *pulumi.Context,
 // Input properties used for looking up and filtering Function resources.
 type functionState struct {
 	// The CPU limit in mCPU for your function. More infos on resources [here](https://developers.scaleway.com/en/products/functions/api/#functions)
-	CpuLimit *int `pulumi:"cpuLimit"`
-	// Define if the function should be deployed, terraform will wait for function to be deployed
-	Deploy *bool `pulumi:"deploy"`
+	CpuLimit *int  `pulumi:"cpuLimit"`
+	Deploy   *bool `pulumi:"deploy"`
 	// The description of the function.
 	Description *string `pulumi:"description"`
 	// The native domain name of the function
@@ -183,7 +181,7 @@ type functionState struct {
 	//
 	// > **Important** Updates to `name` will recreate the function.
 	Name *string `pulumi:"name"`
-	// The namespace ID associated with this function
+	// The namespace ID the function is associated with.
 	NamespaceId *string `pulumi:"namespaceId"`
 	// The organization ID the function is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
@@ -208,8 +206,7 @@ type functionState struct {
 type FunctionState struct {
 	// The CPU limit in mCPU for your function. More infos on resources [here](https://developers.scaleway.com/en/products/functions/api/#functions)
 	CpuLimit pulumi.IntPtrInput
-	// Define if the function should be deployed, terraform will wait for function to be deployed
-	Deploy pulumi.BoolPtrInput
+	Deploy   pulumi.BoolPtrInput
 	// The description of the function.
 	Description pulumi.StringPtrInput
 	// The native domain name of the function
@@ -230,7 +227,7 @@ type FunctionState struct {
 	//
 	// > **Important** Updates to `name` will recreate the function.
 	Name pulumi.StringPtrInput
-	// The namespace ID associated with this function
+	// The namespace ID the function is associated with.
 	NamespaceId pulumi.StringPtrInput
 	// The organization ID the function is associated with.
 	OrganizationId pulumi.StringPtrInput
@@ -257,7 +254,6 @@ func (FunctionState) ElementType() reflect.Type {
 }
 
 type functionArgs struct {
-	// Define if the function should be deployed, terraform will wait for function to be deployed
 	Deploy *bool `pulumi:"deploy"`
 	// The description of the function.
 	Description *string `pulumi:"description"`
@@ -277,7 +273,7 @@ type functionArgs struct {
 	//
 	// > **Important** Updates to `name` will recreate the function.
 	Name *string `pulumi:"name"`
-	// The namespace ID associated with this function
+	// The namespace ID the function is associated with.
 	NamespaceId string `pulumi:"namespaceId"`
 	// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
 	Privacy string `pulumi:"privacy"`
@@ -299,7 +295,6 @@ type functionArgs struct {
 
 // The set of arguments for constructing a Function resource.
 type FunctionArgs struct {
-	// Define if the function should be deployed, terraform will wait for function to be deployed
 	Deploy pulumi.BoolPtrInput
 	// The description of the function.
 	Description pulumi.StringPtrInput
@@ -319,7 +314,7 @@ type FunctionArgs struct {
 	//
 	// > **Important** Updates to `name` will recreate the function.
 	Name pulumi.StringPtrInput
-	// The namespace ID associated with this function
+	// The namespace ID the function is associated with.
 	NamespaceId pulumi.StringInput
 	// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
 	Privacy pulumi.StringInput
@@ -431,7 +426,6 @@ func (o FunctionOutput) CpuLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *Function) pulumi.IntOutput { return v.CpuLimit }).(pulumi.IntOutput)
 }
 
-// Define if the function should be deployed, terraform will wait for function to be deployed
 func (o FunctionOutput) Deploy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Function) pulumi.BoolPtrOutput { return v.Deploy }).(pulumi.BoolPtrOutput)
 }
@@ -483,7 +477,7 @@ func (o FunctionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The namespace ID associated with this function
+// The namespace ID the function is associated with.
 func (o FunctionOutput) NamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.NamespaceId }).(pulumi.StringOutput)
 }

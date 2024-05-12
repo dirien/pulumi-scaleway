@@ -1022,7 +1022,7 @@ class InstanceServer(pulumi.CustomResource):
 
         Please check our [FAQ - Instances](https://www.scaleway.com/en/docs/faq/instances).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -1142,7 +1142,7 @@ class InstanceServer(pulumi.CustomResource):
 
         ### Root volume configuration
 
-        #### Resized block volume with installed image
+        ### Resized block volume with installed image
 
         ```python
         import pulumi
@@ -1157,7 +1157,7 @@ class InstanceServer(pulumi.CustomResource):
             type="PRO2-XXS")
         ```
 
-        #### From snapshot
+        ### From snapshot
 
         ```python
         import pulumi
@@ -1191,10 +1191,12 @@ class InstanceServer(pulumi.CustomResource):
 
         ## Import
 
-        Instance servers can be imported using the `{zone}/{id}`, e.g. bash
+        Instance servers can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -1262,7 +1264,7 @@ class InstanceServer(pulumi.CustomResource):
 
         Please check our [FAQ - Instances](https://www.scaleway.com/en/docs/faq/instances).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -1382,7 +1384,7 @@ class InstanceServer(pulumi.CustomResource):
 
         ### Root volume configuration
 
-        #### Resized block volume with installed image
+        ### Resized block volume with installed image
 
         ```python
         import pulumi
@@ -1397,7 +1399,7 @@ class InstanceServer(pulumi.CustomResource):
             type="PRO2-XXS")
         ```
 
-        #### From snapshot
+        ### From snapshot
 
         ```python
         import pulumi
@@ -1431,10 +1433,12 @@ class InstanceServer(pulumi.CustomResource):
 
         ## Import
 
-        Instance servers can be imported using the `{zone}/{id}`, e.g. bash
+        Instance servers can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

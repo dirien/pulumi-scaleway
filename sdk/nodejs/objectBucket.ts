@@ -20,6 +20,7 @@ import * as utilities from "./utilities";
  *     key: "value",
  * }});
  * ```
+ *
  * ### Creating the bucket in a specific project
  *
  * ```typescript
@@ -28,6 +29,7 @@ import * as utilities from "./utilities";
  *
  * const someBucket = new scaleway.ObjectBucket("someBucket", {projectId: "11111111-1111-1111-1111-111111111111"});
  * ```
+ *
  * ### Using object lifecycle
  *
  * ```typescript
@@ -90,16 +92,20 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
+ * Buckets can be imported using the `{region}/{bucketName}` identifier, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
+ * $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
  * ```
  *
- *  If you are importing a bucket from a specific project (that is not your default project), you can use the following syntaxbash
+ * If you are importing a bucket from a specific project (that is not your default project), you can use the following syntax:
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
  * ```
  */
 export class ObjectBucket extends pulumi.CustomResource {
@@ -133,7 +139,7 @@ export class ObjectBucket extends pulumi.CustomResource {
     /**
      * (Deprecated) The canned ACL you want to apply to the bucket.
      *
-     * @deprecated ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
+     * @deprecated ACL attribute is deprecated. Please use the resource scaleway.ObjectBucketAcl instead.
      */
     public readonly acl!: pulumi.Output<string | undefined>;
     /**
@@ -239,7 +245,7 @@ export interface ObjectBucketState {
     /**
      * (Deprecated) The canned ACL you want to apply to the bucket.
      *
-     * @deprecated ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
+     * @deprecated ACL attribute is deprecated. Please use the resource scaleway.ObjectBucketAcl instead.
      */
     acl?: pulumi.Input<string>;
     /**
@@ -301,7 +307,7 @@ export interface ObjectBucketArgs {
     /**
      * (Deprecated) The canned ACL you want to apply to the bucket.
      *
-     * @deprecated ACL attribute is deprecated. Please use the resource scaleway_object_bucket_acl instead.
+     * @deprecated ACL attribute is deprecated. Please use the resource scaleway.ObjectBucketAcl instead.
      */
     acl?: pulumi.Input<string>;
     /**

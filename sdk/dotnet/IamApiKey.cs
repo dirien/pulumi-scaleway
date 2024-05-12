@@ -37,10 +37,12 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Api keys can be imported using the `{id}`, e.g. bash
+    /// Api keys can be imported using the `{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/iamApiKey:IamApiKey main 11111111111111111111
+    /// $ pulumi import scaleway:index/iamApiKey:IamApiKey main 11111111111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/iamApiKey:IamApiKey")]

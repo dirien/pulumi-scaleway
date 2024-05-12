@@ -15,9 +15,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about multiple Load Balancer IPs.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -35,8 +33,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetLbIpsResult> InvokeAsync(GetLbIpsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLbIpsResult>("scaleway:index/getLbIps:getLbIps", args ?? new GetLbIpsArgs(), options.WithDefaults());
@@ -44,9 +40,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about multiple Load Balancer IPs.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -64,8 +58,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetLbIpsResult> Invoke(GetLbIpsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLbIpsResult>("scaleway:index/getLbIps:getLbIps", args ?? new GetLbIpsInvokeArgs(), options.WithDefaults());

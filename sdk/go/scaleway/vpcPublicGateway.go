@@ -15,7 +15,7 @@ import (
 // Creates and manages Scaleway VPC Public Gateway.
 // For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1).
 //
-// ## Example
+// ## Example Usage
 //
 // ```go
 // package main
@@ -47,12 +47,12 @@ import (
 //
 // ## Import
 //
-// Public gateway can be imported using the `{zone}/{id}`, e.g. bash
+// Public gateway can be imported using the `{zone}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/vpcPublicGateway:VpcPublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/vpcPublicGateway:VpcPublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
 type VpcPublicGateway struct {
 	pulumi.CustomResourceState

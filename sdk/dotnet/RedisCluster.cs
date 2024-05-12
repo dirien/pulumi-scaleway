@@ -14,7 +14,7 @@ namespace ediri.Scaleway
     /// Creates and manages Scaleway Redis Clusters.
     /// For more information, see [the documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
@@ -110,7 +110,7 @@ namespace ediri.Scaleway
     ///         },
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
     ///             pn,
     ///         },
@@ -121,10 +121,12 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Redis Cluster can be imported using the `{zone}/{id}`, e.g. bash
+    /// Redis Cluster can be imported using the `{zone}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/redisCluster:RedisCluster")]

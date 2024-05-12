@@ -214,10 +214,7 @@ class GetK8sClusterResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
-        """
-        The ID of the project the cluster is associated with.
-        """
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
 
     @property
@@ -320,6 +317,7 @@ class AwaitableGetK8sClusterResult(GetK8sClusterResult):
 
 def get_k8s_cluster(cluster_id: Optional[str] = None,
                     name: Optional[str] = None,
+                    project_id: Optional[str] = None,
                     region: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetK8sClusterResult:
     """
@@ -337,11 +335,13 @@ def get_k8s_cluster(cluster_id: Optional[str] = None,
 
     :param str cluster_id: The cluster ID. Only one of `name` and `cluster_id` should be specified.
     :param str name: The cluster name. Only one of `name` and `cluster_id` should be specified.
+    :param str project_id: The ID of the project the cluster is associated with.
     :param str region: `region`) The region in which the cluster exists.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
     __args__['name'] = name
+    __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getK8sCluster:getK8sCluster', __args__, opts=opts, typ=GetK8sClusterResult).value
@@ -377,6 +377,7 @@ def get_k8s_cluster(cluster_id: Optional[str] = None,
 @_utilities.lift_output_func(get_k8s_cluster)
 def get_k8s_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str]]] = None,
                            name: Optional[pulumi.Input[Optional[str]]] = None,
+                           project_id: Optional[pulumi.Input[Optional[str]]] = None,
                            region: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetK8sClusterResult]:
     """
@@ -394,6 +395,7 @@ def get_k8s_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str]]] = N
 
     :param str cluster_id: The cluster ID. Only one of `name` and `cluster_id` should be specified.
     :param str name: The cluster name. Only one of `name` and `cluster_id` should be specified.
+    :param str project_id: The ID of the project the cluster is associated with.
     :param str region: `region`) The region in which the cluster exists.
     """
     ...

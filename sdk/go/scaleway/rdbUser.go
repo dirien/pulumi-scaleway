@@ -15,7 +15,7 @@ import (
 // Creates and manages Scaleway Database Users.
 // For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
@@ -55,12 +55,12 @@ import (
 //
 // ## Import
 //
-// Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g. bash
+// Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/rdbUser:RdbUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
-//
+// $ pulumi import scaleway:index/rdbUser:RdbUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
 // ```
 type RdbUser struct {
 	pulumi.CustomResourceState

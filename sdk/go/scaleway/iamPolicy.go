@@ -17,6 +17,7 @@ import (
 // > You can find a detailed list of all permission sets available at Scaleway in the permission sets [reference page](https://www.scaleway.com/en/docs/identity-and-access-management/iam/reference-content/permission-sets/).
 //
 // ## Example Usage
+//
 // ### Create a policy for an organization's project
 //
 // ```go
@@ -47,8 +48,47 @@ import (
 //				Rules: scaleway.IamPolicyRuleArray{
 //					&scaleway.IamPolicyRuleArgs{
 //						ProjectIds: pulumi.StringArray{
-//							*pulumi.String(_default.Id),
+//							pulumi.String(_default.Id),
 //						},
+//						PermissionSetNames: pulumi.StringArray{
+//							pulumi.String("ObjectStorageReadOnly"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Create a policy for all current and future projects in an organization
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			app, err := scaleway.NewIamApplication(ctx, "app", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewIamPolicy(ctx, "objectReadOnly", &scaleway.IamPolicyArgs{
+//				Description:   pulumi.String("gives app readonly access to object storage in project"),
+//				ApplicationId: app.ID(),
+//				Rules: scaleway.IamPolicyRuleArray{
+//					&scaleway.IamPolicyRuleArgs{
+//						OrganizationId: app.OrganizationId,
 //						PermissionSetNames: pulumi.StringArray{
 //							pulumi.String("ObjectStorageReadOnly"),
 //						},
@@ -66,12 +106,12 @@ import (
 //
 // ## Import
 //
-// Policies can be imported using the `{id}`, e.g. bash
+// Policies can be imported using the `{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/iamPolicy:IamPolicy main 11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/iamPolicy:IamPolicy main 11111111-1111-1111-1111-111111111111
 // ```
 type IamPolicy struct {
 	pulumi.CustomResourceState
@@ -92,7 +132,7 @@ type IamPolicy struct {
 	//
 	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
 	NoPrincipal pulumi.BoolPtrOutput `pulumi:"noPrincipal"`
-	// ID of organization scoped to the rule.
+	// `organizationId`) The ID of the organization the policy is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// List of rules in the policy.
 	Rules IamPolicyRuleArrayOutput `pulumi:"rules"`
@@ -153,7 +193,7 @@ type iamPolicyState struct {
 	//
 	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
 	NoPrincipal *bool `pulumi:"noPrincipal"`
-	// ID of organization scoped to the rule.
+	// `organizationId`) The ID of the organization the policy is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
 	// List of rules in the policy.
 	Rules []IamPolicyRule `pulumi:"rules"`
@@ -182,7 +222,7 @@ type IamPolicyState struct {
 	//
 	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
 	NoPrincipal pulumi.BoolPtrInput
-	// ID of organization scoped to the rule.
+	// `organizationId`) The ID of the organization the policy is associated with.
 	OrganizationId pulumi.StringPtrInput
 	// List of rules in the policy.
 	Rules IamPolicyRuleArrayInput
@@ -211,7 +251,7 @@ type iamPolicyArgs struct {
 	//
 	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
 	NoPrincipal *bool `pulumi:"noPrincipal"`
-	// ID of organization scoped to the rule.
+	// `organizationId`) The ID of the organization the policy is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
 	// List of rules in the policy.
 	Rules []IamPolicyRule `pulumi:"rules"`
@@ -235,7 +275,7 @@ type IamPolicyArgs struct {
 	//
 	// > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal`  may be set.
 	NoPrincipal pulumi.BoolPtrInput
-	// ID of organization scoped to the rule.
+	// `organizationId`) The ID of the organization the policy is associated with.
 	OrganizationId pulumi.StringPtrInput
 	// List of rules in the policy.
 	Rules IamPolicyRuleArrayInput
@@ -369,7 +409,7 @@ func (o IamPolicyOutput) NoPrincipal() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IamPolicy) pulumi.BoolPtrOutput { return v.NoPrincipal }).(pulumi.BoolPtrOutput)
 }
 
-// ID of organization scoped to the rule.
+// `organizationId`) The ID of the organization the policy is associated with.
 func (o IamPolicyOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamPolicy) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }

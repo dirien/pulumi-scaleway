@@ -25,6 +25,7 @@ export function getLbIp(args?: GetLbIpArgs, opts?: pulumi.InvokeOptions): Promis
     return pulumi.runtime.invoke("scaleway:index/getLbIp:getLbIp", {
         "ipAddress": args.ipAddress,
         "ipId": args.ipId,
+        "projectId": args.projectId,
     }, opts);
 }
 
@@ -42,6 +43,10 @@ export interface GetLbIpArgs {
      * Only one of `ipAddress` and `ipId` should be specified.
      */
     ipId?: string;
+    /**
+     * The ID of the project the LB IP associated with.
+     */
+    projectId?: string;
 }
 
 /**
@@ -102,4 +107,8 @@ export interface GetLbIpOutputArgs {
      * Only one of `ipAddress` and `ipId` should be specified.
      */
     ipId?: pulumi.Input<string>;
+    /**
+     * The ID of the project the LB IP associated with.
+     */
+    projectId?: pulumi.Input<string>;
 }

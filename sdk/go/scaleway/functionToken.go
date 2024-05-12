@@ -14,7 +14,7 @@ import (
 // Creates and manages Scaleway Function Token.
 // For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/#tokens-26b085).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
@@ -43,6 +43,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Namespace Token
 //			_, err = scaleway.NewFunctionToken(ctx, "namespace", &scaleway.FunctionTokenArgs{
 //				NamespaceId: mainFunctionNamespace.ID(),
 //				ExpiresAt:   pulumi.String("2022-10-18T11:35:15+02:00"),
@@ -50,6 +51,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Function Token
 //			_, err = scaleway.NewFunctionToken(ctx, "function", &scaleway.FunctionTokenArgs{
 //				FunctionId: mainFunction.ID(),
 //			})
@@ -64,12 +66,12 @@ import (
 //
 // ## Import
 //
-// Tokens can be imported using the `{region}/{id}`, e.g. bash
+// Tokens can be imported using the `{region}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/functionToken:FunctionToken main fr-par/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/functionToken:FunctionToken main fr-par/11111111-1111-1111-1111-111111111111
 // ```
 type FunctionToken struct {
 	pulumi.CustomResourceState

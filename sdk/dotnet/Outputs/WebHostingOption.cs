@@ -12,7 +12,7 @@ namespace ediri.Scaleway.Outputs
 {
 
     [OutputType]
-    public sealed class WebHostingOption
+    public sealed class WebhostingOption
     {
         /// <summary>
         /// The option ID.
@@ -24,7 +24,7 @@ namespace ediri.Scaleway.Outputs
         public readonly string? Name;
 
         [OutputConstructor]
-        private WebHostingOption(
+        private WebhostingOption(
             string? id,
 
             string? name)

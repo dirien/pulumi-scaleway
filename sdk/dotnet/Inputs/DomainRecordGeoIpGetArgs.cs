@@ -17,7 +17,7 @@ namespace ediri.Scaleway.Inputs
         private InputList<Inputs.DomainRecordGeoIpMatchGetArgs>? _matches;
 
         /// <summary>
-        /// The list of matches. *(Can be more than 1)*
+        /// The list of matches
         /// </summary>
         public InputList<Inputs.DomainRecordGeoIpMatchGetArgs> Matches
         {

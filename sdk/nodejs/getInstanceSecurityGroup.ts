@@ -26,6 +26,7 @@ export function getInstanceSecurityGroup(args?: GetInstanceSecurityGroupArgs, op
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceSecurityGroup:getInstanceSecurityGroup", {
         "name": args.name,
+        "projectId": args.projectId,
         "securityGroupId": args.securityGroupId,
         "zone": args.zone,
     }, opts);
@@ -39,6 +40,10 @@ export interface GetInstanceSecurityGroupArgs {
      * The security group name. Only one of `name` and `securityGroupId` should be specified.
      */
     name?: string;
+    /**
+     * The ID of the project the security group is associated with.
+     */
+    projectId?: string;
     /**
      * The security group id. Only one of `name` and `securityGroupId` should be specified.
      */
@@ -81,10 +86,7 @@ export interface GetInstanceSecurityGroupResult {
      * A list of outbound rule to add to the security group. (Structure is documented below.)
      */
     readonly outboundRules: outputs.GetInstanceSecurityGroupOutboundRule[];
-    /**
-     * The ID of the project the security group is associated with.
-     */
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly securityGroupId?: string;
     readonly stateful: boolean;
     readonly tags: string[];
@@ -116,6 +118,10 @@ export interface GetInstanceSecurityGroupOutputArgs {
      * The security group name. Only one of `name` and `securityGroupId` should be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the project the security group is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * The security group id. Only one of `name` and `securityGroupId` should be specified.
      */

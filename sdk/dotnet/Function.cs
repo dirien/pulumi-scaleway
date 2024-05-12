@@ -14,7 +14,7 @@ namespace ediri.Scaleway
     /// Creates and manages Scaleway Functions.
     /// For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
@@ -44,10 +44,12 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Functions can be imported using the `{region}/{id}`, e.g. bash
+    /// Functions can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/function:Function main fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/function:Function main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/function:Function")]
@@ -59,9 +61,6 @@ namespace ediri.Scaleway
         [Output("cpuLimit")]
         public Output<int> CpuLimit { get; private set; } = null!;
 
-        /// <summary>
-        /// Define if the function should be deployed, terraform will wait for function to be deployed
-        /// </summary>
         [Output("deploy")]
         public Output<bool?> Deploy { get; private set; } = null!;
 
@@ -122,7 +121,7 @@ namespace ediri.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The namespace ID associated with this function
+        /// The namespace ID the function is associated with.
         /// </summary>
         [Output("namespaceId")]
         public Output<string> NamespaceId { get; private set; } = null!;
@@ -232,9 +231,6 @@ namespace ediri.Scaleway
 
     public sealed class FunctionArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Define if the function should be deployed, terraform will wait for function to be deployed
-        /// </summary>
         [Input("deploy")]
         public Input<bool>? Deploy { get; set; }
 
@@ -295,7 +291,7 @@ namespace ediri.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The namespace ID associated with this function
+        /// The namespace ID the function is associated with.
         /// </summary>
         [Input("namespaceId", required: true)]
         public Input<string> NamespaceId { get; set; } = null!;
@@ -372,9 +368,6 @@ namespace ediri.Scaleway
         [Input("cpuLimit")]
         public Input<int>? CpuLimit { get; set; }
 
-        /// <summary>
-        /// Define if the function should be deployed, terraform will wait for function to be deployed
-        /// </summary>
         [Input("deploy")]
         public Input<bool>? Deploy { get; set; }
 
@@ -441,7 +434,7 @@ namespace ediri.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The namespace ID associated with this function
+        /// The namespace ID the function is associated with.
         /// </summary>
         [Input("namespaceId")]
         public Input<string>? NamespaceId { get; set; }

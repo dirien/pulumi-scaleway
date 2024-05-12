@@ -11,6 +11,33 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Gets information about a Block Volume.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.LookupBlockVolume(ctx, &scaleway.LookupBlockVolumeArgs{
+//				VolumeId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupBlockVolume(ctx *pulumi.Context, args *LookupBlockVolumeArgs, opts ...pulumi.InvokeOption) (*LookupBlockVolumeResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupBlockVolumeResult
@@ -23,9 +50,14 @@ func LookupBlockVolume(ctx *pulumi.Context, args *LookupBlockVolumeArgs, opts ..
 
 // A collection of arguments for invoking getBlockVolume.
 type LookupBlockVolumeArgs struct {
-	Name     *string `pulumi:"name"`
+	// The name of the volume. Only one of `name` and `volumeId` should be specified.
+	Name *string `pulumi:"name"`
+	// The ID of the project the volume is associated with.
+	ProjectId *string `pulumi:"projectId"`
+	// The ID of the volume. Only one of `name` and `volumeId` should be specified.
 	VolumeId *string `pulumi:"volumeId"`
-	Zone     *string `pulumi:"zone"`
+	// `zone`) The zone in which the volume exists.
+	Zone *string `pulumi:"zone"`
 }
 
 // A collection of values returned by getBlockVolume.
@@ -34,7 +66,7 @@ type LookupBlockVolumeResult struct {
 	Id         string   `pulumi:"id"`
 	Iops       int      `pulumi:"iops"`
 	Name       *string  `pulumi:"name"`
-	ProjectId  string   `pulumi:"projectId"`
+	ProjectId  *string  `pulumi:"projectId"`
 	SizeInGb   int      `pulumi:"sizeInGb"`
 	SnapshotId string   `pulumi:"snapshotId"`
 	Tags       []string `pulumi:"tags"`
@@ -57,9 +89,14 @@ func LookupBlockVolumeOutput(ctx *pulumi.Context, args LookupBlockVolumeOutputAr
 
 // A collection of arguments for invoking getBlockVolume.
 type LookupBlockVolumeOutputArgs struct {
-	Name     pulumi.StringPtrInput `pulumi:"name"`
+	// The name of the volume. Only one of `name` and `volumeId` should be specified.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the project the volume is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// The ID of the volume. Only one of `name` and `volumeId` should be specified.
 	VolumeId pulumi.StringPtrInput `pulumi:"volumeId"`
-	Zone     pulumi.StringPtrInput `pulumi:"zone"`
+	// `zone`) The zone in which the volume exists.
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (LookupBlockVolumeOutputArgs) ElementType() reflect.Type {
@@ -94,8 +131,8 @@ func (o LookupBlockVolumeResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupBlockVolumeResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupBlockVolumeResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupBlockVolumeResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupBlockVolumeResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupBlockVolumeResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupBlockVolumeResultOutput) SizeInGb() pulumi.IntOutput {

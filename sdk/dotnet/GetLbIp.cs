@@ -15,9 +15,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about a Load Balancer IP.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -34,8 +32,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetLbIpResult> InvokeAsync(GetLbIpArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLbIpResult>("scaleway:index/getLbIp:getLbIp", args ?? new GetLbIpArgs(), options.WithDefaults());
@@ -43,9 +39,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about a Load Balancer IP.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -62,8 +56,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetLbIpResult> Invoke(GetLbIpInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLbIpResult>("scaleway:index/getLbIp:getLbIp", args ?? new GetLbIpInvokeArgs(), options.WithDefaults());
@@ -86,6 +78,12 @@ namespace ediri.Scaleway
         [Input("ipId")]
         public string? IpId { get; set; }
 
+        /// <summary>
+        /// The ID of the project the LB IP associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
         public GetLbIpArgs()
         {
         }
@@ -107,6 +105,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
+
+        /// <summary>
+        /// The ID of the project the LB IP associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         public GetLbIpInvokeArgs()
         {

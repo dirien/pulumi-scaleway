@@ -25,6 +25,7 @@ export function getFunctionNamespace(args?: GetFunctionNamespaceArgs, opts?: pul
     return pulumi.runtime.invoke("scaleway:index/getFunctionNamespace:getFunctionNamespace", {
         "name": args.name,
         "namespaceId": args.namespaceId,
+        "projectId": args.projectId,
         "region": args.region,
     }, opts);
 }
@@ -43,6 +44,10 @@ export interface GetFunctionNamespaceArgs {
      * Only one of `name` and `namespaceId` should be specified.
      */
     namespaceId?: string;
+    /**
+     * `projectId`) The ID of the project the namespace is associated with.
+     */
+    projectId?: string;
     /**
      * `region`) The region in which the namespace exists.
      */
@@ -71,7 +76,7 @@ export interface GetFunctionNamespaceResult {
      * The organization ID the namespace is associated with.
      */
     readonly organizationId: string;
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly region?: string;
     /**
      * The registry endpoint of the namespace.
@@ -115,6 +120,10 @@ export interface GetFunctionNamespaceOutputArgs {
      * Only one of `name` and `namespaceId` should be specified.
      */
     namespaceId?: pulumi.Input<string>;
+    /**
+     * `projectId`) The ID of the project the namespace is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * `region`) The region in which the namespace exists.
      */

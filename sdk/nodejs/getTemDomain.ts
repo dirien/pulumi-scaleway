@@ -27,6 +27,7 @@ export function getTemDomain(args?: GetTemDomainArgs, opts?: pulumi.InvokeOption
     return pulumi.runtime.invoke("scaleway:index/getTemDomain:getTemDomain", {
         "domainId": args.domainId,
         "name": args.name,
+        "projectId": args.projectId,
         "region": args.region,
     }, opts);
 }
@@ -45,6 +46,10 @@ export interface GetTemDomainArgs {
      * Only one of `name` and `domainId` should be specified.
      */
     name?: string;
+    /**
+     * `projectId`) The ID of the project the domain is associated with.
+     */
+    projectId?: string;
     /**
      * `region`) The region in which the domain exists.
      */
@@ -68,7 +73,7 @@ export interface GetTemDomainResult {
     readonly mxBlackhole: string;
     readonly name?: string;
     readonly nextCheckAt: string;
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly region?: string;
     readonly reputations: outputs.GetTemDomainReputation[];
     readonly revokedAt: string;
@@ -113,6 +118,10 @@ export interface GetTemDomainOutputArgs {
      * Only one of `name` and `domainId` should be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * `projectId`) The ID of the project the domain is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * `region`) The region in which the domain exists.
      */

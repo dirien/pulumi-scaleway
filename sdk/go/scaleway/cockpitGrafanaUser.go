@@ -34,8 +34,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create an editor grafana user for the cockpit
 //			_, err = scaleway.NewCockpitGrafanaUser(ctx, "mainCockpitGrafanaUser", &scaleway.CockpitGrafanaUserArgs{
-//				ProjectId: *pulumi.String(mainCockpit.ProjectId),
+//				ProjectId: pulumi.String(mainCockpit.ProjectId),
 //				Login:     pulumi.String("my-awesome-user"),
 //				Role:      pulumi.String("editor"),
 //			})
@@ -50,12 +51,12 @@ import (
 //
 // ## Import
 //
-// Cockpits Grafana Users can be imported using the project ID and the grafana user ID formatted `{project_id}/{grafana_user_id}`, e.g. bash
+// Cockpits Grafana Users can be imported using the project ID and the grafana user ID formatted `{project_id}/{grafana_user_id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser main 11111111-1111-1111-1111-111111111111/2
-//
+// $ pulumi import scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser main 11111111-1111-1111-1111-111111111111/2
 // ```
 type CockpitGrafanaUser struct {
 	pulumi.CustomResourceState

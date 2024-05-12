@@ -57,10 +57,12 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Public gateway DHCP Reservation config can be imported using the `{zone}/{id}`, e.g. bash
+ * Public gateway DHCP Reservation config can be imported using the `{zone}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/vpcPublicGatewayDhcpReservation:VpcPublicGatewayDhcpReservation main fr-par-1/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/vpcPublicGatewayDhcpReservation:VpcPublicGatewayDhcpReservation main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class VpcPublicGatewayDhcpReservation extends pulumi.CustomResource {

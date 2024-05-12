@@ -24,6 +24,7 @@ import * as utilities from "./utilities";
  *     name: main.id,
  * });
  * ```
+ *
  * ### Fetching the bucket from a specific project
  *
  * ```typescript
@@ -104,6 +105,7 @@ export interface GetObjectBucketResult {
  *     name: main.id,
  * });
  * ```
+ *
  * ### Fetching the bucket from a specific project
  *
  * ```typescript

@@ -9,7 +9,8 @@ import * as utilities from "./utilities";
  * For more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/).
  *
  * ## Example Usage
- * ### Example with an IAM user
+ *
+ * ### Example Usage with an IAM user
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -33,24 +34,26 @@ import * as utilities from "./utilities";
  * const bucket = new scaleway.ObjectBucket("bucket", {});
  * const policyObjectBucketPolicy = new scaleway.ObjectBucketPolicy("policyObjectBucketPolicy", {
  *     bucket: bucket.name,
- *     policy: pulumi.all([user, bucket.name, bucket.name]).apply(([user, bucketName, bucketName1]) => JSON.stringify({
+ *     policy: pulumi.jsonStringify({
  *         Version: "2023-04-17",
  *         Id: "MyBucketPolicy",
  *         Statement: [{
  *             Effect: "Allow",
  *             Action: ["s3:*"],
  *             Principal: {
- *                 SCW: `user_id:${user.id}`,
+ *                 SCW: user.then(user => `user_id:${user.id}`),
  *             },
  *             Resource: [
- *                 bucketName,
- *                 `${bucketName1}/*`,
+ *                 bucket.name,
+ *                 pulumi.interpolate`${bucket.name}/*`,
  *             ],
  *         }],
- *     })),
+ *     }),
  * });
  * ```
+ *
  * ### Example with an IAM application
+ *
  * ### Creating a bucket and delegating read access to an application
  *
  * ```typescript
@@ -74,26 +77,27 @@ import * as utilities from "./utilities";
  * const bucket = new scaleway.ObjectBucket("bucket", {});
  * const policyObjectBucketPolicy = new scaleway.ObjectBucketPolicy("policyObjectBucketPolicy", {
  *     bucket: bucket.id,
- *     policy: pulumi.all([reading_app.id, bucket.name, bucket.name]).apply(([id, bucketName, bucketName1]) => JSON.stringify({
+ *     policy: pulumi.jsonStringify({
  *         Version: "2023-04-17",
  *         Statement: [{
  *             Sid: "Delegate read access",
  *             Effect: "Allow",
  *             Principal: {
- *                 SCW: `application_id:${id}`,
+ *                 SCW: pulumi.interpolate`application_id:${reading_app.id}`,
  *             },
  *             Action: [
  *                 "s3:ListBucket",
  *                 "s3:GetObject",
  *             ],
  *             Resource: [
- *                 bucketName,
- *                 `${bucketName1}/*`,
+ *                 bucket.name,
+ *                 pulumi.interpolate`${bucket.name}/*`,
  *             ],
  *         }],
- *     })),
+ *     }),
  * });
  * ```
+ *
  * ### Reading the bucket with the application
  *
  * ```typescript
@@ -113,6 +117,7 @@ import * as utilities from "./utilities";
  *     name: "some-unique-name",
  * });
  * ```
+ *
  * ### Example with AWS provider
  *
  * ```typescript
@@ -147,6 +152,7 @@ import * as utilities from "./utilities";
  *     policy: policy.apply(policy => policy.json),
  * });
  * ```
+ *
  * ### Example with deprecated version 2012-10-17
  *
  * ```typescript
@@ -161,7 +167,7 @@ import * as utilities from "./utilities";
  * const bucket = new scaleway.ObjectBucket("bucket", {region: "fr-par"});
  * const policy = new scaleway.ObjectBucketPolicy("policy", {
  *     bucket: bucket.name,
- *     policy: pulumi.all([_default, bucket.name, bucket.name]).apply(([_default, bucketName, bucketName1]) => JSON.stringify({
+ *     policy: pulumi.jsonStringify({
  *         Version: "2012-10-17",
  *         Statement: [{
  *             Effect: "Allow",
@@ -170,14 +176,14 @@ import * as utilities from "./utilities";
  *                 "s3:GetObjectTagging",
  *             ],
  *             Principal: {
- *                 SCW: `project_id:${_default.id}`,
+ *                 SCW: _default.then(_default => `project_id:${_default.id}`),
  *             },
  *             Resource: [
- *                 bucketName,
- *                 `${bucketName1}/*`,
+ *                 bucket.name,
+ *                 pulumi.interpolate`${bucket.name}/*`,
  *             ],
  *         }],
- *     })),
+ *     }),
  * });
  * ```
  *
@@ -185,10 +191,22 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Buckets can be imported using the `{region}/{bucketName}` identifier, e.g. bash
+ * Bucket policies can be imported using the `{region}/{bucketName}` identifier, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/objectBucketPolicy:ObjectBucketPolicy some_bucket fr-par/some-bucket
+ * $ pulumi import scaleway:index/objectBucketPolicy:ObjectBucketPolicy some_bucket fr-par/some-bucket
+ * ```
+ *
+ * ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+ *
+ * If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
+ *
+ * bash
+ *
+ * ```sh
+ * $ pulumi import scaleway:index/objectBucketPolicy:ObjectBucketPolicy some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
  * ```
  */
 export class ObjectBucketPolicy extends pulumi.CustomResource {
@@ -228,9 +246,7 @@ export class ObjectBucketPolicy extends pulumi.CustomResource {
      */
     public readonly policy!: pulumi.Output<string>;
     /**
-     * `projectId`) The ID of the project the bucket is associated with.
-     *
-     * > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
+     * The projectId you want to attach the resource to
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -286,9 +302,7 @@ export interface ObjectBucketPolicyState {
      */
     policy?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the bucket is associated with.
-     *
-     * > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
+     * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -310,9 +324,7 @@ export interface ObjectBucketPolicyArgs {
      */
     policy: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the bucket is associated with.
-     *
-     * > **Important:** The awsIamPolicyDocument data source may be used, so long as it specifies a principal.
+     * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**

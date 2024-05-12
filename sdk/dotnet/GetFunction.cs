@@ -12,9 +12,53 @@ namespace ediri.Scaleway
 {
     public static class GetFunction
     {
+        /// <summary>
+        /// Gets information about a function.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myFunction = Scaleway.GetFunction.Invoke(new()
+        ///     {
+        ///         FunctionId = "11111111-1111-1111-1111-111111111111",
+        ///         NamespaceId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Task<GetFunctionResult> InvokeAsync(GetFunctionArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFunctionResult>("scaleway:index/getFunction:getFunction", args ?? new GetFunctionArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Gets information about a function.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myFunction = Scaleway.GetFunction.Invoke(new()
+        ///     {
+        ///         FunctionId = "11111111-1111-1111-1111-111111111111",
+        ///         NamespaceId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetFunctionResult> Invoke(GetFunctionInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFunctionResult>("scaleway:index/getFunction:getFunction", args ?? new GetFunctionInvokeArgs(), options.WithDefaults());
     }
@@ -22,14 +66,35 @@ namespace ediri.Scaleway
 
     public sealed class GetFunctionArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The function id. Only one of `name` and `function_id` should be specified.
+        /// </summary>
         [Input("functionId")]
         public string? FunctionId { get; set; }
 
+        /// <summary>
+        /// The function name. Only one of `name` and `namespace_id` should be specified.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The namespace id associated with this function.
+        /// </summary>
         [Input("namespaceId", required: true)]
         public string NamespaceId { get; set; } = null!;
+
+        /// <summary>
+        /// The ID of the project the function is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
+        /// `region`) The region in which the function exists.
+        /// </summary>
+        [Input("region")]
+        public string? Region { get; set; }
 
         public GetFunctionArgs()
         {
@@ -39,14 +104,35 @@ namespace ediri.Scaleway
 
     public sealed class GetFunctionInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The function id. Only one of `name` and `function_id` should be specified.
+        /// </summary>
         [Input("functionId")]
         public Input<string>? FunctionId { get; set; }
 
+        /// <summary>
+        /// The function name. Only one of `name` and `namespace_id` should be specified.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The namespace id associated with this function.
+        /// </summary>
         [Input("namespaceId", required: true)]
         public Input<string> NamespaceId { get; set; } = null!;
+
+        /// <summary>
+        /// The ID of the project the function is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// `region`) The region in which the function exists.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         public GetFunctionInvokeArgs()
         {
@@ -77,8 +163,8 @@ namespace ediri.Scaleway
         public readonly string NamespaceId;
         public readonly string OrganizationId;
         public readonly string Privacy;
-        public readonly string ProjectId;
-        public readonly string Region;
+        public readonly string? ProjectId;
+        public readonly string? Region;
         public readonly string Runtime;
         public readonly ImmutableDictionary<string, string> SecretEnvironmentVariables;
         public readonly int Timeout;
@@ -119,9 +205,9 @@ namespace ediri.Scaleway
 
             string privacy,
 
-            string projectId,
+            string? projectId,
 
-            string region,
+            string? region,
 
             string runtime,
 

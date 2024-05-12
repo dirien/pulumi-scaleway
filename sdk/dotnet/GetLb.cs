@@ -15,9 +15,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about a Load Balancer.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -39,8 +37,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetLbResult> InvokeAsync(GetLbArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLbResult>("scaleway:index/getLb:getLb", args ?? new GetLbArgs(), options.WithDefaults());
@@ -48,9 +44,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about a Load Balancer.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -72,8 +66,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetLbResult> Invoke(GetLbInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLbResult>("scaleway:index/getLb:getLb", args ?? new GetLbInvokeArgs(), options.WithDefaults());
@@ -90,6 +82,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the LB is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
 
         [Input("releaseIp")]
         public bool? ReleaseIp { get; set; }
@@ -116,6 +114,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the LB is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         [Input("releaseIp")]
         public Input<bool>? ReleaseIp { get; set; }
@@ -151,10 +155,7 @@ namespace ediri.Scaleway
         public readonly string? Name;
         public readonly string OrganizationId;
         public readonly ImmutableArray<Outputs.GetLbPrivateNetworkResult> PrivateNetworks;
-        /// <summary>
-        /// (Defaults to provider `project_id`) The ID of the project the LB is associated with.
-        /// </summary>
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly string Region;
         public readonly bool? ReleaseIp;
         public readonly string SslCompatibilityLevel;
@@ -191,7 +192,7 @@ namespace ediri.Scaleway
 
             ImmutableArray<Outputs.GetLbPrivateNetworkResult> privateNetworks,
 
-            string projectId,
+            string? projectId,
 
             string region,
 

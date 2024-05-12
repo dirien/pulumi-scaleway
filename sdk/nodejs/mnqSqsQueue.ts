@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
  * For further information please check
  * our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/how-to/create-manage-queues/)
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
@@ -32,14 +32,6 @@ import * as utilities from "./utilities";
  *     accessKey: mainMnqSqsCredentials.accessKey,
  *     secretKey: mainMnqSqsCredentials.secretKey,
  * });
- * ```
- *
- * ## Import
- *
- * SQS queues can be imported using the `{region}/{project-id}/{queue-name}`, e.g. bash
- *
- * ```sh
- *  $ pulumi import scaleway:index/mnqSqsQueue:MnqSqsQueue main fr-par/11111111111111111111111111111111/my-queue
  * ```
  */
 export class MnqSqsQueue extends pulumi.CustomResource {

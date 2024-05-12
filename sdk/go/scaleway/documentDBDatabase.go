@@ -15,7 +15,7 @@ import (
 // Creates and manages Scaleway DocumentDB database.
 // For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
@@ -31,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewDocumentDBDatabase(ctx, "main", &scaleway.DocumentDBDatabaseArgs{
+//			_, err := scaleway.NewDocumentdbDatabase(ctx, "main", &scaleway.DocumentdbDatabaseArgs{
 //				InstanceId: pulumi.String("11111111-1111-1111-1111-111111111111"),
 //			})
 //			if err != nil {
@@ -45,14 +45,14 @@ import (
 //
 // ## Import
 //
-// DocumentDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g. bash
+// DocumentDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/documentDBDatabase:DocumentDBDatabase mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
-//
+// $ pulumi import scaleway:index/documentdbDatabase:DocumentdbDatabase mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
 // ```
-type DocumentDBDatabase struct {
+type DocumentdbDatabase struct {
 	pulumi.CustomResourceState
 
 	// UUID of the documentdb instance.
@@ -65,7 +65,7 @@ type DocumentDBDatabase struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The name of the owner of the database.
 	Owner pulumi.StringOutput `pulumi:"owner"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region in which the resource exists.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -73,9 +73,9 @@ type DocumentDBDatabase struct {
 	Size pulumi.StringOutput `pulumi:"size"`
 }
 
-// NewDocumentDBDatabase registers a new resource with the given unique name, arguments, and options.
-func NewDocumentDBDatabase(ctx *pulumi.Context,
-	name string, args *DocumentDBDatabaseArgs, opts ...pulumi.ResourceOption) (*DocumentDBDatabase, error) {
+// NewDocumentdbDatabase registers a new resource with the given unique name, arguments, and options.
+func NewDocumentdbDatabase(ctx *pulumi.Context,
+	name string, args *DocumentdbDatabaseArgs, opts ...pulumi.ResourceOption) (*DocumentdbDatabase, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -84,28 +84,28 @@ func NewDocumentDBDatabase(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
-	var resource DocumentDBDatabase
-	err := ctx.RegisterResource("scaleway:index/documentDBDatabase:DocumentDBDatabase", name, args, &resource, opts...)
+	var resource DocumentdbDatabase
+	err := ctx.RegisterResource("scaleway:index/documentdbDatabase:DocumentdbDatabase", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetDocumentDBDatabase gets an existing DocumentDBDatabase resource's state with the given name, ID, and optional
+// GetDocumentdbDatabase gets an existing DocumentdbDatabase resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetDocumentDBDatabase(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *DocumentDBDatabaseState, opts ...pulumi.ResourceOption) (*DocumentDBDatabase, error) {
-	var resource DocumentDBDatabase
-	err := ctx.ReadResource("scaleway:index/documentDBDatabase:DocumentDBDatabase", name, id, state, &resource, opts...)
+func GetDocumentdbDatabase(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *DocumentdbDatabaseState, opts ...pulumi.ResourceOption) (*DocumentdbDatabase, error) {
+	var resource DocumentdbDatabase
+	err := ctx.ReadResource("scaleway:index/documentdbDatabase:DocumentdbDatabase", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering DocumentDBDatabase resources.
-type documentDBDatabaseState struct {
+// Input properties used for looking up and filtering DocumentdbDatabase resources.
+type documentdbDatabaseState struct {
 	// UUID of the documentdb instance.
 	//
 	// > **Important:** Updates to `instanceId` will recreate the Database.
@@ -116,7 +116,7 @@ type documentDBDatabaseState struct {
 	Name *string `pulumi:"name"`
 	// The name of the owner of the database.
 	Owner *string `pulumi:"owner"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the resource exists.
 	Region *string `pulumi:"region"`
@@ -124,7 +124,7 @@ type documentDBDatabaseState struct {
 	Size *string `pulumi:"size"`
 }
 
-type DocumentDBDatabaseState struct {
+type DocumentdbDatabaseState struct {
 	// UUID of the documentdb instance.
 	//
 	// > **Important:** Updates to `instanceId` will recreate the Database.
@@ -135,7 +135,7 @@ type DocumentDBDatabaseState struct {
 	Name pulumi.StringPtrInput
 	// The name of the owner of the database.
 	Owner pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region in which the resource exists.
 	Region pulumi.StringPtrInput
@@ -143,206 +143,206 @@ type DocumentDBDatabaseState struct {
 	Size pulumi.StringPtrInput
 }
 
-func (DocumentDBDatabaseState) ElementType() reflect.Type {
-	return reflect.TypeOf((*documentDBDatabaseState)(nil)).Elem()
+func (DocumentdbDatabaseState) ElementType() reflect.Type {
+	return reflect.TypeOf((*documentdbDatabaseState)(nil)).Elem()
 }
 
-type documentDBDatabaseArgs struct {
+type documentdbDatabaseArgs struct {
 	// UUID of the documentdb instance.
 	//
 	// > **Important:** Updates to `instanceId` will recreate the Database.
 	InstanceId string `pulumi:"instanceId"`
 	// Name of the database (e.g. `my-new-database`).
 	Name *string `pulumi:"name"`
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the resource exists.
 	Region *string `pulumi:"region"`
 }
 
-// The set of arguments for constructing a DocumentDBDatabase resource.
-type DocumentDBDatabaseArgs struct {
+// The set of arguments for constructing a DocumentdbDatabase resource.
+type DocumentdbDatabaseArgs struct {
 	// UUID of the documentdb instance.
 	//
 	// > **Important:** Updates to `instanceId` will recreate the Database.
 	InstanceId pulumi.StringInput
 	// Name of the database (e.g. `my-new-database`).
 	Name pulumi.StringPtrInput
-	// The project_id you want to attach the resource to
+	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region in which the resource exists.
 	Region pulumi.StringPtrInput
 }
 
-func (DocumentDBDatabaseArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*documentDBDatabaseArgs)(nil)).Elem()
+func (DocumentdbDatabaseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*documentdbDatabaseArgs)(nil)).Elem()
 }
 
-type DocumentDBDatabaseInput interface {
+type DocumentdbDatabaseInput interface {
 	pulumi.Input
 
-	ToDocumentDBDatabaseOutput() DocumentDBDatabaseOutput
-	ToDocumentDBDatabaseOutputWithContext(ctx context.Context) DocumentDBDatabaseOutput
+	ToDocumentdbDatabaseOutput() DocumentdbDatabaseOutput
+	ToDocumentdbDatabaseOutputWithContext(ctx context.Context) DocumentdbDatabaseOutput
 }
 
-func (*DocumentDBDatabase) ElementType() reflect.Type {
-	return reflect.TypeOf((**DocumentDBDatabase)(nil)).Elem()
+func (*DocumentdbDatabase) ElementType() reflect.Type {
+	return reflect.TypeOf((**DocumentdbDatabase)(nil)).Elem()
 }
 
-func (i *DocumentDBDatabase) ToDocumentDBDatabaseOutput() DocumentDBDatabaseOutput {
-	return i.ToDocumentDBDatabaseOutputWithContext(context.Background())
+func (i *DocumentdbDatabase) ToDocumentdbDatabaseOutput() DocumentdbDatabaseOutput {
+	return i.ToDocumentdbDatabaseOutputWithContext(context.Background())
 }
 
-func (i *DocumentDBDatabase) ToDocumentDBDatabaseOutputWithContext(ctx context.Context) DocumentDBDatabaseOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBDatabaseOutput)
+func (i *DocumentdbDatabase) ToDocumentdbDatabaseOutputWithContext(ctx context.Context) DocumentdbDatabaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbDatabaseOutput)
 }
 
-// DocumentDBDatabaseArrayInput is an input type that accepts DocumentDBDatabaseArray and DocumentDBDatabaseArrayOutput values.
-// You can construct a concrete instance of `DocumentDBDatabaseArrayInput` via:
+// DocumentdbDatabaseArrayInput is an input type that accepts DocumentdbDatabaseArray and DocumentdbDatabaseArrayOutput values.
+// You can construct a concrete instance of `DocumentdbDatabaseArrayInput` via:
 //
-//	DocumentDBDatabaseArray{ DocumentDBDatabaseArgs{...} }
-type DocumentDBDatabaseArrayInput interface {
+//	DocumentdbDatabaseArray{ DocumentdbDatabaseArgs{...} }
+type DocumentdbDatabaseArrayInput interface {
 	pulumi.Input
 
-	ToDocumentDBDatabaseArrayOutput() DocumentDBDatabaseArrayOutput
-	ToDocumentDBDatabaseArrayOutputWithContext(context.Context) DocumentDBDatabaseArrayOutput
+	ToDocumentdbDatabaseArrayOutput() DocumentdbDatabaseArrayOutput
+	ToDocumentdbDatabaseArrayOutputWithContext(context.Context) DocumentdbDatabaseArrayOutput
 }
 
-type DocumentDBDatabaseArray []DocumentDBDatabaseInput
+type DocumentdbDatabaseArray []DocumentdbDatabaseInput
 
-func (DocumentDBDatabaseArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*DocumentDBDatabase)(nil)).Elem()
+func (DocumentdbDatabaseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DocumentdbDatabase)(nil)).Elem()
 }
 
-func (i DocumentDBDatabaseArray) ToDocumentDBDatabaseArrayOutput() DocumentDBDatabaseArrayOutput {
-	return i.ToDocumentDBDatabaseArrayOutputWithContext(context.Background())
+func (i DocumentdbDatabaseArray) ToDocumentdbDatabaseArrayOutput() DocumentdbDatabaseArrayOutput {
+	return i.ToDocumentdbDatabaseArrayOutputWithContext(context.Background())
 }
 
-func (i DocumentDBDatabaseArray) ToDocumentDBDatabaseArrayOutputWithContext(ctx context.Context) DocumentDBDatabaseArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBDatabaseArrayOutput)
+func (i DocumentdbDatabaseArray) ToDocumentdbDatabaseArrayOutputWithContext(ctx context.Context) DocumentdbDatabaseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbDatabaseArrayOutput)
 }
 
-// DocumentDBDatabaseMapInput is an input type that accepts DocumentDBDatabaseMap and DocumentDBDatabaseMapOutput values.
-// You can construct a concrete instance of `DocumentDBDatabaseMapInput` via:
+// DocumentdbDatabaseMapInput is an input type that accepts DocumentdbDatabaseMap and DocumentdbDatabaseMapOutput values.
+// You can construct a concrete instance of `DocumentdbDatabaseMapInput` via:
 //
-//	DocumentDBDatabaseMap{ "key": DocumentDBDatabaseArgs{...} }
-type DocumentDBDatabaseMapInput interface {
+//	DocumentdbDatabaseMap{ "key": DocumentdbDatabaseArgs{...} }
+type DocumentdbDatabaseMapInput interface {
 	pulumi.Input
 
-	ToDocumentDBDatabaseMapOutput() DocumentDBDatabaseMapOutput
-	ToDocumentDBDatabaseMapOutputWithContext(context.Context) DocumentDBDatabaseMapOutput
+	ToDocumentdbDatabaseMapOutput() DocumentdbDatabaseMapOutput
+	ToDocumentdbDatabaseMapOutputWithContext(context.Context) DocumentdbDatabaseMapOutput
 }
 
-type DocumentDBDatabaseMap map[string]DocumentDBDatabaseInput
+type DocumentdbDatabaseMap map[string]DocumentdbDatabaseInput
 
-func (DocumentDBDatabaseMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*DocumentDBDatabase)(nil)).Elem()
+func (DocumentdbDatabaseMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DocumentdbDatabase)(nil)).Elem()
 }
 
-func (i DocumentDBDatabaseMap) ToDocumentDBDatabaseMapOutput() DocumentDBDatabaseMapOutput {
-	return i.ToDocumentDBDatabaseMapOutputWithContext(context.Background())
+func (i DocumentdbDatabaseMap) ToDocumentdbDatabaseMapOutput() DocumentdbDatabaseMapOutput {
+	return i.ToDocumentdbDatabaseMapOutputWithContext(context.Background())
 }
 
-func (i DocumentDBDatabaseMap) ToDocumentDBDatabaseMapOutputWithContext(ctx context.Context) DocumentDBDatabaseMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBDatabaseMapOutput)
+func (i DocumentdbDatabaseMap) ToDocumentdbDatabaseMapOutputWithContext(ctx context.Context) DocumentdbDatabaseMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbDatabaseMapOutput)
 }
 
-type DocumentDBDatabaseOutput struct{ *pulumi.OutputState }
+type DocumentdbDatabaseOutput struct{ *pulumi.OutputState }
 
-func (DocumentDBDatabaseOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DocumentDBDatabase)(nil)).Elem()
+func (DocumentdbDatabaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DocumentdbDatabase)(nil)).Elem()
 }
 
-func (o DocumentDBDatabaseOutput) ToDocumentDBDatabaseOutput() DocumentDBDatabaseOutput {
+func (o DocumentdbDatabaseOutput) ToDocumentdbDatabaseOutput() DocumentdbDatabaseOutput {
 	return o
 }
 
-func (o DocumentDBDatabaseOutput) ToDocumentDBDatabaseOutputWithContext(ctx context.Context) DocumentDBDatabaseOutput {
+func (o DocumentdbDatabaseOutput) ToDocumentdbDatabaseOutputWithContext(ctx context.Context) DocumentdbDatabaseOutput {
 	return o
 }
 
 // UUID of the documentdb instance.
 //
 // > **Important:** Updates to `instanceId` will recreate the Database.
-func (o DocumentDBDatabaseOutput) InstanceId() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBDatabase) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
+func (o DocumentdbDatabaseOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbDatabase) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
 // Whether the database is managed or not.
-func (o DocumentDBDatabaseOutput) Managed() pulumi.BoolOutput {
-	return o.ApplyT(func(v *DocumentDBDatabase) pulumi.BoolOutput { return v.Managed }).(pulumi.BoolOutput)
+func (o DocumentdbDatabaseOutput) Managed() pulumi.BoolOutput {
+	return o.ApplyT(func(v *DocumentdbDatabase) pulumi.BoolOutput { return v.Managed }).(pulumi.BoolOutput)
 }
 
 // Name of the database (e.g. `my-new-database`).
-func (o DocumentDBDatabaseOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBDatabase) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+func (o DocumentdbDatabaseOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbDatabase) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 // The name of the owner of the database.
-func (o DocumentDBDatabaseOutput) Owner() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBDatabase) pulumi.StringOutput { return v.Owner }).(pulumi.StringOutput)
+func (o DocumentdbDatabaseOutput) Owner() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbDatabase) pulumi.StringOutput { return v.Owner }).(pulumi.StringOutput)
 }
 
-// The project_id you want to attach the resource to
-func (o DocumentDBDatabaseOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBDatabase) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+// The projectId you want to attach the resource to
+func (o DocumentdbDatabaseOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbDatabase) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // `region`) The region in which the resource exists.
-func (o DocumentDBDatabaseOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBDatabase) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o DocumentdbDatabaseOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbDatabase) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // Size in gigabytes of the database.
-func (o DocumentDBDatabaseOutput) Size() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBDatabase) pulumi.StringOutput { return v.Size }).(pulumi.StringOutput)
+func (o DocumentdbDatabaseOutput) Size() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbDatabase) pulumi.StringOutput { return v.Size }).(pulumi.StringOutput)
 }
 
-type DocumentDBDatabaseArrayOutput struct{ *pulumi.OutputState }
+type DocumentdbDatabaseArrayOutput struct{ *pulumi.OutputState }
 
-func (DocumentDBDatabaseArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*DocumentDBDatabase)(nil)).Elem()
+func (DocumentdbDatabaseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DocumentdbDatabase)(nil)).Elem()
 }
 
-func (o DocumentDBDatabaseArrayOutput) ToDocumentDBDatabaseArrayOutput() DocumentDBDatabaseArrayOutput {
+func (o DocumentdbDatabaseArrayOutput) ToDocumentdbDatabaseArrayOutput() DocumentdbDatabaseArrayOutput {
 	return o
 }
 
-func (o DocumentDBDatabaseArrayOutput) ToDocumentDBDatabaseArrayOutputWithContext(ctx context.Context) DocumentDBDatabaseArrayOutput {
+func (o DocumentdbDatabaseArrayOutput) ToDocumentdbDatabaseArrayOutputWithContext(ctx context.Context) DocumentdbDatabaseArrayOutput {
 	return o
 }
 
-func (o DocumentDBDatabaseArrayOutput) Index(i pulumi.IntInput) DocumentDBDatabaseOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DocumentDBDatabase {
-		return vs[0].([]*DocumentDBDatabase)[vs[1].(int)]
-	}).(DocumentDBDatabaseOutput)
+func (o DocumentdbDatabaseArrayOutput) Index(i pulumi.IntInput) DocumentdbDatabaseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DocumentdbDatabase {
+		return vs[0].([]*DocumentdbDatabase)[vs[1].(int)]
+	}).(DocumentdbDatabaseOutput)
 }
 
-type DocumentDBDatabaseMapOutput struct{ *pulumi.OutputState }
+type DocumentdbDatabaseMapOutput struct{ *pulumi.OutputState }
 
-func (DocumentDBDatabaseMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*DocumentDBDatabase)(nil)).Elem()
+func (DocumentdbDatabaseMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DocumentdbDatabase)(nil)).Elem()
 }
 
-func (o DocumentDBDatabaseMapOutput) ToDocumentDBDatabaseMapOutput() DocumentDBDatabaseMapOutput {
+func (o DocumentdbDatabaseMapOutput) ToDocumentdbDatabaseMapOutput() DocumentdbDatabaseMapOutput {
 	return o
 }
 
-func (o DocumentDBDatabaseMapOutput) ToDocumentDBDatabaseMapOutputWithContext(ctx context.Context) DocumentDBDatabaseMapOutput {
+func (o DocumentdbDatabaseMapOutput) ToDocumentdbDatabaseMapOutputWithContext(ctx context.Context) DocumentdbDatabaseMapOutput {
 	return o
 }
 
-func (o DocumentDBDatabaseMapOutput) MapIndex(k pulumi.StringInput) DocumentDBDatabaseOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DocumentDBDatabase {
-		return vs[0].(map[string]*DocumentDBDatabase)[vs[1].(string)]
-	}).(DocumentDBDatabaseOutput)
+func (o DocumentdbDatabaseMapOutput) MapIndex(k pulumi.StringInput) DocumentdbDatabaseOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DocumentdbDatabase {
+		return vs[0].(map[string]*DocumentdbDatabase)[vs[1].(string)]
+	}).(DocumentdbDatabaseOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBDatabaseInput)(nil)).Elem(), &DocumentDBDatabase{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBDatabaseArrayInput)(nil)).Elem(), DocumentDBDatabaseArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBDatabaseMapInput)(nil)).Elem(), DocumentDBDatabaseMap{})
-	pulumi.RegisterOutputType(DocumentDBDatabaseOutput{})
-	pulumi.RegisterOutputType(DocumentDBDatabaseArrayOutput{})
-	pulumi.RegisterOutputType(DocumentDBDatabaseMapOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbDatabaseInput)(nil)).Elem(), &DocumentdbDatabase{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbDatabaseArrayInput)(nil)).Elem(), DocumentdbDatabaseArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbDatabaseMapInput)(nil)).Elem(), DocumentdbDatabaseMap{})
+	pulumi.RegisterOutputType(DocumentdbDatabaseOutput{})
+	pulumi.RegisterOutputType(DocumentdbDatabaseArrayOutput{})
+	pulumi.RegisterOutputType(DocumentdbDatabaseMapOutput{})
 }

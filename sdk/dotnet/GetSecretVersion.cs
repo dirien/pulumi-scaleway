@@ -12,9 +12,125 @@ namespace ediri.Scaleway
 {
     public static class GetSecretVersion
     {
+        /// <summary>
+        /// Gets information about Scaleway a Secret Version.
+        /// For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/#secret-versions-079501).
+        /// 
+        /// ## Examples
+        /// 
+        /// ### Basic
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = ediri.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var mainSecret = new Scaleway.Secret("mainSecret", new()
+        ///     {
+        ///         Description = "barr",
+        ///     });
+        /// 
+        ///     var mainSecretVersion = new Scaleway.SecretVersion("mainSecretVersion", new()
+        ///     {
+        ///         Description = "your description",
+        ///         SecretId = mainSecret.Id,
+        ///         Data = "your_secret",
+        ///     });
+        /// 
+        ///     var dataBySecretId = Scaleway.GetSecretVersion.Invoke(new()
+        ///     {
+        ///         SecretId = mainSecret.Id,
+        ///         Revision = "1",
+        ///     });
+        /// 
+        ///     var dataBySecretName = Scaleway.GetSecretVersion.Invoke(new()
+        ///     {
+        ///         SecretName = mainSecret.Name,
+        ///         Revision = "1",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["scalewaySecretAccessPayload"] = dataBySecretName.Apply(getSecretVersionResult =&gt; getSecretVersionResult.Data),
+        ///         ["scalewaySecretAccessPayloadById"] = dataBySecretId.Apply(getSecretVersionResult =&gt; getSecretVersionResult.Data),
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ## Data
+        /// 
+        /// Note: This Data Source give you **access** to the secret payload encoded en base64.
+        /// 
+        /// Be aware that this is a sensitive attribute. For more information,
+        /// see Sensitive Data in State.
+        /// 
+        /// &gt; **Important:**  This property is sensitive and will not be displayed in the plan.
+        /// </summary>
         public static Task<GetSecretVersionResult> InvokeAsync(GetSecretVersionArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretVersionResult>("scaleway:index/getSecretVersion:getSecretVersion", args ?? new GetSecretVersionArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Gets information about Scaleway a Secret Version.
+        /// For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/#secret-versions-079501).
+        /// 
+        /// ## Examples
+        /// 
+        /// ### Basic
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = ediri.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var mainSecret = new Scaleway.Secret("mainSecret", new()
+        ///     {
+        ///         Description = "barr",
+        ///     });
+        /// 
+        ///     var mainSecretVersion = new Scaleway.SecretVersion("mainSecretVersion", new()
+        ///     {
+        ///         Description = "your description",
+        ///         SecretId = mainSecret.Id,
+        ///         Data = "your_secret",
+        ///     });
+        /// 
+        ///     var dataBySecretId = Scaleway.GetSecretVersion.Invoke(new()
+        ///     {
+        ///         SecretId = mainSecret.Id,
+        ///         Revision = "1",
+        ///     });
+        /// 
+        ///     var dataBySecretName = Scaleway.GetSecretVersion.Invoke(new()
+        ///     {
+        ///         SecretName = mainSecret.Name,
+        ///         Revision = "1",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["scalewaySecretAccessPayload"] = dataBySecretName.Apply(getSecretVersionResult =&gt; getSecretVersionResult.Data),
+        ///         ["scalewaySecretAccessPayloadById"] = dataBySecretId.Apply(getSecretVersionResult =&gt; getSecretVersionResult.Data),
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ## Data
+        /// 
+        /// Note: This Data Source give you **access** to the secret payload encoded en base64.
+        /// 
+        /// Be aware that this is a sensitive attribute. For more information,
+        /// see Sensitive Data in State.
+        /// 
+        /// &gt; **Important:**  This property is sensitive and will not be displayed in the plan.
+        /// </summary>
         public static Output<GetSecretVersionResult> Invoke(GetSecretVersionInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretVersionResult>("scaleway:index/getSecretVersion:getSecretVersion", args ?? new GetSecretVersionInvokeArgs(), options.WithDefaults());
     }
@@ -22,6 +138,12 @@ namespace ediri.Scaleway
 
     public sealed class GetSecretVersionArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the project the Secret version is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
         /// <summary>
         /// `region`) The region
         /// in which the resource exists.
@@ -57,6 +179,12 @@ namespace ediri.Scaleway
 
     public sealed class GetSecretVersionInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the project the Secret version is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
         /// <summary>
         /// `region`) The region
         /// in which the resource exists.
@@ -110,6 +238,7 @@ namespace ediri.Scaleway
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string? ProjectId;
         public readonly string? Region;
         public readonly string? Revision;
         public readonly string? SecretId;
@@ -133,6 +262,8 @@ namespace ediri.Scaleway
 
             string id,
 
+            string? projectId,
+
             string? region,
 
             string? revision,
@@ -149,6 +280,7 @@ namespace ediri.Scaleway
             Data = data;
             Description = description;
             Id = id;
+            ProjectId = projectId;
             Region = region;
             Revision = revision;
             SecretId = secretId;

@@ -58,7 +58,9 @@ func LookupLb(ctx *pulumi.Context, args *LookupLbArgs, opts ...pulumi.InvokeOpti
 type LookupLbArgs struct {
 	LbId *string `pulumi:"lbId"`
 	// The load balancer name.
-	Name      *string `pulumi:"name"`
+	Name *string `pulumi:"name"`
+	// The ID of the project the LB is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	ReleaseIp *bool   `pulumi:"releaseIp"`
 	// (Defaults to provider `zone`) The zone in which the LB exists.
 	Zone *string `pulumi:"zone"`
@@ -71,17 +73,16 @@ type LookupLbResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The load-balancer public IP Address.
-	IpAddress       string                `pulumi:"ipAddress"`
-	IpId            string                `pulumi:"ipId"`
-	LbId            *string               `pulumi:"lbId"`
-	Name            *string               `pulumi:"name"`
-	OrganizationId  string                `pulumi:"organizationId"`
-	PrivateNetworks []GetLbPrivateNetwork `pulumi:"privateNetworks"`
-	// (Defaults to provider `projectId`) The ID of the project the LB is associated with.
-	ProjectId             string `pulumi:"projectId"`
-	Region                string `pulumi:"region"`
-	ReleaseIp             *bool  `pulumi:"releaseIp"`
-	SslCompatibilityLevel string `pulumi:"sslCompatibilityLevel"`
+	IpAddress             string                `pulumi:"ipAddress"`
+	IpId                  string                `pulumi:"ipId"`
+	LbId                  *string               `pulumi:"lbId"`
+	Name                  *string               `pulumi:"name"`
+	OrganizationId        string                `pulumi:"organizationId"`
+	PrivateNetworks       []GetLbPrivateNetwork `pulumi:"privateNetworks"`
+	ProjectId             *string               `pulumi:"projectId"`
+	Region                string                `pulumi:"region"`
+	ReleaseIp             *bool                 `pulumi:"releaseIp"`
+	SslCompatibilityLevel string                `pulumi:"sslCompatibilityLevel"`
 	// The tags associated with the load-balancer.
 	Tags []string `pulumi:"tags"`
 	// The type of the load-balancer.
@@ -107,7 +108,9 @@ func LookupLbOutput(ctx *pulumi.Context, args LookupLbOutputArgs, opts ...pulumi
 type LookupLbOutputArgs struct {
 	LbId pulumi.StringPtrInput `pulumi:"lbId"`
 	// The load balancer name.
-	Name      pulumi.StringPtrInput `pulumi:"name"`
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the project the LB is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	ReleaseIp pulumi.BoolPtrInput   `pulumi:"releaseIp"`
 	// (Defaults to provider `zone`) The zone in which the LB exists.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
@@ -170,9 +173,8 @@ func (o LookupLbResultOutput) PrivateNetworks() GetLbPrivateNetworkArrayOutput {
 	return o.ApplyT(func(v LookupLbResult) []GetLbPrivateNetwork { return v.PrivateNetworks }).(GetLbPrivateNetworkArrayOutput)
 }
 
-// (Defaults to provider `projectId`) The ID of the project the LB is associated with.
-func (o LookupLbResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupLbResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupLbResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupLbResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupLbResultOutput) Region() pulumi.StringOutput {

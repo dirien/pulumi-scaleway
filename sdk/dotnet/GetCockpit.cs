@@ -17,9 +17,7 @@ namespace ediri.Scaleway
         /// 
         /// For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/).
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -49,8 +47,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetCockpitResult> InvokeAsync(GetCockpitArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCockpitResult>("scaleway:index/getCockpit:getCockpit", args ?? new GetCockpitArgs(), options.WithDefaults());
@@ -60,9 +56,7 @@ namespace ediri.Scaleway
         /// 
         /// For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/).
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -92,8 +86,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetCockpitResult> Invoke(GetCockpitInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCockpitResult>("scaleway:index/getCockpit:getCockpit", args ?? new GetCockpitInvokeArgs(), options.WithDefaults());

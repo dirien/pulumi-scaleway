@@ -176,6 +176,7 @@ def get_object_bucket(name: Optional[str] = None,
     })
     selected = scaleway.get_object_bucket_output(name=main.id)
     ```
+
     ### Fetching the bucket from a specific project
 
     ```python
@@ -234,6 +235,7 @@ def get_object_bucket_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     })
     selected = scaleway.get_object_bucket_output(name=main.id)
     ```
+
     ### Fetching the bucket from a specific project
 
     ```python

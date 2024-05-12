@@ -71,7 +71,9 @@ type LookupRdbDatabaseBackupArgs struct {
 	// The name of the RDB instance.
 	// Only one of the `name` and `backupId` should be specified.
 	Name *string `pulumi:"name"`
-	// `region`) The region in which the Database Instance should be created.
+	// The ID of the project the Database Backup is associated with.
+	ProjectId *string `pulumi:"projectId"`
+	// `region`) The region in which the Database Backup is associated with.
 	Region *string `pulumi:"region"`
 }
 
@@ -86,6 +88,7 @@ type LookupRdbDatabaseBackupResult struct {
 	InstanceId   *string `pulumi:"instanceId"`
 	InstanceName string  `pulumi:"instanceName"`
 	Name         *string `pulumi:"name"`
+	ProjectId    *string `pulumi:"projectId"`
 	Region       *string `pulumi:"region"`
 	Size         int     `pulumi:"size"`
 	UpdatedAt    string  `pulumi:"updatedAt"`
@@ -114,7 +117,9 @@ type LookupRdbDatabaseBackupOutputArgs struct {
 	// The name of the RDB instance.
 	// Only one of the `name` and `backupId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// `region`) The region in which the Database Instance should be created.
+	// The ID of the project the Database Backup is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// `region`) The region in which the Database Backup is associated with.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
@@ -168,6 +173,10 @@ func (o LookupRdbDatabaseBackupResultOutput) InstanceName() pulumi.StringOutput 
 
 func (o LookupRdbDatabaseBackupResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupRdbDatabaseBackupResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupRdbDatabaseBackupResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupRdbDatabaseBackupResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupRdbDatabaseBackupResultOutput) Region() pulumi.StringPtrOutput {

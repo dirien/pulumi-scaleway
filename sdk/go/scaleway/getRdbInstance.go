@@ -57,7 +57,7 @@ type LookupRdbInstanceResult struct {
 	OrganizationId  string                         `pulumi:"organizationId"`
 	Password        string                         `pulumi:"password"`
 	PrivateNetworks []GetRdbInstancePrivateNetwork `pulumi:"privateNetworks"`
-	ProjectId       string                         `pulumi:"projectId"`
+	ProjectId       *string                        `pulumi:"projectId"`
 	ReadReplicas    []GetRdbInstanceReadReplica    `pulumi:"readReplicas"`
 	Region          *string                        `pulumi:"region"`
 	Settings        map[string]string              `pulumi:"settings"`
@@ -186,8 +186,8 @@ func (o LookupRdbInstanceResultOutput) PrivateNetworks() GetRdbInstancePrivateNe
 	return o.ApplyT(func(v LookupRdbInstanceResult) []GetRdbInstancePrivateNetwork { return v.PrivateNetworks }).(GetRdbInstancePrivateNetworkArrayOutput)
 }
 
-func (o LookupRdbInstanceResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupRdbInstanceResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupRdbInstanceResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupRdbInstanceResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupRdbInstanceResultOutput) ReadReplicas() GetRdbInstanceReadReplicaArrayOutput {

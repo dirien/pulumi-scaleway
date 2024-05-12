@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  * You can check our [containers guide](https://www.scaleway.com/en/docs/compute/containers/how-to/add-a-custom-domain-to-a-container/) for further information.
  *
  * ## Example Usage
+ *
  * ### Simple
  *
  * ```typescript
@@ -21,6 +22,7 @@ import * as utilities from "./utilities";
  *     hostname: "container.domain.tld",
  * });
  * ```
+ *
  * ### Complete example with domain
  *
  * ```typescript
@@ -56,10 +58,12 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Container domain binding can be imported using the `{region}/{id}`, e.g. bash
+ * Container domain binding can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/containerDomain:ContainerDomain main fr-par/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/containerDomain:ContainerDomain main fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class ContainerDomain extends pulumi.CustomResource {
