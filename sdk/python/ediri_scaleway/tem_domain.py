@@ -107,6 +107,7 @@ class _TemDomainState:
                  smtp_port: Optional[pulumi.Input[int]] = None,
                  smtp_port_alternative: Optional[pulumi.Input[int]] = None,
                  smtp_port_unsecure: Optional[pulumi.Input[int]] = None,
+                 smtps_auth_user: Optional[pulumi.Input[str]] = None,
                  smtps_port: Optional[pulumi.Input[int]] = None,
                  smtps_port_alternative: Optional[pulumi.Input[int]] = None,
                  spf_config: Optional[pulumi.Input[str]] = None,
@@ -131,6 +132,7 @@ class _TemDomainState:
         :param pulumi.Input[int] smtp_port: The SMTP port to use to send emails over TLS.
         :param pulumi.Input[int] smtp_port_alternative: The SMTP port to use to send emails over TLS.
         :param pulumi.Input[int] smtp_port_unsecure: The SMTP port to use to send emails.
+        :param pulumi.Input[str] smtps_auth_user: SMTPS auth user refers to the identifier for a user authorized to send emails via SMTPS, ensuring secure email transmission.
         :param pulumi.Input[int] smtps_port: The SMTPS port to use to send emails over TLS Wrapper.
         :param pulumi.Input[int] smtps_port_alternative: The SMTPS port to use to send emails over TLS Wrapper.
         :param pulumi.Input[str] spf_config: The snippet of the SPF record that should be registered in the DNS zone.
@@ -168,6 +170,8 @@ class _TemDomainState:
             pulumi.set(__self__, "smtp_port_alternative", smtp_port_alternative)
         if smtp_port_unsecure is not None:
             pulumi.set(__self__, "smtp_port_unsecure", smtp_port_unsecure)
+        if smtps_auth_user is not None:
+            pulumi.set(__self__, "smtps_auth_user", smtps_auth_user)
         if smtps_port is not None:
             pulumi.set(__self__, "smtps_port", smtps_port)
         if smtps_port_alternative is not None:
@@ -370,6 +374,18 @@ class _TemDomainState:
     @smtp_port_unsecure.setter
     def smtp_port_unsecure(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "smtp_port_unsecure", value)
+
+    @property
+    @pulumi.getter(name="smtpsAuthUser")
+    def smtps_auth_user(self) -> Optional[pulumi.Input[str]]:
+        """
+        SMTPS auth user refers to the identifier for a user authorized to send emails via SMTPS, ensuring secure email transmission.
+        """
+        return pulumi.get(self, "smtps_auth_user")
+
+    @smtps_auth_user.setter
+    def smtps_auth_user(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "smtps_auth_user", value)
 
     @property
     @pulumi.getter(name="smtpsPort")
@@ -587,6 +603,7 @@ class TemDomain(pulumi.CustomResource):
             __props__.__dict__["smtp_port"] = None
             __props__.__dict__["smtp_port_alternative"] = None
             __props__.__dict__["smtp_port_unsecure"] = None
+            __props__.__dict__["smtps_auth_user"] = None
             __props__.__dict__["smtps_port"] = None
             __props__.__dict__["smtps_port_alternative"] = None
             __props__.__dict__["spf_config"] = None
@@ -617,6 +634,7 @@ class TemDomain(pulumi.CustomResource):
             smtp_port: Optional[pulumi.Input[int]] = None,
             smtp_port_alternative: Optional[pulumi.Input[int]] = None,
             smtp_port_unsecure: Optional[pulumi.Input[int]] = None,
+            smtps_auth_user: Optional[pulumi.Input[str]] = None,
             smtps_port: Optional[pulumi.Input[int]] = None,
             smtps_port_alternative: Optional[pulumi.Input[int]] = None,
             spf_config: Optional[pulumi.Input[str]] = None,
@@ -646,6 +664,7 @@ class TemDomain(pulumi.CustomResource):
         :param pulumi.Input[int] smtp_port: The SMTP port to use to send emails over TLS.
         :param pulumi.Input[int] smtp_port_alternative: The SMTP port to use to send emails over TLS.
         :param pulumi.Input[int] smtp_port_unsecure: The SMTP port to use to send emails.
+        :param pulumi.Input[str] smtps_auth_user: SMTPS auth user refers to the identifier for a user authorized to send emails via SMTPS, ensuring secure email transmission.
         :param pulumi.Input[int] smtps_port: The SMTPS port to use to send emails over TLS Wrapper.
         :param pulumi.Input[int] smtps_port_alternative: The SMTPS port to use to send emails over TLS Wrapper.
         :param pulumi.Input[str] spf_config: The snippet of the SPF record that should be registered in the DNS zone.
@@ -671,6 +690,7 @@ class TemDomain(pulumi.CustomResource):
         __props__.__dict__["smtp_port"] = smtp_port
         __props__.__dict__["smtp_port_alternative"] = smtp_port_alternative
         __props__.__dict__["smtp_port_unsecure"] = smtp_port_unsecure
+        __props__.__dict__["smtps_auth_user"] = smtps_auth_user
         __props__.__dict__["smtps_port"] = smtps_port
         __props__.__dict__["smtps_port_alternative"] = smtps_port_alternative
         __props__.__dict__["spf_config"] = spf_config
@@ -806,6 +826,14 @@ class TemDomain(pulumi.CustomResource):
         The SMTP port to use to send emails.
         """
         return pulumi.get(self, "smtp_port_unsecure")
+
+    @property
+    @pulumi.getter(name="smtpsAuthUser")
+    def smtps_auth_user(self) -> pulumi.Output[str]:
+        """
+        SMTPS auth user refers to the identifier for a user authorized to send emails via SMTPS, ensuring secure email transmission.
+        """
+        return pulumi.get(self, "smtps_auth_user")
 
     @property
     @pulumi.getter(name="smtpsPort")

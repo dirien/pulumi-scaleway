@@ -65,6 +65,7 @@ export interface GetCockpitResult {
      */
     readonly planId: string;
     readonly projectId?: string;
+    readonly pushUrls: outputs.GetCockpitPushUrl[];
 }
 /**
  * Gets information about the Scaleway Cockpit.

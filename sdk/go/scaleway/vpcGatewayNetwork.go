@@ -98,7 +98,7 @@ import (
 //				return err
 //			}
 //			ip01, err := scaleway.NewIpamIp(ctx, "ip01", &scaleway.IpamIpArgs{
-//				Address: pulumi.String("172.16.64.7/22"),
+//				Address: pulumi.String("172.16.64.7"),
 //				Sources: scaleway.IpamIpSourceArray{
 //					&scaleway.IpamIpSourceArgs{
 //						PrivateNetworkId: pn01.ID(),

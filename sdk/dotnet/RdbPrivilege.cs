@@ -49,16 +49,9 @@ namespace ediri.Scaleway
     ///     var mainRdbPrivilege = new Scaleway.RdbPrivilege("mainRdbPrivilege", new()
     ///     {
     ///         InstanceId = mainRdbInstance.Id,
-    ///         UserName = "my-db-user",
-    ///         DatabaseName = "my-db-name",
+    ///         UserName = mainRdbUser.Name,
+    ///         DatabaseName = mainRdbDatabase.Name,
     ///         Permission = "all",
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         DependsOn =
-    ///         {
-    ///             mainRdbUser,
-    ///             mainRdbDatabase,
-    ///         },
     ///     });
     /// 
     /// });

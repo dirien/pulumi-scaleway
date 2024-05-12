@@ -16,6 +16,7 @@ __all__ = [
     'BaremetalServerOptionArgs',
     'BaremetalServerPrivateNetworkArgs',
     'CockpitEndpointArgs',
+    'CockpitPushUrlArgs',
     'CockpitTokenScopesArgs',
     'ContainerTriggerNatsArgs',
     'ContainerTriggerSqsArgs',
@@ -48,6 +49,7 @@ __all__ = [
     'IpamIpResourceArgs',
     'IpamIpReverseArgs',
     'IpamIpSourceArgs',
+    'JobDefinitionCronArgs',
     'K8sClusterAutoUpgradeArgs',
     'K8sClusterAutoscalerConfigArgs',
     'K8sClusterKubeconfigArgs',
@@ -542,6 +544,45 @@ class CockpitEndpointArgs:
 
 
 @pulumi.input_type
+class CockpitPushUrlArgs:
+    def __init__(__self__, *,
+                 push_logs_url: Optional[pulumi.Input[str]] = None,
+                 push_metrics_url: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] push_logs_url: Push URL for logs (Grafana Loki)
+        :param pulumi.Input[str] push_metrics_url: Push URL for metrics (Grafana Mimir)
+        """
+        if push_logs_url is not None:
+            pulumi.set(__self__, "push_logs_url", push_logs_url)
+        if push_metrics_url is not None:
+            pulumi.set(__self__, "push_metrics_url", push_metrics_url)
+
+    @property
+    @pulumi.getter(name="pushLogsUrl")
+    def push_logs_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Push URL for logs (Grafana Loki)
+        """
+        return pulumi.get(self, "push_logs_url")
+
+    @push_logs_url.setter
+    def push_logs_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "push_logs_url", value)
+
+    @property
+    @pulumi.getter(name="pushMetricsUrl")
+    def push_metrics_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Push URL for metrics (Grafana Mimir)
+        """
+        return pulumi.get(self, "push_metrics_url")
+
+    @push_metrics_url.setter
+    def push_metrics_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "push_metrics_url", value)
+
+
+@pulumi.input_type
 class CockpitTokenScopesArgs:
     def __init__(__self__, *,
                  query_logs: Optional[pulumi.Input[bool]] = None,
@@ -777,6 +818,9 @@ class ContainerTriggerSqsArgs:
         """
         pulumi.set(__self__, "queue", queue)
         if namespace_id is not None:
+            warnings.warn("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""", DeprecationWarning)
+            pulumi.log.warn("""namespace_id is deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
+        if namespace_id is not None:
             pulumi.set(__self__, "namespace_id", namespace_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
@@ -801,6 +845,9 @@ class ContainerTriggerSqsArgs:
         """
         ID of the mnq namespace. Deprecated.
         """
+        warnings.warn("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""", DeprecationWarning)
+        pulumi.log.warn("""namespace_id is deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
+
         return pulumi.get(self, "namespace_id")
 
     @namespace_id.setter
@@ -1375,6 +1422,9 @@ class FunctionTriggerSqsArgs:
         """
         pulumi.set(__self__, "queue", queue)
         if namespace_id is not None:
+            warnings.warn("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""", DeprecationWarning)
+            pulumi.log.warn("""namespace_id is deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
+        if namespace_id is not None:
             pulumi.set(__self__, "namespace_id", namespace_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
@@ -1399,6 +1449,9 @@ class FunctionTriggerSqsArgs:
         """
         ID of the mnq namespace. Deprecated.
         """
+        warnings.warn("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""", DeprecationWarning)
+        pulumi.log.warn("""namespace_id is deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
+
         return pulumi.get(self, "namespace_id")
 
     @namespace_id.setter
@@ -2946,6 +2999,43 @@ class IpamIpSourceArgs:
     @zonal.setter
     def zonal(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "zonal", value)
+
+
+@pulumi.input_type
+class JobDefinitionCronArgs:
+    def __init__(__self__, *,
+                 schedule: pulumi.Input[str],
+                 timezone: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] schedule: Cron format string.
+        :param pulumi.Input[str] timezone: The timezone, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+        """
+        pulumi.set(__self__, "schedule", schedule)
+        pulumi.set(__self__, "timezone", timezone)
+
+    @property
+    @pulumi.getter
+    def schedule(self) -> pulumi.Input[str]:
+        """
+        Cron format string.
+        """
+        return pulumi.get(self, "schedule")
+
+    @schedule.setter
+    def schedule(self, value: pulumi.Input[str]):
+        pulumi.set(self, "schedule", value)
+
+    @property
+    @pulumi.getter
+    def timezone(self) -> pulumi.Input[str]:
+        """
+        The timezone, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+        """
+        return pulumi.get(self, "timezone")
+
+    @timezone.setter
+    def timezone(self, value: pulumi.Input[str]):
+        pulumi.set(self, "timezone", value)
 
 
 @pulumi.input_type
@@ -5376,15 +5466,13 @@ class RdbReadReplicaPrivateNetworkArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] private_network_id: UUID of the private network to be connected to the read replica.
-        :param pulumi.Input[bool] enable_ipam: Whether or not the private network endpoint should be configured with IPAM
+        :param pulumi.Input[bool] enable_ipam: If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
         :param pulumi.Input[str] endpoint_id: The ID of the endpoint of the read replica.
         :param pulumi.Input[str] hostname: Hostname of the endpoint. Only one of ip and hostname may be set.
         :param pulumi.Input[str] ip: IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
         :param pulumi.Input[str] name: Name of the endpoint.
         :param pulumi.Input[int] port: TCP port of the endpoint.
-        :param pulumi.Input[str] service_ip: The IP network address within the private subnet. This must be an IPv4 address with a
-               CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-               service if not set.
+        :param pulumi.Input[str] service_ip: The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
         :param pulumi.Input[str] zone: Private network zone
         """
         pulumi.set(__self__, "private_network_id", private_network_id)
@@ -5421,7 +5509,7 @@ class RdbReadReplicaPrivateNetworkArgs:
     @pulumi.getter(name="enableIpam")
     def enable_ipam(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether or not the private network endpoint should be configured with IPAM
+        If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
         """
         return pulumi.get(self, "enable_ipam")
 
@@ -5493,9 +5581,7 @@ class RdbReadReplicaPrivateNetworkArgs:
     @pulumi.getter(name="serviceIp")
     def service_ip(self) -> Optional[pulumi.Input[str]]:
         """
-        The IP network address within the private subnet. This must be an IPv4 address with a
-        CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-        service if not set.
+        The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
         """
         return pulumi.get(self, "service_ip")
 
@@ -5584,14 +5670,31 @@ class RedisClusterPrivateNetworkArgs:
                  service_ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] id: The UUID of the private network resource.
+        :param pulumi.Input[str] id: The UUID of the Private Network resource.
         :param pulumi.Input[str] endpoint_id: The ID of the endpoint.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] service_ips: Endpoint IPv4 addresses
-               in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
-               least one IP per node or The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-               service if not set.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] service_ips: Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+               Keep in mind that in Cluster mode you cannot edit your Private Network after its creation so if you want to be able to
+               scale your Cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
+               If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
                
-               > The `private_network` conflict with `acl`. Only one should be specified.
+               > The `private_network` conflicts with `acl`. Only one should be specified.
+               
+               > **Important:** The way to use private networks differs whether you are using Redis in Standalone or Cluster mode.
+               
+               - Standalone mode (`cluster_size` = 1) : you can attach as many Private Networks as you want (each must be a separate
+               block). If you detach your only private network, your cluster won't be reachable until you define a new Private or
+               Public Network. You can modify your `private_network` and its specs, you can have both a Private and Public Network side
+               by side.
+               
+               - Cluster mode (`cluster_size` > 2) : you can define a single Private Network as you create your Cluster, you won't be
+               able to edit or detach it afterward, unless you create another Cluster. This also means that, if you are using a static
+               configuration (`service_ips`), you won't be able to scale your Cluster horizontally (add more nodes) since it would
+               require updating the private network to add IPs.
+               Your `service_ips` must be listed as follows:
+               
+               ```python
+               import pulumi
+               ```
         :param pulumi.Input[str] zone: `zone`) The zone in which the
                Redis Cluster should be created.
         """
@@ -5607,7 +5710,7 @@ class RedisClusterPrivateNetworkArgs:
     @pulumi.getter
     def id(self) -> pulumi.Input[str]:
         """
-        The UUID of the private network resource.
+        The UUID of the Private Network resource.
         """
         return pulumi.get(self, "id")
 
@@ -5631,12 +5734,29 @@ class RedisClusterPrivateNetworkArgs:
     @pulumi.getter(name="serviceIps")
     def service_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Endpoint IPv4 addresses
-        in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
-        least one IP per node or The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-        service if not set.
+        Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+        Keep in mind that in Cluster mode you cannot edit your Private Network after its creation so if you want to be able to
+        scale your Cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
+        If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 
-        > The `private_network` conflict with `acl`. Only one should be specified.
+        > The `private_network` conflicts with `acl`. Only one should be specified.
+
+        > **Important:** The way to use private networks differs whether you are using Redis in Standalone or Cluster mode.
+
+        - Standalone mode (`cluster_size` = 1) : you can attach as many Private Networks as you want (each must be a separate
+        block). If you detach your only private network, your cluster won't be reachable until you define a new Private or
+        Public Network. You can modify your `private_network` and its specs, you can have both a Private and Public Network side
+        by side.
+
+        - Cluster mode (`cluster_size` > 2) : you can define a single Private Network as you create your Cluster, you won't be
+        able to edit or detach it afterward, unless you create another Cluster. This also means that, if you are using a static
+        configuration (`service_ips`), you won't be able to scale your Cluster horizontally (add more nodes) since it would
+        require updating the private network to add IPs.
+        Your `service_ips` must be listed as follows:
+
+        ```python
+        import pulumi
+        ```
         """
         return pulumi.get(self, "service_ips")
 

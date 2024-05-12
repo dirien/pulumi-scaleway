@@ -39,6 +39,10 @@ import (
 //				Env: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
 //				},
+//				Cron: &scaleway.JobDefinitionCronArgs{
+//					Schedule: pulumi.String("5 4 1 * *"),
+//					Timezone: pulumi.String("Europe/Paris"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -65,6 +69,8 @@ type JobDefinition struct {
 	Command pulumi.StringPtrOutput `pulumi:"command"`
 	// The amount of vCPU computing resources to allocate to each container running the job.
 	CpuLimit pulumi.IntOutput `pulumi:"cpuLimit"`
+	// The cron configuration
+	Cron JobDefinitionCronPtrOutput `pulumi:"cron"`
 	// The description of the job
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The environment variables of the container.
@@ -123,6 +129,8 @@ type jobDefinitionState struct {
 	Command *string `pulumi:"command"`
 	// The amount of vCPU computing resources to allocate to each container running the job.
 	CpuLimit *int `pulumi:"cpuLimit"`
+	// The cron configuration
+	Cron *JobDefinitionCron `pulumi:"cron"`
 	// The description of the job
 	Description *string `pulumi:"description"`
 	// The environment variables of the container.
@@ -146,6 +154,8 @@ type JobDefinitionState struct {
 	Command pulumi.StringPtrInput
 	// The amount of vCPU computing resources to allocate to each container running the job.
 	CpuLimit pulumi.IntPtrInput
+	// The cron configuration
+	Cron JobDefinitionCronPtrInput
 	// The description of the job
 	Description pulumi.StringPtrInput
 	// The environment variables of the container.
@@ -173,6 +183,8 @@ type jobDefinitionArgs struct {
 	Command *string `pulumi:"command"`
 	// The amount of vCPU computing resources to allocate to each container running the job.
 	CpuLimit int `pulumi:"cpuLimit"`
+	// The cron configuration
+	Cron *JobDefinitionCron `pulumi:"cron"`
 	// The description of the job
 	Description *string `pulumi:"description"`
 	// The environment variables of the container.
@@ -197,6 +209,8 @@ type JobDefinitionArgs struct {
 	Command pulumi.StringPtrInput
 	// The amount of vCPU computing resources to allocate to each container running the job.
 	CpuLimit pulumi.IntInput
+	// The cron configuration
+	Cron JobDefinitionCronPtrInput
 	// The description of the job
 	Description pulumi.StringPtrInput
 	// The environment variables of the container.
@@ -310,6 +324,11 @@ func (o JobDefinitionOutput) Command() pulumi.StringPtrOutput {
 // The amount of vCPU computing resources to allocate to each container running the job.
 func (o JobDefinitionOutput) CpuLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *JobDefinition) pulumi.IntOutput { return v.CpuLimit }).(pulumi.IntOutput)
+}
+
+// The cron configuration
+func (o JobDefinitionOutput) Cron() JobDefinitionCronPtrOutput {
+	return o.ApplyT(func(v *JobDefinition) JobDefinitionCronPtrOutput { return v.Cron }).(JobDefinitionCronPtrOutput)
 }
 
 // The description of the job

@@ -107,6 +107,18 @@ namespace ediri.Scaleway
         public Output<string?> HubCaChallenge { get; private set; } = null!;
 
         /// <summary>
+        /// The MQTT certificat content
+        /// </summary>
+        [Output("mqttCa")]
+        public Output<string> MqttCa { get; private set; } = null!;
+
+        /// <summary>
+        /// The MQTT ca url
+        /// </summary>
+        [Output("mqttCaUrl")]
+        public Output<string> MqttCaUrl { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the IoT Hub instance you want to create (e.g. `my-hub`).
         /// </summary>
         [Output("name")]
@@ -330,6 +342,18 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("hubCaChallenge")]
         public Input<string>? HubCaChallenge { get; set; }
+
+        /// <summary>
+        /// The MQTT certificat content
+        /// </summary>
+        [Input("mqttCa")]
+        public Input<string>? MqttCa { get; set; }
+
+        /// <summary>
+        /// The MQTT ca url
+        /// </summary>
+        [Input("mqttCaUrl")]
+        public Input<string>? MqttCaUrl { get; set; }
 
         /// <summary>
         /// The name of the IoT Hub instance you want to create (e.g. `my-hub`).

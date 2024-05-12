@@ -77,6 +77,8 @@ type LookupIotHubResult struct {
 	HubId                  *string `pulumi:"hubId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string  `pulumi:"id"`
+	MqttCa         string  `pulumi:"mqttCa"`
+	MqttCaUrl      string  `pulumi:"mqttCaUrl"`
 	Name           *string `pulumi:"name"`
 	OrganizationId string  `pulumi:"organizationId"`
 	ProductPlan    string  `pulumi:"productPlan"`
@@ -179,6 +181,14 @@ func (o LookupIotHubResultOutput) HubId() pulumi.StringPtrOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o LookupIotHubResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIotHubResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupIotHubResultOutput) MqttCa() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIotHubResult) string { return v.MqttCa }).(pulumi.StringOutput)
+}
+
+func (o LookupIotHubResultOutput) MqttCaUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIotHubResult) string { return v.MqttCaUrl }).(pulumi.StringOutput)
 }
 
 func (o LookupIotHubResultOutput) Name() pulumi.StringPtrOutput {

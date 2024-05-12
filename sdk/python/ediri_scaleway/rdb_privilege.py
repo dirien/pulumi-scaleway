@@ -218,13 +218,9 @@ class RdbPrivilege(pulumi.CustomResource):
             is_admin=False)
         main_rdb_privilege = scaleway.RdbPrivilege("mainRdbPrivilege",
             instance_id=main_rdb_instance.id,
-            user_name="my-db-user",
-            database_name="my-db-name",
-            permission="all",
-            opts=pulumi.ResourceOptions(depends_on=[
-                    main_rdb_user,
-                    main_rdb_database,
-                ]))
+            user_name=main_rdb_user.name,
+            database_name=main_rdb_database.name,
+            permission="all")
         ```
 
         ## Import
@@ -275,13 +271,9 @@ class RdbPrivilege(pulumi.CustomResource):
             is_admin=False)
         main_rdb_privilege = scaleway.RdbPrivilege("mainRdbPrivilege",
             instance_id=main_rdb_instance.id,
-            user_name="my-db-user",
-            database_name="my-db-name",
-            permission="all",
-            opts=pulumi.ResourceOptions(depends_on=[
-                    main_rdb_user,
-                    main_rdb_database,
-                ]))
+            user_name=main_rdb_user.name,
+            database_name=main_rdb_database.name,
+            permission="all")
         ```
 
         ## Import

@@ -73,6 +73,8 @@ export interface GetIotHubResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly mqttCa: string;
+    readonly mqttCaUrl: string;
     readonly name?: string;
     readonly organizationId: string;
     readonly productPlan: string;

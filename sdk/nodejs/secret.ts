@@ -76,6 +76,10 @@ export class Secret extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * Path of the secret, defaults to `/`.
+     */
+    public readonly path!: pulumi.Output<string | undefined>;
+    /**
      * The project ID containing is the secret.
      */
     public readonly projectId!: pulumi.Output<string>;
@@ -117,6 +121,7 @@ export class Secret extends pulumi.CustomResource {
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -127,6 +132,7 @@ export class Secret extends pulumi.CustomResource {
             const args = argsOrState as SecretArgs | undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
@@ -156,6 +162,10 @@ export interface SecretState {
      * Name of the secret (e.g. `my-secret`).
      */
     name?: pulumi.Input<string>;
+    /**
+     * Path of the secret, defaults to `/`.
+     */
+    path?: pulumi.Input<string>;
     /**
      * The project ID containing is the secret.
      */
@@ -195,6 +205,10 @@ export interface SecretArgs {
      * Name of the secret (e.g. `my-secret`).
      */
     name?: pulumi.Input<string>;
+    /**
+     * Path of the secret, defaults to `/`.
+     */
+    path?: pulumi.Input<string>;
     /**
      * The project ID containing is the secret.
      */

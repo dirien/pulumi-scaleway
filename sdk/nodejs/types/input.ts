@@ -123,6 +123,17 @@ export interface CockpitEndpoint {
     tracesUrl?: pulumi.Input<string>;
 }
 
+export interface CockpitPushUrl {
+    /**
+     * Push URL for logs (Grafana Loki)
+     */
+    pushLogsUrl?: pulumi.Input<string>;
+    /**
+     * Push URL for metrics (Grafana Mimir)
+     */
+    pushMetricsUrl?: pulumi.Input<string>;
+}
+
 export interface CockpitTokenScopes {
     /**
      * Query logs.
@@ -184,6 +195,8 @@ export interface ContainerTriggerNats {
 export interface ContainerTriggerSqs {
     /**
      * ID of the mnq namespace. Deprecated.
+     *
+     * @deprecated The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
      */
     namespaceId?: pulumi.Input<string>;
     /**
@@ -349,6 +362,8 @@ export interface FunctionTriggerNats {
 export interface FunctionTriggerSqs {
     /**
      * ID of the mnq namespace. Deprecated.
+     *
+     * @deprecated The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
      */
     namespaceId?: pulumi.Input<string>;
     /**
@@ -842,6 +857,17 @@ export interface IpamIpSource {
      * The zone the IP lives in if the IP is a public zoned one
      */
     zonal?: pulumi.Input<string>;
+}
+
+export interface JobDefinitionCron {
+    /**
+     * Cron format string.
+     */
+    schedule: pulumi.Input<string>;
+    /**
+     * The timezone, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+     */
+    timezone: pulumi.Input<string>;
 }
 
 export interface K8sClusterAutoUpgrade {
@@ -1511,7 +1537,7 @@ export interface RdbReadReplicaDirectAccess {
 
 export interface RdbReadReplicaPrivateNetwork {
     /**
-     * Whether or not the private network endpoint should be configured with IPAM
+     * If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
      */
     enableIpam?: pulumi.Input<boolean>;
     /**
@@ -1539,9 +1565,7 @@ export interface RdbReadReplicaPrivateNetwork {
      */
     privateNetworkId: pulumi.Input<string>;
     /**
-     * The IP network address within the private subnet. This must be an IPv4 address with a
-     * CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-     * service if not set.
+     * The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
      */
     serviceIp?: pulumi.Input<string>;
     /**
@@ -1574,16 +1598,33 @@ export interface RedisClusterPrivateNetwork {
      */
     endpointId?: pulumi.Input<string>;
     /**
-     * The UUID of the private network resource.
+     * The UUID of the Private Network resource.
      */
     id: pulumi.Input<string>;
     /**
-     * Endpoint IPv4 addresses
-     * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
-     * least one IP per node or The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-     * service if not set.
+     * Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+     * Keep in mind that in Cluster mode you cannot edit your Private Network after its creation so if you want to be able to
+     * scale your Cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
+     * If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
      *
-     * > The `privateNetwork` conflict with `acl`. Only one should be specified.
+     * > The `privateNetwork` conflicts with `acl`. Only one should be specified.
+     *
+     * > **Important:** The way to use private networks differs whether you are using Redis in Standalone or Cluster mode.
+     *
+     * - Standalone mode (`clusterSize` = 1) : you can attach as many Private Networks as you want (each must be a separate
+     * block). If you detach your only private network, your cluster won't be reachable until you define a new Private or
+     * Public Network. You can modify your `privateNetwork` and its specs, you can have both a Private and Public Network side
+     * by side.
+     *
+     * - Cluster mode (`clusterSize` > 2) : you can define a single Private Network as you create your Cluster, you won't be
+     * able to edit or detach it afterward, unless you create another Cluster. This also means that, if you are using a static
+     * configuration (`serviceIps`), you won't be able to scale your Cluster horizontally (add more nodes) since it would
+     * require updating the private network to add IPs.
+     * Your `serviceIps` must be listed as follows:
+     *
+     * ```typescript
+     * import * as pulumi from "@pulumi/pulumi";
+     * ```
      */
     serviceIps?: pulumi.Input<pulumi.Input<string>[]>;
     /**

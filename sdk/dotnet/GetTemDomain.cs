@@ -155,6 +155,7 @@ namespace ediri.Scaleway
         public readonly int SmtpPort;
         public readonly int SmtpPortAlternative;
         public readonly int SmtpPortUnsecure;
+        public readonly string SmtpsAuthUser;
         public readonly int SmtpsPort;
         public readonly int SmtpsPortAlternative;
         public readonly string SpfConfig;
@@ -198,6 +199,8 @@ namespace ediri.Scaleway
 
             int smtpPortUnsecure,
 
+            string smtpsAuthUser,
+
             int smtpsPort,
 
             int smtpsPortAlternative,
@@ -224,6 +227,7 @@ namespace ediri.Scaleway
             SmtpPort = smtpPort;
             SmtpPortAlternative = smtpPortAlternative;
             SmtpPortUnsecure = smtpPortUnsecure;
+            SmtpsAuthUser = smtpsAuthUser;
             SmtpsPort = smtpsPort;
             SmtpsPortAlternative = smtpsPortAlternative;
             SpfConfig = spfConfig;

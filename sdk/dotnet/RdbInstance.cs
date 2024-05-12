@@ -98,6 +98,68 @@ namespace ediri.Scaleway
     /// 
     /// RDB Instances can have a maximum of 1 public endpoint and 1 private endpoint. It can have both, or none.
     /// 
+    /// ### 1 static private network endpoint
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pn = new Scaleway.VpcPrivateNetwork("pn", new()
+    ///     {
+    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+    ///         {
+    ///             Subnet = "172.16.20.0/22",
+    ///         },
+    ///     });
+    /// 
+    ///     var main = new Scaleway.RdbInstance("main", new()
+    ///     {
+    ///         NodeType = "db-dev-s",
+    ///         Engine = "PostgreSQL-11",
+    ///         PrivateNetwork = new Scaleway.Inputs.RdbInstancePrivateNetworkArgs
+    ///         {
+    ///             PnId = pn.Id,
+    ///             IpNet = "172.16.20.4/22",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### 1 IPAM private network endpoint + 1 public endpoint
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+    /// 
+    ///     var main = new Scaleway.RdbInstance("main", new()
+    ///     {
+    ///         NodeType = "DB-DEV-S",
+    ///         Engine = "PostgreSQL-11",
+    ///         PrivateNetwork = new Scaleway.Inputs.RdbInstancePrivateNetworkArgs
+    ///         {
+    ///             PnId = pn.Id,
+    ///             EnableIpam = true,
+    ///         },
+    ///         LoadBalancers = new[]
+    ///         {
+    ///             null,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Default: 1 public endpoint
     /// 
     /// ```csharp

@@ -31,6 +31,8 @@ type Cockpit struct {
 	PlanId pulumi.StringOutput `pulumi:"planId"`
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// Push_url
+	PushUrls CockpitPushUrlArrayOutput `pulumi:"pushUrls"`
 }
 
 // NewCockpit registers a new resource with the given unique name, arguments, and options.
@@ -71,6 +73,8 @@ type cockpitState struct {
 	PlanId *string `pulumi:"planId"`
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// Push_url
+	PushUrls []CockpitPushUrl `pulumi:"pushUrls"`
 }
 
 type CockpitState struct {
@@ -82,6 +86,8 @@ type CockpitState struct {
 	PlanId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cockpit is associated with.
 	ProjectId pulumi.StringPtrInput
+	// Push_url
+	PushUrls CockpitPushUrlArrayInput
 }
 
 func (CockpitState) ElementType() reflect.Type {
@@ -208,6 +214,11 @@ func (o CockpitOutput) PlanId() pulumi.StringOutput {
 // `projectId`) The ID of the project the cockpit is associated with.
 func (o CockpitOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cockpit) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Push_url
+func (o CockpitOutput) PushUrls() CockpitPushUrlArrayOutput {
+	return o.ApplyT(func(v *Cockpit) CockpitPushUrlArrayOutput { return v.PushUrls }).(CockpitPushUrlArrayOutput)
 }
 
 type CockpitArrayOutput struct{ *pulumi.OutputState }

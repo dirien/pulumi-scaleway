@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -23,6 +25,10 @@ import * as utilities from "./utilities";
  *     timeout: "10m",
  *     env: {
  *         foo: "bar",
+ *     },
+ *     cron: {
+ *         schedule: "5 4 1 * *",
+ *         timezone: "Europe/Paris",
  *     },
  * });
  * ```
@@ -74,6 +80,10 @@ export class JobDefinition extends pulumi.CustomResource {
      */
     public readonly cpuLimit!: pulumi.Output<number>;
     /**
+     * The cron configuration
+     */
+    public readonly cron!: pulumi.Output<outputs.JobDefinitionCron | undefined>;
+    /**
      * The description of the job
      */
     public readonly description!: pulumi.Output<string | undefined>;
@@ -121,6 +131,7 @@ export class JobDefinition extends pulumi.CustomResource {
             const state = argsOrState as JobDefinitionState | undefined;
             resourceInputs["command"] = state ? state.command : undefined;
             resourceInputs["cpuLimit"] = state ? state.cpuLimit : undefined;
+            resourceInputs["cron"] = state ? state.cron : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["env"] = state ? state.env : undefined;
             resourceInputs["imageUri"] = state ? state.imageUri : undefined;
@@ -139,6 +150,7 @@ export class JobDefinition extends pulumi.CustomResource {
             }
             resourceInputs["command"] = args ? args.command : undefined;
             resourceInputs["cpuLimit"] = args ? args.cpuLimit : undefined;
+            resourceInputs["cron"] = args ? args.cron : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["env"] = args ? args.env : undefined;
             resourceInputs["imageUri"] = args ? args.imageUri : undefined;
@@ -165,6 +177,10 @@ export interface JobDefinitionState {
      * The amount of vCPU computing resources to allocate to each container running the job.
      */
     cpuLimit?: pulumi.Input<number>;
+    /**
+     * The cron configuration
+     */
+    cron?: pulumi.Input<inputs.JobDefinitionCron>;
     /**
      * The description of the job
      */
@@ -211,6 +227,10 @@ export interface JobDefinitionArgs {
      * The amount of vCPU computing resources to allocate to each container running the job.
      */
     cpuLimit: pulumi.Input<number>;
+    /**
+     * The cron configuration
+     */
+    cron?: pulumi.Input<inputs.JobDefinitionCron>;
     /**
      * The description of the job
      */

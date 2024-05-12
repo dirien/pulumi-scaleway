@@ -152,6 +152,10 @@ export class TemDomain extends pulumi.CustomResource {
      */
     public /*out*/ readonly smtpPortUnsecure!: pulumi.Output<number>;
     /**
+     * SMTPS auth user refers to the identifier for a user authorized to send emails via SMTPS, ensuring secure email transmission.
+     */
+    public /*out*/ readonly smtpsAuthUser!: pulumi.Output<string>;
+    /**
      * The SMTPS port to use to send emails over TLS Wrapper.
      */
     public /*out*/ readonly smtpsPort!: pulumi.Output<number>;
@@ -197,6 +201,7 @@ export class TemDomain extends pulumi.CustomResource {
             resourceInputs["smtpPort"] = state ? state.smtpPort : undefined;
             resourceInputs["smtpPortAlternative"] = state ? state.smtpPortAlternative : undefined;
             resourceInputs["smtpPortUnsecure"] = state ? state.smtpPortUnsecure : undefined;
+            resourceInputs["smtpsAuthUser"] = state ? state.smtpsAuthUser : undefined;
             resourceInputs["smtpsPort"] = state ? state.smtpsPort : undefined;
             resourceInputs["smtpsPortAlternative"] = state ? state.smtpsPortAlternative : undefined;
             resourceInputs["spfConfig"] = state ? state.spfConfig : undefined;
@@ -222,6 +227,7 @@ export class TemDomain extends pulumi.CustomResource {
             resourceInputs["smtpPort"] = undefined /*out*/;
             resourceInputs["smtpPortAlternative"] = undefined /*out*/;
             resourceInputs["smtpPortUnsecure"] = undefined /*out*/;
+            resourceInputs["smtpsAuthUser"] = undefined /*out*/;
             resourceInputs["smtpsPort"] = undefined /*out*/;
             resourceInputs["smtpsPortAlternative"] = undefined /*out*/;
             resourceInputs["spfConfig"] = undefined /*out*/;
@@ -302,6 +308,10 @@ export interface TemDomainState {
      * The SMTP port to use to send emails.
      */
     smtpPortUnsecure?: pulumi.Input<number>;
+    /**
+     * SMTPS auth user refers to the identifier for a user authorized to send emails via SMTPS, ensuring secure email transmission.
+     */
+    smtpsAuthUser?: pulumi.Input<string>;
     /**
      * The SMTPS port to use to send emails over TLS Wrapper.
      */

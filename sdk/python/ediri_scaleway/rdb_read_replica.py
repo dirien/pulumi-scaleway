@@ -240,7 +240,7 @@ class RdbReadReplica(pulumi.CustomResource):
             direct_access=scaleway.RdbReadReplicaDirectAccessArgs())
         ```
 
-        ### Private network
+        ### Private network with static endpoint
 
         ```python
         import pulumi
@@ -259,6 +259,28 @@ class RdbReadReplica(pulumi.CustomResource):
             private_network=scaleway.RdbReadReplicaPrivateNetworkArgs(
                 private_network_id=pn.id,
                 service_ip="192.168.1.254/24",
+            ))
+        ```
+
+        ### Private network with IPAM
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        instance = scaleway.RdbInstance("instance",
+            node_type="db-dev-s",
+            engine="PostgreSQL-14",
+            is_ha_cluster=False,
+            disable_backup=True,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret")
+        pn = scaleway.VpcPrivateNetwork("pn")
+        replica = scaleway.RdbReadReplica("replica",
+            instance_id=instance.id,
+            private_network=scaleway.RdbReadReplicaPrivateNetworkArgs(
+                private_network_id=pn.id,
+                enable_ipam=True,
             ))
         ```
 
@@ -318,7 +340,7 @@ class RdbReadReplica(pulumi.CustomResource):
             direct_access=scaleway.RdbReadReplicaDirectAccessArgs())
         ```
 
-        ### Private network
+        ### Private network with static endpoint
 
         ```python
         import pulumi
@@ -337,6 +359,28 @@ class RdbReadReplica(pulumi.CustomResource):
             private_network=scaleway.RdbReadReplicaPrivateNetworkArgs(
                 private_network_id=pn.id,
                 service_ip="192.168.1.254/24",
+            ))
+        ```
+
+        ### Private network with IPAM
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        instance = scaleway.RdbInstance("instance",
+            node_type="db-dev-s",
+            engine="PostgreSQL-14",
+            is_ha_cluster=False,
+            disable_backup=True,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret")
+        pn = scaleway.VpcPrivateNetwork("pn")
+        replica = scaleway.RdbReadReplica("replica",
+            instance_id=instance.id,
+            private_network=scaleway.RdbReadReplicaPrivateNetworkArgs(
+                private_network_id=pn.id,
+                enable_ipam=True,
             ))
         ```
 

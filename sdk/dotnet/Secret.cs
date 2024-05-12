@@ -71,6 +71,12 @@ namespace ediri.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// Path of the secret, defaults to `/`.
+        /// </summary>
+        [Output("path")]
+        public Output<string?> Path { get; private set; } = null!;
+
+        /// <summary>
         /// The project ID containing is the secret.
         /// </summary>
         [Output("projectId")]
@@ -167,6 +173,12 @@ namespace ediri.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// Path of the secret, defaults to `/`.
+        /// </summary>
+        [Input("path")]
+        public Input<string>? Path { get; set; }
+
+        /// <summary>
         /// The project ID containing is the secret.
         /// </summary>
         [Input("projectId")]
@@ -216,6 +228,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Path of the secret, defaults to `/`.
+        /// </summary>
+        [Input("path")]
+        public Input<string>? Path { get; set; }
 
         /// <summary>
         /// The project ID containing is the secret.

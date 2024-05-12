@@ -74,6 +74,10 @@ type IotHub struct {
 	HubCa pulumi.StringPtrOutput `pulumi:"hubCa"`
 	// Challenge certificate for the user provided hub CA
 	HubCaChallenge pulumi.StringPtrOutput `pulumi:"hubCaChallenge"`
+	// The MQTT certificat content
+	MqttCa pulumi.StringOutput `pulumi:"mqttCa"`
+	// The MQTT ca url
+	MqttCaUrl pulumi.StringOutput `pulumi:"mqttCaUrl"`
 	// The name of the IoT Hub instance you want to create (e.g. `my-hub`).
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The organizationId you want to attach the resource to
@@ -147,6 +151,10 @@ type iotHubState struct {
 	HubCa *string `pulumi:"hubCa"`
 	// Challenge certificate for the user provided hub CA
 	HubCaChallenge *string `pulumi:"hubCaChallenge"`
+	// The MQTT certificat content
+	MqttCa *string `pulumi:"mqttCa"`
+	// The MQTT ca url
+	MqttCaUrl *string `pulumi:"mqttCaUrl"`
 	// The name of the IoT Hub instance you want to create (e.g. `my-hub`).
 	Name *string `pulumi:"name"`
 	// The organizationId you want to attach the resource to
@@ -188,6 +196,10 @@ type IotHubState struct {
 	HubCa pulumi.StringPtrInput
 	// Challenge certificate for the user provided hub CA
 	HubCaChallenge pulumi.StringPtrInput
+	// The MQTT certificat content
+	MqttCa pulumi.StringPtrInput
+	// The MQTT ca url
+	MqttCaUrl pulumi.StringPtrInput
 	// The name of the IoT Hub instance you want to create (e.g. `my-hub`).
 	Name pulumi.StringPtrInput
 	// The organizationId you want to attach the resource to
@@ -402,6 +414,16 @@ func (o IotHubOutput) HubCa() pulumi.StringPtrOutput {
 // Challenge certificate for the user provided hub CA
 func (o IotHubOutput) HubCaChallenge() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IotHub) pulumi.StringPtrOutput { return v.HubCaChallenge }).(pulumi.StringPtrOutput)
+}
+
+// The MQTT certificat content
+func (o IotHubOutput) MqttCa() pulumi.StringOutput {
+	return o.ApplyT(func(v *IotHub) pulumi.StringOutput { return v.MqttCa }).(pulumi.StringOutput)
+}
+
+// The MQTT ca url
+func (o IotHubOutput) MqttCaUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *IotHub) pulumi.StringOutput { return v.MqttCaUrl }).(pulumi.StringOutput)
 }
 
 // The name of the IoT Hub instance you want to create (e.g. `my-hub`).

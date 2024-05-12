@@ -81,6 +81,7 @@ export interface GetTemDomainResult {
     readonly smtpPort: number;
     readonly smtpPortAlternative: number;
     readonly smtpPortUnsecure: number;
+    readonly smtpsAuthUser: string;
     readonly smtpsPort: number;
     readonly smtpsPortAlternative: number;
     readonly spfConfig: string;

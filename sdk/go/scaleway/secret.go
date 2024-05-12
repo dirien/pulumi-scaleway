@@ -64,6 +64,8 @@ type Secret struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Name of the secret (e.g. `my-secret`).
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Path of the secret, defaults to `/`.
+	Path pulumi.StringPtrOutput `pulumi:"path"`
 	// The project ID containing is the secret.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region
@@ -115,6 +117,8 @@ type secretState struct {
 	Description *string `pulumi:"description"`
 	// Name of the secret (e.g. `my-secret`).
 	Name *string `pulumi:"name"`
+	// Path of the secret, defaults to `/`.
+	Path *string `pulumi:"path"`
 	// The project ID containing is the secret.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region
@@ -137,6 +141,8 @@ type SecretState struct {
 	Description pulumi.StringPtrInput
 	// Name of the secret (e.g. `my-secret`).
 	Name pulumi.StringPtrInput
+	// Path of the secret, defaults to `/`.
+	Path pulumi.StringPtrInput
 	// The project ID containing is the secret.
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region
@@ -161,6 +167,8 @@ type secretArgs struct {
 	Description *string `pulumi:"description"`
 	// Name of the secret (e.g. `my-secret`).
 	Name *string `pulumi:"name"`
+	// Path of the secret, defaults to `/`.
+	Path *string `pulumi:"path"`
 	// The project ID containing is the secret.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region
@@ -176,6 +184,8 @@ type SecretArgs struct {
 	Description pulumi.StringPtrInput
 	// Name of the secret (e.g. `my-secret`).
 	Name pulumi.StringPtrInput
+	// Path of the secret, defaults to `/`.
+	Path pulumi.StringPtrInput
 	// The project ID containing is the secret.
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region
@@ -285,6 +295,11 @@ func (o SecretOutput) Description() pulumi.StringPtrOutput {
 // Name of the secret (e.g. `my-secret`).
 func (o SecretOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Path of the secret, defaults to `/`.
+func (o SecretOutput) Path() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Secret) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
 }
 
 // The project ID containing is the secret.

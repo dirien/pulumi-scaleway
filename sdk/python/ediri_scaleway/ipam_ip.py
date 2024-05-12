@@ -347,7 +347,7 @@ class IpamIp(pulumi.CustomResource):
                 subnet="172.16.32.0/22",
             ))
         ip01 = scaleway.IpamIp("ip01",
-            address="172.16.32.7/22",
+            address="172.16.32.7",
             sources=[scaleway.IpamIpSourceArgs(
                 private_network_id=pn01.id,
             )])
@@ -432,7 +432,7 @@ class IpamIp(pulumi.CustomResource):
                 subnet="172.16.32.0/22",
             ))
         ip01 = scaleway.IpamIp("ip01",
-            address="172.16.32.7/22",
+            address="172.16.32.7",
             sources=[scaleway.IpamIpSourceArgs(
                 private_network_id=pn01.id,
             )])

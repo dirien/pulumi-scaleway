@@ -107,6 +107,13 @@ namespace ediri.Scaleway
         public string? OrganizationId { get; set; }
 
         /// <summary>
+        /// The secret path.
+        /// Conflicts with `secret_id`.
+        /// </summary>
+        [Input("path")]
+        public string? Path { get; set; }
+
+        /// <summary>
         /// `project_id`) The ID of the
         /// project the secret is associated with.
         /// </summary>
@@ -149,6 +156,13 @@ namespace ediri.Scaleway
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
+        /// The secret path.
+        /// Conflicts with `secret_id`.
+        /// </summary>
+        [Input("path")]
+        public Input<string>? Path { get; set; }
+
+        /// <summary>
         /// `project_id`) The ID of the
         /// project the secret is associated with.
         /// </summary>
@@ -186,6 +200,7 @@ namespace ediri.Scaleway
         public readonly string Id;
         public readonly string? Name;
         public readonly string OrganizationId;
+        public readonly string? Path;
         public readonly string? ProjectId;
         public readonly string? Region;
         public readonly string? SecretId;
@@ -206,6 +221,8 @@ namespace ediri.Scaleway
 
             string organizationId,
 
+            string? path,
+
             string? projectId,
 
             string? region,
@@ -225,6 +242,7 @@ namespace ediri.Scaleway
             Id = id;
             Name = name;
             OrganizationId = organizationId;
+            Path = path;
             ProjectId = projectId;
             Region = region;
             SecretId = secretId;

@@ -436,7 +436,7 @@ class VpcGatewayNetwork(pulumi.CustomResource):
             ),
             vpc_id=vpc01.id)
         ip01 = scaleway.IpamIp("ip01",
-            address="172.16.64.7/22",
+            address="172.16.64.7",
             sources=[scaleway.IpamIpSourceArgs(
                 private_network_id=pn01.id,
             )])
@@ -559,7 +559,7 @@ class VpcGatewayNetwork(pulumi.CustomResource):
             ),
             vpc_id=vpc01.id)
         ip01 = scaleway.IpamIp("ip01",
-            address="172.16.64.7/22",
+            address="172.16.64.7",
             sources=[scaleway.IpamIpSourceArgs(
                 private_network_id=pn01.id,
             )])

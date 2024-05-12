@@ -37,7 +37,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Private network
+ * ### Private network with static endpoint
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -57,6 +57,30 @@ import * as utilities from "./utilities";
  *     privateNetwork: {
  *         privateNetworkId: pn.id,
  *         serviceIp: "192.168.1.254/24",
+ *     },
+ * });
+ * ```
+ *
+ * ### Private network with IPAM
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@ediri/scaleway";
+ *
+ * const instance = new scaleway.RdbInstance("instance", {
+ *     nodeType: "db-dev-s",
+ *     engine: "PostgreSQL-14",
+ *     isHaCluster: false,
+ *     disableBackup: true,
+ *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
+ * });
+ * const pn = new scaleway.VpcPrivateNetwork("pn", {});
+ * const replica = new scaleway.RdbReadReplica("replica", {
+ *     instanceId: instance.id,
+ *     privateNetwork: {
+ *         privateNetworkId: pn.id,
+ *         enableIpam: true,
  *     },
  * });
  * ```

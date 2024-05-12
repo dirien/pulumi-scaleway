@@ -30,14 +30,9 @@ import * as utilities from "./utilities";
  * });
  * const mainRdbPrivilege = new scaleway.RdbPrivilege("mainRdbPrivilege", {
  *     instanceId: mainRdbInstance.id,
- *     userName: "my-db-user",
- *     databaseName: "my-db-name",
+ *     userName: mainRdbUser.name,
+ *     databaseName: mainRdbDatabase.name,
  *     permission: "all",
- * }, {
- *     dependsOn: [
- *         mainRdbUser,
- *         mainRdbDatabase,
- *     ],
  * });
  * ```
  *

@@ -217,7 +217,7 @@ namespace ediri.Scaleway
         public Output<string?> StickySessions { get; private set; } = null!;
 
         /// <summary>
-        /// Cookie name for for sticky sessions
+        /// Cookie name for sticky sessions
         /// </summary>
         [Output("stickySessionsCookieName")]
         public Output<string?> StickySessionsCookieName { get; private set; } = null!;
@@ -443,7 +443,7 @@ namespace ediri.Scaleway
         public Input<string>? StickySessions { get; set; }
 
         /// <summary>
-        /// Cookie name for for sticky sessions
+        /// Cookie name for sticky sessions
         /// </summary>
         [Input("stickySessionsCookieName")]
         public Input<string>? StickySessionsCookieName { get; set; }
@@ -630,7 +630,7 @@ namespace ediri.Scaleway
         public Input<string>? StickySessions { get; set; }
 
         /// <summary>
-        /// Cookie name for for sticky sessions
+        /// Cookie name for sticky sessions
         /// </summary>
         [Input("stickySessionsCookieName")]
         public Input<string>? StickySessionsCookieName { get; set; }

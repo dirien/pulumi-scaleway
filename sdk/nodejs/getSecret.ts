@@ -33,6 +33,7 @@ export function getSecret(args?: GetSecretArgs, opts?: pulumi.InvokeOptions): Pr
     return pulumi.runtime.invoke("scaleway:index/getSecret:getSecret", {
         "name": args.name,
         "organizationId": args.organizationId,
+        "path": args.path,
         "projectId": args.projectId,
         "region": args.region,
         "secretId": args.secretId,
@@ -53,6 +54,11 @@ export interface GetSecretArgs {
      * If no default organizationId is set, one must be set explicitly in this datasource
      */
     organizationId?: string;
+    /**
+     * The secret path.
+     * Conflicts with `secretId`.
+     */
+    path?: string;
     /**
      * `projectId`) The ID of the
      * project the secret is associated with.
@@ -81,6 +87,7 @@ export interface GetSecretResult {
     readonly id: string;
     readonly name?: string;
     readonly organizationId: string;
+    readonly path?: string;
     readonly projectId?: string;
     readonly region?: string;
     readonly secretId?: string;
@@ -129,6 +136,11 @@ export interface GetSecretOutputArgs {
      * If no default organizationId is set, one must be set explicitly in this datasource
      */
     organizationId?: pulumi.Input<string>;
+    /**
+     * The secret path.
+     * Conflicts with `secretId`.
+     */
+    path?: pulumi.Input<string>;
     /**
      * `projectId`) The ID of the
      * project the secret is associated with.

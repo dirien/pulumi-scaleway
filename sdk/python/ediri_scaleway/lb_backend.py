@@ -72,7 +72,7 @@ class LbBackendArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: Backend server IP addresses list (IPv4 or IPv6)
         :param pulumi.Input[bool] ssl_bridging: Enables SSL between load balancer and backend servers
         :param pulumi.Input[str] sticky_sessions: The type of sticky sessions
-        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for for sticky sessions
+        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for sticky sessions
         :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time
         :param pulumi.Input[str] timeout_queue: Maximum time (in seconds) for a request to be left pending in queue when `max_connections` is reached
         :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time
@@ -439,7 +439,7 @@ class LbBackendArgs:
     @pulumi.getter(name="stickySessionsCookieName")
     def sticky_sessions_cookie_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Cookie name for for sticky sessions
+        Cookie name for sticky sessions
         """
         return pulumi.get(self, "sticky_sessions_cookie_name")
 
@@ -555,7 +555,7 @@ class _LbBackendState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: Backend server IP addresses list (IPv4 or IPv6)
         :param pulumi.Input[bool] ssl_bridging: Enables SSL between load balancer and backend servers
         :param pulumi.Input[str] sticky_sessions: The type of sticky sessions
-        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for for sticky sessions
+        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for sticky sessions
         :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time
         :param pulumi.Input[str] timeout_queue: Maximum time (in seconds) for a request to be left pending in queue when `max_connections` is reached
         :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time
@@ -925,7 +925,7 @@ class _LbBackendState:
     @pulumi.getter(name="stickySessionsCookieName")
     def sticky_sessions_cookie_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Cookie name for for sticky sessions
+        Cookie name for sticky sessions
         """
         return pulumi.get(self, "sticky_sessions_cookie_name")
 
@@ -1087,7 +1087,7 @@ class LbBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: Backend server IP addresses list (IPv4 or IPv6)
         :param pulumi.Input[bool] ssl_bridging: Enables SSL between load balancer and backend servers
         :param pulumi.Input[str] sticky_sessions: The type of sticky sessions
-        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for for sticky sessions
+        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for sticky sessions
         :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time
         :param pulumi.Input[str] timeout_queue: Maximum time (in seconds) for a request to be left pending in queue when `max_connections` is reached
         :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time
@@ -1303,7 +1303,7 @@ class LbBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: Backend server IP addresses list (IPv4 or IPv6)
         :param pulumi.Input[bool] ssl_bridging: Enables SSL between load balancer and backend servers
         :param pulumi.Input[str] sticky_sessions: The type of sticky sessions
-        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for for sticky sessions
+        :param pulumi.Input[str] sticky_sessions_cookie_name: Cookie name for sticky sessions
         :param pulumi.Input[str] timeout_connect: Maximum initial server connection establishment time
         :param pulumi.Input[str] timeout_queue: Maximum time (in seconds) for a request to be left pending in queue when `max_connections` is reached
         :param pulumi.Input[str] timeout_server: Maximum server connection inactivity time
@@ -1545,7 +1545,7 @@ class LbBackend(pulumi.CustomResource):
     @pulumi.getter(name="stickySessionsCookieName")
     def sticky_sessions_cookie_name(self) -> pulumi.Output[Optional[str]]:
         """
-        Cookie name for for sticky sessions
+        Cookie name for sticky sessions
         """
         return pulumi.get(self, "sticky_sessions_cookie_name")
 
