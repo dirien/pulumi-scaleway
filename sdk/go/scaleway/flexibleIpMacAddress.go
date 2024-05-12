@@ -15,7 +15,7 @@ import (
 // Creates and manages Scaleway Flexible IP Mac Addresses.
 // For more information, see [the documentation](https://developers.scaleway.com/en/products/flexible-ip/api).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
@@ -69,7 +69,7 @@ import (
 //				return err
 //			}
 //			base, err := scaleway.NewBaremetalServer(ctx, "base", &scaleway.BaremetalServerArgs{
-//				Offer:                  *pulumi.String(myOffer.OfferId),
+//				Offer:                  pulumi.String(myOffer.OfferId),
 //				InstallConfigAfterward: pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -112,12 +112,12 @@ import (
 //
 // ## Import
 //
-// Flexible IP Mac Addresses can be imported using the `{zone}/{id}`, e.g. bash
+// Flexible IP Mac Addresses can be imported using the `{zone}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress main fr-par-1/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
 type FlexibleIpMacAddress struct {
 	pulumi.CustomResourceState

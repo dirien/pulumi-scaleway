@@ -19,7 +19,8 @@ import * as utilities from "./utilities";
  *     acl: "private",
  * });
  * ```
- * ## Example with Grants
+ *
+ * ### With Grants
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -94,13 +95,23 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Buckets can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g. bash
+ * Bucket ACLs can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket
+ * $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket/private
  * ```
  *
- *  /private
+ * ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+ *
+ * If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
+ *
+ * bash
+ *
+ * ```sh
+ * $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket/private@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
+ * ```
  */
 export class ObjectBucketAcl extends pulumi.CustomResource {
     /**
@@ -147,7 +158,7 @@ export class ObjectBucketAcl extends pulumi.CustomResource {
      */
     public readonly expectedBucketOwner!: pulumi.Output<string | undefined>;
     /**
-     * `projectId`) The ID of the project the bucket is associated with.
+     * The projectId you want to attach the resource to
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -212,7 +223,7 @@ export interface ObjectBucketAclState {
      */
     expectedBucketOwner?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the bucket is associated with.
+     * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -242,7 +253,7 @@ export interface ObjectBucketAclArgs {
      */
     expectedBucketOwner?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the bucket is associated with.
+     * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**

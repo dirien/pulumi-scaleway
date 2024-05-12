@@ -15,6 +15,93 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about a public gateway PAT rule. For further information please check the
         /// API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-8faeea)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = ediri.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var sg01 = new Scaleway.InstanceSecurityGroup("sg01", new()
+        ///     {
+        ///         InboundDefaultPolicy = "drop",
+        ///         OutboundDefaultPolicy = "accept",
+        ///         InboundRules = new[]
+        ///         {
+        ///             new Scaleway.Inputs.InstanceSecurityGroupInboundRuleArgs
+        ///             {
+        ///                 Action = "accept",
+        ///                 Port = 22,
+        ///                 Protocol = "TCP",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var srv01 = new Scaleway.InstanceServer("srv01", new()
+        ///     {
+        ///         Type = "PLAY2-NANO",
+        ///         Image = "ubuntu_jammy",
+        ///         SecurityGroupId = sg01.Id,
+        ///     });
+        /// 
+        ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01");
+        /// 
+        ///     var pnic01 = new Scaleway.InstancePrivateNic("pnic01", new()
+        ///     {
+        ///         ServerId = srv01.Id,
+        ///         PrivateNetworkId = pn01.Id,
+        ///     });
+        /// 
+        ///     var dhcp01 = new Scaleway.VpcPublicGatewayDhcp("dhcp01", new()
+        ///     {
+        ///         Subnet = "192.168.0.0/24",
+        ///     });
+        /// 
+        ///     var ip01 = new Scaleway.VpcPublicGatewayIp("ip01");
+        /// 
+        ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
+        ///     {
+        ///         Type = "VPC-GW-S",
+        ///         IpId = ip01.Id,
+        ///     });
+        /// 
+        ///     var gn01 = new Scaleway.VpcGatewayNetwork("gn01", new()
+        ///     {
+        ///         GatewayId = pg01.Id,
+        ///         PrivateNetworkId = pn01.Id,
+        ///         DhcpId = dhcp01.Id,
+        ///         CleanupDhcp = true,
+        ///         EnableMasquerade = true,
+        ///     });
+        /// 
+        ///     var rsv01 = new Scaleway.VpcPublicGatewayDhcpReservation("rsv01", new()
+        ///     {
+        ///         GatewayNetworkId = gn01.Id,
+        ///         MacAddress = pnic01.MacAddress,
+        ///         IpAddress = "192.168.0.7",
+        ///     });
+        /// 
+        ///     var pat01 = new Scaleway.VpcPublicGatewayPatRule("pat01", new()
+        ///     {
+        ///         GatewayId = pg01.Id,
+        ///         PrivateIp = rsv01.IpAddress,
+        ///         PrivatePort = 22,
+        ///         PublicPort = 2202,
+        ///         Protocol = "tcp",
+        ///     });
+        /// 
+        ///     var main = Scaleway.GetVpcPublicGatewayPatRule.Invoke(new()
+        ///     {
+        ///         PatRuleId = pat01.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetVpcPublicGatewayPatRuleResult> InvokeAsync(GetVpcPublicGatewayPatRuleArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicGatewayPatRuleResult>("scaleway:index/getVpcPublicGatewayPatRule:getVpcPublicGatewayPatRule", args ?? new GetVpcPublicGatewayPatRuleArgs(), options.WithDefaults());
@@ -22,6 +109,93 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about a public gateway PAT rule. For further information please check the
         /// API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-8faeea)
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = ediri.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var sg01 = new Scaleway.InstanceSecurityGroup("sg01", new()
+        ///     {
+        ///         InboundDefaultPolicy = "drop",
+        ///         OutboundDefaultPolicy = "accept",
+        ///         InboundRules = new[]
+        ///         {
+        ///             new Scaleway.Inputs.InstanceSecurityGroupInboundRuleArgs
+        ///             {
+        ///                 Action = "accept",
+        ///                 Port = 22,
+        ///                 Protocol = "TCP",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var srv01 = new Scaleway.InstanceServer("srv01", new()
+        ///     {
+        ///         Type = "PLAY2-NANO",
+        ///         Image = "ubuntu_jammy",
+        ///         SecurityGroupId = sg01.Id,
+        ///     });
+        /// 
+        ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01");
+        /// 
+        ///     var pnic01 = new Scaleway.InstancePrivateNic("pnic01", new()
+        ///     {
+        ///         ServerId = srv01.Id,
+        ///         PrivateNetworkId = pn01.Id,
+        ///     });
+        /// 
+        ///     var dhcp01 = new Scaleway.VpcPublicGatewayDhcp("dhcp01", new()
+        ///     {
+        ///         Subnet = "192.168.0.0/24",
+        ///     });
+        /// 
+        ///     var ip01 = new Scaleway.VpcPublicGatewayIp("ip01");
+        /// 
+        ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
+        ///     {
+        ///         Type = "VPC-GW-S",
+        ///         IpId = ip01.Id,
+        ///     });
+        /// 
+        ///     var gn01 = new Scaleway.VpcGatewayNetwork("gn01", new()
+        ///     {
+        ///         GatewayId = pg01.Id,
+        ///         PrivateNetworkId = pn01.Id,
+        ///         DhcpId = dhcp01.Id,
+        ///         CleanupDhcp = true,
+        ///         EnableMasquerade = true,
+        ///     });
+        /// 
+        ///     var rsv01 = new Scaleway.VpcPublicGatewayDhcpReservation("rsv01", new()
+        ///     {
+        ///         GatewayNetworkId = gn01.Id,
+        ///         MacAddress = pnic01.MacAddress,
+        ///         IpAddress = "192.168.0.7",
+        ///     });
+        /// 
+        ///     var pat01 = new Scaleway.VpcPublicGatewayPatRule("pat01", new()
+        ///     {
+        ///         GatewayId = pg01.Id,
+        ///         PrivateIp = rsv01.IpAddress,
+        ///         PrivatePort = 22,
+        ///         PublicPort = 2202,
+        ///         Protocol = "tcp",
+        ///     });
+        /// 
+        ///     var main = Scaleway.GetVpcPublicGatewayPatRule.Invoke(new()
+        ///     {
+        ///         PatRuleId = pat01.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetVpcPublicGatewayPatRuleResult> Invoke(GetVpcPublicGatewayPatRuleInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcPublicGatewayPatRuleResult>("scaleway:index/getVpcPublicGatewayPatRule:getVpcPublicGatewayPatRule", args ?? new GetVpcPublicGatewayPatRuleInvokeArgs(), options.WithDefaults());

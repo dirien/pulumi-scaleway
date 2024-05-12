@@ -14,7 +14,7 @@ namespace ediri.Scaleway
     /// Creates and manages Scaleway Database Instances.
     /// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Example Basic
     /// 
@@ -94,6 +94,31 @@ namespace ediri.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Examples of endpoints configuration
+    /// 
+    /// RDB Instances can have a maximum of 1 public endpoint and 1 private endpoint. It can have both, or none.
+    /// 
+    /// ### Default: 1 public endpoint
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.RdbInstance("main", new()
+    ///     {
+    ///         Engine = "PostgreSQL-11",
+    ///         NodeType = "db-dev-s",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &gt; If nothing is defined, your instance will have a default public load-balancer endpoint
+    /// 
     /// ## Limitations
     /// 
     /// The Managed Database product is only compliant with the private network in the default availability zone (AZ).
@@ -102,29 +127,31 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Database Instance can be imported using the `{region}/{id}`, e.g. bash
+    /// Database Instance can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/rdbInstance:RdbInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/rdbInstance:RdbInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/rdbInstance:RdbInstance")]
     public partial class RdbInstance : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Boolean to store logical backups in the same region as the database instance.
+        /// Boolean to store logical backups in the same region as the database instance
         /// </summary>
         [Output("backupSameRegion")]
         public Output<bool> BackupSameRegion { get; private set; } = null!;
 
         /// <summary>
-        /// Backup schedule frequency in hours.
+        /// Backup schedule frequency in hours
         /// </summary>
         [Output("backupScheduleFrequency")]
         public Output<int> BackupScheduleFrequency { get; private set; } = null!;
 
         /// <summary>
-        /// Backup schedule retention in days.
+        /// Backup schedule retention in days
         /// </summary>
         [Output("backupScheduleRetention")]
         public Output<int> BackupScheduleRetention { get; private set; } = null!;
@@ -136,7 +163,7 @@ namespace ediri.Scaleway
         public Output<string> Certificate { get; private set; } = null!;
 
         /// <summary>
-        /// Disable automated backup for the database instance.
+        /// Disable automated backup for the database instance
         /// </summary>
         [Output("disableBackup")]
         public Output<bool?> DisableBackup { get; private set; } = null!;
@@ -163,10 +190,6 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// Map of engine settings to be set at database initialisation.
-        /// 
-        /// &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
-        /// 
-        /// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
         /// </summary>
         [Output("initSettings")]
         public Output<ImmutableDictionary<string, string>?> InitSettings { get; private set; } = null!;
@@ -180,8 +203,7 @@ namespace ediri.Scaleway
         public Output<bool?> IsHaCluster { get; private set; } = null!;
 
         /// <summary>
-        /// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
-        /// This block must be defined if you want a public endpoint in addition to your private endpoint.
+        /// List of load balancer endpoints of the database instance.
         /// </summary>
         [Output("loadBalancers")]
         public Output<ImmutableArray<Outputs.RdbInstanceLoadBalancer>> LoadBalancers { get; private set; } = null!;
@@ -243,7 +265,7 @@ namespace ediri.Scaleway
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Map of engine settings to be set. Using this option will override default config.
+        /// Map of engine settings to be set on a running instance.
         /// </summary>
         [Output("settings")]
         public Output<ImmutableDictionary<string, string>> Settings { get; private set; } = null!;
@@ -328,25 +350,25 @@ namespace ediri.Scaleway
     public sealed class RdbInstanceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Boolean to store logical backups in the same region as the database instance.
+        /// Boolean to store logical backups in the same region as the database instance
         /// </summary>
         [Input("backupSameRegion")]
         public Input<bool>? BackupSameRegion { get; set; }
 
         /// <summary>
-        /// Backup schedule frequency in hours.
+        /// Backup schedule frequency in hours
         /// </summary>
         [Input("backupScheduleFrequency")]
         public Input<int>? BackupScheduleFrequency { get; set; }
 
         /// <summary>
-        /// Backup schedule retention in days.
+        /// Backup schedule retention in days
         /// </summary>
         [Input("backupScheduleRetention")]
         public Input<int>? BackupScheduleRetention { get; set; }
 
         /// <summary>
-        /// Disable automated backup for the database instance.
+        /// Disable automated backup for the database instance
         /// </summary>
         [Input("disableBackup")]
         public Input<bool>? DisableBackup { get; set; }
@@ -364,10 +386,6 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// Map of engine settings to be set at database initialisation.
-        /// 
-        /// &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
-        /// 
-        /// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
         /// </summary>
         public InputMap<string> InitSettings
         {
@@ -387,8 +405,7 @@ namespace ediri.Scaleway
         private InputList<Inputs.RdbInstanceLoadBalancerArgs>? _loadBalancers;
 
         /// <summary>
-        /// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
-        /// This block must be defined if you want a public endpoint in addition to your private endpoint.
+        /// List of load balancer endpoints of the database instance.
         /// </summary>
         public InputList<Inputs.RdbInstanceLoadBalancerArgs> LoadBalancers
         {
@@ -454,7 +471,7 @@ namespace ediri.Scaleway
         private InputMap<string>? _settings;
 
         /// <summary>
-        /// Map of engine settings to be set. Using this option will override default config.
+        /// Map of engine settings to be set on a running instance.
         /// </summary>
         public InputMap<string> Settings
         {
@@ -505,19 +522,19 @@ namespace ediri.Scaleway
     public sealed class RdbInstanceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Boolean to store logical backups in the same region as the database instance.
+        /// Boolean to store logical backups in the same region as the database instance
         /// </summary>
         [Input("backupSameRegion")]
         public Input<bool>? BackupSameRegion { get; set; }
 
         /// <summary>
-        /// Backup schedule frequency in hours.
+        /// Backup schedule frequency in hours
         /// </summary>
         [Input("backupScheduleFrequency")]
         public Input<int>? BackupScheduleFrequency { get; set; }
 
         /// <summary>
-        /// Backup schedule retention in days.
+        /// Backup schedule retention in days
         /// </summary>
         [Input("backupScheduleRetention")]
         public Input<int>? BackupScheduleRetention { get; set; }
@@ -529,7 +546,7 @@ namespace ediri.Scaleway
         public Input<string>? Certificate { get; set; }
 
         /// <summary>
-        /// Disable automated backup for the database instance.
+        /// Disable automated backup for the database instance
         /// </summary>
         [Input("disableBackup")]
         public Input<bool>? DisableBackup { get; set; }
@@ -559,10 +576,6 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// Map of engine settings to be set at database initialisation.
-        /// 
-        /// &gt; **Important:** Updates to `init_settings` will recreate the Database Instance.
-        /// 
-        /// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
         /// </summary>
         public InputMap<string> InitSettings
         {
@@ -582,8 +595,7 @@ namespace ediri.Scaleway
         private InputList<Inputs.RdbInstanceLoadBalancerGetArgs>? _loadBalancers;
 
         /// <summary>
-        /// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
-        /// This block must be defined if you want a public endpoint in addition to your private endpoint.
+        /// List of load balancer endpoints of the database instance.
         /// </summary>
         public InputList<Inputs.RdbInstanceLoadBalancerGetArgs> LoadBalancers
         {
@@ -667,7 +679,7 @@ namespace ediri.Scaleway
         private InputMap<string>? _settings;
 
         /// <summary>
-        /// Map of engine settings to be set. Using this option will override default config.
+        /// Map of engine settings to be set on a running instance.
         /// </summary>
         public InputMap<string> Settings
         {

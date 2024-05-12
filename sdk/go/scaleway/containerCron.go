@@ -81,12 +81,12 @@ import (
 //
 // ## Import
 //
-// Container Cron can be imported using the `{region}/{id}`, e.g. bash
+// Container Cron can be imported using the `{region}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/containerCron:ContainerCron main fr-par/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/containerCron:ContainerCron main fr-par/11111111-1111-1111-1111-111111111111
 // ```
 type ContainerCron struct {
 	pulumi.CustomResourceState
@@ -96,6 +96,9 @@ type ContainerCron struct {
 	Args pulumi.StringOutput `pulumi:"args"`
 	// The container ID to link with your cron.
 	ContainerId pulumi.StringOutput `pulumi:"containerId"`
+	// The name of the container cron. If not provided, the name is generated.
+	// during
+	Name pulumi.StringOutput `pulumi:"name"`
 	// (Defaults to provider `region`) The region
 	// in where the job was created.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -150,6 +153,9 @@ type containerCronState struct {
 	Args *string `pulumi:"args"`
 	// The container ID to link with your cron.
 	ContainerId *string `pulumi:"containerId"`
+	// The name of the container cron. If not provided, the name is generated.
+	// during
+	Name *string `pulumi:"name"`
 	// (Defaults to provider `region`) The region
 	// in where the job was created.
 	Region *string `pulumi:"region"`
@@ -166,6 +172,9 @@ type ContainerCronState struct {
 	Args pulumi.StringPtrInput
 	// The container ID to link with your cron.
 	ContainerId pulumi.StringPtrInput
+	// The name of the container cron. If not provided, the name is generated.
+	// during
+	Name pulumi.StringPtrInput
 	// (Defaults to provider `region`) The region
 	// in where the job was created.
 	Region pulumi.StringPtrInput
@@ -186,6 +195,9 @@ type containerCronArgs struct {
 	Args string `pulumi:"args"`
 	// The container ID to link with your cron.
 	ContainerId string `pulumi:"containerId"`
+	// The name of the container cron. If not provided, the name is generated.
+	// during
+	Name *string `pulumi:"name"`
 	// (Defaults to provider `region`) The region
 	// in where the job was created.
 	Region *string `pulumi:"region"`
@@ -201,6 +213,9 @@ type ContainerCronArgs struct {
 	Args pulumi.StringInput
 	// The container ID to link with your cron.
 	ContainerId pulumi.StringInput
+	// The name of the container cron. If not provided, the name is generated.
+	// during
+	Name pulumi.StringPtrInput
 	// (Defaults to provider `region`) The region
 	// in where the job was created.
 	Region pulumi.StringPtrInput
@@ -305,6 +320,12 @@ func (o ContainerCronOutput) Args() pulumi.StringOutput {
 // The container ID to link with your cron.
 func (o ContainerCronOutput) ContainerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerCron) pulumi.StringOutput { return v.ContainerId }).(pulumi.StringOutput)
+}
+
+// The name of the container cron. If not provided, the name is generated.
+// during
+func (o ContainerCronOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *ContainerCron) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 // (Defaults to provider `region`) The region

@@ -6,6 +6,59 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Provides an Object bucket lock configuration resource.
+ * For more information, see [Setting up object lock](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/).
+ *
+ * ## Example Usage
+ *
+ * ### Configure an Object Lock for a new bucket
+ *
+ * Please note that `objectLockEnabled` must be set to `true` before configuring the lock.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@ediri/scaleway";
+ *
+ * const mainObjectBucket = new scaleway.ObjectBucket("mainObjectBucket", {
+ *     acl: "public-read",
+ *     objectLockEnabled: true,
+ * });
+ * const mainObjectBucketLockConfiguration = new scaleway.ObjectBucketLockConfiguration("mainObjectBucketLockConfiguration", {
+ *     bucket: mainObjectBucket.name,
+ *     rule: {
+ *         defaultRetention: {
+ *             mode: "GOVERNANCE",
+ *             days: 1,
+ *         },
+ *     },
+ * });
+ * ```
+ *
+ * ### Configure an Object Lock for an existing bucket
+ *
+ * You should [contact Scaleway support](https://console.scaleway.com/support/tickets/create) to enable object lock on an existing bucket.
+ *
+ * ## Import
+ *
+ * Bucket lock configurations can be imported using the `{region}/{bucketName}` identifier, e.g.
+ *
+ * bash
+ *
+ * ```sh
+ * $ pulumi import scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration some_bucket fr-par/some-bucket
+ * ```
+ *
+ * ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+ *
+ * If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
+ *
+ * bash
+ *
+ * ```sh
+ * $ pulumi import scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
+ * ```
+ */
 export class ObjectBucketLockConfiguration extends pulumi.CustomResource {
     /**
      * Get an existing ObjectBucketLockConfiguration resource's state with the given name, ID, and optional extra
@@ -39,7 +92,7 @@ export class ObjectBucketLockConfiguration extends pulumi.CustomResource {
      */
     public readonly bucket!: pulumi.Output<string>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -95,7 +148,7 @@ export interface ObjectBucketLockConfigurationState {
      */
     bucket?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -117,7 +170,7 @@ export interface ObjectBucketLockConfigurationArgs {
      */
     bucket: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**

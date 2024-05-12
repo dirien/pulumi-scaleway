@@ -10,7 +10,7 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway Database instance authorized IPs.
  * For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api/#acl-rules-allowed-ips).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
@@ -29,10 +29,12 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Database Instance can be imported using the `{region}/{id}`, e.g. bash
+ * Database Instance can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/rdbAcl:RdbAcl acl01 fr-par/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/rdbAcl:RdbAcl acl01 fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class RdbAcl extends pulumi.CustomResource {

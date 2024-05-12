@@ -28,7 +28,7 @@ class ObjectBucketAclArgs:
         :param pulumi.Input['ObjectBucketAclAccessControlPolicyArgs'] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
         :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
         :param pulumi.Input[str] expected_bucket_owner: The project ID of the expected bucket owner.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         """
         pulumi.set(__self__, "bucket", bucket)
@@ -95,7 +95,7 @@ class ObjectBucketAclArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the bucket is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -131,7 +131,7 @@ class _ObjectBucketAclState:
         :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] expected_bucket_owner: The project ID of the expected bucket owner.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         """
         if access_control_policy is not None:
@@ -199,7 +199,7 @@ class _ObjectBucketAclState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the bucket is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 
@@ -244,7 +244,8 @@ class ObjectBucketAcl(pulumi.CustomResource):
             bucket=scaleway_object_bucket["main"]["id"],
             acl="private")
         ```
-        ## Example with Grants
+
+        ### With Grants
 
         ```python
         import pulumi
@@ -318,13 +319,23 @@ class ObjectBucketAcl(pulumi.CustomResource):
 
         ## Import
 
-        Buckets can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g. bash
+        Bucket ACLs can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket
+        $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket/private
         ```
 
-         /private
+        ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+
+        If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
+
+        bash
+
+        ```sh
+        $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket/private@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -332,7 +343,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
         :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] expected_bucket_owner: The project ID of the expected bucket owner.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         """
         ...
@@ -353,7 +364,8 @@ class ObjectBucketAcl(pulumi.CustomResource):
             bucket=scaleway_object_bucket["main"]["id"],
             acl="private")
         ```
-        ## Example with Grants
+
+        ### With Grants
 
         ```python
         import pulumi
@@ -427,13 +439,23 @@ class ObjectBucketAcl(pulumi.CustomResource):
 
         ## Import
 
-        Buckets can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g. bash
+        Bucket ACLs can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket
+        $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket/private
         ```
 
-         /private
+        ~> **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+
+        If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
+
+        bash
+
+        ```sh
+        $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket/private@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
+        ```
 
         :param str resource_name: The name of the resource.
         :param ObjectBucketAclArgs args: The arguments to use to populate this resource's properties.
@@ -500,7 +522,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
         :param pulumi.Input[str] acl: The canned ACL you want to apply to the bucket.
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] expected_bucket_owner: The project ID of the expected bucket owner.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the bucket is associated with.
+        :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The [region](https://developers.scaleway.com/en/quickstart/#region-definition) in which the bucket should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -551,7 +573,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the bucket is associated with.
+        The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
 

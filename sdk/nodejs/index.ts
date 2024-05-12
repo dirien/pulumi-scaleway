@@ -80,35 +80,35 @@ export type ContainerTrigger = import("./containerTrigger").ContainerTrigger;
 export const ContainerTrigger: typeof import("./containerTrigger").ContainerTrigger = null as any;
 utilities.lazyLoad(exports, ["ContainerTrigger"], () => require("./containerTrigger"));
 
-export { DocumentDBDatabaseArgs, DocumentDBDatabaseState } from "./documentDBDatabase";
-export type DocumentDBDatabase = import("./documentDBDatabase").DocumentDBDatabase;
-export const DocumentDBDatabase: typeof import("./documentDBDatabase").DocumentDBDatabase = null as any;
-utilities.lazyLoad(exports, ["DocumentDBDatabase"], () => require("./documentDBDatabase"));
+export { DocumentdbDatabaseArgs, DocumentdbDatabaseState } from "./documentdbDatabase";
+export type DocumentdbDatabase = import("./documentdbDatabase").DocumentdbDatabase;
+export const DocumentdbDatabase: typeof import("./documentdbDatabase").DocumentdbDatabase = null as any;
+utilities.lazyLoad(exports, ["DocumentdbDatabase"], () => require("./documentdbDatabase"));
 
-export { DocumentDBInstanceArgs, DocumentDBInstanceState } from "./documentDBInstance";
-export type DocumentDBInstance = import("./documentDBInstance").DocumentDBInstance;
-export const DocumentDBInstance: typeof import("./documentDBInstance").DocumentDBInstance = null as any;
-utilities.lazyLoad(exports, ["DocumentDBInstance"], () => require("./documentDBInstance"));
+export { DocumentdbInstanceArgs, DocumentdbInstanceState } from "./documentdbInstance";
+export type DocumentdbInstance = import("./documentdbInstance").DocumentdbInstance;
+export const DocumentdbInstance: typeof import("./documentdbInstance").DocumentdbInstance = null as any;
+utilities.lazyLoad(exports, ["DocumentdbInstance"], () => require("./documentdbInstance"));
 
-export { DocumentDBPrivateNetworkEndpointArgs, DocumentDBPrivateNetworkEndpointState } from "./documentDBPrivateNetworkEndpoint";
-export type DocumentDBPrivateNetworkEndpoint = import("./documentDBPrivateNetworkEndpoint").DocumentDBPrivateNetworkEndpoint;
-export const DocumentDBPrivateNetworkEndpoint: typeof import("./documentDBPrivateNetworkEndpoint").DocumentDBPrivateNetworkEndpoint = null as any;
-utilities.lazyLoad(exports, ["DocumentDBPrivateNetworkEndpoint"], () => require("./documentDBPrivateNetworkEndpoint"));
+export { DocumentdbPrivateNetworkEndpointArgs, DocumentdbPrivateNetworkEndpointState } from "./documentdbPrivateNetworkEndpoint";
+export type DocumentdbPrivateNetworkEndpoint = import("./documentdbPrivateNetworkEndpoint").DocumentdbPrivateNetworkEndpoint;
+export const DocumentdbPrivateNetworkEndpoint: typeof import("./documentdbPrivateNetworkEndpoint").DocumentdbPrivateNetworkEndpoint = null as any;
+utilities.lazyLoad(exports, ["DocumentdbPrivateNetworkEndpoint"], () => require("./documentdbPrivateNetworkEndpoint"));
 
-export { DocumentDBPrivilegeArgs, DocumentDBPrivilegeState } from "./documentDBPrivilege";
-export type DocumentDBPrivilege = import("./documentDBPrivilege").DocumentDBPrivilege;
-export const DocumentDBPrivilege: typeof import("./documentDBPrivilege").DocumentDBPrivilege = null as any;
-utilities.lazyLoad(exports, ["DocumentDBPrivilege"], () => require("./documentDBPrivilege"));
+export { DocumentdbPrivilegeArgs, DocumentdbPrivilegeState } from "./documentdbPrivilege";
+export type DocumentdbPrivilege = import("./documentdbPrivilege").DocumentdbPrivilege;
+export const DocumentdbPrivilege: typeof import("./documentdbPrivilege").DocumentdbPrivilege = null as any;
+utilities.lazyLoad(exports, ["DocumentdbPrivilege"], () => require("./documentdbPrivilege"));
 
-export { DocumentDBReadReplicaArgs, DocumentDBReadReplicaState } from "./documentDBReadReplica";
-export type DocumentDBReadReplica = import("./documentDBReadReplica").DocumentDBReadReplica;
-export const DocumentDBReadReplica: typeof import("./documentDBReadReplica").DocumentDBReadReplica = null as any;
-utilities.lazyLoad(exports, ["DocumentDBReadReplica"], () => require("./documentDBReadReplica"));
+export { DocumentdbReadReplicaArgs, DocumentdbReadReplicaState } from "./documentdbReadReplica";
+export type DocumentdbReadReplica = import("./documentdbReadReplica").DocumentdbReadReplica;
+export const DocumentdbReadReplica: typeof import("./documentdbReadReplica").DocumentdbReadReplica = null as any;
+utilities.lazyLoad(exports, ["DocumentdbReadReplica"], () => require("./documentdbReadReplica"));
 
-export { DocumentDBUserArgs, DocumentDBUserState } from "./documentDBUser";
-export type DocumentDBUser = import("./documentDBUser").DocumentDBUser;
-export const DocumentDBUser: typeof import("./documentDBUser").DocumentDBUser = null as any;
-utilities.lazyLoad(exports, ["DocumentDBUser"], () => require("./documentDBUser"));
+export { DocumentdbUserArgs, DocumentdbUserState } from "./documentdbUser";
+export type DocumentdbUser = import("./documentdbUser").DocumentdbUser;
+export const DocumentdbUser: typeof import("./documentdbUser").DocumentdbUser = null as any;
+utilities.lazyLoad(exports, ["DocumentdbUser"], () => require("./documentdbUser"));
 
 export { DomainRecordArgs, DomainRecordState } from "./domainRecord";
 export type DomainRecord = import("./domainRecord").DomainRecord;
@@ -235,20 +235,20 @@ export const getContainerNamespace: typeof import("./getContainerNamespace").get
 export const getContainerNamespaceOutput: typeof import("./getContainerNamespace").getContainerNamespaceOutput = null as any;
 utilities.lazyLoad(exports, ["getContainerNamespace","getContainerNamespaceOutput"], () => require("./getContainerNamespace"));
 
-export { GetDocumentDBDatabaseArgs, GetDocumentDBDatabaseResult, GetDocumentDBDatabaseOutputArgs } from "./getDocumentDBDatabase";
-export const getDocumentDBDatabase: typeof import("./getDocumentDBDatabase").getDocumentDBDatabase = null as any;
-export const getDocumentDBDatabaseOutput: typeof import("./getDocumentDBDatabase").getDocumentDBDatabaseOutput = null as any;
-utilities.lazyLoad(exports, ["getDocumentDBDatabase","getDocumentDBDatabaseOutput"], () => require("./getDocumentDBDatabase"));
+export { GetDocumentdbDatabaseArgs, GetDocumentdbDatabaseResult, GetDocumentdbDatabaseOutputArgs } from "./getDocumentdbDatabase";
+export const getDocumentdbDatabase: typeof import("./getDocumentdbDatabase").getDocumentdbDatabase = null as any;
+export const getDocumentdbDatabaseOutput: typeof import("./getDocumentdbDatabase").getDocumentdbDatabaseOutput = null as any;
+utilities.lazyLoad(exports, ["getDocumentdbDatabase","getDocumentdbDatabaseOutput"], () => require("./getDocumentdbDatabase"));
 
-export { GetDocumentDBInstanceArgs, GetDocumentDBInstanceResult, GetDocumentDBInstanceOutputArgs } from "./getDocumentDBInstance";
-export const getDocumentDBInstance: typeof import("./getDocumentDBInstance").getDocumentDBInstance = null as any;
-export const getDocumentDBInstanceOutput: typeof import("./getDocumentDBInstance").getDocumentDBInstanceOutput = null as any;
-utilities.lazyLoad(exports, ["getDocumentDBInstance","getDocumentDBInstanceOutput"], () => require("./getDocumentDBInstance"));
+export { GetDocumentdbInstanceArgs, GetDocumentdbInstanceResult, GetDocumentdbInstanceOutputArgs } from "./getDocumentdbInstance";
+export const getDocumentdbInstance: typeof import("./getDocumentdbInstance").getDocumentdbInstance = null as any;
+export const getDocumentdbInstanceOutput: typeof import("./getDocumentdbInstance").getDocumentdbInstanceOutput = null as any;
+utilities.lazyLoad(exports, ["getDocumentdbInstance","getDocumentdbInstanceOutput"], () => require("./getDocumentdbInstance"));
 
-export { GetDocumentDBLoadBalancerEndpointArgs, GetDocumentDBLoadBalancerEndpointResult, GetDocumentDBLoadBalancerEndpointOutputArgs } from "./getDocumentDBLoadBalancerEndpoint";
-export const getDocumentDBLoadBalancerEndpoint: typeof import("./getDocumentDBLoadBalancerEndpoint").getDocumentDBLoadBalancerEndpoint = null as any;
-export const getDocumentDBLoadBalancerEndpointOutput: typeof import("./getDocumentDBLoadBalancerEndpoint").getDocumentDBLoadBalancerEndpointOutput = null as any;
-utilities.lazyLoad(exports, ["getDocumentDBLoadBalancerEndpoint","getDocumentDBLoadBalancerEndpointOutput"], () => require("./getDocumentDBLoadBalancerEndpoint"));
+export { GetDocumentdbLoadBalancerEndpointArgs, GetDocumentdbLoadBalancerEndpointResult, GetDocumentdbLoadBalancerEndpointOutputArgs } from "./getDocumentdbLoadBalancerEndpoint";
+export const getDocumentdbLoadBalancerEndpoint: typeof import("./getDocumentdbLoadBalancerEndpoint").getDocumentdbLoadBalancerEndpoint = null as any;
+export const getDocumentdbLoadBalancerEndpointOutput: typeof import("./getDocumentdbLoadBalancerEndpoint").getDocumentdbLoadBalancerEndpointOutput = null as any;
+utilities.lazyLoad(exports, ["getDocumentdbLoadBalancerEndpoint","getDocumentdbLoadBalancerEndpointOutput"], () => require("./getDocumentdbLoadBalancerEndpoint"));
 
 export { GetDomainRecordArgs, GetDomainRecordResult, GetDomainRecordOutputArgs } from "./getDomainRecord";
 export const getDomainRecord: typeof import("./getDomainRecord").getDomainRecord = null as any;
@@ -310,6 +310,11 @@ export const getInstanceIp: typeof import("./getInstanceIp").getInstanceIp = nul
 export const getInstanceIpOutput: typeof import("./getInstanceIp").getInstanceIpOutput = null as any;
 utilities.lazyLoad(exports, ["getInstanceIp","getInstanceIpOutput"], () => require("./getInstanceIp"));
 
+export { GetInstancePlacementGroupArgs, GetInstancePlacementGroupResult, GetInstancePlacementGroupOutputArgs } from "./getInstancePlacementGroup";
+export const getInstancePlacementGroup: typeof import("./getInstancePlacementGroup").getInstancePlacementGroup = null as any;
+export const getInstancePlacementGroupOutput: typeof import("./getInstancePlacementGroup").getInstancePlacementGroupOutput = null as any;
+utilities.lazyLoad(exports, ["getInstancePlacementGroup","getInstancePlacementGroupOutput"], () => require("./getInstancePlacementGroup"));
+
 export { GetInstancePrivateNicArgs, GetInstancePrivateNicResult, GetInstancePrivateNicOutputArgs } from "./getInstancePrivateNic";
 export const getInstancePrivateNic: typeof import("./getInstancePrivateNic").getInstancePrivateNic = null as any;
 export const getInstancePrivateNicOutput: typeof import("./getInstancePrivateNic").getInstancePrivateNicOutput = null as any;
@@ -354,6 +359,11 @@ export { GetIpamIpArgs, GetIpamIpResult, GetIpamIpOutputArgs } from "./getIpamIp
 export const getIpamIp: typeof import("./getIpamIp").getIpamIp = null as any;
 export const getIpamIpOutput: typeof import("./getIpamIp").getIpamIpOutput = null as any;
 utilities.lazyLoad(exports, ["getIpamIp","getIpamIpOutput"], () => require("./getIpamIp"));
+
+export { GetIpamIpsArgs, GetIpamIpsResult, GetIpamIpsOutputArgs } from "./getIpamIps";
+export const getIpamIps: typeof import("./getIpamIps").getIpamIps = null as any;
+export const getIpamIpsOutput: typeof import("./getIpamIps").getIpamIpsOutput = null as any;
+utilities.lazyLoad(exports, ["getIpamIps","getIpamIpsOutput"], () => require("./getIpamIps"));
 
 export { GetK8sClusterArgs, GetK8sClusterResult, GetK8sClusterOutputArgs } from "./getK8sCluster";
 export const getK8sCluster: typeof import("./getK8sCluster").getK8sCluster = null as any;
@@ -550,15 +560,15 @@ export const getVpcs: typeof import("./getVpcs").getVpcs = null as any;
 export const getVpcsOutput: typeof import("./getVpcs").getVpcsOutput = null as any;
 utilities.lazyLoad(exports, ["getVpcs","getVpcsOutput"], () => require("./getVpcs"));
 
-export { GetWebHostOfferArgs, GetWebHostOfferResult, GetWebHostOfferOutputArgs } from "./getWebHostOffer";
-export const getWebHostOffer: typeof import("./getWebHostOffer").getWebHostOffer = null as any;
-export const getWebHostOfferOutput: typeof import("./getWebHostOffer").getWebHostOfferOutput = null as any;
-utilities.lazyLoad(exports, ["getWebHostOffer","getWebHostOfferOutput"], () => require("./getWebHostOffer"));
-
 export { GetWebhostingArgs, GetWebhostingResult, GetWebhostingOutputArgs } from "./getWebhosting";
 export const getWebhosting: typeof import("./getWebhosting").getWebhosting = null as any;
 export const getWebhostingOutput: typeof import("./getWebhosting").getWebhostingOutput = null as any;
 utilities.lazyLoad(exports, ["getWebhosting","getWebhostingOutput"], () => require("./getWebhosting"));
+
+export { GetWebhostingOfferArgs, GetWebhostingOfferResult, GetWebhostingOfferOutputArgs } from "./getWebhostingOffer";
+export const getWebhostingOffer: typeof import("./getWebhostingOffer").getWebhostingOffer = null as any;
+export const getWebhostingOfferOutput: typeof import("./getWebhostingOffer").getWebhostingOfferOutput = null as any;
+utilities.lazyLoad(exports, ["getWebhostingOffer","getWebhostingOfferOutput"], () => require("./getWebhostingOffer"));
 
 export { IamApiKeyArgs, IamApiKeyState } from "./iamApiKey";
 export type IamApiKey = import("./iamApiKey").IamApiKey;
@@ -850,6 +860,11 @@ export type RegistryNamespace = import("./registryNamespace").RegistryNamespace;
 export const RegistryNamespace: typeof import("./registryNamespace").RegistryNamespace = null as any;
 utilities.lazyLoad(exports, ["RegistryNamespace"], () => require("./registryNamespace"));
 
+export { SdbSqlDatabaseArgs, SdbSqlDatabaseState } from "./sdbSqlDatabase";
+export type SdbSqlDatabase = import("./sdbSqlDatabase").SdbSqlDatabase;
+export const SdbSqlDatabase: typeof import("./sdbSqlDatabase").SdbSqlDatabase = null as any;
+utilities.lazyLoad(exports, ["SdbSqlDatabase"], () => require("./sdbSqlDatabase"));
+
 export { SecretArgs, SecretState } from "./secret";
 export type Secret = import("./secret").Secret;
 export const Secret: typeof import("./secret").Secret = null as any;
@@ -910,10 +925,10 @@ export type VpcPublicGatewayPatRule = import("./vpcPublicGatewayPatRule").VpcPub
 export const VpcPublicGatewayPatRule: typeof import("./vpcPublicGatewayPatRule").VpcPublicGatewayPatRule = null as any;
 utilities.lazyLoad(exports, ["VpcPublicGatewayPatRule"], () => require("./vpcPublicGatewayPatRule"));
 
-export { WebHostingArgs, WebHostingState } from "./webHosting";
-export type WebHosting = import("./webHosting").WebHosting;
-export const WebHosting: typeof import("./webHosting").WebHosting = null as any;
-utilities.lazyLoad(exports, ["WebHosting"], () => require("./webHosting"));
+export { WebhostingArgs, WebhostingState } from "./webhosting";
+export type Webhosting = import("./webhosting").Webhosting;
+export const Webhosting: typeof import("./webhosting").Webhosting = null as any;
+utilities.lazyLoad(exports, ["Webhosting"], () => require("./webhosting"));
 
 
 // Export sub-modules:
@@ -959,18 +974,18 @@ const _module = {
                 return new ContainerToken(name, <any>undefined, { urn })
             case "scaleway:index/containerTrigger:ContainerTrigger":
                 return new ContainerTrigger(name, <any>undefined, { urn })
-            case "scaleway:index/documentDBDatabase:DocumentDBDatabase":
-                return new DocumentDBDatabase(name, <any>undefined, { urn })
-            case "scaleway:index/documentDBInstance:DocumentDBInstance":
-                return new DocumentDBInstance(name, <any>undefined, { urn })
-            case "scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint":
-                return new DocumentDBPrivateNetworkEndpoint(name, <any>undefined, { urn })
-            case "scaleway:index/documentDBPrivilege:DocumentDBPrivilege":
-                return new DocumentDBPrivilege(name, <any>undefined, { urn })
-            case "scaleway:index/documentDBReadReplica:DocumentDBReadReplica":
-                return new DocumentDBReadReplica(name, <any>undefined, { urn })
-            case "scaleway:index/documentDBUser:DocumentDBUser":
-                return new DocumentDBUser(name, <any>undefined, { urn })
+            case "scaleway:index/documentdbDatabase:DocumentdbDatabase":
+                return new DocumentdbDatabase(name, <any>undefined, { urn })
+            case "scaleway:index/documentdbInstance:DocumentdbInstance":
+                return new DocumentdbInstance(name, <any>undefined, { urn })
+            case "scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint":
+                return new DocumentdbPrivateNetworkEndpoint(name, <any>undefined, { urn })
+            case "scaleway:index/documentdbPrivilege:DocumentdbPrivilege":
+                return new DocumentdbPrivilege(name, <any>undefined, { urn })
+            case "scaleway:index/documentdbReadReplica:DocumentdbReadReplica":
+                return new DocumentdbReadReplica(name, <any>undefined, { urn })
+            case "scaleway:index/documentdbUser:DocumentdbUser":
+                return new DocumentdbUser(name, <any>undefined, { urn })
             case "scaleway:index/domainRecord:DomainRecord":
                 return new DomainRecord(name, <any>undefined, { urn })
             case "scaleway:index/domainZone:DomainZone":
@@ -1105,6 +1120,8 @@ const _module = {
                 return new RedisCluster(name, <any>undefined, { urn })
             case "scaleway:index/registryNamespace:RegistryNamespace":
                 return new RegistryNamespace(name, <any>undefined, { urn })
+            case "scaleway:index/sdbSqlDatabase:SdbSqlDatabase":
+                return new SdbSqlDatabase(name, <any>undefined, { urn })
             case "scaleway:index/secret:Secret":
                 return new Secret(name, <any>undefined, { urn })
             case "scaleway:index/secretVersion:SecretVersion":
@@ -1129,8 +1146,8 @@ const _module = {
                 return new VpcPublicGatewayIpReverseDns(name, <any>undefined, { urn })
             case "scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule":
                 return new VpcPublicGatewayPatRule(name, <any>undefined, { urn })
-            case "scaleway:index/webHosting:WebHosting":
-                return new WebHosting(name, <any>undefined, { urn })
+            case "scaleway:index/webhosting:Webhosting":
+                return new Webhosting(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -1151,12 +1168,12 @@ pulumi.runtime.registerResourceModule("scaleway", "index/containerDomain", _modu
 pulumi.runtime.registerResourceModule("scaleway", "index/containerNamespace", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/containerToken", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/containerTrigger", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/documentDBDatabase", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/documentDBInstance", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/documentDBPrivateNetworkEndpoint", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/documentDBPrivilege", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/documentDBReadReplica", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/documentDBUser", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/documentdbDatabase", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/documentdbInstance", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/documentdbPrivateNetworkEndpoint", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/documentdbPrivilege", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/documentdbReadReplica", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/documentdbUser", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/domainRecord", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/domainZone", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/flexibleIp", _module)
@@ -1224,6 +1241,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/rdbReadReplica", _modul
 pulumi.runtime.registerResourceModule("scaleway", "index/rdbUser", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/redisCluster", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/registryNamespace", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/sdbSqlDatabase", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/secret", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/secretVersion", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/temDomain", _module)
@@ -1236,7 +1254,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayDhcpRes
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayIpReverseDns", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/vpcPublicGatewayPatRule", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/webHosting", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/webhosting", _module)
 pulumi.runtime.registerResourcePackage("scaleway", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

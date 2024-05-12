@@ -9,10 +9,10 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
-__all__ = ['DocumentDBInstanceArgs', 'DocumentDBInstance']
+__all__ = ['DocumentdbInstanceArgs', 'DocumentdbInstance']
 
 @pulumi.input_type
-class DocumentDBInstanceArgs:
+class DocumentdbInstanceArgs:
     def __init__(__self__, *,
                  engine: pulumi.Input[str],
                  node_type: pulumi.Input[str],
@@ -27,7 +27,7 @@ class DocumentDBInstanceArgs:
                  volume_size_in_gb: Optional[pulumi.Input[int]] = None,
                  volume_type: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a DocumentDBInstance resource.
+        The set of arguments for constructing a DocumentdbInstance resource.
         :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `FerretDB-1`).
                
                > **Important:** Updates to `engine` will recreate the Database Instance.
@@ -232,7 +232,7 @@ class DocumentDBInstanceArgs:
 
 
 @pulumi.input_type
-class _DocumentDBInstanceState:
+class _DocumentdbInstanceState:
     def __init__(__self__, *,
                  engine: Optional[pulumi.Input[str]] = None,
                  is_ha_cluster: Optional[pulumi.Input[bool]] = None,
@@ -247,7 +247,7 @@ class _DocumentDBInstanceState:
                  volume_size_in_gb: Optional[pulumi.Input[int]] = None,
                  volume_type: Optional[pulumi.Input[str]] = None):
         """
-        Input properties used for looking up and filtering DocumentDBInstance resources.
+        Input properties used for looking up and filtering DocumentdbInstance resources.
         :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `FerretDB-1`).
                
                > **Important:** Updates to `engine` will recreate the Database Instance.
@@ -453,7 +453,7 @@ class _DocumentDBInstanceState:
         pulumi.set(self, "volume_type", value)
 
 
-class DocumentDBInstance(pulumi.CustomResource):
+class DocumentdbInstance(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -475,7 +475,7 @@ class DocumentDBInstance(pulumi.CustomResource):
         Creates and manages Scaleway Database Instances.
         For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
 
-        ## Examples
+        ## Example Usage
 
         ### Example Basic
 
@@ -483,7 +483,7 @@ class DocumentDBInstance(pulumi.CustomResource):
         import pulumi
         import ediri_scaleway as scaleway
 
-        main = scaleway.DocumentDBInstance("main",
+        main = scaleway.DocumentdbInstance("main",
             engine="FerretDB-1",
             node_type="docdb-play2-pico",
             password="thiZ_is_v&ry_s3cret",
@@ -498,10 +498,12 @@ class DocumentDBInstance(pulumi.CustomResource):
 
         ## Import
 
-        Database Instance can be imported using the `{region}/{id}`, e.g. bash
+        Database Instance can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/documentDBInstance:DocumentDBInstance db fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/documentdbInstance:DocumentdbInstance db fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -534,13 +536,13 @@ class DocumentDBInstance(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: DocumentDBInstanceArgs,
+                 args: DocumentdbInstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Database Instances.
         For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
 
-        ## Examples
+        ## Example Usage
 
         ### Example Basic
 
@@ -548,7 +550,7 @@ class DocumentDBInstance(pulumi.CustomResource):
         import pulumi
         import ediri_scaleway as scaleway
 
-        main = scaleway.DocumentDBInstance("main",
+        main = scaleway.DocumentdbInstance("main",
             engine="FerretDB-1",
             node_type="docdb-play2-pico",
             password="thiZ_is_v&ry_s3cret",
@@ -563,19 +565,21 @@ class DocumentDBInstance(pulumi.CustomResource):
 
         ## Import
 
-        Database Instance can be imported using the `{region}/{id}`, e.g. bash
+        Database Instance can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/documentDBInstance:DocumentDBInstance db fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/documentdbInstance:DocumentdbInstance db fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
-        :param DocumentDBInstanceArgs args: The arguments to use to populate this resource's properties.
+        :param DocumentdbInstanceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(DocumentDBInstanceArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(DocumentdbInstanceArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -603,7 +607,7 @@ class DocumentDBInstance(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = DocumentDBInstanceArgs.__new__(DocumentDBInstanceArgs)
+            __props__ = DocumentdbInstanceArgs.__new__(DocumentdbInstanceArgs)
 
             if engine is None and not opts.urn:
                 raise TypeError("Missing required property 'engine'")
@@ -623,8 +627,8 @@ class DocumentDBInstance(pulumi.CustomResource):
             __props__.__dict__["volume_type"] = volume_type
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
-        super(DocumentDBInstance, __self__).__init__(
-            'scaleway:index/documentDBInstance:DocumentDBInstance',
+        super(DocumentdbInstance, __self__).__init__(
+            'scaleway:index/documentdbInstance:DocumentdbInstance',
             resource_name,
             __props__,
             opts)
@@ -644,9 +648,9 @@ class DocumentDBInstance(pulumi.CustomResource):
             telemetry_enabled: Optional[pulumi.Input[bool]] = None,
             user_name: Optional[pulumi.Input[str]] = None,
             volume_size_in_gb: Optional[pulumi.Input[int]] = None,
-            volume_type: Optional[pulumi.Input[str]] = None) -> 'DocumentDBInstance':
+            volume_type: Optional[pulumi.Input[str]] = None) -> 'DocumentdbInstance':
         """
-        Get an existing DocumentDBInstance resource's state with the given name, id, and optional extra
+        Get an existing DocumentdbInstance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -678,7 +682,7 @@ class DocumentDBInstance(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _DocumentDBInstanceState.__new__(_DocumentDBInstanceState)
+        __props__ = _DocumentdbInstanceState.__new__(_DocumentdbInstanceState)
 
         __props__.__dict__["engine"] = engine
         __props__.__dict__["is_ha_cluster"] = is_ha_cluster
@@ -692,7 +696,7 @@ class DocumentDBInstance(pulumi.CustomResource):
         __props__.__dict__["user_name"] = user_name
         __props__.__dict__["volume_size_in_gb"] = volume_size_in_gb
         __props__.__dict__["volume_type"] = volume_type
-        return DocumentDBInstance(resource_name, opts=opts, __props__=__props__)
+        return DocumentdbInstance(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter

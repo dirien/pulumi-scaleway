@@ -31,6 +31,7 @@ export function getBaremetalServer(args?: GetBaremetalServerArgs, opts?: pulumi.
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getBaremetalServer:getBaremetalServer", {
         "name": args.name,
+        "projectId": args.projectId,
         "serverId": args.serverId,
         "zone": args.zone,
     }, opts);
@@ -44,6 +45,10 @@ export interface GetBaremetalServerArgs {
      * The server name. Only one of `name` and `serverId` should be specified.
      */
     name?: string;
+    /**
+     * The ID of the project the baremetal server is associated with.
+     */
+    projectId?: string;
     serverId?: string;
     /**
      * `zone`) The zone in which the server exists.
@@ -76,7 +81,7 @@ export interface GetBaremetalServerResult {
     readonly osName: string;
     readonly password: string;
     readonly privateNetworks: outputs.GetBaremetalServerPrivateNetwork[];
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly reinstallOnConfigChanges: boolean;
     readonly serverId?: string;
     readonly servicePassword: string;
@@ -117,6 +122,10 @@ export interface GetBaremetalServerOutputArgs {
      * The server name. Only one of `name` and `serverId` should be specified.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the project the baremetal server is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     serverId?: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the server exists.

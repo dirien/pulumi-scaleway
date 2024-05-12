@@ -13,7 +13,7 @@ namespace ediri.Scaleway
     /// <summary>
     /// Creates and manages a Scaleway Serverless Job Definition. For more information, see [the documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/jobs/v1alpha1).
     /// 
-    /// ## Example
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
@@ -43,10 +43,12 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Serverless Jobs can be imported using the `{region}/{id}`, e.g. bash
+    /// Serverless Jobs can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/jobDefinition:JobDefinition job fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/jobDefinition:JobDefinition job fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/jobDefinition:JobDefinition")]

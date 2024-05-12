@@ -11,7 +11,7 @@ export interface BaremetalServerIp {
      */
     address?: pulumi.Input<string>;
     /**
-     * The id of the private network to attach.
+     * The ID of the IPv6.
      */
     id?: pulumi.Input<string>;
     /**
@@ -30,7 +30,7 @@ export interface BaremetalServerIpv4 {
      */
     address?: pulumi.Input<string>;
     /**
-     * The id of the private network to attach.
+     * The ID of the IPv6.
      */
     id?: pulumi.Input<string>;
     /**
@@ -49,7 +49,7 @@ export interface BaremetalServerIpv6 {
      */
     address?: pulumi.Input<string>;
     /**
-     * The id of the private network to attach.
+     * The ID of the IPv6.
      */
     id?: pulumi.Input<string>;
     /**
@@ -68,7 +68,7 @@ export interface BaremetalServerOption {
      */
     expiresAt?: pulumi.Input<string>;
     /**
-     * The id of the private network to attach.
+     * The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
      */
     id: pulumi.Input<string>;
     /**
@@ -172,7 +172,7 @@ export interface ContainerTriggerNats {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`). The region in which the namespace should be created.
+     * Region where the mnq nats account is, defaults to provider's region
      */
     region?: pulumi.Input<string>;
     /**
@@ -187,7 +187,7 @@ export interface ContainerTriggerSqs {
      */
     namespaceId?: pulumi.Input<string>;
     /**
-     * ID of the project that contain the mnq nats account, defaults to provider's project
+     * ID of the project where sqs is enabled, defaults to provider's project
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -195,12 +195,12 @@ export interface ContainerTriggerSqs {
      */
     queue: pulumi.Input<string>;
     /**
-     * `region`). The region in which the namespace should be created.
+     * Region where sqs is enabled, defaults to provider's region
      */
     region?: pulumi.Input<string>;
 }
 
-export interface DocumentDBReadReplicaDirectAccess {
+export interface DocumentdbReadReplicaDirectAccess {
     /**
      * The ID of the endpoint of the read replica.
      */
@@ -223,7 +223,7 @@ export interface DocumentDBReadReplicaDirectAccess {
     port?: pulumi.Input<number>;
 }
 
-export interface DocumentDBReadReplicaPrivateNetwork {
+export interface DocumentdbReadReplicaPrivateNetwork {
     /**
      * The ID of the endpoint of the read replica.
      */
@@ -254,23 +254,26 @@ export interface DocumentDBReadReplicaPrivateNetwork {
      * service if not set.
      */
     serviceIp?: pulumi.Input<string>;
+    /**
+     * Private network zone
+     */
     zone?: pulumi.Input<string>;
 }
 
 export interface DomainRecordGeoIp {
     /**
-     * The list of matches. *(Can be more than 1)*
+     * The list of matches
      */
     matches: pulumi.Input<pulumi.Input<inputs.DomainRecordGeoIpMatch>[]>;
 }
 
 export interface DomainRecordGeoIpMatch {
     /**
-     * List of continents (eg: `EU` for Europe, `NA` for North America, `AS` for Asia...). [List of all continents code](https://api.scaleway.com/domain-private/v2beta1/continents)
+     * List of continents (eg: EU for Europe, NA for North America, AS for Asia...). List of all continents code: https://api.scaleway.com/domain-private/v2beta1/continents
      */
     continents?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * List of countries (eg: `FR` for France, `US` for the United States, `GB` for Great Britain...). [List of all countries code](https://api.scaleway.com/domain-private/v2beta1/countries)
+     * List of countries (eg: FR for France, US for the United States, GB for Great Britain...). List of all countries code: https://api.scaleway.com/domain-private/v2beta1/countries
      */
     countries?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -281,7 +284,7 @@ export interface DomainRecordGeoIpMatch {
 
 export interface DomainRecordHttpService {
     /**
-     * List of IPs to check
+     * IPs to check
      */
     ips: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -289,11 +292,11 @@ export interface DomainRecordHttpService {
      */
     mustContain: pulumi.Input<string>;
     /**
-     * Strategy to return an IP from the IPs list. Can be `random`, `hashed` or `all`
+     * Strategy to return an IP from the IPs list
      */
     strategy: pulumi.Input<string>;
     /**
-     * URL to match the `mustContain` text to validate an IP
+     * URL to match the mustContain text to validate an IP
      */
     url: pulumi.Input<string>;
     /**
@@ -319,7 +322,7 @@ export interface DomainRecordWeighted {
      */
     ip: pulumi.Input<string>;
     /**
-     * The weight of the IP as an integer UInt32.
+     * The weight of the IP
      */
     weight: pulumi.Input<number>;
 }
@@ -334,7 +337,7 @@ export interface FunctionTriggerNats {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`). The region in which the namespace should be created.
+     * Region where the mnq nats account is, defaults to provider's region
      */
     region?: pulumi.Input<string>;
     /**
@@ -349,7 +352,7 @@ export interface FunctionTriggerSqs {
      */
     namespaceId?: pulumi.Input<string>;
     /**
-     * ID of the project that contain the mnq nats account, defaults to provider's project
+     * ID of the project that contain the mnq namespace, defaults to provider's project
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -357,7 +360,7 @@ export interface FunctionTriggerSqs {
      */
     queue: pulumi.Input<string>;
     /**
-     * `region`). The region in which the namespace should be created.
+     * Region where the mnq namespace is, defaults to provider's region
      */
     region?: pulumi.Input<string>;
 }
@@ -392,15 +395,49 @@ export interface GetIpamIpResourceArgs {
     type: pulumi.Input<string>;
 }
 
+export interface GetIpamIpsResource {
+    /**
+     * The ID of the resource that the IP is bound to.
+     */
+    id?: string;
+    /**
+     * The name of the resource to get the IP from.
+     */
+    name?: string;
+    /**
+     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+     */
+    type: string;
+}
+
+export interface GetIpamIpsResourceArgs {
+    /**
+     * The ID of the resource that the IP is bound to.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * The name of the resource to get the IP from.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+     */
+    type: pulumi.Input<string>;
+}
+
 export interface IamPolicyRule {
     /**
-     * ID of organization scoped to the rule.
+     * ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
      */
     organizationId?: pulumi.Input<string>;
     /**
      * Names of permission sets bound to the rule.
      *
      * **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+     *
+     * ```shell
+     * $ scw iam permission-set list
+     * ```
      */
     permissionSetNames: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -474,7 +511,7 @@ export interface InstanceSecurityGroupInboundRule {
     /**
      * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
      *
-     * @deprecated Ip address is deprecated. Please use ip_range instead
+     * @deprecated Ip address is deprecated. Please use ipRange instead
      */
     ip?: pulumi.Input<string>;
     /**
@@ -485,6 +522,9 @@ export interface InstanceSecurityGroupInboundRule {
      * The port this rule applies to. If no `port` nor `portRange` are specified, the rule will apply to all port. Only one of `port` and `portRange` should be specified.
      */
     port?: pulumi.Input<number>;
+    /**
+     * Computed port range for this rule (e.g: 1-1024, 22-22)
+     */
     portRange?: pulumi.Input<string>;
     /**
      * The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
@@ -494,26 +534,29 @@ export interface InstanceSecurityGroupInboundRule {
 
 export interface InstanceSecurityGroupOutboundRule {
     /**
-     * The action to take when rule match. Possible values are: `accept` or `drop`.
+     * Action when rule match request (drop or accept)
      */
     action: pulumi.Input<string>;
     /**
-     * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     * Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ipRange should be provided
      *
-     * @deprecated Ip address is deprecated. Please use ip_range instead
+     * @deprecated Ip address is deprecated. Please use ipRange instead
      */
     ip?: pulumi.Input<string>;
     /**
-     * The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     * Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ipRange should be provided
      */
     ipRange?: pulumi.Input<string>;
     /**
-     * The port this rule applies to. If no `port` nor `portRange` are specified, the rule will apply to all port. Only one of `port` and `portRange` should be specified.
+     * Network port for this rule
      */
     port?: pulumi.Input<number>;
+    /**
+     * Computed port range for this rule (e.g: 1-1024, 22-22)
+     */
     portRange?: pulumi.Input<string>;
     /**
-     * The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+     * Protocol for this rule (TCP, UDP, ICMP or ANY)
      */
     protocol?: pulumi.Input<string>;
 }
@@ -526,7 +569,7 @@ export interface InstanceSecurityGroupRulesInboundRule {
     /**
      * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
      *
-     * @deprecated Ip address is deprecated. Please use ip_range instead
+     * @deprecated Ip address is deprecated. Please use ipRange instead
      */
     ip?: pulumi.Input<string>;
     /**
@@ -537,6 +580,9 @@ export interface InstanceSecurityGroupRulesInboundRule {
      * The port this rule apply to. If no port is specified, rule will apply to all port.
      */
     port?: pulumi.Input<number>;
+    /**
+     * Computed port range for this rule (e.g: 1-1024, 22-22)
+     */
     portRange?: pulumi.Input<string>;
     /**
      * The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
@@ -546,33 +592,45 @@ export interface InstanceSecurityGroupRulesInboundRule {
 
 export interface InstanceSecurityGroupRulesOutboundRule {
     /**
-     * The action to take when rule match. Possible values are: `accept` or `drop`.
+     * Action when rule match request (drop or accept)
      */
     action: pulumi.Input<string>;
     /**
-     * The ip this rule apply to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     * Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ipRange should be provided
      *
-     * @deprecated Ip address is deprecated. Please use ip_range instead
+     * @deprecated Ip address is deprecated. Please use ipRange instead
      */
     ip?: pulumi.Input<string>;
     /**
-     * The ip range (e.g `192.168.1.0/24`) this rule applies to. If no `ip` nor `ipRange` are specified, rule will apply to all ip. Only one of `ip` and `ipRange` should be specified.
+     * Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ipRange should be provided
      */
     ipRange?: pulumi.Input<string>;
     /**
-     * The port this rule apply to. If no port is specified, rule will apply to all port.
+     * Network port for this rule
      */
     port?: pulumi.Input<number>;
+    /**
+     * Computed port range for this rule (e.g: 1-1024, 22-22)
+     */
     portRange?: pulumi.Input<string>;
     /**
-     * The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
+     * Protocol for this rule (TCP, UDP, ICMP or ANY)
      */
     protocol?: pulumi.Input<string>;
 }
 
 export interface InstanceServerPrivateNetwork {
+    /**
+     * MAC address of the NIC
+     */
     macAddress?: pulumi.Input<string>;
+    /**
+     * The Private Network ID
+     */
     pnId: pulumi.Input<string>;
+    /**
+     * The private NIC state
+     */
     status?: pulumi.Input<string>;
     /**
      * `zone`) The zone in which the server should be created.
@@ -592,6 +650,9 @@ export interface InstanceServerPublicIp {
 }
 
 export interface InstanceServerRootVolume {
+    /**
+     * Set the volume where the boot the server
+     */
     boot?: pulumi.Input<boolean>;
     /**
      * Forces deletion of the root volume on instance termination.
@@ -634,6 +695,9 @@ export interface InstanceSnapshotImport {
 }
 
 export interface IotDeviceCertificate {
+    /**
+     * X509 PEM encoded certificate of the device
+     */
     crt?: pulumi.Input<string>;
     /**
      * The private key of the device, in case it is generated by Scaleway.
@@ -654,53 +718,84 @@ export interface IotDeviceMessageFilters {
 
 export interface IotDeviceMessageFiltersPublish {
     /**
-     * Same as publish rules.
+     * Publish message filter policy
      */
     policy?: pulumi.Input<string>;
     /**
-     * Same as publish rules.
-     *
-     * - `certificate.crt` - (Optional) The certificate of the device, either generated by Scaleway or provided.
-     *
-     * > **Important:** Updates to `certificate.crt` will disconnect connected devices and the previous certificate will be deleted and won't be recoverable.
+     * List of topics in the set
      */
     topics?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface IotDeviceMessageFiltersSubscribe {
     /**
-     * Same as publish rules.
+     * Subscribe message filter policy
      */
     policy?: pulumi.Input<string>;
     /**
-     * Same as publish rules.
-     *
-     * - `certificate.crt` - (Optional) The certificate of the device, either generated by Scaleway or provided.
-     *
-     * > **Important:** Updates to `certificate.crt` will disconnect connected devices and the previous certificate will be deleted and won't be recoverable.
+     * List of topics in the set
      */
     topics?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface IotRouteDatabase {
+    /**
+     * The database name (e.g. `measurements`).
+     */
     dbname: pulumi.Input<string>;
+    /**
+     * The database hostname. Can be an IP or a FQDN.
+     */
     host: pulumi.Input<string>;
+    /**
+     * The database password.
+     */
     password: pulumi.Input<string>;
+    /**
+     * The database port (e.g. `5432`)
+     */
     port: pulumi.Input<number>;
+    /**
+     * The SQL query that will be executed when receiving a message ($TOPIC and $PAYLOAD variables are available, see documentation, e.g. `INSERT INTO mytable(date, topic, value) VALUES (NOW(), $TOPIC, $PAYLOAD)`).
+     */
     query: pulumi.Input<string>;
+    /**
+     * The database username.
+     */
     username: pulumi.Input<string>;
 }
 
 export interface IotRouteRest {
+    /**
+     * a map of the extra headers to send with the HTTP call (e.g. `X-Header = Value`).
+     */
     headers: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The URI of the Rest endpoint (e.g. `https://internal.mycompany.com/ingest/mqttdata`).
+     */
     uri: pulumi.Input<string>;
+    /**
+     * The HTTP Verb used to call Rest URI (e.g. `post`).
+     */
     verb: pulumi.Input<string>;
 }
 
 export interface IotRouteS3 {
+    /**
+     * The name of the S3 route's destination bucket (e.g. `my-object-storage`).
+     */
     bucketName: pulumi.Input<string>;
+    /**
+     * The region of the S3 route's destination bucket (e.g. `fr-par`).
+     */
     bucketRegion: pulumi.Input<string>;
+    /**
+     * The string to prefix object names with (e.g. `mykeyprefix-`).
+     */
     objectPrefix?: pulumi.Input<string>;
+    /**
+     * How the S3 route's objects will be created (e.g. `perTopic`). See [documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Messages-Store-Strategies) for behaviour details.
+     */
     strategy: pulumi.Input<string>;
 }
 
@@ -891,15 +986,15 @@ export interface LbAclAction {
 
 export interface LbAclActionRedirect {
     /**
-     * The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+     * The HTTP redirect code to use
      */
     code?: pulumi.Input<number>;
     /**
-     * An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+     * An URL can be used in case of a location redirect
      */
     target?: pulumi.Input<string>;
     /**
-     * The redirect type. Possible values are: `location` or `scheme`.
+     * The redirect type
      */
     type?: pulumi.Input<string>;
 }
@@ -932,42 +1027,42 @@ export interface LbAclMatch {
 
 export interface LbBackendHealthCheckHttp {
     /**
-     * The expected HTTP status code.
+     * The expected HTTP status code
      */
     code?: pulumi.Input<number>;
     /**
-     * The HTTP host header to use for HC requests.
+     * The HTTP host header to use for HC requests
      */
     hostHeader?: pulumi.Input<string>;
     /**
-     * The HTTP method to use for HC requests.
+     * The HTTP method to use for HC requests
      */
     method?: pulumi.Input<string>;
     /**
-     * The HTTPS endpoint URL to call for HC requests.
+     * The HTTP endpoint URL to call for HC requests
      */
     uri: pulumi.Input<string>;
 }
 
 export interface LbBackendHealthCheckHttps {
     /**
-     * The expected HTTP status code.
+     * The expected HTTP status code
      */
     code?: pulumi.Input<number>;
     /**
-     * The HTTP host header to use for HC requests.
+     * The HTTP host header to use for HC requests
      */
     hostHeader?: pulumi.Input<string>;
     /**
-     * The HTTP method to use for HC requests.
+     * The HTTP method to use for HC requests
      */
     method?: pulumi.Input<string>;
     /**
-     * The SNI to use for HC requests over SSL.
+     * The SNI to use for HC requests over SSL
      */
     sni?: pulumi.Input<string>;
     /**
-     * The HTTPS endpoint URL to call for HC requests.
+     * The HTTPS endpoint URL to call for HC requests
      */
     uri: pulumi.Input<string>;
 }
@@ -977,22 +1072,18 @@ export interface LbBackendHealthCheckTcp {
 
 export interface LbCertificateCustomCertificate {
     /**
-     * Full PEM-formatted certificate chain.
-     *
-     * > **Important:** Updates to `customCertificate` will recreate the load-balancer certificate.
+     * The full PEM-formatted certificate chain
      */
     certificateChain: pulumi.Input<string>;
 }
 
 export interface LbCertificateLetsencrypt {
     /**
-     * Main domain of the certificate. A new certificate will be created if this field is changed.
+     * Main domain of the certificate
      */
     commonName: pulumi.Input<string>;
     /**
-     * Array of alternative domain names.  A new certificate will be created if this field is changed.
-     *
-     * > **Important:** Updates to `letsencrypt` will recreate the load-balancer certificate.
+     * The alternative domain names of the certificate
      */
     subjectAlternativeNames?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -1002,7 +1093,13 @@ export interface LbFrontendAcl {
      * Action to undertake when an ACL filter matches.
      */
     action: pulumi.Input<inputs.LbFrontendAclAction>;
+    /**
+     * Date and time of ACL's creation (RFC 3339 format)
+     */
     createdAt?: pulumi.Input<string>;
+    /**
+     * Description of the ACL
+     */
     description?: pulumi.Input<string>;
     /**
      * The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
@@ -1012,6 +1109,9 @@ export interface LbFrontendAcl {
      * The ACL name. If not provided it will be randomly generated.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Date and time of ACL's update (RFC 3339 format)
+     */
     updatedAt?: pulumi.Input<string>;
 }
 
@@ -1028,15 +1128,15 @@ export interface LbFrontendAclAction {
 
 export interface LbFrontendAclActionRedirect {
     /**
-     * The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+     * The HTTP redirect code to use
      */
     code?: pulumi.Input<number>;
     /**
-     * An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+     * An URL can be used in case of a location redirect
      */
     target?: pulumi.Input<string>;
     /**
-     * The redirect type. Possible values are: `location` or `scheme`.
+     * The redirect type
      */
     type?: pulumi.Input<string>;
 }
@@ -1080,6 +1180,9 @@ export interface LbPrivateNetwork {
      * (Optional) Define a local ip address of your choice for the load balancer instance. See below.
      */
     staticConfig?: pulumi.Input<string>;
+    /**
+     * The status of private network connection
+     */
     status?: pulumi.Input<string>;
     /**
      * `zone`) The zone of the load-balancer.
@@ -1119,11 +1222,20 @@ export interface MnqSqsCredentialsPermissions {
 
 export interface ObjectBucketAclAccessControlPolicy {
     grants?: pulumi.Input<pulumi.Input<inputs.ObjectBucketAclAccessControlPolicyGrant>[]>;
+    /**
+     * Configuration block of the bucket project owner's display organization ID.
+     */
     owner: pulumi.Input<inputs.ObjectBucketAclAccessControlPolicyOwner>;
 }
 
 export interface ObjectBucketAclAccessControlPolicyGrant {
+    /**
+     * Configuration block for the project being granted permissions.
+     */
     grantee?: pulumi.Input<inputs.ObjectBucketAclAccessControlPolicyGrantGrantee>;
+    /**
+     * Logging permissions assigned to the grantee for the bucket.
+     */
     permission: pulumi.Input<string>;
 }
 
@@ -1133,10 +1245,16 @@ export interface ObjectBucketAclAccessControlPolicyGrantGrantee {
      * The `region`,`bucket` and `acl` separated by (`/`).
      */
     id: pulumi.Input<string>;
+    /**
+     * Type of grantee. Valid values: `CanonicalUser`
+     */
     type: pulumi.Input<string>;
 }
 
 export interface ObjectBucketAclAccessControlPolicyOwner {
+    /**
+     * The project ID of the grantee.
+     */
     displayName?: pulumi.Input<string>;
     /**
      * The `region`,`bucket` and `acl` separated by (`/`).
@@ -1225,12 +1343,24 @@ export interface ObjectBucketLifecycleRuleTransition {
 }
 
 export interface ObjectBucketLockConfigurationRule {
+    /**
+     * The default retention for the lock.
+     */
     defaultRetention: pulumi.Input<inputs.ObjectBucketLockConfigurationRuleDefaultRetention>;
 }
 
 export interface ObjectBucketLockConfigurationRuleDefaultRetention {
+    /**
+     * The number of days that you want to specify for the default retention period.
+     */
     days?: pulumi.Input<number>;
+    /**
+     * The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
+     */
     mode: pulumi.Input<string>;
+    /**
+     * The number of years that you want to specify for the default retention period.
+     */
     years?: pulumi.Input<number>;
 }
 
@@ -1242,10 +1372,18 @@ export interface ObjectBucketVersioning {
 }
 
 export interface ObjectBucketWebsiteConfigurationErrorDocument {
+    /**
+     * The object key name to use when a 4XX class error occurs.
+     */
     key: pulumi.Input<string>;
 }
 
 export interface ObjectBucketWebsiteConfigurationIndexDocument {
+    /**
+     * A suffix that is appended to a request that is for a directory on the website endpoint.
+     *
+     * > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
+     */
     suffix: pulumi.Input<string>;
 }
 
@@ -1285,7 +1423,7 @@ export interface RdbInstanceLoadBalancer {
 
 export interface RdbInstancePrivateNetwork {
     /**
-     * Whether the endpoint should be configured with IPAM. Defaults to `false` if `ipNet` is defined, `true` otherwise.
+     * Whether or not the private network endpoint should be configured with IPAM
      */
     enableIpam?: pulumi.Input<boolean>;
     /**
@@ -1300,19 +1438,25 @@ export interface RdbInstancePrivateNetwork {
      * IPv4 address on the network.
      */
     ip?: pulumi.Input<string>;
+    /**
+     * The IP with the given mask within the private subnet
+     */
     ipNet?: pulumi.Input<string>;
     /**
      * The name of the Database Instance.
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the private network.
+     * The private network ID
      */
     pnId: pulumi.Input<string>;
     /**
      * Port in the Private Network.
      */
     port?: pulumi.Input<number>;
+    /**
+     * The zone you want to attach the resource to
+     */
     zone?: pulumi.Input<string>;
 }
 
@@ -1356,6 +1500,10 @@ export interface RdbReadReplicaDirectAccess {
 
 export interface RdbReadReplicaPrivateNetwork {
     /**
+     * Whether or not the private network endpoint should be configured with IPAM
+     */
+    enableIpam?: pulumi.Input<boolean>;
+    /**
      * The ID of the endpoint of the read replica.
      */
     endpointId?: pulumi.Input<string>;
@@ -1385,6 +1533,9 @@ export interface RdbReadReplicaPrivateNetwork {
      * service if not set.
      */
     serviceIp?: pulumi.Input<string>;
+    /**
+     * Private network zone
+     */
     zone?: pulumi.Input<string>;
 }
 
@@ -1396,7 +1547,7 @@ export interface RedisClusterAcl {
      */
     description?: pulumi.Input<string>;
     /**
-     * The UUID of the private network resource.
+     * (Required) The UUID of the endpoint.
      */
     id?: pulumi.Input<string>;
     /**
@@ -1433,7 +1584,7 @@ export interface RedisClusterPrivateNetwork {
 
 export interface RedisClusterPublicNetwork {
     /**
-     * The UUID of the private network resource.
+     * (Required) The UUID of the endpoint.
      */
     id?: pulumi.Input<string>;
     /**
@@ -1542,7 +1693,7 @@ export interface VpcPrivateNetworkIpv6Subnet {
     updatedAt?: pulumi.Input<string>;
 }
 
-export interface WebHostingCpanelUrl {
+export interface WebhostingCpanelUrl {
     /**
      * The URL of the Dashboard.
      */
@@ -1553,7 +1704,7 @@ export interface WebHostingCpanelUrl {
     webmail?: pulumi.Input<string>;
 }
 
-export interface WebHostingOption {
+export interface WebhostingOption {
     /**
      * The option ID.
      */

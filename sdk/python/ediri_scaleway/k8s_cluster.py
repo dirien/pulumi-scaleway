@@ -36,7 +36,7 @@ class K8sClusterArgs:
         The set of arguments for constructing a K8sCluster resource.
         :param pulumi.Input[str] cni: The Container Network Interface (CNI) for the Kubernetes cluster.
                > **Important:** Updates to this field will recreate a new resource.
-        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
                > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
                If you prefer keeping it, you should instead set it as `false`.
         :param pulumi.Input[str] version: The version of the Kubernetes cluster.
@@ -112,7 +112,7 @@ class K8sClusterArgs:
     @pulumi.getter(name="deleteAdditionalResources")
     def delete_additional_resources(self) -> pulumi.Input[bool]:
         """
-        Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
         > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
         If you prefer keeping it, you should instead set it as `false`.
         """
@@ -339,7 +339,7 @@ class _K8sClusterState:
         :param pulumi.Input[str] cni: The Container Network Interface (CNI) for the Kubernetes cluster.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] created_at: The creation date of the cluster.
-        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
                > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
                If you prefer keeping it, you should instead set it as `false`.
         :param pulumi.Input[str] description: A description for the Kubernetes cluster.
@@ -508,7 +508,7 @@ class _K8sClusterState:
     @pulumi.getter(name="deleteAdditionalResources")
     def delete_additional_resources(self) -> Optional[pulumi.Input[bool]]:
         """
-        Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
         > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
         If you prefer keeping it, you should instead set it as `false`.
         """
@@ -747,7 +747,7 @@ class K8sCluster(pulumi.CustomResource):
         """
         Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -825,10 +825,12 @@ class K8sCluster(pulumi.CustomResource):
 
         ## Import
 
-        Kubernetes clusters can be imported using the `{region}/{id}`, e.g. bash
+        Kubernetes clusters can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/k8sCluster:K8sCluster mycluster fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/k8sCluster:K8sCluster mycluster fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -839,7 +841,7 @@ class K8sCluster(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['K8sClusterAutoscalerConfigArgs']] autoscaler_config: The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
         :param pulumi.Input[str] cni: The Container Network Interface (CNI) for the Kubernetes cluster.
                > **Important:** Updates to this field will recreate a new resource.
-        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
                > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
                If you prefer keeping it, you should instead set it as `false`.
         :param pulumi.Input[str] description: A description for the Kubernetes cluster.
@@ -873,7 +875,7 @@ class K8sCluster(pulumi.CustomResource):
         """
         Creates and manages Scaleway Kubernetes clusters. For more information, see [the documentation](https://developers.scaleway.com/en/products/k8s/api/).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -951,10 +953,12 @@ class K8sCluster(pulumi.CustomResource):
 
         ## Import
 
-        Kubernetes clusters can be imported using the `{region}/{id}`, e.g. bash
+        Kubernetes clusters can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/k8sCluster:K8sCluster mycluster fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/k8sCluster:K8sCluster mycluster fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -1078,7 +1082,7 @@ class K8sCluster(pulumi.CustomResource):
         :param pulumi.Input[str] cni: The Container Network Interface (CNI) for the Kubernetes cluster.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[str] created_at: The creation date of the cluster.
-        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        :param pulumi.Input[bool] delete_additional_resources: Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
                > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
                If you prefer keeping it, you should instead set it as `false`.
         :param pulumi.Input[str] description: A description for the Kubernetes cluster.
@@ -1200,7 +1204,7 @@ class K8sCluster(pulumi.CustomResource):
     @pulumi.getter(name="deleteAdditionalResources")
     def delete_additional_resources(self) -> pulumi.Output[bool]:
         """
-        Delete additional resources like block volumes, loadbalancers and the cluster private network (if empty) that were created in Kubernetes on cluster deletion.
+        Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
         > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
         If you prefer keeping it, you should instead set it as `false`.
         """

@@ -10,16 +10,16 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
-    'GetDocumentDBDatabaseResult',
-    'AwaitableGetDocumentDBDatabaseResult',
-    'get_document_db_database',
-    'get_document_db_database_output',
+    'GetDocumentdbDatabaseResult',
+    'AwaitableGetDocumentdbDatabaseResult',
+    'get_documentdb_database',
+    'get_documentdb_database_output',
 ]
 
 @pulumi.output_type
-class GetDocumentDBDatabaseResult:
+class GetDocumentdbDatabaseResult:
     """
-    A collection of values returned by getDocumentDBDatabase.
+    A collection of values returned by getDocumentdbDatabase.
     """
     def __init__(__self__, id=None, instance_id=None, managed=None, name=None, owner=None, project_id=None, region=None, size=None):
         if id and not isinstance(id, str):
@@ -100,12 +100,12 @@ class GetDocumentDBDatabaseResult:
         return pulumi.get(self, "size")
 
 
-class AwaitableGetDocumentDBDatabaseResult(GetDocumentDBDatabaseResult):
+class AwaitableGetDocumentdbDatabaseResult(GetDocumentdbDatabaseResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetDocumentDBDatabaseResult(
+        return GetDocumentdbDatabaseResult(
             id=self.id,
             instance_id=self.instance_id,
             managed=self.managed,
@@ -116,10 +116,10 @@ class AwaitableGetDocumentDBDatabaseResult(GetDocumentDBDatabaseResult):
             size=self.size)
 
 
-def get_document_db_database(instance_id: Optional[str] = None,
-                             name: Optional[str] = None,
-                             region: Optional[str] = None,
-                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDocumentDBDatabaseResult:
+def get_documentdb_database(instance_id: Optional[str] = None,
+                            name: Optional[str] = None,
+                            region: Optional[str] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDocumentdbDatabaseResult:
     """
     Gets information about DocumentDB database. More on our official [site](https://www.scaleway.com/en/developers/api/document_db/)
 
@@ -129,7 +129,7 @@ def get_document_db_database(instance_id: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    main = scaleway.get_document_db_database(instance_id="11111111-1111-1111-1111-111111111111",
+    main = scaleway.get_documentdb_database(instance_id="11111111-1111-1111-1111-111111111111",
         name="foobar")
     ```
 
@@ -142,9 +142,9 @@ def get_document_db_database(instance_id: Optional[str] = None,
     __args__['name'] = name
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('scaleway:index/getDocumentDBDatabase:getDocumentDBDatabase', __args__, opts=opts, typ=GetDocumentDBDatabaseResult).value
+    __ret__ = pulumi.runtime.invoke('scaleway:index/getDocumentdbDatabase:getDocumentdbDatabase', __args__, opts=opts, typ=GetDocumentdbDatabaseResult).value
 
-    return AwaitableGetDocumentDBDatabaseResult(
+    return AwaitableGetDocumentdbDatabaseResult(
         id=pulumi.get(__ret__, 'id'),
         instance_id=pulumi.get(__ret__, 'instance_id'),
         managed=pulumi.get(__ret__, 'managed'),
@@ -155,11 +155,11 @@ def get_document_db_database(instance_id: Optional[str] = None,
         size=pulumi.get(__ret__, 'size'))
 
 
-@_utilities.lift_output_func(get_document_db_database)
-def get_document_db_database_output(instance_id: Optional[pulumi.Input[str]] = None,
-                                    name: Optional[pulumi.Input[Optional[str]]] = None,
-                                    region: Optional[pulumi.Input[Optional[str]]] = None,
-                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDocumentDBDatabaseResult]:
+@_utilities.lift_output_func(get_documentdb_database)
+def get_documentdb_database_output(instance_id: Optional[pulumi.Input[str]] = None,
+                                   name: Optional[pulumi.Input[Optional[str]]] = None,
+                                   region: Optional[pulumi.Input[Optional[str]]] = None,
+                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDocumentdbDatabaseResult]:
     """
     Gets information about DocumentDB database. More on our official [site](https://www.scaleway.com/en/developers/api/document_db/)
 
@@ -169,7 +169,7 @@ def get_document_db_database_output(instance_id: Optional[pulumi.Input[str]] = N
     import pulumi
     import pulumi_scaleway as scaleway
 
-    main = scaleway.get_document_db_database(instance_id="11111111-1111-1111-1111-111111111111",
+    main = scaleway.get_documentdb_database(instance_id="11111111-1111-1111-1111-111111111111",
         name="foobar")
     ```
 

@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway Load-Balancers IPs.
  * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
@@ -21,10 +21,12 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * IPs can be imported using the `{zone}/{id}`, e.g. bash
+ * IPs can be imported using the `{zone}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/lbIp:LbIp ip01 fr-par-1/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/lbIp:LbIp ip01 fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class LbIp extends pulumi.CustomResource {
@@ -64,7 +66,7 @@ export class LbIp extends pulumi.CustomResource {
      */
     public /*out*/ readonly lbId!: pulumi.Output<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organizationId you want to attach the resource to
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
@@ -132,7 +134,7 @@ export interface LbIpState {
      */
     lbId?: pulumi.Input<string>;
     /**
-     * The organization_id you want to attach the resource to
+     * The organizationId you want to attach the resource to
      */
     organizationId?: pulumi.Input<string>;
     /**

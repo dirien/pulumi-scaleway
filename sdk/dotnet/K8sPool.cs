@@ -13,10 +13,12 @@ namespace ediri.Scaleway
     /// <summary>
     /// ## Import
     /// 
-    /// Kubernetes pools can be imported using the `{region}/{id}`, e.g. bash
+    /// Kubernetes pools can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/k8sPool:K8sPool mypool fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/k8sPool:K8sPool mypool fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/k8sPool:K8sPool")]

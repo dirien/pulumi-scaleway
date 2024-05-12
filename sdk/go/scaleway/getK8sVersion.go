@@ -17,6 +17,7 @@ import (
 // You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
 //
 // ## Example Usage
+//
 // ### Use the latest version
 //
 // ```go
@@ -42,6 +43,7 @@ import (
 //	}
 //
 // ```
+//
 // ### Use a specific version
 //
 // ```go

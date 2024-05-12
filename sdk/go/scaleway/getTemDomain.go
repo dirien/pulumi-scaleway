@@ -56,6 +56,8 @@ type LookupTemDomainArgs struct {
 	// The domain name.
 	// Only one of `name` and `domainId` should be specified.
 	Name *string `pulumi:"name"`
+	// `projectId`) The ID of the project the domain is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the domain exists.
 	Region *string `pulumi:"region"`
 }
@@ -73,7 +75,7 @@ type LookupTemDomainResult struct {
 	MxBlackhole          string                   `pulumi:"mxBlackhole"`
 	Name                 *string                  `pulumi:"name"`
 	NextCheckAt          string                   `pulumi:"nextCheckAt"`
-	ProjectId            string                   `pulumi:"projectId"`
+	ProjectId            *string                  `pulumi:"projectId"`
 	Region               *string                  `pulumi:"region"`
 	Reputations          []GetTemDomainReputation `pulumi:"reputations"`
 	RevokedAt            string                   `pulumi:"revokedAt"`
@@ -108,6 +110,8 @@ type LookupTemDomainOutputArgs struct {
 	// The domain name.
 	// Only one of `name` and `domainId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// `projectId`) The ID of the project the domain is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region in which the domain exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
@@ -172,8 +176,8 @@ func (o LookupTemDomainResultOutput) NextCheckAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) string { return v.NextCheckAt }).(pulumi.StringOutput)
 }
 
-func (o LookupTemDomainResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupTemDomainResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupTemDomainResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupTemDomainResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupTemDomainResultOutput) Region() pulumi.StringPtrOutput {

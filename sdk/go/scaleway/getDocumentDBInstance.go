@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.LookupDocumentDBInstance(ctx, &scaleway.LookupDocumentDBInstanceArgs{
+//			_, err := scaleway.LookupDocumentdbInstance(ctx, &scaleway.LookupDocumentdbInstanceArgs{
 //				InstanceId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
@@ -38,30 +38,32 @@ import (
 //	}
 //
 // ```
-func LookupDocumentDBInstance(ctx *pulumi.Context, args *LookupDocumentDBInstanceArgs, opts ...pulumi.InvokeOption) (*LookupDocumentDBInstanceResult, error) {
+func LookupDocumentdbInstance(ctx *pulumi.Context, args *LookupDocumentdbInstanceArgs, opts ...pulumi.InvokeOption) (*LookupDocumentdbInstanceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv LookupDocumentDBInstanceResult
-	err := ctx.Invoke("scaleway:index/getDocumentDBInstance:getDocumentDBInstance", args, &rv, opts...)
+	var rv LookupDocumentdbInstanceResult
+	err := ctx.Invoke("scaleway:index/getDocumentdbInstance:getDocumentdbInstance", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &rv, nil
 }
 
-// A collection of arguments for invoking getDocumentDBInstance.
-type LookupDocumentDBInstanceArgs struct {
+// A collection of arguments for invoking getDocumentdbInstance.
+type LookupDocumentdbInstanceArgs struct {
 	// The DocumentDB instance ID.
 	// Only one of `name` and `instanceId` should be specified.
 	InstanceId *string `pulumi:"instanceId"`
 	// The name of the DocumentDB instance.
 	// Only one of `name` and `instanceId` should be specified.
 	Name *string `pulumi:"name"`
+	// The ID of the project the DocumentDB instance is associated with.
+	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the DocumentDB instance exists.
 	Region *string `pulumi:"region"`
 }
 
-// A collection of values returned by getDocumentDBInstance.
-type LookupDocumentDBInstanceResult struct {
+// A collection of values returned by getDocumentdbInstance.
+type LookupDocumentdbInstanceResult struct {
 	Engine string `pulumi:"engine"`
 	// The provider-assigned unique ID for this managed resource.
 	Id               string   `pulumi:"id"`
@@ -70,7 +72,7 @@ type LookupDocumentDBInstanceResult struct {
 	Name             *string  `pulumi:"name"`
 	NodeType         string   `pulumi:"nodeType"`
 	Password         string   `pulumi:"password"`
-	ProjectId        string   `pulumi:"projectId"`
+	ProjectId        *string  `pulumi:"projectId"`
 	Region           *string  `pulumi:"region"`
 	Tags             []string `pulumi:"tags"`
 	TelemetryEnabled bool     `pulumi:"telemetryEnabled"`
@@ -79,107 +81,109 @@ type LookupDocumentDBInstanceResult struct {
 	VolumeType       string   `pulumi:"volumeType"`
 }
 
-func LookupDocumentDBInstanceOutput(ctx *pulumi.Context, args LookupDocumentDBInstanceOutputArgs, opts ...pulumi.InvokeOption) LookupDocumentDBInstanceResultOutput {
+func LookupDocumentdbInstanceOutput(ctx *pulumi.Context, args LookupDocumentdbInstanceOutputArgs, opts ...pulumi.InvokeOption) LookupDocumentdbInstanceResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupDocumentDBInstanceResult, error) {
-			args := v.(LookupDocumentDBInstanceArgs)
-			r, err := LookupDocumentDBInstance(ctx, &args, opts...)
-			var s LookupDocumentDBInstanceResult
+		ApplyT(func(v interface{}) (LookupDocumentdbInstanceResult, error) {
+			args := v.(LookupDocumentdbInstanceArgs)
+			r, err := LookupDocumentdbInstance(ctx, &args, opts...)
+			var s LookupDocumentdbInstanceResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(LookupDocumentDBInstanceResultOutput)
+		}).(LookupDocumentdbInstanceResultOutput)
 }
 
-// A collection of arguments for invoking getDocumentDBInstance.
-type LookupDocumentDBInstanceOutputArgs struct {
+// A collection of arguments for invoking getDocumentdbInstance.
+type LookupDocumentdbInstanceOutputArgs struct {
 	// The DocumentDB instance ID.
 	// Only one of `name` and `instanceId` should be specified.
 	InstanceId pulumi.StringPtrInput `pulumi:"instanceId"`
 	// The name of the DocumentDB instance.
 	// Only one of `name` and `instanceId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the project the DocumentDB instance is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region in which the DocumentDB instance exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
-func (LookupDocumentDBInstanceOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupDocumentDBInstanceArgs)(nil)).Elem()
+func (LookupDocumentdbInstanceOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupDocumentdbInstanceArgs)(nil)).Elem()
 }
 
-// A collection of values returned by getDocumentDBInstance.
-type LookupDocumentDBInstanceResultOutput struct{ *pulumi.OutputState }
+// A collection of values returned by getDocumentdbInstance.
+type LookupDocumentdbInstanceResultOutput struct{ *pulumi.OutputState }
 
-func (LookupDocumentDBInstanceResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LookupDocumentDBInstanceResult)(nil)).Elem()
+func (LookupDocumentdbInstanceResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupDocumentdbInstanceResult)(nil)).Elem()
 }
 
-func (o LookupDocumentDBInstanceResultOutput) ToLookupDocumentDBInstanceResultOutput() LookupDocumentDBInstanceResultOutput {
+func (o LookupDocumentdbInstanceResultOutput) ToLookupDocumentdbInstanceResultOutput() LookupDocumentdbInstanceResultOutput {
 	return o
 }
 
-func (o LookupDocumentDBInstanceResultOutput) ToLookupDocumentDBInstanceResultOutputWithContext(ctx context.Context) LookupDocumentDBInstanceResultOutput {
+func (o LookupDocumentdbInstanceResultOutput) ToLookupDocumentdbInstanceResultOutputWithContext(ctx context.Context) LookupDocumentdbInstanceResultOutput {
 	return o
 }
 
-func (o LookupDocumentDBInstanceResultOutput) Engine() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDocumentDBInstanceResult) string { return v.Engine }).(pulumi.StringOutput)
+func (o LookupDocumentdbInstanceResultOutput) Engine() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDocumentdbInstanceResult) string { return v.Engine }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
-func (o LookupDocumentDBInstanceResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDocumentDBInstanceResult) string { return v.Id }).(pulumi.StringOutput)
+func (o LookupDocumentdbInstanceResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDocumentdbInstanceResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o LookupDocumentDBInstanceResultOutput) InstanceId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupDocumentDBInstanceResult) *string { return v.InstanceId }).(pulumi.StringPtrOutput)
+func (o LookupDocumentdbInstanceResultOutput) InstanceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupDocumentdbInstanceResult) *string { return v.InstanceId }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupDocumentDBInstanceResultOutput) IsHaCluster() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupDocumentDBInstanceResult) bool { return v.IsHaCluster }).(pulumi.BoolOutput)
+func (o LookupDocumentdbInstanceResultOutput) IsHaCluster() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupDocumentdbInstanceResult) bool { return v.IsHaCluster }).(pulumi.BoolOutput)
 }
 
-func (o LookupDocumentDBInstanceResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupDocumentDBInstanceResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupDocumentdbInstanceResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupDocumentdbInstanceResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupDocumentDBInstanceResultOutput) NodeType() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDocumentDBInstanceResult) string { return v.NodeType }).(pulumi.StringOutput)
+func (o LookupDocumentdbInstanceResultOutput) NodeType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDocumentdbInstanceResult) string { return v.NodeType }).(pulumi.StringOutput)
 }
 
-func (o LookupDocumentDBInstanceResultOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDocumentDBInstanceResult) string { return v.Password }).(pulumi.StringOutput)
+func (o LookupDocumentdbInstanceResultOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDocumentdbInstanceResult) string { return v.Password }).(pulumi.StringOutput)
 }
 
-func (o LookupDocumentDBInstanceResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDocumentDBInstanceResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupDocumentdbInstanceResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupDocumentdbInstanceResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupDocumentDBInstanceResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupDocumentDBInstanceResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o LookupDocumentdbInstanceResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupDocumentdbInstanceResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupDocumentDBInstanceResultOutput) Tags() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v LookupDocumentDBInstanceResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
+func (o LookupDocumentdbInstanceResultOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupDocumentdbInstanceResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-func (o LookupDocumentDBInstanceResultOutput) TelemetryEnabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupDocumentDBInstanceResult) bool { return v.TelemetryEnabled }).(pulumi.BoolOutput)
+func (o LookupDocumentdbInstanceResultOutput) TelemetryEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupDocumentdbInstanceResult) bool { return v.TelemetryEnabled }).(pulumi.BoolOutput)
 }
 
-func (o LookupDocumentDBInstanceResultOutput) UserName() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDocumentDBInstanceResult) string { return v.UserName }).(pulumi.StringOutput)
+func (o LookupDocumentdbInstanceResultOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDocumentdbInstanceResult) string { return v.UserName }).(pulumi.StringOutput)
 }
 
-func (o LookupDocumentDBInstanceResultOutput) VolumeSizeInGb() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupDocumentDBInstanceResult) int { return v.VolumeSizeInGb }).(pulumi.IntOutput)
+func (o LookupDocumentdbInstanceResultOutput) VolumeSizeInGb() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupDocumentdbInstanceResult) int { return v.VolumeSizeInGb }).(pulumi.IntOutput)
 }
 
-func (o LookupDocumentDBInstanceResultOutput) VolumeType() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDocumentDBInstanceResult) string { return v.VolumeType }).(pulumi.StringOutput)
+func (o LookupDocumentdbInstanceResultOutput) VolumeType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDocumentdbInstanceResult) string { return v.VolumeType }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(LookupDocumentDBInstanceResultOutput{})
+	pulumi.RegisterOutputType(LookupDocumentdbInstanceResultOutput{})
 }

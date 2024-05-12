@@ -14,7 +14,7 @@ namespace ediri.Scaleway
     /// Creates and manages Scaleway Load-Balancer Routes.
     /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### With SNI for direction to TCP backends
     /// 
@@ -104,10 +104,12 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g. bash
+    /// Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/lbRoute:LbRoute main fr-par-1/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/lbRoute:LbRoute main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/lbRoute:LbRoute")]

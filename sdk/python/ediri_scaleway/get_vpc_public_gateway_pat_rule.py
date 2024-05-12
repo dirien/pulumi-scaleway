@@ -156,6 +156,53 @@ def get_vpc_public_gateway_pat_rule(pat_rule_id: Optional[str] = None,
     Gets information about a public gateway PAT rule. For further information please check the
     API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-8faeea)
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import ediri_scaleway as scaleway
+    import pulumi_scaleway as scaleway
+
+    sg01 = scaleway.InstanceSecurityGroup("sg01",
+        inbound_default_policy="drop",
+        outbound_default_policy="accept",
+        inbound_rules=[scaleway.InstanceSecurityGroupInboundRuleArgs(
+            action="accept",
+            port=22,
+            protocol="TCP",
+        )])
+    srv01 = scaleway.InstanceServer("srv01",
+        type="PLAY2-NANO",
+        image="ubuntu_jammy",
+        security_group_id=sg01.id)
+    pn01 = scaleway.VpcPrivateNetwork("pn01")
+    pnic01 = scaleway.InstancePrivateNic("pnic01",
+        server_id=srv01.id,
+        private_network_id=pn01.id)
+    dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01", subnet="192.168.0.0/24")
+    ip01 = scaleway.VpcPublicGatewayIp("ip01")
+    pg01 = scaleway.VpcPublicGateway("pg01",
+        type="VPC-GW-S",
+        ip_id=ip01.id)
+    gn01 = scaleway.VpcGatewayNetwork("gn01",
+        gateway_id=pg01.id,
+        private_network_id=pn01.id,
+        dhcp_id=dhcp01.id,
+        cleanup_dhcp=True,
+        enable_masquerade=True)
+    rsv01 = scaleway.VpcPublicGatewayDhcpReservation("rsv01",
+        gateway_network_id=gn01.id,
+        mac_address=pnic01.mac_address,
+        ip_address="192.168.0.7")
+    pat01 = scaleway.VpcPublicGatewayPatRule("pat01",
+        gateway_id=pg01.id,
+        private_ip=rsv01.ip_address,
+        private_port=22,
+        public_port=2202,
+        protocol="tcp")
+    main = scaleway.get_vpc_public_gateway_pat_rule_output(pat_rule_id=pat01.id)
+    ```
+
 
     :param str pat_rule_id: The ID of the PAT rule to retrieve
     :param str zone: `zone`) The zone in which
@@ -188,6 +235,53 @@ def get_vpc_public_gateway_pat_rule_output(pat_rule_id: Optional[pulumi.Input[st
     """
     Gets information about a public gateway PAT rule. For further information please check the
     API [documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#get-8faeea)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import ediri_scaleway as scaleway
+    import pulumi_scaleway as scaleway
+
+    sg01 = scaleway.InstanceSecurityGroup("sg01",
+        inbound_default_policy="drop",
+        outbound_default_policy="accept",
+        inbound_rules=[scaleway.InstanceSecurityGroupInboundRuleArgs(
+            action="accept",
+            port=22,
+            protocol="TCP",
+        )])
+    srv01 = scaleway.InstanceServer("srv01",
+        type="PLAY2-NANO",
+        image="ubuntu_jammy",
+        security_group_id=sg01.id)
+    pn01 = scaleway.VpcPrivateNetwork("pn01")
+    pnic01 = scaleway.InstancePrivateNic("pnic01",
+        server_id=srv01.id,
+        private_network_id=pn01.id)
+    dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01", subnet="192.168.0.0/24")
+    ip01 = scaleway.VpcPublicGatewayIp("ip01")
+    pg01 = scaleway.VpcPublicGateway("pg01",
+        type="VPC-GW-S",
+        ip_id=ip01.id)
+    gn01 = scaleway.VpcGatewayNetwork("gn01",
+        gateway_id=pg01.id,
+        private_network_id=pn01.id,
+        dhcp_id=dhcp01.id,
+        cleanup_dhcp=True,
+        enable_masquerade=True)
+    rsv01 = scaleway.VpcPublicGatewayDhcpReservation("rsv01",
+        gateway_network_id=gn01.id,
+        mac_address=pnic01.mac_address,
+        ip_address="192.168.0.7")
+    pat01 = scaleway.VpcPublicGatewayPatRule("pat01",
+        gateway_id=pg01.id,
+        private_ip=rsv01.ip_address,
+        private_port=22,
+        public_port=2202,
+        protocol="tcp")
+    main = scaleway.get_vpc_public_gateway_pat_rule_output(pat_rule_id=pat01.id)
+    ```
 
 
     :param str pat_rule_id: The ID of the PAT rule to retrieve

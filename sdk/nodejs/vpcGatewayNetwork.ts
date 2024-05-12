@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  * It allows attaching Private Networks to the VPC Public Gateway and your DHCP config
  * For more information, see [the documentation](https://developers.scaleway.com/en/products/vpc-gw/api/v1/#step-3-attach-private-networks-to-the-vpc-public-gateway).
  *
- * ## Example
+ * ## Example Usage
  *
  * ### Create a gateway network with IPAM config
  *
@@ -112,10 +112,12 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Gateway network can be imported using the `{zone}/{id}`, e.g. bash
+ * Gateway network can be imported using the `{zone}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork main fr-par-1/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class VpcGatewayNetwork extends pulumi.CustomResource {

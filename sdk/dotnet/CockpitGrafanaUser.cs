@@ -41,10 +41,12 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Cockpits Grafana Users can be imported using the project ID and the grafana user ID formatted `{project_id}/{grafana_user_id}`, e.g. bash
+    /// Cockpits Grafana Users can be imported using the project ID and the grafana user ID formatted `{project_id}/{grafana_user_id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser main 11111111-1111-1111-1111-111111111111/2
+    /// $ pulumi import scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser main 11111111-1111-1111-1111-111111111111/2
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser")]

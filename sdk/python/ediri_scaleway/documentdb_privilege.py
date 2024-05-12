@@ -9,10 +9,10 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
-__all__ = ['DocumentDBPrivilegeArgs', 'DocumentDBPrivilege']
+__all__ = ['DocumentdbPrivilegeArgs', 'DocumentdbPrivilege']
 
 @pulumi.input_type
-class DocumentDBPrivilegeArgs:
+class DocumentdbPrivilegeArgs:
     def __init__(__self__, *,
                  database_name: pulumi.Input[str],
                  instance_id: pulumi.Input[str],
@@ -20,7 +20,7 @@ class DocumentDBPrivilegeArgs:
                  user_name: pulumi.Input[str],
                  region: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a DocumentDBPrivilege resource.
+        The set of arguments for constructing a DocumentdbPrivilege resource.
         :param pulumi.Input[str] database_name: Name of the database (e.g. `my-db-name`).
         :param pulumi.Input[str] instance_id: UUID of the rdb instance.
         :param pulumi.Input[str] permission: Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
@@ -96,7 +96,7 @@ class DocumentDBPrivilegeArgs:
 
 
 @pulumi.input_type
-class _DocumentDBPrivilegeState:
+class _DocumentdbPrivilegeState:
     def __init__(__self__, *,
                  database_name: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
@@ -104,7 +104,7 @@ class _DocumentDBPrivilegeState:
                  region: Optional[pulumi.Input[str]] = None,
                  user_name: Optional[pulumi.Input[str]] = None):
         """
-        Input properties used for looking up and filtering DocumentDBPrivilege resources.
+        Input properties used for looking up and filtering DocumentdbPrivilege resources.
         :param pulumi.Input[str] database_name: Name of the database (e.g. `my-db-name`).
         :param pulumi.Input[str] instance_id: UUID of the rdb instance.
         :param pulumi.Input[str] permission: Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
@@ -183,7 +183,7 @@ class _DocumentDBPrivilegeState:
         pulumi.set(self, "user_name", value)
 
 
-class DocumentDBPrivilege(pulumi.CustomResource):
+class DocumentdbPrivilege(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -204,7 +204,7 @@ class DocumentDBPrivilege(pulumi.CustomResource):
         import pulumi
         import ediri_scaleway as scaleway
 
-        main = scaleway.DocumentDBPrivilege("main",
+        main = scaleway.DocumentdbPrivilege("main",
             database_name="my-db-name",
             instance_id="11111111-1111-1111-1111-111111111111",
             permission="all",
@@ -213,10 +213,12 @@ class DocumentDBPrivilege(pulumi.CustomResource):
 
         ## Import
 
-        The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g. bash
+        The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/documentDBPrivilege:DocumentDBPrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
+        $ pulumi import scaleway:index/documentdbPrivilege:DocumentdbPrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
         ```
 
         :param str resource_name: The name of the resource.
@@ -231,7 +233,7 @@ class DocumentDBPrivilege(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: DocumentDBPrivilegeArgs,
+                 args: DocumentdbPrivilegeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Create and manage Scaleway DocumentDB database privilege.
@@ -243,7 +245,7 @@ class DocumentDBPrivilege(pulumi.CustomResource):
         import pulumi
         import ediri_scaleway as scaleway
 
-        main = scaleway.DocumentDBPrivilege("main",
+        main = scaleway.DocumentdbPrivilege("main",
             database_name="my-db-name",
             instance_id="11111111-1111-1111-1111-111111111111",
             permission="all",
@@ -252,19 +254,21 @@ class DocumentDBPrivilege(pulumi.CustomResource):
 
         ## Import
 
-        The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g. bash
+        The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/documentDBPrivilege:DocumentDBPrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
+        $ pulumi import scaleway:index/documentdbPrivilege:DocumentdbPrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
         ```
 
         :param str resource_name: The name of the resource.
-        :param DocumentDBPrivilegeArgs args: The arguments to use to populate this resource's properties.
+        :param DocumentdbPrivilegeArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(DocumentDBPrivilegeArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(DocumentdbPrivilegeArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -285,7 +289,7 @@ class DocumentDBPrivilege(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = DocumentDBPrivilegeArgs.__new__(DocumentDBPrivilegeArgs)
+            __props__ = DocumentdbPrivilegeArgs.__new__(DocumentdbPrivilegeArgs)
 
             if database_name is None and not opts.urn:
                 raise TypeError("Missing required property 'database_name'")
@@ -300,8 +304,8 @@ class DocumentDBPrivilege(pulumi.CustomResource):
             if user_name is None and not opts.urn:
                 raise TypeError("Missing required property 'user_name'")
             __props__.__dict__["user_name"] = user_name
-        super(DocumentDBPrivilege, __self__).__init__(
-            'scaleway:index/documentDBPrivilege:DocumentDBPrivilege',
+        super(DocumentdbPrivilege, __self__).__init__(
+            'scaleway:index/documentdbPrivilege:DocumentdbPrivilege',
             resource_name,
             __props__,
             opts)
@@ -314,9 +318,9 @@ class DocumentDBPrivilege(pulumi.CustomResource):
             instance_id: Optional[pulumi.Input[str]] = None,
             permission: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
-            user_name: Optional[pulumi.Input[str]] = None) -> 'DocumentDBPrivilege':
+            user_name: Optional[pulumi.Input[str]] = None) -> 'DocumentdbPrivilege':
         """
-        Get an existing DocumentDBPrivilege resource's state with the given name, id, and optional extra
+        Get an existing DocumentdbPrivilege resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -330,14 +334,14 @@ class DocumentDBPrivilege(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _DocumentDBPrivilegeState.__new__(_DocumentDBPrivilegeState)
+        __props__ = _DocumentdbPrivilegeState.__new__(_DocumentdbPrivilegeState)
 
         __props__.__dict__["database_name"] = database_name
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["permission"] = permission
         __props__.__dict__["region"] = region
         __props__.__dict__["user_name"] = user_name
-        return DocumentDBPrivilege(resource_name, opts=opts, __props__=__props__)
+        return DocumentdbPrivilege(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="databaseName")

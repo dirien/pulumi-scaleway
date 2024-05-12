@@ -15,9 +15,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about a transactional email domain.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -34,8 +32,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetTemDomainResult> InvokeAsync(GetTemDomainArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTemDomainResult>("scaleway:index/getTemDomain:getTemDomain", args ?? new GetTemDomainArgs(), options.WithDefaults());
@@ -43,9 +39,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about a transactional email domain.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -62,8 +56,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetTemDomainResult> Invoke(GetTemDomainInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetTemDomainResult>("scaleway:index/getTemDomain:getTemDomain", args ?? new GetTemDomainInvokeArgs(), options.WithDefaults());
@@ -85,6 +77,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the domain is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
 
         /// <summary>
         /// `region`) The region in which the domain exists.
@@ -115,6 +113,12 @@ namespace ediri.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// `project_id`) The ID of the project the domain is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
         /// `region`) The region in which the domain exists.
         /// </summary>
         [Input("region")]
@@ -143,7 +147,7 @@ namespace ediri.Scaleway
         public readonly string MxBlackhole;
         public readonly string? Name;
         public readonly string NextCheckAt;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly string? Region;
         public readonly ImmutableArray<Outputs.GetTemDomainReputationResult> Reputations;
         public readonly string RevokedAt;
@@ -178,7 +182,7 @@ namespace ediri.Scaleway
 
             string nextCheckAt,
 
-            string projectId,
+            string? projectId,
 
             string? region,
 

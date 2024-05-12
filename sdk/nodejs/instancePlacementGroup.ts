@@ -18,10 +18,12 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Placement groups can be imported using the `{zone}/{id}`, e.g. bash
+ * Placement groups can be imported using the `{zone}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/instancePlacementGroup:InstancePlacementGroup availability_group fr-par-1/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/instancePlacementGroup:InstancePlacementGroup availability_group fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class InstancePlacementGroup extends pulumi.CustomResource {

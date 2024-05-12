@@ -15,9 +15,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about an IOT Hub.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -34,8 +32,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetIotHubResult> InvokeAsync(GetIotHubArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetIotHubResult>("scaleway:index/getIotHub:getIotHub", args ?? new GetIotHubArgs(), options.WithDefaults());
@@ -43,9 +39,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about an IOT Hub.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -62,8 +56,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetIotHubResult> Invoke(GetIotHubInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetIotHubResult>("scaleway:index/getIotHub:getIotHub", args ?? new GetIotHubInvokeArgs(), options.WithDefaults());
@@ -85,6 +77,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the hub is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
 
         /// <summary>
         /// `region`) The region in which the hub exists.
@@ -113,6 +111,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The ID of the project the hub is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// `region`) The region in which the hub exists.
@@ -148,7 +152,7 @@ namespace ediri.Scaleway
         public readonly string? Name;
         public readonly string OrganizationId;
         public readonly string ProductPlan;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly string? Region;
         public readonly string Status;
         public readonly string UpdatedAt;
@@ -185,7 +189,7 @@ namespace ediri.Scaleway
 
             string productPlan,
 
-            string projectId,
+            string? projectId,
 
             string? region,
 

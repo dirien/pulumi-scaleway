@@ -41,7 +41,7 @@ class InstanceSecurityGroupArgs:
         :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupOutboundRuleArgs']]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the security group is associated with.
         :param pulumi.Input[bool] stateful: A boolean to specify whether the security group should be stateful or not.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags of the security group.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the security group
         :param pulumi.Input[str] zone: `zone`) The zone in which the security group should be created.
         """
         if description is not None:
@@ -194,7 +194,7 @@ class InstanceSecurityGroupArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags of the security group.
+        The tags associated with the security group
         """
         return pulumi.get(self, "tags")
 
@@ -245,7 +245,7 @@ class _InstanceSecurityGroupState:
         :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupOutboundRuleArgs']]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the security group is associated with.
         :param pulumi.Input[bool] stateful: A boolean to specify whether the security group should be stateful or not.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags of the security group.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the security group
         :param pulumi.Input[str] zone: `zone`) The zone in which the security group should be created.
         """
         if description is not None:
@@ -412,7 +412,7 @@ class _InstanceSecurityGroupState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags of the security group.
+        The tags associated with the security group
         """
         return pulumi.get(self, "tags")
 
@@ -454,10 +454,12 @@ class InstanceSecurityGroup(pulumi.CustomResource):
         """
         ## Import
 
-        Instance security group can be imported using the `{zone}/{id}`, e.g. bash
+        Instance security group can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/instanceSecurityGroup:InstanceSecurityGroup web fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/instanceSecurityGroup:InstanceSecurityGroup web fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -473,7 +475,7 @@ class InstanceSecurityGroup(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupOutboundRuleArgs']]]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the security group is associated with.
         :param pulumi.Input[bool] stateful: A boolean to specify whether the security group should be stateful or not.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags of the security group.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the security group
         :param pulumi.Input[str] zone: `zone`) The zone in which the security group should be created.
         """
         ...
@@ -485,10 +487,12 @@ class InstanceSecurityGroup(pulumi.CustomResource):
         """
         ## Import
 
-        Instance security group can be imported using the `{zone}/{id}`, e.g. bash
+        Instance security group can be imported using the `{zone}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/instanceSecurityGroup:InstanceSecurityGroup web fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/instanceSecurityGroup:InstanceSecurityGroup web fr-par-1/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -582,7 +586,7 @@ class InstanceSecurityGroup(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecurityGroupOutboundRuleArgs']]]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the security group is associated with.
         :param pulumi.Input[bool] stateful: A boolean to specify whether the security group should be stateful or not.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags of the security group.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the security group
         :param pulumi.Input[str] zone: `zone`) The zone in which the security group should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -697,7 +701,7 @@ class InstanceSecurityGroup(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The tags of the security group.
+        The tags associated with the security group
         """
         return pulumi.get(self, "tags")
 

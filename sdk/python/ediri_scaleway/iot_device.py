@@ -403,12 +403,42 @@ class IotDevice(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
+        main_iot_device = scaleway.IotDevice("mainIotDevice", hub_id=main_iot_hub.id)
+        ```
+
+        ### With custom certificate
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+        import pulumi_local as local
+
+        main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
+        device_cert = local.get_file(filename="device-certificate.pem")
+        main_iot_device = scaleway.IotDevice("mainIotDevice",
+            hub_id=main_iot_hub.id,
+            certificate=scaleway.IotDeviceCertificateArgs(
+                crt=device_cert.content,
+            ))
+        ```
+
         ## Import
 
-        IoT devices can be imported using the `{region}/{id}`, e.g. bash
+        IoT devices can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -435,12 +465,42 @@ class IotDevice(pulumi.CustomResource):
                  args: IotDeviceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ### Basic
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
+        main_iot_device = scaleway.IotDevice("mainIotDevice", hub_id=main_iot_hub.id)
+        ```
+
+        ### With custom certificate
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+        import pulumi_local as local
+
+        main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
+        device_cert = local.get_file(filename="device-certificate.pem")
+        main_iot_device = scaleway.IotDevice("mainIotDevice",
+            hub_id=main_iot_hub.id,
+            certificate=scaleway.IotDeviceCertificateArgs(
+                crt=device_cert.content,
+            ))
+        ```
+
         ## Import
 
-        IoT devices can be imported using the `{region}/{id}`, e.g. bash
+        IoT devices can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

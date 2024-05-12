@@ -65,10 +65,12 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Container Cron can be imported using the `{region}/{id}`, e.g. bash
+    /// Container Cron can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/functionCron:FunctionCron main fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/functionCron:FunctionCron main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/functionCron:FunctionCron")]
@@ -88,7 +90,13 @@ namespace ediri.Scaleway
         public Output<string> FunctionId { get; private set; } = null!;
 
         /// <summary>
-        /// (Defaults to provider `region`) The region
+        /// The name of the cron. If not provided, the name is generated.
+        /// </summary>
+        [Output("name")]
+        public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// `region`) The region
         /// in where the job was created.
         /// </summary>
         [Output("region")]
@@ -168,7 +176,13 @@ namespace ediri.Scaleway
         public Input<string> FunctionId { get; set; } = null!;
 
         /// <summary>
-        /// (Defaults to provider `region`) The region
+        /// The name of the cron. If not provided, the name is generated.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// `region`) The region
         /// in where the job was created.
         /// </summary>
         [Input("region")]
@@ -203,7 +217,13 @@ namespace ediri.Scaleway
         public Input<string>? FunctionId { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `region`) The region
+        /// The name of the cron. If not provided, the name is generated.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// `region`) The region
         /// in where the job was created.
         /// </summary>
         [Input("region")]

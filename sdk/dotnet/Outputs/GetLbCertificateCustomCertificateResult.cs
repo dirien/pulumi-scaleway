@@ -14,6 +14,9 @@ namespace ediri.Scaleway.Outputs
     [OutputType]
     public sealed class GetLbCertificateCustomCertificateResult
     {
+        /// <summary>
+        /// The full PEM-formatted certificate chain
+        /// </summary>
         public readonly string CertificateChain;
 
         [OutputConstructor]

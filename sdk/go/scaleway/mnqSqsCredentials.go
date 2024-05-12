@@ -15,7 +15,7 @@ import (
 // For further information please check
 // our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
@@ -54,12 +54,12 @@ import (
 //
 // ## Import
 //
-// SQS credentials can be imported using the `{region}/{id}`, e.g. bash
+// SQS credentials can be imported using the `{region}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/mnqSqsCredentials:MnqSqsCredentials main fr-par/11111111111111111111111111111111
-//
+// $ pulumi import scaleway:index/mnqSqsCredentials:MnqSqsCredentials main fr-par/11111111111111111111111111111111
 // ```
 type MnqSqsCredentials struct {
 	pulumi.CustomResourceState

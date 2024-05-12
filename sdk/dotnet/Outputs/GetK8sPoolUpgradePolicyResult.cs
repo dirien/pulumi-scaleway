@@ -14,7 +14,13 @@ namespace ediri.Scaleway.Outputs
     [OutputType]
     public sealed class GetK8sPoolUpgradePolicyResult
     {
+        /// <summary>
+        /// The maximum number of nodes to be created during the upgrade
+        /// </summary>
         public readonly int MaxSurge;
+        /// <summary>
+        /// The maximum number of nodes that can be not ready at the same time
+        /// </summary>
         public readonly int MaxUnavailable;
 
         [OutputConstructor]

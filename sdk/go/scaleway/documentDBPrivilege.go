@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewDocumentDBPrivilege(ctx, "main", &scaleway.DocumentDBPrivilegeArgs{
+//			_, err := scaleway.NewDocumentdbPrivilege(ctx, "main", &scaleway.DocumentdbPrivilegeArgs{
 //				DatabaseName: pulumi.String("my-db-name"),
 //				InstanceId:   pulumi.String("11111111-1111-1111-1111-111111111111"),
 //				Permission:   pulumi.String("all"),
@@ -46,14 +46,14 @@ import (
 //
 // ## Import
 //
-// The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g. bash
+// The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/documentDBPrivilege:DocumentDBPrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
-//
+// $ pulumi import scaleway:index/documentdbPrivilege:DocumentdbPrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
 // ```
-type DocumentDBPrivilege struct {
+type DocumentdbPrivilege struct {
 	pulumi.CustomResourceState
 
 	// Name of the database (e.g. `my-db-name`).
@@ -68,9 +68,9 @@ type DocumentDBPrivilege struct {
 	UserName pulumi.StringOutput `pulumi:"userName"`
 }
 
-// NewDocumentDBPrivilege registers a new resource with the given unique name, arguments, and options.
-func NewDocumentDBPrivilege(ctx *pulumi.Context,
-	name string, args *DocumentDBPrivilegeArgs, opts ...pulumi.ResourceOption) (*DocumentDBPrivilege, error) {
+// NewDocumentdbPrivilege registers a new resource with the given unique name, arguments, and options.
+func NewDocumentdbPrivilege(ctx *pulumi.Context,
+	name string, args *DocumentdbPrivilegeArgs, opts ...pulumi.ResourceOption) (*DocumentdbPrivilege, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -88,28 +88,28 @@ func NewDocumentDBPrivilege(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'UserName'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
-	var resource DocumentDBPrivilege
-	err := ctx.RegisterResource("scaleway:index/documentDBPrivilege:DocumentDBPrivilege", name, args, &resource, opts...)
+	var resource DocumentdbPrivilege
+	err := ctx.RegisterResource("scaleway:index/documentdbPrivilege:DocumentdbPrivilege", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetDocumentDBPrivilege gets an existing DocumentDBPrivilege resource's state with the given name, ID, and optional
+// GetDocumentdbPrivilege gets an existing DocumentdbPrivilege resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetDocumentDBPrivilege(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *DocumentDBPrivilegeState, opts ...pulumi.ResourceOption) (*DocumentDBPrivilege, error) {
-	var resource DocumentDBPrivilege
-	err := ctx.ReadResource("scaleway:index/documentDBPrivilege:DocumentDBPrivilege", name, id, state, &resource, opts...)
+func GetDocumentdbPrivilege(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *DocumentdbPrivilegeState, opts ...pulumi.ResourceOption) (*DocumentdbPrivilege, error) {
+	var resource DocumentdbPrivilege
+	err := ctx.ReadResource("scaleway:index/documentdbPrivilege:DocumentdbPrivilege", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering DocumentDBPrivilege resources.
-type documentDBPrivilegeState struct {
+// Input properties used for looking up and filtering DocumentdbPrivilege resources.
+type documentdbPrivilegeState struct {
 	// Name of the database (e.g. `my-db-name`).
 	DatabaseName *string `pulumi:"databaseName"`
 	// UUID of the rdb instance.
@@ -122,7 +122,7 @@ type documentDBPrivilegeState struct {
 	UserName *string `pulumi:"userName"`
 }
 
-type DocumentDBPrivilegeState struct {
+type DocumentdbPrivilegeState struct {
 	// Name of the database (e.g. `my-db-name`).
 	DatabaseName pulumi.StringPtrInput
 	// UUID of the rdb instance.
@@ -135,11 +135,11 @@ type DocumentDBPrivilegeState struct {
 	UserName pulumi.StringPtrInput
 }
 
-func (DocumentDBPrivilegeState) ElementType() reflect.Type {
-	return reflect.TypeOf((*documentDBPrivilegeState)(nil)).Elem()
+func (DocumentdbPrivilegeState) ElementType() reflect.Type {
+	return reflect.TypeOf((*documentdbPrivilegeState)(nil)).Elem()
 }
 
-type documentDBPrivilegeArgs struct {
+type documentdbPrivilegeArgs struct {
 	// Name of the database (e.g. `my-db-name`).
 	DatabaseName string `pulumi:"databaseName"`
 	// UUID of the rdb instance.
@@ -152,8 +152,8 @@ type documentDBPrivilegeArgs struct {
 	UserName string `pulumi:"userName"`
 }
 
-// The set of arguments for constructing a DocumentDBPrivilege resource.
-type DocumentDBPrivilegeArgs struct {
+// The set of arguments for constructing a DocumentdbPrivilege resource.
+type DocumentdbPrivilegeArgs struct {
 	// Name of the database (e.g. `my-db-name`).
 	DatabaseName pulumi.StringInput
 	// UUID of the rdb instance.
@@ -166,163 +166,163 @@ type DocumentDBPrivilegeArgs struct {
 	UserName pulumi.StringInput
 }
 
-func (DocumentDBPrivilegeArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*documentDBPrivilegeArgs)(nil)).Elem()
+func (DocumentdbPrivilegeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*documentdbPrivilegeArgs)(nil)).Elem()
 }
 
-type DocumentDBPrivilegeInput interface {
+type DocumentdbPrivilegeInput interface {
 	pulumi.Input
 
-	ToDocumentDBPrivilegeOutput() DocumentDBPrivilegeOutput
-	ToDocumentDBPrivilegeOutputWithContext(ctx context.Context) DocumentDBPrivilegeOutput
+	ToDocumentdbPrivilegeOutput() DocumentdbPrivilegeOutput
+	ToDocumentdbPrivilegeOutputWithContext(ctx context.Context) DocumentdbPrivilegeOutput
 }
 
-func (*DocumentDBPrivilege) ElementType() reflect.Type {
-	return reflect.TypeOf((**DocumentDBPrivilege)(nil)).Elem()
+func (*DocumentdbPrivilege) ElementType() reflect.Type {
+	return reflect.TypeOf((**DocumentdbPrivilege)(nil)).Elem()
 }
 
-func (i *DocumentDBPrivilege) ToDocumentDBPrivilegeOutput() DocumentDBPrivilegeOutput {
-	return i.ToDocumentDBPrivilegeOutputWithContext(context.Background())
+func (i *DocumentdbPrivilege) ToDocumentdbPrivilegeOutput() DocumentdbPrivilegeOutput {
+	return i.ToDocumentdbPrivilegeOutputWithContext(context.Background())
 }
 
-func (i *DocumentDBPrivilege) ToDocumentDBPrivilegeOutputWithContext(ctx context.Context) DocumentDBPrivilegeOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBPrivilegeOutput)
+func (i *DocumentdbPrivilege) ToDocumentdbPrivilegeOutputWithContext(ctx context.Context) DocumentdbPrivilegeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbPrivilegeOutput)
 }
 
-// DocumentDBPrivilegeArrayInput is an input type that accepts DocumentDBPrivilegeArray and DocumentDBPrivilegeArrayOutput values.
-// You can construct a concrete instance of `DocumentDBPrivilegeArrayInput` via:
+// DocumentdbPrivilegeArrayInput is an input type that accepts DocumentdbPrivilegeArray and DocumentdbPrivilegeArrayOutput values.
+// You can construct a concrete instance of `DocumentdbPrivilegeArrayInput` via:
 //
-//	DocumentDBPrivilegeArray{ DocumentDBPrivilegeArgs{...} }
-type DocumentDBPrivilegeArrayInput interface {
+//	DocumentdbPrivilegeArray{ DocumentdbPrivilegeArgs{...} }
+type DocumentdbPrivilegeArrayInput interface {
 	pulumi.Input
 
-	ToDocumentDBPrivilegeArrayOutput() DocumentDBPrivilegeArrayOutput
-	ToDocumentDBPrivilegeArrayOutputWithContext(context.Context) DocumentDBPrivilegeArrayOutput
+	ToDocumentdbPrivilegeArrayOutput() DocumentdbPrivilegeArrayOutput
+	ToDocumentdbPrivilegeArrayOutputWithContext(context.Context) DocumentdbPrivilegeArrayOutput
 }
 
-type DocumentDBPrivilegeArray []DocumentDBPrivilegeInput
+type DocumentdbPrivilegeArray []DocumentdbPrivilegeInput
 
-func (DocumentDBPrivilegeArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*DocumentDBPrivilege)(nil)).Elem()
+func (DocumentdbPrivilegeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DocumentdbPrivilege)(nil)).Elem()
 }
 
-func (i DocumentDBPrivilegeArray) ToDocumentDBPrivilegeArrayOutput() DocumentDBPrivilegeArrayOutput {
-	return i.ToDocumentDBPrivilegeArrayOutputWithContext(context.Background())
+func (i DocumentdbPrivilegeArray) ToDocumentdbPrivilegeArrayOutput() DocumentdbPrivilegeArrayOutput {
+	return i.ToDocumentdbPrivilegeArrayOutputWithContext(context.Background())
 }
 
-func (i DocumentDBPrivilegeArray) ToDocumentDBPrivilegeArrayOutputWithContext(ctx context.Context) DocumentDBPrivilegeArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBPrivilegeArrayOutput)
+func (i DocumentdbPrivilegeArray) ToDocumentdbPrivilegeArrayOutputWithContext(ctx context.Context) DocumentdbPrivilegeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbPrivilegeArrayOutput)
 }
 
-// DocumentDBPrivilegeMapInput is an input type that accepts DocumentDBPrivilegeMap and DocumentDBPrivilegeMapOutput values.
-// You can construct a concrete instance of `DocumentDBPrivilegeMapInput` via:
+// DocumentdbPrivilegeMapInput is an input type that accepts DocumentdbPrivilegeMap and DocumentdbPrivilegeMapOutput values.
+// You can construct a concrete instance of `DocumentdbPrivilegeMapInput` via:
 //
-//	DocumentDBPrivilegeMap{ "key": DocumentDBPrivilegeArgs{...} }
-type DocumentDBPrivilegeMapInput interface {
+//	DocumentdbPrivilegeMap{ "key": DocumentdbPrivilegeArgs{...} }
+type DocumentdbPrivilegeMapInput interface {
 	pulumi.Input
 
-	ToDocumentDBPrivilegeMapOutput() DocumentDBPrivilegeMapOutput
-	ToDocumentDBPrivilegeMapOutputWithContext(context.Context) DocumentDBPrivilegeMapOutput
+	ToDocumentdbPrivilegeMapOutput() DocumentdbPrivilegeMapOutput
+	ToDocumentdbPrivilegeMapOutputWithContext(context.Context) DocumentdbPrivilegeMapOutput
 }
 
-type DocumentDBPrivilegeMap map[string]DocumentDBPrivilegeInput
+type DocumentdbPrivilegeMap map[string]DocumentdbPrivilegeInput
 
-func (DocumentDBPrivilegeMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*DocumentDBPrivilege)(nil)).Elem()
+func (DocumentdbPrivilegeMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DocumentdbPrivilege)(nil)).Elem()
 }
 
-func (i DocumentDBPrivilegeMap) ToDocumentDBPrivilegeMapOutput() DocumentDBPrivilegeMapOutput {
-	return i.ToDocumentDBPrivilegeMapOutputWithContext(context.Background())
+func (i DocumentdbPrivilegeMap) ToDocumentdbPrivilegeMapOutput() DocumentdbPrivilegeMapOutput {
+	return i.ToDocumentdbPrivilegeMapOutputWithContext(context.Background())
 }
 
-func (i DocumentDBPrivilegeMap) ToDocumentDBPrivilegeMapOutputWithContext(ctx context.Context) DocumentDBPrivilegeMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBPrivilegeMapOutput)
+func (i DocumentdbPrivilegeMap) ToDocumentdbPrivilegeMapOutputWithContext(ctx context.Context) DocumentdbPrivilegeMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbPrivilegeMapOutput)
 }
 
-type DocumentDBPrivilegeOutput struct{ *pulumi.OutputState }
+type DocumentdbPrivilegeOutput struct{ *pulumi.OutputState }
 
-func (DocumentDBPrivilegeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DocumentDBPrivilege)(nil)).Elem()
+func (DocumentdbPrivilegeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DocumentdbPrivilege)(nil)).Elem()
 }
 
-func (o DocumentDBPrivilegeOutput) ToDocumentDBPrivilegeOutput() DocumentDBPrivilegeOutput {
+func (o DocumentdbPrivilegeOutput) ToDocumentdbPrivilegeOutput() DocumentdbPrivilegeOutput {
 	return o
 }
 
-func (o DocumentDBPrivilegeOutput) ToDocumentDBPrivilegeOutputWithContext(ctx context.Context) DocumentDBPrivilegeOutput {
+func (o DocumentdbPrivilegeOutput) ToDocumentdbPrivilegeOutputWithContext(ctx context.Context) DocumentdbPrivilegeOutput {
 	return o
 }
 
 // Name of the database (e.g. `my-db-name`).
-func (o DocumentDBPrivilegeOutput) DatabaseName() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBPrivilege) pulumi.StringOutput { return v.DatabaseName }).(pulumi.StringOutput)
+func (o DocumentdbPrivilegeOutput) DatabaseName() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbPrivilege) pulumi.StringOutput { return v.DatabaseName }).(pulumi.StringOutput)
 }
 
 // UUID of the rdb instance.
-func (o DocumentDBPrivilegeOutput) InstanceId() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBPrivilege) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
+func (o DocumentdbPrivilegeOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbPrivilege) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
 // Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
-func (o DocumentDBPrivilegeOutput) Permission() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBPrivilege) pulumi.StringOutput { return v.Permission }).(pulumi.StringOutput)
+func (o DocumentdbPrivilegeOutput) Permission() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbPrivilege) pulumi.StringOutput { return v.Permission }).(pulumi.StringOutput)
 }
 
 // `region`) The region in which the resource exists.
-func (o DocumentDBPrivilegeOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBPrivilege) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o DocumentdbPrivilegeOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbPrivilege) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // Name of the user (e.g. `my-db-user`).
-func (o DocumentDBPrivilegeOutput) UserName() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBPrivilege) pulumi.StringOutput { return v.UserName }).(pulumi.StringOutput)
+func (o DocumentdbPrivilegeOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbPrivilege) pulumi.StringOutput { return v.UserName }).(pulumi.StringOutput)
 }
 
-type DocumentDBPrivilegeArrayOutput struct{ *pulumi.OutputState }
+type DocumentdbPrivilegeArrayOutput struct{ *pulumi.OutputState }
 
-func (DocumentDBPrivilegeArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*DocumentDBPrivilege)(nil)).Elem()
+func (DocumentdbPrivilegeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DocumentdbPrivilege)(nil)).Elem()
 }
 
-func (o DocumentDBPrivilegeArrayOutput) ToDocumentDBPrivilegeArrayOutput() DocumentDBPrivilegeArrayOutput {
+func (o DocumentdbPrivilegeArrayOutput) ToDocumentdbPrivilegeArrayOutput() DocumentdbPrivilegeArrayOutput {
 	return o
 }
 
-func (o DocumentDBPrivilegeArrayOutput) ToDocumentDBPrivilegeArrayOutputWithContext(ctx context.Context) DocumentDBPrivilegeArrayOutput {
+func (o DocumentdbPrivilegeArrayOutput) ToDocumentdbPrivilegeArrayOutputWithContext(ctx context.Context) DocumentdbPrivilegeArrayOutput {
 	return o
 }
 
-func (o DocumentDBPrivilegeArrayOutput) Index(i pulumi.IntInput) DocumentDBPrivilegeOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DocumentDBPrivilege {
-		return vs[0].([]*DocumentDBPrivilege)[vs[1].(int)]
-	}).(DocumentDBPrivilegeOutput)
+func (o DocumentdbPrivilegeArrayOutput) Index(i pulumi.IntInput) DocumentdbPrivilegeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DocumentdbPrivilege {
+		return vs[0].([]*DocumentdbPrivilege)[vs[1].(int)]
+	}).(DocumentdbPrivilegeOutput)
 }
 
-type DocumentDBPrivilegeMapOutput struct{ *pulumi.OutputState }
+type DocumentdbPrivilegeMapOutput struct{ *pulumi.OutputState }
 
-func (DocumentDBPrivilegeMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*DocumentDBPrivilege)(nil)).Elem()
+func (DocumentdbPrivilegeMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DocumentdbPrivilege)(nil)).Elem()
 }
 
-func (o DocumentDBPrivilegeMapOutput) ToDocumentDBPrivilegeMapOutput() DocumentDBPrivilegeMapOutput {
+func (o DocumentdbPrivilegeMapOutput) ToDocumentdbPrivilegeMapOutput() DocumentdbPrivilegeMapOutput {
 	return o
 }
 
-func (o DocumentDBPrivilegeMapOutput) ToDocumentDBPrivilegeMapOutputWithContext(ctx context.Context) DocumentDBPrivilegeMapOutput {
+func (o DocumentdbPrivilegeMapOutput) ToDocumentdbPrivilegeMapOutputWithContext(ctx context.Context) DocumentdbPrivilegeMapOutput {
 	return o
 }
 
-func (o DocumentDBPrivilegeMapOutput) MapIndex(k pulumi.StringInput) DocumentDBPrivilegeOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DocumentDBPrivilege {
-		return vs[0].(map[string]*DocumentDBPrivilege)[vs[1].(string)]
-	}).(DocumentDBPrivilegeOutput)
+func (o DocumentdbPrivilegeMapOutput) MapIndex(k pulumi.StringInput) DocumentdbPrivilegeOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DocumentdbPrivilege {
+		return vs[0].(map[string]*DocumentdbPrivilege)[vs[1].(string)]
+	}).(DocumentdbPrivilegeOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBPrivilegeInput)(nil)).Elem(), &DocumentDBPrivilege{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBPrivilegeArrayInput)(nil)).Elem(), DocumentDBPrivilegeArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBPrivilegeMapInput)(nil)).Elem(), DocumentDBPrivilegeMap{})
-	pulumi.RegisterOutputType(DocumentDBPrivilegeOutput{})
-	pulumi.RegisterOutputType(DocumentDBPrivilegeArrayOutput{})
-	pulumi.RegisterOutputType(DocumentDBPrivilegeMapOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbPrivilegeInput)(nil)).Elem(), &DocumentdbPrivilege{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbPrivilegeArrayInput)(nil)).Elem(), DocumentdbPrivilegeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbPrivilegeMapInput)(nil)).Elem(), DocumentdbPrivilegeMap{})
+	pulumi.RegisterOutputType(DocumentdbPrivilegeOutput{})
+	pulumi.RegisterOutputType(DocumentdbPrivilegeArrayOutput{})
+	pulumi.RegisterOutputType(DocumentdbPrivilegeMapOutput{})
 }

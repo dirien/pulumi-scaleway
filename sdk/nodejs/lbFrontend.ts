@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
 /**
  * Creates and manages Scaleway Load-Balancer Frontends. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-frontends).
  *
- * ## Examples Usage
+ * ## Example Usage
  *
  * ### Basic
  *
@@ -114,10 +114,12 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g. bash
+ * Load-Balancer frontend can be imported using the `{zone}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/lbFrontend:LbFrontend frontend01 fr-par-1/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/lbFrontend:LbFrontend frontend01 fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class LbFrontend extends pulumi.CustomResource {

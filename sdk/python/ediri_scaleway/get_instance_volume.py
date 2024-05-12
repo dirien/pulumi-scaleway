@@ -84,7 +84,7 @@ class GetInstanceVolumeResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
 
     @property
@@ -138,6 +138,7 @@ class AwaitableGetInstanceVolumeResult(GetInstanceVolumeResult):
 
 
 def get_instance_volume(name: Optional[str] = None,
+                        project_id: Optional[str] = None,
                         volume_id: Optional[str] = None,
                         zone: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceVolumeResult:
@@ -156,12 +157,14 @@ def get_instance_volume(name: Optional[str] = None,
 
     :param str name: The volume name.
            Only one of `name` and `volume_id` should be specified.
+    :param str project_id: The ID of the project the volume is associated with.
     :param str volume_id: The volume id.
            Only one of `name` and `volume_id` should be specified.
     :param str zone: `zone`) The zone in which the volume exists.
     """
     __args__ = dict()
     __args__['name'] = name
+    __args__['projectId'] = project_id
     __args__['volumeId'] = volume_id
     __args__['zone'] = zone
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -183,6 +186,7 @@ def get_instance_volume(name: Optional[str] = None,
 
 @_utilities.lift_output_func(get_instance_volume)
 def get_instance_volume_output(name: Optional[pulumi.Input[Optional[str]]] = None,
+                               project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                volume_id: Optional[pulumi.Input[Optional[str]]] = None,
                                zone: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceVolumeResult]:
@@ -201,6 +205,7 @@ def get_instance_volume_output(name: Optional[pulumi.Input[Optional[str]]] = Non
 
     :param str name: The volume name.
            Only one of `name` and `volume_id` should be specified.
+    :param str project_id: The ID of the project the volume is associated with.
     :param str volume_id: The volume id.
            Only one of `name` and `volume_id` should be specified.
     :param str zone: `zone`) The zone in which the volume exists.

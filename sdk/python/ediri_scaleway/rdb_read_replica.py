@@ -215,7 +215,7 @@ class RdbReadReplica(pulumi.CustomResource):
         Creates and manages Scaleway Database read replicas.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -264,10 +264,12 @@ class RdbReadReplica(pulumi.CustomResource):
 
         ## Import
 
-        Database Read replica can be imported using the `{region}/{id}`, e.g. bash
+        Database Read replica can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/rdbReadReplica:RdbReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/rdbReadReplica:RdbReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -291,7 +293,7 @@ class RdbReadReplica(pulumi.CustomResource):
         Creates and manages Scaleway Database read replicas.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -340,10 +342,12 @@ class RdbReadReplica(pulumi.CustomResource):
 
         ## Import
 
-        Database Read replica can be imported using the `{region}/{id}`, e.g. bash
+        Database Read replica can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/rdbReadReplica:RdbReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/rdbReadReplica:RdbReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

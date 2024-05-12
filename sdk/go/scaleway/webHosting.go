@@ -15,7 +15,7 @@ import (
 // Creates and manages Scaleway Web Hostings.
 // For more information, see [the documentation](https://www.scaleway.com/en/developers/api/webhosting/).
 //
-// ## Example
+// ## Example Usage
 //
 // ```go
 // package main
@@ -29,14 +29,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			byName, err := scaleway.GetWebHostOffer(ctx, &scaleway.GetWebHostOfferArgs{
+//			byName, err := scaleway.GetWebhostingOffer(ctx, &scaleway.GetWebhostingOfferArgs{
 //				Name: pulumi.StringRef("lite"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewWebHosting(ctx, "main", &scaleway.WebHostingArgs{
-//				OfferId: *pulumi.String(byName.OfferId),
+//			_, err = scaleway.NewWebhosting(ctx, "main", &scaleway.WebhostingArgs{
+//				OfferId: pulumi.String(byName.OfferId),
 //				Email:   pulumi.String("your@email.com"),
 //				Domain:  pulumi.String("yourdomain.com"),
 //				Tags: pulumi.StringArray{
@@ -56,18 +56,18 @@ import (
 //
 // ## Import
 //
-// Hostings can be imported using the `{region}/{id}`, e.g. bash
+// Hostings can be imported using the `{region}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/webHosting:WebHosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/webhosting:Webhosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
 // ```
-type WebHosting struct {
+type Webhosting struct {
 	pulumi.CustomResourceState
 
 	// The URL to connect to cPanel Dashboard and to Webmail interface.
-	CpanelUrls WebHostingCpanelUrlArrayOutput `pulumi:"cpanelUrls"`
+	CpanelUrls WebhostingCpanelUrlArrayOutput `pulumi:"cpanelUrls"`
 	// Date and time of hosting's creation (RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The DNS status of the hosting.
@@ -83,7 +83,7 @@ type WebHosting struct {
 	// The IDs of the selected options for the hosting.
 	OptionIds pulumi.StringArrayOutput `pulumi:"optionIds"`
 	// The active options of the hosting.
-	Options WebHostingOptionArrayOutput `pulumi:"options"`
+	Options WebhostingOptionArrayOutput `pulumi:"options"`
 	// The organization ID the hosting is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// The hostname of the host platform.
@@ -104,9 +104,9 @@ type WebHosting struct {
 	Username pulumi.StringOutput `pulumi:"username"`
 }
 
-// NewWebHosting registers a new resource with the given unique name, arguments, and options.
-func NewWebHosting(ctx *pulumi.Context,
-	name string, args *WebHostingArgs, opts ...pulumi.ResourceOption) (*WebHosting, error) {
+// NewWebhosting registers a new resource with the given unique name, arguments, and options.
+func NewWebhosting(ctx *pulumi.Context,
+	name string, args *WebhostingArgs, opts ...pulumi.ResourceOption) (*Webhosting, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -121,30 +121,30 @@ func NewWebHosting(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'OfferId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
-	var resource WebHosting
-	err := ctx.RegisterResource("scaleway:index/webHosting:WebHosting", name, args, &resource, opts...)
+	var resource Webhosting
+	err := ctx.RegisterResource("scaleway:index/webhosting:Webhosting", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetWebHosting gets an existing WebHosting resource's state with the given name, ID, and optional
+// GetWebhosting gets an existing Webhosting resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetWebHosting(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *WebHostingState, opts ...pulumi.ResourceOption) (*WebHosting, error) {
-	var resource WebHosting
-	err := ctx.ReadResource("scaleway:index/webHosting:WebHosting", name, id, state, &resource, opts...)
+func GetWebhosting(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *WebhostingState, opts ...pulumi.ResourceOption) (*Webhosting, error) {
+	var resource Webhosting
+	err := ctx.ReadResource("scaleway:index/webhosting:Webhosting", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering WebHosting resources.
-type webHostingState struct {
+// Input properties used for looking up and filtering Webhosting resources.
+type webhostingState struct {
 	// The URL to connect to cPanel Dashboard and to Webmail interface.
-	CpanelUrls []WebHostingCpanelUrl `pulumi:"cpanelUrls"`
+	CpanelUrls []WebhostingCpanelUrl `pulumi:"cpanelUrls"`
 	// Date and time of hosting's creation (RFC 3339 format).
 	CreatedAt *string `pulumi:"createdAt"`
 	// The DNS status of the hosting.
@@ -160,7 +160,7 @@ type webHostingState struct {
 	// The IDs of the selected options for the hosting.
 	OptionIds []string `pulumi:"optionIds"`
 	// The active options of the hosting.
-	Options []WebHostingOption `pulumi:"options"`
+	Options []WebhostingOption `pulumi:"options"`
 	// The organization ID the hosting is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
 	// The hostname of the host platform.
@@ -181,9 +181,9 @@ type webHostingState struct {
 	Username *string `pulumi:"username"`
 }
 
-type WebHostingState struct {
+type WebhostingState struct {
 	// The URL to connect to cPanel Dashboard and to Webmail interface.
-	CpanelUrls WebHostingCpanelUrlArrayInput
+	CpanelUrls WebhostingCpanelUrlArrayInput
 	// Date and time of hosting's creation (RFC 3339 format).
 	CreatedAt pulumi.StringPtrInput
 	// The DNS status of the hosting.
@@ -199,7 +199,7 @@ type WebHostingState struct {
 	// The IDs of the selected options for the hosting.
 	OptionIds pulumi.StringArrayInput
 	// The active options of the hosting.
-	Options WebHostingOptionArrayInput
+	Options WebhostingOptionArrayInput
 	// The organization ID the hosting is associated with.
 	OrganizationId pulumi.StringPtrInput
 	// The hostname of the host platform.
@@ -220,11 +220,11 @@ type WebHostingState struct {
 	Username pulumi.StringPtrInput
 }
 
-func (WebHostingState) ElementType() reflect.Type {
-	return reflect.TypeOf((*webHostingState)(nil)).Elem()
+func (WebhostingState) ElementType() reflect.Type {
+	return reflect.TypeOf((*webhostingState)(nil)).Elem()
 }
 
-type webHostingArgs struct {
+type webhostingArgs struct {
 	// The domain name of the hosting.
 	Domain string `pulumi:"domain"`
 	// The contact email of the client for the hosting.
@@ -241,8 +241,8 @@ type webHostingArgs struct {
 	Tags []string `pulumi:"tags"`
 }
 
-// The set of arguments for constructing a WebHosting resource.
-type WebHostingArgs struct {
+// The set of arguments for constructing a Webhosting resource.
+type WebhostingArgs struct {
 	// The domain name of the hosting.
 	Domain pulumi.StringInput
 	// The contact email of the client for the hosting.
@@ -259,228 +259,228 @@ type WebHostingArgs struct {
 	Tags pulumi.StringArrayInput
 }
 
-func (WebHostingArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*webHostingArgs)(nil)).Elem()
+func (WebhostingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*webhostingArgs)(nil)).Elem()
 }
 
-type WebHostingInput interface {
+type WebhostingInput interface {
 	pulumi.Input
 
-	ToWebHostingOutput() WebHostingOutput
-	ToWebHostingOutputWithContext(ctx context.Context) WebHostingOutput
+	ToWebhostingOutput() WebhostingOutput
+	ToWebhostingOutputWithContext(ctx context.Context) WebhostingOutput
 }
 
-func (*WebHosting) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebHosting)(nil)).Elem()
+func (*Webhosting) ElementType() reflect.Type {
+	return reflect.TypeOf((**Webhosting)(nil)).Elem()
 }
 
-func (i *WebHosting) ToWebHostingOutput() WebHostingOutput {
-	return i.ToWebHostingOutputWithContext(context.Background())
+func (i *Webhosting) ToWebhostingOutput() WebhostingOutput {
+	return i.ToWebhostingOutputWithContext(context.Background())
 }
 
-func (i *WebHosting) ToWebHostingOutputWithContext(ctx context.Context) WebHostingOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebHostingOutput)
+func (i *Webhosting) ToWebhostingOutputWithContext(ctx context.Context) WebhostingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebhostingOutput)
 }
 
-// WebHostingArrayInput is an input type that accepts WebHostingArray and WebHostingArrayOutput values.
-// You can construct a concrete instance of `WebHostingArrayInput` via:
+// WebhostingArrayInput is an input type that accepts WebhostingArray and WebhostingArrayOutput values.
+// You can construct a concrete instance of `WebhostingArrayInput` via:
 //
-//	WebHostingArray{ WebHostingArgs{...} }
-type WebHostingArrayInput interface {
+//	WebhostingArray{ WebhostingArgs{...} }
+type WebhostingArrayInput interface {
 	pulumi.Input
 
-	ToWebHostingArrayOutput() WebHostingArrayOutput
-	ToWebHostingArrayOutputWithContext(context.Context) WebHostingArrayOutput
+	ToWebhostingArrayOutput() WebhostingArrayOutput
+	ToWebhostingArrayOutputWithContext(context.Context) WebhostingArrayOutput
 }
 
-type WebHostingArray []WebHostingInput
+type WebhostingArray []WebhostingInput
 
-func (WebHostingArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*WebHosting)(nil)).Elem()
+func (WebhostingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*Webhosting)(nil)).Elem()
 }
 
-func (i WebHostingArray) ToWebHostingArrayOutput() WebHostingArrayOutput {
-	return i.ToWebHostingArrayOutputWithContext(context.Background())
+func (i WebhostingArray) ToWebhostingArrayOutput() WebhostingArrayOutput {
+	return i.ToWebhostingArrayOutputWithContext(context.Background())
 }
 
-func (i WebHostingArray) ToWebHostingArrayOutputWithContext(ctx context.Context) WebHostingArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebHostingArrayOutput)
+func (i WebhostingArray) ToWebhostingArrayOutputWithContext(ctx context.Context) WebhostingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebhostingArrayOutput)
 }
 
-// WebHostingMapInput is an input type that accepts WebHostingMap and WebHostingMapOutput values.
-// You can construct a concrete instance of `WebHostingMapInput` via:
+// WebhostingMapInput is an input type that accepts WebhostingMap and WebhostingMapOutput values.
+// You can construct a concrete instance of `WebhostingMapInput` via:
 //
-//	WebHostingMap{ "key": WebHostingArgs{...} }
-type WebHostingMapInput interface {
+//	WebhostingMap{ "key": WebhostingArgs{...} }
+type WebhostingMapInput interface {
 	pulumi.Input
 
-	ToWebHostingMapOutput() WebHostingMapOutput
-	ToWebHostingMapOutputWithContext(context.Context) WebHostingMapOutput
+	ToWebhostingMapOutput() WebhostingMapOutput
+	ToWebhostingMapOutputWithContext(context.Context) WebhostingMapOutput
 }
 
-type WebHostingMap map[string]WebHostingInput
+type WebhostingMap map[string]WebhostingInput
 
-func (WebHostingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*WebHosting)(nil)).Elem()
+func (WebhostingMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*Webhosting)(nil)).Elem()
 }
 
-func (i WebHostingMap) ToWebHostingMapOutput() WebHostingMapOutput {
-	return i.ToWebHostingMapOutputWithContext(context.Background())
+func (i WebhostingMap) ToWebhostingMapOutput() WebhostingMapOutput {
+	return i.ToWebhostingMapOutputWithContext(context.Background())
 }
 
-func (i WebHostingMap) ToWebHostingMapOutputWithContext(ctx context.Context) WebHostingMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebHostingMapOutput)
+func (i WebhostingMap) ToWebhostingMapOutputWithContext(ctx context.Context) WebhostingMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebhostingMapOutput)
 }
 
-type WebHostingOutput struct{ *pulumi.OutputState }
+type WebhostingOutput struct{ *pulumi.OutputState }
 
-func (WebHostingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebHosting)(nil)).Elem()
+func (WebhostingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**Webhosting)(nil)).Elem()
 }
 
-func (o WebHostingOutput) ToWebHostingOutput() WebHostingOutput {
+func (o WebhostingOutput) ToWebhostingOutput() WebhostingOutput {
 	return o
 }
 
-func (o WebHostingOutput) ToWebHostingOutputWithContext(ctx context.Context) WebHostingOutput {
+func (o WebhostingOutput) ToWebhostingOutputWithContext(ctx context.Context) WebhostingOutput {
 	return o
 }
 
 // The URL to connect to cPanel Dashboard and to Webmail interface.
-func (o WebHostingOutput) CpanelUrls() WebHostingCpanelUrlArrayOutput {
-	return o.ApplyT(func(v *WebHosting) WebHostingCpanelUrlArrayOutput { return v.CpanelUrls }).(WebHostingCpanelUrlArrayOutput)
+func (o WebhostingOutput) CpanelUrls() WebhostingCpanelUrlArrayOutput {
+	return o.ApplyT(func(v *Webhosting) WebhostingCpanelUrlArrayOutput { return v.CpanelUrls }).(WebhostingCpanelUrlArrayOutput)
 }
 
 // Date and time of hosting's creation (RFC 3339 format).
-func (o WebHostingOutput) CreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v *WebHosting) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+func (o WebhostingOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *Webhosting) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
 // The DNS status of the hosting.
-func (o WebHostingOutput) DnsStatus() pulumi.StringOutput {
-	return o.ApplyT(func(v *WebHosting) pulumi.StringOutput { return v.DnsStatus }).(pulumi.StringOutput)
+func (o WebhostingOutput) DnsStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *Webhosting) pulumi.StringOutput { return v.DnsStatus }).(pulumi.StringOutput)
 }
 
 // The domain name of the hosting.
-func (o WebHostingOutput) Domain() pulumi.StringOutput {
-	return o.ApplyT(func(v *WebHosting) pulumi.StringOutput { return v.Domain }).(pulumi.StringOutput)
+func (o WebhostingOutput) Domain() pulumi.StringOutput {
+	return o.ApplyT(func(v *Webhosting) pulumi.StringOutput { return v.Domain }).(pulumi.StringOutput)
 }
 
 // The contact email of the client for the hosting.
-func (o WebHostingOutput) Email() pulumi.StringOutput {
-	return o.ApplyT(func(v *WebHosting) pulumi.StringOutput { return v.Email }).(pulumi.StringOutput)
+func (o WebhostingOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v *Webhosting) pulumi.StringOutput { return v.Email }).(pulumi.StringOutput)
 }
 
 // The ID of the selected offer for the hosting.
-func (o WebHostingOutput) OfferId() pulumi.StringOutput {
-	return o.ApplyT(func(v *WebHosting) pulumi.StringOutput { return v.OfferId }).(pulumi.StringOutput)
+func (o WebhostingOutput) OfferId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Webhosting) pulumi.StringOutput { return v.OfferId }).(pulumi.StringOutput)
 }
 
 // The name of the active offer.
-func (o WebHostingOutput) OfferName() pulumi.StringOutput {
-	return o.ApplyT(func(v *WebHosting) pulumi.StringOutput { return v.OfferName }).(pulumi.StringOutput)
+func (o WebhostingOutput) OfferName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Webhosting) pulumi.StringOutput { return v.OfferName }).(pulumi.StringOutput)
 }
 
 // The IDs of the selected options for the hosting.
-func (o WebHostingOutput) OptionIds() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *WebHosting) pulumi.StringArrayOutput { return v.OptionIds }).(pulumi.StringArrayOutput)
+func (o WebhostingOutput) OptionIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Webhosting) pulumi.StringArrayOutput { return v.OptionIds }).(pulumi.StringArrayOutput)
 }
 
 // The active options of the hosting.
-func (o WebHostingOutput) Options() WebHostingOptionArrayOutput {
-	return o.ApplyT(func(v *WebHosting) WebHostingOptionArrayOutput { return v.Options }).(WebHostingOptionArrayOutput)
+func (o WebhostingOutput) Options() WebhostingOptionArrayOutput {
+	return o.ApplyT(func(v *Webhosting) WebhostingOptionArrayOutput { return v.Options }).(WebhostingOptionArrayOutput)
 }
 
 // The organization ID the hosting is associated with.
-func (o WebHostingOutput) OrganizationId() pulumi.StringOutput {
-	return o.ApplyT(func(v *WebHosting) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
+func (o WebhostingOutput) OrganizationId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Webhosting) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
 // The hostname of the host platform.
-func (o WebHostingOutput) PlatformHostname() pulumi.StringOutput {
-	return o.ApplyT(func(v *WebHosting) pulumi.StringOutput { return v.PlatformHostname }).(pulumi.StringOutput)
+func (o WebhostingOutput) PlatformHostname() pulumi.StringOutput {
+	return o.ApplyT(func(v *Webhosting) pulumi.StringOutput { return v.PlatformHostname }).(pulumi.StringOutput)
 }
 
 // The number of the host platform.
-func (o WebHostingOutput) PlatformNumber() pulumi.IntOutput {
-	return o.ApplyT(func(v *WebHosting) pulumi.IntOutput { return v.PlatformNumber }).(pulumi.IntOutput)
+func (o WebhostingOutput) PlatformNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v *Webhosting) pulumi.IntOutput { return v.PlatformNumber }).(pulumi.IntOutput)
 }
 
 // `projectId`) The ID of the project the VPC is associated with.
-func (o WebHostingOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v *WebHosting) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+func (o WebhostingOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Webhosting) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // `region`) The region of the Hosting.
-func (o WebHostingOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *WebHosting) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o WebhostingOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Webhosting) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The hosting status.
-func (o WebHostingOutput) Status() pulumi.StringOutput {
-	return o.ApplyT(func(v *WebHosting) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+func (o WebhostingOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *Webhosting) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
 // The tags associated with the hosting.
-func (o WebHostingOutput) Tags() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *WebHosting) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
+func (o WebhostingOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Webhosting) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 // Date and time of hosting's last update (RFC 3339 format).
-func (o WebHostingOutput) UpdatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v *WebHosting) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
+func (o WebhostingOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *Webhosting) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 // The main hosting cPanel username.
-func (o WebHostingOutput) Username() pulumi.StringOutput {
-	return o.ApplyT(func(v *WebHosting) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
+func (o WebhostingOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v *Webhosting) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
 }
 
-type WebHostingArrayOutput struct{ *pulumi.OutputState }
+type WebhostingArrayOutput struct{ *pulumi.OutputState }
 
-func (WebHostingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*WebHosting)(nil)).Elem()
+func (WebhostingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*Webhosting)(nil)).Elem()
 }
 
-func (o WebHostingArrayOutput) ToWebHostingArrayOutput() WebHostingArrayOutput {
+func (o WebhostingArrayOutput) ToWebhostingArrayOutput() WebhostingArrayOutput {
 	return o
 }
 
-func (o WebHostingArrayOutput) ToWebHostingArrayOutputWithContext(ctx context.Context) WebHostingArrayOutput {
+func (o WebhostingArrayOutput) ToWebhostingArrayOutputWithContext(ctx context.Context) WebhostingArrayOutput {
 	return o
 }
 
-func (o WebHostingArrayOutput) Index(i pulumi.IntInput) WebHostingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebHosting {
-		return vs[0].([]*WebHosting)[vs[1].(int)]
-	}).(WebHostingOutput)
+func (o WebhostingArrayOutput) Index(i pulumi.IntInput) WebhostingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Webhosting {
+		return vs[0].([]*Webhosting)[vs[1].(int)]
+	}).(WebhostingOutput)
 }
 
-type WebHostingMapOutput struct{ *pulumi.OutputState }
+type WebhostingMapOutput struct{ *pulumi.OutputState }
 
-func (WebHostingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*WebHosting)(nil)).Elem()
+func (WebhostingMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*Webhosting)(nil)).Elem()
 }
 
-func (o WebHostingMapOutput) ToWebHostingMapOutput() WebHostingMapOutput {
+func (o WebhostingMapOutput) ToWebhostingMapOutput() WebhostingMapOutput {
 	return o
 }
 
-func (o WebHostingMapOutput) ToWebHostingMapOutputWithContext(ctx context.Context) WebHostingMapOutput {
+func (o WebhostingMapOutput) ToWebhostingMapOutputWithContext(ctx context.Context) WebhostingMapOutput {
 	return o
 }
 
-func (o WebHostingMapOutput) MapIndex(k pulumi.StringInput) WebHostingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WebHosting {
-		return vs[0].(map[string]*WebHosting)[vs[1].(string)]
-	}).(WebHostingOutput)
+func (o WebhostingMapOutput) MapIndex(k pulumi.StringInput) WebhostingOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Webhosting {
+		return vs[0].(map[string]*Webhosting)[vs[1].(string)]
+	}).(WebhostingOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*WebHostingInput)(nil)).Elem(), &WebHosting{})
-	pulumi.RegisterInputType(reflect.TypeOf((*WebHostingArrayInput)(nil)).Elem(), WebHostingArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*WebHostingMapInput)(nil)).Elem(), WebHostingMap{})
-	pulumi.RegisterOutputType(WebHostingOutput{})
-	pulumi.RegisterOutputType(WebHostingArrayOutput{})
-	pulumi.RegisterOutputType(WebHostingMapOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebhostingInput)(nil)).Elem(), &Webhosting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebhostingArrayInput)(nil)).Elem(), WebhostingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebhostingMapInput)(nil)).Elem(), WebhostingMap{})
+	pulumi.RegisterOutputType(WebhostingOutput{})
+	pulumi.RegisterOutputType(WebhostingArrayOutput{})
+	pulumi.RegisterOutputType(WebhostingMapOutput{})
 }

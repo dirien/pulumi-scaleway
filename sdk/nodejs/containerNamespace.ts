@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway Serverless Container Namespace.
  * For more information see [the documentation](https://developers.scaleway.com/en/products/containers/api/#namespaces-cdce79).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
@@ -21,10 +21,12 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Namespaces can be imported using the `{region}/{id}`, e.g. bash
+ * Namespaces can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/containerNamespace:ContainerNamespace main fr-par/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/containerNamespace:ContainerNamespace main fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class ContainerNamespace extends pulumi.CustomResource {

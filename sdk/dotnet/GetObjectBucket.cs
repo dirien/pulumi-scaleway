@@ -16,9 +16,7 @@ namespace ediri.Scaleway
         /// Gets information about the Bucket.
         /// For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -45,8 +43,7 @@ namespace ediri.Scaleway
         /// });
         /// ```
         /// 
-        /// {{% /example %}}
-        /// {{% example %}}
+        /// 
         /// ### Fetching the bucket from a specific project
         /// 
         /// ```csharp
@@ -65,8 +62,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetObjectBucketResult> InvokeAsync(GetObjectBucketArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetObjectBucketResult>("scaleway:index/getObjectBucket:getObjectBucket", args ?? new GetObjectBucketArgs(), options.WithDefaults());
@@ -75,9 +70,7 @@ namespace ediri.Scaleway
         /// Gets information about the Bucket.
         /// For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -104,8 +97,7 @@ namespace ediri.Scaleway
         /// });
         /// ```
         /// 
-        /// {{% /example %}}
-        /// {{% example %}}
+        /// 
         /// ### Fetching the bucket from a specific project
         /// 
         /// ```csharp
@@ -124,8 +116,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetObjectBucketResult> Invoke(GetObjectBucketInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetObjectBucketResult>("scaleway:index/getObjectBucket:getObjectBucket", args ?? new GetObjectBucketInvokeArgs(), options.WithDefaults());

@@ -14,7 +14,7 @@ namespace ediri.Scaleway
     /// Creates and manages Scaleway Database Instances.
     /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Example Basic
     /// 
@@ -26,7 +26,7 @@ namespace ediri.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.DocumentDBInstance("main", new()
+    ///     var main = new Scaleway.DocumentdbInstance("main", new()
     ///     {
     ///         Engine = "FerretDB-1",
     ///         NodeType = "docdb-play2-pico",
@@ -46,14 +46,16 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Database Instance can be imported using the `{region}/{id}`, e.g. bash
+    /// Database Instance can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/documentDBInstance:DocumentDBInstance db fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/documentdbInstance:DocumentdbInstance db fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
-    [ScalewayResourceType("scaleway:index/documentDBInstance:DocumentDBInstance")]
-    public partial class DocumentDBInstance : global::Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:index/documentdbInstance:DocumentdbInstance")]
+    public partial class DocumentdbInstance : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Database Instance's engine version (e.g. `FerretDB-1`).
@@ -140,19 +142,19 @@ namespace ediri.Scaleway
 
 
         /// <summary>
-        /// Create a DocumentDBInstance resource with the given unique name, arguments, and options.
+        /// Create a DocumentdbInstance resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public DocumentDBInstance(string name, DocumentDBInstanceArgs args, CustomResourceOptions? options = null)
-            : base("scaleway:index/documentDBInstance:DocumentDBInstance", name, args ?? new DocumentDBInstanceArgs(), MakeResourceOptions(options, ""))
+        public DocumentdbInstance(string name, DocumentdbInstanceArgs args, CustomResourceOptions? options = null)
+            : base("scaleway:index/documentdbInstance:DocumentdbInstance", name, args ?? new DocumentdbInstanceArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private DocumentDBInstance(string name, Input<string> id, DocumentDBInstanceState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/documentDBInstance:DocumentDBInstance", name, state, MakeResourceOptions(options, id))
+        private DocumentdbInstance(string name, Input<string> id, DocumentdbInstanceState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/documentdbInstance:DocumentdbInstance", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -173,7 +175,7 @@ namespace ediri.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing DocumentDBInstance resource's state with the given name, ID, and optional extra
+        /// Get an existing DocumentdbInstance resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -181,13 +183,13 @@ namespace ediri.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static DocumentDBInstance Get(string name, Input<string> id, DocumentDBInstanceState? state = null, CustomResourceOptions? options = null)
+        public static DocumentdbInstance Get(string name, Input<string> id, DocumentdbInstanceState? state = null, CustomResourceOptions? options = null)
         {
-            return new DocumentDBInstance(name, id, state, options);
+            return new DocumentdbInstance(name, id, state, options);
         }
     }
 
-    public sealed class DocumentDBInstanceArgs : global::Pulumi.ResourceArgs
+    public sealed class DocumentdbInstanceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Database Instance's engine version (e.g. `FerretDB-1`).
@@ -288,13 +290,13 @@ namespace ediri.Scaleway
         [Input("volumeType")]
         public Input<string>? VolumeType { get; set; }
 
-        public DocumentDBInstanceArgs()
+        public DocumentdbInstanceArgs()
         {
         }
-        public static new DocumentDBInstanceArgs Empty => new DocumentDBInstanceArgs();
+        public static new DocumentdbInstanceArgs Empty => new DocumentdbInstanceArgs();
     }
 
-    public sealed class DocumentDBInstanceState : global::Pulumi.ResourceArgs
+    public sealed class DocumentdbInstanceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Database Instance's engine version (e.g. `FerretDB-1`).
@@ -395,9 +397,9 @@ namespace ediri.Scaleway
         [Input("volumeType")]
         public Input<string>? VolumeType { get; set; }
 
-        public DocumentDBInstanceState()
+        public DocumentdbInstanceState()
         {
         }
-        public static new DocumentDBInstanceState Empty => new DocumentDBInstanceState();
+        public static new DocumentdbInstanceState Empty => new DocumentdbInstanceState();
     }
 }

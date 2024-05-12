@@ -15,7 +15,7 @@ namespace ediri.Scaleway.Outputs
     public sealed class RedisClusterPublicNetwork
     {
         /// <summary>
-        /// The UUID of the private network resource.
+        /// (Required) The UUID of the endpoint.
         /// </summary>
         public readonly string? Id;
         /// <summary>

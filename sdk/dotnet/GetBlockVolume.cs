@@ -12,9 +12,51 @@ namespace ediri.Scaleway
 {
     public static class GetBlockVolume
     {
+        /// <summary>
+        /// Gets information about a Block Volume.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myVolume = Scaleway.GetBlockVolume.Invoke(new()
+        ///     {
+        ///         VolumeId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Task<GetBlockVolumeResult> InvokeAsync(GetBlockVolumeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBlockVolumeResult>("scaleway:index/getBlockVolume:getBlockVolume", args ?? new GetBlockVolumeArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Gets information about a Block Volume.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myVolume = Scaleway.GetBlockVolume.Invoke(new()
+        ///     {
+        ///         VolumeId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetBlockVolumeResult> Invoke(GetBlockVolumeInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBlockVolumeResult>("scaleway:index/getBlockVolume:getBlockVolume", args ?? new GetBlockVolumeInvokeArgs(), options.WithDefaults());
     }
@@ -22,12 +64,27 @@ namespace ediri.Scaleway
 
     public sealed class GetBlockVolumeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of the volume. Only one of `name` and `volume_id` should be specified.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The ID of the project the volume is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
+        /// The ID of the volume. Only one of `name` and `volume_id` should be specified.
+        /// </summary>
         [Input("volumeId")]
         public string? VolumeId { get; set; }
 
+        /// <summary>
+        /// `zone`) The zone in which the volume exists.
+        /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
 
@@ -39,12 +96,27 @@ namespace ediri.Scaleway
 
     public sealed class GetBlockVolumeInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of the volume. Only one of `name` and `volume_id` should be specified.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The ID of the project the volume is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// The ID of the volume. Only one of `name` and `volume_id` should be specified.
+        /// </summary>
         [Input("volumeId")]
         public Input<string>? VolumeId { get; set; }
 
+        /// <summary>
+        /// `zone`) The zone in which the volume exists.
+        /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
@@ -64,7 +136,7 @@ namespace ediri.Scaleway
         public readonly string Id;
         public readonly int Iops;
         public readonly string? Name;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly int SizeInGb;
         public readonly string SnapshotId;
         public readonly ImmutableArray<string> Tags;
@@ -79,7 +151,7 @@ namespace ediri.Scaleway
 
             string? name,
 
-            string projectId,
+            string? projectId,
 
             int sizeInGb,
 

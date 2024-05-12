@@ -15,6 +15,10 @@ namespace ediri.Scaleway.Outputs
     public sealed class RdbReadReplicaPrivateNetwork
     {
         /// <summary>
+        /// Whether or not the private network endpoint should be configured with IPAM
+        /// </summary>
+        public readonly bool? EnableIpam;
+        /// <summary>
         /// The ID of the endpoint of the read replica.
         /// </summary>
         public readonly string? EndpointId;
@@ -44,10 +48,15 @@ namespace ediri.Scaleway.Outputs
         /// service if not set.
         /// </summary>
         public readonly string? ServiceIp;
+        /// <summary>
+        /// Private network zone
+        /// </summary>
         public readonly string? Zone;
 
         [OutputConstructor]
         private RdbReadReplicaPrivateNetwork(
+            bool? enableIpam,
+
             string? endpointId,
 
             string? hostname,
@@ -64,6 +73,7 @@ namespace ediri.Scaleway.Outputs
 
             string? zone)
         {
+            EnableIpam = enableIpam;
             EndpointId = endpointId;
             Hostname = hostname;
             Ip = ip;

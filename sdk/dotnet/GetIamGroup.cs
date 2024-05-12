@@ -16,9 +16,7 @@ namespace ediri.Scaleway
         /// Gets information about an existing IAM group. For more information, please
         /// check [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -40,8 +38,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetIamGroupResult> InvokeAsync(GetIamGroupArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetIamGroupResult>("scaleway:index/getIamGroup:getIamGroup", args ?? new GetIamGroupArgs(), options.WithDefaults());
@@ -50,9 +46,7 @@ namespace ediri.Scaleway
         /// Gets information about an existing IAM group. For more information, please
         /// check [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#applications-83ce5e)
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -74,8 +68,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetIamGroupResult> Invoke(GetIamGroupInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetIamGroupResult>("scaleway:index/getIamGroup:getIamGroup", args ?? new GetIamGroupInvokeArgs(), options.WithDefaults());

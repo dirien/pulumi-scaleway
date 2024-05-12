@@ -59,7 +59,7 @@ class GetBlockSnapshotResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
 
     @property
@@ -99,6 +99,7 @@ class AwaitableGetBlockSnapshotResult(GetBlockSnapshotResult):
 
 
 def get_block_snapshot(name: Optional[str] = None,
+                       project_id: Optional[str] = None,
                        snapshot_id: Optional[str] = None,
                        volume_id: Optional[str] = None,
                        zone: Optional[str] = None,
@@ -108,6 +109,7 @@ def get_block_snapshot(name: Optional[str] = None,
     """
     __args__ = dict()
     __args__['name'] = name
+    __args__['projectId'] = project_id
     __args__['snapshotId'] = snapshot_id
     __args__['volumeId'] = volume_id
     __args__['zone'] = zone
@@ -126,6 +128,7 @@ def get_block_snapshot(name: Optional[str] = None,
 
 @_utilities.lift_output_func(get_block_snapshot)
 def get_block_snapshot_output(name: Optional[pulumi.Input[Optional[str]]] = None,
+                              project_id: Optional[pulumi.Input[Optional[str]]] = None,
                               snapshot_id: Optional[pulumi.Input[Optional[str]]] = None,
                               volume_id: Optional[pulumi.Input[Optional[str]]] = None,
                               zone: Optional[pulumi.Input[Optional[str]]] = None,

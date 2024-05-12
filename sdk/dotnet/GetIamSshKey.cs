@@ -15,9 +15,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Use this data source to get SSH key information based on its ID or name.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -34,8 +32,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetIamSshKeyResult> InvokeAsync(GetIamSshKeyArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetIamSshKeyResult>("scaleway:index/getIamSshKey:getIamSshKey", args ?? new GetIamSshKeyArgs(), options.WithDefaults());
@@ -43,9 +39,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Use this data source to get SSH key information based on its ID or name.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -62,8 +56,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetIamSshKeyResult> Invoke(GetIamSshKeyInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetIamSshKeyResult>("scaleway:index/getIamSshKey:getIamSshKey", args ?? new GetIamSshKeyInvokeArgs(), options.WithDefaults());
@@ -77,6 +69,13 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the SSH
+        /// key is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
 
         /// <summary>
         /// The SSH key id. Only one of `name` and `ssh_key_id` should be specified.
@@ -97,6 +96,13 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// `project_id`) The ID of the project the SSH
+        /// key is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The SSH key id. Only one of `name` and `ssh_key_id` should be specified.
@@ -132,7 +138,7 @@ namespace ediri.Scaleway
         /// The ID of the organization the SSH key is associated with.
         /// </summary>
         public readonly string OrganizationId;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         /// <summary>
         /// The SSH public key string
         /// </summary>
@@ -157,7 +163,7 @@ namespace ediri.Scaleway
 
             string organizationId,
 
-            string projectId,
+            string? projectId,
 
             string publicKey,
 

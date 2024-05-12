@@ -65,10 +65,12 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Container Cron can be imported using the `{region}/{id}`, e.g. bash
+    /// Container Cron can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/containerCron:ContainerCron main fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/containerCron:ContainerCron main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/containerCron:ContainerCron")]
@@ -86,6 +88,13 @@ namespace ediri.Scaleway
         /// </summary>
         [Output("containerId")]
         public Output<string> ContainerId { get; private set; } = null!;
+
+        /// <summary>
+        /// The name of the container cron. If not provided, the name is generated.
+        /// during
+        /// </summary>
+        [Output("name")]
+        public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
         /// (Defaults to provider `region`) The region
@@ -168,6 +177,13 @@ namespace ediri.Scaleway
         public Input<string> ContainerId { get; set; } = null!;
 
         /// <summary>
+        /// The name of the container cron. If not provided, the name is generated.
+        /// during
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
         /// (Defaults to provider `region`) The region
         /// in where the job was created.
         /// </summary>
@@ -201,6 +217,13 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("containerId")]
         public Input<string>? ContainerId { get; set; }
+
+        /// <summary>
+        /// The name of the container cron. If not provided, the name is generated.
+        /// during
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
 
         /// <summary>
         /// (Defaults to provider `region`) The region

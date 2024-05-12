@@ -14,7 +14,13 @@ namespace ediri.Scaleway.Outputs
     [OutputType]
     public sealed class GetDomainRecordWeightedResult
     {
+        /// <summary>
+        /// The weighted IP
+        /// </summary>
         public readonly string Ip;
+        /// <summary>
+        /// The weight of the IP
+        /// </summary>
         public readonly int Weight;
 
         [OutputConstructor]

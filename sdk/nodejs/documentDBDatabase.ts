@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway DocumentDB database.
  * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
@@ -16,20 +16,22 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@ediri/scaleway";
  *
- * const main = new scaleway.DocumentDBDatabase("main", {instanceId: "11111111-1111-1111-1111-111111111111"});
+ * const main = new scaleway.DocumentdbDatabase("main", {instanceId: "11111111-1111-1111-1111-111111111111"});
  * ```
  *
  * ## Import
  *
- * DocumentDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g. bash
+ * DocumentDB Database can be imported using the `{region}/{id}/{DBNAME}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/documentDBDatabase:DocumentDBDatabase mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
+ * $ pulumi import scaleway:index/documentdbDatabase:DocumentdbDatabase mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
  * ```
  */
-export class DocumentDBDatabase extends pulumi.CustomResource {
+export class DocumentdbDatabase extends pulumi.CustomResource {
     /**
-     * Get an existing DocumentDBDatabase resource's state with the given name, ID, and optional extra
+     * Get an existing DocumentdbDatabase resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -37,22 +39,22 @@ export class DocumentDBDatabase extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DocumentDBDatabaseState, opts?: pulumi.CustomResourceOptions): DocumentDBDatabase {
-        return new DocumentDBDatabase(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DocumentdbDatabaseState, opts?: pulumi.CustomResourceOptions): DocumentdbDatabase {
+        return new DocumentdbDatabase(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/documentDBDatabase:DocumentDBDatabase';
+    public static readonly __pulumiType = 'scaleway:index/documentdbDatabase:DocumentdbDatabase';
 
     /**
-     * Returns true if the given object is an instance of DocumentDBDatabase.  This is designed to work even
+     * Returns true if the given object is an instance of DocumentdbDatabase.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is DocumentDBDatabase {
+    public static isInstance(obj: any): obj is DocumentdbDatabase {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === DocumentDBDatabase.__pulumiType;
+        return obj['__pulumiType'] === DocumentdbDatabase.__pulumiType;
     }
 
     /**
@@ -74,7 +76,7 @@ export class DocumentDBDatabase extends pulumi.CustomResource {
      */
     public /*out*/ readonly owner!: pulumi.Output<string>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -87,18 +89,18 @@ export class DocumentDBDatabase extends pulumi.CustomResource {
     public /*out*/ readonly size!: pulumi.Output<string>;
 
     /**
-     * Create a DocumentDBDatabase resource with the given unique name, arguments, and options.
+     * Create a DocumentdbDatabase resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: DocumentDBDatabaseArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: DocumentDBDatabaseArgs | DocumentDBDatabaseState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: DocumentdbDatabaseArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: DocumentdbDatabaseArgs | DocumentdbDatabaseState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as DocumentDBDatabaseState | undefined;
+            const state = argsOrState as DocumentdbDatabaseState | undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["managed"] = state ? state.managed : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -107,7 +109,7 @@ export class DocumentDBDatabase extends pulumi.CustomResource {
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["size"] = state ? state.size : undefined;
         } else {
-            const args = argsOrState as DocumentDBDatabaseArgs | undefined;
+            const args = argsOrState as DocumentdbDatabaseArgs | undefined;
             if ((!args || args.instanceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
@@ -120,14 +122,14 @@ export class DocumentDBDatabase extends pulumi.CustomResource {
             resourceInputs["size"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(DocumentDBDatabase.__pulumiType, name, resourceInputs, opts);
+        super(DocumentdbDatabase.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering DocumentDBDatabase resources.
+ * Input properties used for looking up and filtering DocumentdbDatabase resources.
  */
-export interface DocumentDBDatabaseState {
+export interface DocumentdbDatabaseState {
     /**
      * UUID of the documentdb instance.
      *
@@ -147,7 +149,7 @@ export interface DocumentDBDatabaseState {
      */
     owner?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -161,9 +163,9 @@ export interface DocumentDBDatabaseState {
 }
 
 /**
- * The set of arguments for constructing a DocumentDBDatabase resource.
+ * The set of arguments for constructing a DocumentdbDatabase resource.
  */
-export interface DocumentDBDatabaseArgs {
+export interface DocumentdbDatabaseArgs {
     /**
      * UUID of the documentdb instance.
      *
@@ -175,7 +177,7 @@ export interface DocumentDBDatabaseArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The project_id you want to attach the resource to
+     * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string>;
     /**

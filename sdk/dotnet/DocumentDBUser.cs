@@ -14,7 +14,7 @@ namespace ediri.Scaleway
     /// Creates and manages Scaleway Database DocumentDB Users.
     /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
@@ -33,7 +33,7 @@ namespace ediri.Scaleway
     ///         Special = true,
     ///     });
     /// 
-    ///     var dbAdmin = new Scaleway.DocumentDBUser("dbAdmin", new()
+    ///     var dbAdmin = new Scaleway.DocumentdbUser("dbAdmin", new()
     ///     {
     ///         InstanceId = "11111111-1111-1111-1111-111111111111",
     ///         Password = dbPassword.Result,
@@ -45,14 +45,16 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g. bash
+    /// Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/documentDBUser:DocumentDBUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
+    /// $ pulumi import scaleway:index/documentdbUser:DocumentdbUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
     /// ```
     /// </summary>
-    [ScalewayResourceType("scaleway:index/documentDBUser:DocumentDBUser")]
-    public partial class DocumentDBUser : global::Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:index/documentdbUser:DocumentdbUser")]
+    public partial class DocumentdbUser : global::Pulumi.CustomResource
     {
         /// <summary>
         /// UUID of the documentDB instance.
@@ -90,19 +92,19 @@ namespace ediri.Scaleway
 
 
         /// <summary>
-        /// Create a DocumentDBUser resource with the given unique name, arguments, and options.
+        /// Create a DocumentdbUser resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public DocumentDBUser(string name, DocumentDBUserArgs args, CustomResourceOptions? options = null)
-            : base("scaleway:index/documentDBUser:DocumentDBUser", name, args ?? new DocumentDBUserArgs(), MakeResourceOptions(options, ""))
+        public DocumentdbUser(string name, DocumentdbUserArgs args, CustomResourceOptions? options = null)
+            : base("scaleway:index/documentdbUser:DocumentdbUser", name, args ?? new DocumentdbUserArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private DocumentDBUser(string name, Input<string> id, DocumentDBUserState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/documentDBUser:DocumentDBUser", name, state, MakeResourceOptions(options, id))
+        private DocumentdbUser(string name, Input<string> id, DocumentdbUserState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/documentdbUser:DocumentdbUser", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -123,7 +125,7 @@ namespace ediri.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing DocumentDBUser resource's state with the given name, ID, and optional extra
+        /// Get an existing DocumentdbUser resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -131,13 +133,13 @@ namespace ediri.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static DocumentDBUser Get(string name, Input<string> id, DocumentDBUserState? state = null, CustomResourceOptions? options = null)
+        public static DocumentdbUser Get(string name, Input<string> id, DocumentdbUserState? state = null, CustomResourceOptions? options = null)
         {
-            return new DocumentDBUser(name, id, state, options);
+            return new DocumentdbUser(name, id, state, options);
         }
     }
 
-    public sealed class DocumentDBUserArgs : global::Pulumi.ResourceArgs
+    public sealed class DocumentdbUserArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// UUID of the documentDB instance.
@@ -183,13 +185,13 @@ namespace ediri.Scaleway
         [Input("region")]
         public Input<string>? Region { get; set; }
 
-        public DocumentDBUserArgs()
+        public DocumentdbUserArgs()
         {
         }
-        public static new DocumentDBUserArgs Empty => new DocumentDBUserArgs();
+        public static new DocumentdbUserArgs Empty => new DocumentdbUserArgs();
     }
 
-    public sealed class DocumentDBUserState : global::Pulumi.ResourceArgs
+    public sealed class DocumentdbUserState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// UUID of the documentDB instance.
@@ -235,9 +237,9 @@ namespace ediri.Scaleway
         [Input("region")]
         public Input<string>? Region { get; set; }
 
-        public DocumentDBUserState()
+        public DocumentdbUserState()
         {
         }
-        public static new DocumentDBUserState Empty => new DocumentDBUserState();
+        public static new DocumentdbUserState Empty => new DocumentdbUserState();
     }
 }

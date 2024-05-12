@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway Database DocumentDB Users.
  * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
@@ -21,7 +21,7 @@ import * as utilities from "./utilities";
  *     length: 16,
  *     special: true,
  * });
- * const dbAdmin = new scaleway.DocumentDBUser("dbAdmin", {
+ * const dbAdmin = new scaleway.DocumentdbUser("dbAdmin", {
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  *     password: dbPassword.result,
  *     isAdmin: true,
@@ -30,15 +30,17 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g. bash
+ * Database User can be imported using `{region}/{instance_id}/{user_name}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/documentDBUser:DocumentDBUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
+ * $ pulumi import scaleway:index/documentdbUser:DocumentdbUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
  * ```
  */
-export class DocumentDBUser extends pulumi.CustomResource {
+export class DocumentdbUser extends pulumi.CustomResource {
     /**
-     * Get an existing DocumentDBUser resource's state with the given name, ID, and optional extra
+     * Get an existing DocumentdbUser resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -46,22 +48,22 @@ export class DocumentDBUser extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DocumentDBUserState, opts?: pulumi.CustomResourceOptions): DocumentDBUser {
-        return new DocumentDBUser(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DocumentdbUserState, opts?: pulumi.CustomResourceOptions): DocumentdbUser {
+        return new DocumentdbUser(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/documentDBUser:DocumentDBUser';
+    public static readonly __pulumiType = 'scaleway:index/documentdbUser:DocumentdbUser';
 
     /**
-     * Returns true if the given object is an instance of DocumentDBUser.  This is designed to work even
+     * Returns true if the given object is an instance of DocumentdbUser.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is DocumentDBUser {
+    public static isInstance(obj: any): obj is DocumentdbUser {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === DocumentDBUser.__pulumiType;
+        return obj['__pulumiType'] === DocumentdbUser.__pulumiType;
     }
 
     /**
@@ -90,25 +92,25 @@ export class DocumentDBUser extends pulumi.CustomResource {
     public readonly region!: pulumi.Output<string>;
 
     /**
-     * Create a DocumentDBUser resource with the given unique name, arguments, and options.
+     * Create a DocumentdbUser resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: DocumentDBUserArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: DocumentDBUserArgs | DocumentDBUserState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: DocumentdbUserArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: DocumentdbUserArgs | DocumentdbUserState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as DocumentDBUserState | undefined;
+            const state = argsOrState as DocumentdbUserState | undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["isAdmin"] = state ? state.isAdmin : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
         } else {
-            const args = argsOrState as DocumentDBUserArgs | undefined;
+            const args = argsOrState as DocumentdbUserArgs | undefined;
             if ((!args || args.instanceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
@@ -124,14 +126,14 @@ export class DocumentDBUser extends pulumi.CustomResource {
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["password"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
-        super(DocumentDBUser.__pulumiType, name, resourceInputs, opts);
+        super(DocumentdbUser.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering DocumentDBUser resources.
+ * Input properties used for looking up and filtering DocumentdbUser resources.
  */
-export interface DocumentDBUserState {
+export interface DocumentdbUserState {
     /**
      * UUID of the documentDB instance.
      *
@@ -159,9 +161,9 @@ export interface DocumentDBUserState {
 }
 
 /**
- * The set of arguments for constructing a DocumentDBUser resource.
+ * The set of arguments for constructing a DocumentdbUser resource.
  */
-export interface DocumentDBUserArgs {
+export interface DocumentdbUserArgs {
     /**
      * UUID of the documentDB instance.
      *

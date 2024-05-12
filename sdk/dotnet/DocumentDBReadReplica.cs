@@ -14,7 +14,7 @@ namespace ediri.Scaleway
     /// Creates and manages Scaleway DocumentDB Database read replicas.
     /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
@@ -26,7 +26,7 @@ namespace ediri.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var replica = new Scaleway.DocumentDBReadReplica("replica", new()
+    ///     var replica = new Scaleway.DocumentdbReadReplica("replica", new()
     ///     {
     ///         DirectAccess = null,
     ///         InstanceId = "11111111-1111-1111-1111-111111111111",
@@ -47,10 +47,10 @@ namespace ediri.Scaleway
     /// {
     ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
     /// 
-    ///     var replica = new Scaleway.DocumentDBReadReplica("replica", new()
+    ///     var replica = new Scaleway.DocumentdbReadReplica("replica", new()
     ///     {
     ///         InstanceId = scaleway_rdb_instance.Instance.Id,
-    ///         PrivateNetwork = new Scaleway.Inputs.DocumentDBReadReplicaPrivateNetworkArgs
+    ///         PrivateNetwork = new Scaleway.Inputs.DocumentdbReadReplicaPrivateNetworkArgs
     ///         {
     ///             PrivateNetworkId = pn.Id,
     ///             ServiceIp = "192.168.1.254/24",
@@ -62,20 +62,22 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Database Read replica can be imported using the `{region}/{id}`, e.g. bash
+    /// Database Read replica can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/documentDBReadReplica:DocumentDBReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/documentdbReadReplica:DocumentdbReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
-    [ScalewayResourceType("scaleway:index/documentDBReadReplica:DocumentDBReadReplica")]
-    public partial class DocumentDBReadReplica : global::Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:index/documentdbReadReplica:DocumentdbReadReplica")]
+    public partial class DocumentdbReadReplica : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Creates a direct access endpoint to documentdb replica.
         /// </summary>
         [Output("directAccess")]
-        public Output<Outputs.DocumentDBReadReplicaDirectAccess?> DirectAccess { get; private set; } = null!;
+        public Output<Outputs.DocumentdbReadReplicaDirectAccess?> DirectAccess { get; private set; } = null!;
 
         /// <summary>
         /// UUID of the documentdb instance.
@@ -89,7 +91,7 @@ namespace ediri.Scaleway
         /// Create an endpoint in a private network.
         /// </summary>
         [Output("privateNetwork")]
-        public Output<Outputs.DocumentDBReadReplicaPrivateNetwork?> PrivateNetwork { get; private set; } = null!;
+        public Output<Outputs.DocumentdbReadReplicaPrivateNetwork?> PrivateNetwork { get; private set; } = null!;
 
         /// <summary>
         /// `region`) The region
@@ -100,19 +102,19 @@ namespace ediri.Scaleway
 
 
         /// <summary>
-        /// Create a DocumentDBReadReplica resource with the given unique name, arguments, and options.
+        /// Create a DocumentdbReadReplica resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public DocumentDBReadReplica(string name, DocumentDBReadReplicaArgs args, CustomResourceOptions? options = null)
-            : base("scaleway:index/documentDBReadReplica:DocumentDBReadReplica", name, args ?? new DocumentDBReadReplicaArgs(), MakeResourceOptions(options, ""))
+        public DocumentdbReadReplica(string name, DocumentdbReadReplicaArgs args, CustomResourceOptions? options = null)
+            : base("scaleway:index/documentdbReadReplica:DocumentdbReadReplica", name, args ?? new DocumentdbReadReplicaArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private DocumentDBReadReplica(string name, Input<string> id, DocumentDBReadReplicaState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/documentDBReadReplica:DocumentDBReadReplica", name, state, MakeResourceOptions(options, id))
+        private DocumentdbReadReplica(string name, Input<string> id, DocumentdbReadReplicaState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/documentdbReadReplica:DocumentdbReadReplica", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -129,7 +131,7 @@ namespace ediri.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing DocumentDBReadReplica resource's state with the given name, ID, and optional extra
+        /// Get an existing DocumentdbReadReplica resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -137,19 +139,19 @@ namespace ediri.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static DocumentDBReadReplica Get(string name, Input<string> id, DocumentDBReadReplicaState? state = null, CustomResourceOptions? options = null)
+        public static DocumentdbReadReplica Get(string name, Input<string> id, DocumentdbReadReplicaState? state = null, CustomResourceOptions? options = null)
         {
-            return new DocumentDBReadReplica(name, id, state, options);
+            return new DocumentdbReadReplica(name, id, state, options);
         }
     }
 
-    public sealed class DocumentDBReadReplicaArgs : global::Pulumi.ResourceArgs
+    public sealed class DocumentdbReadReplicaArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Creates a direct access endpoint to documentdb replica.
         /// </summary>
         [Input("directAccess")]
-        public Input<Inputs.DocumentDBReadReplicaDirectAccessArgs>? DirectAccess { get; set; }
+        public Input<Inputs.DocumentdbReadReplicaDirectAccessArgs>? DirectAccess { get; set; }
 
         /// <summary>
         /// UUID of the documentdb instance.
@@ -163,7 +165,7 @@ namespace ediri.Scaleway
         /// Create an endpoint in a private network.
         /// </summary>
         [Input("privateNetwork")]
-        public Input<Inputs.DocumentDBReadReplicaPrivateNetworkArgs>? PrivateNetwork { get; set; }
+        public Input<Inputs.DocumentdbReadReplicaPrivateNetworkArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
         /// `region`) The region
@@ -172,19 +174,19 @@ namespace ediri.Scaleway
         [Input("region")]
         public Input<string>? Region { get; set; }
 
-        public DocumentDBReadReplicaArgs()
+        public DocumentdbReadReplicaArgs()
         {
         }
-        public static new DocumentDBReadReplicaArgs Empty => new DocumentDBReadReplicaArgs();
+        public static new DocumentdbReadReplicaArgs Empty => new DocumentdbReadReplicaArgs();
     }
 
-    public sealed class DocumentDBReadReplicaState : global::Pulumi.ResourceArgs
+    public sealed class DocumentdbReadReplicaState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Creates a direct access endpoint to documentdb replica.
         /// </summary>
         [Input("directAccess")]
-        public Input<Inputs.DocumentDBReadReplicaDirectAccessGetArgs>? DirectAccess { get; set; }
+        public Input<Inputs.DocumentdbReadReplicaDirectAccessGetArgs>? DirectAccess { get; set; }
 
         /// <summary>
         /// UUID of the documentdb instance.
@@ -198,7 +200,7 @@ namespace ediri.Scaleway
         /// Create an endpoint in a private network.
         /// </summary>
         [Input("privateNetwork")]
-        public Input<Inputs.DocumentDBReadReplicaPrivateNetworkGetArgs>? PrivateNetwork { get; set; }
+        public Input<Inputs.DocumentdbReadReplicaPrivateNetworkGetArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
         /// `region`) The region
@@ -207,9 +209,9 @@ namespace ediri.Scaleway
         [Input("region")]
         public Input<string>? Region { get; set; }
 
-        public DocumentDBReadReplicaState()
+        public DocumentdbReadReplicaState()
         {
         }
-        public static new DocumentDBReadReplicaState Empty => new DocumentDBReadReplicaState();
+        public static new DocumentdbReadReplicaState Empty => new DocumentdbReadReplicaState();
     }
 }

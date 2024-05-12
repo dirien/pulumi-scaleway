@@ -14,7 +14,7 @@ namespace ediri.Scaleway
     /// Creates and manages Scaleway Transactional Email Domains.
     /// For more information see [the documentation](https://developers.scaleway.com/en/products/transactional_email/api/).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
@@ -77,10 +77,12 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Domains can be imported using the `{region}/{id}`, e.g. bash
+    /// Domains can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/temDomain:TemDomain main fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/temDomain:TemDomain main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/temDomain:TemDomain")]

@@ -33,6 +33,7 @@ export function getVpcPublicGateway(args?: GetVpcPublicGatewayArgs, opts?: pulum
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpcPublicGateway:getVpcPublicGateway", {
         "name": args.name,
+        "projectId": args.projectId,
         "publicGatewayId": args.publicGatewayId,
         "zone": args.zone,
     }, opts);
@@ -46,6 +47,10 @@ export interface GetVpcPublicGatewayArgs {
      * Exact name of the public gateway.
      */
     name?: string;
+    /**
+     * The ID of the project the public gateway is associated with.
+     */
+    projectId?: string;
     publicGatewayId?: string;
     /**
      * `zone`) The zone in which
@@ -69,7 +74,7 @@ export interface GetVpcPublicGatewayResult {
     readonly ipId: string;
     readonly name?: string;
     readonly organizationId: string;
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly publicGatewayId?: string;
     readonly status: string;
     readonly tags: string[];
@@ -113,6 +118,10 @@ export interface GetVpcPublicGatewayOutputArgs {
      * Exact name of the public gateway.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the project the public gateway is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     publicGatewayId?: pulumi.Input<string>;
     /**
      * `zone`) The zone in which

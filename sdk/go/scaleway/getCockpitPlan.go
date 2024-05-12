@@ -34,7 +34,7 @@ import (
 //				return err
 //			}
 //			_, err = scaleway.NewCockpit(ctx, "main", &scaleway.CockpitArgs{
-//				Plan: *pulumi.String(premium.Id),
+//				Plan: pulumi.String(premium.Id),
 //			})
 //			if err != nil {
 //				return err

@@ -11,16 +11,16 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
-    'GetWebHostOfferResult',
-    'AwaitableGetWebHostOfferResult',
-    'get_web_host_offer',
-    'get_web_host_offer_output',
+    'GetWebhostingOfferResult',
+    'AwaitableGetWebhostingOfferResult',
+    'get_webhosting_offer',
+    'get_webhosting_offer_output',
 ]
 
 @pulumi.output_type
-class GetWebHostOfferResult:
+class GetWebhostingOfferResult:
     """
-    A collection of values returned by getWebHostOffer.
+    A collection of values returned by getWebhostingOffer.
     """
     def __init__(__self__, billing_operation_path=None, id=None, name=None, offer_id=None, price=None, products=None, region=None):
         if billing_operation_path and not isinstance(billing_operation_path, str):
@@ -81,7 +81,7 @@ class GetWebHostOfferResult:
 
     @property
     @pulumi.getter
-    def products(self) -> Sequence['outputs.GetWebHostOfferProductResult']:
+    def products(self) -> Sequence['outputs.GetWebhostingOfferProductResult']:
         """
         The offer product.
         """
@@ -93,12 +93,12 @@ class GetWebHostOfferResult:
         return pulumi.get(self, "region")
 
 
-class AwaitableGetWebHostOfferResult(GetWebHostOfferResult):
+class AwaitableGetWebhostingOfferResult(GetWebhostingOfferResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetWebHostOfferResult(
+        return GetWebhostingOfferResult(
             billing_operation_path=self.billing_operation_path,
             id=self.id,
             name=self.name,
@@ -108,10 +108,10 @@ class AwaitableGetWebHostOfferResult(GetWebHostOfferResult):
             region=self.region)
 
 
-def get_web_host_offer(name: Optional[str] = None,
-                       offer_id: Optional[str] = None,
-                       region: Optional[str] = None,
-                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWebHostOfferResult:
+def get_webhosting_offer(name: Optional[str] = None,
+                         offer_id: Optional[str] = None,
+                         region: Optional[str] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWebhostingOfferResult:
     """
     Gets information about a webhosting offer.
 
@@ -121,8 +121,8 @@ def get_web_host_offer(name: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_name = scaleway.get_web_host_offer(name="performance")
-    by_id = scaleway.get_web_host_offer(offer_id="de2426b4-a9e9-11ec-b909-0242ac120002")
+    by_name = scaleway.get_webhosting_offer(name="performance")
+    by_id = scaleway.get_webhosting_offer(offer_id="de2426b4-a9e9-11ec-b909-0242ac120002")
     ```
 
 
@@ -135,9 +135,9 @@ def get_web_host_offer(name: Optional[str] = None,
     __args__['offerId'] = offer_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('scaleway:index/getWebHostOffer:getWebHostOffer', __args__, opts=opts, typ=GetWebHostOfferResult).value
+    __ret__ = pulumi.runtime.invoke('scaleway:index/getWebhostingOffer:getWebhostingOffer', __args__, opts=opts, typ=GetWebhostingOfferResult).value
 
-    return AwaitableGetWebHostOfferResult(
+    return AwaitableGetWebhostingOfferResult(
         billing_operation_path=pulumi.get(__ret__, 'billing_operation_path'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
@@ -147,11 +147,11 @@ def get_web_host_offer(name: Optional[str] = None,
         region=pulumi.get(__ret__, 'region'))
 
 
-@_utilities.lift_output_func(get_web_host_offer)
-def get_web_host_offer_output(name: Optional[pulumi.Input[Optional[str]]] = None,
-                              offer_id: Optional[pulumi.Input[Optional[str]]] = None,
-                              region: Optional[pulumi.Input[Optional[str]]] = None,
-                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWebHostOfferResult]:
+@_utilities.lift_output_func(get_webhosting_offer)
+def get_webhosting_offer_output(name: Optional[pulumi.Input[Optional[str]]] = None,
+                                offer_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                region: Optional[pulumi.Input[Optional[str]]] = None,
+                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWebhostingOfferResult]:
     """
     Gets information about a webhosting offer.
 
@@ -161,8 +161,8 @@ def get_web_host_offer_output(name: Optional[pulumi.Input[Optional[str]]] = None
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_name = scaleway.get_web_host_offer(name="performance")
-    by_id = scaleway.get_web_host_offer(offer_id="de2426b4-a9e9-11ec-b909-0242ac120002")
+    by_name = scaleway.get_webhosting_offer(name="performance")
+    by_id = scaleway.get_webhosting_offer(offer_id="de2426b4-a9e9-11ec-b909-0242ac120002")
     ```
 
 

@@ -20,12 +20,12 @@ from .container_domain import *
 from .container_namespace import *
 from .container_token import *
 from .container_trigger import *
-from .document_db_database import *
-from .document_db_instance import *
-from .document_db_private_network_endpoint import *
-from .document_db_privilege import *
-from .document_db_read_replica import *
-from .document_dbuser import *
+from .documentdb_database import *
+from .documentdb_instance import *
+from .documentdb_private_network_endpoint import *
+from .documentdb_privilege import *
+from .documentdb_read_replica import *
+from .documentdb_user import *
 from .domain_record import *
 from .domain_zone import *
 from .flexible_ip import *
@@ -51,9 +51,9 @@ from .get_cockpit import *
 from .get_cockpit_plan import *
 from .get_container import *
 from .get_container_namespace import *
-from .get_document_db_database import *
-from .get_document_db_instance import *
-from .get_document_db_load_balancer_endpoint import *
+from .get_documentdb_database import *
+from .get_documentdb_instance import *
+from .get_documentdb_load_balancer_endpoint import *
 from .get_domain_record import *
 from .get_domain_zone import *
 from .get_flexible_ip import *
@@ -66,6 +66,7 @@ from .get_iam_ssh_key import *
 from .get_iam_user import *
 from .get_instance_image import *
 from .get_instance_ip import *
+from .get_instance_placement_group import *
 from .get_instance_private_nic import *
 from .get_instance_security_group import *
 from .get_instance_server import *
@@ -75,6 +76,7 @@ from .get_instance_volume import *
 from .get_iot_device import *
 from .get_iot_hub import *
 from .get_ipam_ip import *
+from .get_ipam_ips import *
 from .get_k8s_cluster import *
 from .get_k8s_pool import *
 from .get_k8s_version import *
@@ -114,8 +116,8 @@ from .get_vpc_public_gateway_dhcp_reservation import *
 from .get_vpc_public_gateway_ip import *
 from .get_vpc_public_gateway_pat_rule import *
 from .get_vpcs import *
-from .get_web_host_offer import *
 from .get_webhosting import *
+from .get_webhosting_offer import *
 from .iam_api_key import *
 from .iam_application import *
 from .iam_group import *
@@ -174,6 +176,7 @@ from .rdb_read_replica import *
 from .rdb_user import *
 from .redis_cluster import *
 from .registry_namespace import *
+from .sdb_sql_database import *
 from .secret import *
 from .secret_version import *
 from .tem_domain import *
@@ -186,7 +189,7 @@ from .vpc_public_gateway_dhcp_reservation import *
 from .vpc_public_gateway_ip import *
 from .vpc_public_gateway_ip_reverse_dns import *
 from .vpc_public_gateway_pat_rule import *
-from .web_hosting import *
+from .webhosting import *
 from ._inputs import *
 from . import outputs
 
@@ -322,50 +325,50 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
-  "mod": "index/documentDBDatabase",
+  "mod": "index/documentdbDatabase",
   "fqn": "ediri_scaleway",
   "classes": {
-   "scaleway:index/documentDBDatabase:DocumentDBDatabase": "DocumentDBDatabase"
+   "scaleway:index/documentdbDatabase:DocumentdbDatabase": "DocumentdbDatabase"
   }
  },
  {
   "pkg": "scaleway",
-  "mod": "index/documentDBInstance",
+  "mod": "index/documentdbInstance",
   "fqn": "ediri_scaleway",
   "classes": {
-   "scaleway:index/documentDBInstance:DocumentDBInstance": "DocumentDBInstance"
+   "scaleway:index/documentdbInstance:DocumentdbInstance": "DocumentdbInstance"
   }
  },
  {
   "pkg": "scaleway",
-  "mod": "index/documentDBPrivateNetworkEndpoint",
+  "mod": "index/documentdbPrivateNetworkEndpoint",
   "fqn": "ediri_scaleway",
   "classes": {
-   "scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint": "DocumentDBPrivateNetworkEndpoint"
+   "scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint": "DocumentdbPrivateNetworkEndpoint"
   }
  },
  {
   "pkg": "scaleway",
-  "mod": "index/documentDBPrivilege",
+  "mod": "index/documentdbPrivilege",
   "fqn": "ediri_scaleway",
   "classes": {
-   "scaleway:index/documentDBPrivilege:DocumentDBPrivilege": "DocumentDBPrivilege"
+   "scaleway:index/documentdbPrivilege:DocumentdbPrivilege": "DocumentdbPrivilege"
   }
  },
  {
   "pkg": "scaleway",
-  "mod": "index/documentDBReadReplica",
+  "mod": "index/documentdbReadReplica",
   "fqn": "ediri_scaleway",
   "classes": {
-   "scaleway:index/documentDBReadReplica:DocumentDBReadReplica": "DocumentDBReadReplica"
+   "scaleway:index/documentdbReadReplica:DocumentdbReadReplica": "DocumentdbReadReplica"
   }
  },
  {
   "pkg": "scaleway",
-  "mod": "index/documentDBUser",
+  "mod": "index/documentdbUser",
   "fqn": "ediri_scaleway",
   "classes": {
-   "scaleway:index/documentDBUser:DocumentDBUser": "DocumentDBUser"
+   "scaleway:index/documentdbUser:DocumentdbUser": "DocumentdbUser"
   }
  },
  {
@@ -906,6 +909,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/sdbSqlDatabase",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/sdbSqlDatabase:SdbSqlDatabase": "SdbSqlDatabase"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/secret",
   "fqn": "ediri_scaleway",
   "classes": {
@@ -1002,10 +1013,10 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
-  "mod": "index/webHosting",
+  "mod": "index/webhosting",
   "fqn": "ediri_scaleway",
   "classes": {
-   "scaleway:index/webHosting:WebHosting": "WebHosting"
+   "scaleway:index/webhosting:Webhosting": "Webhosting"
   }
  }
 ]

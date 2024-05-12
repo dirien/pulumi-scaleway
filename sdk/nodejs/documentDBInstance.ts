@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway Database Instances.
  * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Example Basic
  *
@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@ediri/scaleway";
  *
- * const main = new scaleway.DocumentDBInstance("main", {
+ * const main = new scaleway.DocumentdbInstance("main", {
  *     engine: "FerretDB-1",
  *     nodeType: "docdb-play2-pico",
  *     password: "thiZ_is_v&ry_s3cret",
@@ -32,15 +32,17 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Database Instance can be imported using the `{region}/{id}`, e.g. bash
+ * Database Instance can be imported using the `{region}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/documentDBInstance:DocumentDBInstance db fr-par/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/documentdbInstance:DocumentdbInstance db fr-par/11111111-1111-1111-1111-111111111111
  * ```
  */
-export class DocumentDBInstance extends pulumi.CustomResource {
+export class DocumentdbInstance extends pulumi.CustomResource {
     /**
-     * Get an existing DocumentDBInstance resource's state with the given name, ID, and optional extra
+     * Get an existing DocumentdbInstance resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -48,22 +50,22 @@ export class DocumentDBInstance extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DocumentDBInstanceState, opts?: pulumi.CustomResourceOptions): DocumentDBInstance {
-        return new DocumentDBInstance(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DocumentdbInstanceState, opts?: pulumi.CustomResourceOptions): DocumentdbInstance {
+        return new DocumentdbInstance(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'scaleway:index/documentDBInstance:DocumentDBInstance';
+    public static readonly __pulumiType = 'scaleway:index/documentdbInstance:DocumentdbInstance';
 
     /**
-     * Returns true if the given object is an instance of DocumentDBInstance.  This is designed to work even
+     * Returns true if the given object is an instance of DocumentdbInstance.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is DocumentDBInstance {
+    public static isInstance(obj: any): obj is DocumentdbInstance {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === DocumentDBInstance.__pulumiType;
+        return obj['__pulumiType'] === DocumentdbInstance.__pulumiType;
     }
 
     /**
@@ -127,18 +129,18 @@ export class DocumentDBInstance extends pulumi.CustomResource {
     public readonly volumeType!: pulumi.Output<string | undefined>;
 
     /**
-     * Create a DocumentDBInstance resource with the given unique name, arguments, and options.
+     * Create a DocumentdbInstance resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: DocumentDBInstanceArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: DocumentDBInstanceArgs | DocumentDBInstanceState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: DocumentdbInstanceArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: DocumentdbInstanceArgs | DocumentdbInstanceState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as DocumentDBInstanceState | undefined;
+            const state = argsOrState as DocumentdbInstanceState | undefined;
             resourceInputs["engine"] = state ? state.engine : undefined;
             resourceInputs["isHaCluster"] = state ? state.isHaCluster : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -152,7 +154,7 @@ export class DocumentDBInstance extends pulumi.CustomResource {
             resourceInputs["volumeSizeInGb"] = state ? state.volumeSizeInGb : undefined;
             resourceInputs["volumeType"] = state ? state.volumeType : undefined;
         } else {
-            const args = argsOrState as DocumentDBInstanceArgs | undefined;
+            const args = argsOrState as DocumentdbInstanceArgs | undefined;
             if ((!args || args.engine === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'engine'");
             }
@@ -175,14 +177,14 @@ export class DocumentDBInstance extends pulumi.CustomResource {
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["password"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
-        super(DocumentDBInstance.__pulumiType, name, resourceInputs, opts);
+        super(DocumentdbInstance.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering DocumentDBInstance resources.
+ * Input properties used for looking up and filtering DocumentdbInstance resources.
  */
-export interface DocumentDBInstanceState {
+export interface DocumentdbInstanceState {
     /**
      * Database Instance's engine version (e.g. `FerretDB-1`).
      *
@@ -245,9 +247,9 @@ export interface DocumentDBInstanceState {
 }
 
 /**
- * The set of arguments for constructing a DocumentDBInstance resource.
+ * The set of arguments for constructing a DocumentdbInstance resource.
  */
-export interface DocumentDBInstanceArgs {
+export interface DocumentdbInstanceArgs {
     /**
      * Database Instance's engine version (e.g. `FerretDB-1`).
      *

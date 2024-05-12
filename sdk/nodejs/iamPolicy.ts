@@ -12,6 +12,7 @@ import * as utilities from "./utilities";
  * > You can find a detailed list of all permission sets available at Scaleway in the permission sets [reference page](https://www.scaleway.com/en/docs/identity-and-access-management/iam/reference-content/permission-sets/).
  *
  * ## Example Usage
+ *
  * ### Create a policy for an organization's project
  *
  * ```typescript
@@ -33,12 +34,31 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Create a policy for all current and future projects in an organization
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@ediri/scaleway";
+ *
+ * const app = new scaleway.IamApplication("app", {});
+ * const objectReadOnly = new scaleway.IamPolicy("objectReadOnly", {
+ *     description: "gives app readonly access to object storage in project",
+ *     applicationId: app.id,
+ *     rules: [{
+ *         organizationId: app.organizationId,
+ *         permissionSetNames: ["ObjectStorageReadOnly"],
+ *     }],
+ * });
+ * ```
+ *
  * ## Import
  *
- * Policies can be imported using the `{id}`, e.g. bash
+ * Policies can be imported using the `{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/iamPolicy:IamPolicy main 11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/iamPolicy:IamPolicy main 11111111-1111-1111-1111-111111111111
  * ```
  */
 export class IamPolicy extends pulumi.CustomResource {
@@ -100,7 +120,7 @@ export class IamPolicy extends pulumi.CustomResource {
      */
     public readonly noPrincipal!: pulumi.Output<boolean | undefined>;
     /**
-     * ID of organization scoped to the rule.
+     * `organizationId`) The ID of the organization the policy is associated with.
      */
     public readonly organizationId!: pulumi.Output<string>;
     /**
@@ -203,7 +223,7 @@ export interface IamPolicyState {
      */
     noPrincipal?: pulumi.Input<boolean>;
     /**
-     * ID of organization scoped to the rule.
+     * `organizationId`) The ID of the organization the policy is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**
@@ -251,7 +271,7 @@ export interface IamPolicyArgs {
      */
     noPrincipal?: pulumi.Input<boolean>;
     /**
-     * ID of organization scoped to the rule.
+     * `organizationId`) The ID of the organization the policy is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**

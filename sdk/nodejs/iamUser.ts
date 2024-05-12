@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway IAM Users.
  * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/iam/#path-users-list-users-of-an-organization).
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
@@ -21,10 +21,12 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * IAM users can be imported using the `{id}`, e.g. bash
+ * IAM users can be imported using the `{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/iamUser:IamUser basic 11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/iamUser:IamUser basic 11111111-1111-1111-1111-111111111111
  * ```
  */
 export class IamUser extends pulumi.CustomResource {

@@ -15,7 +15,7 @@ namespace ediri.Scaleway
     /// For more information,
     /// see [the documentation](https://developers.scaleway.com/en/products/instance/api/#snapshots-756fae).
     /// 
-    /// ## Example
+    /// ## Example Usage
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -33,7 +33,7 @@ namespace ediri.Scaleway
     /// });
     /// ```
     /// 
-    /// ## Example with Unified type
+    /// ### Example with Unified type snapshot
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -70,7 +70,7 @@ namespace ediri.Scaleway
     ///         Type = "unified",
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
     ///             mainInstanceServer,
     ///         },
@@ -79,7 +79,7 @@ namespace ediri.Scaleway
     /// });
     /// ```
     /// 
-    /// ## Import a local qcow2 file
+    /// ### Example importing a local qcow2 file
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -113,10 +113,12 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Snapshots can be imported using the `{zone}/{id}`, e.g. bash
+    /// Snapshots can be imported using the `{zone}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/instanceSnapshot:InstanceSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/instanceSnapshot:InstanceSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/instanceSnapshot:InstanceSnapshot")]

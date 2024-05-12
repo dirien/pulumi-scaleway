@@ -22,7 +22,7 @@ import (
 //
 // About cloud-init documentation please check this [link](https://cloudinit.readthedocs.io/en/latest/).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
@@ -54,6 +54,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// User data with a single value
 //			_, err = scaleway.NewInstanceUserData(ctx, "mainInstanceUserData", &scaleway.InstanceUserDataArgs{
 //				ServerId: mainInstanceServer.ID(),
 //				Key:      pulumi.String("foo"),
@@ -62,6 +63,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// User Data with many keys.
 //			var data []*scaleway.InstanceUserData
 //			for index := 0; index < userData; index++ {
 //				key0 := index
@@ -84,12 +86,12 @@ import (
 //
 // ## Import
 //
-// User data can be imported using the `{zone}/{key}/{server_id}`, e.g. bash
+// User data can be imported using the `{zone}/{key}/{server_id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/instanceUserData:InstanceUserData main fr-par-1/cloud-init/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/instanceUserData:InstanceUserData main fr-par-1/cloud-init/11111111-1111-1111-1111-111111111111
 // ```
 type InstanceUserData struct {
 	pulumi.CustomResourceState

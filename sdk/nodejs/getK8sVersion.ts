@@ -11,6 +11,7 @@ import * as utilities from "./utilities";
  * You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
  *
  * ## Example Usage
+ *
  * ### Use the latest version
  *
  * ```typescript
@@ -21,6 +22,7 @@ import * as utilities from "./utilities";
  *     name: "latest",
  * });
  * ```
+ *
  * ### Use a specific version
  *
  * ```typescript
@@ -85,6 +87,7 @@ export interface GetK8sVersionResult {
  * You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
  *
  * ## Example Usage
+ *
  * ### Use the latest version
  *
  * ```typescript
@@ -95,6 +98,7 @@ export interface GetK8sVersionResult {
  *     name: "latest",
  * });
  * ```
+ *
  * ### Use a specific version
  *
  * ```typescript

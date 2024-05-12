@@ -14,7 +14,7 @@ import (
 // Creates and manages Scaleway flexible IPs.
 // For more information, see [the documentation](https://developers.scaleway.com/en/products/flexible-ip/api).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
@@ -131,8 +131,8 @@ import (
 //			}
 //			base, err := scaleway.NewBaremetalServer(ctx, "base", &scaleway.BaremetalServerArgs{
 //				Zone:      pulumi.String("fr-par-2"),
-//				Offer:     *pulumi.String(myOffer.OfferId),
-//				Os:        *pulumi.String(byId.OsId),
+//				Offer:     pulumi.String(myOffer.OfferId),
+//				Os:        pulumi.String(byId.OsId),
 //				SshKeyIds: mainAccountSshKey.ID(),
 //			})
 //			if err != nil {
@@ -153,12 +153,12 @@ import (
 //
 // ## Import
 //
-// Flexible IPs can be imported using the `{zone}/{id}`, e.g. bash
+// Flexible IPs can be imported using the `{zone}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/flexibleIp:FlexibleIp main fr-par-1/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/flexibleIp:FlexibleIp main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
 type FlexibleIp struct {
 	pulumi.CustomResourceState

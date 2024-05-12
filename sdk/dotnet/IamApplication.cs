@@ -33,10 +33,12 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Applications can be imported using the `{id}`, e.g. bash
+    /// Applications can be imported using the `{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/iamApplication:IamApplication main 11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/iamApplication:IamApplication main 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/iamApplication:IamApplication")]

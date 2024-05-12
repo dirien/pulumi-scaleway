@@ -14,7 +14,7 @@ namespace ediri.Scaleway
     /// Creates and manages Scaleway RDB database backup.
     /// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
     /// 
-    /// ## Examples
+    /// ## Example Usage
     /// 
     /// ### Basic
     /// 
@@ -57,10 +57,12 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// RDB Database can be imported using the `{region}/{id}`, e.g. bash
+    /// RDB Database can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/rdbDatabaseBackup:RdbDatabaseBackup mybackup fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/rdbDatabaseBackup:RdbDatabaseBackup mybackup fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/rdbDatabaseBackup:RdbDatabaseBackup")]

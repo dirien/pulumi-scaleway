@@ -127,6 +127,7 @@ class AwaitableGetLbIpResult(GetLbIpResult):
 
 def get_lb_ip(ip_address: Optional[str] = None,
               ip_id: Optional[str] = None,
+              project_id: Optional[str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLbIpResult:
     """
     Gets information about a Load Balancer IP.
@@ -145,10 +146,12 @@ def get_lb_ip(ip_address: Optional[str] = None,
            Only one of `ip_address` and `ip_id` should be specified.
     :param str ip_id: The IP ID.
            Only one of `ip_address` and `ip_id` should be specified.
+    :param str project_id: The ID of the project the LB IP associated with.
     """
     __args__ = dict()
     __args__['ipAddress'] = ip_address
     __args__['ipId'] = ip_id
+    __args__['projectId'] = project_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getLbIp:getLbIp', __args__, opts=opts, typ=GetLbIpResult).value
 
@@ -167,6 +170,7 @@ def get_lb_ip(ip_address: Optional[str] = None,
 @_utilities.lift_output_func(get_lb_ip)
 def get_lb_ip_output(ip_address: Optional[pulumi.Input[Optional[str]]] = None,
                      ip_id: Optional[pulumi.Input[Optional[str]]] = None,
+                     project_id: Optional[pulumi.Input[Optional[str]]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLbIpResult]:
     """
     Gets information about a Load Balancer IP.
@@ -185,5 +189,6 @@ def get_lb_ip_output(ip_address: Optional[pulumi.Input[Optional[str]]] = None,
            Only one of `ip_address` and `ip_id` should be specified.
     :param str ip_id: The IP ID.
            Only one of `ip_address` and `ip_id` should be specified.
+    :param str project_id: The ID of the project the LB IP associated with.
     """
     ...

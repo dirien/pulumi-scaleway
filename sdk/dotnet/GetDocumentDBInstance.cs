@@ -10,14 +10,12 @@ using Pulumi;
 
 namespace ediri.Scaleway
 {
-    public static class GetDocumentDBInstance
+    public static class GetDocumentdbInstance
     {
         /// <summary>
         /// Gets information about an DocumentDB instance. For further information see our [developers website](https://www.scaleway.com/en/developers/api/document_db/)
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -27,25 +25,21 @@ namespace ediri.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var db = Scaleway.GetDocumentDBInstance.Invoke(new()
+        ///     var db = Scaleway.GetDocumentdbInstance.Invoke(new()
         ///     {
         ///         InstanceId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
-        public static Task<GetDocumentDBInstanceResult> InvokeAsync(GetDocumentDBInstanceArgs? args = null, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<GetDocumentDBInstanceResult>("scaleway:index/getDocumentDBInstance:getDocumentDBInstance", args ?? new GetDocumentDBInstanceArgs(), options.WithDefaults());
+        public static Task<GetDocumentdbInstanceResult> InvokeAsync(GetDocumentdbInstanceArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetDocumentdbInstanceResult>("scaleway:index/getDocumentdbInstance:getDocumentdbInstance", args ?? new GetDocumentdbInstanceArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about an DocumentDB instance. For further information see our [developers website](https://www.scaleway.com/en/developers/api/document_db/)
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -55,22 +49,20 @@ namespace ediri.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var db = Scaleway.GetDocumentDBInstance.Invoke(new()
+        ///     var db = Scaleway.GetDocumentdbInstance.Invoke(new()
         ///     {
         ///         InstanceId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
-        public static Output<GetDocumentDBInstanceResult> Invoke(GetDocumentDBInstanceInvokeArgs? args = null, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetDocumentDBInstanceResult>("scaleway:index/getDocumentDBInstance:getDocumentDBInstance", args ?? new GetDocumentDBInstanceInvokeArgs(), options.WithDefaults());
+        public static Output<GetDocumentdbInstanceResult> Invoke(GetDocumentdbInstanceInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDocumentdbInstanceResult>("scaleway:index/getDocumentdbInstance:getDocumentdbInstance", args ?? new GetDocumentdbInstanceInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetDocumentDBInstanceArgs : global::Pulumi.InvokeArgs
+    public sealed class GetDocumentdbInstanceArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The DocumentDB instance ID.
@@ -87,18 +79,24 @@ namespace ediri.Scaleway
         public string? Name { get; set; }
 
         /// <summary>
+        /// The ID of the project the DocumentDB instance is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// `region`) The region in which the DocumentDB instance exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
-        public GetDocumentDBInstanceArgs()
+        public GetDocumentdbInstanceArgs()
         {
         }
-        public static new GetDocumentDBInstanceArgs Empty => new GetDocumentDBInstanceArgs();
+        public static new GetDocumentdbInstanceArgs Empty => new GetDocumentdbInstanceArgs();
     }
 
-    public sealed class GetDocumentDBInstanceInvokeArgs : global::Pulumi.InvokeArgs
+    public sealed class GetDocumentdbInstanceInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The DocumentDB instance ID.
@@ -115,20 +113,26 @@ namespace ediri.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The ID of the project the DocumentDB instance is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
         /// `region`) The region in which the DocumentDB instance exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
-        public GetDocumentDBInstanceInvokeArgs()
+        public GetDocumentdbInstanceInvokeArgs()
         {
         }
-        public static new GetDocumentDBInstanceInvokeArgs Empty => new GetDocumentDBInstanceInvokeArgs();
+        public static new GetDocumentdbInstanceInvokeArgs Empty => new GetDocumentdbInstanceInvokeArgs();
     }
 
 
     [OutputType]
-    public sealed class GetDocumentDBInstanceResult
+    public sealed class GetDocumentdbInstanceResult
     {
         public readonly string Engine;
         /// <summary>
@@ -140,7 +144,7 @@ namespace ediri.Scaleway
         public readonly string? Name;
         public readonly string NodeType;
         public readonly string Password;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly string? Region;
         public readonly ImmutableArray<string> Tags;
         public readonly bool TelemetryEnabled;
@@ -149,7 +153,7 @@ namespace ediri.Scaleway
         public readonly string VolumeType;
 
         [OutputConstructor]
-        private GetDocumentDBInstanceResult(
+        private GetDocumentdbInstanceResult(
             string engine,
 
             string id,
@@ -164,7 +168,7 @@ namespace ediri.Scaleway
 
             string password,
 
-            string projectId,
+            string? projectId,
 
             string? region,
 

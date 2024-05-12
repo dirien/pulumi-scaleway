@@ -25,6 +25,9 @@ namespace ediri.Scaleway
         [Input("name")]
         public string? Name { get; set; }
 
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
         [Input("snapshotId")]
         public string? SnapshotId { get; set; }
 
@@ -44,6 +47,9 @@ namespace ediri.Scaleway
     {
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         [Input("snapshotId")]
         public Input<string>? SnapshotId { get; set; }
@@ -69,7 +75,7 @@ namespace ediri.Scaleway
         /// </summary>
         public readonly string Id;
         public readonly string? Name;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly string? SnapshotId;
         public readonly ImmutableArray<string> Tags;
         public readonly string? VolumeId;
@@ -81,7 +87,7 @@ namespace ediri.Scaleway
 
             string? name,
 
-            string projectId,
+            string? projectId,
 
             string? snapshotId,
 

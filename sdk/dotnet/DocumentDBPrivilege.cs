@@ -24,7 +24,7 @@ namespace ediri.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.DocumentDBPrivilege("main", new()
+    ///     var main = new Scaleway.DocumentdbPrivilege("main", new()
     ///     {
     ///         DatabaseName = "my-db-name",
     ///         InstanceId = "11111111-1111-1111-1111-111111111111",
@@ -37,14 +37,16 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g. bash
+    /// The user privileges can be imported using the `{region}/{instance_id}/{database_name}/{user_name}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/documentDBPrivilege:DocumentDBPrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
+    /// $ pulumi import scaleway:index/documentdbPrivilege:DocumentdbPrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
     /// ```
     /// </summary>
-    [ScalewayResourceType("scaleway:index/documentDBPrivilege:DocumentDBPrivilege")]
-    public partial class DocumentDBPrivilege : global::Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:index/documentdbPrivilege:DocumentdbPrivilege")]
+    public partial class DocumentdbPrivilege : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Name of the database (e.g. `my-db-name`).
@@ -78,19 +80,19 @@ namespace ediri.Scaleway
 
 
         /// <summary>
-        /// Create a DocumentDBPrivilege resource with the given unique name, arguments, and options.
+        /// Create a DocumentdbPrivilege resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public DocumentDBPrivilege(string name, DocumentDBPrivilegeArgs args, CustomResourceOptions? options = null)
-            : base("scaleway:index/documentDBPrivilege:DocumentDBPrivilege", name, args ?? new DocumentDBPrivilegeArgs(), MakeResourceOptions(options, ""))
+        public DocumentdbPrivilege(string name, DocumentdbPrivilegeArgs args, CustomResourceOptions? options = null)
+            : base("scaleway:index/documentdbPrivilege:DocumentdbPrivilege", name, args ?? new DocumentdbPrivilegeArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private DocumentDBPrivilege(string name, Input<string> id, DocumentDBPrivilegeState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/documentDBPrivilege:DocumentDBPrivilege", name, state, MakeResourceOptions(options, id))
+        private DocumentdbPrivilege(string name, Input<string> id, DocumentdbPrivilegeState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/documentdbPrivilege:DocumentdbPrivilege", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -107,7 +109,7 @@ namespace ediri.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing DocumentDBPrivilege resource's state with the given name, ID, and optional extra
+        /// Get an existing DocumentdbPrivilege resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -115,13 +117,13 @@ namespace ediri.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static DocumentDBPrivilege Get(string name, Input<string> id, DocumentDBPrivilegeState? state = null, CustomResourceOptions? options = null)
+        public static DocumentdbPrivilege Get(string name, Input<string> id, DocumentdbPrivilegeState? state = null, CustomResourceOptions? options = null)
         {
-            return new DocumentDBPrivilege(name, id, state, options);
+            return new DocumentdbPrivilege(name, id, state, options);
         }
     }
 
-    public sealed class DocumentDBPrivilegeArgs : global::Pulumi.ResourceArgs
+    public sealed class DocumentdbPrivilegeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the database (e.g. `my-db-name`).
@@ -153,13 +155,13 @@ namespace ediri.Scaleway
         [Input("userName", required: true)]
         public Input<string> UserName { get; set; } = null!;
 
-        public DocumentDBPrivilegeArgs()
+        public DocumentdbPrivilegeArgs()
         {
         }
-        public static new DocumentDBPrivilegeArgs Empty => new DocumentDBPrivilegeArgs();
+        public static new DocumentdbPrivilegeArgs Empty => new DocumentdbPrivilegeArgs();
     }
 
-    public sealed class DocumentDBPrivilegeState : global::Pulumi.ResourceArgs
+    public sealed class DocumentdbPrivilegeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name of the database (e.g. `my-db-name`).
@@ -191,9 +193,9 @@ namespace ediri.Scaleway
         [Input("userName")]
         public Input<string>? UserName { get; set; }
 
-        public DocumentDBPrivilegeState()
+        public DocumentdbPrivilegeState()
         {
         }
-        public static new DocumentDBPrivilegeState Empty => new DocumentDBPrivilegeState();
+        public static new DocumentdbPrivilegeState Empty => new DocumentdbPrivilegeState();
     }
 }

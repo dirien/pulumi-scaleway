@@ -15,7 +15,7 @@ import (
 // Creates and manages Scaleway Database Instances.
 // For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Example Basic
 //
@@ -117,6 +117,39 @@ import (
 //
 // ```
 //
+// ### Examples of endpoints configuration
+//
+// RDB Instances can have a maximum of 1 public endpoint and 1 private endpoint. It can have both, or none.
+//
+// ### Default: 1 public endpoint
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewRdbInstance(ctx, "main", &scaleway.RdbInstanceArgs{
+//				Engine:   pulumi.String("PostgreSQL-11"),
+//				NodeType: pulumi.String("db-dev-s"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// > If nothing is defined, your instance will have a default public load-balancer endpoint
+//
 // ## Limitations
 //
 // The Managed Database product is only compliant with the private network in the default availability zone (AZ).
@@ -125,29 +158,29 @@ import (
 //
 // ## Import
 //
-// Database Instance can be imported using the `{region}/{id}`, e.g. bash
+// Database Instance can be imported using the `{region}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/rdbInstance:RdbInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/rdbInstance:RdbInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
 // ```
 type RdbInstance struct {
 	pulumi.CustomResourceState
 
-	// Boolean to store logical backups in the same region as the database instance.
+	// Boolean to store logical backups in the same region as the database instance
 	BackupSameRegion pulumi.BoolOutput `pulumi:"backupSameRegion"`
-	// Backup schedule frequency in hours.
+	// Backup schedule frequency in hours
 	BackupScheduleFrequency pulumi.IntOutput `pulumi:"backupScheduleFrequency"`
-	// Backup schedule retention in days.
+	// Backup schedule retention in days
 	BackupScheduleRetention pulumi.IntOutput `pulumi:"backupScheduleRetention"`
 	// Certificate of the database instance.
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
-	// Disable automated backup for the database instance.
+	// Disable automated backup for the database instance
 	DisableBackup pulumi.BoolPtrOutput `pulumi:"disableBackup"`
 	// (Deprecated) The IP of the Database Instance.
 	//
-	// Deprecated: Please use the private_network or the load_balancer attribute
+	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 	EndpointIp pulumi.StringOutput `pulumi:"endpointIp"`
 	// (Deprecated) The port of the Database Instance.
 	EndpointPort pulumi.IntOutput `pulumi:"endpointPort"`
@@ -156,17 +189,12 @@ type RdbInstance struct {
 	// > **Important:** Updates to `engine` will recreate the Database Instance.
 	Engine pulumi.StringOutput `pulumi:"engine"`
 	// Map of engine settings to be set at database initialisation.
-	//
-	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
-	//
-	// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
 	InitSettings pulumi.StringMapOutput `pulumi:"initSettings"`
 	// Enable or disable high availability for the database instance.
 	//
 	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster pulumi.BoolPtrOutput `pulumi:"isHaCluster"`
-	// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
-	// This block must be defined if you want a public endpoint in addition to your private endpoint.
+	// List of load balancer endpoints of the database instance.
 	LoadBalancers RdbInstanceLoadBalancerArrayOutput `pulumi:"loadBalancers"`
 	// The name of the Database Instance.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -192,7 +220,7 @@ type RdbInstance struct {
 	// `region`) The region
 	// in which the Database Instance should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Map of engine settings to be set. Using this option will override default config.
+	// Map of engine settings to be set on a running instance.
 	Settings pulumi.StringMapOutput `pulumi:"settings"`
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
@@ -251,19 +279,19 @@ func GetRdbInstance(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RdbInstance resources.
 type rdbInstanceState struct {
-	// Boolean to store logical backups in the same region as the database instance.
+	// Boolean to store logical backups in the same region as the database instance
 	BackupSameRegion *bool `pulumi:"backupSameRegion"`
-	// Backup schedule frequency in hours.
+	// Backup schedule frequency in hours
 	BackupScheduleFrequency *int `pulumi:"backupScheduleFrequency"`
-	// Backup schedule retention in days.
+	// Backup schedule retention in days
 	BackupScheduleRetention *int `pulumi:"backupScheduleRetention"`
 	// Certificate of the database instance.
 	Certificate *string `pulumi:"certificate"`
-	// Disable automated backup for the database instance.
+	// Disable automated backup for the database instance
 	DisableBackup *bool `pulumi:"disableBackup"`
 	// (Deprecated) The IP of the Database Instance.
 	//
-	// Deprecated: Please use the private_network or the load_balancer attribute
+	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 	EndpointIp *string `pulumi:"endpointIp"`
 	// (Deprecated) The port of the Database Instance.
 	EndpointPort *int `pulumi:"endpointPort"`
@@ -272,17 +300,12 @@ type rdbInstanceState struct {
 	// > **Important:** Updates to `engine` will recreate the Database Instance.
 	Engine *string `pulumi:"engine"`
 	// Map of engine settings to be set at database initialisation.
-	//
-	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
-	//
-	// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
 	InitSettings map[string]string `pulumi:"initSettings"`
 	// Enable or disable high availability for the database instance.
 	//
 	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster *bool `pulumi:"isHaCluster"`
-	// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
-	// This block must be defined if you want a public endpoint in addition to your private endpoint.
+	// List of load balancer endpoints of the database instance.
 	LoadBalancers []RdbInstanceLoadBalancer `pulumi:"loadBalancers"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
@@ -308,7 +331,7 @@ type rdbInstanceState struct {
 	// `region`) The region
 	// in which the Database Instance should be created.
 	Region *string `pulumi:"region"`
-	// Map of engine settings to be set. Using this option will override default config.
+	// Map of engine settings to be set on a running instance.
 	Settings map[string]string `pulumi:"settings"`
 	// The tags associated with the Database Instance.
 	Tags []string `pulumi:"tags"`
@@ -325,19 +348,19 @@ type rdbInstanceState struct {
 }
 
 type RdbInstanceState struct {
-	// Boolean to store logical backups in the same region as the database instance.
+	// Boolean to store logical backups in the same region as the database instance
 	BackupSameRegion pulumi.BoolPtrInput
-	// Backup schedule frequency in hours.
+	// Backup schedule frequency in hours
 	BackupScheduleFrequency pulumi.IntPtrInput
-	// Backup schedule retention in days.
+	// Backup schedule retention in days
 	BackupScheduleRetention pulumi.IntPtrInput
 	// Certificate of the database instance.
 	Certificate pulumi.StringPtrInput
-	// Disable automated backup for the database instance.
+	// Disable automated backup for the database instance
 	DisableBackup pulumi.BoolPtrInput
 	// (Deprecated) The IP of the Database Instance.
 	//
-	// Deprecated: Please use the private_network or the load_balancer attribute
+	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 	EndpointIp pulumi.StringPtrInput
 	// (Deprecated) The port of the Database Instance.
 	EndpointPort pulumi.IntPtrInput
@@ -346,17 +369,12 @@ type RdbInstanceState struct {
 	// > **Important:** Updates to `engine` will recreate the Database Instance.
 	Engine pulumi.StringPtrInput
 	// Map of engine settings to be set at database initialisation.
-	//
-	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
-	//
-	// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
 	InitSettings pulumi.StringMapInput
 	// Enable or disable high availability for the database instance.
 	//
 	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster pulumi.BoolPtrInput
-	// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
-	// This block must be defined if you want a public endpoint in addition to your private endpoint.
+	// List of load balancer endpoints of the database instance.
 	LoadBalancers RdbInstanceLoadBalancerArrayInput
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput
@@ -382,7 +400,7 @@ type RdbInstanceState struct {
 	// `region`) The region
 	// in which the Database Instance should be created.
 	Region pulumi.StringPtrInput
-	// Map of engine settings to be set. Using this option will override default config.
+	// Map of engine settings to be set on a running instance.
 	Settings pulumi.StringMapInput
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayInput
@@ -403,30 +421,25 @@ func (RdbInstanceState) ElementType() reflect.Type {
 }
 
 type rdbInstanceArgs struct {
-	// Boolean to store logical backups in the same region as the database instance.
+	// Boolean to store logical backups in the same region as the database instance
 	BackupSameRegion *bool `pulumi:"backupSameRegion"`
-	// Backup schedule frequency in hours.
+	// Backup schedule frequency in hours
 	BackupScheduleFrequency *int `pulumi:"backupScheduleFrequency"`
-	// Backup schedule retention in days.
+	// Backup schedule retention in days
 	BackupScheduleRetention *int `pulumi:"backupScheduleRetention"`
-	// Disable automated backup for the database instance.
+	// Disable automated backup for the database instance
 	DisableBackup *bool `pulumi:"disableBackup"`
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	//
 	// > **Important:** Updates to `engine` will recreate the Database Instance.
 	Engine string `pulumi:"engine"`
 	// Map of engine settings to be set at database initialisation.
-	//
-	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
-	//
-	// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
 	InitSettings map[string]string `pulumi:"initSettings"`
 	// Enable or disable high availability for the database instance.
 	//
 	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster *bool `pulumi:"isHaCluster"`
-	// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
-	// This block must be defined if you want a public endpoint in addition to your private endpoint.
+	// List of load balancer endpoints of the database instance.
 	LoadBalancers []RdbInstanceLoadBalancer `pulumi:"loadBalancers"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
@@ -448,7 +461,7 @@ type rdbInstanceArgs struct {
 	// `region`) The region
 	// in which the Database Instance should be created.
 	Region *string `pulumi:"region"`
-	// Map of engine settings to be set. Using this option will override default config.
+	// Map of engine settings to be set on a running instance.
 	Settings map[string]string `pulumi:"settings"`
 	// The tags associated with the Database Instance.
 	Tags []string `pulumi:"tags"`
@@ -466,30 +479,25 @@ type rdbInstanceArgs struct {
 
 // The set of arguments for constructing a RdbInstance resource.
 type RdbInstanceArgs struct {
-	// Boolean to store logical backups in the same region as the database instance.
+	// Boolean to store logical backups in the same region as the database instance
 	BackupSameRegion pulumi.BoolPtrInput
-	// Backup schedule frequency in hours.
+	// Backup schedule frequency in hours
 	BackupScheduleFrequency pulumi.IntPtrInput
-	// Backup schedule retention in days.
+	// Backup schedule retention in days
 	BackupScheduleRetention pulumi.IntPtrInput
-	// Disable automated backup for the database instance.
+	// Disable automated backup for the database instance
 	DisableBackup pulumi.BoolPtrInput
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	//
 	// > **Important:** Updates to `engine` will recreate the Database Instance.
 	Engine pulumi.StringInput
 	// Map of engine settings to be set at database initialisation.
-	//
-	// > **Important:** Updates to `initSettings` will recreate the Database Instance.
-	//
-	// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
 	InitSettings pulumi.StringMapInput
 	// Enable or disable high availability for the database instance.
 	//
 	// > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster pulumi.BoolPtrInput
-	// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
-	// This block must be defined if you want a public endpoint in addition to your private endpoint.
+	// List of load balancer endpoints of the database instance.
 	LoadBalancers RdbInstanceLoadBalancerArrayInput
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput
@@ -511,7 +519,7 @@ type RdbInstanceArgs struct {
 	// `region`) The region
 	// in which the Database Instance should be created.
 	Region pulumi.StringPtrInput
-	// Map of engine settings to be set. Using this option will override default config.
+	// Map of engine settings to be set on a running instance.
 	Settings pulumi.StringMapInput
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayInput
@@ -614,17 +622,17 @@ func (o RdbInstanceOutput) ToRdbInstanceOutputWithContext(ctx context.Context) R
 	return o
 }
 
-// Boolean to store logical backups in the same region as the database instance.
+// Boolean to store logical backups in the same region as the database instance
 func (o RdbInstanceOutput) BackupSameRegion() pulumi.BoolOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.BoolOutput { return v.BackupSameRegion }).(pulumi.BoolOutput)
 }
 
-// Backup schedule frequency in hours.
+// Backup schedule frequency in hours
 func (o RdbInstanceOutput) BackupScheduleFrequency() pulumi.IntOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.IntOutput { return v.BackupScheduleFrequency }).(pulumi.IntOutput)
 }
 
-// Backup schedule retention in days.
+// Backup schedule retention in days
 func (o RdbInstanceOutput) BackupScheduleRetention() pulumi.IntOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.IntOutput { return v.BackupScheduleRetention }).(pulumi.IntOutput)
 }
@@ -634,14 +642,14 @@ func (o RdbInstanceOutput) Certificate() pulumi.StringOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
 }
 
-// Disable automated backup for the database instance.
+// Disable automated backup for the database instance
 func (o RdbInstanceOutput) DisableBackup() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.BoolPtrOutput { return v.DisableBackup }).(pulumi.BoolPtrOutput)
 }
 
 // (Deprecated) The IP of the Database Instance.
 //
-// Deprecated: Please use the private_network or the load_balancer attribute
+// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 func (o RdbInstanceOutput) EndpointIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.StringOutput { return v.EndpointIp }).(pulumi.StringOutput)
 }
@@ -659,10 +667,6 @@ func (o RdbInstanceOutput) Engine() pulumi.StringOutput {
 }
 
 // Map of engine settings to be set at database initialisation.
-//
-// > **Important:** Updates to `initSettings` will recreate the Database Instance.
-//
-// Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `initSettings` for the `nodeType` of your convenience.
 func (o RdbInstanceOutput) InitSettings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.StringMapOutput { return v.InitSettings }).(pulumi.StringMapOutput)
 }
@@ -674,8 +678,7 @@ func (o RdbInstanceOutput) IsHaCluster() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.BoolPtrOutput { return v.IsHaCluster }).(pulumi.BoolPtrOutput)
 }
 
-// List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
-// This block must be defined if you want a public endpoint in addition to your private endpoint.
+// List of load balancer endpoints of the database instance.
 func (o RdbInstanceOutput) LoadBalancers() RdbInstanceLoadBalancerArrayOutput {
 	return o.ApplyT(func(v *RdbInstance) RdbInstanceLoadBalancerArrayOutput { return v.LoadBalancers }).(RdbInstanceLoadBalancerArrayOutput)
 }
@@ -728,7 +731,7 @@ func (o RdbInstanceOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// Map of engine settings to be set. Using this option will override default config.
+// Map of engine settings to be set on a running instance.
 func (o RdbInstanceOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.StringMapOutput { return v.Settings }).(pulumi.StringMapOutput)
 }

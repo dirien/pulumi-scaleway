@@ -124,7 +124,7 @@ class MnqSns(pulumi.CustomResource):
         For further information please check
         our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -151,10 +151,12 @@ class MnqSns(pulumi.CustomResource):
 
         ## Import
 
-        SNS status can be imported using the `{region}/{project_id}`, e.g. bash
+        SNS status can be imported using the `{region}/{project_id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/mnqSns:MnqSns main fr-par/11111111111111111111111111111111
+        $ pulumi import scaleway:index/mnqSns:MnqSns main fr-par/11111111111111111111111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -174,7 +176,7 @@ class MnqSns(pulumi.CustomResource):
         For further information please check
         our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sns-overview/)
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -201,10 +203,12 @@ class MnqSns(pulumi.CustomResource):
 
         ## Import
 
-        SNS status can be imported using the `{region}/{project_id}`, e.g. bash
+        SNS status can be imported using the `{region}/{project_id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/mnqSns:MnqSns main fr-par/11111111111111111111111111111111
+        $ pulumi import scaleway:index/mnqSns:MnqSns main fr-par/11111111111111111111111111111111
         ```
 
         :param str resource_name: The name of the resource.

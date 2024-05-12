@@ -11,10 +11,10 @@ from . import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['WebHostingArgs', 'WebHosting']
+__all__ = ['WebhostingArgs', 'Webhosting']
 
 @pulumi.input_type
-class WebHostingArgs:
+class WebhostingArgs:
     def __init__(__self__, *,
                  domain: pulumi.Input[str],
                  email: pulumi.Input[str],
@@ -24,7 +24,7 @@ class WebHostingArgs:
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        The set of arguments for constructing a WebHosting resource.
+        The set of arguments for constructing a Webhosting resource.
         :param pulumi.Input[str] domain: The domain name of the hosting.
         :param pulumi.Input[str] email: The contact email of the client for the hosting.
         :param pulumi.Input[str] offer_id: The ID of the selected offer for the hosting.
@@ -131,9 +131,9 @@ class WebHostingArgs:
 
 
 @pulumi.input_type
-class _WebHostingState:
+class _WebhostingState:
     def __init__(__self__, *,
-                 cpanel_urls: Optional[pulumi.Input[Sequence[pulumi.Input['WebHostingCpanelUrlArgs']]]] = None,
+                 cpanel_urls: Optional[pulumi.Input[Sequence[pulumi.Input['WebhostingCpanelUrlArgs']]]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  dns_status: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
@@ -141,7 +141,7 @@ class _WebHostingState:
                  offer_id: Optional[pulumi.Input[str]] = None,
                  offer_name: Optional[pulumi.Input[str]] = None,
                  option_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 options: Optional[pulumi.Input[Sequence[pulumi.Input['WebHostingOptionArgs']]]] = None,
+                 options: Optional[pulumi.Input[Sequence[pulumi.Input['WebhostingOptionArgs']]]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  platform_hostname: Optional[pulumi.Input[str]] = None,
                  platform_number: Optional[pulumi.Input[int]] = None,
@@ -152,8 +152,8 @@ class _WebHostingState:
                  updated_at: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None):
         """
-        Input properties used for looking up and filtering WebHosting resources.
-        :param pulumi.Input[Sequence[pulumi.Input['WebHostingCpanelUrlArgs']]] cpanel_urls: The URL to connect to cPanel Dashboard and to Webmail interface.
+        Input properties used for looking up and filtering Webhosting resources.
+        :param pulumi.Input[Sequence[pulumi.Input['WebhostingCpanelUrlArgs']]] cpanel_urls: The URL to connect to cPanel Dashboard and to Webmail interface.
         :param pulumi.Input[str] created_at: Date and time of hosting's creation (RFC 3339 format).
         :param pulumi.Input[str] dns_status: The DNS status of the hosting.
         :param pulumi.Input[str] domain: The domain name of the hosting.
@@ -161,7 +161,7 @@ class _WebHostingState:
         :param pulumi.Input[str] offer_id: The ID of the selected offer for the hosting.
         :param pulumi.Input[str] offer_name: The name of the active offer.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] option_ids: The IDs of the selected options for the hosting.
-        :param pulumi.Input[Sequence[pulumi.Input['WebHostingOptionArgs']]] options: The active options of the hosting.
+        :param pulumi.Input[Sequence[pulumi.Input['WebhostingOptionArgs']]] options: The active options of the hosting.
         :param pulumi.Input[str] organization_id: The organization ID the hosting is associated with.
         :param pulumi.Input[str] platform_hostname: The hostname of the host platform.
         :param pulumi.Input[int] platform_number: The number of the host platform.
@@ -211,14 +211,14 @@ class _WebHostingState:
 
     @property
     @pulumi.getter(name="cpanelUrls")
-    def cpanel_urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WebHostingCpanelUrlArgs']]]]:
+    def cpanel_urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WebhostingCpanelUrlArgs']]]]:
         """
         The URL to connect to cPanel Dashboard and to Webmail interface.
         """
         return pulumi.get(self, "cpanel_urls")
 
     @cpanel_urls.setter
-    def cpanel_urls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WebHostingCpanelUrlArgs']]]]):
+    def cpanel_urls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WebhostingCpanelUrlArgs']]]]):
         pulumi.set(self, "cpanel_urls", value)
 
     @property
@@ -307,14 +307,14 @@ class _WebHostingState:
 
     @property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WebHostingOptionArgs']]]]:
+    def options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WebhostingOptionArgs']]]]:
         """
         The active options of the hosting.
         """
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WebHostingOptionArgs']]]]):
+    def options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WebhostingOptionArgs']]]]):
         pulumi.set(self, "options", value)
 
     @property
@@ -426,7 +426,7 @@ class _WebHostingState:
         pulumi.set(self, "username", value)
 
 
-class WebHosting(pulumi.CustomResource):
+class Webhosting(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -443,15 +443,15 @@ class WebHosting(pulumi.CustomResource):
         Creates and manages Scaleway Web Hostings.
         For more information, see [the documentation](https://www.scaleway.com/en/developers/api/webhosting/).
 
-        ## Example
+        ## Example Usage
 
         ```python
         import pulumi
         import ediri_scaleway as scaleway
         import pulumi_scaleway as scaleway
 
-        by_name = scaleway.get_web_host_offer(name="lite")
-        main = scaleway.WebHosting("main",
+        by_name = scaleway.get_webhosting_offer(name="lite")
+        main = scaleway.Webhosting("main",
             offer_id=by_name.offer_id,
             email="your@email.com",
             domain="yourdomain.com",
@@ -464,10 +464,12 @@ class WebHosting(pulumi.CustomResource):
 
         ## Import
 
-        Hostings can be imported using the `{region}/{id}`, e.g. bash
+        Hostings can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/webHosting:WebHosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/webhosting:Webhosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -484,21 +486,21 @@ class WebHosting(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: WebHostingArgs,
+                 args: WebhostingArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Web Hostings.
         For more information, see [the documentation](https://www.scaleway.com/en/developers/api/webhosting/).
 
-        ## Example
+        ## Example Usage
 
         ```python
         import pulumi
         import ediri_scaleway as scaleway
         import pulumi_scaleway as scaleway
 
-        by_name = scaleway.get_web_host_offer(name="lite")
-        main = scaleway.WebHosting("main",
+        by_name = scaleway.get_webhosting_offer(name="lite")
+        main = scaleway.Webhosting("main",
             offer_id=by_name.offer_id,
             email="your@email.com",
             domain="yourdomain.com",
@@ -511,19 +513,21 @@ class WebHosting(pulumi.CustomResource):
 
         ## Import
 
-        Hostings can be imported using the `{region}/{id}`, e.g. bash
+        Hostings can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/webHosting:WebHosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/webhosting:Webhosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
-        :param WebHostingArgs args: The arguments to use to populate this resource's properties.
+        :param WebhostingArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(WebHostingArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(WebhostingArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -546,7 +550,7 @@ class WebHosting(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = WebHostingArgs.__new__(WebHostingArgs)
+            __props__ = WebhostingArgs.__new__(WebhostingArgs)
 
             if domain is None and not opts.urn:
                 raise TypeError("Missing required property 'domain'")
@@ -572,8 +576,8 @@ class WebHosting(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["username"] = None
-        super(WebHosting, __self__).__init__(
-            'scaleway:index/webHosting:WebHosting',
+        super(Webhosting, __self__).__init__(
+            'scaleway:index/webhosting:Webhosting',
             resource_name,
             __props__,
             opts)
@@ -582,7 +586,7 @@ class WebHosting(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cpanel_urls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebHostingCpanelUrlArgs']]]]] = None,
+            cpanel_urls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebhostingCpanelUrlArgs']]]]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             dns_status: Optional[pulumi.Input[str]] = None,
             domain: Optional[pulumi.Input[str]] = None,
@@ -590,7 +594,7 @@ class WebHosting(pulumi.CustomResource):
             offer_id: Optional[pulumi.Input[str]] = None,
             offer_name: Optional[pulumi.Input[str]] = None,
             option_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebHostingOptionArgs']]]]] = None,
+            options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebhostingOptionArgs']]]]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             platform_hostname: Optional[pulumi.Input[str]] = None,
             platform_number: Optional[pulumi.Input[int]] = None,
@@ -599,15 +603,15 @@ class WebHosting(pulumi.CustomResource):
             status: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
-            username: Optional[pulumi.Input[str]] = None) -> 'WebHosting':
+            username: Optional[pulumi.Input[str]] = None) -> 'Webhosting':
         """
-        Get an existing WebHosting resource's state with the given name, id, and optional extra
+        Get an existing Webhosting resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebHostingCpanelUrlArgs']]]] cpanel_urls: The URL to connect to cPanel Dashboard and to Webmail interface.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebhostingCpanelUrlArgs']]]] cpanel_urls: The URL to connect to cPanel Dashboard and to Webmail interface.
         :param pulumi.Input[str] created_at: Date and time of hosting's creation (RFC 3339 format).
         :param pulumi.Input[str] dns_status: The DNS status of the hosting.
         :param pulumi.Input[str] domain: The domain name of the hosting.
@@ -615,7 +619,7 @@ class WebHosting(pulumi.CustomResource):
         :param pulumi.Input[str] offer_id: The ID of the selected offer for the hosting.
         :param pulumi.Input[str] offer_name: The name of the active offer.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] option_ids: The IDs of the selected options for the hosting.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebHostingOptionArgs']]]] options: The active options of the hosting.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebhostingOptionArgs']]]] options: The active options of the hosting.
         :param pulumi.Input[str] organization_id: The organization ID the hosting is associated with.
         :param pulumi.Input[str] platform_hostname: The hostname of the host platform.
         :param pulumi.Input[int] platform_number: The number of the host platform.
@@ -628,7 +632,7 @@ class WebHosting(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _WebHostingState.__new__(_WebHostingState)
+        __props__ = _WebhostingState.__new__(_WebhostingState)
 
         __props__.__dict__["cpanel_urls"] = cpanel_urls
         __props__.__dict__["created_at"] = created_at
@@ -648,11 +652,11 @@ class WebHosting(pulumi.CustomResource):
         __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["username"] = username
-        return WebHosting(resource_name, opts=opts, __props__=__props__)
+        return Webhosting(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="cpanelUrls")
-    def cpanel_urls(self) -> pulumi.Output[Sequence['outputs.WebHostingCpanelUrl']]:
+    def cpanel_urls(self) -> pulumi.Output[Sequence['outputs.WebhostingCpanelUrl']]:
         """
         The URL to connect to cPanel Dashboard and to Webmail interface.
         """
@@ -716,7 +720,7 @@ class WebHosting(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def options(self) -> pulumi.Output[Sequence['outputs.WebHostingOption']]:
+    def options(self) -> pulumi.Output[Sequence['outputs.WebhostingOption']]:
         """
         The active options of the hosting.
         """

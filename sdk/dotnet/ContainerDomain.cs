@@ -15,6 +15,7 @@ namespace ediri.Scaleway
     /// You can check our [containers guide](https://www.scaleway.com/en/docs/compute/containers/how-to/add-a-custom-domain-to-a-container/) for further information.
     /// 
     /// ## Example Usage
+    /// 
     /// ### Simple
     /// 
     /// ```csharp
@@ -35,6 +36,7 @@ namespace ediri.Scaleway
     /// 
     /// });
     /// ```
+    /// 
     /// ### Complete example with domain
     /// 
     /// ```csharp
@@ -90,10 +92,12 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Container domain binding can be imported using the `{region}/{id}`, e.g. bash
+    /// Container domain binding can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/containerDomain:ContainerDomain main fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/containerDomain:ContainerDomain main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [ScalewayResourceType("scaleway:index/containerDomain:ContainerDomain")]

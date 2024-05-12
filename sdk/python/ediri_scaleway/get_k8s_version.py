@@ -108,6 +108,7 @@ def get_k8s_version(name: Optional[str] = None,
     You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
 
     ## Example Usage
+
     ### Use the latest version
 
     ```python
@@ -116,6 +117,7 @@ def get_k8s_version(name: Optional[str] = None,
 
     latest = scaleway.get_k8s_version(name="latest")
     ```
+
     ### Use a specific version
 
     ```python
@@ -155,6 +157,7 @@ def get_k8s_version_output(name: Optional[pulumi.Input[str]] = None,
     You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
 
     ## Example Usage
+
     ### Use the latest version
 
     ```python
@@ -163,6 +166,7 @@ def get_k8s_version_output(name: Optional[pulumi.Input[str]] = None,
 
     latest = scaleway.get_k8s_version(name="latest")
     ```
+
     ### Use a specific version
 
     ```python

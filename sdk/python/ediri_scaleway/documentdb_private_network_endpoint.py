@@ -9,10 +9,10 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
-__all__ = ['DocumentDBPrivateNetworkEndpointArgs', 'DocumentDBPrivateNetworkEndpoint']
+__all__ = ['DocumentdbPrivateNetworkEndpointArgs', 'DocumentdbPrivateNetworkEndpoint']
 
 @pulumi.input_type
-class DocumentDBPrivateNetworkEndpointArgs:
+class DocumentdbPrivateNetworkEndpointArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[str],
                  private_network_id: pulumi.Input[str],
@@ -21,7 +21,7 @@ class DocumentDBPrivateNetworkEndpointArgs:
                  region: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a DocumentDBPrivateNetworkEndpoint resource.
+        The set of arguments for constructing a DocumentdbPrivateNetworkEndpoint resource.
         :param pulumi.Input[str] instance_id: UUID of the documentdb instance.
         :param pulumi.Input[str] private_network_id: The ID of the private network.
         :param pulumi.Input[str] ip_net: The IP network address within the private subnet. This must be an IPv4 address with a
@@ -118,7 +118,7 @@ class DocumentDBPrivateNetworkEndpointArgs:
 
 
 @pulumi.input_type
-class _DocumentDBPrivateNetworkEndpointState:
+class _DocumentdbPrivateNetworkEndpointState:
     def __init__(__self__, *,
                  hostname: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
@@ -130,7 +130,7 @@ class _DocumentDBPrivateNetworkEndpointState:
                  region: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
-        Input properties used for looking up and filtering DocumentDBPrivateNetworkEndpoint resources.
+        Input properties used for looking up and filtering DocumentdbPrivateNetworkEndpoint resources.
         :param pulumi.Input[str] hostname: Hostname of the endpoint.
         :param pulumi.Input[str] instance_id: UUID of the documentdb instance.
         :param pulumi.Input[str] ip: IPv4 address on the network.
@@ -273,7 +273,7 @@ class _DocumentDBPrivateNetworkEndpointState:
         pulumi.set(self, "zone", value)
 
 
-class DocumentDBPrivateNetworkEndpoint(pulumi.CustomResource):
+class DocumentdbPrivateNetworkEndpoint(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -286,12 +286,19 @@ class DocumentDBPrivateNetworkEndpoint(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        Creates and manages Scaleway Database Private Network Endpoint.
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+
+        ## Example Usage
+
         ## Import
 
-        Database Instance Endpoint can be imported using the `{region}/{endpoint_id}`, e.g. bash
+        Database Instance Endpoint can be imported using the `{region}/{endpoint_id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint end fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint end fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -309,24 +316,31 @@ class DocumentDBPrivateNetworkEndpoint(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: DocumentDBPrivateNetworkEndpointArgs,
+                 args: DocumentdbPrivateNetworkEndpointArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Creates and manages Scaleway Database Private Network Endpoint.
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
+
+        ## Example Usage
+
         ## Import
 
-        Database Instance Endpoint can be imported using the `{region}/{endpoint_id}`, e.g. bash
+        Database Instance Endpoint can be imported using the `{region}/{endpoint_id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint end fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint end fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
-        :param DocumentDBPrivateNetworkEndpointArgs args: The arguments to use to populate this resource's properties.
+        :param DocumentdbPrivateNetworkEndpointArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(DocumentDBPrivateNetworkEndpointArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(DocumentdbPrivateNetworkEndpointArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -348,7 +362,7 @@ class DocumentDBPrivateNetworkEndpoint(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = DocumentDBPrivateNetworkEndpointArgs.__new__(DocumentDBPrivateNetworkEndpointArgs)
+            __props__ = DocumentdbPrivateNetworkEndpointArgs.__new__(DocumentdbPrivateNetworkEndpointArgs)
 
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
@@ -363,8 +377,8 @@ class DocumentDBPrivateNetworkEndpoint(pulumi.CustomResource):
             __props__.__dict__["hostname"] = None
             __props__.__dict__["ip"] = None
             __props__.__dict__["name"] = None
-        super(DocumentDBPrivateNetworkEndpoint, __self__).__init__(
-            'scaleway:index/documentDBPrivateNetworkEndpoint:DocumentDBPrivateNetworkEndpoint',
+        super(DocumentdbPrivateNetworkEndpoint, __self__).__init__(
+            'scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint',
             resource_name,
             __props__,
             opts)
@@ -381,9 +395,9 @@ class DocumentDBPrivateNetworkEndpoint(pulumi.CustomResource):
             port: Optional[pulumi.Input[int]] = None,
             private_network_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
-            zone: Optional[pulumi.Input[str]] = None) -> 'DocumentDBPrivateNetworkEndpoint':
+            zone: Optional[pulumi.Input[str]] = None) -> 'DocumentdbPrivateNetworkEndpoint':
         """
-        Get an existing DocumentDBPrivateNetworkEndpoint resource's state with the given name, id, and optional extra
+        Get an existing DocumentdbPrivateNetworkEndpoint resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -403,7 +417,7 @@ class DocumentDBPrivateNetworkEndpoint(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _DocumentDBPrivateNetworkEndpointState.__new__(_DocumentDBPrivateNetworkEndpointState)
+        __props__ = _DocumentdbPrivateNetworkEndpointState.__new__(_DocumentdbPrivateNetworkEndpointState)
 
         __props__.__dict__["hostname"] = hostname
         __props__.__dict__["instance_id"] = instance_id
@@ -414,7 +428,7 @@ class DocumentDBPrivateNetworkEndpoint(pulumi.CustomResource):
         __props__.__dict__["private_network_id"] = private_network_id
         __props__.__dict__["region"] = region
         __props__.__dict__["zone"] = zone
-        return DocumentDBPrivateNetworkEndpoint(resource_name, opts=opts, __props__=__props__)
+        return DocumentdbPrivateNetworkEndpoint(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter

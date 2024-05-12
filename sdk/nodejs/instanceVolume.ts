@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
  * Creates and manages Scaleway Compute Instance Volumes.
  * For more information, see [the documentation](https://developers.scaleway.com/en/products/instance/api/#volumes-7e8a39).
  *
- * ## Example
+ * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -22,10 +22,12 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * volumes can be imported using the `{zone}/{id}`, e.g. bash
+ * volumes can be imported using the `{zone}/{id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/instanceVolume:InstanceVolume server_volume fr-par-1/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/instanceVolume:InstanceVolume server_volume fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
  */
 export class InstanceVolume extends pulumi.CustomResource {

@@ -10,16 +10,16 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
-    'GetDocumentDBInstanceResult',
-    'AwaitableGetDocumentDBInstanceResult',
-    'get_document_db_instance',
-    'get_document_db_instance_output',
+    'GetDocumentdbInstanceResult',
+    'AwaitableGetDocumentdbInstanceResult',
+    'get_documentdb_instance',
+    'get_documentdb_instance_output',
 ]
 
 @pulumi.output_type
-class GetDocumentDBInstanceResult:
+class GetDocumentdbInstanceResult:
     """
-    A collection of values returned by getDocumentDBInstance.
+    A collection of values returned by getDocumentdbInstance.
     """
     def __init__(__self__, engine=None, id=None, instance_id=None, is_ha_cluster=None, name=None, node_type=None, password=None, project_id=None, region=None, tags=None, telemetry_enabled=None, user_name=None, volume_size_in_gb=None, volume_type=None):
         if engine and not isinstance(engine, str):
@@ -105,7 +105,7 @@ class GetDocumentDBInstanceResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
 
     @property
@@ -139,12 +139,12 @@ class GetDocumentDBInstanceResult:
         return pulumi.get(self, "volume_type")
 
 
-class AwaitableGetDocumentDBInstanceResult(GetDocumentDBInstanceResult):
+class AwaitableGetDocumentdbInstanceResult(GetDocumentdbInstanceResult):
     # pylint: disable=using-constant-test
     def __await__(self):
         if False:
             yield self
-        return GetDocumentDBInstanceResult(
+        return GetDocumentdbInstanceResult(
             engine=self.engine,
             id=self.id,
             instance_id=self.instance_id,
@@ -161,10 +161,11 @@ class AwaitableGetDocumentDBInstanceResult(GetDocumentDBInstanceResult):
             volume_type=self.volume_type)
 
 
-def get_document_db_instance(instance_id: Optional[str] = None,
-                             name: Optional[str] = None,
-                             region: Optional[str] = None,
-                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDocumentDBInstanceResult:
+def get_documentdb_instance(instance_id: Optional[str] = None,
+                            name: Optional[str] = None,
+                            project_id: Optional[str] = None,
+                            region: Optional[str] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDocumentdbInstanceResult:
     """
     Gets information about an DocumentDB instance. For further information see our [developers website](https://www.scaleway.com/en/developers/api/document_db/)
 
@@ -174,7 +175,7 @@ def get_document_db_instance(instance_id: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    db = scaleway.get_document_db_instance(instance_id="11111111-1111-1111-1111-111111111111")
+    db = scaleway.get_documentdb_instance(instance_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
@@ -182,16 +183,18 @@ def get_document_db_instance(instance_id: Optional[str] = None,
            Only one of `name` and `instance_id` should be specified.
     :param str name: The name of the DocumentDB instance.
            Only one of `name` and `instance_id` should be specified.
+    :param str project_id: The ID of the project the DocumentDB instance is associated with.
     :param str region: `region`) The region in which the DocumentDB instance exists.
     """
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['name'] = name
+    __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
-    __ret__ = pulumi.runtime.invoke('scaleway:index/getDocumentDBInstance:getDocumentDBInstance', __args__, opts=opts, typ=GetDocumentDBInstanceResult).value
+    __ret__ = pulumi.runtime.invoke('scaleway:index/getDocumentdbInstance:getDocumentdbInstance', __args__, opts=opts, typ=GetDocumentdbInstanceResult).value
 
-    return AwaitableGetDocumentDBInstanceResult(
+    return AwaitableGetDocumentdbInstanceResult(
         engine=pulumi.get(__ret__, 'engine'),
         id=pulumi.get(__ret__, 'id'),
         instance_id=pulumi.get(__ret__, 'instance_id'),
@@ -208,11 +211,12 @@ def get_document_db_instance(instance_id: Optional[str] = None,
         volume_type=pulumi.get(__ret__, 'volume_type'))
 
 
-@_utilities.lift_output_func(get_document_db_instance)
-def get_document_db_instance_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
-                                    name: Optional[pulumi.Input[Optional[str]]] = None,
-                                    region: Optional[pulumi.Input[Optional[str]]] = None,
-                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDocumentDBInstanceResult]:
+@_utilities.lift_output_func(get_documentdb_instance)
+def get_documentdb_instance_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                   name: Optional[pulumi.Input[Optional[str]]] = None,
+                                   project_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                   region: Optional[pulumi.Input[Optional[str]]] = None,
+                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDocumentdbInstanceResult]:
     """
     Gets information about an DocumentDB instance. For further information see our [developers website](https://www.scaleway.com/en/developers/api/document_db/)
 
@@ -222,7 +226,7 @@ def get_document_db_instance_output(instance_id: Optional[pulumi.Input[Optional[
     import pulumi
     import pulumi_scaleway as scaleway
 
-    db = scaleway.get_document_db_instance(instance_id="11111111-1111-1111-1111-111111111111")
+    db = scaleway.get_documentdb_instance(instance_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
@@ -230,6 +234,7 @@ def get_document_db_instance_output(instance_id: Optional[pulumi.Input[Optional[
            Only one of `name` and `instance_id` should be specified.
     :param str name: The name of the DocumentDB instance.
            Only one of `name` and `instance_id` should be specified.
+    :param str project_id: The ID of the project the DocumentDB instance is associated with.
     :param str region: `region`) The region in which the DocumentDB instance exists.
     """
     ...

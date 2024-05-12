@@ -59,7 +59,9 @@ func LookupVpcPublicGateway(ctx *pulumi.Context, args *LookupVpcPublicGatewayArg
 // A collection of arguments for invoking getVpcPublicGateway.
 type LookupVpcPublicGatewayArgs struct {
 	// Exact name of the public gateway.
-	Name            *string `pulumi:"name"`
+	Name *string `pulumi:"name"`
+	// The ID of the project the public gateway is associated with.
+	ProjectId       *string `pulumi:"projectId"`
 	PublicGatewayId *string `pulumi:"publicGatewayId"`
 	// `zone`) The zone in which
 	// the public gateway should be created.
@@ -77,7 +79,7 @@ type LookupVpcPublicGatewayResult struct {
 	IpId               string   `pulumi:"ipId"`
 	Name               *string  `pulumi:"name"`
 	OrganizationId     string   `pulumi:"organizationId"`
-	ProjectId          string   `pulumi:"projectId"`
+	ProjectId          *string  `pulumi:"projectId"`
 	PublicGatewayId    *string  `pulumi:"publicGatewayId"`
 	Status             string   `pulumi:"status"`
 	Tags               []string `pulumi:"tags"`
@@ -103,7 +105,9 @@ func LookupVpcPublicGatewayOutput(ctx *pulumi.Context, args LookupVpcPublicGatew
 // A collection of arguments for invoking getVpcPublicGateway.
 type LookupVpcPublicGatewayOutputArgs struct {
 	// Exact name of the public gateway.
-	Name            pulumi.StringPtrInput `pulumi:"name"`
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of the project the public gateway is associated with.
+	ProjectId       pulumi.StringPtrInput `pulumi:"projectId"`
 	PublicGatewayId pulumi.StringPtrInput `pulumi:"publicGatewayId"`
 	// `zone`) The zone in which
 	// the public gateway should be created.
@@ -162,8 +166,8 @@ func (o LookupVpcPublicGatewayResultOutput) OrganizationId() pulumi.StringOutput
 	return o.ApplyT(func(v LookupVpcPublicGatewayResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-func (o LookupVpcPublicGatewayResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupVpcPublicGatewayResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupVpcPublicGatewayResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupVpcPublicGatewayResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupVpcPublicGatewayResultOutput) PublicGatewayId() pulumi.StringPtrOutput {

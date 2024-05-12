@@ -14,7 +14,7 @@ import (
 
 // Creates and manages Scaleway Load-Balancer ACLs. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls).
 //
-// ## Examples Usage
+// ## Example Usage
 //
 // ### Basic
 //
@@ -56,12 +56,12 @@ import (
 //
 // ## Import
 //
-// Load-Balancer ACL can be imported using the `{zone}/{id}`, e.g. bash
+// Load-Balancer ACL can be imported using the `{zone}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/lbAcl:LbAcl acl01 fr-par-1/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/lbAcl:LbAcl acl01 fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
 type LbAcl struct {
 	pulumi.CustomResourceState

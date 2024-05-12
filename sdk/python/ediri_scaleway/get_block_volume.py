@@ -70,7 +70,7 @@ class GetBlockVolumeResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
 
     @property
@@ -117,14 +117,31 @@ class AwaitableGetBlockVolumeResult(GetBlockVolumeResult):
 
 
 def get_block_volume(name: Optional[str] = None,
+                     project_id: Optional[str] = None,
                      volume_id: Optional[str] = None,
                      zone: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBlockVolumeResult:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a Block Volume.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_volume = scaleway.get_block_volume(volume_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str name: The name of the volume. Only one of `name` and `volume_id` should be specified.
+    :param str project_id: The ID of the project the volume is associated with.
+    :param str volume_id: The ID of the volume. Only one of `name` and `volume_id` should be specified.
+    :param str zone: `zone`) The zone in which the volume exists.
     """
     __args__ = dict()
     __args__['name'] = name
+    __args__['projectId'] = project_id
     __args__['volumeId'] = volume_id
     __args__['zone'] = zone
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -144,10 +161,26 @@ def get_block_volume(name: Optional[str] = None,
 
 @_utilities.lift_output_func(get_block_volume)
 def get_block_volume_output(name: Optional[pulumi.Input[Optional[str]]] = None,
+                            project_id: Optional[pulumi.Input[Optional[str]]] = None,
                             volume_id: Optional[pulumi.Input[Optional[str]]] = None,
                             zone: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBlockVolumeResult]:
     """
-    Use this data source to access information about an existing resource.
+    Gets information about a Block Volume.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    my_volume = scaleway.get_block_volume(volume_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+
+    :param str name: The name of the volume. Only one of `name` and `volume_id` should be specified.
+    :param str project_id: The ID of the project the volume is associated with.
+    :param str volume_id: The ID of the volume. Only one of `name` and `volume_id` should be specified.
+    :param str zone: `zone`) The zone in which the volume exists.
     """
     ...

@@ -145,7 +145,7 @@ class GetTemDomainResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> str:
+    def project_id(self) -> Optional[str]:
         return pulumi.get(self, "project_id")
 
     @property
@@ -236,6 +236,7 @@ class AwaitableGetTemDomainResult(GetTemDomainResult):
 
 def get_tem_domain(domain_id: Optional[str] = None,
                    name: Optional[str] = None,
+                   project_id: Optional[str] = None,
                    region: Optional[str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTemDomainResult:
     """
@@ -255,11 +256,13 @@ def get_tem_domain(domain_id: Optional[str] = None,
            Only one of `name` and `domain_id` should be specified.
     :param str name: The domain name.
            Only one of `name` and `domain_id` should be specified.
+    :param str project_id: `project_id`) The ID of the project the domain is associated with.
     :param str region: `region`) The region in which the domain exists.
     """
     __args__ = dict()
     __args__['domainId'] = domain_id
     __args__['name'] = name
+    __args__['projectId'] = project_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:index/getTemDomain:getTemDomain', __args__, opts=opts, typ=GetTemDomainResult).value
@@ -292,6 +295,7 @@ def get_tem_domain(domain_id: Optional[str] = None,
 @_utilities.lift_output_func(get_tem_domain)
 def get_tem_domain_output(domain_id: Optional[pulumi.Input[Optional[str]]] = None,
                           name: Optional[pulumi.Input[Optional[str]]] = None,
+                          project_id: Optional[pulumi.Input[Optional[str]]] = None,
                           region: Optional[pulumi.Input[Optional[str]]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetTemDomainResult]:
     """
@@ -311,6 +315,7 @@ def get_tem_domain_output(domain_id: Optional[pulumi.Input[Optional[str]]] = Non
            Only one of `name` and `domain_id` should be specified.
     :param str name: The domain name.
            Only one of `name` and `domain_id` should be specified.
+    :param str project_id: `project_id`) The ID of the project the domain is associated with.
     :param str region: `region`) The region in which the domain exists.
     """
     ...

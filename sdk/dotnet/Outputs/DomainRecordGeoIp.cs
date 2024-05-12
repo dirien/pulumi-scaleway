@@ -15,7 +15,7 @@ namespace ediri.Scaleway.Outputs
     public sealed class DomainRecordGeoIp
     {
         /// <summary>
-        /// The list of matches. *(Can be more than 1)*
+        /// The list of matches
         /// </summary>
         public readonly ImmutableArray<Outputs.DomainRecordGeoIpMatch> Matches;
 

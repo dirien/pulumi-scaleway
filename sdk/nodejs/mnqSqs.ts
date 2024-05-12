@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
  * For further information please check
  * our [documentation](https://www.scaleway.com/en/docs/serverless/messaging/reference-content/sqs-overview/)
  *
- * ## Examples
+ * ## Example Usage
  *
  * ### Basic
  *
@@ -37,10 +37,12 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * SQS status can be imported using the `{region}/{project_id}`, e.g. bash
+ * SQS status can be imported using the `{region}/{project_id}`, e.g.
+ *
+ * bash
  *
  * ```sh
- *  $ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111
+ * $ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111
  * ```
  */
 export class MnqSqs extends pulumi.CustomResource {

@@ -15,9 +15,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about the privilege on RDB database.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -36,8 +34,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetRdbPrivilegeResult> InvokeAsync(GetRdbPrivilegeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRdbPrivilegeResult>("scaleway:index/getRdbPrivilege:getRdbPrivilege", args ?? new GetRdbPrivilegeArgs(), options.WithDefaults());
@@ -45,9 +41,7 @@ namespace ediri.Scaleway
         /// <summary>
         /// Gets information about the privilege on RDB database.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -66,8 +60,6 @@ namespace ediri.Scaleway
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetRdbPrivilegeResult> Invoke(GetRdbPrivilegeInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRdbPrivilegeResult>("scaleway:index/getRdbPrivilege:getRdbPrivilege", args ?? new GetRdbPrivilegeInvokeArgs(), options.WithDefaults());

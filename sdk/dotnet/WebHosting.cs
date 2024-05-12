@@ -14,7 +14,7 @@ namespace ediri.Scaleway
     /// Creates and manages Scaleway Web Hostings.
     /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/webhosting/).
     /// 
-    /// ## Example
+    /// ## Example Usage
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -25,14 +25,14 @@ namespace ediri.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var byName = Scaleway.GetWebHostOffer.Invoke(new()
+    ///     var byName = Scaleway.GetWebhostingOffer.Invoke(new()
     ///     {
     ///         Name = "lite",
     ///     });
     /// 
-    ///     var main = new Scaleway.WebHosting("main", new()
+    ///     var main = new Scaleway.Webhosting("main", new()
     ///     {
-    ///         OfferId = byName.Apply(getWebHostOfferResult =&gt; getWebHostOfferResult.OfferId),
+    ///         OfferId = byName.Apply(getWebhostingOfferResult =&gt; getWebhostingOfferResult.OfferId),
     ///         Email = "your@email.com",
     ///         Domain = "yourdomain.com",
     ///         Tags = new[]
@@ -48,20 +48,22 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Hostings can be imported using the `{region}/{id}`, e.g. bash
+    /// Hostings can be imported using the `{region}/{id}`, e.g.
+    /// 
+    /// bash
     /// 
     /// ```sh
-    ///  $ pulumi import scaleway:index/webHosting:WebHosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/webhosting:Webhosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
-    [ScalewayResourceType("scaleway:index/webHosting:WebHosting")]
-    public partial class WebHosting : global::Pulumi.CustomResource
+    [ScalewayResourceType("scaleway:index/webhosting:Webhosting")]
+    public partial class Webhosting : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The URL to connect to cPanel Dashboard and to Webmail interface.
         /// </summary>
         [Output("cpanelUrls")]
-        public Output<ImmutableArray<Outputs.WebHostingCpanelUrl>> CpanelUrls { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.WebhostingCpanelUrl>> CpanelUrls { get; private set; } = null!;
 
         /// <summary>
         /// Date and time of hosting's creation (RFC 3339 format).
@@ -109,7 +111,7 @@ namespace ediri.Scaleway
         /// The active options of the hosting.
         /// </summary>
         [Output("options")]
-        public Output<ImmutableArray<Outputs.WebHostingOption>> Options { get; private set; } = null!;
+        public Output<ImmutableArray<Outputs.WebhostingOption>> Options { get; private set; } = null!;
 
         /// <summary>
         /// The organization ID the hosting is associated with.
@@ -167,19 +169,19 @@ namespace ediri.Scaleway
 
 
         /// <summary>
-        /// Create a WebHosting resource with the given unique name, arguments, and options.
+        /// Create a Webhosting resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public WebHosting(string name, WebHostingArgs args, CustomResourceOptions? options = null)
-            : base("scaleway:index/webHosting:WebHosting", name, args ?? new WebHostingArgs(), MakeResourceOptions(options, ""))
+        public Webhosting(string name, WebhostingArgs args, CustomResourceOptions? options = null)
+            : base("scaleway:index/webhosting:Webhosting", name, args ?? new WebhostingArgs(), MakeResourceOptions(options, ""))
         {
         }
 
-        private WebHosting(string name, Input<string> id, WebHostingState? state = null, CustomResourceOptions? options = null)
-            : base("scaleway:index/webHosting:WebHosting", name, state, MakeResourceOptions(options, id))
+        private Webhosting(string name, Input<string> id, WebhostingState? state = null, CustomResourceOptions? options = null)
+            : base("scaleway:index/webhosting:Webhosting", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -196,7 +198,7 @@ namespace ediri.Scaleway
             return merged;
         }
         /// <summary>
-        /// Get an existing WebHosting resource's state with the given name, ID, and optional extra
+        /// Get an existing Webhosting resource's state with the given name, ID, and optional extra
         /// properties used to qualify the lookup.
         /// </summary>
         ///
@@ -204,13 +206,13 @@ namespace ediri.Scaleway
         /// <param name="id">The unique provider ID of the resource to lookup.</param>
         /// <param name="state">Any extra arguments used during the lookup.</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public static WebHosting Get(string name, Input<string> id, WebHostingState? state = null, CustomResourceOptions? options = null)
+        public static Webhosting Get(string name, Input<string> id, WebhostingState? state = null, CustomResourceOptions? options = null)
         {
-            return new WebHosting(name, id, state, options);
+            return new Webhosting(name, id, state, options);
         }
     }
 
-    public sealed class WebHostingArgs : global::Pulumi.ResourceArgs
+    public sealed class WebhostingArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The domain name of the hosting.
@@ -266,23 +268,23 @@ namespace ediri.Scaleway
             set => _tags = value;
         }
 
-        public WebHostingArgs()
+        public WebhostingArgs()
         {
         }
-        public static new WebHostingArgs Empty => new WebHostingArgs();
+        public static new WebhostingArgs Empty => new WebhostingArgs();
     }
 
-    public sealed class WebHostingState : global::Pulumi.ResourceArgs
+    public sealed class WebhostingState : global::Pulumi.ResourceArgs
     {
         [Input("cpanelUrls")]
-        private InputList<Inputs.WebHostingCpanelUrlGetArgs>? _cpanelUrls;
+        private InputList<Inputs.WebhostingCpanelUrlGetArgs>? _cpanelUrls;
 
         /// <summary>
         /// The URL to connect to cPanel Dashboard and to Webmail interface.
         /// </summary>
-        public InputList<Inputs.WebHostingCpanelUrlGetArgs> CpanelUrls
+        public InputList<Inputs.WebhostingCpanelUrlGetArgs> CpanelUrls
         {
-            get => _cpanelUrls ?? (_cpanelUrls = new InputList<Inputs.WebHostingCpanelUrlGetArgs>());
+            get => _cpanelUrls ?? (_cpanelUrls = new InputList<Inputs.WebhostingCpanelUrlGetArgs>());
             set => _cpanelUrls = value;
         }
 
@@ -335,14 +337,14 @@ namespace ediri.Scaleway
         }
 
         [Input("options")]
-        private InputList<Inputs.WebHostingOptionGetArgs>? _options;
+        private InputList<Inputs.WebhostingOptionGetArgs>? _options;
 
         /// <summary>
         /// The active options of the hosting.
         /// </summary>
-        public InputList<Inputs.WebHostingOptionGetArgs> Options
+        public InputList<Inputs.WebhostingOptionGetArgs> Options
         {
-            get => _options ?? (_options = new InputList<Inputs.WebHostingOptionGetArgs>());
+            get => _options ?? (_options = new InputList<Inputs.WebhostingOptionGetArgs>());
             set => _options = value;
         }
 
@@ -406,9 +408,9 @@ namespace ediri.Scaleway
         [Input("username")]
         public Input<string>? Username { get; set; }
 
-        public WebHostingState()
+        public WebhostingState()
         {
         }
-        public static new WebHostingState Empty => new WebHostingState();
+        public static new WebhostingState Empty => new WebhostingState();
     }
 }

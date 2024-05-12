@@ -11,22 +11,22 @@ from . import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['DocumentDBReadReplicaArgs', 'DocumentDBReadReplica']
+__all__ = ['DocumentdbReadReplicaArgs', 'DocumentdbReadReplica']
 
 @pulumi.input_type
-class DocumentDBReadReplicaArgs:
+class DocumentdbReadReplicaArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[str],
-                 direct_access: Optional[pulumi.Input['DocumentDBReadReplicaDirectAccessArgs']] = None,
-                 private_network: Optional[pulumi.Input['DocumentDBReadReplicaPrivateNetworkArgs']] = None,
+                 direct_access: Optional[pulumi.Input['DocumentdbReadReplicaDirectAccessArgs']] = None,
+                 private_network: Optional[pulumi.Input['DocumentdbReadReplicaPrivateNetworkArgs']] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a DocumentDBReadReplica resource.
+        The set of arguments for constructing a DocumentdbReadReplica resource.
         :param pulumi.Input[str] instance_id: UUID of the documentdb instance.
                
                > **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
-        :param pulumi.Input['DocumentDBReadReplicaDirectAccessArgs'] direct_access: Creates a direct access endpoint to documentdb replica.
-        :param pulumi.Input['DocumentDBReadReplicaPrivateNetworkArgs'] private_network: Create an endpoint in a private network.
+        :param pulumi.Input['DocumentdbReadReplicaDirectAccessArgs'] direct_access: Creates a direct access endpoint to documentdb replica.
+        :param pulumi.Input['DocumentdbReadReplicaPrivateNetworkArgs'] private_network: Create an endpoint in a private network.
         :param pulumi.Input[str] region: `region`) The region
                in which the Database read replica should be created.
         """
@@ -54,26 +54,26 @@ class DocumentDBReadReplicaArgs:
 
     @property
     @pulumi.getter(name="directAccess")
-    def direct_access(self) -> Optional[pulumi.Input['DocumentDBReadReplicaDirectAccessArgs']]:
+    def direct_access(self) -> Optional[pulumi.Input['DocumentdbReadReplicaDirectAccessArgs']]:
         """
         Creates a direct access endpoint to documentdb replica.
         """
         return pulumi.get(self, "direct_access")
 
     @direct_access.setter
-    def direct_access(self, value: Optional[pulumi.Input['DocumentDBReadReplicaDirectAccessArgs']]):
+    def direct_access(self, value: Optional[pulumi.Input['DocumentdbReadReplicaDirectAccessArgs']]):
         pulumi.set(self, "direct_access", value)
 
     @property
     @pulumi.getter(name="privateNetwork")
-    def private_network(self) -> Optional[pulumi.Input['DocumentDBReadReplicaPrivateNetworkArgs']]:
+    def private_network(self) -> Optional[pulumi.Input['DocumentdbReadReplicaPrivateNetworkArgs']]:
         """
         Create an endpoint in a private network.
         """
         return pulumi.get(self, "private_network")
 
     @private_network.setter
-    def private_network(self, value: Optional[pulumi.Input['DocumentDBReadReplicaPrivateNetworkArgs']]):
+    def private_network(self, value: Optional[pulumi.Input['DocumentdbReadReplicaPrivateNetworkArgs']]):
         pulumi.set(self, "private_network", value)
 
     @property
@@ -91,19 +91,19 @@ class DocumentDBReadReplicaArgs:
 
 
 @pulumi.input_type
-class _DocumentDBReadReplicaState:
+class _DocumentdbReadReplicaState:
     def __init__(__self__, *,
-                 direct_access: Optional[pulumi.Input['DocumentDBReadReplicaDirectAccessArgs']] = None,
+                 direct_access: Optional[pulumi.Input['DocumentdbReadReplicaDirectAccessArgs']] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
-                 private_network: Optional[pulumi.Input['DocumentDBReadReplicaPrivateNetworkArgs']] = None,
+                 private_network: Optional[pulumi.Input['DocumentdbReadReplicaPrivateNetworkArgs']] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
-        Input properties used for looking up and filtering DocumentDBReadReplica resources.
-        :param pulumi.Input['DocumentDBReadReplicaDirectAccessArgs'] direct_access: Creates a direct access endpoint to documentdb replica.
+        Input properties used for looking up and filtering DocumentdbReadReplica resources.
+        :param pulumi.Input['DocumentdbReadReplicaDirectAccessArgs'] direct_access: Creates a direct access endpoint to documentdb replica.
         :param pulumi.Input[str] instance_id: UUID of the documentdb instance.
                
                > **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
-        :param pulumi.Input['DocumentDBReadReplicaPrivateNetworkArgs'] private_network: Create an endpoint in a private network.
+        :param pulumi.Input['DocumentdbReadReplicaPrivateNetworkArgs'] private_network: Create an endpoint in a private network.
         :param pulumi.Input[str] region: `region`) The region
                in which the Database read replica should be created.
         """
@@ -118,14 +118,14 @@ class _DocumentDBReadReplicaState:
 
     @property
     @pulumi.getter(name="directAccess")
-    def direct_access(self) -> Optional[pulumi.Input['DocumentDBReadReplicaDirectAccessArgs']]:
+    def direct_access(self) -> Optional[pulumi.Input['DocumentdbReadReplicaDirectAccessArgs']]:
         """
         Creates a direct access endpoint to documentdb replica.
         """
         return pulumi.get(self, "direct_access")
 
     @direct_access.setter
-    def direct_access(self, value: Optional[pulumi.Input['DocumentDBReadReplicaDirectAccessArgs']]):
+    def direct_access(self, value: Optional[pulumi.Input['DocumentdbReadReplicaDirectAccessArgs']]):
         pulumi.set(self, "direct_access", value)
 
     @property
@@ -144,14 +144,14 @@ class _DocumentDBReadReplicaState:
 
     @property
     @pulumi.getter(name="privateNetwork")
-    def private_network(self) -> Optional[pulumi.Input['DocumentDBReadReplicaPrivateNetworkArgs']]:
+    def private_network(self) -> Optional[pulumi.Input['DocumentdbReadReplicaPrivateNetworkArgs']]:
         """
         Create an endpoint in a private network.
         """
         return pulumi.get(self, "private_network")
 
     @private_network.setter
-    def private_network(self, value: Optional[pulumi.Input['DocumentDBReadReplicaPrivateNetworkArgs']]):
+    def private_network(self, value: Optional[pulumi.Input['DocumentdbReadReplicaPrivateNetworkArgs']]):
         pulumi.set(self, "private_network", value)
 
     @property
@@ -168,21 +168,21 @@ class _DocumentDBReadReplicaState:
         pulumi.set(self, "region", value)
 
 
-class DocumentDBReadReplica(pulumi.CustomResource):
+class DocumentdbReadReplica(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 direct_access: Optional[pulumi.Input[pulumi.InputType['DocumentDBReadReplicaDirectAccessArgs']]] = None,
+                 direct_access: Optional[pulumi.Input[pulumi.InputType['DocumentdbReadReplicaDirectAccessArgs']]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
-                 private_network: Optional[pulumi.Input[pulumi.InputType['DocumentDBReadReplicaPrivateNetworkArgs']]] = None,
+                 private_network: Optional[pulumi.Input[pulumi.InputType['DocumentdbReadReplicaPrivateNetworkArgs']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway DocumentDB Database read replicas.
         For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -190,8 +190,8 @@ class DocumentDBReadReplica(pulumi.CustomResource):
         import pulumi
         import ediri_scaleway as scaleway
 
-        replica = scaleway.DocumentDBReadReplica("replica",
-            direct_access=scaleway.DocumentDBReadReplicaDirectAccessArgs(),
+        replica = scaleway.DocumentdbReadReplica("replica",
+            direct_access=scaleway.DocumentdbReadReplicaDirectAccessArgs(),
             instance_id="11111111-1111-1111-1111-111111111111")
         ```
 
@@ -202,9 +202,9 @@ class DocumentDBReadReplica(pulumi.CustomResource):
         import ediri_scaleway as scaleway
 
         pn = scaleway.VpcPrivateNetwork("pn")
-        replica = scaleway.DocumentDBReadReplica("replica",
+        replica = scaleway.DocumentdbReadReplica("replica",
             instance_id=scaleway_rdb_instance["instance"]["id"],
-            private_network=scaleway.DocumentDBReadReplicaPrivateNetworkArgs(
+            private_network=scaleway.DocumentdbReadReplicaPrivateNetworkArgs(
                 private_network_id=pn.id,
                 service_ip="192.168.1.254/24",
             ))
@@ -212,19 +212,21 @@ class DocumentDBReadReplica(pulumi.CustomResource):
 
         ## Import
 
-        Database Read replica can be imported using the `{region}/{id}`, e.g. bash
+        Database Read replica can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/documentDBReadReplica:DocumentDBReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/documentdbReadReplica:DocumentdbReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['DocumentDBReadReplicaDirectAccessArgs']] direct_access: Creates a direct access endpoint to documentdb replica.
+        :param pulumi.Input[pulumi.InputType['DocumentdbReadReplicaDirectAccessArgs']] direct_access: Creates a direct access endpoint to documentdb replica.
         :param pulumi.Input[str] instance_id: UUID of the documentdb instance.
                
                > **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
-        :param pulumi.Input[pulumi.InputType['DocumentDBReadReplicaPrivateNetworkArgs']] private_network: Create an endpoint in a private network.
+        :param pulumi.Input[pulumi.InputType['DocumentdbReadReplicaPrivateNetworkArgs']] private_network: Create an endpoint in a private network.
         :param pulumi.Input[str] region: `region`) The region
                in which the Database read replica should be created.
         """
@@ -232,13 +234,13 @@ class DocumentDBReadReplica(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: DocumentDBReadReplicaArgs,
+                 args: DocumentdbReadReplicaArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway DocumentDB Database read replicas.
         For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -246,8 +248,8 @@ class DocumentDBReadReplica(pulumi.CustomResource):
         import pulumi
         import ediri_scaleway as scaleway
 
-        replica = scaleway.DocumentDBReadReplica("replica",
-            direct_access=scaleway.DocumentDBReadReplicaDirectAccessArgs(),
+        replica = scaleway.DocumentdbReadReplica("replica",
+            direct_access=scaleway.DocumentdbReadReplicaDirectAccessArgs(),
             instance_id="11111111-1111-1111-1111-111111111111")
         ```
 
@@ -258,9 +260,9 @@ class DocumentDBReadReplica(pulumi.CustomResource):
         import ediri_scaleway as scaleway
 
         pn = scaleway.VpcPrivateNetwork("pn")
-        replica = scaleway.DocumentDBReadReplica("replica",
+        replica = scaleway.DocumentdbReadReplica("replica",
             instance_id=scaleway_rdb_instance["instance"]["id"],
-            private_network=scaleway.DocumentDBReadReplicaPrivateNetworkArgs(
+            private_network=scaleway.DocumentdbReadReplicaPrivateNetworkArgs(
                 private_network_id=pn.id,
                 service_ip="192.168.1.254/24",
             ))
@@ -268,19 +270,21 @@ class DocumentDBReadReplica(pulumi.CustomResource):
 
         ## Import
 
-        Database Read replica can be imported using the `{region}/{id}`, e.g. bash
+        Database Read replica can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/documentDBReadReplica:DocumentDBReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/documentdbReadReplica:DocumentdbReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
-        :param DocumentDBReadReplicaArgs args: The arguments to use to populate this resource's properties.
+        :param DocumentdbReadReplicaArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(DocumentDBReadReplicaArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(DocumentdbReadReplicaArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -289,9 +293,9 @@ class DocumentDBReadReplica(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 direct_access: Optional[pulumi.Input[pulumi.InputType['DocumentDBReadReplicaDirectAccessArgs']]] = None,
+                 direct_access: Optional[pulumi.Input[pulumi.InputType['DocumentdbReadReplicaDirectAccessArgs']]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
-                 private_network: Optional[pulumi.Input[pulumi.InputType['DocumentDBReadReplicaPrivateNetworkArgs']]] = None,
+                 private_network: Optional[pulumi.Input[pulumi.InputType['DocumentdbReadReplicaPrivateNetworkArgs']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -300,7 +304,7 @@ class DocumentDBReadReplica(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = DocumentDBReadReplicaArgs.__new__(DocumentDBReadReplicaArgs)
+            __props__ = DocumentdbReadReplicaArgs.__new__(DocumentdbReadReplicaArgs)
 
             __props__.__dict__["direct_access"] = direct_access
             if instance_id is None and not opts.urn:
@@ -308,8 +312,8 @@ class DocumentDBReadReplica(pulumi.CustomResource):
             __props__.__dict__["instance_id"] = instance_id
             __props__.__dict__["private_network"] = private_network
             __props__.__dict__["region"] = region
-        super(DocumentDBReadReplica, __self__).__init__(
-            'scaleway:index/documentDBReadReplica:DocumentDBReadReplica',
+        super(DocumentdbReadReplica, __self__).__init__(
+            'scaleway:index/documentdbReadReplica:DocumentdbReadReplica',
             resource_name,
             __props__,
             opts)
@@ -318,38 +322,38 @@ class DocumentDBReadReplica(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            direct_access: Optional[pulumi.Input[pulumi.InputType['DocumentDBReadReplicaDirectAccessArgs']]] = None,
+            direct_access: Optional[pulumi.Input[pulumi.InputType['DocumentdbReadReplicaDirectAccessArgs']]] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
-            private_network: Optional[pulumi.Input[pulumi.InputType['DocumentDBReadReplicaPrivateNetworkArgs']]] = None,
-            region: Optional[pulumi.Input[str]] = None) -> 'DocumentDBReadReplica':
+            private_network: Optional[pulumi.Input[pulumi.InputType['DocumentdbReadReplicaPrivateNetworkArgs']]] = None,
+            region: Optional[pulumi.Input[str]] = None) -> 'DocumentdbReadReplica':
         """
-        Get an existing DocumentDBReadReplica resource's state with the given name, id, and optional extra
+        Get an existing DocumentdbReadReplica resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['DocumentDBReadReplicaDirectAccessArgs']] direct_access: Creates a direct access endpoint to documentdb replica.
+        :param pulumi.Input[pulumi.InputType['DocumentdbReadReplicaDirectAccessArgs']] direct_access: Creates a direct access endpoint to documentdb replica.
         :param pulumi.Input[str] instance_id: UUID of the documentdb instance.
                
                > **Important:** The replica musts contains at least one of `direct_access` or `private_network`. It can contain both.
-        :param pulumi.Input[pulumi.InputType['DocumentDBReadReplicaPrivateNetworkArgs']] private_network: Create an endpoint in a private network.
+        :param pulumi.Input[pulumi.InputType['DocumentdbReadReplicaPrivateNetworkArgs']] private_network: Create an endpoint in a private network.
         :param pulumi.Input[str] region: `region`) The region
                in which the Database read replica should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _DocumentDBReadReplicaState.__new__(_DocumentDBReadReplicaState)
+        __props__ = _DocumentdbReadReplicaState.__new__(_DocumentdbReadReplicaState)
 
         __props__.__dict__["direct_access"] = direct_access
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["private_network"] = private_network
         __props__.__dict__["region"] = region
-        return DocumentDBReadReplica(resource_name, opts=opts, __props__=__props__)
+        return DocumentdbReadReplica(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="directAccess")
-    def direct_access(self) -> pulumi.Output[Optional['outputs.DocumentDBReadReplicaDirectAccess']]:
+    def direct_access(self) -> pulumi.Output[Optional['outputs.DocumentdbReadReplicaDirectAccess']]:
         """
         Creates a direct access endpoint to documentdb replica.
         """
@@ -367,7 +371,7 @@ class DocumentDBReadReplica(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="privateNetwork")
-    def private_network(self) -> pulumi.Output[Optional['outputs.DocumentDBReadReplicaPrivateNetwork']]:
+    def private_network(self) -> pulumi.Output[Optional['outputs.DocumentdbReadReplicaPrivateNetwork']]:
         """
         Create an endpoint in a private network.
         """

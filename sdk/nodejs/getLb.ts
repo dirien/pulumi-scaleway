@@ -30,6 +30,7 @@ export function getLb(args?: GetLbArgs, opts?: pulumi.InvokeOptions): Promise<Ge
     return pulumi.runtime.invoke("scaleway:index/getLb:getLb", {
         "lbId": args.lbId,
         "name": args.name,
+        "projectId": args.projectId,
         "releaseIp": args.releaseIp,
         "zone": args.zone,
     }, opts);
@@ -44,6 +45,10 @@ export interface GetLbArgs {
      * The load balancer name.
      */
     name?: string;
+    /**
+     * The ID of the project the LB is associated with.
+     */
+    projectId?: string;
     releaseIp?: boolean;
     /**
      * (Defaults to provider `zone`) The zone in which the LB exists.
@@ -70,10 +75,7 @@ export interface GetLbResult {
     readonly name?: string;
     readonly organizationId: string;
     readonly privateNetworks: outputs.GetLbPrivateNetwork[];
-    /**
-     * (Defaults to provider `projectId`) The ID of the project the LB is associated with.
-     */
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly region: string;
     readonly releaseIp?: boolean;
     readonly sslCompatibilityLevel: string;
@@ -120,6 +122,10 @@ export interface GetLbOutputArgs {
      * The load balancer name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the project the LB is associated with.
+     */
+    projectId?: pulumi.Input<string>;
     releaseIp?: pulumi.Input<boolean>;
     /**
      * (Defaults to provider `zone`) The zone in which the LB exists.

@@ -15,7 +15,7 @@ import (
 // Creates and manages Scaleway DocumentDB Database read replicas.
 // For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Basic
 //
@@ -31,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewDocumentDBReadReplica(ctx, "replica", &scaleway.DocumentDBReadReplicaArgs{
+//			_, err := scaleway.NewDocumentdbReadReplica(ctx, "replica", &scaleway.DocumentdbReadReplicaArgs{
 //				DirectAccess: nil,
 //				InstanceId:   pulumi.String("11111111-1111-1111-1111-111111111111"),
 //			})
@@ -62,9 +62,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDocumentDBReadReplica(ctx, "replica", &scaleway.DocumentDBReadReplicaArgs{
+//			_, err = scaleway.NewDocumentdbReadReplica(ctx, "replica", &scaleway.DocumentdbReadReplicaArgs{
 //				InstanceId: pulumi.Any(scaleway_rdb_instance.Instance.Id),
-//				PrivateNetwork: &scaleway.DocumentDBReadReplicaPrivateNetworkArgs{
+//				PrivateNetwork: &scaleway.DocumentdbReadReplicaPrivateNetworkArgs{
 //					PrivateNetworkId: pn.ID(),
 //					ServiceIp:        pulumi.String("192.168.1.254/24"),
 //				},
@@ -80,32 +80,32 @@ import (
 //
 // ## Import
 //
-// Database Read replica can be imported using the `{region}/{id}`, e.g. bash
+// Database Read replica can be imported using the `{region}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/documentDBReadReplica:DocumentDBReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/documentdbReadReplica:DocumentdbReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
 // ```
-type DocumentDBReadReplica struct {
+type DocumentdbReadReplica struct {
 	pulumi.CustomResourceState
 
 	// Creates a direct access endpoint to documentdb replica.
-	DirectAccess DocumentDBReadReplicaDirectAccessPtrOutput `pulumi:"directAccess"`
+	DirectAccess DocumentdbReadReplicaDirectAccessPtrOutput `pulumi:"directAccess"`
 	// UUID of the documentdb instance.
 	//
 	// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// Create an endpoint in a private network.
-	PrivateNetwork DocumentDBReadReplicaPrivateNetworkPtrOutput `pulumi:"privateNetwork"`
+	PrivateNetwork DocumentdbReadReplicaPrivateNetworkPtrOutput `pulumi:"privateNetwork"`
 	// `region`) The region
 	// in which the Database read replica should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
 }
 
-// NewDocumentDBReadReplica registers a new resource with the given unique name, arguments, and options.
-func NewDocumentDBReadReplica(ctx *pulumi.Context,
-	name string, args *DocumentDBReadReplicaArgs, opts ...pulumi.ResourceOption) (*DocumentDBReadReplica, error) {
+// NewDocumentdbReadReplica registers a new resource with the given unique name, arguments, and options.
+func NewDocumentdbReadReplica(ctx *pulumi.Context,
+	name string, args *DocumentdbReadReplicaArgs, opts ...pulumi.ResourceOption) (*DocumentdbReadReplica, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -114,243 +114,243 @@ func NewDocumentDBReadReplica(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
-	var resource DocumentDBReadReplica
-	err := ctx.RegisterResource("scaleway:index/documentDBReadReplica:DocumentDBReadReplica", name, args, &resource, opts...)
+	var resource DocumentdbReadReplica
+	err := ctx.RegisterResource("scaleway:index/documentdbReadReplica:DocumentdbReadReplica", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetDocumentDBReadReplica gets an existing DocumentDBReadReplica resource's state with the given name, ID, and optional
+// GetDocumentdbReadReplica gets an existing DocumentdbReadReplica resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetDocumentDBReadReplica(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *DocumentDBReadReplicaState, opts ...pulumi.ResourceOption) (*DocumentDBReadReplica, error) {
-	var resource DocumentDBReadReplica
-	err := ctx.ReadResource("scaleway:index/documentDBReadReplica:DocumentDBReadReplica", name, id, state, &resource, opts...)
+func GetDocumentdbReadReplica(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *DocumentdbReadReplicaState, opts ...pulumi.ResourceOption) (*DocumentdbReadReplica, error) {
+	var resource DocumentdbReadReplica
+	err := ctx.ReadResource("scaleway:index/documentdbReadReplica:DocumentdbReadReplica", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering DocumentDBReadReplica resources.
-type documentDBReadReplicaState struct {
+// Input properties used for looking up and filtering DocumentdbReadReplica resources.
+type documentdbReadReplicaState struct {
 	// Creates a direct access endpoint to documentdb replica.
-	DirectAccess *DocumentDBReadReplicaDirectAccess `pulumi:"directAccess"`
+	DirectAccess *DocumentdbReadReplicaDirectAccess `pulumi:"directAccess"`
 	// UUID of the documentdb instance.
 	//
 	// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
 	InstanceId *string `pulumi:"instanceId"`
 	// Create an endpoint in a private network.
-	PrivateNetwork *DocumentDBReadReplicaPrivateNetwork `pulumi:"privateNetwork"`
+	PrivateNetwork *DocumentdbReadReplicaPrivateNetwork `pulumi:"privateNetwork"`
 	// `region`) The region
 	// in which the Database read replica should be created.
 	Region *string `pulumi:"region"`
 }
 
-type DocumentDBReadReplicaState struct {
+type DocumentdbReadReplicaState struct {
 	// Creates a direct access endpoint to documentdb replica.
-	DirectAccess DocumentDBReadReplicaDirectAccessPtrInput
+	DirectAccess DocumentdbReadReplicaDirectAccessPtrInput
 	// UUID of the documentdb instance.
 	//
 	// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
 	InstanceId pulumi.StringPtrInput
 	// Create an endpoint in a private network.
-	PrivateNetwork DocumentDBReadReplicaPrivateNetworkPtrInput
+	PrivateNetwork DocumentdbReadReplicaPrivateNetworkPtrInput
 	// `region`) The region
 	// in which the Database read replica should be created.
 	Region pulumi.StringPtrInput
 }
 
-func (DocumentDBReadReplicaState) ElementType() reflect.Type {
-	return reflect.TypeOf((*documentDBReadReplicaState)(nil)).Elem()
+func (DocumentdbReadReplicaState) ElementType() reflect.Type {
+	return reflect.TypeOf((*documentdbReadReplicaState)(nil)).Elem()
 }
 
-type documentDBReadReplicaArgs struct {
+type documentdbReadReplicaArgs struct {
 	// Creates a direct access endpoint to documentdb replica.
-	DirectAccess *DocumentDBReadReplicaDirectAccess `pulumi:"directAccess"`
+	DirectAccess *DocumentdbReadReplicaDirectAccess `pulumi:"directAccess"`
 	// UUID of the documentdb instance.
 	//
 	// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
 	InstanceId string `pulumi:"instanceId"`
 	// Create an endpoint in a private network.
-	PrivateNetwork *DocumentDBReadReplicaPrivateNetwork `pulumi:"privateNetwork"`
+	PrivateNetwork *DocumentdbReadReplicaPrivateNetwork `pulumi:"privateNetwork"`
 	// `region`) The region
 	// in which the Database read replica should be created.
 	Region *string `pulumi:"region"`
 }
 
-// The set of arguments for constructing a DocumentDBReadReplica resource.
-type DocumentDBReadReplicaArgs struct {
+// The set of arguments for constructing a DocumentdbReadReplica resource.
+type DocumentdbReadReplicaArgs struct {
 	// Creates a direct access endpoint to documentdb replica.
-	DirectAccess DocumentDBReadReplicaDirectAccessPtrInput
+	DirectAccess DocumentdbReadReplicaDirectAccessPtrInput
 	// UUID of the documentdb instance.
 	//
 	// > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
 	InstanceId pulumi.StringInput
 	// Create an endpoint in a private network.
-	PrivateNetwork DocumentDBReadReplicaPrivateNetworkPtrInput
+	PrivateNetwork DocumentdbReadReplicaPrivateNetworkPtrInput
 	// `region`) The region
 	// in which the Database read replica should be created.
 	Region pulumi.StringPtrInput
 }
 
-func (DocumentDBReadReplicaArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*documentDBReadReplicaArgs)(nil)).Elem()
+func (DocumentdbReadReplicaArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*documentdbReadReplicaArgs)(nil)).Elem()
 }
 
-type DocumentDBReadReplicaInput interface {
+type DocumentdbReadReplicaInput interface {
 	pulumi.Input
 
-	ToDocumentDBReadReplicaOutput() DocumentDBReadReplicaOutput
-	ToDocumentDBReadReplicaOutputWithContext(ctx context.Context) DocumentDBReadReplicaOutput
+	ToDocumentdbReadReplicaOutput() DocumentdbReadReplicaOutput
+	ToDocumentdbReadReplicaOutputWithContext(ctx context.Context) DocumentdbReadReplicaOutput
 }
 
-func (*DocumentDBReadReplica) ElementType() reflect.Type {
-	return reflect.TypeOf((**DocumentDBReadReplica)(nil)).Elem()
+func (*DocumentdbReadReplica) ElementType() reflect.Type {
+	return reflect.TypeOf((**DocumentdbReadReplica)(nil)).Elem()
 }
 
-func (i *DocumentDBReadReplica) ToDocumentDBReadReplicaOutput() DocumentDBReadReplicaOutput {
-	return i.ToDocumentDBReadReplicaOutputWithContext(context.Background())
+func (i *DocumentdbReadReplica) ToDocumentdbReadReplicaOutput() DocumentdbReadReplicaOutput {
+	return i.ToDocumentdbReadReplicaOutputWithContext(context.Background())
 }
 
-func (i *DocumentDBReadReplica) ToDocumentDBReadReplicaOutputWithContext(ctx context.Context) DocumentDBReadReplicaOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBReadReplicaOutput)
+func (i *DocumentdbReadReplica) ToDocumentdbReadReplicaOutputWithContext(ctx context.Context) DocumentdbReadReplicaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbReadReplicaOutput)
 }
 
-// DocumentDBReadReplicaArrayInput is an input type that accepts DocumentDBReadReplicaArray and DocumentDBReadReplicaArrayOutput values.
-// You can construct a concrete instance of `DocumentDBReadReplicaArrayInput` via:
+// DocumentdbReadReplicaArrayInput is an input type that accepts DocumentdbReadReplicaArray and DocumentdbReadReplicaArrayOutput values.
+// You can construct a concrete instance of `DocumentdbReadReplicaArrayInput` via:
 //
-//	DocumentDBReadReplicaArray{ DocumentDBReadReplicaArgs{...} }
-type DocumentDBReadReplicaArrayInput interface {
+//	DocumentdbReadReplicaArray{ DocumentdbReadReplicaArgs{...} }
+type DocumentdbReadReplicaArrayInput interface {
 	pulumi.Input
 
-	ToDocumentDBReadReplicaArrayOutput() DocumentDBReadReplicaArrayOutput
-	ToDocumentDBReadReplicaArrayOutputWithContext(context.Context) DocumentDBReadReplicaArrayOutput
+	ToDocumentdbReadReplicaArrayOutput() DocumentdbReadReplicaArrayOutput
+	ToDocumentdbReadReplicaArrayOutputWithContext(context.Context) DocumentdbReadReplicaArrayOutput
 }
 
-type DocumentDBReadReplicaArray []DocumentDBReadReplicaInput
+type DocumentdbReadReplicaArray []DocumentdbReadReplicaInput
 
-func (DocumentDBReadReplicaArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*DocumentDBReadReplica)(nil)).Elem()
+func (DocumentdbReadReplicaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DocumentdbReadReplica)(nil)).Elem()
 }
 
-func (i DocumentDBReadReplicaArray) ToDocumentDBReadReplicaArrayOutput() DocumentDBReadReplicaArrayOutput {
-	return i.ToDocumentDBReadReplicaArrayOutputWithContext(context.Background())
+func (i DocumentdbReadReplicaArray) ToDocumentdbReadReplicaArrayOutput() DocumentdbReadReplicaArrayOutput {
+	return i.ToDocumentdbReadReplicaArrayOutputWithContext(context.Background())
 }
 
-func (i DocumentDBReadReplicaArray) ToDocumentDBReadReplicaArrayOutputWithContext(ctx context.Context) DocumentDBReadReplicaArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBReadReplicaArrayOutput)
+func (i DocumentdbReadReplicaArray) ToDocumentdbReadReplicaArrayOutputWithContext(ctx context.Context) DocumentdbReadReplicaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbReadReplicaArrayOutput)
 }
 
-// DocumentDBReadReplicaMapInput is an input type that accepts DocumentDBReadReplicaMap and DocumentDBReadReplicaMapOutput values.
-// You can construct a concrete instance of `DocumentDBReadReplicaMapInput` via:
+// DocumentdbReadReplicaMapInput is an input type that accepts DocumentdbReadReplicaMap and DocumentdbReadReplicaMapOutput values.
+// You can construct a concrete instance of `DocumentdbReadReplicaMapInput` via:
 //
-//	DocumentDBReadReplicaMap{ "key": DocumentDBReadReplicaArgs{...} }
-type DocumentDBReadReplicaMapInput interface {
+//	DocumentdbReadReplicaMap{ "key": DocumentdbReadReplicaArgs{...} }
+type DocumentdbReadReplicaMapInput interface {
 	pulumi.Input
 
-	ToDocumentDBReadReplicaMapOutput() DocumentDBReadReplicaMapOutput
-	ToDocumentDBReadReplicaMapOutputWithContext(context.Context) DocumentDBReadReplicaMapOutput
+	ToDocumentdbReadReplicaMapOutput() DocumentdbReadReplicaMapOutput
+	ToDocumentdbReadReplicaMapOutputWithContext(context.Context) DocumentdbReadReplicaMapOutput
 }
 
-type DocumentDBReadReplicaMap map[string]DocumentDBReadReplicaInput
+type DocumentdbReadReplicaMap map[string]DocumentdbReadReplicaInput
 
-func (DocumentDBReadReplicaMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*DocumentDBReadReplica)(nil)).Elem()
+func (DocumentdbReadReplicaMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DocumentdbReadReplica)(nil)).Elem()
 }
 
-func (i DocumentDBReadReplicaMap) ToDocumentDBReadReplicaMapOutput() DocumentDBReadReplicaMapOutput {
-	return i.ToDocumentDBReadReplicaMapOutputWithContext(context.Background())
+func (i DocumentdbReadReplicaMap) ToDocumentdbReadReplicaMapOutput() DocumentdbReadReplicaMapOutput {
+	return i.ToDocumentdbReadReplicaMapOutputWithContext(context.Background())
 }
 
-func (i DocumentDBReadReplicaMap) ToDocumentDBReadReplicaMapOutputWithContext(ctx context.Context) DocumentDBReadReplicaMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBReadReplicaMapOutput)
+func (i DocumentdbReadReplicaMap) ToDocumentdbReadReplicaMapOutputWithContext(ctx context.Context) DocumentdbReadReplicaMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbReadReplicaMapOutput)
 }
 
-type DocumentDBReadReplicaOutput struct{ *pulumi.OutputState }
+type DocumentdbReadReplicaOutput struct{ *pulumi.OutputState }
 
-func (DocumentDBReadReplicaOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DocumentDBReadReplica)(nil)).Elem()
+func (DocumentdbReadReplicaOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DocumentdbReadReplica)(nil)).Elem()
 }
 
-func (o DocumentDBReadReplicaOutput) ToDocumentDBReadReplicaOutput() DocumentDBReadReplicaOutput {
+func (o DocumentdbReadReplicaOutput) ToDocumentdbReadReplicaOutput() DocumentdbReadReplicaOutput {
 	return o
 }
 
-func (o DocumentDBReadReplicaOutput) ToDocumentDBReadReplicaOutputWithContext(ctx context.Context) DocumentDBReadReplicaOutput {
+func (o DocumentdbReadReplicaOutput) ToDocumentdbReadReplicaOutputWithContext(ctx context.Context) DocumentdbReadReplicaOutput {
 	return o
 }
 
 // Creates a direct access endpoint to documentdb replica.
-func (o DocumentDBReadReplicaOutput) DirectAccess() DocumentDBReadReplicaDirectAccessPtrOutput {
-	return o.ApplyT(func(v *DocumentDBReadReplica) DocumentDBReadReplicaDirectAccessPtrOutput { return v.DirectAccess }).(DocumentDBReadReplicaDirectAccessPtrOutput)
+func (o DocumentdbReadReplicaOutput) DirectAccess() DocumentdbReadReplicaDirectAccessPtrOutput {
+	return o.ApplyT(func(v *DocumentdbReadReplica) DocumentdbReadReplicaDirectAccessPtrOutput { return v.DirectAccess }).(DocumentdbReadReplicaDirectAccessPtrOutput)
 }
 
 // UUID of the documentdb instance.
 //
 // > **Important:** The replica musts contains at least one of `directAccess` or `privateNetwork`. It can contain both.
-func (o DocumentDBReadReplicaOutput) InstanceId() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBReadReplica) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
+func (o DocumentdbReadReplicaOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbReadReplica) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
 // Create an endpoint in a private network.
-func (o DocumentDBReadReplicaOutput) PrivateNetwork() DocumentDBReadReplicaPrivateNetworkPtrOutput {
-	return o.ApplyT(func(v *DocumentDBReadReplica) DocumentDBReadReplicaPrivateNetworkPtrOutput { return v.PrivateNetwork }).(DocumentDBReadReplicaPrivateNetworkPtrOutput)
+func (o DocumentdbReadReplicaOutput) PrivateNetwork() DocumentdbReadReplicaPrivateNetworkPtrOutput {
+	return o.ApplyT(func(v *DocumentdbReadReplica) DocumentdbReadReplicaPrivateNetworkPtrOutput { return v.PrivateNetwork }).(DocumentdbReadReplicaPrivateNetworkPtrOutput)
 }
 
 // `region`) The region
 // in which the Database read replica should be created.
-func (o DocumentDBReadReplicaOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBReadReplica) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o DocumentdbReadReplicaOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbReadReplica) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-type DocumentDBReadReplicaArrayOutput struct{ *pulumi.OutputState }
+type DocumentdbReadReplicaArrayOutput struct{ *pulumi.OutputState }
 
-func (DocumentDBReadReplicaArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*DocumentDBReadReplica)(nil)).Elem()
+func (DocumentdbReadReplicaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DocumentdbReadReplica)(nil)).Elem()
 }
 
-func (o DocumentDBReadReplicaArrayOutput) ToDocumentDBReadReplicaArrayOutput() DocumentDBReadReplicaArrayOutput {
+func (o DocumentdbReadReplicaArrayOutput) ToDocumentdbReadReplicaArrayOutput() DocumentdbReadReplicaArrayOutput {
 	return o
 }
 
-func (o DocumentDBReadReplicaArrayOutput) ToDocumentDBReadReplicaArrayOutputWithContext(ctx context.Context) DocumentDBReadReplicaArrayOutput {
+func (o DocumentdbReadReplicaArrayOutput) ToDocumentdbReadReplicaArrayOutputWithContext(ctx context.Context) DocumentdbReadReplicaArrayOutput {
 	return o
 }
 
-func (o DocumentDBReadReplicaArrayOutput) Index(i pulumi.IntInput) DocumentDBReadReplicaOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DocumentDBReadReplica {
-		return vs[0].([]*DocumentDBReadReplica)[vs[1].(int)]
-	}).(DocumentDBReadReplicaOutput)
+func (o DocumentdbReadReplicaArrayOutput) Index(i pulumi.IntInput) DocumentdbReadReplicaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DocumentdbReadReplica {
+		return vs[0].([]*DocumentdbReadReplica)[vs[1].(int)]
+	}).(DocumentdbReadReplicaOutput)
 }
 
-type DocumentDBReadReplicaMapOutput struct{ *pulumi.OutputState }
+type DocumentdbReadReplicaMapOutput struct{ *pulumi.OutputState }
 
-func (DocumentDBReadReplicaMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*DocumentDBReadReplica)(nil)).Elem()
+func (DocumentdbReadReplicaMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DocumentdbReadReplica)(nil)).Elem()
 }
 
-func (o DocumentDBReadReplicaMapOutput) ToDocumentDBReadReplicaMapOutput() DocumentDBReadReplicaMapOutput {
+func (o DocumentdbReadReplicaMapOutput) ToDocumentdbReadReplicaMapOutput() DocumentdbReadReplicaMapOutput {
 	return o
 }
 
-func (o DocumentDBReadReplicaMapOutput) ToDocumentDBReadReplicaMapOutputWithContext(ctx context.Context) DocumentDBReadReplicaMapOutput {
+func (o DocumentdbReadReplicaMapOutput) ToDocumentdbReadReplicaMapOutputWithContext(ctx context.Context) DocumentdbReadReplicaMapOutput {
 	return o
 }
 
-func (o DocumentDBReadReplicaMapOutput) MapIndex(k pulumi.StringInput) DocumentDBReadReplicaOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DocumentDBReadReplica {
-		return vs[0].(map[string]*DocumentDBReadReplica)[vs[1].(string)]
-	}).(DocumentDBReadReplicaOutput)
+func (o DocumentdbReadReplicaMapOutput) MapIndex(k pulumi.StringInput) DocumentdbReadReplicaOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DocumentdbReadReplica {
+		return vs[0].(map[string]*DocumentdbReadReplica)[vs[1].(string)]
+	}).(DocumentdbReadReplicaOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBReadReplicaInput)(nil)).Elem(), &DocumentDBReadReplica{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBReadReplicaArrayInput)(nil)).Elem(), DocumentDBReadReplicaArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBReadReplicaMapInput)(nil)).Elem(), DocumentDBReadReplicaMap{})
-	pulumi.RegisterOutputType(DocumentDBReadReplicaOutput{})
-	pulumi.RegisterOutputType(DocumentDBReadReplicaArrayOutput{})
-	pulumi.RegisterOutputType(DocumentDBReadReplicaMapOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbReadReplicaInput)(nil)).Elem(), &DocumentdbReadReplica{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbReadReplicaArrayInput)(nil)).Elem(), DocumentdbReadReplicaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbReadReplicaMapInput)(nil)).Elem(), DocumentdbReadReplicaMap{})
+	pulumi.RegisterOutputType(DocumentdbReadReplicaOutput{})
+	pulumi.RegisterOutputType(DocumentdbReadReplicaArrayOutput{})
+	pulumi.RegisterOutputType(DocumentdbReadReplicaMapOutput{})
 }

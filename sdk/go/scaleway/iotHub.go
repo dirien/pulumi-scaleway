@@ -12,14 +12,42 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ### Basic
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewIotHub(ctx, "main", &scaleway.IotHubArgs{
+//				ProductPlan: pulumi.String("plan_shared"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
-// IoT Hubs can be imported using the `{region}/{id}`, e.g. bash
+// IoT Hubs can be imported using the `{region}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
 // ```
 type IotHub struct {
 	pulumi.CustomResourceState
@@ -48,7 +76,7 @@ type IotHub struct {
 	HubCaChallenge pulumi.StringPtrOutput `pulumi:"hubCaChallenge"`
 	// The name of the IoT Hub instance you want to create (e.g. `my-hub`).
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// The organizationId you want to attach the resource to
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
 	//
@@ -121,7 +149,7 @@ type iotHubState struct {
 	HubCaChallenge *string `pulumi:"hubCaChallenge"`
 	// The name of the IoT Hub instance you want to create (e.g. `my-hub`).
 	Name *string `pulumi:"name"`
-	// The organization_id you want to attach the resource to
+	// The organizationId you want to attach the resource to
 	OrganizationId *string `pulumi:"organizationId"`
 	// Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
 	//
@@ -162,7 +190,7 @@ type IotHubState struct {
 	HubCaChallenge pulumi.StringPtrInput
 	// The name of the IoT Hub instance you want to create (e.g. `my-hub`).
 	Name pulumi.StringPtrInput
-	// The organization_id you want to attach the resource to
+	// The organizationId you want to attach the resource to
 	OrganizationId pulumi.StringPtrInput
 	// Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
 	//
@@ -381,7 +409,7 @@ func (o IotHubOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotHub) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The organization_id you want to attach the resource to
+// The organizationId you want to attach the resource to
 func (o IotHubOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotHub) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }

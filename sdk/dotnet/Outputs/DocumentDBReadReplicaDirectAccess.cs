@@ -12,7 +12,7 @@ namespace ediri.Scaleway.Outputs
 {
 
     [OutputType]
-    public sealed class DocumentDBReadReplicaDirectAccess
+    public sealed class DocumentdbReadReplicaDirectAccess
     {
         /// <summary>
         /// The ID of the endpoint of the read replica.
@@ -36,7 +36,7 @@ namespace ediri.Scaleway.Outputs
         public readonly int? Port;
 
         [OutputConstructor]
-        private DocumentDBReadReplicaDirectAccess(
+        private DocumentdbReadReplicaDirectAccess(
             string? endpointId,
 
             string? hostname,

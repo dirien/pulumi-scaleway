@@ -212,12 +212,26 @@ class IotNetwork(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
+        main_iot_network = scaleway.IotNetwork("mainIotNetwork",
+            hub_id=main_iot_hub.id,
+            type="sigfox")
+        ```
+
         ## Import
 
-        IoT Networks can be imported using the `{region}/{id}`, e.g. bash
+        IoT Networks can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/iotNetwork:IotNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/iotNetwork:IotNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -234,12 +248,26 @@ class IotNetwork(pulumi.CustomResource):
                  args: IotNetworkArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        main_iot_hub = scaleway.IotHub("mainIotHub", product_plan="plan_shared")
+        main_iot_network = scaleway.IotNetwork("mainIotNetwork",
+            hub_id=main_iot_hub.id,
+            type="sigfox")
+        ```
+
         ## Import
 
-        IoT Networks can be imported using the `{region}/{id}`, e.g. bash
+        IoT Networks can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/iotNetwork:IotNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/iotNetwork:IotNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

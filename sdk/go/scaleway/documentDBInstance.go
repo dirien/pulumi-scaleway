@@ -15,7 +15,7 @@ import (
 // Creates and manages Scaleway Database Instances.
 // For more information, see [the documentation](https://www.scaleway.com/en/developers/api/document_db/).
 //
-// ## Examples
+// ## Example Usage
 //
 // ### Example Basic
 //
@@ -31,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewDocumentDBInstance(ctx, "main", &scaleway.DocumentDBInstanceArgs{
+//			_, err := scaleway.NewDocumentdbInstance(ctx, "main", &scaleway.DocumentdbInstanceArgs{
 //				Engine:   pulumi.String("FerretDB-1"),
 //				NodeType: pulumi.String("docdb-play2-pico"),
 //				Password: pulumi.String("thiZ_is_v&ry_s3cret"),
@@ -54,14 +54,14 @@ import (
 //
 // ## Import
 //
-// Database Instance can be imported using the `{region}/{id}`, e.g. bash
+// Database Instance can be imported using the `{region}/{id}`, e.g.
+//
+// bash
 //
 // ```sh
-//
-//	$ pulumi import scaleway:index/documentDBInstance:DocumentDBInstance db fr-par/11111111-1111-1111-1111-111111111111
-//
+// $ pulumi import scaleway:index/documentdbInstance:DocumentdbInstance db fr-par/11111111-1111-1111-1111-111111111111
 // ```
-type DocumentDBInstance struct {
+type DocumentdbInstance struct {
 	pulumi.CustomResourceState
 
 	// Database Instance's engine version (e.g. `FerretDB-1`).
@@ -101,9 +101,9 @@ type DocumentDBInstance struct {
 	VolumeType pulumi.StringPtrOutput `pulumi:"volumeType"`
 }
 
-// NewDocumentDBInstance registers a new resource with the given unique name, arguments, and options.
-func NewDocumentDBInstance(ctx *pulumi.Context,
-	name string, args *DocumentDBInstanceArgs, opts ...pulumi.ResourceOption) (*DocumentDBInstance, error) {
+// NewDocumentdbInstance registers a new resource with the given unique name, arguments, and options.
+func NewDocumentdbInstance(ctx *pulumi.Context,
+	name string, args *DocumentdbInstanceArgs, opts ...pulumi.ResourceOption) (*DocumentdbInstance, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -122,28 +122,28 @@ func NewDocumentDBInstance(ctx *pulumi.Context,
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
-	var resource DocumentDBInstance
-	err := ctx.RegisterResource("scaleway:index/documentDBInstance:DocumentDBInstance", name, args, &resource, opts...)
+	var resource DocumentdbInstance
+	err := ctx.RegisterResource("scaleway:index/documentdbInstance:DocumentdbInstance", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetDocumentDBInstance gets an existing DocumentDBInstance resource's state with the given name, ID, and optional
+// GetDocumentdbInstance gets an existing DocumentdbInstance resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetDocumentDBInstance(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *DocumentDBInstanceState, opts ...pulumi.ResourceOption) (*DocumentDBInstance, error) {
-	var resource DocumentDBInstance
-	err := ctx.ReadResource("scaleway:index/documentDBInstance:DocumentDBInstance", name, id, state, &resource, opts...)
+func GetDocumentdbInstance(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *DocumentdbInstanceState, opts ...pulumi.ResourceOption) (*DocumentdbInstance, error) {
+	var resource DocumentdbInstance
+	err := ctx.ReadResource("scaleway:index/documentdbInstance:DocumentdbInstance", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering DocumentDBInstance resources.
-type documentDBInstanceState struct {
+// Input properties used for looking up and filtering DocumentdbInstance resources.
+type documentdbInstanceState struct {
 	// Database Instance's engine version (e.g. `FerretDB-1`).
 	//
 	// > **Important:** Updates to `engine` will recreate the Database Instance.
@@ -181,7 +181,7 @@ type documentDBInstanceState struct {
 	VolumeType *string `pulumi:"volumeType"`
 }
 
-type DocumentDBInstanceState struct {
+type DocumentdbInstanceState struct {
 	// Database Instance's engine version (e.g. `FerretDB-1`).
 	//
 	// > **Important:** Updates to `engine` will recreate the Database Instance.
@@ -219,11 +219,11 @@ type DocumentDBInstanceState struct {
 	VolumeType pulumi.StringPtrInput
 }
 
-func (DocumentDBInstanceState) ElementType() reflect.Type {
-	return reflect.TypeOf((*documentDBInstanceState)(nil)).Elem()
+func (DocumentdbInstanceState) ElementType() reflect.Type {
+	return reflect.TypeOf((*documentdbInstanceState)(nil)).Elem()
 }
 
-type documentDBInstanceArgs struct {
+type documentdbInstanceArgs struct {
 	// Database Instance's engine version (e.g. `FerretDB-1`).
 	//
 	// > **Important:** Updates to `engine` will recreate the Database Instance.
@@ -261,8 +261,8 @@ type documentDBInstanceArgs struct {
 	VolumeType *string `pulumi:"volumeType"`
 }
 
-// The set of arguments for constructing a DocumentDBInstance resource.
-type DocumentDBInstanceArgs struct {
+// The set of arguments for constructing a DocumentdbInstance resource.
+type DocumentdbInstanceArgs struct {
 	// Database Instance's engine version (e.g. `FerretDB-1`).
 	//
 	// > **Important:** Updates to `engine` will recreate the Database Instance.
@@ -300,209 +300,209 @@ type DocumentDBInstanceArgs struct {
 	VolumeType pulumi.StringPtrInput
 }
 
-func (DocumentDBInstanceArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*documentDBInstanceArgs)(nil)).Elem()
+func (DocumentdbInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*documentdbInstanceArgs)(nil)).Elem()
 }
 
-type DocumentDBInstanceInput interface {
+type DocumentdbInstanceInput interface {
 	pulumi.Input
 
-	ToDocumentDBInstanceOutput() DocumentDBInstanceOutput
-	ToDocumentDBInstanceOutputWithContext(ctx context.Context) DocumentDBInstanceOutput
+	ToDocumentdbInstanceOutput() DocumentdbInstanceOutput
+	ToDocumentdbInstanceOutputWithContext(ctx context.Context) DocumentdbInstanceOutput
 }
 
-func (*DocumentDBInstance) ElementType() reflect.Type {
-	return reflect.TypeOf((**DocumentDBInstance)(nil)).Elem()
+func (*DocumentdbInstance) ElementType() reflect.Type {
+	return reflect.TypeOf((**DocumentdbInstance)(nil)).Elem()
 }
 
-func (i *DocumentDBInstance) ToDocumentDBInstanceOutput() DocumentDBInstanceOutput {
-	return i.ToDocumentDBInstanceOutputWithContext(context.Background())
+func (i *DocumentdbInstance) ToDocumentdbInstanceOutput() DocumentdbInstanceOutput {
+	return i.ToDocumentdbInstanceOutputWithContext(context.Background())
 }
 
-func (i *DocumentDBInstance) ToDocumentDBInstanceOutputWithContext(ctx context.Context) DocumentDBInstanceOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBInstanceOutput)
+func (i *DocumentdbInstance) ToDocumentdbInstanceOutputWithContext(ctx context.Context) DocumentdbInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbInstanceOutput)
 }
 
-// DocumentDBInstanceArrayInput is an input type that accepts DocumentDBInstanceArray and DocumentDBInstanceArrayOutput values.
-// You can construct a concrete instance of `DocumentDBInstanceArrayInput` via:
+// DocumentdbInstanceArrayInput is an input type that accepts DocumentdbInstanceArray and DocumentdbInstanceArrayOutput values.
+// You can construct a concrete instance of `DocumentdbInstanceArrayInput` via:
 //
-//	DocumentDBInstanceArray{ DocumentDBInstanceArgs{...} }
-type DocumentDBInstanceArrayInput interface {
+//	DocumentdbInstanceArray{ DocumentdbInstanceArgs{...} }
+type DocumentdbInstanceArrayInput interface {
 	pulumi.Input
 
-	ToDocumentDBInstanceArrayOutput() DocumentDBInstanceArrayOutput
-	ToDocumentDBInstanceArrayOutputWithContext(context.Context) DocumentDBInstanceArrayOutput
+	ToDocumentdbInstanceArrayOutput() DocumentdbInstanceArrayOutput
+	ToDocumentdbInstanceArrayOutputWithContext(context.Context) DocumentdbInstanceArrayOutput
 }
 
-type DocumentDBInstanceArray []DocumentDBInstanceInput
+type DocumentdbInstanceArray []DocumentdbInstanceInput
 
-func (DocumentDBInstanceArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*DocumentDBInstance)(nil)).Elem()
+func (DocumentdbInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DocumentdbInstance)(nil)).Elem()
 }
 
-func (i DocumentDBInstanceArray) ToDocumentDBInstanceArrayOutput() DocumentDBInstanceArrayOutput {
-	return i.ToDocumentDBInstanceArrayOutputWithContext(context.Background())
+func (i DocumentdbInstanceArray) ToDocumentdbInstanceArrayOutput() DocumentdbInstanceArrayOutput {
+	return i.ToDocumentdbInstanceArrayOutputWithContext(context.Background())
 }
 
-func (i DocumentDBInstanceArray) ToDocumentDBInstanceArrayOutputWithContext(ctx context.Context) DocumentDBInstanceArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBInstanceArrayOutput)
+func (i DocumentdbInstanceArray) ToDocumentdbInstanceArrayOutputWithContext(ctx context.Context) DocumentdbInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbInstanceArrayOutput)
 }
 
-// DocumentDBInstanceMapInput is an input type that accepts DocumentDBInstanceMap and DocumentDBInstanceMapOutput values.
-// You can construct a concrete instance of `DocumentDBInstanceMapInput` via:
+// DocumentdbInstanceMapInput is an input type that accepts DocumentdbInstanceMap and DocumentdbInstanceMapOutput values.
+// You can construct a concrete instance of `DocumentdbInstanceMapInput` via:
 //
-//	DocumentDBInstanceMap{ "key": DocumentDBInstanceArgs{...} }
-type DocumentDBInstanceMapInput interface {
+//	DocumentdbInstanceMap{ "key": DocumentdbInstanceArgs{...} }
+type DocumentdbInstanceMapInput interface {
 	pulumi.Input
 
-	ToDocumentDBInstanceMapOutput() DocumentDBInstanceMapOutput
-	ToDocumentDBInstanceMapOutputWithContext(context.Context) DocumentDBInstanceMapOutput
+	ToDocumentdbInstanceMapOutput() DocumentdbInstanceMapOutput
+	ToDocumentdbInstanceMapOutputWithContext(context.Context) DocumentdbInstanceMapOutput
 }
 
-type DocumentDBInstanceMap map[string]DocumentDBInstanceInput
+type DocumentdbInstanceMap map[string]DocumentdbInstanceInput
 
-func (DocumentDBInstanceMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*DocumentDBInstance)(nil)).Elem()
+func (DocumentdbInstanceMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DocumentdbInstance)(nil)).Elem()
 }
 
-func (i DocumentDBInstanceMap) ToDocumentDBInstanceMapOutput() DocumentDBInstanceMapOutput {
-	return i.ToDocumentDBInstanceMapOutputWithContext(context.Background())
+func (i DocumentdbInstanceMap) ToDocumentdbInstanceMapOutput() DocumentdbInstanceMapOutput {
+	return i.ToDocumentdbInstanceMapOutputWithContext(context.Background())
 }
 
-func (i DocumentDBInstanceMap) ToDocumentDBInstanceMapOutputWithContext(ctx context.Context) DocumentDBInstanceMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentDBInstanceMapOutput)
+func (i DocumentdbInstanceMap) ToDocumentdbInstanceMapOutputWithContext(ctx context.Context) DocumentdbInstanceMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbInstanceMapOutput)
 }
 
-type DocumentDBInstanceOutput struct{ *pulumi.OutputState }
+type DocumentdbInstanceOutput struct{ *pulumi.OutputState }
 
-func (DocumentDBInstanceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DocumentDBInstance)(nil)).Elem()
+func (DocumentdbInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DocumentdbInstance)(nil)).Elem()
 }
 
-func (o DocumentDBInstanceOutput) ToDocumentDBInstanceOutput() DocumentDBInstanceOutput {
+func (o DocumentdbInstanceOutput) ToDocumentdbInstanceOutput() DocumentdbInstanceOutput {
 	return o
 }
 
-func (o DocumentDBInstanceOutput) ToDocumentDBInstanceOutputWithContext(ctx context.Context) DocumentDBInstanceOutput {
+func (o DocumentdbInstanceOutput) ToDocumentdbInstanceOutputWithContext(ctx context.Context) DocumentdbInstanceOutput {
 	return o
 }
 
 // Database Instance's engine version (e.g. `FerretDB-1`).
 //
 // > **Important:** Updates to `engine` will recreate the Database Instance.
-func (o DocumentDBInstanceOutput) Engine() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBInstance) pulumi.StringOutput { return v.Engine }).(pulumi.StringOutput)
+func (o DocumentdbInstanceOutput) Engine() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbInstance) pulumi.StringOutput { return v.Engine }).(pulumi.StringOutput)
 }
 
 // Enable or disable high availability for the database instance.
-func (o DocumentDBInstanceOutput) IsHaCluster() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *DocumentDBInstance) pulumi.BoolPtrOutput { return v.IsHaCluster }).(pulumi.BoolPtrOutput)
+func (o DocumentdbInstanceOutput) IsHaCluster() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DocumentdbInstance) pulumi.BoolPtrOutput { return v.IsHaCluster }).(pulumi.BoolPtrOutput)
 }
 
 // The name of the Database Instance.
-func (o DocumentDBInstanceOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBInstance) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+func (o DocumentdbInstanceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbInstance) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 // The type of database instance you want to create (e.g. `docdb-play2-pico`).
 //
 // > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
 // interruption. Keep in mind that you cannot downgrade a Database Instance.
-func (o DocumentDBInstanceOutput) NodeType() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBInstance) pulumi.StringOutput { return v.NodeType }).(pulumi.StringOutput)
+func (o DocumentdbInstanceOutput) NodeType() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbInstance) pulumi.StringOutput { return v.NodeType }).(pulumi.StringOutput)
 }
 
 // Password for the first user of the database instance.
-func (o DocumentDBInstanceOutput) Password() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DocumentDBInstance) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+func (o DocumentdbInstanceOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DocumentdbInstance) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
 }
 
 // `projectId`) The ID of the project the Database
 // Instance is associated with.
-func (o DocumentDBInstanceOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBInstance) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+func (o DocumentdbInstanceOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbInstance) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // `region`) The region
 // in which the Database Instance should be created.
-func (o DocumentDBInstanceOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *DocumentDBInstance) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o DocumentdbInstanceOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *DocumentdbInstance) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The tags associated with the Database Instance.
-func (o DocumentDBInstanceOutput) Tags() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *DocumentDBInstance) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
+func (o DocumentdbInstanceOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DocumentdbInstance) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 // Enable telemetry to collects basic anonymous usage data and sends them to FerretDB telemetry service. More about the telemetry [here](https://docs.ferretdb.io/telemetry/#configure-telemetry).
 //
 // > **Important:** Updates to `isHaCluster` will recreate the Database Instance.
-func (o DocumentDBInstanceOutput) TelemetryEnabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *DocumentDBInstance) pulumi.BoolPtrOutput { return v.TelemetryEnabled }).(pulumi.BoolPtrOutput)
+func (o DocumentdbInstanceOutput) TelemetryEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DocumentdbInstance) pulumi.BoolPtrOutput { return v.TelemetryEnabled }).(pulumi.BoolPtrOutput)
 }
 
 // Identifier for the first user of the database instance.
 //
 // > **Important:** Updates to `userName` will recreate the Database Instance.
-func (o DocumentDBInstanceOutput) UserName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DocumentDBInstance) pulumi.StringPtrOutput { return v.UserName }).(pulumi.StringPtrOutput)
+func (o DocumentdbInstanceOutput) UserName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DocumentdbInstance) pulumi.StringPtrOutput { return v.UserName }).(pulumi.StringPtrOutput)
 }
 
 // Volume size (in GB) when `volumeType` is set to `bssd`.
-func (o DocumentDBInstanceOutput) VolumeSizeInGb() pulumi.IntOutput {
-	return o.ApplyT(func(v *DocumentDBInstance) pulumi.IntOutput { return v.VolumeSizeInGb }).(pulumi.IntOutput)
+func (o DocumentdbInstanceOutput) VolumeSizeInGb() pulumi.IntOutput {
+	return o.ApplyT(func(v *DocumentdbInstance) pulumi.IntOutput { return v.VolumeSizeInGb }).(pulumi.IntOutput)
 }
 
 // Type of volume where data are stored (`bssd` or `lssd`).
-func (o DocumentDBInstanceOutput) VolumeType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DocumentDBInstance) pulumi.StringPtrOutput { return v.VolumeType }).(pulumi.StringPtrOutput)
+func (o DocumentdbInstanceOutput) VolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DocumentdbInstance) pulumi.StringPtrOutput { return v.VolumeType }).(pulumi.StringPtrOutput)
 }
 
-type DocumentDBInstanceArrayOutput struct{ *pulumi.OutputState }
+type DocumentdbInstanceArrayOutput struct{ *pulumi.OutputState }
 
-func (DocumentDBInstanceArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*DocumentDBInstance)(nil)).Elem()
+func (DocumentdbInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*DocumentdbInstance)(nil)).Elem()
 }
 
-func (o DocumentDBInstanceArrayOutput) ToDocumentDBInstanceArrayOutput() DocumentDBInstanceArrayOutput {
+func (o DocumentdbInstanceArrayOutput) ToDocumentdbInstanceArrayOutput() DocumentdbInstanceArrayOutput {
 	return o
 }
 
-func (o DocumentDBInstanceArrayOutput) ToDocumentDBInstanceArrayOutputWithContext(ctx context.Context) DocumentDBInstanceArrayOutput {
+func (o DocumentdbInstanceArrayOutput) ToDocumentdbInstanceArrayOutputWithContext(ctx context.Context) DocumentdbInstanceArrayOutput {
 	return o
 }
 
-func (o DocumentDBInstanceArrayOutput) Index(i pulumi.IntInput) DocumentDBInstanceOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DocumentDBInstance {
-		return vs[0].([]*DocumentDBInstance)[vs[1].(int)]
-	}).(DocumentDBInstanceOutput)
+func (o DocumentdbInstanceArrayOutput) Index(i pulumi.IntInput) DocumentdbInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DocumentdbInstance {
+		return vs[0].([]*DocumentdbInstance)[vs[1].(int)]
+	}).(DocumentdbInstanceOutput)
 }
 
-type DocumentDBInstanceMapOutput struct{ *pulumi.OutputState }
+type DocumentdbInstanceMapOutput struct{ *pulumi.OutputState }
 
-func (DocumentDBInstanceMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*DocumentDBInstance)(nil)).Elem()
+func (DocumentdbInstanceMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*DocumentdbInstance)(nil)).Elem()
 }
 
-func (o DocumentDBInstanceMapOutput) ToDocumentDBInstanceMapOutput() DocumentDBInstanceMapOutput {
+func (o DocumentdbInstanceMapOutput) ToDocumentdbInstanceMapOutput() DocumentdbInstanceMapOutput {
 	return o
 }
 
-func (o DocumentDBInstanceMapOutput) ToDocumentDBInstanceMapOutputWithContext(ctx context.Context) DocumentDBInstanceMapOutput {
+func (o DocumentdbInstanceMapOutput) ToDocumentdbInstanceMapOutputWithContext(ctx context.Context) DocumentdbInstanceMapOutput {
 	return o
 }
 
-func (o DocumentDBInstanceMapOutput) MapIndex(k pulumi.StringInput) DocumentDBInstanceOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DocumentDBInstance {
-		return vs[0].(map[string]*DocumentDBInstance)[vs[1].(string)]
-	}).(DocumentDBInstanceOutput)
+func (o DocumentdbInstanceMapOutput) MapIndex(k pulumi.StringInput) DocumentdbInstanceOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DocumentdbInstance {
+		return vs[0].(map[string]*DocumentdbInstance)[vs[1].(string)]
+	}).(DocumentdbInstanceOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBInstanceInput)(nil)).Elem(), &DocumentDBInstance{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBInstanceArrayInput)(nil)).Elem(), DocumentDBInstanceArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentDBInstanceMapInput)(nil)).Elem(), DocumentDBInstanceMap{})
-	pulumi.RegisterOutputType(DocumentDBInstanceOutput{})
-	pulumi.RegisterOutputType(DocumentDBInstanceArrayOutput{})
-	pulumi.RegisterOutputType(DocumentDBInstanceMapOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbInstanceInput)(nil)).Elem(), &DocumentdbInstance{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbInstanceArrayInput)(nil)).Elem(), DocumentdbInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbInstanceMapInput)(nil)).Elem(), DocumentdbInstanceMap{})
+	pulumi.RegisterOutputType(DocumentdbInstanceOutput{})
+	pulumi.RegisterOutputType(DocumentdbInstanceArrayOutput{})
+	pulumi.RegisterOutputType(DocumentdbInstanceMapOutput{})
 }

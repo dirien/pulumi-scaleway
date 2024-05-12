@@ -119,7 +119,7 @@ namespace ediri.Scaleway
         public readonly string OrganizationId;
         public readonly string Password;
         public readonly ImmutableArray<Outputs.GetRdbInstancePrivateNetworkResult> PrivateNetworks;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly ImmutableArray<Outputs.GetRdbInstanceReadReplicaResult> ReadReplicas;
         public readonly string? Region;
         public readonly ImmutableDictionary<string, string> Settings;
@@ -166,7 +166,7 @@ namespace ediri.Scaleway
 
             ImmutableArray<Outputs.GetRdbInstancePrivateNetworkResult> privateNetworks,
 
-            string projectId,
+            string? projectId,
 
             ImmutableArray<Outputs.GetRdbInstanceReadReplicaResult> readReplicas,
 

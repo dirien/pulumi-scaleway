@@ -300,7 +300,7 @@ class IamGroup(pulumi.CustomResource):
         Creates and manages Scaleway IAM Groups.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#groups-f592eb).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -328,10 +328,12 @@ class IamGroup(pulumi.CustomResource):
 
         ## Import
 
-        IAM groups can be imported using the `{id}`, e.g. bash
+        IAM groups can be imported using the `{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/iamGroup:IamGroup basic 11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/iamGroup:IamGroup basic 11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -354,7 +356,7 @@ class IamGroup(pulumi.CustomResource):
         Creates and manages Scaleway IAM Groups.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#groups-f592eb).
 
-        ## Examples
+        ## Example Usage
 
         ### Basic
 
@@ -382,10 +384,12 @@ class IamGroup(pulumi.CustomResource):
 
         ## Import
 
-        IAM groups can be imported using the `{id}`, e.g. bash
+        IAM groups can be imported using the `{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/iamGroup:IamGroup basic 11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/iamGroup:IamGroup basic 11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

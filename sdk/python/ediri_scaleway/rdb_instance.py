@@ -47,20 +47,15 @@ class RdbInstanceArgs:
                
                > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
                and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
-        :param pulumi.Input[bool] backup_same_region: Boolean to store logical backups in the same region as the database instance.
-        :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours.
-        :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days.
-        :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance.
+        :param pulumi.Input[bool] backup_same_region: Boolean to store logical backups in the same region as the database instance
+        :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours
+        :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days
+        :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] init_settings: Map of engine settings to be set at database initialisation.
-               
-               > **Important:** Updates to `init_settings` will recreate the Database Instance.
-               
-               Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
         :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance.
                
                > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
-        :param pulumi.Input[Sequence[pulumi.Input['RdbInstanceLoadBalancerArgs']]] load_balancers: List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
-               This block must be defined if you want a public endpoint in addition to your private endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input['RdbInstanceLoadBalancerArgs']]] load_balancers: List of load balancer endpoints of the database instance.
         :param pulumi.Input[str] name: The name of the Database Instance.
         :param pulumi.Input[str] password: Password for the first user of the database instance.
         :param pulumi.Input['RdbInstancePrivateNetworkArgs'] private_network: List of private networks endpoints of the database instance.
@@ -68,7 +63,7 @@ class RdbInstanceArgs:
                Instance is associated with.
         :param pulumi.Input[str] region: `region`) The region
                in which the Database Instance should be created.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set. Using this option will override default config.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set on a running instance.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
         :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
                
@@ -151,7 +146,7 @@ class RdbInstanceArgs:
     @pulumi.getter(name="backupSameRegion")
     def backup_same_region(self) -> Optional[pulumi.Input[bool]]:
         """
-        Boolean to store logical backups in the same region as the database instance.
+        Boolean to store logical backups in the same region as the database instance
         """
         return pulumi.get(self, "backup_same_region")
 
@@ -163,7 +158,7 @@ class RdbInstanceArgs:
     @pulumi.getter(name="backupScheduleFrequency")
     def backup_schedule_frequency(self) -> Optional[pulumi.Input[int]]:
         """
-        Backup schedule frequency in hours.
+        Backup schedule frequency in hours
         """
         return pulumi.get(self, "backup_schedule_frequency")
 
@@ -175,7 +170,7 @@ class RdbInstanceArgs:
     @pulumi.getter(name="backupScheduleRetention")
     def backup_schedule_retention(self) -> Optional[pulumi.Input[int]]:
         """
-        Backup schedule retention in days.
+        Backup schedule retention in days
         """
         return pulumi.get(self, "backup_schedule_retention")
 
@@ -187,7 +182,7 @@ class RdbInstanceArgs:
     @pulumi.getter(name="disableBackup")
     def disable_backup(self) -> Optional[pulumi.Input[bool]]:
         """
-        Disable automated backup for the database instance.
+        Disable automated backup for the database instance
         """
         return pulumi.get(self, "disable_backup")
 
@@ -200,10 +195,6 @@ class RdbInstanceArgs:
     def init_settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Map of engine settings to be set at database initialisation.
-
-        > **Important:** Updates to `init_settings` will recreate the Database Instance.
-
-        Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
         """
         return pulumi.get(self, "init_settings")
 
@@ -229,8 +220,7 @@ class RdbInstanceArgs:
     @pulumi.getter(name="loadBalancers")
     def load_balancers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RdbInstanceLoadBalancerArgs']]]]:
         """
-        List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
-        This block must be defined if you want a public endpoint in addition to your private endpoint.
+        List of load balancer endpoints of the database instance.
         """
         return pulumi.get(self, "load_balancers")
 
@@ -304,7 +294,7 @@ class RdbInstanceArgs:
     @pulumi.getter
     def settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Map of engine settings to be set. Using this option will override default config.
+        Map of engine settings to be set on a running instance.
         """
         return pulumi.get(self, "settings")
 
@@ -394,26 +384,21 @@ class _RdbInstanceState:
                  volume_type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering RdbInstance resources.
-        :param pulumi.Input[bool] backup_same_region: Boolean to store logical backups in the same region as the database instance.
-        :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours.
-        :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days.
+        :param pulumi.Input[bool] backup_same_region: Boolean to store logical backups in the same region as the database instance
+        :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours
+        :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days
         :param pulumi.Input[str] certificate: Certificate of the database instance.
-        :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance.
+        :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
         :param pulumi.Input[str] endpoint_ip: (Deprecated) The IP of the Database Instance.
         :param pulumi.Input[int] endpoint_port: (Deprecated) The port of the Database Instance.
         :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
                
                > **Important:** Updates to `engine` will recreate the Database Instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] init_settings: Map of engine settings to be set at database initialisation.
-               
-               > **Important:** Updates to `init_settings` will recreate the Database Instance.
-               
-               Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
         :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance.
                
                > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
-        :param pulumi.Input[Sequence[pulumi.Input['RdbInstanceLoadBalancerArgs']]] load_balancers: List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
-               This block must be defined if you want a public endpoint in addition to your private endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input['RdbInstanceLoadBalancerArgs']]] load_balancers: List of load balancer endpoints of the database instance.
         :param pulumi.Input[str] name: The name of the Database Instance.
         :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
                
@@ -430,7 +415,7 @@ class _RdbInstanceState:
         :param pulumi.Input[Sequence[pulumi.Input['RdbInstanceReadReplicaArgs']]] read_replicas: List of read replicas of the database instance.
         :param pulumi.Input[str] region: `region`) The region
                in which the Database Instance should be created.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set. Using this option will override default config.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set on a running instance.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
         :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
                
@@ -496,7 +481,7 @@ class _RdbInstanceState:
     @pulumi.getter(name="backupSameRegion")
     def backup_same_region(self) -> Optional[pulumi.Input[bool]]:
         """
-        Boolean to store logical backups in the same region as the database instance.
+        Boolean to store logical backups in the same region as the database instance
         """
         return pulumi.get(self, "backup_same_region")
 
@@ -508,7 +493,7 @@ class _RdbInstanceState:
     @pulumi.getter(name="backupScheduleFrequency")
     def backup_schedule_frequency(self) -> Optional[pulumi.Input[int]]:
         """
-        Backup schedule frequency in hours.
+        Backup schedule frequency in hours
         """
         return pulumi.get(self, "backup_schedule_frequency")
 
@@ -520,7 +505,7 @@ class _RdbInstanceState:
     @pulumi.getter(name="backupScheduleRetention")
     def backup_schedule_retention(self) -> Optional[pulumi.Input[int]]:
         """
-        Backup schedule retention in days.
+        Backup schedule retention in days
         """
         return pulumi.get(self, "backup_schedule_retention")
 
@@ -544,7 +529,7 @@ class _RdbInstanceState:
     @pulumi.getter(name="disableBackup")
     def disable_backup(self) -> Optional[pulumi.Input[bool]]:
         """
-        Disable automated backup for the database instance.
+        Disable automated backup for the database instance
         """
         return pulumi.get(self, "disable_backup")
 
@@ -598,10 +583,6 @@ class _RdbInstanceState:
     def init_settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Map of engine settings to be set at database initialisation.
-
-        > **Important:** Updates to `init_settings` will recreate the Database Instance.
-
-        Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
         """
         return pulumi.get(self, "init_settings")
 
@@ -627,8 +608,7 @@ class _RdbInstanceState:
     @pulumi.getter(name="loadBalancers")
     def load_balancers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RdbInstanceLoadBalancerArgs']]]]:
         """
-        List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
-        This block must be defined if you want a public endpoint in addition to your private endpoint.
+        List of load balancer endpoints of the database instance.
         """
         return pulumi.get(self, "load_balancers")
 
@@ -744,7 +724,7 @@ class _RdbInstanceState:
     @pulumi.getter
     def settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Map of engine settings to be set. Using this option will override default config.
+        Map of engine settings to be set on a running instance.
         """
         return pulumi.get(self, "settings")
 
@@ -834,7 +814,7 @@ class RdbInstance(pulumi.CustomResource):
         Creates and manages Scaleway Database Instances.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
 
-        ## Examples
+        ## Example Usage
 
         ### Example Basic
 
@@ -888,6 +868,23 @@ class RdbInstance(pulumi.CustomResource):
             user_name="my_initial_user")
         ```
 
+        ### Examples of endpoints configuration
+
+        RDB Instances can have a maximum of 1 public endpoint and 1 private endpoint. It can have both, or none.
+
+        ### Default: 1 public endpoint
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        main = scaleway.RdbInstance("main",
+            engine="PostgreSQL-11",
+            node_type="db-dev-s")
+        ```
+
+        > If nothing is defined, your instance will have a default public load-balancer endpoint
+
         ## Limitations
 
         The Managed Database product is only compliant with the private network in the default availability zone (AZ).
@@ -896,31 +893,28 @@ class RdbInstance(pulumi.CustomResource):
 
         ## Import
 
-        Database Instance can be imported using the `{region}/{id}`, e.g. bash
+        Database Instance can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/rdbInstance:RdbInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/rdbInstance:RdbInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] backup_same_region: Boolean to store logical backups in the same region as the database instance.
-        :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours.
-        :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days.
-        :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance.
+        :param pulumi.Input[bool] backup_same_region: Boolean to store logical backups in the same region as the database instance
+        :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours
+        :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days
+        :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
         :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
                
                > **Important:** Updates to `engine` will recreate the Database Instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] init_settings: Map of engine settings to be set at database initialisation.
-               
-               > **Important:** Updates to `init_settings` will recreate the Database Instance.
-               
-               Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
         :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance.
                
                > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbInstanceLoadBalancerArgs']]]] load_balancers: List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
-               This block must be defined if you want a public endpoint in addition to your private endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbInstanceLoadBalancerArgs']]]] load_balancers: List of load balancer endpoints of the database instance.
         :param pulumi.Input[str] name: The name of the Database Instance.
         :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
                
@@ -935,7 +929,7 @@ class RdbInstance(pulumi.CustomResource):
                Instance is associated with.
         :param pulumi.Input[str] region: `region`) The region
                in which the Database Instance should be created.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set. Using this option will override default config.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set on a running instance.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
         :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
                
@@ -955,7 +949,7 @@ class RdbInstance(pulumi.CustomResource):
         Creates and manages Scaleway Database Instances.
         For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
 
-        ## Examples
+        ## Example Usage
 
         ### Example Basic
 
@@ -1009,6 +1003,23 @@ class RdbInstance(pulumi.CustomResource):
             user_name="my_initial_user")
         ```
 
+        ### Examples of endpoints configuration
+
+        RDB Instances can have a maximum of 1 public endpoint and 1 private endpoint. It can have both, or none.
+
+        ### Default: 1 public endpoint
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        main = scaleway.RdbInstance("main",
+            engine="PostgreSQL-11",
+            node_type="db-dev-s")
+        ```
+
+        > If nothing is defined, your instance will have a default public load-balancer endpoint
+
         ## Limitations
 
         The Managed Database product is only compliant with the private network in the default availability zone (AZ).
@@ -1017,10 +1028,12 @@ class RdbInstance(pulumi.CustomResource):
 
         ## Import
 
-        Database Instance can be imported using the `{region}/{id}`, e.g. bash
+        Database Instance can be imported using the `{region}/{id}`, e.g.
+
+        bash
 
         ```sh
-         $ pulumi import scaleway:index/rdbInstance:RdbInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/rdbInstance:RdbInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -1137,26 +1150,21 @@ class RdbInstance(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] backup_same_region: Boolean to store logical backups in the same region as the database instance.
-        :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours.
-        :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days.
+        :param pulumi.Input[bool] backup_same_region: Boolean to store logical backups in the same region as the database instance
+        :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours
+        :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days
         :param pulumi.Input[str] certificate: Certificate of the database instance.
-        :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance.
+        :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
         :param pulumi.Input[str] endpoint_ip: (Deprecated) The IP of the Database Instance.
         :param pulumi.Input[int] endpoint_port: (Deprecated) The port of the Database Instance.
         :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
                
                > **Important:** Updates to `engine` will recreate the Database Instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] init_settings: Map of engine settings to be set at database initialisation.
-               
-               > **Important:** Updates to `init_settings` will recreate the Database Instance.
-               
-               Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
         :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the database instance.
                
                > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbInstanceLoadBalancerArgs']]]] load_balancers: List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
-               This block must be defined if you want a public endpoint in addition to your private endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbInstanceLoadBalancerArgs']]]] load_balancers: List of load balancer endpoints of the database instance.
         :param pulumi.Input[str] name: The name of the Database Instance.
         :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
                
@@ -1173,7 +1181,7 @@ class RdbInstance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbInstanceReadReplicaArgs']]]] read_replicas: List of read replicas of the database instance.
         :param pulumi.Input[str] region: `region`) The region
                in which the Database Instance should be created.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set. Using this option will override default config.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set on a running instance.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
         :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
                
@@ -1217,7 +1225,7 @@ class RdbInstance(pulumi.CustomResource):
     @pulumi.getter(name="backupSameRegion")
     def backup_same_region(self) -> pulumi.Output[bool]:
         """
-        Boolean to store logical backups in the same region as the database instance.
+        Boolean to store logical backups in the same region as the database instance
         """
         return pulumi.get(self, "backup_same_region")
 
@@ -1225,7 +1233,7 @@ class RdbInstance(pulumi.CustomResource):
     @pulumi.getter(name="backupScheduleFrequency")
     def backup_schedule_frequency(self) -> pulumi.Output[int]:
         """
-        Backup schedule frequency in hours.
+        Backup schedule frequency in hours
         """
         return pulumi.get(self, "backup_schedule_frequency")
 
@@ -1233,7 +1241,7 @@ class RdbInstance(pulumi.CustomResource):
     @pulumi.getter(name="backupScheduleRetention")
     def backup_schedule_retention(self) -> pulumi.Output[int]:
         """
-        Backup schedule retention in days.
+        Backup schedule retention in days
         """
         return pulumi.get(self, "backup_schedule_retention")
 
@@ -1249,7 +1257,7 @@ class RdbInstance(pulumi.CustomResource):
     @pulumi.getter(name="disableBackup")
     def disable_backup(self) -> pulumi.Output[Optional[bool]]:
         """
-        Disable automated backup for the database instance.
+        Disable automated backup for the database instance
         """
         return pulumi.get(self, "disable_backup")
 
@@ -1287,10 +1295,6 @@ class RdbInstance(pulumi.CustomResource):
     def init_settings(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         Map of engine settings to be set at database initialisation.
-
-        > **Important:** Updates to `init_settings` will recreate the Database Instance.
-
-        Please consult the [GoDoc](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@v1.0.0-beta.9/api/rdb/v1#EngineVersion) to list all available `settings` and `init_settings` for the `node_type` of your convenience.
         """
         return pulumi.get(self, "init_settings")
 
@@ -1308,8 +1312,7 @@ class RdbInstance(pulumi.CustomResource):
     @pulumi.getter(name="loadBalancers")
     def load_balancers(self) -> pulumi.Output[Sequence['outputs.RdbInstanceLoadBalancer']]:
         """
-        List of load balancer endpoints of the database instance. A load-balancer endpoint will be set by default if no private network is.
-        This block must be defined if you want a public endpoint in addition to your private endpoint.
+        List of load balancer endpoints of the database instance.
         """
         return pulumi.get(self, "load_balancers")
 
@@ -1389,7 +1392,7 @@ class RdbInstance(pulumi.CustomResource):
     @pulumi.getter
     def settings(self) -> pulumi.Output[Mapping[str, str]]:
         """
-        Map of engine settings to be set. Using this option will override default config.
+        Map of engine settings to be set on a running instance.
         """
         return pulumi.get(self, "settings")
 
