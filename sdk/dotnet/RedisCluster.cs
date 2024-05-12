@@ -46,7 +46,7 @@ namespace ediri.Scaleway
     ///         },
     ///         TlsEnabled = true,
     ///         UserName = "my_initial_user",
-    ///         Version = "6.2.6",
+    ///         Version = "6.2.7",
     ///     });
     /// 
     /// });
@@ -72,7 +72,7 @@ namespace ediri.Scaleway
     ///             { "tcp-keepalive", "120" },
     ///         },
     ///         UserName = "my_initial_user",
-    ///         Version = "6.2.6",
+    ///         Version = "6.2.7",
     ///     });
     /// 
     /// });
@@ -92,7 +92,7 @@ namespace ediri.Scaleway
     /// 
     ///     var main = new Scaleway.RedisCluster("main", new()
     ///     {
-    ///         Version = "6.2.6",
+    ///         Version = "6.2.7",
     ///         NodeType = "RED1-MICRO",
     ///         UserName = "my_initial_user",
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
@@ -242,7 +242,7 @@ namespace ediri.Scaleway
         public Output<string> UserName { get; private set; } = null!;
 
         /// <summary>
-        /// Redis's Cluster version (e.g. `6.2.6`).
+        /// Redis's Cluster version (e.g. `6.2.7`).
         /// 
         /// &gt; **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
         /// cannot downgrade a Redis Cluster.
@@ -434,7 +434,7 @@ namespace ediri.Scaleway
         public Input<string> UserName { get; set; } = null!;
 
         /// <summary>
-        /// Redis's Cluster version (e.g. `6.2.6`).
+        /// Redis's Cluster version (e.g. `6.2.7`).
         /// 
         /// &gt; **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
         /// cannot downgrade a Redis Cluster.
@@ -601,7 +601,7 @@ namespace ediri.Scaleway
         public Input<string>? UserName { get; set; }
 
         /// <summary>
-        /// Redis's Cluster version (e.g. `6.2.6`).
+        /// Redis's Cluster version (e.g. `6.2.7`).
         /// 
         /// &gt; **Important:** Updates to `version` will migrate the Redis Cluster to the desired `version`. Keep in mind that you
         /// cannot downgrade a Redis Cluster.

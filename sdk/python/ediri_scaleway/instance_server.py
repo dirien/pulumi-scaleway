@@ -57,7 +57,7 @@ class InstanceServerArgs:
         :param pulumi.Input[str] bootscript_id: The ID of the bootscript to use  (set boot_type to `bootscript`).
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
         :param pulumi.Input[bool] enable_dynamic_ip: If true a dynamic IP will be attached to the server.
-        :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server.
+        :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
         :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
                to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
                
@@ -225,7 +225,7 @@ class InstanceServerArgs:
     @pulumi.getter(name="enableIpv6")
     def enable_ipv6(self) -> Optional[pulumi.Input[bool]]:
         """
-        Determines if IPv6 is enabled for the server.
+        Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
         """
         return pulumi.get(self, "enable_ipv6")
 
@@ -489,7 +489,7 @@ class _InstanceServerState:
         :param pulumi.Input[str] bootscript_id: The ID of the bootscript to use  (set boot_type to `bootscript`).
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
         :param pulumi.Input[bool] enable_dynamic_ip: If true a dynamic IP will be attached to the server.
-        :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server.
+        :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
         :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
                to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
                
@@ -668,7 +668,7 @@ class _InstanceServerState:
     @pulumi.getter(name="enableIpv6")
     def enable_ipv6(self) -> Optional[pulumi.Input[bool]]:
         """
-        Determines if IPv6 is enabled for the server.
+        Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
         """
         return pulumi.get(self, "enable_ipv6")
 
@@ -1211,7 +1211,7 @@ class InstanceServer(pulumi.CustomResource):
         :param pulumi.Input[str] bootscript_id: The ID of the bootscript to use  (set boot_type to `bootscript`).
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
         :param pulumi.Input[bool] enable_dynamic_ip: If true a dynamic IP will be attached to the server.
-        :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server.
+        :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
         :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
                to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
                
@@ -1577,7 +1577,7 @@ class InstanceServer(pulumi.CustomResource):
         :param pulumi.Input[str] bootscript_id: The ID of the bootscript to use  (set boot_type to `bootscript`).
         :param pulumi.Input[str] cloud_init: The cloud init script associated with this server
         :param pulumi.Input[bool] enable_dynamic_ip: If true a dynamic IP will be attached to the server.
-        :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server.
+        :param pulumi.Input[bool] enable_ipv6: Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
         :param pulumi.Input[str] image: The UUID or the label of the base image used by the server. You can use [this endpoint](https://api-marketplace.scaleway.com/images?page=1&per_page=100)
                to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
                
@@ -1711,7 +1711,7 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="enableIpv6")
     def enable_ipv6(self) -> pulumi.Output[Optional[bool]]:
         """
-        Determines if IPv6 is enabled for the server.
+        Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
         """
         return pulumi.get(self, "enable_ipv6")
 

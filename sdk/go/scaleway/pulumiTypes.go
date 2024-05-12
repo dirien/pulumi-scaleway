@@ -4050,6 +4050,8 @@ type InstanceServerPrivateNetwork struct {
 	MacAddress *string `pulumi:"macAddress"`
 	// The Private Network ID
 	PnId string `pulumi:"pnId"`
+	// The ID of the NIC
+	PnicId *string `pulumi:"pnicId"`
 	// The private NIC state
 	Status *string `pulumi:"status"`
 	// `zone`) The zone in which the server should be created.
@@ -4072,6 +4074,8 @@ type InstanceServerPrivateNetworkArgs struct {
 	MacAddress pulumi.StringPtrInput `pulumi:"macAddress"`
 	// The Private Network ID
 	PnId pulumi.StringInput `pulumi:"pnId"`
+	// The ID of the NIC
+	PnicId pulumi.StringPtrInput `pulumi:"pnicId"`
 	// The private NIC state
 	Status pulumi.StringPtrInput `pulumi:"status"`
 	// `zone`) The zone in which the server should be created.
@@ -4137,6 +4141,11 @@ func (o InstanceServerPrivateNetworkOutput) MacAddress() pulumi.StringPtrOutput 
 // The Private Network ID
 func (o InstanceServerPrivateNetworkOutput) PnId() pulumi.StringOutput {
 	return o.ApplyT(func(v InstanceServerPrivateNetwork) string { return v.PnId }).(pulumi.StringOutput)
+}
+
+// The ID of the NIC
+func (o InstanceServerPrivateNetworkOutput) PnicId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceServerPrivateNetwork) *string { return v.PnicId }).(pulumi.StringPtrOutput)
 }
 
 // The private NIC state
@@ -6041,7 +6050,7 @@ func (o IpamIpResourceArrayOutput) Index(i pulumi.IntInput) IpamIpResourceOutput
 }
 
 type IpamIpReverse struct {
-	// Request a specific IP in the requested source pool.
+	// The IP corresponding to the hostname
 	Address *string `pulumi:"address"`
 	// The reverse domain name.
 	Hostname *string `pulumi:"hostname"`
@@ -6059,7 +6068,7 @@ type IpamIpReverseInput interface {
 }
 
 type IpamIpReverseArgs struct {
-	// Request a specific IP in the requested source pool.
+	// The IP corresponding to the hostname
 	Address pulumi.StringPtrInput `pulumi:"address"`
 	// The reverse domain name.
 	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
@@ -6116,7 +6125,7 @@ func (o IpamIpReverseOutput) ToIpamIpReverseOutputWithContext(ctx context.Contex
 	return o
 }
 
-// Request a specific IP in the requested source pool.
+// The IP corresponding to the hostname
 func (o IpamIpReverseOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpamIpReverse) *string { return v.Address }).(pulumi.StringPtrOutput)
 }
@@ -11886,6 +11895,162 @@ func (o RdbInstanceLoadBalancerArrayOutput) Index(i pulumi.IntInput) RdbInstance
 	}).(RdbInstanceLoadBalancerOutput)
 }
 
+type RdbInstanceLogsPolicy struct {
+	// The max age (in days) of remote logs to keep on the Database Instance
+	MaxAgeRetention *int `pulumi:"maxAgeRetention"`
+	// The max disk size of remote logs to keep on the Database Instance.
+	TotalDiskRetention *int `pulumi:"totalDiskRetention"`
+}
+
+// RdbInstanceLogsPolicyInput is an input type that accepts RdbInstanceLogsPolicyArgs and RdbInstanceLogsPolicyOutput values.
+// You can construct a concrete instance of `RdbInstanceLogsPolicyInput` via:
+//
+//	RdbInstanceLogsPolicyArgs{...}
+type RdbInstanceLogsPolicyInput interface {
+	pulumi.Input
+
+	ToRdbInstanceLogsPolicyOutput() RdbInstanceLogsPolicyOutput
+	ToRdbInstanceLogsPolicyOutputWithContext(context.Context) RdbInstanceLogsPolicyOutput
+}
+
+type RdbInstanceLogsPolicyArgs struct {
+	// The max age (in days) of remote logs to keep on the Database Instance
+	MaxAgeRetention pulumi.IntPtrInput `pulumi:"maxAgeRetention"`
+	// The max disk size of remote logs to keep on the Database Instance.
+	TotalDiskRetention pulumi.IntPtrInput `pulumi:"totalDiskRetention"`
+}
+
+func (RdbInstanceLogsPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RdbInstanceLogsPolicy)(nil)).Elem()
+}
+
+func (i RdbInstanceLogsPolicyArgs) ToRdbInstanceLogsPolicyOutput() RdbInstanceLogsPolicyOutput {
+	return i.ToRdbInstanceLogsPolicyOutputWithContext(context.Background())
+}
+
+func (i RdbInstanceLogsPolicyArgs) ToRdbInstanceLogsPolicyOutputWithContext(ctx context.Context) RdbInstanceLogsPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RdbInstanceLogsPolicyOutput)
+}
+
+func (i RdbInstanceLogsPolicyArgs) ToRdbInstanceLogsPolicyPtrOutput() RdbInstanceLogsPolicyPtrOutput {
+	return i.ToRdbInstanceLogsPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i RdbInstanceLogsPolicyArgs) ToRdbInstanceLogsPolicyPtrOutputWithContext(ctx context.Context) RdbInstanceLogsPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RdbInstanceLogsPolicyOutput).ToRdbInstanceLogsPolicyPtrOutputWithContext(ctx)
+}
+
+// RdbInstanceLogsPolicyPtrInput is an input type that accepts RdbInstanceLogsPolicyArgs, RdbInstanceLogsPolicyPtr and RdbInstanceLogsPolicyPtrOutput values.
+// You can construct a concrete instance of `RdbInstanceLogsPolicyPtrInput` via:
+//
+//	        RdbInstanceLogsPolicyArgs{...}
+//
+//	or:
+//
+//	        nil
+type RdbInstanceLogsPolicyPtrInput interface {
+	pulumi.Input
+
+	ToRdbInstanceLogsPolicyPtrOutput() RdbInstanceLogsPolicyPtrOutput
+	ToRdbInstanceLogsPolicyPtrOutputWithContext(context.Context) RdbInstanceLogsPolicyPtrOutput
+}
+
+type rdbInstanceLogsPolicyPtrType RdbInstanceLogsPolicyArgs
+
+func RdbInstanceLogsPolicyPtr(v *RdbInstanceLogsPolicyArgs) RdbInstanceLogsPolicyPtrInput {
+	return (*rdbInstanceLogsPolicyPtrType)(v)
+}
+
+func (*rdbInstanceLogsPolicyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RdbInstanceLogsPolicy)(nil)).Elem()
+}
+
+func (i *rdbInstanceLogsPolicyPtrType) ToRdbInstanceLogsPolicyPtrOutput() RdbInstanceLogsPolicyPtrOutput {
+	return i.ToRdbInstanceLogsPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *rdbInstanceLogsPolicyPtrType) ToRdbInstanceLogsPolicyPtrOutputWithContext(ctx context.Context) RdbInstanceLogsPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RdbInstanceLogsPolicyPtrOutput)
+}
+
+type RdbInstanceLogsPolicyOutput struct{ *pulumi.OutputState }
+
+func (RdbInstanceLogsPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RdbInstanceLogsPolicy)(nil)).Elem()
+}
+
+func (o RdbInstanceLogsPolicyOutput) ToRdbInstanceLogsPolicyOutput() RdbInstanceLogsPolicyOutput {
+	return o
+}
+
+func (o RdbInstanceLogsPolicyOutput) ToRdbInstanceLogsPolicyOutputWithContext(ctx context.Context) RdbInstanceLogsPolicyOutput {
+	return o
+}
+
+func (o RdbInstanceLogsPolicyOutput) ToRdbInstanceLogsPolicyPtrOutput() RdbInstanceLogsPolicyPtrOutput {
+	return o.ToRdbInstanceLogsPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o RdbInstanceLogsPolicyOutput) ToRdbInstanceLogsPolicyPtrOutputWithContext(ctx context.Context) RdbInstanceLogsPolicyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RdbInstanceLogsPolicy) *RdbInstanceLogsPolicy {
+		return &v
+	}).(RdbInstanceLogsPolicyPtrOutput)
+}
+
+// The max age (in days) of remote logs to keep on the Database Instance
+func (o RdbInstanceLogsPolicyOutput) MaxAgeRetention() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v RdbInstanceLogsPolicy) *int { return v.MaxAgeRetention }).(pulumi.IntPtrOutput)
+}
+
+// The max disk size of remote logs to keep on the Database Instance.
+func (o RdbInstanceLogsPolicyOutput) TotalDiskRetention() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v RdbInstanceLogsPolicy) *int { return v.TotalDiskRetention }).(pulumi.IntPtrOutput)
+}
+
+type RdbInstanceLogsPolicyPtrOutput struct{ *pulumi.OutputState }
+
+func (RdbInstanceLogsPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RdbInstanceLogsPolicy)(nil)).Elem()
+}
+
+func (o RdbInstanceLogsPolicyPtrOutput) ToRdbInstanceLogsPolicyPtrOutput() RdbInstanceLogsPolicyPtrOutput {
+	return o
+}
+
+func (o RdbInstanceLogsPolicyPtrOutput) ToRdbInstanceLogsPolicyPtrOutputWithContext(ctx context.Context) RdbInstanceLogsPolicyPtrOutput {
+	return o
+}
+
+func (o RdbInstanceLogsPolicyPtrOutput) Elem() RdbInstanceLogsPolicyOutput {
+	return o.ApplyT(func(v *RdbInstanceLogsPolicy) RdbInstanceLogsPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret RdbInstanceLogsPolicy
+		return ret
+	}).(RdbInstanceLogsPolicyOutput)
+}
+
+// The max age (in days) of remote logs to keep on the Database Instance
+func (o RdbInstanceLogsPolicyPtrOutput) MaxAgeRetention() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RdbInstanceLogsPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxAgeRetention
+	}).(pulumi.IntPtrOutput)
+}
+
+// The max disk size of remote logs to keep on the Database Instance.
+func (o RdbInstanceLogsPolicyPtrOutput) TotalDiskRetention() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RdbInstanceLogsPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return v.TotalDiskRetention
+	}).(pulumi.IntPtrOutput)
+}
+
 type RdbInstancePrivateNetwork struct {
 	// Whether or not the private network endpoint should be configured with IPAM
 	EnableIpam *bool `pulumi:"enableIpam"`
@@ -16982,6 +17147,8 @@ type GetInstanceServerPrivateNetwork struct {
 	MacAddress string `pulumi:"macAddress"`
 	// The Private Network ID
 	PnId string `pulumi:"pnId"`
+	// The ID of the NIC
+	PnicId string `pulumi:"pnicId"`
 	// The private NIC state
 	Status string `pulumi:"status"`
 	// `zone`) The zone in which the server exists.
@@ -17004,6 +17171,8 @@ type GetInstanceServerPrivateNetworkArgs struct {
 	MacAddress pulumi.StringInput `pulumi:"macAddress"`
 	// The Private Network ID
 	PnId pulumi.StringInput `pulumi:"pnId"`
+	// The ID of the NIC
+	PnicId pulumi.StringInput `pulumi:"pnicId"`
 	// The private NIC state
 	Status pulumi.StringInput `pulumi:"status"`
 	// `zone`) The zone in which the server exists.
@@ -17069,6 +17238,11 @@ func (o GetInstanceServerPrivateNetworkOutput) MacAddress() pulumi.StringOutput 
 // The Private Network ID
 func (o GetInstanceServerPrivateNetworkOutput) PnId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServerPrivateNetwork) string { return v.PnId }).(pulumi.StringOutput)
+}
+
+// The ID of the NIC
+func (o GetInstanceServerPrivateNetworkOutput) PnicId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceServerPrivateNetwork) string { return v.PnicId }).(pulumi.StringOutput)
 }
 
 // The private NIC state
@@ -23683,6 +23857,112 @@ func (o GetRdbInstanceLoadBalancerArrayOutput) Index(i pulumi.IntInput) GetRdbIn
 	}).(GetRdbInstanceLoadBalancerOutput)
 }
 
+type GetRdbInstanceLogsPolicy struct {
+	// The max age (in days) of remote logs to keep on the Database Instance
+	MaxAgeRetention int `pulumi:"maxAgeRetention"`
+	// The max disk size of remote logs to keep on the Database Instance.
+	TotalDiskRetention int `pulumi:"totalDiskRetention"`
+}
+
+// GetRdbInstanceLogsPolicyInput is an input type that accepts GetRdbInstanceLogsPolicyArgs and GetRdbInstanceLogsPolicyOutput values.
+// You can construct a concrete instance of `GetRdbInstanceLogsPolicyInput` via:
+//
+//	GetRdbInstanceLogsPolicyArgs{...}
+type GetRdbInstanceLogsPolicyInput interface {
+	pulumi.Input
+
+	ToGetRdbInstanceLogsPolicyOutput() GetRdbInstanceLogsPolicyOutput
+	ToGetRdbInstanceLogsPolicyOutputWithContext(context.Context) GetRdbInstanceLogsPolicyOutput
+}
+
+type GetRdbInstanceLogsPolicyArgs struct {
+	// The max age (in days) of remote logs to keep on the Database Instance
+	MaxAgeRetention pulumi.IntInput `pulumi:"maxAgeRetention"`
+	// The max disk size of remote logs to keep on the Database Instance.
+	TotalDiskRetention pulumi.IntInput `pulumi:"totalDiskRetention"`
+}
+
+func (GetRdbInstanceLogsPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRdbInstanceLogsPolicy)(nil)).Elem()
+}
+
+func (i GetRdbInstanceLogsPolicyArgs) ToGetRdbInstanceLogsPolicyOutput() GetRdbInstanceLogsPolicyOutput {
+	return i.ToGetRdbInstanceLogsPolicyOutputWithContext(context.Background())
+}
+
+func (i GetRdbInstanceLogsPolicyArgs) ToGetRdbInstanceLogsPolicyOutputWithContext(ctx context.Context) GetRdbInstanceLogsPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRdbInstanceLogsPolicyOutput)
+}
+
+// GetRdbInstanceLogsPolicyArrayInput is an input type that accepts GetRdbInstanceLogsPolicyArray and GetRdbInstanceLogsPolicyArrayOutput values.
+// You can construct a concrete instance of `GetRdbInstanceLogsPolicyArrayInput` via:
+//
+//	GetRdbInstanceLogsPolicyArray{ GetRdbInstanceLogsPolicyArgs{...} }
+type GetRdbInstanceLogsPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetRdbInstanceLogsPolicyArrayOutput() GetRdbInstanceLogsPolicyArrayOutput
+	ToGetRdbInstanceLogsPolicyArrayOutputWithContext(context.Context) GetRdbInstanceLogsPolicyArrayOutput
+}
+
+type GetRdbInstanceLogsPolicyArray []GetRdbInstanceLogsPolicyInput
+
+func (GetRdbInstanceLogsPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRdbInstanceLogsPolicy)(nil)).Elem()
+}
+
+func (i GetRdbInstanceLogsPolicyArray) ToGetRdbInstanceLogsPolicyArrayOutput() GetRdbInstanceLogsPolicyArrayOutput {
+	return i.ToGetRdbInstanceLogsPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetRdbInstanceLogsPolicyArray) ToGetRdbInstanceLogsPolicyArrayOutputWithContext(ctx context.Context) GetRdbInstanceLogsPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRdbInstanceLogsPolicyArrayOutput)
+}
+
+type GetRdbInstanceLogsPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetRdbInstanceLogsPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRdbInstanceLogsPolicy)(nil)).Elem()
+}
+
+func (o GetRdbInstanceLogsPolicyOutput) ToGetRdbInstanceLogsPolicyOutput() GetRdbInstanceLogsPolicyOutput {
+	return o
+}
+
+func (o GetRdbInstanceLogsPolicyOutput) ToGetRdbInstanceLogsPolicyOutputWithContext(ctx context.Context) GetRdbInstanceLogsPolicyOutput {
+	return o
+}
+
+// The max age (in days) of remote logs to keep on the Database Instance
+func (o GetRdbInstanceLogsPolicyOutput) MaxAgeRetention() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRdbInstanceLogsPolicy) int { return v.MaxAgeRetention }).(pulumi.IntOutput)
+}
+
+// The max disk size of remote logs to keep on the Database Instance.
+func (o GetRdbInstanceLogsPolicyOutput) TotalDiskRetention() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRdbInstanceLogsPolicy) int { return v.TotalDiskRetention }).(pulumi.IntOutput)
+}
+
+type GetRdbInstanceLogsPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRdbInstanceLogsPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRdbInstanceLogsPolicy)(nil)).Elem()
+}
+
+func (o GetRdbInstanceLogsPolicyArrayOutput) ToGetRdbInstanceLogsPolicyArrayOutput() GetRdbInstanceLogsPolicyArrayOutput {
+	return o
+}
+
+func (o GetRdbInstanceLogsPolicyArrayOutput) ToGetRdbInstanceLogsPolicyArrayOutputWithContext(ctx context.Context) GetRdbInstanceLogsPolicyArrayOutput {
+	return o
+}
+
+func (o GetRdbInstanceLogsPolicyArrayOutput) Index(i pulumi.IntInput) GetRdbInstanceLogsPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRdbInstanceLogsPolicy {
+		return vs[0].([]GetRdbInstanceLogsPolicy)[vs[1].(int)]
+	}).(GetRdbInstanceLogsPolicyOutput)
+}
+
 type GetRdbInstancePrivateNetwork struct {
 	// Whether or not the private network endpoint should be configured with IPAM
 	EnableIpam bool `pulumi:"enableIpam"`
@@ -25554,6 +25834,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RdbAclAclRuleArrayInput)(nil)).Elem(), RdbAclAclRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RdbInstanceLoadBalancerInput)(nil)).Elem(), RdbInstanceLoadBalancerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RdbInstanceLoadBalancerArrayInput)(nil)).Elem(), RdbInstanceLoadBalancerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RdbInstanceLogsPolicyInput)(nil)).Elem(), RdbInstanceLogsPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RdbInstanceLogsPolicyPtrInput)(nil)).Elem(), RdbInstanceLogsPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RdbInstancePrivateNetworkInput)(nil)).Elem(), RdbInstancePrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RdbInstancePrivateNetworkPtrInput)(nil)).Elem(), RdbInstancePrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RdbInstanceReadReplicaInput)(nil)).Elem(), RdbInstanceReadReplicaArgs{})
@@ -25720,6 +26002,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRdbAclAclRuleArrayInput)(nil)).Elem(), GetRdbAclAclRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRdbInstanceLoadBalancerInput)(nil)).Elem(), GetRdbInstanceLoadBalancerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRdbInstanceLoadBalancerArrayInput)(nil)).Elem(), GetRdbInstanceLoadBalancerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRdbInstanceLogsPolicyInput)(nil)).Elem(), GetRdbInstanceLogsPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRdbInstanceLogsPolicyArrayInput)(nil)).Elem(), GetRdbInstanceLogsPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRdbInstancePrivateNetworkInput)(nil)).Elem(), GetRdbInstancePrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRdbInstancePrivateNetworkArrayInput)(nil)).Elem(), GetRdbInstancePrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRdbInstanceReadReplicaInput)(nil)).Elem(), GetRdbInstanceReadReplicaArgs{})
@@ -25896,6 +26180,8 @@ func init() {
 	pulumi.RegisterOutputType(RdbAclAclRuleArrayOutput{})
 	pulumi.RegisterOutputType(RdbInstanceLoadBalancerOutput{})
 	pulumi.RegisterOutputType(RdbInstanceLoadBalancerArrayOutput{})
+	pulumi.RegisterOutputType(RdbInstanceLogsPolicyOutput{})
+	pulumi.RegisterOutputType(RdbInstanceLogsPolicyPtrOutput{})
 	pulumi.RegisterOutputType(RdbInstancePrivateNetworkOutput{})
 	pulumi.RegisterOutputType(RdbInstancePrivateNetworkPtrOutput{})
 	pulumi.RegisterOutputType(RdbInstanceReadReplicaOutput{})
@@ -26062,6 +26348,8 @@ func init() {
 	pulumi.RegisterOutputType(GetRdbAclAclRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetRdbInstanceLoadBalancerOutput{})
 	pulumi.RegisterOutputType(GetRdbInstanceLoadBalancerArrayOutput{})
+	pulumi.RegisterOutputType(GetRdbInstanceLogsPolicyOutput{})
+	pulumi.RegisterOutputType(GetRdbInstanceLogsPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetRdbInstancePrivateNetworkOutput{})
 	pulumi.RegisterOutputType(GetRdbInstancePrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetRdbInstanceReadReplicaOutput{})

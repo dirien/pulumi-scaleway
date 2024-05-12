@@ -273,6 +273,8 @@ type RdbInstance struct {
 	IsHaCluster pulumi.BoolPtrOutput `pulumi:"isHaCluster"`
 	// List of load balancer endpoints of the database instance.
 	LoadBalancers RdbInstanceLoadBalancerArrayOutput `pulumi:"loadBalancers"`
+	// Logs policy configuration
+	LogsPolicy RdbInstanceLogsPolicyOutput `pulumi:"logsPolicy"`
 	// The name of the Database Instance.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The type of database instance you want to create (e.g. `db-dev-s`).
@@ -384,6 +386,8 @@ type rdbInstanceState struct {
 	IsHaCluster *bool `pulumi:"isHaCluster"`
 	// List of load balancer endpoints of the database instance.
 	LoadBalancers []RdbInstanceLoadBalancer `pulumi:"loadBalancers"`
+	// Logs policy configuration
+	LogsPolicy *RdbInstanceLogsPolicy `pulumi:"logsPolicy"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
 	// The type of database instance you want to create (e.g. `db-dev-s`).
@@ -453,6 +457,8 @@ type RdbInstanceState struct {
 	IsHaCluster pulumi.BoolPtrInput
 	// List of load balancer endpoints of the database instance.
 	LoadBalancers RdbInstanceLoadBalancerArrayInput
+	// Logs policy configuration
+	LogsPolicy RdbInstanceLogsPolicyPtrInput
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput
 	// The type of database instance you want to create (e.g. `db-dev-s`).
@@ -518,6 +524,8 @@ type rdbInstanceArgs struct {
 	IsHaCluster *bool `pulumi:"isHaCluster"`
 	// List of load balancer endpoints of the database instance.
 	LoadBalancers []RdbInstanceLoadBalancer `pulumi:"loadBalancers"`
+	// Logs policy configuration
+	LogsPolicy *RdbInstanceLogsPolicy `pulumi:"logsPolicy"`
 	// The name of the Database Instance.
 	Name *string `pulumi:"name"`
 	// The type of database instance you want to create (e.g. `db-dev-s`).
@@ -576,6 +584,8 @@ type RdbInstanceArgs struct {
 	IsHaCluster pulumi.BoolPtrInput
 	// List of load balancer endpoints of the database instance.
 	LoadBalancers RdbInstanceLoadBalancerArrayInput
+	// Logs policy configuration
+	LogsPolicy RdbInstanceLogsPolicyPtrInput
 	// The name of the Database Instance.
 	Name pulumi.StringPtrInput
 	// The type of database instance you want to create (e.g. `db-dev-s`).
@@ -758,6 +768,11 @@ func (o RdbInstanceOutput) IsHaCluster() pulumi.BoolPtrOutput {
 // List of load balancer endpoints of the database instance.
 func (o RdbInstanceOutput) LoadBalancers() RdbInstanceLoadBalancerArrayOutput {
 	return o.ApplyT(func(v *RdbInstance) RdbInstanceLoadBalancerArrayOutput { return v.LoadBalancers }).(RdbInstanceLoadBalancerArrayOutput)
+}
+
+// Logs policy configuration
+func (o RdbInstanceOutput) LogsPolicy() RdbInstanceLogsPolicyOutput {
+	return o.ApplyT(func(v *RdbInstance) RdbInstanceLogsPolicyOutput { return v.LogsPolicy }).(RdbInstanceLogsPolicyOutput)
 }
 
 // The name of the Database Instance.

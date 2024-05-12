@@ -12,25 +12,25 @@ namespace ediri.Scaleway.Outputs
 {
 
     [OutputType]
-    public sealed class IpamIpReverse
+    public sealed class GetRdbInstanceLogsPolicyResult
     {
         /// <summary>
-        /// The IP corresponding to the hostname
+        /// The max age (in days) of remote logs to keep on the Database Instance
         /// </summary>
-        public readonly string? Address;
+        public readonly int MaxAgeRetention;
         /// <summary>
-        /// The reverse domain name.
+        /// The max disk size of remote logs to keep on the Database Instance.
         /// </summary>
-        public readonly string? Hostname;
+        public readonly int TotalDiskRetention;
 
         [OutputConstructor]
-        private IpamIpReverse(
-            string? address,
+        private GetRdbInstanceLogsPolicyResult(
+            int maxAgeRetention,
 
-            string? hostname)
+            int totalDiskRetention)
         {
-            Address = address;
-            Hostname = hostname;
+            MaxAgeRetention = maxAgeRetention;
+            TotalDiskRetention = totalDiskRetention;
         }
     }
 }

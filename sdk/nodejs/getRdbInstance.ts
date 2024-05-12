@@ -65,6 +65,7 @@ export interface GetRdbInstanceResult {
     readonly instanceId?: string;
     readonly isHaCluster: boolean;
     readonly loadBalancers: outputs.GetRdbInstanceLoadBalancer[];
+    readonly logsPolicies: outputs.GetRdbInstanceLogsPolicy[];
     readonly name?: string;
     readonly nodeType: string;
     readonly organizationId: string;
