@@ -16,11 +16,8 @@ package scaleway
 
 import (
 	"context"
-	"fmt"
-	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
-
-	// embed is used to store bridge-metadata.json in the compiled binary
 	_ "embed"
+	"fmt"
 	"path/filepath"
 
 	"github.com/dirien/pulumi-scaleway/provider/v2/pkg/version"
@@ -28,9 +25,7 @@ import (
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tfbridgetokens "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/scaleway/terraform-provider-scaleway/v2/scaleway"
-	shimScaleway "github.com/scaleway/terraform-provider-scaleway/v2/shim"
+	"github.com/scaleway/terraform-provider-scaleway/v2/shim"
 )
 
 // all of the token components used below.
@@ -45,25 +40,15 @@ const (
 //go:embed cmd/pulumi-resource-scaleway/bridge-metadata.json
 var metadata []byte
 
-// preConfigureCallback is called before the providerConfigure function of the underlying provider.
-// It should validate that the provider can be configured, and provide actionable errors in the case
-// it cannot be. Configuration variables can be read from `vars` using the `stringValue` function -
-// for example `stringValue(vars, "accessKey")`.
-func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) error {
-	return nil
-}
-
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	providerConfig := scaleway.ProviderConfig{}
 
 	p := pfbridge.MuxShimWithPF(context.Background(),
-		shimv2.NewProvider(scaleway.Provider(&providerConfig)()),
-		shimScaleway.Framework()(),
+		shimv2.NewProvider(shim.NewProvider()),
+		shim.Framework()(),
 	)
 
-	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P:       p,
 		Version: version.Version,
@@ -132,7 +117,6 @@ func Provider() tfbridge.ProviderInfo {
 				},
 			},
 		},
-		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"scaleway_object": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ObjectItem")},
 		},
@@ -184,6 +168,7 @@ func Provider() tfbridge.ProviderInfo {
 
 	prov.MustComputeTokens(tfbridgetokens.SingleModule("scaleway_", mainMod,
 		tfbridgetokens.MakeStandard(mainPkg)))
+
 	prov.SetAutonaming(255, "-")
 
 	return prov
