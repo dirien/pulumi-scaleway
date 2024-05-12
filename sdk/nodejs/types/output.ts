@@ -68,7 +68,7 @@ export interface BaremetalServerOption {
      */
     expiresAt: string;
     /**
-     * The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+     * The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
      */
     id: string;
     /**
@@ -822,7 +822,9 @@ export interface GetInstanceSecurityGroupInboundRule {
      */
     port: number;
     /**
-     * Computed port range for this rule (e.g: 1-1024, 22-22)
+     * The port range (e.g `22-23`) this rule applies to.
+     * If no `port` nor `portRange` are specified, rule will apply to all port.
+     * Only one of `port` and `portRange` should be specified.
      */
     portRange: string;
     /**
@@ -849,7 +851,9 @@ export interface GetInstanceSecurityGroupOutboundRule {
      */
     port: number;
     /**
-     * Computed port range for this rule (e.g: 1-1024, 22-22)
+     * The port range (e.g `22-23`) this rule applies to.
+     * If no `port` nor `portRange` are specified, rule will apply to all port.
+     * Only one of `port` and `portRange` should be specified.
      */
     portRange: string;
     /**
@@ -1572,7 +1576,7 @@ export interface GetLbFrontendAcl {
      */
     actions: outputs.GetLbFrontendAclAction[];
     /**
-     * Date and time of ACL's creation (RFC 3339 format)
+     * IsDate and time of ACL's creation (RFC 3339 format)
      */
     createdAt: string;
     /**
@@ -1589,7 +1593,7 @@ export interface GetLbFrontendAcl {
      */
     name: string;
     /**
-     * Date and time of ACL's update (RFC 3339 format)
+     * IsDate and time of ACL's update (RFC 3339 format)
      */
     updatedAt: string;
 }
@@ -2972,7 +2976,7 @@ export interface LbFrontendAcl {
      */
     action: outputs.LbFrontendAclAction;
     /**
-     * Date and time of ACL's creation (RFC 3339 format)
+     * IsDate and time of ACL's creation (RFC 3339 format)
      */
     createdAt: string;
     /**
@@ -2988,7 +2992,7 @@ export interface LbFrontendAcl {
      */
     name: string;
     /**
-     * Date and time of ACL's update (RFC 3339 format)
+     * IsDate and time of ACL's update (RFC 3339 format)
      */
     updatedAt: string;
 }
@@ -3379,6 +3383,8 @@ export interface RdbReadReplicaDirectAccess {
 export interface RdbReadReplicaPrivateNetwork {
     /**
      * If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+     *
+     * > **Important:** One of `serviceIp` or `enable_ipam=true` must be set.
      */
     enableIpam: boolean;
     /**

@@ -388,7 +388,7 @@ func (o BaremetalServerIpv6ArrayOutput) Index(i pulumi.IntInput) BaremetalServer
 type BaremetalServerOption struct {
 	// The auto expiration date for compatible options
 	ExpiresAt *string `pulumi:"expiresAt"`
-	// The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+	// The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
 	Id string `pulumi:"id"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
@@ -408,7 +408,7 @@ type BaremetalServerOptionInput interface {
 type BaremetalServerOptionArgs struct {
 	// The auto expiration date for compatible options
 	ExpiresAt pulumi.StringPtrInput `pulumi:"expiresAt"`
-	// The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+	// The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The name of the server.
 	Name pulumi.StringPtrInput `pulumi:"name"`
@@ -470,7 +470,7 @@ func (o BaremetalServerOptionOutput) ExpiresAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BaremetalServerOption) *string { return v.ExpiresAt }).(pulumi.StringPtrOutput)
 }
 
-// The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+// The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
 func (o BaremetalServerOptionOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v BaremetalServerOption) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -8879,7 +8879,7 @@ func (o LbCertificateLetsencryptPtrOutput) SubjectAlternativeNames() pulumi.Stri
 type LbFrontendAcl struct {
 	// Action to undertake when an ACL filter matches.
 	Action LbFrontendAclAction `pulumi:"action"`
-	// Date and time of ACL's creation (RFC 3339 format)
+	// IsDate and time of ACL's creation (RFC 3339 format)
 	CreatedAt *string `pulumi:"createdAt"`
 	// Description of the ACL
 	Description *string `pulumi:"description"`
@@ -8887,7 +8887,7 @@ type LbFrontendAcl struct {
 	Match LbFrontendAclMatch `pulumi:"match"`
 	// The ACL name. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
-	// Date and time of ACL's update (RFC 3339 format)
+	// IsDate and time of ACL's update (RFC 3339 format)
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
@@ -8905,7 +8905,7 @@ type LbFrontendAclInput interface {
 type LbFrontendAclArgs struct {
 	// Action to undertake when an ACL filter matches.
 	Action LbFrontendAclActionInput `pulumi:"action"`
-	// Date and time of ACL's creation (RFC 3339 format)
+	// IsDate and time of ACL's creation (RFC 3339 format)
 	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
 	// Description of the ACL
 	Description pulumi.StringPtrInput `pulumi:"description"`
@@ -8913,7 +8913,7 @@ type LbFrontendAclArgs struct {
 	Match LbFrontendAclMatchInput `pulumi:"match"`
 	// The ACL name. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// Date and time of ACL's update (RFC 3339 format)
+	// IsDate and time of ACL's update (RFC 3339 format)
 	UpdatedAt pulumi.StringPtrInput `pulumi:"updatedAt"`
 }
 
@@ -8973,7 +8973,7 @@ func (o LbFrontendAclOutput) Action() LbFrontendAclActionOutput {
 	return o.ApplyT(func(v LbFrontendAcl) LbFrontendAclAction { return v.Action }).(LbFrontendAclActionOutput)
 }
 
-// Date and time of ACL's creation (RFC 3339 format)
+// IsDate and time of ACL's creation (RFC 3339 format)
 func (o LbFrontendAclOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LbFrontendAcl) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
@@ -8993,7 +8993,7 @@ func (o LbFrontendAclOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LbFrontendAcl) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// Date and time of ACL's update (RFC 3339 format)
+// IsDate and time of ACL's update (RFC 3339 format)
 func (o LbFrontendAclOutput) UpdatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LbFrontendAcl) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
 }
@@ -12505,6 +12505,8 @@ func (o RdbReadReplicaDirectAccessPtrOutput) Port() pulumi.IntPtrOutput {
 
 type RdbReadReplicaPrivateNetwork struct {
 	// If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+	//
+	// > **Important:** One of `serviceIp` or `enable_ipam=true` must be set.
 	EnableIpam *bool `pulumi:"enableIpam"`
 	// The ID of the endpoint of the read replica.
 	EndpointId *string `pulumi:"endpointId"`
@@ -12537,6 +12539,8 @@ type RdbReadReplicaPrivateNetworkInput interface {
 
 type RdbReadReplicaPrivateNetworkArgs struct {
 	// If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+	//
+	// > **Important:** One of `serviceIp` or `enable_ipam=true` must be set.
 	EnableIpam pulumi.BoolPtrInput `pulumi:"enableIpam"`
 	// The ID of the endpoint of the read replica.
 	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
@@ -12634,6 +12638,8 @@ func (o RdbReadReplicaPrivateNetworkOutput) ToRdbReadReplicaPrivateNetworkPtrOut
 }
 
 // If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+//
+// > **Important:** One of `serviceIp` or `enable_ipam=true` must be set.
 func (o RdbReadReplicaPrivateNetworkOutput) EnableIpam() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v RdbReadReplicaPrivateNetwork) *bool { return v.EnableIpam }).(pulumi.BoolPtrOutput)
 }
@@ -12703,6 +12709,8 @@ func (o RdbReadReplicaPrivateNetworkPtrOutput) Elem() RdbReadReplicaPrivateNetwo
 }
 
 // If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+//
+// > **Important:** One of `serviceIp` or `enable_ipam=true` must be set.
 func (o RdbReadReplicaPrivateNetworkPtrOutput) EnableIpam() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RdbReadReplicaPrivateNetwork) *bool {
 		if v == nil {
@@ -16682,7 +16690,9 @@ type GetInstanceSecurityGroupInboundRule struct {
 	IpRange string `pulumi:"ipRange"`
 	// The port this rule apply to. If no port is specified, rule will apply to all port.
 	Port int `pulumi:"port"`
-	// Computed port range for this rule (e.g: 1-1024, 22-22)
+	// The port range (e.g `22-23`) this rule applies to.
+	// If no `port` nor `portRange` are specified, rule will apply to all port.
+	// Only one of `port` and `portRange` should be specified.
 	PortRange string `pulumi:"portRange"`
 	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
 	Protocol string `pulumi:"protocol"`
@@ -16708,7 +16718,9 @@ type GetInstanceSecurityGroupInboundRuleArgs struct {
 	IpRange pulumi.StringInput `pulumi:"ipRange"`
 	// The port this rule apply to. If no port is specified, rule will apply to all port.
 	Port pulumi.IntInput `pulumi:"port"`
-	// Computed port range for this rule (e.g: 1-1024, 22-22)
+	// The port range (e.g `22-23`) this rule applies to.
+	// If no `port` nor `portRange` are specified, rule will apply to all port.
+	// Only one of `port` and `portRange` should be specified.
 	PortRange pulumi.StringInput `pulumi:"portRange"`
 	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
 	Protocol pulumi.StringInput `pulumi:"protocol"`
@@ -16785,7 +16797,9 @@ func (o GetInstanceSecurityGroupInboundRuleOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInstanceSecurityGroupInboundRule) int { return v.Port }).(pulumi.IntOutput)
 }
 
-// Computed port range for this rule (e.g: 1-1024, 22-22)
+// The port range (e.g `22-23`) this rule applies to.
+// If no `port` nor `portRange` are specified, rule will apply to all port.
+// Only one of `port` and `portRange` should be specified.
 func (o GetInstanceSecurityGroupInboundRuleOutput) PortRange() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceSecurityGroupInboundRule) string { return v.PortRange }).(pulumi.StringOutput)
 }
@@ -16824,7 +16838,9 @@ type GetInstanceSecurityGroupOutboundRule struct {
 	IpRange string `pulumi:"ipRange"`
 	// The port this rule apply to. If no port is specified, rule will apply to all port.
 	Port int `pulumi:"port"`
-	// Computed port range for this rule (e.g: 1-1024, 22-22)
+	// The port range (e.g `22-23`) this rule applies to.
+	// If no `port` nor `portRange` are specified, rule will apply to all port.
+	// Only one of `port` and `portRange` should be specified.
 	PortRange string `pulumi:"portRange"`
 	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
 	Protocol string `pulumi:"protocol"`
@@ -16850,7 +16866,9 @@ type GetInstanceSecurityGroupOutboundRuleArgs struct {
 	IpRange pulumi.StringInput `pulumi:"ipRange"`
 	// The port this rule apply to. If no port is specified, rule will apply to all port.
 	Port pulumi.IntInput `pulumi:"port"`
-	// Computed port range for this rule (e.g: 1-1024, 22-22)
+	// The port range (e.g `22-23`) this rule applies to.
+	// If no `port` nor `portRange` are specified, rule will apply to all port.
+	// Only one of `port` and `portRange` should be specified.
 	PortRange pulumi.StringInput `pulumi:"portRange"`
 	// The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
 	Protocol pulumi.StringInput `pulumi:"protocol"`
@@ -16927,7 +16945,9 @@ func (o GetInstanceSecurityGroupOutboundRuleOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInstanceSecurityGroupOutboundRule) int { return v.Port }).(pulumi.IntOutput)
 }
 
-// Computed port range for this rule (e.g: 1-1024, 22-22)
+// The port range (e.g `22-23`) this rule applies to.
+// If no `port` nor `portRange` are specified, rule will apply to all port.
+// Only one of `port` and `portRange` should be specified.
 func (o GetInstanceSecurityGroupOutboundRuleOutput) PortRange() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceSecurityGroupOutboundRule) string { return v.PortRange }).(pulumi.StringOutput)
 }
@@ -21197,7 +21217,7 @@ func (o GetLbCertificateLetsencryptArrayOutput) Index(i pulumi.IntInput) GetLbCe
 type GetLbFrontendAcl struct {
 	// Action to undertake when an ACL filter matches
 	Actions []GetLbFrontendAclAction `pulumi:"actions"`
-	// Date and time of ACL's creation (RFC 3339 format)
+	// IsDate and time of ACL's creation (RFC 3339 format)
 	CreatedAt string `pulumi:"createdAt"`
 	// Description of the ACL
 	Description string `pulumi:"description"`
@@ -21206,7 +21226,7 @@ type GetLbFrontendAcl struct {
 	// The name of the frontend.
 	// - When using the `name` you should specify the `lb-id`
 	Name string `pulumi:"name"`
-	// Date and time of ACL's update (RFC 3339 format)
+	// IsDate and time of ACL's update (RFC 3339 format)
 	UpdatedAt string `pulumi:"updatedAt"`
 }
 
@@ -21224,7 +21244,7 @@ type GetLbFrontendAclInput interface {
 type GetLbFrontendAclArgs struct {
 	// Action to undertake when an ACL filter matches
 	Actions GetLbFrontendAclActionArrayInput `pulumi:"actions"`
-	// Date and time of ACL's creation (RFC 3339 format)
+	// IsDate and time of ACL's creation (RFC 3339 format)
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// Description of the ACL
 	Description pulumi.StringInput `pulumi:"description"`
@@ -21233,7 +21253,7 @@ type GetLbFrontendAclArgs struct {
 	// The name of the frontend.
 	// - When using the `name` you should specify the `lb-id`
 	Name pulumi.StringInput `pulumi:"name"`
-	// Date and time of ACL's update (RFC 3339 format)
+	// IsDate and time of ACL's update (RFC 3339 format)
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 }
 
@@ -21293,7 +21313,7 @@ func (o GetLbFrontendAclOutput) Actions() GetLbFrontendAclActionArrayOutput {
 	return o.ApplyT(func(v GetLbFrontendAcl) []GetLbFrontendAclAction { return v.Actions }).(GetLbFrontendAclActionArrayOutput)
 }
 
-// Date and time of ACL's creation (RFC 3339 format)
+// IsDate and time of ACL's creation (RFC 3339 format)
 func (o GetLbFrontendAclOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbFrontendAcl) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -21314,7 +21334,7 @@ func (o GetLbFrontendAclOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbFrontendAcl) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Date and time of ACL's update (RFC 3339 format)
+// IsDate and time of ACL's update (RFC 3339 format)
 func (o GetLbFrontendAclOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbFrontendAcl) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }

@@ -59,6 +59,7 @@ export interface GetLbIpResult {
     readonly id: string;
     readonly ipAddress?: string;
     readonly ipId?: string;
+    readonly isIpv6: boolean;
     /**
      * The associated load-balancer ID if any
      */

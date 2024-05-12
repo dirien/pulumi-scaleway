@@ -374,7 +374,7 @@ class BaremetalServerOption(dict):
                  expires_at: Optional[str] = None,
                  name: Optional[str] = None):
         """
-        :param str id: The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+        :param str id: The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
         :param str expires_at: The auto expiration date for compatible options
         :param str name: The name of the server.
         """
@@ -388,7 +388,7 @@ class BaremetalServerOption(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+        The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
         """
         return pulumi.get(self, "id")
 
@@ -3892,10 +3892,10 @@ class LbFrontendAcl(dict):
         """
         :param 'LbFrontendAclActionArgs' action: Action to undertake when an ACL filter matches.
         :param 'LbFrontendAclMatchArgs' match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
-        :param str created_at: Date and time of ACL's creation (RFC 3339 format)
+        :param str created_at: IsDate and time of ACL's creation (RFC 3339 format)
         :param str description: Description of the ACL
         :param str name: The ACL name. If not provided it will be randomly generated.
-        :param str updated_at: Date and time of ACL's update (RFC 3339 format)
+        :param str updated_at: IsDate and time of ACL's update (RFC 3339 format)
         """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "match", match)
@@ -3928,7 +3928,7 @@ class LbFrontendAcl(dict):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[str]:
         """
-        Date and time of ACL's creation (RFC 3339 format)
+        IsDate and time of ACL's creation (RFC 3339 format)
         """
         return pulumi.get(self, "created_at")
 
@@ -3952,7 +3952,7 @@ class LbFrontendAcl(dict):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[str]:
         """
-        Date and time of ACL's update (RFC 3339 format)
+        IsDate and time of ACL's update (RFC 3339 format)
         """
         return pulumi.get(self, "updated_at")
 
@@ -5328,6 +5328,8 @@ class RdbReadReplicaPrivateNetwork(dict):
         """
         :param str private_network_id: UUID of the private network to be connected to the read replica.
         :param bool enable_ipam: If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+               
+               > **Important:** One of `service_ip` or `enable_ipam=true` must be set.
         :param str endpoint_id: The ID of the endpoint of the read replica.
         :param str hostname: Hostname of the endpoint. Only one of ip and hostname may be set.
         :param str ip: IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
@@ -5367,6 +5369,8 @@ class RdbReadReplicaPrivateNetwork(dict):
     def enable_ipam(self) -> Optional[bool]:
         """
         If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+
+        > **Important:** One of `service_ip` or `enable_ipam=true` must be set.
         """
         return pulumi.get(self, "enable_ipam")
 
@@ -7224,7 +7228,9 @@ class GetInstanceSecurityGroupInboundRuleResult(dict):
         :param str ip: The ip this rule apply to.
         :param str ip_range: The ip range (e.g `192.168.1.0/24`) this rule apply to.
         :param int port: The port this rule apply to. If no port is specified, rule will apply to all port.
-        :param str port_range: Computed port range for this rule (e.g: 1-1024, 22-22)
+        :param str port_range: The port range (e.g `22-23`) this rule applies to.
+               If no `port` nor `port_range` are specified, rule will apply to all port.
+               Only one of `port` and `port_range` should be specified.
         :param str protocol: The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
         """
         pulumi.set(__self__, "action", action)
@@ -7270,7 +7276,9 @@ class GetInstanceSecurityGroupInboundRuleResult(dict):
     @pulumi.getter(name="portRange")
     def port_range(self) -> str:
         """
-        Computed port range for this rule (e.g: 1-1024, 22-22)
+        The port range (e.g `22-23`) this rule applies to.
+        If no `port` nor `port_range` are specified, rule will apply to all port.
+        Only one of `port` and `port_range` should be specified.
         """
         return pulumi.get(self, "port_range")
 
@@ -7297,7 +7305,9 @@ class GetInstanceSecurityGroupOutboundRuleResult(dict):
         :param str ip: The ip this rule apply to.
         :param str ip_range: The ip range (e.g `192.168.1.0/24`) this rule apply to.
         :param int port: The port this rule apply to. If no port is specified, rule will apply to all port.
-        :param str port_range: Computed port range for this rule (e.g: 1-1024, 22-22)
+        :param str port_range: The port range (e.g `22-23`) this rule applies to.
+               If no `port` nor `port_range` are specified, rule will apply to all port.
+               Only one of `port` and `port_range` should be specified.
         :param str protocol: The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
         """
         pulumi.set(__self__, "action", action)
@@ -7343,7 +7353,9 @@ class GetInstanceSecurityGroupOutboundRuleResult(dict):
     @pulumi.getter(name="portRange")
     def port_range(self) -> str:
         """
-        Computed port range for this rule (e.g: 1-1024, 22-22)
+        The port range (e.g `22-23`) this rule applies to.
+        If no `port` nor `port_range` are specified, rule will apply to all port.
+        Only one of `port` and `port_range` should be specified.
         """
         return pulumi.get(self, "port_range")
 
@@ -9280,12 +9292,12 @@ class GetLbFrontendAclResult(dict):
                  updated_at: str):
         """
         :param Sequence['GetLbFrontendAclActionArgs'] actions: Action to undertake when an ACL filter matches
-        :param str created_at: Date and time of ACL's creation (RFC 3339 format)
+        :param str created_at: IsDate and time of ACL's creation (RFC 3339 format)
         :param str description: Description of the ACL
         :param Sequence['GetLbFrontendAclMatchArgs'] matches: The ACL match rule
         :param str name: The name of the frontend.
                - When using the `name` you should specify the `lb-id`
-        :param str updated_at: Date and time of ACL's update (RFC 3339 format)
+        :param str updated_at: IsDate and time of ACL's update (RFC 3339 format)
         """
         pulumi.set(__self__, "actions", actions)
         pulumi.set(__self__, "created_at", created_at)
@@ -9306,7 +9318,7 @@ class GetLbFrontendAclResult(dict):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
         """
-        Date and time of ACL's creation (RFC 3339 format)
+        IsDate and time of ACL's creation (RFC 3339 format)
         """
         return pulumi.get(self, "created_at")
 
@@ -9339,7 +9351,7 @@ class GetLbFrontendAclResult(dict):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
         """
-        Date and time of ACL's update (RFC 3339 format)
+        IsDate and time of ACL's update (RFC 3339 format)
         """
         return pulumi.get(self, "updated_at")
 

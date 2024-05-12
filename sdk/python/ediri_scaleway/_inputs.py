@@ -323,7 +323,7 @@ class BaremetalServerOptionArgs:
                  expires_at: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] id: The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+        :param pulumi.Input[str] id: The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
         :param pulumi.Input[str] expires_at: The auto expiration date for compatible options
         :param pulumi.Input[str] name: The name of the server.
         """
@@ -337,7 +337,7 @@ class BaremetalServerOptionArgs:
     @pulumi.getter
     def id(self) -> pulumi.Input[str]:
         """
-        The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+        The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
         """
         return pulumi.get(self, "id")
 
@@ -3979,10 +3979,10 @@ class LbFrontendAclArgs:
         """
         :param pulumi.Input['LbFrontendAclActionArgs'] action: Action to undertake when an ACL filter matches.
         :param pulumi.Input['LbFrontendAclMatchArgs'] match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
-        :param pulumi.Input[str] created_at: Date and time of ACL's creation (RFC 3339 format)
+        :param pulumi.Input[str] created_at: IsDate and time of ACL's creation (RFC 3339 format)
         :param pulumi.Input[str] description: Description of the ACL
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
-        :param pulumi.Input[str] updated_at: Date and time of ACL's update (RFC 3339 format)
+        :param pulumi.Input[str] updated_at: IsDate and time of ACL's update (RFC 3339 format)
         """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "match", match)
@@ -4023,7 +4023,7 @@ class LbFrontendAclArgs:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        Date and time of ACL's creation (RFC 3339 format)
+        IsDate and time of ACL's creation (RFC 3339 format)
         """
         return pulumi.get(self, "created_at")
 
@@ -4059,7 +4059,7 @@ class LbFrontendAclArgs:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        Date and time of ACL's update (RFC 3339 format)
+        IsDate and time of ACL's update (RFC 3339 format)
         """
         return pulumi.get(self, "updated_at")
 
@@ -5467,6 +5467,8 @@ class RdbReadReplicaPrivateNetworkArgs:
         """
         :param pulumi.Input[str] private_network_id: UUID of the private network to be connected to the read replica.
         :param pulumi.Input[bool] enable_ipam: If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+               
+               > **Important:** One of `service_ip` or `enable_ipam=true` must be set.
         :param pulumi.Input[str] endpoint_id: The ID of the endpoint of the read replica.
         :param pulumi.Input[str] hostname: Hostname of the endpoint. Only one of ip and hostname may be set.
         :param pulumi.Input[str] ip: IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
@@ -5510,6 +5512,8 @@ class RdbReadReplicaPrivateNetworkArgs:
     def enable_ipam(self) -> Optional[pulumi.Input[bool]]:
         """
         If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+
+        > **Important:** One of `service_ip` or `enable_ipam=true` must be set.
         """
         return pulumi.get(self, "enable_ipam")
 

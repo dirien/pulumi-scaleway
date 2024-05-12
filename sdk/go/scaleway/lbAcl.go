@@ -68,7 +68,7 @@ type LbAcl struct {
 
 	// Action to undertake when an ACL filter matches.
 	Action LbAclActionOutput `pulumi:"action"`
-	// Date and time of ACL's creation (RFC 3339 format)
+	// IsDate and time of ACL's creation (RFC 3339 format)
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The ACL description.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
@@ -80,7 +80,7 @@ type LbAcl struct {
 	Match LbAclMatchPtrOutput `pulumi:"match"`
 	// The ACL name. If not provided it will be randomly generated.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Date and time of ACL's update (RFC 3339 format)
+	// IsDate and time of ACL's update (RFC 3339 format)
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
 
@@ -125,7 +125,7 @@ func GetLbAcl(ctx *pulumi.Context,
 type lbAclState struct {
 	// Action to undertake when an ACL filter matches.
 	Action *LbAclAction `pulumi:"action"`
-	// Date and time of ACL's creation (RFC 3339 format)
+	// IsDate and time of ACL's creation (RFC 3339 format)
 	CreatedAt *string `pulumi:"createdAt"`
 	// The ACL description.
 	Description *string `pulumi:"description"`
@@ -137,14 +137,14 @@ type lbAclState struct {
 	Match *LbAclMatch `pulumi:"match"`
 	// The ACL name. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
-	// Date and time of ACL's update (RFC 3339 format)
+	// IsDate and time of ACL's update (RFC 3339 format)
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
 type LbAclState struct {
 	// Action to undertake when an ACL filter matches.
 	Action LbAclActionPtrInput
-	// Date and time of ACL's creation (RFC 3339 format)
+	// IsDate and time of ACL's creation (RFC 3339 format)
 	CreatedAt pulumi.StringPtrInput
 	// The ACL description.
 	Description pulumi.StringPtrInput
@@ -156,7 +156,7 @@ type LbAclState struct {
 	Match LbAclMatchPtrInput
 	// The ACL name. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
-	// Date and time of ACL's update (RFC 3339 format)
+	// IsDate and time of ACL's update (RFC 3339 format)
 	UpdatedAt pulumi.StringPtrInput
 }
 
@@ -287,7 +287,7 @@ func (o LbAclOutput) Action() LbAclActionOutput {
 	return o.ApplyT(func(v *LbAcl) LbAclActionOutput { return v.Action }).(LbAclActionOutput)
 }
 
-// Date and time of ACL's creation (RFC 3339 format)
+// IsDate and time of ACL's creation (RFC 3339 format)
 func (o LbAclOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbAcl) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -317,7 +317,7 @@ func (o LbAclOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbAcl) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Date and time of ACL's update (RFC 3339 format)
+// IsDate and time of ACL's update (RFC 3339 format)
 func (o LbAclOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbAcl) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }

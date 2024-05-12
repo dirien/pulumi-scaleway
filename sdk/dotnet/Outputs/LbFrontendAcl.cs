@@ -19,7 +19,7 @@ namespace ediri.Scaleway.Outputs
         /// </summary>
         public readonly Outputs.LbFrontendAclAction Action;
         /// <summary>
-        /// Date and time of ACL's creation (RFC 3339 format)
+        /// IsDate and time of ACL's creation (RFC 3339 format)
         /// </summary>
         public readonly string? CreatedAt;
         /// <summary>
@@ -35,7 +35,7 @@ namespace ediri.Scaleway.Outputs
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// Date and time of ACL's update (RFC 3339 format)
+        /// IsDate and time of ACL's update (RFC 3339 format)
         /// </summary>
         public readonly string? UpdatedAt;
 
