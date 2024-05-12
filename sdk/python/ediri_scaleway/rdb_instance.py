@@ -68,10 +68,10 @@ class RdbInstanceArgs:
         :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
                
                > **Important:** Updates to `user_name` will recreate the Database Instance.
-        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`.
+        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
                
                > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
-        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd` or `lssd`).
+        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
         """
         pulumi.set(__self__, "engine", engine)
         pulumi.set(__self__, "node_type", node_type)
@@ -332,7 +332,7 @@ class RdbInstanceArgs:
     @pulumi.getter(name="volumeSizeInGb")
     def volume_size_in_gb(self) -> Optional[pulumi.Input[int]]:
         """
-        Volume size (in GB) when `volume_type` is set to `bssd`.
+        Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
 
         > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
         """
@@ -346,7 +346,7 @@ class RdbInstanceArgs:
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Type of volume where data are stored (`bssd` or `lssd`).
+        Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
         """
         return pulumi.get(self, "volume_type")
 
@@ -420,10 +420,10 @@ class _RdbInstanceState:
         :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
                
                > **Important:** Updates to `user_name` will recreate the Database Instance.
-        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`.
+        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
                
                > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
-        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd` or `lssd`).
+        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
         """
         if backup_same_region is not None:
             pulumi.set(__self__, "backup_same_region", backup_same_region)
@@ -762,7 +762,7 @@ class _RdbInstanceState:
     @pulumi.getter(name="volumeSizeInGb")
     def volume_size_in_gb(self) -> Optional[pulumi.Input[int]]:
         """
-        Volume size (in GB) when `volume_type` is set to `bssd`.
+        Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
 
         > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
         """
@@ -776,7 +776,7 @@ class _RdbInstanceState:
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Type of volume where data are stored (`bssd` or `lssd`).
+        Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
         """
         return pulumi.get(self, "volume_type")
 
@@ -934,10 +934,10 @@ class RdbInstance(pulumi.CustomResource):
         :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
                
                > **Important:** Updates to `user_name` will recreate the Database Instance.
-        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`.
+        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
                
                > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
-        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd` or `lssd`).
+        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
         """
         ...
     @overload
@@ -1186,10 +1186,10 @@ class RdbInstance(pulumi.CustomResource):
         :param pulumi.Input[str] user_name: Identifier for the first user of the database instance.
                
                > **Important:** Updates to `user_name` will recreate the Database Instance.
-        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB) when `volume_type` is set to `bssd`.
+        :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
                
                > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
-        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd` or `lssd`).
+        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1418,7 +1418,7 @@ class RdbInstance(pulumi.CustomResource):
     @pulumi.getter(name="volumeSizeInGb")
     def volume_size_in_gb(self) -> pulumi.Output[int]:
         """
-        Volume size (in GB) when `volume_type` is set to `bssd`.
+        Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
 
         > **Important:** Once your instance reaches `disk_full` status, you should increase the volume size before making any other change to your instance.
         """
@@ -1428,7 +1428,7 @@ class RdbInstance(pulumi.CustomResource):
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> pulumi.Output[Optional[str]]:
         """
-        Type of volume where data are stored (`bssd` or `lssd`).
+        Type of volume where data are stored (`bssd`, `lssd` or `sbs_5k`).
         """
         return pulumi.get(self, "volume_type")
 

@@ -134,6 +134,10 @@ export class IpamIp extends pulumi.CustomResource {
      */
     public /*out*/ readonly resources!: pulumi.Output<outputs.IpamIpResource[]>;
     /**
+     * The reverses DNS for this IP.
+     */
+    public /*out*/ readonly reverses!: pulumi.Output<outputs.IpamIpReverse[]>;
+    /**
      * The source in which to book the IP.
      */
     public readonly sources!: pulumi.Output<outputs.IpamIpSource[]>;
@@ -169,6 +173,7 @@ export class IpamIp extends pulumi.CustomResource {
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["resources"] = state ? state.resources : undefined;
+            resourceInputs["reverses"] = state ? state.reverses : undefined;
             resourceInputs["sources"] = state ? state.sources : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
@@ -186,6 +191,7 @@ export class IpamIp extends pulumi.CustomResource {
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["resources"] = undefined /*out*/;
+            resourceInputs["reverses"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
             resourceInputs["zone"] = undefined /*out*/;
         }
@@ -222,6 +228,10 @@ export interface IpamIpState {
      * The IP resource.
      */
     resources?: pulumi.Input<pulumi.Input<inputs.IpamIpResource>[]>;
+    /**
+     * The reverses DNS for this IP.
+     */
+    reverses?: pulumi.Input<pulumi.Input<inputs.IpamIpReverse>[]>;
     /**
      * The source in which to book the IP.
      */

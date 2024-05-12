@@ -175,6 +175,12 @@ namespace ediri.Scaleway
         public Output<ImmutableArray<Outputs.IpamIpResource>> Resources { get; private set; } = null!;
 
         /// <summary>
+        /// The reverses DNS for this IP.
+        /// </summary>
+        [Output("reverses")]
+        public Output<ImmutableArray<Outputs.IpamIpReverse>> Reverses { get; private set; } = null!;
+
+        /// <summary>
         /// The source in which to book the IP.
         /// </summary>
         [Output("sources")]
@@ -341,6 +347,18 @@ namespace ediri.Scaleway
         {
             get => _resources ?? (_resources = new InputList<Inputs.IpamIpResourceGetArgs>());
             set => _resources = value;
+        }
+
+        [Input("reverses")]
+        private InputList<Inputs.IpamIpReverseGetArgs>? _reverses;
+
+        /// <summary>
+        /// The reverses DNS for this IP.
+        /// </summary>
+        public InputList<Inputs.IpamIpReverseGetArgs> Reverses
+        {
+            get => _reverses ?? (_reverses = new InputList<Inputs.IpamIpReverseGetArgs>());
+            set => _reverses = value;
         }
 
         [Input("sources")]

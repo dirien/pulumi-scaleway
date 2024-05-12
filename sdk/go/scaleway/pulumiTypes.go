@@ -5918,6 +5918,112 @@ func (o IpamIpResourceArrayOutput) Index(i pulumi.IntInput) IpamIpResourceOutput
 	}).(IpamIpResourceOutput)
 }
 
+type IpamIpReverse struct {
+	// Request a specific IP in the requested source pool.
+	Address *string `pulumi:"address"`
+	// The reverse domain name.
+	Hostname *string `pulumi:"hostname"`
+}
+
+// IpamIpReverseInput is an input type that accepts IpamIpReverseArgs and IpamIpReverseOutput values.
+// You can construct a concrete instance of `IpamIpReverseInput` via:
+//
+//	IpamIpReverseArgs{...}
+type IpamIpReverseInput interface {
+	pulumi.Input
+
+	ToIpamIpReverseOutput() IpamIpReverseOutput
+	ToIpamIpReverseOutputWithContext(context.Context) IpamIpReverseOutput
+}
+
+type IpamIpReverseArgs struct {
+	// Request a specific IP in the requested source pool.
+	Address pulumi.StringPtrInput `pulumi:"address"`
+	// The reverse domain name.
+	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
+}
+
+func (IpamIpReverseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IpamIpReverse)(nil)).Elem()
+}
+
+func (i IpamIpReverseArgs) ToIpamIpReverseOutput() IpamIpReverseOutput {
+	return i.ToIpamIpReverseOutputWithContext(context.Background())
+}
+
+func (i IpamIpReverseArgs) ToIpamIpReverseOutputWithContext(ctx context.Context) IpamIpReverseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IpamIpReverseOutput)
+}
+
+// IpamIpReverseArrayInput is an input type that accepts IpamIpReverseArray and IpamIpReverseArrayOutput values.
+// You can construct a concrete instance of `IpamIpReverseArrayInput` via:
+//
+//	IpamIpReverseArray{ IpamIpReverseArgs{...} }
+type IpamIpReverseArrayInput interface {
+	pulumi.Input
+
+	ToIpamIpReverseArrayOutput() IpamIpReverseArrayOutput
+	ToIpamIpReverseArrayOutputWithContext(context.Context) IpamIpReverseArrayOutput
+}
+
+type IpamIpReverseArray []IpamIpReverseInput
+
+func (IpamIpReverseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IpamIpReverse)(nil)).Elem()
+}
+
+func (i IpamIpReverseArray) ToIpamIpReverseArrayOutput() IpamIpReverseArrayOutput {
+	return i.ToIpamIpReverseArrayOutputWithContext(context.Background())
+}
+
+func (i IpamIpReverseArray) ToIpamIpReverseArrayOutputWithContext(ctx context.Context) IpamIpReverseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IpamIpReverseArrayOutput)
+}
+
+type IpamIpReverseOutput struct{ *pulumi.OutputState }
+
+func (IpamIpReverseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IpamIpReverse)(nil)).Elem()
+}
+
+func (o IpamIpReverseOutput) ToIpamIpReverseOutput() IpamIpReverseOutput {
+	return o
+}
+
+func (o IpamIpReverseOutput) ToIpamIpReverseOutputWithContext(ctx context.Context) IpamIpReverseOutput {
+	return o
+}
+
+// Request a specific IP in the requested source pool.
+func (o IpamIpReverseOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IpamIpReverse) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// The reverse domain name.
+func (o IpamIpReverseOutput) Hostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IpamIpReverse) *string { return v.Hostname }).(pulumi.StringPtrOutput)
+}
+
+type IpamIpReverseArrayOutput struct{ *pulumi.OutputState }
+
+func (IpamIpReverseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IpamIpReverse)(nil)).Elem()
+}
+
+func (o IpamIpReverseArrayOutput) ToIpamIpReverseArrayOutput() IpamIpReverseArrayOutput {
+	return o
+}
+
+func (o IpamIpReverseArrayOutput) ToIpamIpReverseArrayOutputWithContext(ctx context.Context) IpamIpReverseArrayOutput {
+	return o
+}
+
+func (o IpamIpReverseArrayOutput) Index(i pulumi.IntInput) IpamIpReverseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IpamIpReverse {
+		return vs[0].([]IpamIpReverse)[vs[1].(int)]
+	}).(IpamIpReverseOutput)
+}
+
 type IpamIpSource struct {
 	// The private network the IP lives in if the IP is a private IP.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
@@ -14685,11 +14791,20 @@ func (o GetBaremetalServerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) Ge
 }
 
 type GetBillingConsumptionsConsumption struct {
-	Category      string `pulumi:"category"`
-	Description   string `pulumi:"description"`
-	OperationPath string `pulumi:"operationPath"`
-	ProjectId     string `pulumi:"projectId"`
-	Value         string `pulumi:"value"`
+	// Consumed quantity
+	BilledQuantity string `pulumi:"billedQuantity"`
+	// Name of consumption category
+	CategoryName string `pulumi:"categoryName"`
+	// The product name
+	ProductName string `pulumi:"productName"`
+	// Project ID of the consumption
+	ProjectId string `pulumi:"projectId"`
+	// Unique identifier of the product
+	Sku string `pulumi:"sku"`
+	// Unit of consumed quantity
+	Unit string `pulumi:"unit"`
+	// Monetary value of the consumption
+	Value string `pulumi:"value"`
 }
 
 // GetBillingConsumptionsConsumptionInput is an input type that accepts GetBillingConsumptionsConsumptionArgs and GetBillingConsumptionsConsumptionOutput values.
@@ -14704,11 +14819,20 @@ type GetBillingConsumptionsConsumptionInput interface {
 }
 
 type GetBillingConsumptionsConsumptionArgs struct {
-	Category      pulumi.StringInput `pulumi:"category"`
-	Description   pulumi.StringInput `pulumi:"description"`
-	OperationPath pulumi.StringInput `pulumi:"operationPath"`
-	ProjectId     pulumi.StringInput `pulumi:"projectId"`
-	Value         pulumi.StringInput `pulumi:"value"`
+	// Consumed quantity
+	BilledQuantity pulumi.StringInput `pulumi:"billedQuantity"`
+	// Name of consumption category
+	CategoryName pulumi.StringInput `pulumi:"categoryName"`
+	// The product name
+	ProductName pulumi.StringInput `pulumi:"productName"`
+	// Project ID of the consumption
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Unique identifier of the product
+	Sku pulumi.StringInput `pulumi:"sku"`
+	// Unit of consumed quantity
+	Unit pulumi.StringInput `pulumi:"unit"`
+	// Monetary value of the consumption
+	Value pulumi.StringInput `pulumi:"value"`
 }
 
 func (GetBillingConsumptionsConsumptionArgs) ElementType() reflect.Type {
@@ -14762,22 +14886,37 @@ func (o GetBillingConsumptionsConsumptionOutput) ToGetBillingConsumptionsConsump
 	return o
 }
 
-func (o GetBillingConsumptionsConsumptionOutput) Category() pulumi.StringOutput {
-	return o.ApplyT(func(v GetBillingConsumptionsConsumption) string { return v.Category }).(pulumi.StringOutput)
+// Consumed quantity
+func (o GetBillingConsumptionsConsumptionOutput) BilledQuantity() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingConsumptionsConsumption) string { return v.BilledQuantity }).(pulumi.StringOutput)
 }
 
-func (o GetBillingConsumptionsConsumptionOutput) Description() pulumi.StringOutput {
-	return o.ApplyT(func(v GetBillingConsumptionsConsumption) string { return v.Description }).(pulumi.StringOutput)
+// Name of consumption category
+func (o GetBillingConsumptionsConsumptionOutput) CategoryName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingConsumptionsConsumption) string { return v.CategoryName }).(pulumi.StringOutput)
 }
 
-func (o GetBillingConsumptionsConsumptionOutput) OperationPath() pulumi.StringOutput {
-	return o.ApplyT(func(v GetBillingConsumptionsConsumption) string { return v.OperationPath }).(pulumi.StringOutput)
+// The product name
+func (o GetBillingConsumptionsConsumptionOutput) ProductName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingConsumptionsConsumption) string { return v.ProductName }).(pulumi.StringOutput)
 }
 
+// Project ID of the consumption
 func (o GetBillingConsumptionsConsumptionOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBillingConsumptionsConsumption) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// Unique identifier of the product
+func (o GetBillingConsumptionsConsumptionOutput) Sku() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingConsumptionsConsumption) string { return v.Sku }).(pulumi.StringOutput)
+}
+
+// Unit of consumed quantity
+func (o GetBillingConsumptionsConsumptionOutput) Unit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingConsumptionsConsumption) string { return v.Unit }).(pulumi.StringOutput)
+}
+
+// Monetary value of the consumption
 func (o GetBillingConsumptionsConsumptionOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBillingConsumptionsConsumption) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -14803,6 +14942,8 @@ func (o GetBillingConsumptionsConsumptionArrayOutput) Index(i pulumi.IntInput) G
 }
 
 type GetBillingInvoicesInvoice struct {
+	// The billing period of the invoice in the YYYY-MM format.
+	BillingPeriod string `pulumi:"billingPeriod"`
 	// The payment time limit, set according to the Organization's payment conditions (RFC 3339 format).
 	DueDate string `pulumi:"dueDate"`
 	// The associated invoice ID.
@@ -14813,10 +14954,24 @@ type GetBillingInvoicesInvoice struct {
 	IssuedDate string `pulumi:"issuedDate"`
 	// The invoice number.
 	Number int `pulumi:"number"`
+	// The organization name.
+	OrganizationName string `pulumi:"organizationName"`
+	// The name of the seller (Scaleway).
+	SellerName string `pulumi:"sellerName"`
 	// The start date of the billing period (RFC 3339 format).
 	StartDate string `pulumi:"startDate"`
+	// The state of the invoice.
+	State string `pulumi:"state"`
+	// The end date of the billing period (RFC 3339 format).
+	StopDate string `pulumi:"stopDate"`
+	// The total discount amount of the invoice.
+	TotalDiscount string `pulumi:"totalDiscount"`
+	// The total tax amount of the invoice.
+	TotalTax string `pulumi:"totalTax"`
 	// The total amount, taxed.
 	TotalTaxed string `pulumi:"totalTaxed"`
+	// The total amount of the invoice before applying the discount.
+	TotalUndiscount string `pulumi:"totalUndiscount"`
 	// The total amount, untaxed.
 	TotalUntaxed string `pulumi:"totalUntaxed"`
 }
@@ -14833,6 +14988,8 @@ type GetBillingInvoicesInvoiceInput interface {
 }
 
 type GetBillingInvoicesInvoiceArgs struct {
+	// The billing period of the invoice in the YYYY-MM format.
+	BillingPeriod pulumi.StringInput `pulumi:"billingPeriod"`
 	// The payment time limit, set according to the Organization's payment conditions (RFC 3339 format).
 	DueDate pulumi.StringInput `pulumi:"dueDate"`
 	// The associated invoice ID.
@@ -14843,10 +15000,24 @@ type GetBillingInvoicesInvoiceArgs struct {
 	IssuedDate pulumi.StringInput `pulumi:"issuedDate"`
 	// The invoice number.
 	Number pulumi.IntInput `pulumi:"number"`
+	// The organization name.
+	OrganizationName pulumi.StringInput `pulumi:"organizationName"`
+	// The name of the seller (Scaleway).
+	SellerName pulumi.StringInput `pulumi:"sellerName"`
 	// The start date of the billing period (RFC 3339 format).
 	StartDate pulumi.StringInput `pulumi:"startDate"`
+	// The state of the invoice.
+	State pulumi.StringInput `pulumi:"state"`
+	// The end date of the billing period (RFC 3339 format).
+	StopDate pulumi.StringInput `pulumi:"stopDate"`
+	// The total discount amount of the invoice.
+	TotalDiscount pulumi.StringInput `pulumi:"totalDiscount"`
+	// The total tax amount of the invoice.
+	TotalTax pulumi.StringInput `pulumi:"totalTax"`
 	// The total amount, taxed.
 	TotalTaxed pulumi.StringInput `pulumi:"totalTaxed"`
+	// The total amount of the invoice before applying the discount.
+	TotalUndiscount pulumi.StringInput `pulumi:"totalUndiscount"`
 	// The total amount, untaxed.
 	TotalUntaxed pulumi.StringInput `pulumi:"totalUntaxed"`
 }
@@ -14902,6 +15073,11 @@ func (o GetBillingInvoicesInvoiceOutput) ToGetBillingInvoicesInvoiceOutputWithCo
 	return o
 }
 
+// The billing period of the invoice in the YYYY-MM format.
+func (o GetBillingInvoicesInvoiceOutput) BillingPeriod() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingInvoicesInvoice) string { return v.BillingPeriod }).(pulumi.StringOutput)
+}
+
 // The payment time limit, set according to the Organization's payment conditions (RFC 3339 format).
 func (o GetBillingInvoicesInvoiceOutput) DueDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBillingInvoicesInvoice) string { return v.DueDate }).(pulumi.StringOutput)
@@ -14927,14 +15103,49 @@ func (o GetBillingInvoicesInvoiceOutput) Number() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBillingInvoicesInvoice) int { return v.Number }).(pulumi.IntOutput)
 }
 
+// The organization name.
+func (o GetBillingInvoicesInvoiceOutput) OrganizationName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingInvoicesInvoice) string { return v.OrganizationName }).(pulumi.StringOutput)
+}
+
+// The name of the seller (Scaleway).
+func (o GetBillingInvoicesInvoiceOutput) SellerName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingInvoicesInvoice) string { return v.SellerName }).(pulumi.StringOutput)
+}
+
 // The start date of the billing period (RFC 3339 format).
 func (o GetBillingInvoicesInvoiceOutput) StartDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBillingInvoicesInvoice) string { return v.StartDate }).(pulumi.StringOutput)
 }
 
+// The state of the invoice.
+func (o GetBillingInvoicesInvoiceOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingInvoicesInvoice) string { return v.State }).(pulumi.StringOutput)
+}
+
+// The end date of the billing period (RFC 3339 format).
+func (o GetBillingInvoicesInvoiceOutput) StopDate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingInvoicesInvoice) string { return v.StopDate }).(pulumi.StringOutput)
+}
+
+// The total discount amount of the invoice.
+func (o GetBillingInvoicesInvoiceOutput) TotalDiscount() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingInvoicesInvoice) string { return v.TotalDiscount }).(pulumi.StringOutput)
+}
+
+// The total tax amount of the invoice.
+func (o GetBillingInvoicesInvoiceOutput) TotalTax() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingInvoicesInvoice) string { return v.TotalTax }).(pulumi.StringOutput)
+}
+
 // The total amount, taxed.
 func (o GetBillingInvoicesInvoiceOutput) TotalTaxed() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBillingInvoicesInvoice) string { return v.TotalTaxed }).(pulumi.StringOutput)
+}
+
+// The total amount of the invoice before applying the discount.
+func (o GetBillingInvoicesInvoiceOutput) TotalUndiscount() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBillingInvoicesInvoice) string { return v.TotalUndiscount }).(pulumi.StringOutput)
 }
 
 // The total amount, untaxed.
@@ -24785,6 +24996,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteS3PtrInput)(nil)).Elem(), IotRouteS3Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpResourceInput)(nil)).Elem(), IpamIpResourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpResourceArrayInput)(nil)).Elem(), IpamIpResourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpReverseInput)(nil)).Elem(), IpamIpReverseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpReverseArrayInput)(nil)).Elem(), IpamIpReverseArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpSourceInput)(nil)).Elem(), IpamIpSourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpSourceArrayInput)(nil)).Elem(), IpamIpSourceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*K8sClusterAutoUpgradeInput)(nil)).Elem(), K8sClusterAutoUpgradeArgs{})
@@ -25119,6 +25332,8 @@ func init() {
 	pulumi.RegisterOutputType(IotRouteS3PtrOutput{})
 	pulumi.RegisterOutputType(IpamIpResourceOutput{})
 	pulumi.RegisterOutputType(IpamIpResourceArrayOutput{})
+	pulumi.RegisterOutputType(IpamIpReverseOutput{})
+	pulumi.RegisterOutputType(IpamIpReverseArrayOutput{})
 	pulumi.RegisterOutputType(IpamIpSourceOutput{})
 	pulumi.RegisterOutputType(IpamIpSourceArrayOutput{})
 	pulumi.RegisterOutputType(K8sClusterAutoUpgradeOutput{})

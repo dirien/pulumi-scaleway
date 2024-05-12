@@ -152,6 +152,7 @@
         "iotNetwork.ts",
         "iotRoute.ts",
         "ipamIp.ts",
+        "ipamIpReverseDns.ts",
         "jobDefinition.ts",
         "k8sCluster.ts",
         "k8sPool.ts",

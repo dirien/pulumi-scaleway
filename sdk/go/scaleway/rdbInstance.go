@@ -228,11 +228,11 @@ type RdbInstance struct {
 	//
 	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName pulumi.StringOutput `pulumi:"userName"`
-	// Volume size (in GB) when `volumeType` is set to `bssd`.
+	// Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
 	//
 	// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 	VolumeSizeInGb pulumi.IntOutput `pulumi:"volumeSizeInGb"`
-	// Type of volume where data are stored (`bssd` or `lssd`).
+	// Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
 	VolumeType pulumi.StringPtrOutput `pulumi:"volumeType"`
 }
 
@@ -339,11 +339,11 @@ type rdbInstanceState struct {
 	//
 	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName *string `pulumi:"userName"`
-	// Volume size (in GB) when `volumeType` is set to `bssd`.
+	// Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
 	//
 	// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 	VolumeSizeInGb *int `pulumi:"volumeSizeInGb"`
-	// Type of volume where data are stored (`bssd` or `lssd`).
+	// Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
 	VolumeType *string `pulumi:"volumeType"`
 }
 
@@ -408,11 +408,11 @@ type RdbInstanceState struct {
 	//
 	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName pulumi.StringPtrInput
-	// Volume size (in GB) when `volumeType` is set to `bssd`.
+	// Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
 	//
 	// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 	VolumeSizeInGb pulumi.IntPtrInput
-	// Type of volume where data are stored (`bssd` or `lssd`).
+	// Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
 	VolumeType pulumi.StringPtrInput
 }
 
@@ -469,11 +469,11 @@ type rdbInstanceArgs struct {
 	//
 	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName *string `pulumi:"userName"`
-	// Volume size (in GB) when `volumeType` is set to `bssd`.
+	// Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
 	//
 	// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 	VolumeSizeInGb *int `pulumi:"volumeSizeInGb"`
-	// Type of volume where data are stored (`bssd` or `lssd`).
+	// Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
 	VolumeType *string `pulumi:"volumeType"`
 }
 
@@ -527,11 +527,11 @@ type RdbInstanceArgs struct {
 	//
 	// > **Important:** Updates to `userName` will recreate the Database Instance.
 	UserName pulumi.StringPtrInput
-	// Volume size (in GB) when `volumeType` is set to `bssd`.
+	// Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
 	//
 	// > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 	VolumeSizeInGb pulumi.IntPtrInput
-	// Type of volume where data are stored (`bssd` or `lssd`).
+	// Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
 	VolumeType pulumi.StringPtrInput
 }
 
@@ -748,14 +748,14 @@ func (o RdbInstanceOutput) UserName() pulumi.StringOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.StringOutput { return v.UserName }).(pulumi.StringOutput)
 }
 
-// Volume size (in GB) when `volumeType` is set to `bssd`.
+// Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
 //
 // > **Important:** Once your instance reaches `diskFull` status, you should increase the volume size before making any other change to your instance.
 func (o RdbInstanceOutput) VolumeSizeInGb() pulumi.IntOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.IntOutput { return v.VolumeSizeInGb }).(pulumi.IntOutput)
 }
 
-// Type of volume where data are stored (`bssd` or `lssd`).
+// Type of volume where data are stored (`bssd`, `lssd` or `sbs5k`).
 func (o RdbInstanceOutput) VolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.StringPtrOutput { return v.VolumeType }).(pulumi.StringPtrOutput)
 }
