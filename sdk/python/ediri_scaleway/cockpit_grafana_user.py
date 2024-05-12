@@ -156,12 +156,10 @@ class CockpitGrafanaUser(pulumi.CustomResource):
         ```python
         import pulumi
         import ediri_scaleway as scaleway
-        import pulumi_scaleway as scaleway
 
-        main_cockpit = scaleway.get_cockpit()
-        # Create an editor grafana user for the cockpit
-        main_cockpit_grafana_user = scaleway.CockpitGrafanaUser("mainCockpitGrafanaUser",
-            project_id=main_cockpit.project_id,
+        project = scaleway.AccountProject("project")
+        main = scaleway.CockpitGrafanaUser("main",
+            project_id=project.id,
             login="my-awesome-user",
             role="editor")
         ```
@@ -198,12 +196,10 @@ class CockpitGrafanaUser(pulumi.CustomResource):
         ```python
         import pulumi
         import ediri_scaleway as scaleway
-        import pulumi_scaleway as scaleway
 
-        main_cockpit = scaleway.get_cockpit()
-        # Create an editor grafana user for the cockpit
-        main_cockpit_grafana_user = scaleway.CockpitGrafanaUser("mainCockpitGrafanaUser",
-            project_id=main_cockpit.project_id,
+        project = scaleway.AccountProject("project")
+        main = scaleway.CockpitGrafanaUser("main",
+            project_id=project.id,
             login="my-awesome-user",
             role="editor")
         ```

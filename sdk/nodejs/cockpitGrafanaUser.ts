@@ -14,12 +14,10 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@ediri/scaleway";
- * import * as scaleway from "@pulumi/scaleway";
  *
- * const mainCockpit = scaleway.getCockpit({});
- * // Create an editor grafana user for the cockpit
- * const mainCockpitGrafanaUser = new scaleway.CockpitGrafanaUser("mainCockpitGrafanaUser", {
- *     projectId: mainCockpit.then(mainCockpit => mainCockpit.projectId),
+ * const project = new scaleway.AccountProject("project", {});
+ * const main = new scaleway.CockpitGrafanaUser("main", {
+ *     projectId: project.id,
  *     login: "my-awesome-user",
  *     role: "editor",
  * });

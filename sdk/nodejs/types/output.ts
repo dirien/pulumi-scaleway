@@ -872,6 +872,10 @@ export interface GetInstanceServerPrivateNetwork {
      */
     pnId: string;
     /**
+     * The ID of the NIC
+     */
+    pnicId: string;
+    /**
      * The private NIC state
      */
     status: string;
@@ -2001,6 +2005,17 @@ export interface GetRdbInstanceLoadBalancer {
     port: number;
 }
 
+export interface GetRdbInstanceLogsPolicy {
+    /**
+     * The max age (in days) of remote logs to keep on the Database Instance
+     */
+    maxAgeRetention: number;
+    /**
+     * The max disk size of remote logs to keep on the Database Instance.
+     */
+    totalDiskRetention: number;
+}
+
 export interface GetRdbInstancePrivateNetwork {
     /**
      * Whether or not the private network endpoint should be configured with IPAM
@@ -2489,6 +2504,10 @@ export interface InstanceServerPrivateNetwork {
      */
     pnId: string;
     /**
+     * The ID of the NIC
+     */
+    pnicId: string;
+    /**
      * The private NIC state
      */
     status: string;
@@ -2680,7 +2699,7 @@ export interface IpamIpResource {
 
 export interface IpamIpReverse {
     /**
-     * Request a specific IP in the requested source pool.
+     * The IP corresponding to the hostname
      */
     address: string;
     /**
@@ -3301,6 +3320,17 @@ export interface RdbInstanceLoadBalancer {
      * Port in the Private Network.
      */
     port: number;
+}
+
+export interface RdbInstanceLogsPolicy {
+    /**
+     * The max age (in days) of remote logs to keep on the Database Instance
+     */
+    maxAgeRetention: number;
+    /**
+     * The max disk size of remote logs to keep on the Database Instance.
+     */
+    totalDiskRetention: number;
 }
 
 export interface RdbInstancePrivateNetwork {

@@ -87,6 +87,7 @@ __all__ = [
     'ObjectBucketWebsiteConfigurationIndexDocument',
     'RdbAclAclRule',
     'RdbInstanceLoadBalancer',
+    'RdbInstanceLogsPolicy',
     'RdbInstancePrivateNetwork',
     'RdbInstanceReadReplica',
     'RdbReadReplicaDirectAccess',
@@ -170,6 +171,7 @@ __all__ = [
     'GetObjectBucketVersioningResult',
     'GetRdbAclAclRuleResult',
     'GetRdbInstanceLoadBalancerResult',
+    'GetRdbInstanceLogsPolicyResult',
     'GetRdbInstancePrivateNetworkResult',
     'GetRdbInstanceReadReplicaResult',
     'GetRedisClusterAclResult',
@@ -2167,6 +2169,8 @@ class InstanceServerPrivateNetwork(dict):
             suggest = "pn_id"
         elif key == "macAddress":
             suggest = "mac_address"
+        elif key == "pnicId":
+            suggest = "pnic_id"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in InstanceServerPrivateNetwork. Access the value via the '{suggest}' property getter instead.")
@@ -2182,17 +2186,21 @@ class InstanceServerPrivateNetwork(dict):
     def __init__(__self__, *,
                  pn_id: str,
                  mac_address: Optional[str] = None,
+                 pnic_id: Optional[str] = None,
                  status: Optional[str] = None,
                  zone: Optional[str] = None):
         """
         :param str pn_id: The Private Network ID
         :param str mac_address: MAC address of the NIC
+        :param str pnic_id: The ID of the NIC
         :param str status: The private NIC state
         :param str zone: `zone`) The zone in which the server should be created.
         """
         pulumi.set(__self__, "pn_id", pn_id)
         if mac_address is not None:
             pulumi.set(__self__, "mac_address", mac_address)
+        if pnic_id is not None:
+            pulumi.set(__self__, "pnic_id", pnic_id)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if zone is not None:
@@ -2213,6 +2221,14 @@ class InstanceServerPrivateNetwork(dict):
         MAC address of the NIC
         """
         return pulumi.get(self, "mac_address")
+
+    @property
+    @pulumi.getter(name="pnicId")
+    def pnic_id(self) -> Optional[str]:
+        """
+        The ID of the NIC
+        """
+        return pulumi.get(self, "pnic_id")
 
     @property
     @pulumi.getter
@@ -2795,7 +2811,7 @@ class IpamIpReverse(dict):
                  address: Optional[str] = None,
                  hostname: Optional[str] = None):
         """
-        :param str address: Request a specific IP in the requested source pool.
+        :param str address: The IP corresponding to the hostname
         :param str hostname: The reverse domain name.
         """
         if address is not None:
@@ -2807,7 +2823,7 @@ class IpamIpReverse(dict):
     @pulumi.getter
     def address(self) -> Optional[str]:
         """
-        Request a specific IP in the requested source pool.
+        The IP corresponding to the hostname
         """
         return pulumi.get(self, "address")
 
@@ -5024,6 +5040,56 @@ class RdbInstanceLoadBalancer(dict):
         Port in the Private Network.
         """
         return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class RdbInstanceLogsPolicy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxAgeRetention":
+            suggest = "max_age_retention"
+        elif key == "totalDiskRetention":
+            suggest = "total_disk_retention"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RdbInstanceLogsPolicy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RdbInstanceLogsPolicy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RdbInstanceLogsPolicy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_age_retention: Optional[int] = None,
+                 total_disk_retention: Optional[int] = None):
+        """
+        :param int max_age_retention: The max age (in days) of remote logs to keep on the Database Instance
+        :param int total_disk_retention: The max disk size of remote logs to keep on the Database Instance.
+        """
+        if max_age_retention is not None:
+            pulumi.set(__self__, "max_age_retention", max_age_retention)
+        if total_disk_retention is not None:
+            pulumi.set(__self__, "total_disk_retention", total_disk_retention)
+
+    @property
+    @pulumi.getter(name="maxAgeRetention")
+    def max_age_retention(self) -> Optional[int]:
+        """
+        The max age (in days) of remote logs to keep on the Database Instance
+        """
+        return pulumi.get(self, "max_age_retention")
+
+    @property
+    @pulumi.getter(name="totalDiskRetention")
+    def total_disk_retention(self) -> Optional[int]:
+        """
+        The max disk size of remote logs to keep on the Database Instance.
+        """
+        return pulumi.get(self, "total_disk_retention")
 
 
 @pulumi.output_type
@@ -7373,16 +7439,19 @@ class GetInstanceServerPrivateNetworkResult(dict):
     def __init__(__self__, *,
                  mac_address: str,
                  pn_id: str,
+                 pnic_id: str,
                  status: str,
                  zone: str):
         """
         :param str mac_address: MAC address of the NIC
         :param str pn_id: The Private Network ID
+        :param str pnic_id: The ID of the NIC
         :param str status: The private NIC state
         :param str zone: `zone`) The zone in which the server exists.
         """
         pulumi.set(__self__, "mac_address", mac_address)
         pulumi.set(__self__, "pn_id", pn_id)
+        pulumi.set(__self__, "pnic_id", pnic_id)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "zone", zone)
 
@@ -7401,6 +7470,14 @@ class GetInstanceServerPrivateNetworkResult(dict):
         The Private Network ID
         """
         return pulumi.get(self, "pn_id")
+
+    @property
+    @pulumi.getter(name="pnicId")
+    def pnic_id(self) -> str:
+        """
+        The ID of the NIC
+        """
+        return pulumi.get(self, "pnic_id")
 
     @property
     @pulumi.getter
@@ -10475,6 +10552,35 @@ class GetRdbInstanceLoadBalancerResult(dict):
         The port of your load balancer service
         """
         return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class GetRdbInstanceLogsPolicyResult(dict):
+    def __init__(__self__, *,
+                 max_age_retention: int,
+                 total_disk_retention: int):
+        """
+        :param int max_age_retention: The max age (in days) of remote logs to keep on the Database Instance
+        :param int total_disk_retention: The max disk size of remote logs to keep on the Database Instance.
+        """
+        pulumi.set(__self__, "max_age_retention", max_age_retention)
+        pulumi.set(__self__, "total_disk_retention", total_disk_retention)
+
+    @property
+    @pulumi.getter(name="maxAgeRetention")
+    def max_age_retention(self) -> int:
+        """
+        The max age (in days) of remote logs to keep on the Database Instance
+        """
+        return pulumi.get(self, "max_age_retention")
+
+    @property
+    @pulumi.getter(name="totalDiskRetention")
+    def total_disk_retention(self) -> int:
+        """
+        The max disk size of remote logs to keep on the Database Instance.
+        """
+        return pulumi.get(self, "total_disk_retention")
 
 
 @pulumi.output_type

@@ -256,7 +256,7 @@ export class InstanceServer extends pulumi.CustomResource {
      */
     public readonly enableDynamicIp!: pulumi.Output<boolean | undefined>;
     /**
-     * Determines if IPv6 is enabled for the server.
+     * Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
      */
     public readonly enableIpv6!: pulumi.Output<boolean | undefined>;
     /**
@@ -493,7 +493,7 @@ export interface InstanceServerState {
      */
     enableDynamicIp?: pulumi.Input<boolean>;
     /**
-     * Determines if IPv6 is enabled for the server.
+     * Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
      */
     enableIpv6?: pulumi.Input<boolean>;
     /**
@@ -647,7 +647,7 @@ export interface InstanceServerArgs {
      */
     enableDynamicIp?: pulumi.Input<boolean>;
     /**
-     * Determines if IPv6 is enabled for the server.
+     * Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
      */
     enableIpv6?: pulumi.Input<boolean>;
     /**

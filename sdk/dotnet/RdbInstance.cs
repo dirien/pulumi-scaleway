@@ -271,6 +271,12 @@ namespace ediri.Scaleway
         public Output<ImmutableArray<Outputs.RdbInstanceLoadBalancer>> LoadBalancers { get; private set; } = null!;
 
         /// <summary>
+        /// Logs policy configuration
+        /// </summary>
+        [Output("logsPolicy")]
+        public Output<Outputs.RdbInstanceLogsPolicy> LogsPolicy { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the Database Instance.
         /// </summary>
         [Output("name")]
@@ -476,6 +482,12 @@ namespace ediri.Scaleway
         }
 
         /// <summary>
+        /// Logs policy configuration
+        /// </summary>
+        [Input("logsPolicy")]
+        public Input<Inputs.RdbInstanceLogsPolicyArgs>? LogsPolicy { get; set; }
+
+        /// <summary>
         /// The name of the Database Instance.
         /// </summary>
         [Input("name")]
@@ -664,6 +676,12 @@ namespace ediri.Scaleway
             get => _loadBalancers ?? (_loadBalancers = new InputList<Inputs.RdbInstanceLoadBalancerGetArgs>());
             set => _loadBalancers = value;
         }
+
+        /// <summary>
+        /// Logs policy configuration
+        /// </summary>
+        [Input("logsPolicy")]
+        public Input<Inputs.RdbInstanceLogsPolicyGetArgs>? LogsPolicy { get; set; }
 
         /// <summary>
         /// The name of the Database Instance.

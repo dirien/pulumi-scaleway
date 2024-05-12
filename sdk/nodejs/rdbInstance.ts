@@ -217,6 +217,10 @@ export class RdbInstance extends pulumi.CustomResource {
      */
     public readonly loadBalancers!: pulumi.Output<outputs.RdbInstanceLoadBalancer[]>;
     /**
+     * Logs policy configuration
+     */
+    public readonly logsPolicy!: pulumi.Output<outputs.RdbInstanceLogsPolicy>;
+    /**
      * The name of the Database Instance.
      */
     public readonly name!: pulumi.Output<string>;
@@ -305,6 +309,7 @@ export class RdbInstance extends pulumi.CustomResource {
             resourceInputs["initSettings"] = state ? state.initSettings : undefined;
             resourceInputs["isHaCluster"] = state ? state.isHaCluster : undefined;
             resourceInputs["loadBalancers"] = state ? state.loadBalancers : undefined;
+            resourceInputs["logsPolicy"] = state ? state.logsPolicy : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["nodeType"] = state ? state.nodeType : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
@@ -334,6 +339,7 @@ export class RdbInstance extends pulumi.CustomResource {
             resourceInputs["initSettings"] = args ? args.initSettings : undefined;
             resourceInputs["isHaCluster"] = args ? args.isHaCluster : undefined;
             resourceInputs["loadBalancers"] = args ? args.loadBalancers : undefined;
+            resourceInputs["logsPolicy"] = args ? args.logsPolicy : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nodeType"] = args ? args.nodeType : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
@@ -412,6 +418,10 @@ export interface RdbInstanceState {
      * List of load balancer endpoints of the database instance.
      */
     loadBalancers?: pulumi.Input<pulumi.Input<inputs.RdbInstanceLoadBalancer>[]>;
+    /**
+     * Logs policy configuration
+     */
+    logsPolicy?: pulumi.Input<inputs.RdbInstanceLogsPolicy>;
     /**
      * The name of the Database Instance.
      */
@@ -518,6 +528,10 @@ export interface RdbInstanceArgs {
      * List of load balancer endpoints of the database instance.
      */
     loadBalancers?: pulumi.Input<pulumi.Input<inputs.RdbInstanceLoadBalancer>[]>;
+    /**
+     * Logs policy configuration
+     */
+    logsPolicy?: pulumi.Input<inputs.RdbInstanceLogsPolicy>;
     /**
      * The name of the Database Instance.
      */

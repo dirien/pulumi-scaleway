@@ -120,9 +120,7 @@ func Provider() tfbridge.ProviderInfo {
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"scaleway_object": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ObjectItem")},
 		},
-		DataSources: map[string]*tfbridge.DataSourceInfo{
-			"scaleway_object": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getObject")},
-		},
+		DataSources:             map[string]*tfbridge.DataSourceInfo{},
 		TFProviderModuleVersion: "v2",
 		JavaScript: &tfbridge.JavaScriptInfo{
 			PackageName: "@ediri/scaleway",

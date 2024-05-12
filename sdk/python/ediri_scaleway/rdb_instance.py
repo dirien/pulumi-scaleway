@@ -25,6 +25,7 @@ class RdbInstanceArgs:
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[bool]] = None,
                  load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input['RdbInstanceLoadBalancerArgs']]]] = None,
+                 logs_policy: Optional[pulumi.Input['RdbInstanceLogsPolicyArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  private_network: Optional[pulumi.Input['RdbInstancePrivateNetworkArgs']] = None,
@@ -56,6 +57,7 @@ class RdbInstanceArgs:
                
                > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
         :param pulumi.Input[Sequence[pulumi.Input['RdbInstanceLoadBalancerArgs']]] load_balancers: List of load balancer endpoints of the database instance.
+        :param pulumi.Input['RdbInstanceLogsPolicyArgs'] logs_policy: Logs policy configuration
         :param pulumi.Input[str] name: The name of the Database Instance.
         :param pulumi.Input[str] password: Password for the first user of the database instance.
         :param pulumi.Input['RdbInstancePrivateNetworkArgs'] private_network: List of private networks endpoints of the database instance.
@@ -89,6 +91,8 @@ class RdbInstanceArgs:
             pulumi.set(__self__, "is_ha_cluster", is_ha_cluster)
         if load_balancers is not None:
             pulumi.set(__self__, "load_balancers", load_balancers)
+        if logs_policy is not None:
+            pulumi.set(__self__, "logs_policy", logs_policy)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if password is not None:
@@ -227,6 +231,18 @@ class RdbInstanceArgs:
     @load_balancers.setter
     def load_balancers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RdbInstanceLoadBalancerArgs']]]]):
         pulumi.set(self, "load_balancers", value)
+
+    @property
+    @pulumi.getter(name="logsPolicy")
+    def logs_policy(self) -> Optional[pulumi.Input['RdbInstanceLogsPolicyArgs']]:
+        """
+        Logs policy configuration
+        """
+        return pulumi.get(self, "logs_policy")
+
+    @logs_policy.setter
+    def logs_policy(self, value: Optional[pulumi.Input['RdbInstanceLogsPolicyArgs']]):
+        pulumi.set(self, "logs_policy", value)
 
     @property
     @pulumi.getter
@@ -369,6 +385,7 @@ class _RdbInstanceState:
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[bool]] = None,
                  load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input['RdbInstanceLoadBalancerArgs']]]] = None,
+                 logs_policy: Optional[pulumi.Input['RdbInstanceLogsPolicyArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
@@ -399,6 +416,7 @@ class _RdbInstanceState:
                
                > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
         :param pulumi.Input[Sequence[pulumi.Input['RdbInstanceLoadBalancerArgs']]] load_balancers: List of load balancer endpoints of the database instance.
+        :param pulumi.Input['RdbInstanceLogsPolicyArgs'] logs_policy: Logs policy configuration
         :param pulumi.Input[str] name: The name of the Database Instance.
         :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
                
@@ -450,6 +468,8 @@ class _RdbInstanceState:
             pulumi.set(__self__, "is_ha_cluster", is_ha_cluster)
         if load_balancers is not None:
             pulumi.set(__self__, "load_balancers", load_balancers)
+        if logs_policy is not None:
+            pulumi.set(__self__, "logs_policy", logs_policy)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if node_type is not None:
@@ -615,6 +635,18 @@ class _RdbInstanceState:
     @load_balancers.setter
     def load_balancers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RdbInstanceLoadBalancerArgs']]]]):
         pulumi.set(self, "load_balancers", value)
+
+    @property
+    @pulumi.getter(name="logsPolicy")
+    def logs_policy(self) -> Optional[pulumi.Input['RdbInstanceLogsPolicyArgs']]:
+        """
+        Logs policy configuration
+        """
+        return pulumi.get(self, "logs_policy")
+
+    @logs_policy.setter
+    def logs_policy(self, value: Optional[pulumi.Input['RdbInstanceLogsPolicyArgs']]):
+        pulumi.set(self, "logs_policy", value)
 
     @property
     @pulumi.getter
@@ -798,6 +830,7 @@ class RdbInstance(pulumi.CustomResource):
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[bool]] = None,
                  load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbInstanceLoadBalancerArgs']]]]] = None,
+                 logs_policy: Optional[pulumi.Input[pulumi.InputType['RdbInstanceLogsPolicyArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
@@ -950,6 +983,7 @@ class RdbInstance(pulumi.CustomResource):
                
                > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbInstanceLoadBalancerArgs']]]] load_balancers: List of load balancer endpoints of the database instance.
+        :param pulumi.Input[pulumi.InputType['RdbInstanceLogsPolicyArgs']] logs_policy: Logs policy configuration
         :param pulumi.Input[str] name: The name of the Database Instance.
         :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
                
@@ -1129,6 +1163,7 @@ class RdbInstance(pulumi.CustomResource):
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[bool]] = None,
                  load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbInstanceLoadBalancerArgs']]]]] = None,
+                 logs_policy: Optional[pulumi.Input[pulumi.InputType['RdbInstanceLogsPolicyArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
@@ -1159,6 +1194,7 @@ class RdbInstance(pulumi.CustomResource):
             __props__.__dict__["init_settings"] = init_settings
             __props__.__dict__["is_ha_cluster"] = is_ha_cluster
             __props__.__dict__["load_balancers"] = load_balancers
+            __props__.__dict__["logs_policy"] = logs_policy
             __props__.__dict__["name"] = name
             if node_type is None and not opts.urn:
                 raise TypeError("Missing required property 'node_type'")
@@ -1200,6 +1236,7 @@ class RdbInstance(pulumi.CustomResource):
             init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             is_ha_cluster: Optional[pulumi.Input[bool]] = None,
             load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbInstanceLoadBalancerArgs']]]]] = None,
+            logs_policy: Optional[pulumi.Input[pulumi.InputType['RdbInstanceLogsPolicyArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             node_type: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
@@ -1235,6 +1272,7 @@ class RdbInstance(pulumi.CustomResource):
                
                > **Important:** Updates to `is_ha_cluster` will recreate the Database Instance.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbInstanceLoadBalancerArgs']]]] load_balancers: List of load balancer endpoints of the database instance.
+        :param pulumi.Input[pulumi.InputType['RdbInstanceLogsPolicyArgs']] logs_policy: Logs policy configuration
         :param pulumi.Input[str] name: The name of the Database Instance.
         :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
                
@@ -1276,6 +1314,7 @@ class RdbInstance(pulumi.CustomResource):
         __props__.__dict__["init_settings"] = init_settings
         __props__.__dict__["is_ha_cluster"] = is_ha_cluster
         __props__.__dict__["load_balancers"] = load_balancers
+        __props__.__dict__["logs_policy"] = logs_policy
         __props__.__dict__["name"] = name
         __props__.__dict__["node_type"] = node_type
         __props__.__dict__["organization_id"] = organization_id
@@ -1385,6 +1424,14 @@ class RdbInstance(pulumi.CustomResource):
         List of load balancer endpoints of the database instance.
         """
         return pulumi.get(self, "load_balancers")
+
+    @property
+    @pulumi.getter(name="logsPolicy")
+    def logs_policy(self) -> pulumi.Output['outputs.RdbInstanceLogsPolicy']:
+        """
+        Logs policy configuration
+        """
+        return pulumi.get(self, "logs_policy")
 
     @property
     @pulumi.getter

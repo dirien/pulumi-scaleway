@@ -114,6 +114,7 @@ namespace ediri.Scaleway
         public readonly string? InstanceId;
         public readonly bool IsHaCluster;
         public readonly ImmutableArray<Outputs.GetRdbInstanceLoadBalancerResult> LoadBalancers;
+        public readonly ImmutableArray<Outputs.GetRdbInstanceLogsPolicyResult> LogsPolicies;
         public readonly string? Name;
         public readonly string NodeType;
         public readonly string OrganizationId;
@@ -156,6 +157,8 @@ namespace ediri.Scaleway
 
             ImmutableArray<Outputs.GetRdbInstanceLoadBalancerResult> loadBalancers,
 
+            ImmutableArray<Outputs.GetRdbInstanceLogsPolicyResult> logsPolicies,
+
             string? name,
 
             string nodeType,
@@ -195,6 +198,7 @@ namespace ediri.Scaleway
             InstanceId = instanceId;
             IsHaCluster = isHaCluster;
             LoadBalancers = loadBalancers;
+            LogsPolicies = logsPolicies;
             Name = name;
             NodeType = nodeType;
             OrganizationId = organizationId;

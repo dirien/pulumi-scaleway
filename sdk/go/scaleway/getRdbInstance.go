@@ -52,6 +52,7 @@ type LookupRdbInstanceResult struct {
 	InstanceId      *string                        `pulumi:"instanceId"`
 	IsHaCluster     bool                           `pulumi:"isHaCluster"`
 	LoadBalancers   []GetRdbInstanceLoadBalancer   `pulumi:"loadBalancers"`
+	LogsPolicies    []GetRdbInstanceLogsPolicy     `pulumi:"logsPolicies"`
 	Name            *string                        `pulumi:"name"`
 	NodeType        string                         `pulumi:"nodeType"`
 	OrganizationId  string                         `pulumi:"organizationId"`
@@ -164,6 +165,10 @@ func (o LookupRdbInstanceResultOutput) IsHaCluster() pulumi.BoolOutput {
 
 func (o LookupRdbInstanceResultOutput) LoadBalancers() GetRdbInstanceLoadBalancerArrayOutput {
 	return o.ApplyT(func(v LookupRdbInstanceResult) []GetRdbInstanceLoadBalancer { return v.LoadBalancers }).(GetRdbInstanceLoadBalancerArrayOutput)
+}
+
+func (o LookupRdbInstanceResultOutput) LogsPolicies() GetRdbInstanceLogsPolicyArrayOutput {
+	return o.ApplyT(func(v LookupRdbInstanceResult) []GetRdbInstanceLogsPolicy { return v.LogsPolicies }).(GetRdbInstanceLogsPolicyArrayOutput)
 }
 
 func (o LookupRdbInstanceResultOutput) Name() pulumi.StringPtrOutput {

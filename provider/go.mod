@@ -6,7 +6,7 @@ toolchain go1.22.3
 
 replace (
 	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20240229143312-4f60ee4e2975
-	github.com/scaleway/scaleway-sdk-go => github.com/scaleway/scaleway-sdk-go v1.0.0-beta.25.0.20240405144000-4e97e7066cac
+	//github.com/scaleway/scaleway-sdk-go => github.com/scaleway/scaleway-sdk-go v1.0.0-beta.26.0.20240416090022-eaa650293b32
 	github.com/scaleway/terraform-provider-scaleway/v2/shim => ./shim
 )
 
@@ -206,7 +206,7 @@ require (
 	github.com/sabhiram/go-gitignore v0.0.0-20210923224102-525f6e181f06 // indirect
 	github.com/santhosh-tekuri/jsonschema/v5 v5.3.0 // indirect
 	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.26.0.20240416090022-eaa650293b32 // indirect
-	github.com/scaleway/terraform-provider-scaleway/v2 v2.39.0 // indirect
+	github.com/scaleway/terraform-provider-scaleway/v2 v2.40.0 // indirect
 	github.com/segmentio/asm v1.2.0 // indirect
 	github.com/segmentio/encoding v0.3.6 // indirect
 	github.com/sergi/go-diff v1.3.2-0.20230802210424-5b0b94c5c0d3 // indirect

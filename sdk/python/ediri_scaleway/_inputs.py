@@ -86,6 +86,7 @@ __all__ = [
     'ObjectBucketWebsiteConfigurationIndexDocumentArgs',
     'RdbAclAclRuleArgs',
     'RdbInstanceLoadBalancerArgs',
+    'RdbInstanceLogsPolicyArgs',
     'RdbInstancePrivateNetworkArgs',
     'RdbInstanceReadReplicaArgs',
     'RdbReadReplicaDirectAccessArgs',
@@ -2205,17 +2206,21 @@ class InstanceServerPrivateNetworkArgs:
     def __init__(__self__, *,
                  pn_id: pulumi.Input[str],
                  mac_address: Optional[pulumi.Input[str]] = None,
+                 pnic_id: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] pn_id: The Private Network ID
         :param pulumi.Input[str] mac_address: MAC address of the NIC
+        :param pulumi.Input[str] pnic_id: The ID of the NIC
         :param pulumi.Input[str] status: The private NIC state
         :param pulumi.Input[str] zone: `zone`) The zone in which the server should be created.
         """
         pulumi.set(__self__, "pn_id", pn_id)
         if mac_address is not None:
             pulumi.set(__self__, "mac_address", mac_address)
+        if pnic_id is not None:
+            pulumi.set(__self__, "pnic_id", pnic_id)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if zone is not None:
@@ -2244,6 +2249,18 @@ class InstanceServerPrivateNetworkArgs:
     @mac_address.setter
     def mac_address(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mac_address", value)
+
+    @property
+    @pulumi.getter(name="pnicId")
+    def pnic_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the NIC
+        """
+        return pulumi.get(self, "pnic_id")
+
+    @pnic_id.setter
+    def pnic_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pnic_id", value)
 
     @property
     @pulumi.getter
@@ -2913,7 +2930,7 @@ class IpamIpReverseArgs:
                  address: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] address: Request a specific IP in the requested source pool.
+        :param pulumi.Input[str] address: The IP corresponding to the hostname
         :param pulumi.Input[str] hostname: The reverse domain name.
         """
         if address is not None:
@@ -2925,7 +2942,7 @@ class IpamIpReverseArgs:
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[str]]:
         """
-        Request a specific IP in the requested source pool.
+        The IP corresponding to the hostname
         """
         return pulumi.get(self, "address")
 
@@ -5158,6 +5175,45 @@ class RdbInstanceLoadBalancerArgs:
     @port.setter
     def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
+
+
+@pulumi.input_type
+class RdbInstanceLogsPolicyArgs:
+    def __init__(__self__, *,
+                 max_age_retention: Optional[pulumi.Input[int]] = None,
+                 total_disk_retention: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] max_age_retention: The max age (in days) of remote logs to keep on the Database Instance
+        :param pulumi.Input[int] total_disk_retention: The max disk size of remote logs to keep on the Database Instance.
+        """
+        if max_age_retention is not None:
+            pulumi.set(__self__, "max_age_retention", max_age_retention)
+        if total_disk_retention is not None:
+            pulumi.set(__self__, "total_disk_retention", total_disk_retention)
+
+    @property
+    @pulumi.getter(name="maxAgeRetention")
+    def max_age_retention(self) -> Optional[pulumi.Input[int]]:
+        """
+        The max age (in days) of remote logs to keep on the Database Instance
+        """
+        return pulumi.get(self, "max_age_retention")
+
+    @max_age_retention.setter
+    def max_age_retention(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_age_retention", value)
+
+    @property
+    @pulumi.getter(name="totalDiskRetention")
+    def total_disk_retention(self) -> Optional[pulumi.Input[int]]:
+        """
+        The max disk size of remote logs to keep on the Database Instance.
+        """
+        return pulumi.get(self, "total_disk_retention")
+
+    @total_disk_retention.setter
+    def total_disk_retention(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "total_disk_retention", value)
 
 
 @pulumi.input_type

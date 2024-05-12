@@ -644,6 +644,10 @@ export interface InstanceServerPrivateNetwork {
      */
     pnId: pulumi.Input<string>;
     /**
+     * The ID of the NIC
+     */
+    pnicId?: pulumi.Input<string>;
+    /**
      * The private NIC state
      */
     status?: pulumi.Input<string>;
@@ -835,7 +839,7 @@ export interface IpamIpResource {
 
 export interface IpamIpReverse {
     /**
-     * Request a specific IP in the requested source pool.
+     * The IP corresponding to the hostname
      */
     address?: pulumi.Input<string>;
     /**
@@ -1456,6 +1460,17 @@ export interface RdbInstanceLoadBalancer {
      * Port in the Private Network.
      */
     port?: pulumi.Input<number>;
+}
+
+export interface RdbInstanceLogsPolicy {
+    /**
+     * The max age (in days) of remote logs to keep on the Database Instance
+     */
+    maxAgeRetention?: pulumi.Input<number>;
+    /**
+     * The max disk size of remote logs to keep on the Database Instance.
+     */
+    totalDiskRetention?: pulumi.Input<number>;
 }
 
 export interface RdbInstancePrivateNetwork {

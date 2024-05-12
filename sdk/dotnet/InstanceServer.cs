@@ -333,7 +333,7 @@ namespace ediri.Scaleway
         public Output<bool?> EnableDynamicIp { get; private set; } = null!;
 
         /// <summary>
-        /// Determines if IPv6 is enabled for the server.
+        /// Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
         /// </summary>
         [Output("enableIpv6")]
         public Output<bool?> EnableIpv6 { get; private set; } = null!;
@@ -594,7 +594,7 @@ namespace ediri.Scaleway
         public Input<bool>? EnableDynamicIp { get; set; }
 
         /// <summary>
-        /// Determines if IPv6 is enabled for the server.
+        /// Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
         /// </summary>
         [Input("enableIpv6")]
         public Input<bool>? EnableIpv6 { get; set; }
@@ -804,7 +804,7 @@ namespace ediri.Scaleway
         public Input<bool>? EnableDynamicIp { get; set; }
 
         /// <summary>
-        /// Determines if IPv6 is enabled for the server.
+        /// Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
         /// </summary>
         [Input("enableIpv6")]
         public Input<bool>? EnableIpv6 { get; set; }
