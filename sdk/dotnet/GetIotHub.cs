@@ -149,6 +149,8 @@ namespace ediri.Scaleway
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string MqttCa;
+        public readonly string MqttCaUrl;
         public readonly string? Name;
         public readonly string OrganizationId;
         public readonly string ProductPlan;
@@ -183,6 +185,10 @@ namespace ediri.Scaleway
 
             string id,
 
+            string mqttCa,
+
+            string mqttCaUrl,
+
             string? name,
 
             string organizationId,
@@ -209,6 +215,8 @@ namespace ediri.Scaleway
             HubCaChallenge = hubCaChallenge;
             HubId = hubId;
             Id = id;
+            MqttCa = mqttCa;
+            MqttCaUrl = mqttCaUrl;
             Name = name;
             OrganizationId = organizationId;
             ProductPlan = productPlan;

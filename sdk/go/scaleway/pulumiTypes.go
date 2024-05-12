@@ -766,6 +766,112 @@ func (o CockpitEndpointArrayOutput) Index(i pulumi.IntInput) CockpitEndpointOutp
 	}).(CockpitEndpointOutput)
 }
 
+type CockpitPushUrl struct {
+	// Push URL for logs (Grafana Loki)
+	PushLogsUrl *string `pulumi:"pushLogsUrl"`
+	// Push URL for metrics (Grafana Mimir)
+	PushMetricsUrl *string `pulumi:"pushMetricsUrl"`
+}
+
+// CockpitPushUrlInput is an input type that accepts CockpitPushUrlArgs and CockpitPushUrlOutput values.
+// You can construct a concrete instance of `CockpitPushUrlInput` via:
+//
+//	CockpitPushUrlArgs{...}
+type CockpitPushUrlInput interface {
+	pulumi.Input
+
+	ToCockpitPushUrlOutput() CockpitPushUrlOutput
+	ToCockpitPushUrlOutputWithContext(context.Context) CockpitPushUrlOutput
+}
+
+type CockpitPushUrlArgs struct {
+	// Push URL for logs (Grafana Loki)
+	PushLogsUrl pulumi.StringPtrInput `pulumi:"pushLogsUrl"`
+	// Push URL for metrics (Grafana Mimir)
+	PushMetricsUrl pulumi.StringPtrInput `pulumi:"pushMetricsUrl"`
+}
+
+func (CockpitPushUrlArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CockpitPushUrl)(nil)).Elem()
+}
+
+func (i CockpitPushUrlArgs) ToCockpitPushUrlOutput() CockpitPushUrlOutput {
+	return i.ToCockpitPushUrlOutputWithContext(context.Background())
+}
+
+func (i CockpitPushUrlArgs) ToCockpitPushUrlOutputWithContext(ctx context.Context) CockpitPushUrlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CockpitPushUrlOutput)
+}
+
+// CockpitPushUrlArrayInput is an input type that accepts CockpitPushUrlArray and CockpitPushUrlArrayOutput values.
+// You can construct a concrete instance of `CockpitPushUrlArrayInput` via:
+//
+//	CockpitPushUrlArray{ CockpitPushUrlArgs{...} }
+type CockpitPushUrlArrayInput interface {
+	pulumi.Input
+
+	ToCockpitPushUrlArrayOutput() CockpitPushUrlArrayOutput
+	ToCockpitPushUrlArrayOutputWithContext(context.Context) CockpitPushUrlArrayOutput
+}
+
+type CockpitPushUrlArray []CockpitPushUrlInput
+
+func (CockpitPushUrlArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CockpitPushUrl)(nil)).Elem()
+}
+
+func (i CockpitPushUrlArray) ToCockpitPushUrlArrayOutput() CockpitPushUrlArrayOutput {
+	return i.ToCockpitPushUrlArrayOutputWithContext(context.Background())
+}
+
+func (i CockpitPushUrlArray) ToCockpitPushUrlArrayOutputWithContext(ctx context.Context) CockpitPushUrlArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CockpitPushUrlArrayOutput)
+}
+
+type CockpitPushUrlOutput struct{ *pulumi.OutputState }
+
+func (CockpitPushUrlOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CockpitPushUrl)(nil)).Elem()
+}
+
+func (o CockpitPushUrlOutput) ToCockpitPushUrlOutput() CockpitPushUrlOutput {
+	return o
+}
+
+func (o CockpitPushUrlOutput) ToCockpitPushUrlOutputWithContext(ctx context.Context) CockpitPushUrlOutput {
+	return o
+}
+
+// Push URL for logs (Grafana Loki)
+func (o CockpitPushUrlOutput) PushLogsUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CockpitPushUrl) *string { return v.PushLogsUrl }).(pulumi.StringPtrOutput)
+}
+
+// Push URL for metrics (Grafana Mimir)
+func (o CockpitPushUrlOutput) PushMetricsUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CockpitPushUrl) *string { return v.PushMetricsUrl }).(pulumi.StringPtrOutput)
+}
+
+type CockpitPushUrlArrayOutput struct{ *pulumi.OutputState }
+
+func (CockpitPushUrlArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CockpitPushUrl)(nil)).Elem()
+}
+
+func (o CockpitPushUrlArrayOutput) ToCockpitPushUrlArrayOutput() CockpitPushUrlArrayOutput {
+	return o
+}
+
+func (o CockpitPushUrlArrayOutput) ToCockpitPushUrlArrayOutputWithContext(ctx context.Context) CockpitPushUrlArrayOutput {
+	return o
+}
+
+func (o CockpitPushUrlArrayOutput) Index(i pulumi.IntInput) CockpitPushUrlOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CockpitPushUrl {
+		return vs[0].([]CockpitPushUrl)[vs[1].(int)]
+	}).(CockpitPushUrlOutput)
+}
+
 type CockpitTokenScopes struct {
 	// Query logs.
 	QueryLogs *bool `pulumi:"queryLogs"`
@@ -1251,6 +1357,8 @@ func (o ContainerTriggerNatsPtrOutput) Subject() pulumi.StringPtrOutput {
 
 type ContainerTriggerSqs struct {
 	// ID of the mnq namespace. Deprecated.
+	//
+	// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 	NamespaceId *string `pulumi:"namespaceId"`
 	// ID of the project where sqs is enabled, defaults to provider's project
 	ProjectId *string `pulumi:"projectId"`
@@ -1273,6 +1381,8 @@ type ContainerTriggerSqsInput interface {
 
 type ContainerTriggerSqsArgs struct {
 	// ID of the mnq namespace. Deprecated.
+	//
+	// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 	NamespaceId pulumi.StringPtrInput `pulumi:"namespaceId"`
 	// ID of the project where sqs is enabled, defaults to provider's project
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
@@ -1360,6 +1470,8 @@ func (o ContainerTriggerSqsOutput) ToContainerTriggerSqsPtrOutputWithContext(ctx
 }
 
 // ID of the mnq namespace. Deprecated.
+//
+// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 func (o ContainerTriggerSqsOutput) NamespaceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) *string { return v.NamespaceId }).(pulumi.StringPtrOutput)
 }
@@ -1404,6 +1516,8 @@ func (o ContainerTriggerSqsPtrOutput) Elem() ContainerTriggerSqsOutput {
 }
 
 // ID of the mnq namespace. Deprecated.
+//
+// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 func (o ContainerTriggerSqsPtrOutput) NamespaceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
 		if v == nil {
@@ -2807,6 +2921,8 @@ func (o FunctionTriggerNatsPtrOutput) Subject() pulumi.StringPtrOutput {
 
 type FunctionTriggerSqs struct {
 	// ID of the mnq namespace. Deprecated.
+	//
+	// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 	NamespaceId *string `pulumi:"namespaceId"`
 	// ID of the project that contain the mnq namespace, defaults to provider's project
 	ProjectId *string `pulumi:"projectId"`
@@ -2829,6 +2945,8 @@ type FunctionTriggerSqsInput interface {
 
 type FunctionTriggerSqsArgs struct {
 	// ID of the mnq namespace. Deprecated.
+	//
+	// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 	NamespaceId pulumi.StringPtrInput `pulumi:"namespaceId"`
 	// ID of the project that contain the mnq namespace, defaults to provider's project
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
@@ -2916,6 +3034,8 @@ func (o FunctionTriggerSqsOutput) ToFunctionTriggerSqsPtrOutputWithContext(ctx c
 }
 
 // ID of the mnq namespace. Deprecated.
+//
+// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 func (o FunctionTriggerSqsOutput) NamespaceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FunctionTriggerSqs) *string { return v.NamespaceId }).(pulumi.StringPtrOutput)
 }
@@ -2960,6 +3080,8 @@ func (o FunctionTriggerSqsPtrOutput) Elem() FunctionTriggerSqsOutput {
 }
 
 // ID of the mnq namespace. Deprecated.
+//
+// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 func (o FunctionTriggerSqsPtrOutput) NamespaceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTriggerSqs) *string {
 		if v == nil {
@@ -6137,6 +6259,162 @@ func (o IpamIpSourceArrayOutput) Index(i pulumi.IntInput) IpamIpSourceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IpamIpSource {
 		return vs[0].([]IpamIpSource)[vs[1].(int)]
 	}).(IpamIpSourceOutput)
+}
+
+type JobDefinitionCron struct {
+	// Cron format string.
+	Schedule string `pulumi:"schedule"`
+	// The timezone, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+	Timezone string `pulumi:"timezone"`
+}
+
+// JobDefinitionCronInput is an input type that accepts JobDefinitionCronArgs and JobDefinitionCronOutput values.
+// You can construct a concrete instance of `JobDefinitionCronInput` via:
+//
+//	JobDefinitionCronArgs{...}
+type JobDefinitionCronInput interface {
+	pulumi.Input
+
+	ToJobDefinitionCronOutput() JobDefinitionCronOutput
+	ToJobDefinitionCronOutputWithContext(context.Context) JobDefinitionCronOutput
+}
+
+type JobDefinitionCronArgs struct {
+	// Cron format string.
+	Schedule pulumi.StringInput `pulumi:"schedule"`
+	// The timezone, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+	Timezone pulumi.StringInput `pulumi:"timezone"`
+}
+
+func (JobDefinitionCronArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobDefinitionCron)(nil)).Elem()
+}
+
+func (i JobDefinitionCronArgs) ToJobDefinitionCronOutput() JobDefinitionCronOutput {
+	return i.ToJobDefinitionCronOutputWithContext(context.Background())
+}
+
+func (i JobDefinitionCronArgs) ToJobDefinitionCronOutputWithContext(ctx context.Context) JobDefinitionCronOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobDefinitionCronOutput)
+}
+
+func (i JobDefinitionCronArgs) ToJobDefinitionCronPtrOutput() JobDefinitionCronPtrOutput {
+	return i.ToJobDefinitionCronPtrOutputWithContext(context.Background())
+}
+
+func (i JobDefinitionCronArgs) ToJobDefinitionCronPtrOutputWithContext(ctx context.Context) JobDefinitionCronPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobDefinitionCronOutput).ToJobDefinitionCronPtrOutputWithContext(ctx)
+}
+
+// JobDefinitionCronPtrInput is an input type that accepts JobDefinitionCronArgs, JobDefinitionCronPtr and JobDefinitionCronPtrOutput values.
+// You can construct a concrete instance of `JobDefinitionCronPtrInput` via:
+//
+//	        JobDefinitionCronArgs{...}
+//
+//	or:
+//
+//	        nil
+type JobDefinitionCronPtrInput interface {
+	pulumi.Input
+
+	ToJobDefinitionCronPtrOutput() JobDefinitionCronPtrOutput
+	ToJobDefinitionCronPtrOutputWithContext(context.Context) JobDefinitionCronPtrOutput
+}
+
+type jobDefinitionCronPtrType JobDefinitionCronArgs
+
+func JobDefinitionCronPtr(v *JobDefinitionCronArgs) JobDefinitionCronPtrInput {
+	return (*jobDefinitionCronPtrType)(v)
+}
+
+func (*jobDefinitionCronPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**JobDefinitionCron)(nil)).Elem()
+}
+
+func (i *jobDefinitionCronPtrType) ToJobDefinitionCronPtrOutput() JobDefinitionCronPtrOutput {
+	return i.ToJobDefinitionCronPtrOutputWithContext(context.Background())
+}
+
+func (i *jobDefinitionCronPtrType) ToJobDefinitionCronPtrOutputWithContext(ctx context.Context) JobDefinitionCronPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobDefinitionCronPtrOutput)
+}
+
+type JobDefinitionCronOutput struct{ *pulumi.OutputState }
+
+func (JobDefinitionCronOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobDefinitionCron)(nil)).Elem()
+}
+
+func (o JobDefinitionCronOutput) ToJobDefinitionCronOutput() JobDefinitionCronOutput {
+	return o
+}
+
+func (o JobDefinitionCronOutput) ToJobDefinitionCronOutputWithContext(ctx context.Context) JobDefinitionCronOutput {
+	return o
+}
+
+func (o JobDefinitionCronOutput) ToJobDefinitionCronPtrOutput() JobDefinitionCronPtrOutput {
+	return o.ToJobDefinitionCronPtrOutputWithContext(context.Background())
+}
+
+func (o JobDefinitionCronOutput) ToJobDefinitionCronPtrOutputWithContext(ctx context.Context) JobDefinitionCronPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v JobDefinitionCron) *JobDefinitionCron {
+		return &v
+	}).(JobDefinitionCronPtrOutput)
+}
+
+// Cron format string.
+func (o JobDefinitionCronOutput) Schedule() pulumi.StringOutput {
+	return o.ApplyT(func(v JobDefinitionCron) string { return v.Schedule }).(pulumi.StringOutput)
+}
+
+// The timezone, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+func (o JobDefinitionCronOutput) Timezone() pulumi.StringOutput {
+	return o.ApplyT(func(v JobDefinitionCron) string { return v.Timezone }).(pulumi.StringOutput)
+}
+
+type JobDefinitionCronPtrOutput struct{ *pulumi.OutputState }
+
+func (JobDefinitionCronPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**JobDefinitionCron)(nil)).Elem()
+}
+
+func (o JobDefinitionCronPtrOutput) ToJobDefinitionCronPtrOutput() JobDefinitionCronPtrOutput {
+	return o
+}
+
+func (o JobDefinitionCronPtrOutput) ToJobDefinitionCronPtrOutputWithContext(ctx context.Context) JobDefinitionCronPtrOutput {
+	return o
+}
+
+func (o JobDefinitionCronPtrOutput) Elem() JobDefinitionCronOutput {
+	return o.ApplyT(func(v *JobDefinitionCron) JobDefinitionCron {
+		if v != nil {
+			return *v
+		}
+		var ret JobDefinitionCron
+		return ret
+	}).(JobDefinitionCronOutput)
+}
+
+// Cron format string.
+func (o JobDefinitionCronPtrOutput) Schedule() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *JobDefinitionCron) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Schedule
+	}).(pulumi.StringPtrOutput)
+}
+
+// The timezone, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+func (o JobDefinitionCronPtrOutput) Timezone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *JobDefinitionCron) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Timezone
+	}).(pulumi.StringPtrOutput)
 }
 
 type K8sClusterAutoUpgrade struct {
@@ -12226,7 +12504,7 @@ func (o RdbReadReplicaDirectAccessPtrOutput) Port() pulumi.IntPtrOutput {
 }
 
 type RdbReadReplicaPrivateNetwork struct {
-	// Whether or not the private network endpoint should be configured with IPAM
+	// If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 	EnableIpam *bool `pulumi:"enableIpam"`
 	// The ID of the endpoint of the read replica.
 	EndpointId *string `pulumi:"endpointId"`
@@ -12240,9 +12518,7 @@ type RdbReadReplicaPrivateNetwork struct {
 	Port *int `pulumi:"port"`
 	// UUID of the private network to be connected to the read replica.
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
-	// The IP network address within the private subnet. This must be an IPv4 address with a
-	// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-	// service if not set.
+	// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 	ServiceIp *string `pulumi:"serviceIp"`
 	// Private network zone
 	Zone *string `pulumi:"zone"`
@@ -12260,7 +12536,7 @@ type RdbReadReplicaPrivateNetworkInput interface {
 }
 
 type RdbReadReplicaPrivateNetworkArgs struct {
-	// Whether or not the private network endpoint should be configured with IPAM
+	// If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 	EnableIpam pulumi.BoolPtrInput `pulumi:"enableIpam"`
 	// The ID of the endpoint of the read replica.
 	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
@@ -12274,9 +12550,7 @@ type RdbReadReplicaPrivateNetworkArgs struct {
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// UUID of the private network to be connected to the read replica.
 	PrivateNetworkId pulumi.StringInput `pulumi:"privateNetworkId"`
-	// The IP network address within the private subnet. This must be an IPv4 address with a
-	// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-	// service if not set.
+	// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 	ServiceIp pulumi.StringPtrInput `pulumi:"serviceIp"`
 	// Private network zone
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
@@ -12359,7 +12633,7 @@ func (o RdbReadReplicaPrivateNetworkOutput) ToRdbReadReplicaPrivateNetworkPtrOut
 	}).(RdbReadReplicaPrivateNetworkPtrOutput)
 }
 
-// Whether or not the private network endpoint should be configured with IPAM
+// If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 func (o RdbReadReplicaPrivateNetworkOutput) EnableIpam() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v RdbReadReplicaPrivateNetwork) *bool { return v.EnableIpam }).(pulumi.BoolPtrOutput)
 }
@@ -12394,9 +12668,7 @@ func (o RdbReadReplicaPrivateNetworkOutput) PrivateNetworkId() pulumi.StringOutp
 	return o.ApplyT(func(v RdbReadReplicaPrivateNetwork) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
-// The IP network address within the private subnet. This must be an IPv4 address with a
-// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-// service if not set.
+// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 func (o RdbReadReplicaPrivateNetworkOutput) ServiceIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RdbReadReplicaPrivateNetwork) *string { return v.ServiceIp }).(pulumi.StringPtrOutput)
 }
@@ -12430,7 +12702,7 @@ func (o RdbReadReplicaPrivateNetworkPtrOutput) Elem() RdbReadReplicaPrivateNetwo
 	}).(RdbReadReplicaPrivateNetworkOutput)
 }
 
-// Whether or not the private network endpoint should be configured with IPAM
+// If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 func (o RdbReadReplicaPrivateNetworkPtrOutput) EnableIpam() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RdbReadReplicaPrivateNetwork) *bool {
 		if v == nil {
@@ -12500,9 +12772,7 @@ func (o RdbReadReplicaPrivateNetworkPtrOutput) PrivateNetworkId() pulumi.StringP
 	}).(pulumi.StringPtrOutput)
 }
 
-// The IP network address within the private subnet. This must be an IPv4 address with a
-// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-// service if not set.
+// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 func (o RdbReadReplicaPrivateNetworkPtrOutput) ServiceIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RdbReadReplicaPrivateNetwork) *string {
 		if v == nil {
@@ -12649,14 +12919,41 @@ func (o RedisClusterAclArrayOutput) Index(i pulumi.IntInput) RedisClusterAclOutp
 type RedisClusterPrivateNetwork struct {
 	// The ID of the endpoint.
 	EndpointId *string `pulumi:"endpointId"`
-	// The UUID of the private network resource.
+	// The UUID of the Private Network resource.
 	Id string `pulumi:"id"`
-	// Endpoint IPv4 addresses
-	// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
-	// least one IP per node or The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-	// service if not set.
+	// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+	// Keep in mind that in Cluster mode you cannot edit your Private Network after its creation so if you want to be able to
+	// scale your Cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
+	// If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 	//
-	// > The `privateNetwork` conflict with `acl`. Only one should be specified.
+	// > The `privateNetwork` conflicts with `acl`. Only one should be specified.
+	//
+	// > **Important:** The way to use private networks differs whether you are using Redis in Standalone or Cluster mode.
+	//
+	// - Standalone mode (`clusterSize` = 1) : you can attach as many Private Networks as you want (each must be a separate
+	// block). If you detach your only private network, your cluster won't be reachable until you define a new Private or
+	// Public Network. You can modify your `privateNetwork` and its specs, you can have both a Private and Public Network side
+	// by side.
+	//
+	// - Cluster mode (`clusterSize` > 2) : you can define a single Private Network as you create your Cluster, you won't be
+	// able to edit or detach it afterward, unless you create another Cluster. This also means that, if you are using a static
+	// configuration (`serviceIps`), you won't be able to scale your Cluster horizontally (add more nodes) since it would
+	// require updating the private network to add IPs.
+	// Your `serviceIps` must be listed as follows:
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
 	ServiceIps []string `pulumi:"serviceIps"`
 	// `zone`) The zone in which the
 	// Redis Cluster should be created.
@@ -12677,14 +12974,41 @@ type RedisClusterPrivateNetworkInput interface {
 type RedisClusterPrivateNetworkArgs struct {
 	// The ID of the endpoint.
 	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
-	// The UUID of the private network resource.
+	// The UUID of the Private Network resource.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Endpoint IPv4 addresses
-	// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
-	// least one IP per node or The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-	// service if not set.
+	// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+	// Keep in mind that in Cluster mode you cannot edit your Private Network after its creation so if you want to be able to
+	// scale your Cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
+	// If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 	//
-	// > The `privateNetwork` conflict with `acl`. Only one should be specified.
+	// > The `privateNetwork` conflicts with `acl`. Only one should be specified.
+	//
+	// > **Important:** The way to use private networks differs whether you are using Redis in Standalone or Cluster mode.
+	//
+	// - Standalone mode (`clusterSize` = 1) : you can attach as many Private Networks as you want (each must be a separate
+	// block). If you detach your only private network, your cluster won't be reachable until you define a new Private or
+	// Public Network. You can modify your `privateNetwork` and its specs, you can have both a Private and Public Network side
+	// by side.
+	//
+	// - Cluster mode (`clusterSize` > 2) : you can define a single Private Network as you create your Cluster, you won't be
+	// able to edit or detach it afterward, unless you create another Cluster. This also means that, if you are using a static
+	// configuration (`serviceIps`), you won't be able to scale your Cluster horizontally (add more nodes) since it would
+	// require updating the private network to add IPs.
+	// Your `serviceIps` must be listed as follows:
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		return nil
+	// 	})
+	// }
+	// ```
 	ServiceIps pulumi.StringArrayInput `pulumi:"serviceIps"`
 	// `zone`) The zone in which the
 	// Redis Cluster should be created.
@@ -12747,17 +13071,47 @@ func (o RedisClusterPrivateNetworkOutput) EndpointId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RedisClusterPrivateNetwork) *string { return v.EndpointId }).(pulumi.StringPtrOutput)
 }
 
-// The UUID of the private network resource.
+// The UUID of the Private Network resource.
 func (o RedisClusterPrivateNetworkOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v RedisClusterPrivateNetwork) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Endpoint IPv4 addresses
-// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at
-// least one IP per node or The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-// service if not set.
+// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+// Keep in mind that in Cluster mode you cannot edit your Private Network after its creation so if you want to be able to
+// scale your Cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
+// If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 //
-// > The `privateNetwork` conflict with `acl`. Only one should be specified.
+// > The `privateNetwork` conflicts with `acl`. Only one should be specified.
+//
+// > **Important:** The way to use private networks differs whether you are using Redis in Standalone or Cluster mode.
+//
+// - Standalone mode (`clusterSize` = 1) : you can attach as many Private Networks as you want (each must be a separate
+// block). If you detach your only private network, your cluster won't be reachable until you define a new Private or
+// Public Network. You can modify your `privateNetwork` and its specs, you can have both a Private and Public Network side
+// by side.
+//
+// - Cluster mode (`clusterSize` > 2) : you can define a single Private Network as you create your Cluster, you won't be
+// able to edit or detach it afterward, unless you create another Cluster. This also means that, if you are using a static
+// configuration (`serviceIps`), you won't be able to scale your Cluster horizontally (add more nodes) since it would
+// require updating the private network to add IPs.
+// Your `serviceIps` must be listed as follows:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			return nil
+//		})
+//	}
+//
+// ```
 func (o RedisClusterPrivateNetworkOutput) ServiceIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RedisClusterPrivateNetwork) []string { return v.ServiceIps }).(pulumi.StringArrayOutput)
 }
@@ -15304,6 +15658,112 @@ func (o GetCockpitEndpointArrayOutput) Index(i pulumi.IntInput) GetCockpitEndpoi
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCockpitEndpoint {
 		return vs[0].([]GetCockpitEndpoint)[vs[1].(int)]
 	}).(GetCockpitEndpointOutput)
+}
+
+type GetCockpitPushUrl struct {
+	// Push URL for logs (Grafana Loki)
+	PushLogsUrl string `pulumi:"pushLogsUrl"`
+	// Push URL for metrics (Grafana Mimir)
+	PushMetricsUrl string `pulumi:"pushMetricsUrl"`
+}
+
+// GetCockpitPushUrlInput is an input type that accepts GetCockpitPushUrlArgs and GetCockpitPushUrlOutput values.
+// You can construct a concrete instance of `GetCockpitPushUrlInput` via:
+//
+//	GetCockpitPushUrlArgs{...}
+type GetCockpitPushUrlInput interface {
+	pulumi.Input
+
+	ToGetCockpitPushUrlOutput() GetCockpitPushUrlOutput
+	ToGetCockpitPushUrlOutputWithContext(context.Context) GetCockpitPushUrlOutput
+}
+
+type GetCockpitPushUrlArgs struct {
+	// Push URL for logs (Grafana Loki)
+	PushLogsUrl pulumi.StringInput `pulumi:"pushLogsUrl"`
+	// Push URL for metrics (Grafana Mimir)
+	PushMetricsUrl pulumi.StringInput `pulumi:"pushMetricsUrl"`
+}
+
+func (GetCockpitPushUrlArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCockpitPushUrl)(nil)).Elem()
+}
+
+func (i GetCockpitPushUrlArgs) ToGetCockpitPushUrlOutput() GetCockpitPushUrlOutput {
+	return i.ToGetCockpitPushUrlOutputWithContext(context.Background())
+}
+
+func (i GetCockpitPushUrlArgs) ToGetCockpitPushUrlOutputWithContext(ctx context.Context) GetCockpitPushUrlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCockpitPushUrlOutput)
+}
+
+// GetCockpitPushUrlArrayInput is an input type that accepts GetCockpitPushUrlArray and GetCockpitPushUrlArrayOutput values.
+// You can construct a concrete instance of `GetCockpitPushUrlArrayInput` via:
+//
+//	GetCockpitPushUrlArray{ GetCockpitPushUrlArgs{...} }
+type GetCockpitPushUrlArrayInput interface {
+	pulumi.Input
+
+	ToGetCockpitPushUrlArrayOutput() GetCockpitPushUrlArrayOutput
+	ToGetCockpitPushUrlArrayOutputWithContext(context.Context) GetCockpitPushUrlArrayOutput
+}
+
+type GetCockpitPushUrlArray []GetCockpitPushUrlInput
+
+func (GetCockpitPushUrlArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCockpitPushUrl)(nil)).Elem()
+}
+
+func (i GetCockpitPushUrlArray) ToGetCockpitPushUrlArrayOutput() GetCockpitPushUrlArrayOutput {
+	return i.ToGetCockpitPushUrlArrayOutputWithContext(context.Background())
+}
+
+func (i GetCockpitPushUrlArray) ToGetCockpitPushUrlArrayOutputWithContext(ctx context.Context) GetCockpitPushUrlArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCockpitPushUrlArrayOutput)
+}
+
+type GetCockpitPushUrlOutput struct{ *pulumi.OutputState }
+
+func (GetCockpitPushUrlOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCockpitPushUrl)(nil)).Elem()
+}
+
+func (o GetCockpitPushUrlOutput) ToGetCockpitPushUrlOutput() GetCockpitPushUrlOutput {
+	return o
+}
+
+func (o GetCockpitPushUrlOutput) ToGetCockpitPushUrlOutputWithContext(ctx context.Context) GetCockpitPushUrlOutput {
+	return o
+}
+
+// Push URL for logs (Grafana Loki)
+func (o GetCockpitPushUrlOutput) PushLogsUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCockpitPushUrl) string { return v.PushLogsUrl }).(pulumi.StringOutput)
+}
+
+// Push URL for metrics (Grafana Mimir)
+func (o GetCockpitPushUrlOutput) PushMetricsUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCockpitPushUrl) string { return v.PushMetricsUrl }).(pulumi.StringOutput)
+}
+
+type GetCockpitPushUrlArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCockpitPushUrlArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCockpitPushUrl)(nil)).Elem()
+}
+
+func (o GetCockpitPushUrlArrayOutput) ToGetCockpitPushUrlArrayOutput() GetCockpitPushUrlArrayOutput {
+	return o
+}
+
+func (o GetCockpitPushUrlArrayOutput) ToGetCockpitPushUrlArrayOutputWithContext(ctx context.Context) GetCockpitPushUrlArrayOutput {
+	return o
+}
+
+func (o GetCockpitPushUrlArrayOutput) Index(i pulumi.IntInput) GetCockpitPushUrlOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCockpitPushUrl {
+		return vs[0].([]GetCockpitPushUrl)[vs[1].(int)]
+	}).(GetCockpitPushUrlOutput)
 }
 
 type GetDomainRecordGeoIp struct {
@@ -21883,7 +22343,7 @@ type GetLbsLb struct {
 	Status string `pulumi:"status"`
 	// The subscriber information.
 	Subscriber string `pulumi:"subscriber"`
-	// The tags associated with the load-balancer.
+	// List of tags used as filter. LBs with these exact tags are listed.
 	Tags []string `pulumi:"tags"`
 	// The offer type of the load-balancer.
 	Type string `pulumi:"type"`
@@ -21935,7 +22395,7 @@ type GetLbsLbArgs struct {
 	Status pulumi.StringInput `pulumi:"status"`
 	// The subscriber information.
 	Subscriber pulumi.StringInput `pulumi:"subscriber"`
-	// The tags associated with the load-balancer.
+	// List of tags used as filter. LBs with these exact tags are listed.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
 	// The offer type of the load-balancer.
 	Type pulumi.StringInput `pulumi:"type"`
@@ -22071,7 +22531,7 @@ func (o GetLbsLbOutput) Subscriber() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLb) string { return v.Subscriber }).(pulumi.StringOutput)
 }
 
-// The tags associated with the load-balancer.
+// List of tags used as filter. LBs with these exact tags are listed.
 func (o GetLbsLbOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetLbsLb) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
@@ -24936,6 +25396,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerPrivateNetworkArrayInput)(nil)).Elem(), BaremetalServerPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitEndpointInput)(nil)).Elem(), CockpitEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitEndpointArrayInput)(nil)).Elem(), CockpitEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CockpitPushUrlInput)(nil)).Elem(), CockpitPushUrlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CockpitPushUrlArrayInput)(nil)).Elem(), CockpitPushUrlArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitTokenScopesInput)(nil)).Elem(), CockpitTokenScopesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitTokenScopesPtrInput)(nil)).Elem(), CockpitTokenScopesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerNatsInput)(nil)).Elem(), ContainerTriggerNatsArgs{})
@@ -25000,6 +25462,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpReverseArrayInput)(nil)).Elem(), IpamIpReverseArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpSourceInput)(nil)).Elem(), IpamIpSourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpSourceArrayInput)(nil)).Elem(), IpamIpSourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobDefinitionCronInput)(nil)).Elem(), JobDefinitionCronArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobDefinitionCronPtrInput)(nil)).Elem(), JobDefinitionCronArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*K8sClusterAutoUpgradeInput)(nil)).Elem(), K8sClusterAutoUpgradeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*K8sClusterAutoUpgradePtrInput)(nil)).Elem(), K8sClusterAutoUpgradeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*K8sClusterAutoscalerConfigInput)(nil)).Elem(), K8sClusterAutoscalerConfigArgs{})
@@ -25118,6 +25582,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBillingInvoicesInvoiceArrayInput)(nil)).Elem(), GetBillingInvoicesInvoiceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCockpitEndpointInput)(nil)).Elem(), GetCockpitEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCockpitEndpointArrayInput)(nil)).Elem(), GetCockpitEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCockpitPushUrlInput)(nil)).Elem(), GetCockpitPushUrlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCockpitPushUrlArrayInput)(nil)).Elem(), GetCockpitPushUrlArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordGeoIpInput)(nil)).Elem(), GetDomainRecordGeoIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordGeoIpArrayInput)(nil)).Elem(), GetDomainRecordGeoIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordGeoIpMatchInput)(nil)).Elem(), GetDomainRecordGeoIpMatchArgs{})
@@ -25272,6 +25738,8 @@ func init() {
 	pulumi.RegisterOutputType(BaremetalServerPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(CockpitEndpointOutput{})
 	pulumi.RegisterOutputType(CockpitEndpointArrayOutput{})
+	pulumi.RegisterOutputType(CockpitPushUrlOutput{})
+	pulumi.RegisterOutputType(CockpitPushUrlArrayOutput{})
 	pulumi.RegisterOutputType(CockpitTokenScopesOutput{})
 	pulumi.RegisterOutputType(CockpitTokenScopesPtrOutput{})
 	pulumi.RegisterOutputType(ContainerTriggerNatsOutput{})
@@ -25336,6 +25804,8 @@ func init() {
 	pulumi.RegisterOutputType(IpamIpReverseArrayOutput{})
 	pulumi.RegisterOutputType(IpamIpSourceOutput{})
 	pulumi.RegisterOutputType(IpamIpSourceArrayOutput{})
+	pulumi.RegisterOutputType(JobDefinitionCronOutput{})
+	pulumi.RegisterOutputType(JobDefinitionCronPtrOutput{})
 	pulumi.RegisterOutputType(K8sClusterAutoUpgradeOutput{})
 	pulumi.RegisterOutputType(K8sClusterAutoUpgradePtrOutput{})
 	pulumi.RegisterOutputType(K8sClusterAutoscalerConfigOutput{})
@@ -25454,6 +25924,8 @@ func init() {
 	pulumi.RegisterOutputType(GetBillingInvoicesInvoiceArrayOutput{})
 	pulumi.RegisterOutputType(GetCockpitEndpointOutput{})
 	pulumi.RegisterOutputType(GetCockpitEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetCockpitPushUrlOutput{})
+	pulumi.RegisterOutputType(GetCockpitPushUrlArrayOutput{})
 	pulumi.RegisterOutputType(GetDomainRecordGeoIpOutput{})
 	pulumi.RegisterOutputType(GetDomainRecordGeoIpArrayOutput{})
 	pulumi.RegisterOutputType(GetDomainRecordGeoIpMatchOutput{})

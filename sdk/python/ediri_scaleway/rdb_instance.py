@@ -872,6 +872,41 @@ class RdbInstance(pulumi.CustomResource):
 
         RDB Instances can have a maximum of 1 public endpoint and 1 private endpoint. It can have both, or none.
 
+        ### 1 static private network endpoint
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        pn = scaleway.VpcPrivateNetwork("pn", ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
+            subnet="172.16.20.0/22",
+        ))
+        main = scaleway.RdbInstance("main",
+            node_type="db-dev-s",
+            engine="PostgreSQL-11",
+            private_network=scaleway.RdbInstancePrivateNetworkArgs(
+                pn_id=pn.id,
+                ip_net="172.16.20.4/22",
+            ))
+        ```
+
+        ### 1 IPAM private network endpoint + 1 public endpoint
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        pn = scaleway.VpcPrivateNetwork("pn")
+        main = scaleway.RdbInstance("main",
+            node_type="DB-DEV-S",
+            engine="PostgreSQL-11",
+            private_network=scaleway.RdbInstancePrivateNetworkArgs(
+                pn_id=pn.id,
+                enable_ipam=True,
+            ),
+            load_balancers=[scaleway.RdbInstanceLoadBalancerArgs()])
+        ```
+
         ### Default: 1 public endpoint
 
         ```python
@@ -1006,6 +1041,41 @@ class RdbInstance(pulumi.CustomResource):
         ### Examples of endpoints configuration
 
         RDB Instances can have a maximum of 1 public endpoint and 1 private endpoint. It can have both, or none.
+
+        ### 1 static private network endpoint
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        pn = scaleway.VpcPrivateNetwork("pn", ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
+            subnet="172.16.20.0/22",
+        ))
+        main = scaleway.RdbInstance("main",
+            node_type="db-dev-s",
+            engine="PostgreSQL-11",
+            private_network=scaleway.RdbInstancePrivateNetworkArgs(
+                pn_id=pn.id,
+                ip_net="172.16.20.4/22",
+            ))
+        ```
+
+        ### 1 IPAM private network endpoint + 1 public endpoint
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+
+        pn = scaleway.VpcPrivateNetwork("pn")
+        main = scaleway.RdbInstance("main",
+            node_type="DB-DEV-S",
+            engine="PostgreSQL-11",
+            private_network=scaleway.RdbInstancePrivateNetworkArgs(
+                pn_id=pn.id,
+                enable_ipam=True,
+            ),
+            load_balancers=[scaleway.RdbInstanceLoadBalancerArgs()])
+        ```
 
         ### Default: 1 public endpoint
 

@@ -51,7 +51,7 @@ namespace ediri.Scaleway
     /// });
     /// ```
     /// 
-    /// ### Private network
+    /// ### Private network with static endpoint
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -80,6 +80,41 @@ namespace ediri.Scaleway
     ///         {
     ///             PrivateNetworkId = pn.Id,
     ///             ServiceIp = "192.168.1.254/24",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Private network with IPAM
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var instance = new Scaleway.RdbInstance("instance", new()
+    ///     {
+    ///         NodeType = "db-dev-s",
+    ///         Engine = "PostgreSQL-14",
+    ///         IsHaCluster = false,
+    ///         DisableBackup = true,
+    ///         UserName = "my_initial_user",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///     });
+    /// 
+    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+    /// 
+    ///     var replica = new Scaleway.RdbReadReplica("replica", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         PrivateNetwork = new Scaleway.Inputs.RdbReadReplicaPrivateNetworkArgs
+    ///         {
+    ///             PrivateNetworkId = pn.Id,
+    ///             EnableIpam = true,
     ///         },
     ///     });
     /// 

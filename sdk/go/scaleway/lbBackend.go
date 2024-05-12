@@ -139,7 +139,7 @@ type LbBackend struct {
 	SslBridging pulumi.BoolPtrOutput `pulumi:"sslBridging"`
 	// The type of sticky sessions
 	StickySessions pulumi.StringPtrOutput `pulumi:"stickySessions"`
-	// Cookie name for for sticky sessions
+	// Cookie name for sticky sessions
 	StickySessionsCookieName pulumi.StringPtrOutput `pulumi:"stickySessionsCookieName"`
 	// Maximum initial server connection establishment time
 	TimeoutConnect pulumi.StringPtrOutput `pulumi:"timeoutConnect"`
@@ -241,7 +241,7 @@ type lbBackendState struct {
 	SslBridging *bool `pulumi:"sslBridging"`
 	// The type of sticky sessions
 	StickySessions *string `pulumi:"stickySessions"`
-	// Cookie name for for sticky sessions
+	// Cookie name for sticky sessions
 	StickySessionsCookieName *string `pulumi:"stickySessionsCookieName"`
 	// Maximum initial server connection establishment time
 	TimeoutConnect *string `pulumi:"timeoutConnect"`
@@ -305,7 +305,7 @@ type LbBackendState struct {
 	SslBridging pulumi.BoolPtrInput
 	// The type of sticky sessions
 	StickySessions pulumi.StringPtrInput
-	// Cookie name for for sticky sessions
+	// Cookie name for sticky sessions
 	StickySessionsCookieName pulumi.StringPtrInput
 	// Maximum initial server connection establishment time
 	TimeoutConnect pulumi.StringPtrInput
@@ -373,7 +373,7 @@ type lbBackendArgs struct {
 	SslBridging *bool `pulumi:"sslBridging"`
 	// The type of sticky sessions
 	StickySessions *string `pulumi:"stickySessions"`
-	// Cookie name for for sticky sessions
+	// Cookie name for sticky sessions
 	StickySessionsCookieName *string `pulumi:"stickySessionsCookieName"`
 	// Maximum initial server connection establishment time
 	TimeoutConnect *string `pulumi:"timeoutConnect"`
@@ -438,7 +438,7 @@ type LbBackendArgs struct {
 	SslBridging pulumi.BoolPtrInput
 	// The type of sticky sessions
 	StickySessions pulumi.StringPtrInput
-	// Cookie name for for sticky sessions
+	// Cookie name for sticky sessions
 	StickySessionsCookieName pulumi.StringPtrInput
 	// Maximum initial server connection establishment time
 	TimeoutConnect pulumi.StringPtrInput
@@ -663,7 +663,7 @@ func (o LbBackendOutput) StickySessions() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LbBackend) pulumi.StringPtrOutput { return v.StickySessions }).(pulumi.StringPtrOutput)
 }
 
-// Cookie name for for sticky sessions
+// Cookie name for sticky sessions
 func (o LbBackendOutput) StickySessionsCookieName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LbBackend) pulumi.StringPtrOutput { return v.StickySessionsCookieName }).(pulumi.StringPtrOutput)
 }

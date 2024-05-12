@@ -137,6 +137,7 @@ namespace ediri.Scaleway
         /// </summary>
         public readonly string PlanId;
         public readonly string? ProjectId;
+        public readonly ImmutableArray<Outputs.GetCockpitPushUrlResult> PushUrls;
 
         [OutputConstructor]
         private GetCockpitResult(
@@ -146,12 +147,15 @@ namespace ediri.Scaleway
 
             string planId,
 
-            string? projectId)
+            string? projectId,
+
+            ImmutableArray<Outputs.GetCockpitPushUrlResult> pushUrls)
         {
             Endpoints = endpoints;
             Id = id;
             PlanId = planId;
             ProjectId = projectId;
+            PushUrls = pushUrls;
         }
     }
 }

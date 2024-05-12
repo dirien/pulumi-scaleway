@@ -83,7 +83,7 @@ namespace ediri.Scaleway
     /// 
     ///     var ip01 = new Scaleway.IpamIp("ip01", new()
     ///     {
-    ///         Address = "172.16.64.7/22",
+    ///         Address = "172.16.64.7",
     ///         Sources = new[]
     ///         {
     ///             new Scaleway.Inputs.IpamIpSourceArgs

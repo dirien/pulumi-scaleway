@@ -187,6 +187,12 @@ namespace ediri.Scaleway
         public Output<int> SmtpPortUnsecure { get; private set; } = null!;
 
         /// <summary>
+        /// SMTPS auth user refers to the identifier for a user authorized to send emails via SMTPS, ensuring secure email transmission.
+        /// </summary>
+        [Output("smtpsAuthUser")]
+        public Output<string> SmtpsAuthUser { get; private set; } = null!;
+
+        /// <summary>
         /// The SMTPS port to use to send emails over TLS Wrapper.
         /// </summary>
         [Output("smtpsPort")]
@@ -394,6 +400,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("smtpPortUnsecure")]
         public Input<int>? SmtpPortUnsecure { get; set; }
+
+        /// <summary>
+        /// SMTPS auth user refers to the identifier for a user authorized to send emails via SMTPS, ensuring secure email transmission.
+        /// </summary>
+        [Input("smtpsAuthUser")]
+        public Input<string>? SmtpsAuthUser { get; set; }
 
         /// <summary>
         /// The SMTPS port to use to send emails over TLS Wrapper.

@@ -51,7 +51,7 @@ import * as utilities from "./utilities";
  *     vpcId: vpc01.id,
  * });
  * const ip01 = new scaleway.IpamIp("ip01", {
- *     address: "172.16.64.7/22",
+ *     address: "172.16.64.7",
  *     sources: [{
  *         privateNetworkId: pn01.id,
  *     }],

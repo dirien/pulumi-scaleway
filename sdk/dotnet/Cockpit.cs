@@ -48,6 +48,12 @@ namespace ediri.Scaleway
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
+        /// <summary>
+        /// Push_url
+        /// </summary>
+        [Output("pushUrls")]
+        public Output<ImmutableArray<Outputs.CockpitPushUrl>> PushUrls { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Cockpit resource with the given unique name, arguments, and options.
@@ -144,6 +150,18 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        [Input("pushUrls")]
+        private InputList<Inputs.CockpitPushUrlGetArgs>? _pushUrls;
+
+        /// <summary>
+        /// Push_url
+        /// </summary>
+        public InputList<Inputs.CockpitPushUrlGetArgs> PushUrls
+        {
+            get => _pushUrls ?? (_pushUrls = new InputList<Inputs.CockpitPushUrlGetArgs>());
+            set => _pushUrls = value;
+        }
 
         public CockpitState()
         {

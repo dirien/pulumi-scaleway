@@ -121,6 +121,83 @@ import (
 //
 // RDB Instances can have a maximum of 1 public endpoint and 1 private endpoint. It can have both, or none.
 //
+// ### 1 static private network endpoint
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", &scaleway.VpcPrivateNetworkArgs{
+//				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
+//					Subnet: pulumi.String("172.16.20.0/22"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewRdbInstance(ctx, "main", &scaleway.RdbInstanceArgs{
+//				NodeType: pulumi.String("db-dev-s"),
+//				Engine:   pulumi.String("PostgreSQL-11"),
+//				PrivateNetwork: &scaleway.RdbInstancePrivateNetworkArgs{
+//					PnId:  pn.ID(),
+//					IpNet: pulumi.String("172.16.20.4/22"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### 1 IPAM private network endpoint + 1 public endpoint
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewRdbInstance(ctx, "main", &scaleway.RdbInstanceArgs{
+//				NodeType: pulumi.String("DB-DEV-S"),
+//				Engine:   pulumi.String("PostgreSQL-11"),
+//				PrivateNetwork: &scaleway.RdbInstancePrivateNetworkArgs{
+//					PnId:       pn.ID(),
+//					EnableIpam: pulumi.Bool(true),
+//				},
+//				LoadBalancers: scaleway.RdbInstanceLoadBalancerArray{
+//					nil,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Default: 1 public endpoint
 //
 // ```go

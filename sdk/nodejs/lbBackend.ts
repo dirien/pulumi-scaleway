@@ -175,7 +175,7 @@ export class LbBackend extends pulumi.CustomResource {
      */
     public readonly stickySessions!: pulumi.Output<string | undefined>;
     /**
-     * Cookie name for for sticky sessions
+     * Cookie name for sticky sessions
      */
     public readonly stickySessionsCookieName!: pulumi.Output<string | undefined>;
     /**
@@ -385,7 +385,7 @@ export interface LbBackendState {
      */
     stickySessions?: pulumi.Input<string>;
     /**
-     * Cookie name for for sticky sessions
+     * Cookie name for sticky sessions
      */
     stickySessionsCookieName?: pulumi.Input<string>;
     /**
@@ -506,7 +506,7 @@ export interface LbBackendArgs {
      */
     stickySessions?: pulumi.Input<string>;
     /**
-     * Cookie name for for sticky sessions
+     * Cookie name for sticky sessions
      */
     stickySessionsCookieName?: pulumi.Input<string>;
     /**

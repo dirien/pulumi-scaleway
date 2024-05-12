@@ -14,7 +14,7 @@ namespace ediri.Scaleway.Inputs
     public sealed class RdbReadReplicaPrivateNetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether or not the private network endpoint should be configured with IPAM
+        /// If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
         /// </summary>
         [Input("enableIpam")]
         public Input<bool>? EnableIpam { get; set; }
@@ -56,9 +56,7 @@ namespace ediri.Scaleway.Inputs
         public Input<string> PrivateNetworkId { get; set; } = null!;
 
         /// <summary>
-        /// The IP network address within the private subnet. This must be an IPv4 address with a
-        /// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-        /// service if not set.
+        /// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
         /// </summary>
         [Input("serviceIp")]
         public Input<string>? ServiceIp { get; set; }

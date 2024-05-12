@@ -146,6 +146,8 @@ type TemDomain struct {
 	SmtpPortAlternative pulumi.IntOutput `pulumi:"smtpPortAlternative"`
 	// The SMTP port to use to send emails.
 	SmtpPortUnsecure pulumi.IntOutput `pulumi:"smtpPortUnsecure"`
+	// SMTPS auth user refers to the identifier for a user authorized to send emails via SMTPS, ensuring secure email transmission.
+	SmtpsAuthUser pulumi.StringOutput `pulumi:"smtpsAuthUser"`
 	// The SMTPS port to use to send emails over TLS Wrapper.
 	SmtpsPort pulumi.IntOutput `pulumi:"smtpsPort"`
 	// The SMTPS port to use to send emails over TLS Wrapper.
@@ -223,6 +225,8 @@ type temDomainState struct {
 	SmtpPortAlternative *int `pulumi:"smtpPortAlternative"`
 	// The SMTP port to use to send emails.
 	SmtpPortUnsecure *int `pulumi:"smtpPortUnsecure"`
+	// SMTPS auth user refers to the identifier for a user authorized to send emails via SMTPS, ensuring secure email transmission.
+	SmtpsAuthUser *string `pulumi:"smtpsAuthUser"`
 	// The SMTPS port to use to send emails over TLS Wrapper.
 	SmtpsPort *int `pulumi:"smtpsPort"`
 	// The SMTPS port to use to send emails over TLS Wrapper.
@@ -268,6 +272,8 @@ type TemDomainState struct {
 	SmtpPortAlternative pulumi.IntPtrInput
 	// The SMTP port to use to send emails.
 	SmtpPortUnsecure pulumi.IntPtrInput
+	// SMTPS auth user refers to the identifier for a user authorized to send emails via SMTPS, ensuring secure email transmission.
+	SmtpsAuthUser pulumi.StringPtrInput
 	// The SMTPS port to use to send emails over TLS Wrapper.
 	SmtpsPort pulumi.IntPtrInput
 	// The SMTPS port to use to send emails over TLS Wrapper.
@@ -476,6 +482,11 @@ func (o TemDomainOutput) SmtpPortAlternative() pulumi.IntOutput {
 // The SMTP port to use to send emails.
 func (o TemDomainOutput) SmtpPortUnsecure() pulumi.IntOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.IntOutput { return v.SmtpPortUnsecure }).(pulumi.IntOutput)
+}
+
+// SMTPS auth user refers to the identifier for a user authorized to send emails via SMTPS, ensuring secure email transmission.
+func (o TemDomainOutput) SmtpsAuthUser() pulumi.StringOutput {
+	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.SmtpsAuthUser }).(pulumi.StringOutput)
 }
 
 // The SMTPS port to use to send emails over TLS Wrapper.

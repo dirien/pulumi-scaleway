@@ -43,7 +43,7 @@ import * as utilities from "./utilities";
  *     },
  * });
  * const ip01 = new scaleway.IpamIp("ip01", {
- *     address: "172.16.32.7/22",
+ *     address: "172.16.32.7",
  *     sources: [{
  *         privateNetworkId: pn01.id,
  *     }],

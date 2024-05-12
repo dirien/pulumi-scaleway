@@ -83,6 +83,7 @@ type LookupTemDomainResult struct {
 	SmtpPort             int                      `pulumi:"smtpPort"`
 	SmtpPortAlternative  int                      `pulumi:"smtpPortAlternative"`
 	SmtpPortUnsecure     int                      `pulumi:"smtpPortUnsecure"`
+	SmtpsAuthUser        string                   `pulumi:"smtpsAuthUser"`
 	SmtpsPort            int                      `pulumi:"smtpsPort"`
 	SmtpsPortAlternative int                      `pulumi:"smtpsPortAlternative"`
 	SpfConfig            string                   `pulumi:"spfConfig"`
@@ -206,6 +207,10 @@ func (o LookupTemDomainResultOutput) SmtpPortAlternative() pulumi.IntOutput {
 
 func (o LookupTemDomainResultOutput) SmtpPortUnsecure() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) int { return v.SmtpPortUnsecure }).(pulumi.IntOutput)
+}
+
+func (o LookupTemDomainResultOutput) SmtpsAuthUser() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTemDomainResult) string { return v.SmtpsAuthUser }).(pulumi.StringOutput)
 }
 
 func (o LookupTemDomainResultOutput) SmtpsPort() pulumi.IntOutput {

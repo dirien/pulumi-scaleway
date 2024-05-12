@@ -22,7 +22,7 @@ class GetTemDomainResult:
     """
     A collection of values returned by getTemDomain.
     """
-    def __init__(__self__, accept_tos=None, created_at=None, dkim_config=None, domain_id=None, id=None, last_error=None, last_valid_at=None, mx_blackhole=None, name=None, next_check_at=None, project_id=None, region=None, reputations=None, revoked_at=None, smtp_host=None, smtp_port=None, smtp_port_alternative=None, smtp_port_unsecure=None, smtps_port=None, smtps_port_alternative=None, spf_config=None, status=None):
+    def __init__(__self__, accept_tos=None, created_at=None, dkim_config=None, domain_id=None, id=None, last_error=None, last_valid_at=None, mx_blackhole=None, name=None, next_check_at=None, project_id=None, region=None, reputations=None, revoked_at=None, smtp_host=None, smtp_port=None, smtp_port_alternative=None, smtp_port_unsecure=None, smtps_auth_user=None, smtps_port=None, smtps_port_alternative=None, spf_config=None, status=None):
         if accept_tos and not isinstance(accept_tos, bool):
             raise TypeError("Expected argument 'accept_tos' to be a bool")
         pulumi.set(__self__, "accept_tos", accept_tos)
@@ -77,6 +77,9 @@ class GetTemDomainResult:
         if smtp_port_unsecure and not isinstance(smtp_port_unsecure, int):
             raise TypeError("Expected argument 'smtp_port_unsecure' to be a int")
         pulumi.set(__self__, "smtp_port_unsecure", smtp_port_unsecure)
+        if smtps_auth_user and not isinstance(smtps_auth_user, str):
+            raise TypeError("Expected argument 'smtps_auth_user' to be a str")
+        pulumi.set(__self__, "smtps_auth_user", smtps_auth_user)
         if smtps_port and not isinstance(smtps_port, int):
             raise TypeError("Expected argument 'smtps_port' to be a int")
         pulumi.set(__self__, "smtps_port", smtps_port)
@@ -184,6 +187,11 @@ class GetTemDomainResult:
         return pulumi.get(self, "smtp_port_unsecure")
 
     @property
+    @pulumi.getter(name="smtpsAuthUser")
+    def smtps_auth_user(self) -> str:
+        return pulumi.get(self, "smtps_auth_user")
+
+    @property
     @pulumi.getter(name="smtpsPort")
     def smtps_port(self) -> int:
         return pulumi.get(self, "smtps_port")
@@ -228,6 +236,7 @@ class AwaitableGetTemDomainResult(GetTemDomainResult):
             smtp_port=self.smtp_port,
             smtp_port_alternative=self.smtp_port_alternative,
             smtp_port_unsecure=self.smtp_port_unsecure,
+            smtps_auth_user=self.smtps_auth_user,
             smtps_port=self.smtps_port,
             smtps_port_alternative=self.smtps_port_alternative,
             spf_config=self.spf_config,
@@ -286,6 +295,7 @@ def get_tem_domain(domain_id: Optional[str] = None,
         smtp_port=pulumi.get(__ret__, 'smtp_port'),
         smtp_port_alternative=pulumi.get(__ret__, 'smtp_port_alternative'),
         smtp_port_unsecure=pulumi.get(__ret__, 'smtp_port_unsecure'),
+        smtps_auth_user=pulumi.get(__ret__, 'smtps_auth_user'),
         smtps_port=pulumi.get(__ret__, 'smtps_port'),
         smtps_port_alternative=pulumi.get(__ret__, 'smtps_port_alternative'),
         spf_config=pulumi.get(__ret__, 'spf_config'),

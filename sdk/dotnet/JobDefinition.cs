@@ -36,6 +36,11 @@ namespace ediri.Scaleway
     ///         {
     ///             { "foo", "bar" },
     ///         },
+    ///         Cron = new Scaleway.Inputs.JobDefinitionCronArgs
+    ///         {
+    ///             Schedule = "5 4 1 * *",
+    ///             Timezone = "Europe/Paris",
+    ///         },
     ///     });
     /// 
     /// });
@@ -65,6 +70,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Output("cpuLimit")]
         public Output<int> CpuLimit { get; private set; } = null!;
+
+        /// <summary>
+        /// The cron configuration
+        /// </summary>
+        [Output("cron")]
+        public Output<Outputs.JobDefinitionCron?> Cron { get; private set; } = null!;
 
         /// <summary>
         /// The description of the job
@@ -174,6 +185,12 @@ namespace ediri.Scaleway
         public Input<int> CpuLimit { get; set; } = null!;
 
         /// <summary>
+        /// The cron configuration
+        /// </summary>
+        [Input("cron")]
+        public Input<Inputs.JobDefinitionCronArgs>? Cron { get; set; }
+
+        /// <summary>
         /// The description of the job
         /// </summary>
         [Input("description")]
@@ -246,6 +263,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("cpuLimit")]
         public Input<int>? CpuLimit { get; set; }
+
+        /// <summary>
+        /// The cron configuration
+        /// </summary>
+        [Input("cron")]
+        public Input<Inputs.JobDefinitionCronGetArgs>? Cron { get; set; }
 
         /// <summary>
         /// The description of the job

@@ -71,6 +71,43 @@ import * as utilities from "./utilities";
  *
  * RDB Instances can have a maximum of 1 public endpoint and 1 private endpoint. It can have both, or none.
  *
+ * ### 1 static private network endpoint
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@ediri/scaleway";
+ *
+ * const pn = new scaleway.VpcPrivateNetwork("pn", {ipv4Subnet: {
+ *     subnet: "172.16.20.0/22",
+ * }});
+ * const main = new scaleway.RdbInstance("main", {
+ *     nodeType: "db-dev-s",
+ *     engine: "PostgreSQL-11",
+ *     privateNetwork: {
+ *         pnId: pn.id,
+ *         ipNet: "172.16.20.4/22",
+ *     },
+ * });
+ * ```
+ *
+ * ### 1 IPAM private network endpoint + 1 public endpoint
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@ediri/scaleway";
+ *
+ * const pn = new scaleway.VpcPrivateNetwork("pn", {});
+ * const main = new scaleway.RdbInstance("main", {
+ *     nodeType: "DB-DEV-S",
+ *     engine: "PostgreSQL-11",
+ *     privateNetwork: {
+ *         pnId: pn.id,
+ *         enableIpam: true,
+ *     },
+ *     loadBalancers: [{}],
+ * });
+ * ```
+ *
  * ### Default: 1 public endpoint
  *
  * ```typescript

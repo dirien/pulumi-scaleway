@@ -21,7 +21,7 @@ class GetIotHubResult:
     """
     A collection of values returned by getIotHub.
     """
-    def __init__(__self__, connected_device_count=None, created_at=None, device_auto_provisioning=None, device_count=None, disable_events=None, enabled=None, endpoint=None, events_topic_prefix=None, hub_ca=None, hub_ca_challenge=None, hub_id=None, id=None, name=None, organization_id=None, product_plan=None, project_id=None, region=None, status=None, updated_at=None):
+    def __init__(__self__, connected_device_count=None, created_at=None, device_auto_provisioning=None, device_count=None, disable_events=None, enabled=None, endpoint=None, events_topic_prefix=None, hub_ca=None, hub_ca_challenge=None, hub_id=None, id=None, mqtt_ca=None, mqtt_ca_url=None, name=None, organization_id=None, product_plan=None, project_id=None, region=None, status=None, updated_at=None):
         if connected_device_count and not isinstance(connected_device_count, int):
             raise TypeError("Expected argument 'connected_device_count' to be a int")
         pulumi.set(__self__, "connected_device_count", connected_device_count)
@@ -58,6 +58,12 @@ class GetIotHubResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if mqtt_ca and not isinstance(mqtt_ca, str):
+            raise TypeError("Expected argument 'mqtt_ca' to be a str")
+        pulumi.set(__self__, "mqtt_ca", mqtt_ca)
+        if mqtt_ca_url and not isinstance(mqtt_ca_url, str):
+            raise TypeError("Expected argument 'mqtt_ca_url' to be a str")
+        pulumi.set(__self__, "mqtt_ca_url", mqtt_ca_url)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -144,6 +150,16 @@ class GetIotHubResult:
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="mqttCa")
+    def mqtt_ca(self) -> str:
+        return pulumi.get(self, "mqtt_ca")
+
+    @property
+    @pulumi.getter(name="mqttCaUrl")
+    def mqtt_ca_url(self) -> str:
+        return pulumi.get(self, "mqtt_ca_url")
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[str]:
         return pulumi.get(self, "name")
@@ -197,6 +213,8 @@ class AwaitableGetIotHubResult(GetIotHubResult):
             hub_ca_challenge=self.hub_ca_challenge,
             hub_id=self.hub_id,
             id=self.id,
+            mqtt_ca=self.mqtt_ca,
+            mqtt_ca_url=self.mqtt_ca_url,
             name=self.name,
             organization_id=self.organization_id,
             product_plan=self.product_plan,
@@ -252,6 +270,8 @@ def get_iot_hub(hub_id: Optional[str] = None,
         hub_ca_challenge=pulumi.get(__ret__, 'hub_ca_challenge'),
         hub_id=pulumi.get(__ret__, 'hub_id'),
         id=pulumi.get(__ret__, 'id'),
+        mqtt_ca=pulumi.get(__ret__, 'mqtt_ca'),
+        mqtt_ca_url=pulumi.get(__ret__, 'mqtt_ca_url'),
         name=pulumi.get(__ret__, 'name'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
         product_plan=pulumi.get(__ret__, 'product_plan'),
