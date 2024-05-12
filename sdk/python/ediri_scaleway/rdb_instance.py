@@ -43,7 +43,7 @@ class RdbInstanceArgs:
         :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
                
                > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
-               interruption. Keep in mind that you cannot downgrade a Database Instance.
+               interruption.
                
                > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
                and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -131,7 +131,7 @@ class RdbInstanceArgs:
         The type of database instance you want to create (e.g. `db-dev-s`).
 
         > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
-        interruption. Keep in mind that you cannot downgrade a Database Instance.
+        interruption.
 
         > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
         and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -403,7 +403,7 @@ class _RdbInstanceState:
         :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
                
                > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
-               interruption. Keep in mind that you cannot downgrade a Database Instance.
+               interruption.
                
                > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
                and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -635,7 +635,7 @@ class _RdbInstanceState:
         The type of database instance you want to create (e.g. `db-dev-s`).
 
         > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
-        interruption. Keep in mind that you cannot downgrade a Database Instance.
+        interruption.
 
         > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
         and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -812,7 +812,7 @@ class RdbInstance(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Database Instances.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 
         ## Example Usage
 
@@ -954,7 +954,7 @@ class RdbInstance(pulumi.CustomResource):
         :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
                
                > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
-               interruption. Keep in mind that you cannot downgrade a Database Instance.
+               interruption.
                
                > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
                and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -982,7 +982,7 @@ class RdbInstance(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Database Instances.
-        For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 
         ## Example Usage
 
@@ -1239,7 +1239,7 @@ class RdbInstance(pulumi.CustomResource):
         :param pulumi.Input[str] node_type: The type of database instance you want to create (e.g. `db-dev-s`).
                
                > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
-               interruption. Keep in mind that you cannot downgrade a Database Instance.
+               interruption.
                
                > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
                and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -1401,7 +1401,7 @@ class RdbInstance(pulumi.CustomResource):
         The type of database instance you want to create (e.g. `db-dev-s`).
 
         > **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
-        interruption. Keep in mind that you cannot downgrade a Database Instance.
+        interruption.
 
         > **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
         and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.

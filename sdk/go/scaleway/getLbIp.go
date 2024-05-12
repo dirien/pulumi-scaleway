@@ -66,6 +66,7 @@ type LookupLbIpResult struct {
 	Id        string  `pulumi:"id"`
 	IpAddress *string `pulumi:"ipAddress"`
 	IpId      *string `pulumi:"ipId"`
+	IsIpv6    bool    `pulumi:"isIpv6"`
 	// The associated load-balancer ID if any
 	LbId string `pulumi:"lbId"`
 	// (Defaults to provider `organizationId`) The ID of the organization the LB IP is associated with.
@@ -132,6 +133,10 @@ func (o LookupLbIpResultOutput) IpAddress() pulumi.StringPtrOutput {
 
 func (o LookupLbIpResultOutput) IpId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupLbIpResult) *string { return v.IpId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupLbIpResultOutput) IsIpv6() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupLbIpResult) bool { return v.IsIpv6 }).(pulumi.BoolOutput)
 }
 
 // The associated load-balancer ID if any

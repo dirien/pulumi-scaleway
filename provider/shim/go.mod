@@ -7,10 +7,9 @@ toolchain go1.22.3
 require (
 	github.com/hashicorp/terraform-plugin-framework v1.8.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.33.0
+	github.com/scaleway/terraform-provider-scaleway/v2 v2.39.0
 )
-
-require github.com/scaleway/terraform-provider-scaleway/v2 v2.38.3
-
+ 
 require (
 	github.com/ProtonMail/go-crypto v1.1.0-alpha.0 // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect

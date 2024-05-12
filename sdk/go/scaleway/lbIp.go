@@ -42,6 +42,32 @@ import (
 //
 // ```
 //
+// ### With IPv6
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewLbIp(ctx, "ipv6", &scaleway.LbIpArgs{
+//				IsIpv6: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // IPs can be imported using the `{zone}/{id}`, e.g.
@@ -56,6 +82,8 @@ type LbIp struct {
 
 	// The IP Address
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
+	// If true, creates a Flexible IP with an IPv6 address.
+	IsIpv6 pulumi.BoolPtrOutput `pulumi:"isIpv6"`
 	// The associated load-balance ID if any
 	LbId pulumi.StringOutput `pulumi:"lbId"`
 	// The organizationId you want to attach the resource to
@@ -102,6 +130,8 @@ func GetLbIp(ctx *pulumi.Context,
 type lbIpState struct {
 	// The IP Address
 	IpAddress *string `pulumi:"ipAddress"`
+	// If true, creates a Flexible IP with an IPv6 address.
+	IsIpv6 *bool `pulumi:"isIpv6"`
 	// The associated load-balance ID if any
 	LbId *string `pulumi:"lbId"`
 	// The organizationId you want to attach the resource to
@@ -119,6 +149,8 @@ type lbIpState struct {
 type LbIpState struct {
 	// The IP Address
 	IpAddress pulumi.StringPtrInput
+	// If true, creates a Flexible IP with an IPv6 address.
+	IsIpv6 pulumi.BoolPtrInput
 	// The associated load-balance ID if any
 	LbId pulumi.StringPtrInput
 	// The organizationId you want to attach the resource to
@@ -138,6 +170,8 @@ func (LbIpState) ElementType() reflect.Type {
 }
 
 type lbIpArgs struct {
+	// If true, creates a Flexible IP with an IPv6 address.
+	IsIpv6 *bool `pulumi:"isIpv6"`
 	// `projectId`) The ID of the project the IP is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// The reverse domain associated with this IP.
@@ -148,6 +182,8 @@ type lbIpArgs struct {
 
 // The set of arguments for constructing a LbIp resource.
 type LbIpArgs struct {
+	// If true, creates a Flexible IP with an IPv6 address.
+	IsIpv6 pulumi.BoolPtrInput
 	// `projectId`) The ID of the project the IP is associated with.
 	ProjectId pulumi.StringPtrInput
 	// The reverse domain associated with this IP.
@@ -246,6 +282,11 @@ func (o LbIpOutput) ToLbIpOutputWithContext(ctx context.Context) LbIpOutput {
 // The IP Address
 func (o LbIpOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbIp) pulumi.StringOutput { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+// If true, creates a Flexible IP with an IPv6 address.
+func (o LbIpOutput) IsIpv6() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LbIp) pulumi.BoolPtrOutput { return v.IsIpv6 }).(pulumi.BoolPtrOutput)
 }
 
 // The associated load-balance ID if any

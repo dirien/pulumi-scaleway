@@ -448,7 +448,7 @@ class TemDomain(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Transactional Email Domains.
-        For more information see [the documentation](https://developers.scaleway.com/en/products/transactional_email/api/).
+        For more information see [the documentation](https://www.scaleway.com/en/developers/api/transactional-email).
 
         ## Example Usage
 
@@ -511,7 +511,7 @@ class TemDomain(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Transactional Email Domains.
-        For more information see [the documentation](https://developers.scaleway.com/en/products/transactional_email/api/).
+        For more information see [the documentation](https://www.scaleway.com/en/developers/api/transactional-email).
 
         ## Example Usage
 

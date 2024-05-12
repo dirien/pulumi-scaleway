@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway Transactional Email Domains.
- * For more information see [the documentation](https://developers.scaleway.com/en/products/transactional_email/api/).
+ * For more information see [the documentation](https://www.scaleway.com/en/developers/api/transactional-email).
  *
  * ## Example Usage
  *

@@ -12,7 +12,7 @@ namespace ediri.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway Functions.
-    /// For more information see [the documentation](https://developers.scaleway.com/en/products/functions/api/).
+    /// For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions).
     /// 
     /// ## Example Usage
     /// 
@@ -56,7 +56,7 @@ namespace ediri.Scaleway
     public partial class Function : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The CPU limit in mCPU for your function. More infos on resources [here](https://developers.scaleway.com/en/products/functions/api/#functions)
+        /// The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
         /// </summary>
         [Output("cpuLimit")]
         public Output<int> CpuLimit { get; private set; } = null!;
@@ -83,7 +83,7 @@ namespace ediri.Scaleway
         public Output<ImmutableDictionary<string, string>?> EnvironmentVariables { get; private set; } = null!;
 
         /// <summary>
-        /// Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+        /// Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
         /// </summary>
         [Output("handler")]
         public Output<string> Handler { get; private set; } = null!;
@@ -133,7 +133,7 @@ namespace ediri.Scaleway
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
+        /// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
         /// </summary>
         [Output("privacy")]
         public Output<string> Privacy { get; private set; } = null!;
@@ -151,7 +151,7 @@ namespace ediri.Scaleway
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
+        /// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
         /// </summary>
         [Output("runtime")]
         public Output<string> Runtime { get; private set; } = null!;
@@ -253,7 +253,7 @@ namespace ediri.Scaleway
         }
 
         /// <summary>
-        /// Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+        /// Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
         /// </summary>
         [Input("handler", required: true)]
         public Input<string> Handler { get; set; } = null!;
@@ -297,7 +297,7 @@ namespace ediri.Scaleway
         public Input<string> NamespaceId { get; set; } = null!;
 
         /// <summary>
-        /// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
+        /// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
         /// </summary>
         [Input("privacy", required: true)]
         public Input<string> Privacy { get; set; } = null!;
@@ -315,7 +315,7 @@ namespace ediri.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
+        /// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
         /// </summary>
         [Input("runtime", required: true)]
         public Input<string> Runtime { get; set; } = null!;
@@ -363,7 +363,7 @@ namespace ediri.Scaleway
     public sealed class FunctionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The CPU limit in mCPU for your function. More infos on resources [here](https://developers.scaleway.com/en/products/functions/api/#functions)
+        /// The CPU limit in mCPU for your function. More infos on resources [here](https://www.scaleway.com/en/developers/api/serverless-functions/#functions)
         /// </summary>
         [Input("cpuLimit")]
         public Input<int>? CpuLimit { get; set; }
@@ -396,7 +396,7 @@ namespace ediri.Scaleway
         }
 
         /// <summary>
-        /// Handler of the function. Depends on the runtime ([function guide](https://developers.scaleway.com/en/products/functions/api/#create-a-function))
+        /// Handler of the function. Depends on the runtime ([function guide](https://www.scaleway.com/en/developers/api/serverless-functions/#create-a-function))
         /// </summary>
         [Input("handler")]
         public Input<string>? Handler { get; set; }
@@ -446,7 +446,7 @@ namespace ediri.Scaleway
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://developers.scaleway.com/en/products/functions/api/#authentication)
+        /// Privacy of the function. Can be either `private` or `public`. Read more on [authentication](https://www.scaleway.com/en/developers/api/serverless-functions/#authentication)
         /// </summary>
         [Input("privacy")]
         public Input<string>? Privacy { get; set; }
@@ -464,7 +464,7 @@ namespace ediri.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Runtime of the function. Runtimes can be fetched using [specific route](https://developers.scaleway.com/en/products/functions/api/#get-f7de6a)
+        /// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#get-f7de6a
         /// </summary>
         [Input("runtime")]
         public Input<string>? Runtime { get; set; }

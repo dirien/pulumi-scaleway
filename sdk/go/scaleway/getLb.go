@@ -68,13 +68,16 @@ type LookupLbArgs struct {
 
 // A collection of values returned by getLb.
 type LookupLbResult struct {
-	AssignFlexibleIp bool   `pulumi:"assignFlexibleIp"`
-	Description      string `pulumi:"description"`
+	AssignFlexibleIp   bool   `pulumi:"assignFlexibleIp"`
+	AssignFlexibleIpv6 bool   `pulumi:"assignFlexibleIpv6"`
+	Description        string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The load-balancer public IP Address.
 	IpAddress             string                `pulumi:"ipAddress"`
 	IpId                  string                `pulumi:"ipId"`
+	IpIds                 []string              `pulumi:"ipIds"`
+	Ipv6Address           string                `pulumi:"ipv6Address"`
 	LbId                  *string               `pulumi:"lbId"`
 	Name                  *string               `pulumi:"name"`
 	OrganizationId        string                `pulumi:"organizationId"`
@@ -139,6 +142,10 @@ func (o LookupLbResultOutput) AssignFlexibleIp() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupLbResult) bool { return v.AssignFlexibleIp }).(pulumi.BoolOutput)
 }
 
+func (o LookupLbResultOutput) AssignFlexibleIpv6() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupLbResult) bool { return v.AssignFlexibleIpv6 }).(pulumi.BoolOutput)
+}
+
 func (o LookupLbResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLbResult) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -155,6 +162,14 @@ func (o LookupLbResultOutput) IpAddress() pulumi.StringOutput {
 
 func (o LookupLbResultOutput) IpId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLbResult) string { return v.IpId }).(pulumi.StringOutput)
+}
+
+func (o LookupLbResultOutput) IpIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupLbResult) []string { return v.IpIds }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupLbResultOutput) Ipv6Address() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLbResult) string { return v.Ipv6Address }).(pulumi.StringOutput)
 }
 
 func (o LookupLbResultOutput) LbId() pulumi.StringPtrOutput {

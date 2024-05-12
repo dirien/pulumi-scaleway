@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
 
 /**
  * Creates and manages Scaleway Database Instances.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+ * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
  *
  * ## Example Usage
  *
@@ -224,7 +224,7 @@ export class RdbInstance extends pulumi.CustomResource {
      * The type of database instance you want to create (e.g. `db-dev-s`).
      *
      * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
-     * interruption. Keep in mind that you cannot downgrade a Database Instance.
+     * interruption.
      *
      * > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
      * and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -420,7 +420,7 @@ export interface RdbInstanceState {
      * The type of database instance you want to create (e.g. `db-dev-s`).
      *
      * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
-     * interruption. Keep in mind that you cannot downgrade a Database Instance.
+     * interruption.
      *
      * > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
      * and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -526,7 +526,7 @@ export interface RdbInstanceArgs {
      * The type of database instance you want to create (e.g. `db-dev-s`).
      *
      * > **Important:** Updates to `nodeType` will upgrade the Database Instance to the desired `nodeType` without any
-     * interruption. Keep in mind that you cannot downgrade a Database Instance.
+     * interruption.
      *
      * > **Important:** Once your instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the node_type,
      * and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.

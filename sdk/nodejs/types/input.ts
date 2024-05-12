@@ -68,7 +68,7 @@ export interface BaremetalServerOption {
      */
     expiresAt?: pulumi.Input<string>;
     /**
-     * The id of the option to enable. Use [this endpoint](https://developers.scaleway.com/en/products/baremetal/api/#get-012dcc) to find the available options IDs.
+     * The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
      */
     id: pulumi.Input<string>;
     /**
@@ -1131,7 +1131,7 @@ export interface LbFrontendAcl {
      */
     action: pulumi.Input<inputs.LbFrontendAclAction>;
     /**
-     * Date and time of ACL's creation (RFC 3339 format)
+     * IsDate and time of ACL's creation (RFC 3339 format)
      */
     createdAt?: pulumi.Input<string>;
     /**
@@ -1147,7 +1147,7 @@ export interface LbFrontendAcl {
      */
     name?: pulumi.Input<string>;
     /**
-     * Date and time of ACL's update (RFC 3339 format)
+     * IsDate and time of ACL's update (RFC 3339 format)
      */
     updatedAt?: pulumi.Input<string>;
 }
@@ -1538,6 +1538,8 @@ export interface RdbReadReplicaDirectAccess {
 export interface RdbReadReplicaPrivateNetwork {
     /**
      * If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
+     *
+     * > **Important:** One of `serviceIp` or `enable_ipam=true` must be set.
      */
     enableIpam?: pulumi.Input<boolean>;
     /**

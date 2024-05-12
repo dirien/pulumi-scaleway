@@ -12,7 +12,7 @@ namespace ediri.Scaleway
 {
     /// <summary>
     /// Creates and manages Scaleway Database Instances.
-    /// For more information, see [the documentation](https://developers.scaleway.com/en/products/rdb/api).
+    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
     /// 
     /// ## Example Usage
     /// 
@@ -280,7 +280,7 @@ namespace ediri.Scaleway
         /// The type of database instance you want to create (e.g. `db-dev-s`).
         /// 
         /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
-        /// interruption. Keep in mind that you cannot downgrade a Database Instance.
+        /// interruption.
         /// 
         /// &gt; **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
         /// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -485,7 +485,7 @@ namespace ediri.Scaleway
         /// The type of database instance you want to create (e.g. `db-dev-s`).
         /// 
         /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
-        /// interruption. Keep in mind that you cannot downgrade a Database Instance.
+        /// interruption.
         /// 
         /// &gt; **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
         /// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
@@ -675,7 +675,7 @@ namespace ediri.Scaleway
         /// The type of database instance you want to create (e.g. `db-dev-s`).
         /// 
         /// &gt; **Important:** Updates to `node_type` will upgrade the Database Instance to the desired `node_type` without any
-        /// interruption. Keep in mind that you cannot downgrade a Database Instance.
+        /// interruption.
         /// 
         /// &gt; **Important:** Once your instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the node_type,
         /// and if you are using `bssd` storage, you should increase the volume size before making any other change to your instance.
