@@ -46,6 +46,48 @@ import (
 //
 // ```
 //
+// ### With custom certificate
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi-local/sdk/go/local"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			mainIotHub, err := scaleway.NewIotHub(ctx, "mainIotHub", &scaleway.IotHubArgs{
+//				ProductPlan: pulumi.String("plan_shared"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			deviceCert, err := local.LookupFile(ctx, &local.LookupFileArgs{
+//				Filename: "device-certificate.pem",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewIotDevice(ctx, "mainIotDevice", &scaleway.IotDeviceArgs{
+//				HubId: mainIotHub.ID(),
+//				Certificate: &scaleway.IotDeviceCertificateArgs{
+//					Crt: pulumi.String(deviceCert.Content),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // IoT devices can be imported using the `{region}/{id}`, e.g.
