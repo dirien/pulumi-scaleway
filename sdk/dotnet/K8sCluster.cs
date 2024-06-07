@@ -74,7 +74,7 @@ namespace ediri.Scaleway
     /// });
     /// ```
     /// 
-    /// For a detailed example of how to add or run Elastic Metal servers instead of instances on your cluster, please refer to this guide.
+    /// For a detailed example of how to add or run Elastic Metal servers instead of Instances on your cluster, please refer to this guide.
     /// 
     /// ### With additional configuration
     /// 

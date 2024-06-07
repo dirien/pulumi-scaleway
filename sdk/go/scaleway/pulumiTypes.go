@@ -388,7 +388,7 @@ func (o BaremetalServerIpv6ArrayOutput) Index(i pulumi.IntInput) BaremetalServer
 type BaremetalServerOption struct {
 	// The auto expiration date for compatible options
 	ExpiresAt *string `pulumi:"expiresAt"`
-	// The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
+	// The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-options-list-options) to find the available options IDs.
 	Id string `pulumi:"id"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
@@ -408,7 +408,7 @@ type BaremetalServerOptionInput interface {
 type BaremetalServerOptionArgs struct {
 	// The auto expiration date for compatible options
 	ExpiresAt pulumi.StringPtrInput `pulumi:"expiresAt"`
-	// The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
+	// The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-options-list-options) to find the available options IDs.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The name of the server.
 	Name pulumi.StringPtrInput `pulumi:"name"`
@@ -470,7 +470,7 @@ func (o BaremetalServerOptionOutput) ExpiresAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BaremetalServerOption) *string { return v.ExpiresAt }).(pulumi.StringPtrOutput)
 }
 
-// The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
+// The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-options-list-options) to find the available options IDs.
 func (o BaremetalServerOptionOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v BaremetalServerOption) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -631,6 +631,103 @@ func (o BaremetalServerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) Barem
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BaremetalServerPrivateNetwork {
 		return vs[0].([]BaremetalServerPrivateNetwork)[vs[1].(int)]
 	}).(BaremetalServerPrivateNetworkOutput)
+}
+
+type CockpitAlertManagerContactPoint struct {
+	// Email addresses for the alert receivers
+	Email *string `pulumi:"email"`
+}
+
+// CockpitAlertManagerContactPointInput is an input type that accepts CockpitAlertManagerContactPointArgs and CockpitAlertManagerContactPointOutput values.
+// You can construct a concrete instance of `CockpitAlertManagerContactPointInput` via:
+//
+//	CockpitAlertManagerContactPointArgs{...}
+type CockpitAlertManagerContactPointInput interface {
+	pulumi.Input
+
+	ToCockpitAlertManagerContactPointOutput() CockpitAlertManagerContactPointOutput
+	ToCockpitAlertManagerContactPointOutputWithContext(context.Context) CockpitAlertManagerContactPointOutput
+}
+
+type CockpitAlertManagerContactPointArgs struct {
+	// Email addresses for the alert receivers
+	Email pulumi.StringPtrInput `pulumi:"email"`
+}
+
+func (CockpitAlertManagerContactPointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CockpitAlertManagerContactPoint)(nil)).Elem()
+}
+
+func (i CockpitAlertManagerContactPointArgs) ToCockpitAlertManagerContactPointOutput() CockpitAlertManagerContactPointOutput {
+	return i.ToCockpitAlertManagerContactPointOutputWithContext(context.Background())
+}
+
+func (i CockpitAlertManagerContactPointArgs) ToCockpitAlertManagerContactPointOutputWithContext(ctx context.Context) CockpitAlertManagerContactPointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CockpitAlertManagerContactPointOutput)
+}
+
+// CockpitAlertManagerContactPointArrayInput is an input type that accepts CockpitAlertManagerContactPointArray and CockpitAlertManagerContactPointArrayOutput values.
+// You can construct a concrete instance of `CockpitAlertManagerContactPointArrayInput` via:
+//
+//	CockpitAlertManagerContactPointArray{ CockpitAlertManagerContactPointArgs{...} }
+type CockpitAlertManagerContactPointArrayInput interface {
+	pulumi.Input
+
+	ToCockpitAlertManagerContactPointArrayOutput() CockpitAlertManagerContactPointArrayOutput
+	ToCockpitAlertManagerContactPointArrayOutputWithContext(context.Context) CockpitAlertManagerContactPointArrayOutput
+}
+
+type CockpitAlertManagerContactPointArray []CockpitAlertManagerContactPointInput
+
+func (CockpitAlertManagerContactPointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CockpitAlertManagerContactPoint)(nil)).Elem()
+}
+
+func (i CockpitAlertManagerContactPointArray) ToCockpitAlertManagerContactPointArrayOutput() CockpitAlertManagerContactPointArrayOutput {
+	return i.ToCockpitAlertManagerContactPointArrayOutputWithContext(context.Background())
+}
+
+func (i CockpitAlertManagerContactPointArray) ToCockpitAlertManagerContactPointArrayOutputWithContext(ctx context.Context) CockpitAlertManagerContactPointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CockpitAlertManagerContactPointArrayOutput)
+}
+
+type CockpitAlertManagerContactPointOutput struct{ *pulumi.OutputState }
+
+func (CockpitAlertManagerContactPointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CockpitAlertManagerContactPoint)(nil)).Elem()
+}
+
+func (o CockpitAlertManagerContactPointOutput) ToCockpitAlertManagerContactPointOutput() CockpitAlertManagerContactPointOutput {
+	return o
+}
+
+func (o CockpitAlertManagerContactPointOutput) ToCockpitAlertManagerContactPointOutputWithContext(ctx context.Context) CockpitAlertManagerContactPointOutput {
+	return o
+}
+
+// Email addresses for the alert receivers
+func (o CockpitAlertManagerContactPointOutput) Email() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CockpitAlertManagerContactPoint) *string { return v.Email }).(pulumi.StringPtrOutput)
+}
+
+type CockpitAlertManagerContactPointArrayOutput struct{ *pulumi.OutputState }
+
+func (CockpitAlertManagerContactPointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CockpitAlertManagerContactPoint)(nil)).Elem()
+}
+
+func (o CockpitAlertManagerContactPointArrayOutput) ToCockpitAlertManagerContactPointArrayOutput() CockpitAlertManagerContactPointArrayOutput {
+	return o
+}
+
+func (o CockpitAlertManagerContactPointArrayOutput) ToCockpitAlertManagerContactPointArrayOutputWithContext(ctx context.Context) CockpitAlertManagerContactPointArrayOutput {
+	return o
+}
+
+func (o CockpitAlertManagerContactPointArrayOutput) Index(i pulumi.IntInput) CockpitAlertManagerContactPointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CockpitAlertManagerContactPoint {
+		return vs[0].([]CockpitAlertManagerContactPoint)[vs[1].(int)]
+	}).(CockpitAlertManagerContactPointOutput)
 }
 
 type CockpitEndpoint struct {
@@ -4294,7 +4391,7 @@ type InstanceServerRootVolume struct {
 	// The name of the server.
 	Name *string `pulumi:"name"`
 	// Size of the root volume in gigabytes.
-	// To find the right size use [this endpoint](https://api.scaleway.com/instance/v1/zones/fr-par-1/products/servers) and
+	// To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
 	// check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
 	// Updates to this field will recreate a new resource.
 	SizeInGb *int `pulumi:"sizeInGb"`
@@ -4325,7 +4422,7 @@ type InstanceServerRootVolumeArgs struct {
 	// The name of the server.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Size of the root volume in gigabytes.
-	// To find the right size use [this endpoint](https://api.scaleway.com/instance/v1/zones/fr-par-1/products/servers) and
+	// To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
 	// check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
 	// Updates to this field will recreate a new resource.
 	SizeInGb pulumi.IntPtrInput `pulumi:"sizeInGb"`
@@ -4430,7 +4527,7 @@ func (o InstanceServerRootVolumeOutput) Name() pulumi.StringPtrOutput {
 }
 
 // Size of the root volume in gigabytes.
-// To find the right size use [this endpoint](https://api.scaleway.com/instance/v1/zones/fr-par-1/products/servers) and
+// To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
 // check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
 // Updates to this field will recreate a new resource.
 func (o InstanceServerRootVolumeOutput) SizeInGb() pulumi.IntPtrOutput {
@@ -4504,7 +4601,7 @@ func (o InstanceServerRootVolumePtrOutput) Name() pulumi.StringPtrOutput {
 }
 
 // Size of the root volume in gigabytes.
-// To find the right size use [this endpoint](https://api.scaleway.com/instance/v1/zones/fr-par-1/products/servers) and
+// To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
 // check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
 // Updates to this field will recreate a new resource.
 func (o InstanceServerRootVolumePtrOutput) SizeInGb() pulumi.IntPtrOutput {
@@ -5013,9 +5110,9 @@ func (o IotDeviceMessageFiltersPtrOutput) Subscribe() IotDeviceMessageFiltersSub
 }
 
 type IotDeviceMessageFiltersPublish struct {
-	// Publish message filter policy
+	// Filtering policy (eg `accept` or `reject`)
 	Policy *string `pulumi:"policy"`
-	// List of topics in the set
+	// List of topics to match (eg `foo/bar/+/baz/#`)
 	Topics []string `pulumi:"topics"`
 }
 
@@ -5031,9 +5128,9 @@ type IotDeviceMessageFiltersPublishInput interface {
 }
 
 type IotDeviceMessageFiltersPublishArgs struct {
-	// Publish message filter policy
+	// Filtering policy (eg `accept` or `reject`)
 	Policy pulumi.StringPtrInput `pulumi:"policy"`
-	// List of topics in the set
+	// List of topics to match (eg `foo/bar/+/baz/#`)
 	Topics pulumi.StringArrayInput `pulumi:"topics"`
 }
 
@@ -5114,12 +5211,12 @@ func (o IotDeviceMessageFiltersPublishOutput) ToIotDeviceMessageFiltersPublishPt
 	}).(IotDeviceMessageFiltersPublishPtrOutput)
 }
 
-// Publish message filter policy
+// Filtering policy (eg `accept` or `reject`)
 func (o IotDeviceMessageFiltersPublishOutput) Policy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IotDeviceMessageFiltersPublish) *string { return v.Policy }).(pulumi.StringPtrOutput)
 }
 
-// List of topics in the set
+// List of topics to match (eg `foo/bar/+/baz/#`)
 func (o IotDeviceMessageFiltersPublishOutput) Topics() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v IotDeviceMessageFiltersPublish) []string { return v.Topics }).(pulumi.StringArrayOutput)
 }
@@ -5148,7 +5245,7 @@ func (o IotDeviceMessageFiltersPublishPtrOutput) Elem() IotDeviceMessageFiltersP
 	}).(IotDeviceMessageFiltersPublishOutput)
 }
 
-// Publish message filter policy
+// Filtering policy (eg `accept` or `reject`)
 func (o IotDeviceMessageFiltersPublishPtrOutput) Policy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IotDeviceMessageFiltersPublish) *string {
 		if v == nil {
@@ -5158,7 +5255,7 @@ func (o IotDeviceMessageFiltersPublishPtrOutput) Policy() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// List of topics in the set
+// List of topics to match (eg `foo/bar/+/baz/#`)
 func (o IotDeviceMessageFiltersPublishPtrOutput) Topics() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *IotDeviceMessageFiltersPublish) []string {
 		if v == nil {
@@ -5169,9 +5266,13 @@ func (o IotDeviceMessageFiltersPublishPtrOutput) Topics() pulumi.StringArrayOutp
 }
 
 type IotDeviceMessageFiltersSubscribe struct {
-	// Subscribe message filter policy
+	// Same as publish rules.
 	Policy *string `pulumi:"policy"`
-	// List of topics in the set
+	// Same as publish rules.
+	//
+	// - `certificate.crt` - (Optional) The certificate of the device, either generated by Scaleway or provided.
+	//
+	// > **Important:** Updates to `certificate.crt` will disconnect connected devices and the previous certificate will be deleted and won't be recoverable.
 	Topics []string `pulumi:"topics"`
 }
 
@@ -5187,9 +5288,13 @@ type IotDeviceMessageFiltersSubscribeInput interface {
 }
 
 type IotDeviceMessageFiltersSubscribeArgs struct {
-	// Subscribe message filter policy
+	// Same as publish rules.
 	Policy pulumi.StringPtrInput `pulumi:"policy"`
-	// List of topics in the set
+	// Same as publish rules.
+	//
+	// - `certificate.crt` - (Optional) The certificate of the device, either generated by Scaleway or provided.
+	//
+	// > **Important:** Updates to `certificate.crt` will disconnect connected devices and the previous certificate will be deleted and won't be recoverable.
 	Topics pulumi.StringArrayInput `pulumi:"topics"`
 }
 
@@ -5270,12 +5375,16 @@ func (o IotDeviceMessageFiltersSubscribeOutput) ToIotDeviceMessageFiltersSubscri
 	}).(IotDeviceMessageFiltersSubscribePtrOutput)
 }
 
-// Subscribe message filter policy
+// Same as publish rules.
 func (o IotDeviceMessageFiltersSubscribeOutput) Policy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IotDeviceMessageFiltersSubscribe) *string { return v.Policy }).(pulumi.StringPtrOutput)
 }
 
-// List of topics in the set
+// Same as publish rules.
+//
+// - `certificate.crt` - (Optional) The certificate of the device, either generated by Scaleway or provided.
+//
+// > **Important:** Updates to `certificate.crt` will disconnect connected devices and the previous certificate will be deleted and won't be recoverable.
 func (o IotDeviceMessageFiltersSubscribeOutput) Topics() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v IotDeviceMessageFiltersSubscribe) []string { return v.Topics }).(pulumi.StringArrayOutput)
 }
@@ -5304,7 +5413,7 @@ func (o IotDeviceMessageFiltersSubscribePtrOutput) Elem() IotDeviceMessageFilter
 	}).(IotDeviceMessageFiltersSubscribeOutput)
 }
 
-// Subscribe message filter policy
+// Same as publish rules.
 func (o IotDeviceMessageFiltersSubscribePtrOutput) Policy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IotDeviceMessageFiltersSubscribe) *string {
 		if v == nil {
@@ -5314,7 +5423,11 @@ func (o IotDeviceMessageFiltersSubscribePtrOutput) Policy() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-// List of topics in the set
+// Same as publish rules.
+//
+// - `certificate.crt` - (Optional) The certificate of the device, either generated by Scaleway or provided.
+//
+// > **Important:** Updates to `certificate.crt` will disconnect connected devices and the previous certificate will be deleted and won't be recoverable.
 func (o IotDeviceMessageFiltersSubscribePtrOutput) Topics() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *IotDeviceMessageFiltersSubscribe) []string {
 		if v == nil {
@@ -7574,7 +7687,7 @@ func (o K8sPoolUpgradePolicyPtrOutput) MaxUnavailable() pulumi.IntPtrOutput {
 type LbAclAction struct {
 	// Redirect parameters when using an ACL with `redirect` action.
 	Redirects []LbAclActionRedirect `pulumi:"redirects"`
-	// The redirect type. Possible values are: `location` or `scheme`.
+	// The action type. Possible values are: `allow` or `deny` or `redirect`.
 	Type string `pulumi:"type"`
 }
 
@@ -7592,7 +7705,7 @@ type LbAclActionInput interface {
 type LbAclActionArgs struct {
 	// Redirect parameters when using an ACL with `redirect` action.
 	Redirects LbAclActionRedirectArrayInput `pulumi:"redirects"`
-	// The redirect type. Possible values are: `location` or `scheme`.
+	// The action type. Possible values are: `allow` or `deny` or `redirect`.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -7678,7 +7791,7 @@ func (o LbAclActionOutput) Redirects() LbAclActionRedirectArrayOutput {
 	return o.ApplyT(func(v LbAclAction) []LbAclActionRedirect { return v.Redirects }).(LbAclActionRedirectArrayOutput)
 }
 
-// The redirect type. Possible values are: `location` or `scheme`.
+// The action type. Possible values are: `allow` or `deny` or `redirect`.
 func (o LbAclActionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LbAclAction) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -7717,7 +7830,7 @@ func (o LbAclActionPtrOutput) Redirects() LbAclActionRedirectArrayOutput {
 	}).(LbAclActionRedirectArrayOutput)
 }
 
-// The redirect type. Possible values are: `location` or `scheme`.
+// The action type. Possible values are: `allow` or `deny` or `redirect`.
 func (o LbAclActionPtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LbAclAction) *string {
 		if v == nil {
@@ -7728,11 +7841,11 @@ func (o LbAclActionPtrOutput) Type() pulumi.StringPtrOutput {
 }
 
 type LbAclActionRedirect struct {
-	// The HTTP redirect code to use
+	// The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
 	Code *int `pulumi:"code"`
-	// An URL can be used in case of a location redirect
+	// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
 	Target *string `pulumi:"target"`
-	// The redirect type
+	// The redirect type. Possible values are: `location` or `scheme`.
 	Type *string `pulumi:"type"`
 }
 
@@ -7748,11 +7861,11 @@ type LbAclActionRedirectInput interface {
 }
 
 type LbAclActionRedirectArgs struct {
-	// The HTTP redirect code to use
+	// The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
 	Code pulumi.IntPtrInput `pulumi:"code"`
-	// An URL can be used in case of a location redirect
+	// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
 	Target pulumi.StringPtrInput `pulumi:"target"`
-	// The redirect type
+	// The redirect type. Possible values are: `location` or `scheme`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -7807,17 +7920,17 @@ func (o LbAclActionRedirectOutput) ToLbAclActionRedirectOutputWithContext(ctx co
 	return o
 }
 
-// The HTTP redirect code to use
+// The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
 func (o LbAclActionRedirectOutput) Code() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LbAclActionRedirect) *int { return v.Code }).(pulumi.IntPtrOutput)
 }
 
-// An URL can be used in case of a location redirect
+// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
 func (o LbAclActionRedirectOutput) Target() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LbAclActionRedirect) *string { return v.Target }).(pulumi.StringPtrOutput)
 }
 
-// The redirect type
+// The redirect type. Possible values are: `location` or `scheme`.
 func (o LbAclActionRedirectOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LbAclActionRedirect) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -9030,7 +9143,7 @@ func (o LbFrontendAclArrayOutput) Index(i pulumi.IntInput) LbFrontendAclOutput {
 type LbFrontendAclAction struct {
 	// Redirect parameters when using an ACL with `redirect` action.
 	Redirects []LbFrontendAclActionRedirect `pulumi:"redirects"`
-	// The redirect type. Possible values are: `location` or `scheme`.
+	// The action type. Possible values are: `allow` or `deny` or `redirect`.
 	Type string `pulumi:"type"`
 }
 
@@ -9048,7 +9161,7 @@ type LbFrontendAclActionInput interface {
 type LbFrontendAclActionArgs struct {
 	// Redirect parameters when using an ACL with `redirect` action.
 	Redirects LbFrontendAclActionRedirectArrayInput `pulumi:"redirects"`
-	// The redirect type. Possible values are: `location` or `scheme`.
+	// The action type. Possible values are: `allow` or `deny` or `redirect`.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -9083,17 +9196,17 @@ func (o LbFrontendAclActionOutput) Redirects() LbFrontendAclActionRedirectArrayO
 	return o.ApplyT(func(v LbFrontendAclAction) []LbFrontendAclActionRedirect { return v.Redirects }).(LbFrontendAclActionRedirectArrayOutput)
 }
 
-// The redirect type. Possible values are: `location` or `scheme`.
+// The action type. Possible values are: `allow` or `deny` or `redirect`.
 func (o LbFrontendAclActionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LbFrontendAclAction) string { return v.Type }).(pulumi.StringOutput)
 }
 
 type LbFrontendAclActionRedirect struct {
-	// The HTTP redirect code to use
+	// The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
 	Code *int `pulumi:"code"`
-	// An URL can be used in case of a location redirect
+	// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
 	Target *string `pulumi:"target"`
-	// The redirect type
+	// The redirect type. Possible values are: `location` or `scheme`.
 	Type *string `pulumi:"type"`
 }
 
@@ -9109,11 +9222,11 @@ type LbFrontendAclActionRedirectInput interface {
 }
 
 type LbFrontendAclActionRedirectArgs struct {
-	// The HTTP redirect code to use
+	// The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
 	Code pulumi.IntPtrInput `pulumi:"code"`
-	// An URL can be used in case of a location redirect
+	// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
 	Target pulumi.StringPtrInput `pulumi:"target"`
-	// The redirect type
+	// The redirect type. Possible values are: `location` or `scheme`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -9168,17 +9281,17 @@ func (o LbFrontendAclActionRedirectOutput) ToLbFrontendAclActionRedirectOutputWi
 	return o
 }
 
-// The HTTP redirect code to use
+// The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
 func (o LbFrontendAclActionRedirectOutput) Code() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LbFrontendAclActionRedirect) *int { return v.Code }).(pulumi.IntPtrOutput)
 }
 
-// An URL can be used in case of a location redirect
+// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
 func (o LbFrontendAclActionRedirectOutput) Target() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LbFrontendAclActionRedirect) *string { return v.Target }).(pulumi.StringPtrOutput)
 }
 
-// The redirect type
+// The redirect type. Possible values are: `location` or `scheme`.
 func (o LbFrontendAclActionRedirectOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LbFrontendAclActionRedirect) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -11065,7 +11178,7 @@ func (o ObjectBucketLockConfigurationRulePtrOutput) DefaultRetention() ObjectBuc
 type ObjectBucketLockConfigurationRuleDefaultRetention struct {
 	// The number of days that you want to specify for the default retention period.
 	Days *int `pulumi:"days"`
-	// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
+	// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
 	Mode string `pulumi:"mode"`
 	// The number of years that you want to specify for the default retention period.
 	Years *int `pulumi:"years"`
@@ -11085,7 +11198,7 @@ type ObjectBucketLockConfigurationRuleDefaultRetentionInput interface {
 type ObjectBucketLockConfigurationRuleDefaultRetentionArgs struct {
 	// The number of days that you want to specify for the default retention period.
 	Days pulumi.IntPtrInput `pulumi:"days"`
-	// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
+	// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
 	Mode pulumi.StringInput `pulumi:"mode"`
 	// The number of years that you want to specify for the default retention period.
 	Years pulumi.IntPtrInput `pulumi:"years"`
@@ -11173,7 +11286,7 @@ func (o ObjectBucketLockConfigurationRuleDefaultRetentionOutput) Days() pulumi.I
 	return o.ApplyT(func(v ObjectBucketLockConfigurationRuleDefaultRetention) *int { return v.Days }).(pulumi.IntPtrOutput)
 }
 
-// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
+// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
 func (o ObjectBucketLockConfigurationRuleDefaultRetentionOutput) Mode() pulumi.StringOutput {
 	return o.ApplyT(func(v ObjectBucketLockConfigurationRuleDefaultRetention) string { return v.Mode }).(pulumi.StringOutput)
 }
@@ -11217,7 +11330,7 @@ func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) Days() pulum
 	}).(pulumi.IntPtrOutput)
 }
 
-// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
+// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
 func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketLockConfigurationRuleDefaultRetention) *string {
 		if v == nil {
@@ -25694,6 +25807,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerOptionArrayInput)(nil)).Elem(), BaremetalServerOptionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerPrivateNetworkInput)(nil)).Elem(), BaremetalServerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerPrivateNetworkArrayInput)(nil)).Elem(), BaremetalServerPrivateNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CockpitAlertManagerContactPointInput)(nil)).Elem(), CockpitAlertManagerContactPointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CockpitAlertManagerContactPointArrayInput)(nil)).Elem(), CockpitAlertManagerContactPointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitEndpointInput)(nil)).Elem(), CockpitEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitEndpointArrayInput)(nil)).Elem(), CockpitEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitPushUrlInput)(nil)).Elem(), CockpitPushUrlArgs{})
@@ -26040,6 +26155,8 @@ func init() {
 	pulumi.RegisterOutputType(BaremetalServerOptionArrayOutput{})
 	pulumi.RegisterOutputType(BaremetalServerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(BaremetalServerPrivateNetworkArrayOutput{})
+	pulumi.RegisterOutputType(CockpitAlertManagerContactPointOutput{})
+	pulumi.RegisterOutputType(CockpitAlertManagerContactPointArrayOutput{})
 	pulumi.RegisterOutputType(CockpitEndpointOutput{})
 	pulumi.RegisterOutputType(CockpitEndpointArrayOutput{})
 	pulumi.RegisterOutputType(CockpitPushUrlOutput{})

@@ -12,8 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Creates and manages Scaleway Compute Instance Volumes.
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#volumes-7e8a39).
+// Creates and manages Scaleway compute Instance Volumes.
+// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/instance/#path-volumes-list-volumes).
 //
 // ## Example Usage
 //

@@ -15,6 +15,7 @@ __all__ = [
     'BaremetalServerIpv6Args',
     'BaremetalServerOptionArgs',
     'BaremetalServerPrivateNetworkArgs',
+    'CockpitAlertManagerContactPointArgs',
     'CockpitEndpointArgs',
     'CockpitPushUrlArgs',
     'CockpitTokenScopesArgs',
@@ -324,7 +325,7 @@ class BaremetalServerOptionArgs:
                  expires_at: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] id: The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
+        :param pulumi.Input[str] id: The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-options-list-options) to find the available options IDs.
         :param pulumi.Input[str] expires_at: The auto expiration date for compatible options
         :param pulumi.Input[str] name: The name of the server.
         """
@@ -338,7 +339,7 @@ class BaremetalServerOptionArgs:
     @pulumi.getter
     def id(self) -> pulumi.Input[str]:
         """
-        The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#get-012dcc) to find the available options IDs.
+        The id of the option to enable. Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-options-list-options) to find the available options IDs.
         """
         return pulumi.get(self, "id")
 
@@ -455,6 +456,29 @@ class BaremetalServerPrivateNetworkArgs:
     @vlan.setter
     def vlan(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "vlan", value)
+
+
+@pulumi.input_type
+class CockpitAlertManagerContactPointArgs:
+    def __init__(__self__, *,
+                 email: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] email: Email addresses for the alert receivers
+        """
+        if email is not None:
+            pulumi.set(__self__, "email", email)
+
+    @property
+    @pulumi.getter
+    def email(self) -> Optional[pulumi.Input[str]]:
+        """
+        Email addresses for the alert receivers
+        """
+        return pulumi.get(self, "email")
+
+    @email.setter
+    def email(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "email", value)
 
 
 @pulumi.input_type
@@ -2342,7 +2366,7 @@ class InstanceServerRootVolumeArgs:
                > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[int] size_in_gb: Size of the root volume in gigabytes.
-               To find the right size use [this endpoint](https://api.scaleway.com/instance/v1/zones/fr-par-1/products/servers) and
+               To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
                check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercial_type`.
                Updates to this field will recreate a new resource.
         :param pulumi.Input[str] volume_id: The volume ID of the root volume of the server, allows you to create server with an existing volume. If empty, will be computed to a created volume ID.
@@ -2404,7 +2428,7 @@ class InstanceServerRootVolumeArgs:
     def size_in_gb(self) -> Optional[pulumi.Input[int]]:
         """
         Size of the root volume in gigabytes.
-        To find the right size use [this endpoint](https://api.scaleway.com/instance/v1/zones/fr-par-1/products/servers) and
+        To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
         check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercial_type`.
         Updates to this field will recreate a new resource.
         """
@@ -2564,8 +2588,8 @@ class IotDeviceMessageFiltersPublishArgs:
                  policy: Optional[pulumi.Input[str]] = None,
                  topics: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[str] policy: Publish message filter policy
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] topics: List of topics in the set
+        :param pulumi.Input[str] policy: Filtering policy (eg `accept` or `reject`)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] topics: List of topics to match (eg `foo/bar/+/baz/#`)
         """
         if policy is not None:
             pulumi.set(__self__, "policy", policy)
@@ -2576,7 +2600,7 @@ class IotDeviceMessageFiltersPublishArgs:
     @pulumi.getter
     def policy(self) -> Optional[pulumi.Input[str]]:
         """
-        Publish message filter policy
+        Filtering policy (eg `accept` or `reject`)
         """
         return pulumi.get(self, "policy")
 
@@ -2588,7 +2612,7 @@ class IotDeviceMessageFiltersPublishArgs:
     @pulumi.getter
     def topics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of topics in the set
+        List of topics to match (eg `foo/bar/+/baz/#`)
         """
         return pulumi.get(self, "topics")
 
@@ -2603,8 +2627,12 @@ class IotDeviceMessageFiltersSubscribeArgs:
                  policy: Optional[pulumi.Input[str]] = None,
                  topics: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[str] policy: Subscribe message filter policy
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] topics: List of topics in the set
+        :param pulumi.Input[str] policy: Same as publish rules.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] topics: Same as publish rules.
+               
+               - `certificate.crt` - (Optional) The certificate of the device, either generated by Scaleway or provided.
+               
+               > **Important:** Updates to `certificate.crt` will disconnect connected devices and the previous certificate will be deleted and won't be recoverable.
         """
         if policy is not None:
             pulumi.set(__self__, "policy", policy)
@@ -2615,7 +2643,7 @@ class IotDeviceMessageFiltersSubscribeArgs:
     @pulumi.getter
     def policy(self) -> Optional[pulumi.Input[str]]:
         """
-        Subscribe message filter policy
+        Same as publish rules.
         """
         return pulumi.get(self, "policy")
 
@@ -2627,7 +2655,11 @@ class IotDeviceMessageFiltersSubscribeArgs:
     @pulumi.getter
     def topics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of topics in the set
+        Same as publish rules.
+
+        - `certificate.crt` - (Optional) The certificate of the device, either generated by Scaleway or provided.
+
+        > **Important:** Updates to `certificate.crt` will disconnect connected devices and the previous certificate will be deleted and won't be recoverable.
         """
         return pulumi.get(self, "topics")
 
@@ -3582,7 +3614,7 @@ class LbAclActionArgs:
                  type: pulumi.Input[str],
                  redirects: Optional[pulumi.Input[Sequence[pulumi.Input['LbAclActionRedirectArgs']]]] = None):
         """
-        :param pulumi.Input[str] type: The redirect type. Possible values are: `location` or `scheme`.
+        :param pulumi.Input[str] type: The action type. Possible values are: `allow` or `deny` or `redirect`.
         :param pulumi.Input[Sequence[pulumi.Input['LbAclActionRedirectArgs']]] redirects: Redirect parameters when using an ACL with `redirect` action.
         """
         pulumi.set(__self__, "type", type)
@@ -3593,7 +3625,7 @@ class LbAclActionArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The redirect type. Possible values are: `location` or `scheme`.
+        The action type. Possible values are: `allow` or `deny` or `redirect`.
         """
         return pulumi.get(self, "type")
 
@@ -3621,9 +3653,9 @@ class LbAclActionRedirectArgs:
                  target: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[int] code: The HTTP redirect code to use
-        :param pulumi.Input[str] target: An URL can be used in case of a location redirect
-        :param pulumi.Input[str] type: The redirect type
+        :param pulumi.Input[int] code: The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+        :param pulumi.Input[str] target: An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+        :param pulumi.Input[str] type: The redirect type. Possible values are: `location` or `scheme`.
         """
         if code is not None:
             pulumi.set(__self__, "code", code)
@@ -3636,7 +3668,7 @@ class LbAclActionRedirectArgs:
     @pulumi.getter
     def code(self) -> Optional[pulumi.Input[int]]:
         """
-        The HTTP redirect code to use
+        The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
         """
         return pulumi.get(self, "code")
 
@@ -3648,7 +3680,7 @@ class LbAclActionRedirectArgs:
     @pulumi.getter
     def target(self) -> Optional[pulumi.Input[str]]:
         """
-        An URL can be used in case of a location redirect
+        An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
         """
         return pulumi.get(self, "target")
 
@@ -3660,7 +3692,7 @@ class LbAclActionRedirectArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The redirect type
+        The redirect type. Possible values are: `location` or `scheme`.
         """
         return pulumi.get(self, "type")
 
@@ -4091,7 +4123,7 @@ class LbFrontendAclActionArgs:
                  type: pulumi.Input[str],
                  redirects: Optional[pulumi.Input[Sequence[pulumi.Input['LbFrontendAclActionRedirectArgs']]]] = None):
         """
-        :param pulumi.Input[str] type: The redirect type. Possible values are: `location` or `scheme`.
+        :param pulumi.Input[str] type: The action type. Possible values are: `allow` or `deny` or `redirect`.
         :param pulumi.Input[Sequence[pulumi.Input['LbFrontendAclActionRedirectArgs']]] redirects: Redirect parameters when using an ACL with `redirect` action.
         """
         pulumi.set(__self__, "type", type)
@@ -4102,7 +4134,7 @@ class LbFrontendAclActionArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The redirect type. Possible values are: `location` or `scheme`.
+        The action type. Possible values are: `allow` or `deny` or `redirect`.
         """
         return pulumi.get(self, "type")
 
@@ -4130,9 +4162,9 @@ class LbFrontendAclActionRedirectArgs:
                  target: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[int] code: The HTTP redirect code to use
-        :param pulumi.Input[str] target: An URL can be used in case of a location redirect
-        :param pulumi.Input[str] type: The redirect type
+        :param pulumi.Input[int] code: The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
+        :param pulumi.Input[str] target: An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+        :param pulumi.Input[str] type: The redirect type. Possible values are: `location` or `scheme`.
         """
         if code is not None:
             pulumi.set(__self__, "code", code)
@@ -4145,7 +4177,7 @@ class LbFrontendAclActionRedirectArgs:
     @pulumi.getter
     def code(self) -> Optional[pulumi.Input[int]]:
         """
-        The HTTP redirect code to use
+        The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
         """
         return pulumi.get(self, "code")
 
@@ -4157,7 +4189,7 @@ class LbFrontendAclActionRedirectArgs:
     @pulumi.getter
     def target(self) -> Optional[pulumi.Input[str]]:
         """
-        An URL can be used in case of a location redirect
+        An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
         """
         return pulumi.get(self, "target")
 
@@ -4169,7 +4201,7 @@ class LbFrontendAclActionRedirectArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The redirect type
+        The redirect type. Possible values are: `location` or `scheme`.
         """
         return pulumi.get(self, "type")
 
@@ -4934,7 +4966,7 @@ class ObjectBucketLockConfigurationRuleDefaultRetentionArgs:
                  days: Optional[pulumi.Input[int]] = None,
                  years: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] mode: The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
+        :param pulumi.Input[str] mode: The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
         :param pulumi.Input[int] days: The number of days that you want to specify for the default retention period.
         :param pulumi.Input[int] years: The number of years that you want to specify for the default retention period.
         """
@@ -4948,7 +4980,7 @@ class ObjectBucketLockConfigurationRuleDefaultRetentionArgs:
     @pulumi.getter
     def mode(self) -> pulumi.Input[str]:
         """
-        The default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
+        The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
         """
         return pulumi.get(self, "mode")
 

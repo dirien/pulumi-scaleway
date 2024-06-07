@@ -53,7 +53,7 @@ type K8sPool struct {
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
 	// (List of) The nodes in the default pool.
 	Nodes K8sPoolNodeArrayOutput `pulumi:"nodes"`
-	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the nodes of the pool will be attached to.
+	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
 	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId pulumi.StringPtrOutput `pulumi:"placementGroupId"`
 	// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
@@ -154,7 +154,7 @@ type k8sPoolState struct {
 	NodeType *string `pulumi:"nodeType"`
 	// (List of) The nodes in the default pool.
 	Nodes []K8sPoolNode `pulumi:"nodes"`
-	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the nodes of the pool will be attached to.
+	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
 	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId *string `pulumi:"placementGroupId"`
 	// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
@@ -217,7 +217,7 @@ type K8sPoolState struct {
 	NodeType pulumi.StringPtrInput
 	// (List of) The nodes in the default pool.
 	Nodes K8sPoolNodeArrayInput
-	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the nodes of the pool will be attached to.
+	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
 	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId pulumi.StringPtrInput
 	// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
@@ -278,7 +278,7 @@ type k8sPoolArgs struct {
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	NodeType string `pulumi:"nodeType"`
-	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the nodes of the pool will be attached to.
+	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
 	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId *string `pulumi:"placementGroupId"`
 	// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
@@ -330,7 +330,7 @@ type K8sPoolArgs struct {
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	NodeType pulumi.StringInput
-	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the nodes of the pool will be attached to.
+	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
 	// > **Important:** Updates to this field will recreate a new resource.
 	PlacementGroupId pulumi.StringPtrInput
 	// Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
@@ -509,7 +509,7 @@ func (o K8sPoolOutput) Nodes() K8sPoolNodeArrayOutput {
 	return o.ApplyT(func(v *K8sPool) K8sPoolNodeArrayOutput { return v.Nodes }).(K8sPoolNodeArrayOutput)
 }
 
-// The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the nodes of the pool will be attached to.
+// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
 // > **Important:** Updates to this field will recreate a new resource.
 func (o K8sPoolOutput) PlacementGroupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *K8sPool) pulumi.StringPtrOutput { return v.PlacementGroupId }).(pulumi.StringPtrOutput)

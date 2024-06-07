@@ -19,7 +19,7 @@ namespace ediri.Scaleway.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.LbAclActionRedirect> Redirects;
         /// <summary>
-        /// The redirect type. Possible values are: `location` or `scheme`.
+        /// The action type. Possible values are: `allow` or `deny` or `redirect`.
         /// </summary>
         public readonly string Type;
 

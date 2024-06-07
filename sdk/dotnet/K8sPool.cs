@@ -102,7 +102,7 @@ namespace ediri.Scaleway
         public Output<ImmutableArray<Outputs.K8sPoolNode>> Nodes { get; private set; } = null!;
 
         /// <summary>
-        /// The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the nodes of the pool will be attached to.
+        /// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Output("placementGroupId")]
@@ -297,7 +297,7 @@ namespace ediri.Scaleway
         public Input<string> NodeType { get; set; } = null!;
 
         /// <summary>
-        /// The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the nodes of the pool will be attached to.
+        /// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Input("placementGroupId")]
@@ -465,7 +465,7 @@ namespace ediri.Scaleway
         }
 
         /// <summary>
-        /// The [placement group](https://www.scaleway.com/en/developers/api/instance/#placement-groups-d8f653) the nodes of the pool will be attached to.
+        /// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Input("placementGroupId")]
