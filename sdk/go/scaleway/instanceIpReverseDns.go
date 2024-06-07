@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages Scaleway Compute Instance IPs Reverse DNS.
+// Manages Scaleway compute Instance IPs Reverse DNS.
 //
 // Please check our [guide](https://www.scaleway.com/en/docs/compute/instances/how-to/configure-reverse-dns/) for more details
 //

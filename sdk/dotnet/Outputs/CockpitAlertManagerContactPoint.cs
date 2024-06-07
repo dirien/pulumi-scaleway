@@ -12,25 +12,17 @@ namespace ediri.Scaleway.Outputs
 {
 
     [OutputType]
-    public sealed class IotDeviceMessageFiltersPublish
+    public sealed class CockpitAlertManagerContactPoint
     {
         /// <summary>
-        /// Filtering policy (eg `accept` or `reject`)
+        /// Email addresses for the alert receivers
         /// </summary>
-        public readonly string? Policy;
-        /// <summary>
-        /// List of topics to match (eg `foo/bar/+/baz/#`)
-        /// </summary>
-        public readonly ImmutableArray<string> Topics;
+        public readonly string? Email;
 
         [OutputConstructor]
-        private IotDeviceMessageFiltersPublish(
-            string? policy,
-
-            ImmutableArray<string> topics)
+        private CockpitAlertManagerContactPoint(string? email)
         {
-            Policy = policy;
-            Topics = topics;
+            Email = email;
         }
     }
 }
