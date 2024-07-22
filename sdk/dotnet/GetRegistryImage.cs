@@ -13,7 +13,7 @@ namespace ediri.Scaleway
     public static class GetRegistryImage
     {
         /// <summary>
-        /// Gets information about a registry image.
+        /// Gets information about a Container Registry image.
         /// 
         /// ## Example Usage
         /// 
@@ -38,7 +38,7 @@ namespace ediri.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRegistryImageResult>("scaleway:index/getRegistryImage:getRegistryImage", args ?? new GetRegistryImageArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a registry image.
+        /// Gets information about a Container Registry image.
         /// 
         /// ## Example Usage
         /// 
@@ -68,14 +68,14 @@ namespace ediri.Scaleway
     {
         /// <summary>
         /// The image ID.
-        /// Only one of `name` and `image_id` should be specified.
+        /// 
+        /// &gt; **Note** You must specify at least one: `name` and/or `image_id`.
         /// </summary>
         [Input("imageId")]
         public string? ImageId { get; set; }
 
         /// <summary>
         /// The image name.
-        /// Only one of `name` and `image_id` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -120,14 +120,14 @@ namespace ediri.Scaleway
     {
         /// <summary>
         /// The image ID.
-        /// Only one of `name` and `image_id` should be specified.
+        /// 
+        /// &gt; **Note** You must specify at least one: `name` and/or `image_id`.
         /// </summary>
         [Input("imageId")]
         public Input<string>? ImageId { get; set; }
 
         /// <summary>
         /// The image name.
-        /// Only one of `name` and `image_id` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

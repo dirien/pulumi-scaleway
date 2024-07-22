@@ -13,7 +13,7 @@ namespace ediri.Scaleway
     public static class GetRdbPrivilege
     {
         /// <summary>
-        /// Gets information about the privilege on RDB database.
+        /// Gets information about the privileges in a database.
         /// 
         /// ## Example Usage
         /// 
@@ -39,7 +39,7 @@ namespace ediri.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRdbPrivilegeResult>("scaleway:index/getRdbPrivilege:getRdbPrivilege", args ?? new GetRdbPrivilegeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about the privilege on RDB database.
+        /// Gets information about the privileges in a database.
         /// 
         /// ## Example Usage
         /// 
@@ -75,7 +75,7 @@ namespace ediri.Scaleway
         public string DatabaseName { get; set; } = null!;
 
         /// <summary>
-        /// The RDB instance ID.
+        /// The Database Instance ID.
         /// </summary>
         [Input("instanceId", required: true)]
         public string InstanceId { get; set; } = null!;
@@ -107,7 +107,7 @@ namespace ediri.Scaleway
         public Input<string> DatabaseName { get; set; } = null!;
 
         /// <summary>
-        /// The RDB instance ID.
+        /// The Database Instance ID.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;

@@ -12,8 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Creates and manages Scaleway RDB database backup.
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+// Creates and manages database backups.
+// For more information, refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 //
 // ## Example Usage
 //
@@ -31,9 +31,26 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewRdbDatabaseBackup(ctx, "main", &scaleway.RdbDatabaseBackupArgs{
-//				InstanceId:   pulumi.Any(data.Scaleway_rdb_instance.Main.Id),
-//				DatabaseName: pulumi.Any(data.Scaleway_rdb_database.Main.Name),
+//			mainRdbInstance, err := scaleway.NewRdbInstance(ctx, "mainRdbInstance", &scaleway.RdbInstanceArgs{
+//				NodeType:      pulumi.String("DB-DEV-S"),
+//				Engine:        pulumi.String("PostgreSQL-15"),
+//				IsHaCluster:   pulumi.Bool(true),
+//				DisableBackup: pulumi.Bool(true),
+//				UserName:      pulumi.String("my_initial_user"),
+//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainRdbDatabase, err := scaleway.NewRdbDatabase(ctx, "mainRdbDatabase", &scaleway.RdbDatabaseArgs{
+//				InstanceId: mainRdbInstance.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewRdbDatabaseBackup(ctx, "mainRdbDatabaseBackup", &scaleway.RdbDatabaseBackupArgs{
+//				InstanceId:   mainRdbInstance.ID(),
+//				DatabaseName: mainRdbDatabase.Name,
 //			})
 //			if err != nil {
 //				return err
@@ -74,7 +91,7 @@ import (
 //
 // ## Import
 //
-// RDB Database can be imported using the `{region}/{id}`, e.g.
+// Databases can be imported using the `{region}/{id}`, e.g.
 //
 // bash
 //
@@ -92,9 +109,9 @@ type RdbDatabaseBackup struct {
 	//
 	// > **Important:** `expiresAt` cannot be removed after being set.
 	ExpiresAt pulumi.StringPtrOutput `pulumi:"expiresAt"`
-	// UUID of the rdb instance.
+	// UUID of the Database Instance.
 	//
-	// > **Important:** Updates to `instanceId` will recreate the Backup.
+	// > **Important:** Updates to `instanceId` will recreate the backup.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// Name of the instance of the backup.
 	InstanceName pulumi.StringOutput `pulumi:"instanceName"`
@@ -152,9 +169,9 @@ type rdbDatabaseBackupState struct {
 	//
 	// > **Important:** `expiresAt` cannot be removed after being set.
 	ExpiresAt *string `pulumi:"expiresAt"`
-	// UUID of the rdb instance.
+	// UUID of the Database Instance.
 	//
-	// > **Important:** Updates to `instanceId` will recreate the Backup.
+	// > **Important:** Updates to `instanceId` will recreate the backup.
 	InstanceId *string `pulumi:"instanceId"`
 	// Name of the instance of the backup.
 	InstanceName *string `pulumi:"instanceName"`
@@ -177,9 +194,9 @@ type RdbDatabaseBackupState struct {
 	//
 	// > **Important:** `expiresAt` cannot be removed after being set.
 	ExpiresAt pulumi.StringPtrInput
-	// UUID of the rdb instance.
+	// UUID of the Database Instance.
 	//
-	// > **Important:** Updates to `instanceId` will recreate the Backup.
+	// > **Important:** Updates to `instanceId` will recreate the backup.
 	InstanceId pulumi.StringPtrInput
 	// Name of the instance of the backup.
 	InstanceName pulumi.StringPtrInput
@@ -204,9 +221,9 @@ type rdbDatabaseBackupArgs struct {
 	//
 	// > **Important:** `expiresAt` cannot be removed after being set.
 	ExpiresAt *string `pulumi:"expiresAt"`
-	// UUID of the rdb instance.
+	// UUID of the Database Instance.
 	//
-	// > **Important:** Updates to `instanceId` will recreate the Backup.
+	// > **Important:** Updates to `instanceId` will recreate the backup.
 	InstanceId string `pulumi:"instanceId"`
 	// Name of the database (e.g. `my-database`).
 	Name *string `pulumi:"name"`
@@ -222,9 +239,9 @@ type RdbDatabaseBackupArgs struct {
 	//
 	// > **Important:** `expiresAt` cannot be removed after being set.
 	ExpiresAt pulumi.StringPtrInput
-	// UUID of the rdb instance.
+	// UUID of the Database Instance.
 	//
-	// > **Important:** Updates to `instanceId` will recreate the Backup.
+	// > **Important:** Updates to `instanceId` will recreate the backup.
 	InstanceId pulumi.StringInput
 	// Name of the database (e.g. `my-database`).
 	Name pulumi.StringPtrInput
@@ -336,9 +353,9 @@ func (o RdbDatabaseBackupOutput) ExpiresAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RdbDatabaseBackup) pulumi.StringPtrOutput { return v.ExpiresAt }).(pulumi.StringPtrOutput)
 }
 
-// UUID of the rdb instance.
+// UUID of the Database Instance.
 //
-// > **Important:** Updates to `instanceId` will recreate the Backup.
+// > **Important:** Updates to `instanceId` will recreate the backup.
 func (o RdbDatabaseBackupOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RdbDatabaseBackup) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }

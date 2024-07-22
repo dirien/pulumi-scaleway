@@ -2107,6 +2107,7 @@
             "scaleway:index/getBlockVolume:getBlockVolume": 0,
             "scaleway:index/getCockpit:getCockpit": 0,
             "scaleway:index/getCockpitPlan:getCockpitPlan": 0,
+            "scaleway:index/getConfig:getConfig": 0,
             "scaleway:index/getContainer:getContainer": 0,
             "scaleway:index/getContainerNamespace:getContainerNamespace": 0,
             "scaleway:index/getDocumentdbDatabase:getDocumentdbDatabase": 0,

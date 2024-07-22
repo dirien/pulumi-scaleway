@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Creates and manages Scaleway IAM Applications. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/iam/#applications-83ce5e).
+// Creates and manages Scaleway IAM Applications. For more information refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#applications-83ce5e).
 //
 // ## Example Usage
 //

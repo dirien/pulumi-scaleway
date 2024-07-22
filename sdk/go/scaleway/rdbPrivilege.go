@@ -12,8 +12,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Create and manage Scaleway RDB database privilege.
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#user-and-permissions).
+// Create and manage Scaleway database privileges.
+// For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#user-and-permissions).
 //
 // ## Example Usage
 //
@@ -83,7 +83,7 @@ type RdbPrivilege struct {
 
 	// Name of the database (e.g. `my-db-name`).
 	DatabaseName pulumi.StringOutput `pulumi:"databaseName"`
-	// UUID of the rdb instance.
+	// UUID of the Database Instance.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 	Permission pulumi.StringOutput `pulumi:"permission"`
@@ -137,7 +137,7 @@ func GetRdbPrivilege(ctx *pulumi.Context,
 type rdbPrivilegeState struct {
 	// Name of the database (e.g. `my-db-name`).
 	DatabaseName *string `pulumi:"databaseName"`
-	// UUID of the rdb instance.
+	// UUID of the Database Instance.
 	InstanceId *string `pulumi:"instanceId"`
 	// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 	Permission *string `pulumi:"permission"`
@@ -150,7 +150,7 @@ type rdbPrivilegeState struct {
 type RdbPrivilegeState struct {
 	// Name of the database (e.g. `my-db-name`).
 	DatabaseName pulumi.StringPtrInput
-	// UUID of the rdb instance.
+	// UUID of the Database Instance.
 	InstanceId pulumi.StringPtrInput
 	// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 	Permission pulumi.StringPtrInput
@@ -167,7 +167,7 @@ func (RdbPrivilegeState) ElementType() reflect.Type {
 type rdbPrivilegeArgs struct {
 	// Name of the database (e.g. `my-db-name`).
 	DatabaseName string `pulumi:"databaseName"`
-	// UUID of the rdb instance.
+	// UUID of the Database Instance.
 	InstanceId string `pulumi:"instanceId"`
 	// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 	Permission string `pulumi:"permission"`
@@ -181,7 +181,7 @@ type rdbPrivilegeArgs struct {
 type RdbPrivilegeArgs struct {
 	// Name of the database (e.g. `my-db-name`).
 	DatabaseName pulumi.StringInput
-	// UUID of the rdb instance.
+	// UUID of the Database Instance.
 	InstanceId pulumi.StringInput
 	// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 	Permission pulumi.StringInput
@@ -283,7 +283,7 @@ func (o RdbPrivilegeOutput) DatabaseName() pulumi.StringOutput {
 	return o.ApplyT(func(v *RdbPrivilege) pulumi.StringOutput { return v.DatabaseName }).(pulumi.StringOutput)
 }
 
-// UUID of the rdb instance.
+// UUID of the Database Instance.
 func (o RdbPrivilegeOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RdbPrivilege) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }

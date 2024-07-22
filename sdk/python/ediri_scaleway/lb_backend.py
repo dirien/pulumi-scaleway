@@ -386,13 +386,11 @@ class LbBackendArgs:
 
     @property
     @pulumi.getter(name="sendProxyV2")
+    @_utilities.deprecated("""Please use proxy_protocol instead""")
     def send_proxy_v2(self) -> Optional[pulumi.Input[bool]]:
         """
         Enables PROXY protocol version 2
         """
-        warnings.warn("""Please use proxy_protocol instead""", DeprecationWarning)
-        pulumi.log.warn("""send_proxy_v2 is deprecated: Please use proxy_protocol instead""")
-
         return pulumi.get(self, "send_proxy_v2")
 
     @send_proxy_v2.setter
@@ -872,13 +870,11 @@ class _LbBackendState:
 
     @property
     @pulumi.getter(name="sendProxyV2")
+    @_utilities.deprecated("""Please use proxy_protocol instead""")
     def send_proxy_v2(self) -> Optional[pulumi.Input[bool]]:
         """
         Enables PROXY protocol version 2
         """
-        warnings.warn("""Please use proxy_protocol instead""", DeprecationWarning)
-        pulumi.log.warn("""send_proxy_v2 is deprecated: Please use proxy_protocol instead""")
-
         return pulumi.get(self, "send_proxy_v2")
 
     @send_proxy_v2.setter
@@ -1019,8 +1015,9 @@ class LbBackend(pulumi.CustomResource):
                  timeout_tunnel: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Load-Balancer Backends.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+        Creates and manages Scaleway Load Balancer backends.
+
+        or more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
 
         ## Example Usage
 
@@ -1053,7 +1050,7 @@ class LbBackend(pulumi.CustomResource):
 
         ## Import
 
-        Load-Balancer backend can be imported using the `{zone}/{id}`, e.g.
+        Load Balancer backends can be imported using `{zone}/{id}`, e.g.
 
         bash
 
@@ -1100,8 +1097,9 @@ class LbBackend(pulumi.CustomResource):
                  args: LbBackendArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Load-Balancer Backends.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
+        Creates and manages Scaleway Load Balancer backends.
+
+        or more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/configuring-backends/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-backends).
 
         ## Example Usage
 
@@ -1134,7 +1132,7 @@ class LbBackend(pulumi.CustomResource):
 
         ## Import
 
-        Load-Balancer backend can be imported using the `{zone}/{id}`, e.g.
+        Load Balancer backends can be imported using `{zone}/{id}`, e.g.
 
         bash
 
@@ -1508,13 +1506,11 @@ class LbBackend(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="sendProxyV2")
+    @_utilities.deprecated("""Please use proxy_protocol instead""")
     def send_proxy_v2(self) -> pulumi.Output[bool]:
         """
         Enables PROXY protocol version 2
         """
-        warnings.warn("""Please use proxy_protocol instead""", DeprecationWarning)
-        pulumi.log.warn("""send_proxy_v2 is deprecated: Please use proxy_protocol instead""")
-
         return pulumi.get(self, "send_proxy_v2")
 
     @property

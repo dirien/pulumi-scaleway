@@ -5,8 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway RDB database.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+ * Creates and manages databases.
+ * For more information, refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
  *
  * ## Example Usage
  *
@@ -16,7 +16,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@ediri/scaleway";
  *
- * const main = new scaleway.RdbDatabase("main", {instanceId: scaleway_rdb_instance.main.id});
+ * const mainRdbInstance = new scaleway.RdbInstance("mainRdbInstance", {
+ *     nodeType: "DB-DEV-S",
+ *     engine: "PostgreSQL-15",
+ *     isHaCluster: true,
+ *     disableBackup: true,
+ *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
+ * });
+ * const mainRdbDatabase = new scaleway.RdbDatabase("mainRdbDatabase", {instanceId: mainRdbInstance.id});
  * ```
  *
  * ## Import
@@ -58,9 +66,9 @@ export class RdbDatabase extends pulumi.CustomResource {
     }
 
     /**
-     * UUID of the rdb instance.
+     * UUID of the Database Instance.
      *
-     * > **Important:** Updates to `instanceId` will recreate the Database.
+     * > **Important:** Updates to `instanceId` will recreate the database.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
@@ -125,9 +133,9 @@ export class RdbDatabase extends pulumi.CustomResource {
  */
 export interface RdbDatabaseState {
     /**
-     * UUID of the rdb instance.
+     * UUID of the Database Instance.
      *
-     * > **Important:** Updates to `instanceId` will recreate the Database.
+     * > **Important:** Updates to `instanceId` will recreate the database.
      */
     instanceId?: pulumi.Input<string>;
     /**
@@ -157,9 +165,9 @@ export interface RdbDatabaseState {
  */
 export interface RdbDatabaseArgs {
     /**
-     * UUID of the rdb instance.
+     * UUID of the Database Instance.
      *
-     * > **Important:** Updates to `instanceId` will recreate the Database.
+     * > **Important:** Updates to `instanceId` will recreate the database.
      */
     instanceId: pulumi.Input<string>;
     /**

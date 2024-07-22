@@ -25,19 +25,19 @@ namespace ediri.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var hedy = new Scaleway.VpcPrivateNetwork("hedy");
+    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
     /// 
-    ///     var jack = new Scaleway.K8sCluster("jack", new()
+    ///     var cluster = new Scaleway.K8sCluster("cluster", new()
     ///     {
-    ///         Version = "1.24.3",
+    ///         Version = "1.29.1",
     ///         Cni = "cilium",
-    ///         PrivateNetworkId = hedy.Id,
+    ///         PrivateNetworkId = pn.Id,
     ///         DeleteAdditionalResources = false,
     ///     });
     /// 
-    ///     var john = new Scaleway.K8sPool("john", new()
+    ///     var pool = new Scaleway.K8sPool("pool", new()
     ///     {
-    ///         ClusterId = jack.Id,
+    ///         ClusterId = cluster.Id,
     ///         NodeType = "DEV1-M",
     ///         Size = 1,
     ///     });
@@ -55,17 +55,17 @@ namespace ediri.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var henry = new Scaleway.K8sCluster("henry", new()
+    ///     var cluster = new Scaleway.K8sCluster("cluster", new()
     ///     {
     ///         Type = "multicloud",
-    ///         Version = "1.24.3",
+    ///         Version = "1.29.1",
     ///         Cni = "kilo",
     ///         DeleteAdditionalResources = false,
     ///     });
     /// 
-    ///     var friendFromOuterSpace = new Scaleway.K8sPool("friendFromOuterSpace", new()
+    ///     var pool = new Scaleway.K8sPool("pool", new()
     ///     {
-    ///         ClusterId = henry.Id,
+    ///         ClusterId = cluster.Id,
     ///         NodeType = "external",
     ///         Size = 0,
     ///         MinSize = 0,
@@ -86,19 +86,18 @@ namespace ediri.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var hedy = new Scaleway.VpcPrivateNetwork("hedy");
+    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
     /// 
-    ///     var johnK8sCluster = new Scaleway.K8sCluster("johnK8sCluster", new()
+    ///     var cluster = new Scaleway.K8sCluster("cluster", new()
     ///     {
-    ///         Description = "my awesome cluster",
-    ///         Version = "1.24.3",
+    ///         Description = "cluster made in terraform",
+    ///         Version = "1.29.1",
     ///         Cni = "calico",
     ///         Tags = new[]
     ///         {
-    ///             "i'm an awesome tag",
-    ///             "yay",
+    ///             "terraform",
     ///         },
-    ///         PrivateNetworkId = hedy.Id,
+    ///         PrivateNetworkId = pn.Id,
     ///         DeleteAdditionalResources = false,
     ///         AutoscalerConfig = new Scaleway.Inputs.K8sClusterAutoscalerConfigArgs
     ///         {
@@ -112,9 +111,9 @@ namespace ediri.Scaleway
     ///         },
     ///     });
     /// 
-    ///     var johnK8sPool = new Scaleway.K8sPool("johnK8sPool", new()
+    ///     var pool = new Scaleway.K8sPool("pool", new()
     ///     {
-    ///         ClusterId = johnK8sCluster.Id,
+    ///         ClusterId = cluster.Id,
     ///         NodeType = "DEV1-M",
     ///         Size = 3,
     ///         Autoscaling = true,

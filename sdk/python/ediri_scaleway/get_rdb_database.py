@@ -112,7 +112,7 @@ def get_rdb_database(instance_id: Optional[str] = None,
                      region: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRdbDatabaseResult:
     """
-    Gets information about a RDB database.
+    Gets information about a database.
 
     ## Example Usage
 
@@ -151,7 +151,7 @@ def get_rdb_database_output(instance_id: Optional[pulumi.Input[str]] = None,
                             region: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRdbDatabaseResult]:
     """
-    Gets information about a RDB database.
+    Gets information about a database.
 
     ## Example Usage
 

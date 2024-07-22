@@ -11,8 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Get information about Scaleway Load-Balancer Routes.
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
+// Get information about Scaleway Load Balancer routes.
+//
+// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
 //
 // ## Example Usage
 //
@@ -84,7 +85,7 @@ func LookupLbRoute(ctx *pulumi.Context, args *LookupLbRouteArgs, opts ...pulumi.
 
 // A collection of arguments for invoking getLbRoute.
 type LookupLbRouteArgs struct {
-	// The route id.
+	// The route ID.
 	RouteId string `pulumi:"routeId"`
 }
 
@@ -116,7 +117,7 @@ func LookupLbRouteOutput(ctx *pulumi.Context, args LookupLbRouteOutputArgs, opts
 
 // A collection of arguments for invoking getLbRoute.
 type LookupLbRouteOutputArgs struct {
-	// The route id.
+	// The route ID.
 	RouteId pulumi.StringInput `pulumi:"routeId"`
 }
 

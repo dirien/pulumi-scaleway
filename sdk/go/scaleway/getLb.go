@@ -13,6 +13,8 @@ import (
 
 // Gets information about a Load Balancer.
 //
+// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
+//
 // ## Example Usage
 //
 // ```go
@@ -57,12 +59,12 @@ func LookupLb(ctx *pulumi.Context, args *LookupLbArgs, opts ...pulumi.InvokeOpti
 // A collection of arguments for invoking getLb.
 type LookupLbArgs struct {
 	LbId *string `pulumi:"lbId"`
-	// The load balancer name.
+	// The Load Balancer name.
 	Name *string `pulumi:"name"`
-	// The ID of the project the LB is associated with.
+	// The ID of the Project the Load Balancer is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	ReleaseIp *bool   `pulumi:"releaseIp"`
-	// (Defaults to provider `zone`) The zone in which the LB exists.
+	// (Defaults to provider `zone`) The zone in which the Load Balancer exists.
 	Zone *string `pulumi:"zone"`
 }
 
@@ -73,7 +75,7 @@ type LookupLbResult struct {
 	Description        string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// The load-balancer public IP Address.
+	// The Load Balancer public IP address.
 	IpAddress             string                `pulumi:"ipAddress"`
 	IpId                  string                `pulumi:"ipId"`
 	IpIds                 []string              `pulumi:"ipIds"`
@@ -86,11 +88,11 @@ type LookupLbResult struct {
 	Region                string                `pulumi:"region"`
 	ReleaseIp             *bool                 `pulumi:"releaseIp"`
 	SslCompatibilityLevel string                `pulumi:"sslCompatibilityLevel"`
-	// The tags associated with the load-balancer.
+	// The tags associated with the Load Balancer.
 	Tags []string `pulumi:"tags"`
-	// The type of the load-balancer.
+	// The Load Balancer type.
 	Type string `pulumi:"type"`
-	// (Defaults to provider `zone`) The zone in which the LB exists.
+	// (Defaults to provider `zone`) The zone in which the Load Balancer exists.
 	Zone *string `pulumi:"zone"`
 }
 
@@ -110,12 +112,12 @@ func LookupLbOutput(ctx *pulumi.Context, args LookupLbOutputArgs, opts ...pulumi
 // A collection of arguments for invoking getLb.
 type LookupLbOutputArgs struct {
 	LbId pulumi.StringPtrInput `pulumi:"lbId"`
-	// The load balancer name.
+	// The Load Balancer name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The ID of the project the LB is associated with.
+	// The ID of the Project the Load Balancer is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	ReleaseIp pulumi.BoolPtrInput   `pulumi:"releaseIp"`
-	// (Defaults to provider `zone`) The zone in which the LB exists.
+	// (Defaults to provider `zone`) The zone in which the Load Balancer exists.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
@@ -155,7 +157,7 @@ func (o LookupLbResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLbResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The load-balancer public IP Address.
+// The Load Balancer public IP address.
 func (o LookupLbResultOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLbResult) string { return v.IpAddress }).(pulumi.StringOutput)
 }
@@ -204,17 +206,17 @@ func (o LookupLbResultOutput) SslCompatibilityLevel() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLbResult) string { return v.SslCompatibilityLevel }).(pulumi.StringOutput)
 }
 
-// The tags associated with the load-balancer.
+// The tags associated with the Load Balancer.
 func (o LookupLbResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupLbResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The type of the load-balancer.
+// The Load Balancer type.
 func (o LookupLbResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLbResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
-// (Defaults to provider `zone`) The zone in which the LB exists.
+// (Defaults to provider `zone`) The zone in which the Load Balancer exists.
 func (o LookupLbResultOutput) Zone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupLbResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }

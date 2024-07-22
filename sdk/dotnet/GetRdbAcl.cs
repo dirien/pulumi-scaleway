@@ -13,7 +13,7 @@ namespace ediri.Scaleway
     public static class GetRdbAcl
     {
         /// <summary>
-        /// Gets information about the RDB instance network Access Control List.
+        /// Gets information about the Database Instance network Access Control List.
         /// 
         /// ## Example Usage
         /// 
@@ -37,7 +37,7 @@ namespace ediri.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRdbAclResult>("scaleway:index/getRdbAcl:getRdbAcl", args ?? new GetRdbAclArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about the RDB instance network Access Control List.
+        /// Gets information about the Database Instance network Access Control List.
         /// 
         /// ## Example Usage
         /// 

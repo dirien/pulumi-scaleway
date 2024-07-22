@@ -79,7 +79,7 @@ def get_rdb_acl(instance_id: Optional[str] = None,
                 region: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRdbAclResult:
     """
-    Gets information about the RDB instance network Access Control List.
+    Gets information about the Database Instance network Access Control List.
 
     ## Example Usage
 
@@ -112,7 +112,7 @@ def get_rdb_acl_output(instance_id: Optional[pulumi.Input[str]] = None,
                        region: Optional[pulumi.Input[Optional[str]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRdbAclResult]:
     """
-    Gets information about the RDB instance network Access Control List.
+    Gets information about the Database Instance network Access Control List.
 
     ## Example Usage
 

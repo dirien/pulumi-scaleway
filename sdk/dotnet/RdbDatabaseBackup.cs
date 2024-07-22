@@ -11,8 +11,8 @@ using Pulumi;
 namespace ediri.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway RDB database backup.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
+    /// Creates and manages database backups.
+    /// For more information, refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
     /// 
     /// ## Example Usage
     /// 
@@ -26,10 +26,25 @@ namespace ediri.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.RdbDatabaseBackup("main", new()
+    ///     var mainRdbInstance = new Scaleway.RdbInstance("mainRdbInstance", new()
     ///     {
-    ///         InstanceId = data.Scaleway_rdb_instance.Main.Id,
-    ///         DatabaseName = data.Scaleway_rdb_database.Main.Name,
+    ///         NodeType = "DB-DEV-S",
+    ///         Engine = "PostgreSQL-15",
+    ///         IsHaCluster = true,
+    ///         DisableBackup = true,
+    ///         UserName = "my_initial_user",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///     });
+    /// 
+    ///     var mainRdbDatabase = new Scaleway.RdbDatabase("mainRdbDatabase", new()
+    ///     {
+    ///         InstanceId = mainRdbInstance.Id,
+    ///     });
+    /// 
+    ///     var mainRdbDatabaseBackup = new Scaleway.RdbDatabaseBackup("mainRdbDatabaseBackup", new()
+    ///     {
+    ///         InstanceId = mainRdbInstance.Id,
+    ///         DatabaseName = mainRdbDatabase.Name,
     ///     });
     /// 
     /// });
@@ -57,7 +72,7 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// RDB Database can be imported using the `{region}/{id}`, e.g.
+    /// Databases can be imported using the `{region}/{id}`, e.g.
     /// 
     /// bash
     /// 
@@ -89,9 +104,9 @@ namespace ediri.Scaleway
         public Output<string?> ExpiresAt { get; private set; } = null!;
 
         /// <summary>
-        /// UUID of the rdb instance.
+        /// UUID of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `instance_id` will recreate the Backup.
+        /// &gt; **Important:** Updates to `instance_id` will recreate the backup.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
@@ -188,9 +203,9 @@ namespace ediri.Scaleway
         public Input<string>? ExpiresAt { get; set; }
 
         /// <summary>
-        /// UUID of the rdb instance.
+        /// UUID of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `instance_id` will recreate the Backup.
+        /// &gt; **Important:** Updates to `instance_id` will recreate the backup.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
@@ -236,9 +251,9 @@ namespace ediri.Scaleway
         public Input<string>? ExpiresAt { get; set; }
 
         /// <summary>
-        /// UUID of the rdb instance.
+        /// UUID of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `instance_id` will recreate the Backup.
+        /// &gt; **Important:** Updates to `instance_id` will recreate the backup.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }

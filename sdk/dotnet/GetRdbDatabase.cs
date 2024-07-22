@@ -13,7 +13,7 @@ namespace ediri.Scaleway
     public static class GetRdbDatabase
     {
         /// <summary>
-        /// Gets information about a RDB database.
+        /// Gets information about a database.
         /// 
         /// ## Example Usage
         /// 
@@ -38,7 +38,7 @@ namespace ediri.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRdbDatabaseResult>("scaleway:index/getRdbDatabase:getRdbDatabase", args ?? new GetRdbDatabaseArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a RDB database.
+        /// Gets information about a database.
         /// 
         /// ## Example Usage
         /// 

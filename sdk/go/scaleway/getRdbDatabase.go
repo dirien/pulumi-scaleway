@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about a RDB database.
+// Gets information about a database.
 //
 // ## Example Usage
 //
