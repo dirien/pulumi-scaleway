@@ -22,7 +22,7 @@ class RdbAclArgs:
         """
         The set of arguments for constructing a RdbAcl resource.
         :param pulumi.Input[Sequence[pulumi.Input['RdbAclAclRuleArgs']]] acl_rules: A list of ACLs (structure is described below)
-        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+        :param pulumi.Input[str] instance_id: UUID of the Database Instance.
                
                > **Important:** Updates to `instance_id` will recreate the Database ACL.
         :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
@@ -48,7 +48,7 @@ class RdbAclArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[str]:
         """
-        UUID of the rdb instance.
+        UUID of the Database Instance.
 
         > **Important:** Updates to `instance_id` will recreate the Database ACL.
         """
@@ -80,7 +80,7 @@ class _RdbAclState:
         """
         Input properties used for looking up and filtering RdbAcl resources.
         :param pulumi.Input[Sequence[pulumi.Input['RdbAclAclRuleArgs']]] acl_rules: A list of ACLs (structure is described below)
-        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+        :param pulumi.Input[str] instance_id: UUID of the Database Instance.
                
                > **Important:** Updates to `instance_id` will recreate the Database ACL.
         :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
@@ -108,7 +108,7 @@ class _RdbAclState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        UUID of the rdb instance.
+        UUID of the Database Instance.
 
         > **Important:** Updates to `instance_id` will recreate the Database ACL.
         """
@@ -142,7 +142,7 @@ class RdbAcl(pulumi.CustomResource):
                  __props__=None):
         """
         Creates and manages Scaleway Database instance authorized IPs.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#acl-rules-allowed-ips).
+        For more information refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#acl-rules-allowed-ips).
 
         ## Example Usage
 
@@ -152,8 +152,15 @@ class RdbAcl(pulumi.CustomResource):
         import pulumi
         import ediri_scaleway as scaleway
 
-        main = scaleway.RdbAcl("main",
-            instance_id=scaleway_rdb_instance["main"]["id"],
+        main_rdb_instance = scaleway.RdbInstance("mainRdbInstance",
+            node_type="DB-DEV-S",
+            engine="PostgreSQL-15",
+            is_ha_cluster=True,
+            disable_backup=True,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret")
+        main_rdb_acl = scaleway.RdbAcl("mainRdbAcl",
+            instance_id=main_rdb_instance.id,
             acl_rules=[scaleway.RdbAclAclRuleArgs(
                 ip="1.2.3.4/32",
                 description="foo",
@@ -173,7 +180,7 @@ class RdbAcl(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbAclAclRuleArgs']]]] acl_rules: A list of ACLs (structure is described below)
-        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+        :param pulumi.Input[str] instance_id: UUID of the Database Instance.
                
                > **Important:** Updates to `instance_id` will recreate the Database ACL.
         :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
@@ -186,7 +193,7 @@ class RdbAcl(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Creates and manages Scaleway Database instance authorized IPs.
-        For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#acl-rules-allowed-ips).
+        For more information refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#acl-rules-allowed-ips).
 
         ## Example Usage
 
@@ -196,8 +203,15 @@ class RdbAcl(pulumi.CustomResource):
         import pulumi
         import ediri_scaleway as scaleway
 
-        main = scaleway.RdbAcl("main",
-            instance_id=scaleway_rdb_instance["main"]["id"],
+        main_rdb_instance = scaleway.RdbInstance("mainRdbInstance",
+            node_type="DB-DEV-S",
+            engine="PostgreSQL-15",
+            is_ha_cluster=True,
+            disable_backup=True,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret")
+        main_rdb_acl = scaleway.RdbAcl("mainRdbAcl",
+            instance_id=main_rdb_instance.id,
             acl_rules=[scaleway.RdbAclAclRuleArgs(
                 ip="1.2.3.4/32",
                 description="foo",
@@ -269,7 +283,7 @@ class RdbAcl(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbAclAclRuleArgs']]]] acl_rules: A list of ACLs (structure is described below)
-        :param pulumi.Input[str] instance_id: UUID of the rdb instance.
+        :param pulumi.Input[str] instance_id: UUID of the Database Instance.
                
                > **Important:** Updates to `instance_id` will recreate the Database ACL.
         :param pulumi.Input[str] region: `region`) The region in which the Database Instance should be created.
@@ -295,7 +309,7 @@ class RdbAcl(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
         """
-        UUID of the rdb instance.
+        UUID of the Database Instance.
 
         > **Important:** Updates to `instance_id` will recreate the Database ACL.
         """

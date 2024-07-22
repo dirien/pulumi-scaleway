@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about a public gateway DHCP.
+// Gets information about a Public Gateway DHCP configuration.
 //
 // ## Example Usage
 //

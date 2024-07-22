@@ -11,8 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Creates and manages Scaleway Load-Balancers IPs.
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses).
+// Creates and manages Scaleway Load Balancer IP addresses.
+//
+// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
 //
 // ## Example Usage
 //
@@ -70,7 +71,7 @@ import (
 //
 // ## Import
 //
-// IPs can be imported using the `{zone}/{id}`, e.g.
+// IPs can be imported using `{zone}/{id}`, e.g.
 //
 // bash
 //
@@ -80,15 +81,15 @@ import (
 type LbIp struct {
 	pulumi.CustomResourceState
 
-	// The IP Address
+	// The IP address
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
-	// If true, creates a Flexible IP with an IPv6 address.
+	// If true, creates a flexible IP with an IPv6 address.
 	IsIpv6 pulumi.BoolPtrOutput `pulumi:"isIpv6"`
-	// The associated load-balance ID if any
+	// The associated Load Balancer ID if any
 	LbId pulumi.StringOutput `pulumi:"lbId"`
 	// The organizationId you want to attach the resource to
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// `projectId`) The ID of the project the IP is associated with.
+	// `projectId`) The ID of the Project the IP is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The region of the resource
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -128,15 +129,15 @@ func GetLbIp(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LbIp resources.
 type lbIpState struct {
-	// The IP Address
+	// The IP address
 	IpAddress *string `pulumi:"ipAddress"`
-	// If true, creates a Flexible IP with an IPv6 address.
+	// If true, creates a flexible IP with an IPv6 address.
 	IsIpv6 *bool `pulumi:"isIpv6"`
-	// The associated load-balance ID if any
+	// The associated Load Balancer ID if any
 	LbId *string `pulumi:"lbId"`
 	// The organizationId you want to attach the resource to
 	OrganizationId *string `pulumi:"organizationId"`
-	// `projectId`) The ID of the project the IP is associated with.
+	// `projectId`) The ID of the Project the IP is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// The region of the resource
 	Region *string `pulumi:"region"`
@@ -147,15 +148,15 @@ type lbIpState struct {
 }
 
 type LbIpState struct {
-	// The IP Address
+	// The IP address
 	IpAddress pulumi.StringPtrInput
-	// If true, creates a Flexible IP with an IPv6 address.
+	// If true, creates a flexible IP with an IPv6 address.
 	IsIpv6 pulumi.BoolPtrInput
-	// The associated load-balance ID if any
+	// The associated Load Balancer ID if any
 	LbId pulumi.StringPtrInput
 	// The organizationId you want to attach the resource to
 	OrganizationId pulumi.StringPtrInput
-	// `projectId`) The ID of the project the IP is associated with.
+	// `projectId`) The ID of the Project the IP is associated with.
 	ProjectId pulumi.StringPtrInput
 	// The region of the resource
 	Region pulumi.StringPtrInput
@@ -170,9 +171,9 @@ func (LbIpState) ElementType() reflect.Type {
 }
 
 type lbIpArgs struct {
-	// If true, creates a Flexible IP with an IPv6 address.
+	// If true, creates a flexible IP with an IPv6 address.
 	IsIpv6 *bool `pulumi:"isIpv6"`
-	// `projectId`) The ID of the project the IP is associated with.
+	// `projectId`) The ID of the Project the IP is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// The reverse domain associated with this IP.
 	Reverse *string `pulumi:"reverse"`
@@ -182,9 +183,9 @@ type lbIpArgs struct {
 
 // The set of arguments for constructing a LbIp resource.
 type LbIpArgs struct {
-	// If true, creates a Flexible IP with an IPv6 address.
+	// If true, creates a flexible IP with an IPv6 address.
 	IsIpv6 pulumi.BoolPtrInput
-	// `projectId`) The ID of the project the IP is associated with.
+	// `projectId`) The ID of the Project the IP is associated with.
 	ProjectId pulumi.StringPtrInput
 	// The reverse domain associated with this IP.
 	Reverse pulumi.StringPtrInput
@@ -279,17 +280,17 @@ func (o LbIpOutput) ToLbIpOutputWithContext(ctx context.Context) LbIpOutput {
 	return o
 }
 
-// The IP Address
+// The IP address
 func (o LbIpOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbIp) pulumi.StringOutput { return v.IpAddress }).(pulumi.StringOutput)
 }
 
-// If true, creates a Flexible IP with an IPv6 address.
+// If true, creates a flexible IP with an IPv6 address.
 func (o LbIpOutput) IsIpv6() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *LbIp) pulumi.BoolPtrOutput { return v.IsIpv6 }).(pulumi.BoolPtrOutput)
 }
 
-// The associated load-balance ID if any
+// The associated Load Balancer ID if any
 func (o LbIpOutput) LbId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbIp) pulumi.StringOutput { return v.LbId }).(pulumi.StringOutput)
 }
@@ -299,7 +300,7 @@ func (o LbIpOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbIp) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// `projectId`) The ID of the project the IP is associated with.
+// `projectId`) The ID of the Project the IP is associated with.
 func (o LbIpOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbIp) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

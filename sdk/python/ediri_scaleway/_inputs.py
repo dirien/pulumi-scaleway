@@ -21,6 +21,7 @@ __all__ = [
     'CockpitTokenScopesArgs',
     'ContainerTriggerNatsArgs',
     'ContainerTriggerSqsArgs',
+    'DocumentdbPrivateNetworkEndpointPrivateNetworkArgs',
     'DocumentdbReadReplicaDirectAccessArgs',
     'DocumentdbReadReplicaPrivateNetworkArgs',
     'DomainRecordGeoIpArgs',
@@ -866,13 +867,11 @@ class ContainerTriggerSqsArgs:
 
     @property
     @pulumi.getter(name="namespaceId")
+    @_utilities.deprecated("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
     def namespace_id(self) -> Optional[pulumi.Input[str]]:
         """
         ID of the mnq namespace. Deprecated.
         """
-        warnings.warn("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""", DeprecationWarning)
-        pulumi.log.warn("""namespace_id is deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
-
         return pulumi.get(self, "namespace_id")
 
     @namespace_id.setter
@@ -902,6 +901,124 @@ class ContainerTriggerSqsArgs:
     @region.setter
     def region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "region", value)
+
+
+@pulumi.input_type
+class DocumentdbPrivateNetworkEndpointPrivateNetworkArgs:
+    def __init__(__self__, *,
+                 id: pulumi.Input[str],
+                 hostname: Optional[pulumi.Input[str]] = None,
+                 ip: Optional[pulumi.Input[str]] = None,
+                 ip_net: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
+                 zone: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] id: The private network ID.
+        :param pulumi.Input[str] hostname: The hostname of your endpoint.
+        :param pulumi.Input[str] ip: The IP of your private network service.
+        :param pulumi.Input[str] ip_net: The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM) service if not set.
+        :param pulumi.Input[str] name: The name of your private service.
+        :param pulumi.Input[int] port: The port of your private service.
+        :param pulumi.Input[str] zone: The zone of your endpoint.
+        """
+        pulumi.set(__self__, "id", id)
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
+        if ip is not None:
+            pulumi.set(__self__, "ip", ip)
+        if ip_net is not None:
+            pulumi.set(__self__, "ip_net", ip_net)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if zone is not None:
+            pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[str]:
+        """
+        The private network ID.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> Optional[pulumi.Input[str]]:
+        """
+        The hostname of your endpoint.
+        """
+        return pulumi.get(self, "hostname")
+
+    @hostname.setter
+    def hostname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hostname", value)
+
+    @property
+    @pulumi.getter
+    def ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        The IP of your private network service.
+        """
+        return pulumi.get(self, "ip")
+
+    @ip.setter
+    def ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ip", value)
+
+    @property
+    @pulumi.getter(name="ipNet")
+    def ip_net(self) -> Optional[pulumi.Input[str]]:
+        """
+        The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM) service if not set.
+        """
+        return pulumi.get(self, "ip_net")
+
+    @ip_net.setter
+    def ip_net(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ip_net", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of your private service.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        The port of your private service.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter
+    def zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        The zone of your endpoint.
+        """
+        return pulumi.get(self, "zone")
+
+    @zone.setter
+    def zone(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "zone", value)
 
 
 @pulumi.input_type
@@ -1470,13 +1587,11 @@ class FunctionTriggerSqsArgs:
 
     @property
     @pulumi.getter(name="namespaceId")
+    @_utilities.deprecated("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
     def namespace_id(self) -> Optional[pulumi.Input[str]]:
         """
         ID of the mnq namespace. Deprecated.
         """
-        warnings.warn("""The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""", DeprecationWarning)
-        pulumi.log.warn("""namespace_id is deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it""")
-
         return pulumi.get(self, "namespace_id")
 
     @namespace_id.setter
@@ -1515,17 +1630,17 @@ class IamPolicyRuleArgs:
                  organization_id: Optional[pulumi.Input[str]] = None,
                  project_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] permission_set_names: Names of permission sets bound to the rule.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] permission_set_names: Names of permission sets bind to the rule.
                
-               **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+               **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
                
                ```shell
-               $ scw iam permission-set list
+               $ scw IAM permission-set list
                ```
         :param pulumi.Input[str] organization_id: ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] project_ids: List of project IDs scoped to the rule.
                
-               > **Important** One of `organization_id` or `project_ids`  must be set per rule.
+               > **Important** One `organization_id` or `project_ids` must be set per rule.
         """
         pulumi.set(__self__, "permission_set_names", permission_set_names)
         if organization_id is not None:
@@ -1537,12 +1652,12 @@ class IamPolicyRuleArgs:
     @pulumi.getter(name="permissionSetNames")
     def permission_set_names(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        Names of permission sets bound to the rule.
+        Names of permission sets bind to the rule.
 
-        **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+        **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
 
         ```shell
-        $ scw iam permission-set list
+        $ scw IAM permission-set list
         ```
         """
         return pulumi.get(self, "permission_set_names")
@@ -1569,7 +1684,7 @@ class IamPolicyRuleArgs:
         """
         List of project IDs scoped to the rule.
 
-        > **Important** One of `organization_id` or `project_ids`  must be set per rule.
+        > **Important** One `organization_id` or `project_ids` must be set per rule.
         """
         return pulumi.get(self, "project_ids")
 
@@ -1839,13 +1954,11 @@ class InstanceSecurityGroupInboundRuleArgs:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Ip address is deprecated. Please use ip_range instead""")
     def ip(self) -> Optional[pulumi.Input[str]]:
         """
         The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         """
-        warnings.warn("""Ip address is deprecated. Please use ip_range instead""", DeprecationWarning)
-        pulumi.log.warn("""ip is deprecated: Ip address is deprecated. Please use ip_range instead""")
-
         return pulumi.get(self, "ip")
 
     @ip.setter
@@ -1947,13 +2060,11 @@ class InstanceSecurityGroupOutboundRuleArgs:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Ip address is deprecated. Please use ip_range instead""")
     def ip(self) -> Optional[pulumi.Input[str]]:
         """
         Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided
         """
-        warnings.warn("""Ip address is deprecated. Please use ip_range instead""", DeprecationWarning)
-        pulumi.log.warn("""ip is deprecated: Ip address is deprecated. Please use ip_range instead""")
-
         return pulumi.get(self, "ip")
 
     @ip.setter
@@ -2055,13 +2166,11 @@ class InstanceSecurityGroupRulesInboundRuleArgs:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Ip address is deprecated. Please use ip_range instead""")
     def ip(self) -> Optional[pulumi.Input[str]]:
         """
         The ip this rule apply to. If no `ip` nor `ip_range` are specified, rule will apply to all ip. Only one of `ip` and `ip_range` should be specified.
         """
-        warnings.warn("""Ip address is deprecated. Please use ip_range instead""", DeprecationWarning)
-        pulumi.log.warn("""ip is deprecated: Ip address is deprecated. Please use ip_range instead""")
-
         return pulumi.get(self, "ip")
 
     @ip.setter
@@ -2163,13 +2272,11 @@ class InstanceSecurityGroupRulesOutboundRuleArgs:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Ip address is deprecated. Please use ip_range instead""")
     def ip(self) -> Optional[pulumi.Input[str]]:
         """
         Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided
         """
-        warnings.warn("""Ip address is deprecated. Please use ip_range instead""", DeprecationWarning)
-        pulumi.log.warn("""ip is deprecated: Ip address is deprecated. Please use ip_range instead""")
-
         return pulumi.get(self, "ip")
 
     @ip.setter
@@ -2893,8 +3000,8 @@ class IpamIpResourceArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] id: The ID of the resource that the IP is bound to.
-        :param pulumi.Input[str] mac_address: The MAC Address of the resource the IP is attached to.
+        :param pulumi.Input[str] id: The ID of the resource that the IP is attached to.
+        :param pulumi.Input[str] mac_address: The MAC address of the resource the IP is attached to.
         :param pulumi.Input[str] name: The name of the resource the IP is attached to.
         :param pulumi.Input[str] type: The type of resource the IP is attached to.
         """
@@ -2911,7 +3018,7 @@ class IpamIpResourceArgs:
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the resource that the IP is bound to.
+        The ID of the resource that the IP is attached to.
         """
         return pulumi.get(self, "id")
 
@@ -2923,7 +3030,7 @@ class IpamIpResourceArgs:
     @pulumi.getter(name="macAddress")
     def mac_address(self) -> Optional[pulumi.Input[str]]:
         """
-        The MAC Address of the resource the IP is attached to.
+        The MAC address of the resource the IP is attached to.
         """
         return pulumi.get(self, "mac_address")
 
@@ -3002,9 +3109,9 @@ class IpamIpSourceArgs:
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  zonal: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] private_network_id: The private network the IP lives in if the IP is a private IP.
-        :param pulumi.Input[str] subnet_id: The private network subnet the IP lives in if the IP is a private IP in a private network.
-        :param pulumi.Input[str] zonal: The zone the IP lives in if the IP is a public zoned one
+        :param pulumi.Input[str] private_network_id: The Private Network of the IP (if the IP is a private IP).
+        :param pulumi.Input[str] subnet_id: The Private Network subnet of the IP (if the IP is a private IP).
+        :param pulumi.Input[str] zonal: The zone of the IP (if the IP is public and zoned, rather than private and/or regional)
         """
         if private_network_id is not None:
             pulumi.set(__self__, "private_network_id", private_network_id)
@@ -3017,7 +3124,7 @@ class IpamIpSourceArgs:
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The private network the IP lives in if the IP is a private IP.
+        The Private Network of the IP (if the IP is a private IP).
         """
         return pulumi.get(self, "private_network_id")
 
@@ -3029,7 +3136,7 @@ class IpamIpSourceArgs:
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The private network subnet the IP lives in if the IP is a private IP in a private network.
+        The Private Network subnet of the IP (if the IP is a private IP).
         """
         return pulumi.get(self, "subnet_id")
 
@@ -3041,7 +3148,7 @@ class IpamIpSourceArgs:
     @pulumi.getter
     def zonal(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone the IP lives in if the IP is a public zoned one
+        The zone of the IP (if the IP is public and zoned, rather than private and/or regional)
         """
         return pulumi.get(self, "zonal")
 
@@ -3715,9 +3822,9 @@ class LbAclMatchArgs:
                Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
         :param pulumi.Input[str] http_filter_option: If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] http_filter_values: A list of possible values to match for the given HTTP filter.
-               Keep in mind that in the case of `http_header_match` the HTTP header field name is case-insensitive.
+               Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
         :param pulumi.Input[bool] invert: If set to `true`, the condition will be of type "unless".
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_subnets: A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_subnets: A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
         """
         if http_filter is not None:
             pulumi.set(__self__, "http_filter", http_filter)
@@ -3761,7 +3868,7 @@ class LbAclMatchArgs:
     def http_filter_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of possible values to match for the given HTTP filter.
-        Keep in mind that in the case of `http_header_match` the HTTP header field name is case-insensitive.
+        Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
         """
         return pulumi.get(self, "http_filter_values")
 
@@ -3785,7 +3892,7 @@ class LbAclMatchArgs:
     @pulumi.getter(name="ipSubnets")
     def ip_subnets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+        A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
         """
         return pulumi.get(self, "ip_subnets")
 
@@ -4163,7 +4270,7 @@ class LbFrontendAclActionRedirectArgs:
                  type: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[int] code: The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
-        :param pulumi.Input[str] target: An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+        :param pulumi.Input[str] target: A URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
         :param pulumi.Input[str] type: The redirect type. Possible values are: `location` or `scheme`.
         """
         if code is not None:
@@ -4189,7 +4296,7 @@ class LbFrontendAclActionRedirectArgs:
     @pulumi.getter
     def target(self) -> Optional[pulumi.Input[str]]:
         """
-        An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+        A URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
         """
         return pulumi.get(self, "target")
 
@@ -4224,9 +4331,9 @@ class LbFrontendAclMatchArgs:
                Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
         :param pulumi.Input[str] http_filter_option: If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] http_filter_values: A list of possible values to match for the given HTTP filter.
-               Keep in mind that in the case of `http_header_match` the HTTP header field name is case-insensitive.
+               Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
         :param pulumi.Input[bool] invert: If set to `true`, the condition will be of type "unless".
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_subnets: A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_subnets: A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
         """
         if http_filter is not None:
             pulumi.set(__self__, "http_filter", http_filter)
@@ -4270,7 +4377,7 @@ class LbFrontendAclMatchArgs:
     def http_filter_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A list of possible values to match for the given HTTP filter.
-        Keep in mind that in the case of `http_header_match` the HTTP header field name is case-insensitive.
+        Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
         """
         return pulumi.get(self, "http_filter_values")
 
@@ -4294,7 +4401,7 @@ class LbFrontendAclMatchArgs:
     @pulumi.getter(name="ipSubnets")
     def ip_subnets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+        A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
         """
         return pulumi.get(self, "ip_subnets")
 
@@ -4312,15 +4419,18 @@ class LbPrivateNetworkArgs:
                  status: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] private_network_id: (Required) The ID of the Private Network to associate.
-        :param pulumi.Input[bool] dhcp_config: (Optional) Set to true if you want to let DHCP assign IP addresses. See below.
-        :param pulumi.Input[str] static_config: (Optional) Define a local ip address of your choice for the load balancer instance. See below.
+        :param pulumi.Input[str] private_network_id: (Required) The ID of the Private Network to attach to.
+        :param pulumi.Input[bool] dhcp_config: (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
+        :param pulumi.Input[str] static_config: (Deprecated) Please use `dhcp_config`. Define a local ip address of your choice for the load balancer instance.
         :param pulumi.Input[str] status: The status of private network connection
-        :param pulumi.Input[str] zone: `zone`) The zone of the load-balancer.
+        :param pulumi.Input[str] zone: `zone`) The zone of the Load Balancer.
         """
         pulumi.set(__self__, "private_network_id", private_network_id)
         if dhcp_config is not None:
             pulumi.set(__self__, "dhcp_config", dhcp_config)
+        if static_config is not None:
+            warnings.warn("""static_config field is deprecated, please use dhcp_config instead""", DeprecationWarning)
+            pulumi.log.warn("""static_config is deprecated: static_config field is deprecated, please use dhcp_config instead""")
         if static_config is not None:
             pulumi.set(__self__, "static_config", static_config)
         if status is not None:
@@ -4332,7 +4442,7 @@ class LbPrivateNetworkArgs:
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> pulumi.Input[str]:
         """
-        (Required) The ID of the Private Network to associate.
+        (Required) The ID of the Private Network to attach to.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -4344,7 +4454,7 @@ class LbPrivateNetworkArgs:
     @pulumi.getter(name="dhcpConfig")
     def dhcp_config(self) -> Optional[pulumi.Input[bool]]:
         """
-        (Optional) Set to true if you want to let DHCP assign IP addresses. See below.
+        (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
         """
         return pulumi.get(self, "dhcp_config")
 
@@ -4354,9 +4464,10 @@ class LbPrivateNetworkArgs:
 
     @property
     @pulumi.getter(name="staticConfig")
+    @_utilities.deprecated("""static_config field is deprecated, please use dhcp_config instead""")
     def static_config(self) -> Optional[pulumi.Input[str]]:
         """
-        (Optional) Define a local ip address of your choice for the load balancer instance. See below.
+        (Deprecated) Please use `dhcp_config`. Define a local ip address of your choice for the load balancer instance.
         """
         return pulumi.get(self, "static_config")
 
@@ -4380,7 +4491,7 @@ class LbPrivateNetworkArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        `zone`) The zone of the load-balancer.
+        `zone`) The zone of the Load Balancer.
         """
         return pulumi.get(self, "zone")
 
@@ -4396,9 +4507,9 @@ class MnqSnsCredentialsPermissionsArgs:
                  can_publish: Optional[pulumi.Input[bool]] = None,
                  can_receive: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[bool] can_manage: . Defines if user can manage the associated resource(s).
-        :param pulumi.Input[bool] can_publish: . Defines if user can publish messages to the service.
-        :param pulumi.Input[bool] can_receive: . Defines if user can receive messages from the service.
+        :param pulumi.Input[bool] can_manage: . Defines whether the user can manage the associated resource(s).
+        :param pulumi.Input[bool] can_publish: . Defines whether the user can publish messages to the service.
+        :param pulumi.Input[bool] can_receive: . Defines whether the user can receive messages from the service.
         """
         if can_manage is not None:
             pulumi.set(__self__, "can_manage", can_manage)
@@ -4411,7 +4522,7 @@ class MnqSnsCredentialsPermissionsArgs:
     @pulumi.getter(name="canManage")
     def can_manage(self) -> Optional[pulumi.Input[bool]]:
         """
-        . Defines if user can manage the associated resource(s).
+        . Defines whether the user can manage the associated resource(s).
         """
         return pulumi.get(self, "can_manage")
 
@@ -4423,7 +4534,7 @@ class MnqSnsCredentialsPermissionsArgs:
     @pulumi.getter(name="canPublish")
     def can_publish(self) -> Optional[pulumi.Input[bool]]:
         """
-        . Defines if user can publish messages to the service.
+        . Defines whether the user can publish messages to the service.
         """
         return pulumi.get(self, "can_publish")
 
@@ -4435,7 +4546,7 @@ class MnqSnsCredentialsPermissionsArgs:
     @pulumi.getter(name="canReceive")
     def can_receive(self) -> Optional[pulumi.Input[bool]]:
         """
-        . Defines if user can receive messages from the service.
+        . Defines whether the user can receive messages from the service.
         """
         return pulumi.get(self, "can_receive")
 
@@ -4451,9 +4562,9 @@ class MnqSqsCredentialsPermissionsArgs:
                  can_publish: Optional[pulumi.Input[bool]] = None,
                  can_receive: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[bool] can_manage: . Defines if user can manage the associated resource(s).
-        :param pulumi.Input[bool] can_publish: . Defines if user can publish messages to the service.
-        :param pulumi.Input[bool] can_receive: . Defines if user can receive messages from the service.
+        :param pulumi.Input[bool] can_manage: . Defines whether the user can manage the associated resource(s).
+        :param pulumi.Input[bool] can_publish: . Defines whether the user can publish messages to the service.
+        :param pulumi.Input[bool] can_receive: . Defines whether the user can receive messages from the service.
         """
         if can_manage is not None:
             pulumi.set(__self__, "can_manage", can_manage)
@@ -4466,7 +4577,7 @@ class MnqSqsCredentialsPermissionsArgs:
     @pulumi.getter(name="canManage")
     def can_manage(self) -> Optional[pulumi.Input[bool]]:
         """
-        . Defines if user can manage the associated resource(s).
+        . Defines whether the user can manage the associated resource(s).
         """
         return pulumi.get(self, "can_manage")
 
@@ -4478,7 +4589,7 @@ class MnqSqsCredentialsPermissionsArgs:
     @pulumi.getter(name="canPublish")
     def can_publish(self) -> Optional[pulumi.Input[bool]]:
         """
-        . Defines if user can publish messages to the service.
+        . Defines whether the user can publish messages to the service.
         """
         return pulumi.get(self, "can_publish")
 
@@ -4490,7 +4601,7 @@ class MnqSqsCredentialsPermissionsArgs:
     @pulumi.getter(name="canReceive")
     def can_receive(self) -> Optional[pulumi.Input[bool]]:
         """
-        . Defines if user can receive messages from the service.
+        . Defines whether the user can receive messages from the service.
         """
         return pulumi.get(self, "can_receive")
 
@@ -5090,7 +5201,7 @@ class RdbAclAclRuleArgs:
                  ip: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] ip: The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        :param pulumi.Input[str] ip: The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
         :param pulumi.Input[str] description: A text describing this rule. Default description: `IP allowed`
         """
         pulumi.set(__self__, "ip", ip)
@@ -5101,7 +5212,7 @@ class RdbAclAclRuleArgs:
     @pulumi.getter
     def ip(self) -> pulumi.Input[str]:
         """
-        The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
         """
         return pulumi.get(self, "ip")
 
@@ -5462,9 +5573,9 @@ class RdbReadReplicaDirectAccessArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] endpoint_id: The ID of the endpoint of the read replica.
-        :param pulumi.Input[str] hostname: Hostname of the endpoint. Only one of ip and hostname may be set.
-        :param pulumi.Input[str] ip: IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+        :param pulumi.Input[str] endpoint_id: The ID of the endpoint of the Read Replica.
+        :param pulumi.Input[str] hostname: Hostname of the endpoint. Only one of IP and hostname may be set.
+        :param pulumi.Input[str] ip: IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
         :param pulumi.Input[str] name: Name of the endpoint.
         :param pulumi.Input[int] port: TCP port of the endpoint.
         """
@@ -5483,7 +5594,7 @@ class RdbReadReplicaDirectAccessArgs:
     @pulumi.getter(name="endpointId")
     def endpoint_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the endpoint of the read replica.
+        The ID of the endpoint of the Read Replica.
         """
         return pulumi.get(self, "endpoint_id")
 
@@ -5495,7 +5606,7 @@ class RdbReadReplicaDirectAccessArgs:
     @pulumi.getter
     def hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        Hostname of the endpoint. Only one of ip and hostname may be set.
+        Hostname of the endpoint. Only one of IP and hostname may be set.
         """
         return pulumi.get(self, "hostname")
 
@@ -5507,7 +5618,7 @@ class RdbReadReplicaDirectAccessArgs:
     @pulumi.getter
     def ip(self) -> Optional[pulumi.Input[str]]:
         """
-        IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+        IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
         """
         return pulumi.get(self, "ip")
 
@@ -5553,13 +5664,13 @@ class RdbReadReplicaPrivateNetworkArgs:
                  service_ip: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] private_network_id: UUID of the private network to be connected to the read replica.
+        :param pulumi.Input[str] private_network_id: UUID of the Private Netork to be connected to the Read Replica.
         :param pulumi.Input[bool] enable_ipam: If true, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
                
                > **Important:** One of `service_ip` or `enable_ipam=true` must be set.
-        :param pulumi.Input[str] endpoint_id: The ID of the endpoint of the read replica.
-        :param pulumi.Input[str] hostname: Hostname of the endpoint. Only one of ip and hostname may be set.
-        :param pulumi.Input[str] ip: IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+        :param pulumi.Input[str] endpoint_id: The ID of the endpoint of the Read Replica.
+        :param pulumi.Input[str] hostname: Hostname of the endpoint. Only one of IP and hostname may be set.
+        :param pulumi.Input[str] ip: IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
         :param pulumi.Input[str] name: Name of the endpoint.
         :param pulumi.Input[int] port: TCP port of the endpoint.
         :param pulumi.Input[str] service_ip: The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
@@ -5587,7 +5698,7 @@ class RdbReadReplicaPrivateNetworkArgs:
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> pulumi.Input[str]:
         """
-        UUID of the private network to be connected to the read replica.
+        UUID of the Private Netork to be connected to the Read Replica.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -5613,7 +5724,7 @@ class RdbReadReplicaPrivateNetworkArgs:
     @pulumi.getter(name="endpointId")
     def endpoint_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the endpoint of the read replica.
+        The ID of the endpoint of the Read Replica.
         """
         return pulumi.get(self, "endpoint_id")
 
@@ -5625,7 +5736,7 @@ class RdbReadReplicaPrivateNetworkArgs:
     @pulumi.getter
     def hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        Hostname of the endpoint. Only one of ip and hostname may be set.
+        Hostname of the endpoint. Only one of IP and hostname may be set.
         """
         return pulumi.get(self, "hostname")
 
@@ -5637,7 +5748,7 @@ class RdbReadReplicaPrivateNetworkArgs:
     @pulumi.getter
     def ip(self) -> Optional[pulumi.Input[str]]:
         """
-        IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+        IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
         """
         return pulumi.get(self, "ip")
 
@@ -5701,7 +5812,7 @@ class RedisClusterAclArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  id: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] ip: The ip range to whitelist
+        :param pulumi.Input[str] ip: The IP range to whitelist
                in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
         :param pulumi.Input[str] description: A text describing this rule. Default description: `Allow IP`
                
@@ -5718,7 +5829,7 @@ class RedisClusterAclArgs:
     @pulumi.getter
     def ip(self) -> pulumi.Input[str]:
         """
-        The ip range to whitelist
+        The IP range to whitelist
         in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
         """
         return pulumi.get(self, "ip")
@@ -5765,30 +5876,30 @@ class RedisClusterPrivateNetworkArgs:
         :param pulumi.Input[str] id: The UUID of the Private Network resource.
         :param pulumi.Input[str] endpoint_id: The ID of the endpoint.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] service_ips: Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
-               Keep in mind that in Cluster mode you cannot edit your Private Network after its creation so if you want to be able to
-               scale your Cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
+               Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
+               scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
                If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
                
                > The `private_network` conflicts with `acl`. Only one should be specified.
                
-               > **Important:** The way to use private networks differs whether you are using Redis in Standalone or Cluster mode.
+               > **Important:** The way to use Private Networks differs whether you are using Redis™ in Standalone or cluster mode.
                
                - Standalone mode (`cluster_size` = 1) : you can attach as many Private Networks as you want (each must be a separate
-               block). If you detach your only private network, your cluster won't be reachable until you define a new Private or
+               block). If you detach your only Private Network, your cluster won't be reachable until you define a new Private or
                Public Network. You can modify your `private_network` and its specs, you can have both a Private and Public Network side
                by side.
                
-               - Cluster mode (`cluster_size` > 2) : you can define a single Private Network as you create your Cluster, you won't be
-               able to edit or detach it afterward, unless you create another Cluster. This also means that, if you are using a static
-               configuration (`service_ips`), you won't be able to scale your Cluster horizontally (add more nodes) since it would
-               require updating the private network to add IPs.
+               - Cluster mode (`cluster_size` > 2) : you can define a single Private Network as you create your cluster, you won't be
+               able to edit or detach it afterward, unless you create another cluster. This also means that, if you are using a static
+               configuration (`service_ips`), you won't be able to scale your cluster horizontally (add more nodes) since it would
+               require updating the Private Network to add IPs.
                Your `service_ips` must be listed as follows:
                
                ```python
                import pulumi
                ```
         :param pulumi.Input[str] zone: `zone`) The zone in which the
-               Redis Cluster should be created.
+               Redis™ cluster should be created.
         """
         pulumi.set(__self__, "id", id)
         if endpoint_id is not None:
@@ -5827,23 +5938,23 @@ class RedisClusterPrivateNetworkArgs:
     def service_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
-        Keep in mind that in Cluster mode you cannot edit your Private Network after its creation so if you want to be able to
-        scale your Cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
+        Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
+        scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
         If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 
         > The `private_network` conflicts with `acl`. Only one should be specified.
 
-        > **Important:** The way to use private networks differs whether you are using Redis in Standalone or Cluster mode.
+        > **Important:** The way to use Private Networks differs whether you are using Redis™ in Standalone or cluster mode.
 
         - Standalone mode (`cluster_size` = 1) : you can attach as many Private Networks as you want (each must be a separate
-        block). If you detach your only private network, your cluster won't be reachable until you define a new Private or
+        block). If you detach your only Private Network, your cluster won't be reachable until you define a new Private or
         Public Network. You can modify your `private_network` and its specs, you can have both a Private and Public Network side
         by side.
 
-        - Cluster mode (`cluster_size` > 2) : you can define a single Private Network as you create your Cluster, you won't be
-        able to edit or detach it afterward, unless you create another Cluster. This also means that, if you are using a static
-        configuration (`service_ips`), you won't be able to scale your Cluster horizontally (add more nodes) since it would
-        require updating the private network to add IPs.
+        - Cluster mode (`cluster_size` > 2) : you can define a single Private Network as you create your cluster, you won't be
+        able to edit or detach it afterward, unless you create another cluster. This also means that, if you are using a static
+        configuration (`service_ips`), you won't be able to scale your cluster horizontally (add more nodes) since it would
+        require updating the Private Network to add IPs.
         Your `service_ips` must be listed as follows:
 
         ```python
@@ -5861,7 +5972,7 @@ class RedisClusterPrivateNetworkArgs:
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
         `zone`) The zone in which the
-        Redis Cluster should be created.
+        Redis™ cluster should be created.
         """
         return pulumi.get(self, "zone")
 
@@ -6019,7 +6130,7 @@ class VpcGatewayNetworkIpamConfigArgs:
                  push_default_route: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[str] ipam_ip_id: Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
-        :param pulumi.Input[bool] push_default_route: Defines whether the default route is enabled on that Gateway Network.
+        :param pulumi.Input[bool] push_default_route: Defines whether to enable the default route on the GatewayNetwork.
         """
         if ipam_ip_id is not None:
             pulumi.set(__self__, "ipam_ip_id", ipam_ip_id)
@@ -6042,7 +6153,7 @@ class VpcGatewayNetworkIpamConfigArgs:
     @pulumi.getter(name="pushDefaultRoute")
     def push_default_route(self) -> Optional[pulumi.Input[bool]]:
         """
-        Defines whether the default route is enabled on that Gateway Network.
+        Defines whether to enable the default route on the GatewayNetwork.
         """
         return pulumi.get(self, "push_default_route")
 
@@ -6062,10 +6173,10 @@ class VpcPrivateNetworkIpv4SubnetArgs:
                  subnet_mask: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] address: The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+        :param pulumi.Input[str] address: The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
         :param pulumi.Input[str] created_at: The date and time of the creation of the subnet.
         :param pulumi.Input[str] id: The subnet ID.
-        :param pulumi.Input[int] prefix_length: The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+        :param pulumi.Input[int] prefix_length: The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
         :param pulumi.Input[str] subnet: The subnet CIDR.
         :param pulumi.Input[str] subnet_mask: The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
         :param pulumi.Input[str] updated_at: The date and time of the last update of the subnet.
@@ -6089,7 +6200,7 @@ class VpcPrivateNetworkIpv4SubnetArgs:
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[str]]:
         """
-        The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+        The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
         """
         return pulumi.get(self, "address")
 
@@ -6125,7 +6236,7 @@ class VpcPrivateNetworkIpv4SubnetArgs:
     @pulumi.getter(name="prefixLength")
     def prefix_length(self) -> Optional[pulumi.Input[int]]:
         """
-        The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+        The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
         """
         return pulumi.get(self, "prefix_length")
 
@@ -6181,10 +6292,10 @@ class VpcPrivateNetworkIpv6SubnetArgs:
                  subnet_mask: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] address: The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+        :param pulumi.Input[str] address: The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
         :param pulumi.Input[str] created_at: The date and time of the creation of the subnet.
         :param pulumi.Input[str] id: The subnet ID.
-        :param pulumi.Input[int] prefix_length: The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+        :param pulumi.Input[int] prefix_length: The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
         :param pulumi.Input[str] subnet: The subnet CIDR.
         :param pulumi.Input[str] subnet_mask: The subnet mask expressed in dotted decimal notation, e.g., '255.255.255.0' for a /24 subnet
         :param pulumi.Input[str] updated_at: The date and time of the last update of the subnet.
@@ -6208,7 +6319,7 @@ class VpcPrivateNetworkIpv6SubnetArgs:
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[str]]:
         """
-        The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+        The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
         """
         return pulumi.get(self, "address")
 
@@ -6244,7 +6355,7 @@ class VpcPrivateNetworkIpv6SubnetArgs:
     @pulumi.getter(name="prefixLength")
     def prefix_length(self) -> Optional[pulumi.Input[int]]:
         """
-        The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+        The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
         """
         return pulumi.get(self, "prefix_length")
 
@@ -6374,9 +6485,9 @@ class GetIpamIpResourceArgs:
                  id: Optional[str] = None,
                  name: Optional[str] = None):
         """
-        :param str type: The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
-        :param str id: The ID of the resource that the IP is bound to.
-        :param str name: The name of the resource to get the IP from.
+        :param str type: The type of the resource the IP is attached to. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+        :param str id: The ID of the resource that the IP is attached to.
+        :param str name: The name of the resource the IP is attached to.
         """
         pulumi.set(__self__, "type", type)
         if id is not None:
@@ -6388,7 +6499,7 @@ class GetIpamIpResourceArgs:
     @pulumi.getter
     def type(self) -> str:
         """
-        The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+        The type of the resource the IP is attached to. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
         """
         return pulumi.get(self, "type")
 
@@ -6400,7 +6511,7 @@ class GetIpamIpResourceArgs:
     @pulumi.getter
     def id(self) -> Optional[str]:
         """
-        The ID of the resource that the IP is bound to.
+        The ID of the resource that the IP is attached to.
         """
         return pulumi.get(self, "id")
 
@@ -6412,7 +6523,7 @@ class GetIpamIpResourceArgs:
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        The name of the resource to get the IP from.
+        The name of the resource the IP is attached to.
         """
         return pulumi.get(self, "name")
 
@@ -6428,9 +6539,9 @@ class GetIpamIpsResourceArgs:
                  id: Optional[str] = None,
                  name: Optional[str] = None):
         """
-        :param str type: The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
-        :param str id: The ID of the resource that the IP is bound to.
-        :param str name: The name of the resource to get the IP from.
+        :param str type: The type of the attached resource. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+        :param str id: The ID of the attached resource.
+        :param str name: The name of the attached resource.
         """
         pulumi.set(__self__, "type", type)
         if id is not None:
@@ -6442,7 +6553,7 @@ class GetIpamIpsResourceArgs:
     @pulumi.getter
     def type(self) -> str:
         """
-        The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+        The type of the attached resource. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
         """
         return pulumi.get(self, "type")
 
@@ -6454,7 +6565,7 @@ class GetIpamIpsResourceArgs:
     @pulumi.getter
     def id(self) -> Optional[str]:
         """
-        The ID of the resource that the IP is bound to.
+        The ID of the attached resource.
         """
         return pulumi.get(self, "id")
 
@@ -6466,7 +6577,7 @@ class GetIpamIpsResourceArgs:
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        The name of the resource to get the IP from.
+        The name of the attached resource.
         """
         return pulumi.get(self, "name")
 

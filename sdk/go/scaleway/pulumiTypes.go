@@ -1654,6 +1654,257 @@ func (o ContainerTriggerSqsPtrOutput) Region() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type DocumentdbPrivateNetworkEndpointPrivateNetwork struct {
+	// The hostname of your endpoint.
+	Hostname *string `pulumi:"hostname"`
+	// The private network ID.
+	Id string `pulumi:"id"`
+	// The IP of your private network service.
+	Ip *string `pulumi:"ip"`
+	// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM) service if not set.
+	IpNet *string `pulumi:"ipNet"`
+	// The name of your private service.
+	Name *string `pulumi:"name"`
+	// The port of your private service.
+	Port *int `pulumi:"port"`
+	// The zone of your endpoint.
+	Zone *string `pulumi:"zone"`
+}
+
+// DocumentdbPrivateNetworkEndpointPrivateNetworkInput is an input type that accepts DocumentdbPrivateNetworkEndpointPrivateNetworkArgs and DocumentdbPrivateNetworkEndpointPrivateNetworkOutput values.
+// You can construct a concrete instance of `DocumentdbPrivateNetworkEndpointPrivateNetworkInput` via:
+//
+//	DocumentdbPrivateNetworkEndpointPrivateNetworkArgs{...}
+type DocumentdbPrivateNetworkEndpointPrivateNetworkInput interface {
+	pulumi.Input
+
+	ToDocumentdbPrivateNetworkEndpointPrivateNetworkOutput() DocumentdbPrivateNetworkEndpointPrivateNetworkOutput
+	ToDocumentdbPrivateNetworkEndpointPrivateNetworkOutputWithContext(context.Context) DocumentdbPrivateNetworkEndpointPrivateNetworkOutput
+}
+
+type DocumentdbPrivateNetworkEndpointPrivateNetworkArgs struct {
+	// The hostname of your endpoint.
+	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
+	// The private network ID.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The IP of your private network service.
+	Ip pulumi.StringPtrInput `pulumi:"ip"`
+	// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM) service if not set.
+	IpNet pulumi.StringPtrInput `pulumi:"ipNet"`
+	// The name of your private service.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The port of your private service.
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// The zone of your endpoint.
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
+}
+
+func (DocumentdbPrivateNetworkEndpointPrivateNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DocumentdbPrivateNetworkEndpointPrivateNetwork)(nil)).Elem()
+}
+
+func (i DocumentdbPrivateNetworkEndpointPrivateNetworkArgs) ToDocumentdbPrivateNetworkEndpointPrivateNetworkOutput() DocumentdbPrivateNetworkEndpointPrivateNetworkOutput {
+	return i.ToDocumentdbPrivateNetworkEndpointPrivateNetworkOutputWithContext(context.Background())
+}
+
+func (i DocumentdbPrivateNetworkEndpointPrivateNetworkArgs) ToDocumentdbPrivateNetworkEndpointPrivateNetworkOutputWithContext(ctx context.Context) DocumentdbPrivateNetworkEndpointPrivateNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbPrivateNetworkEndpointPrivateNetworkOutput)
+}
+
+func (i DocumentdbPrivateNetworkEndpointPrivateNetworkArgs) ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput() DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput {
+	return i.ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutputWithContext(context.Background())
+}
+
+func (i DocumentdbPrivateNetworkEndpointPrivateNetworkArgs) ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutputWithContext(ctx context.Context) DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbPrivateNetworkEndpointPrivateNetworkOutput).ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutputWithContext(ctx)
+}
+
+// DocumentdbPrivateNetworkEndpointPrivateNetworkPtrInput is an input type that accepts DocumentdbPrivateNetworkEndpointPrivateNetworkArgs, DocumentdbPrivateNetworkEndpointPrivateNetworkPtr and DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput values.
+// You can construct a concrete instance of `DocumentdbPrivateNetworkEndpointPrivateNetworkPtrInput` via:
+//
+//	        DocumentdbPrivateNetworkEndpointPrivateNetworkArgs{...}
+//
+//	or:
+//
+//	        nil
+type DocumentdbPrivateNetworkEndpointPrivateNetworkPtrInput interface {
+	pulumi.Input
+
+	ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput() DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput
+	ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutputWithContext(context.Context) DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput
+}
+
+type documentdbPrivateNetworkEndpointPrivateNetworkPtrType DocumentdbPrivateNetworkEndpointPrivateNetworkArgs
+
+func DocumentdbPrivateNetworkEndpointPrivateNetworkPtr(v *DocumentdbPrivateNetworkEndpointPrivateNetworkArgs) DocumentdbPrivateNetworkEndpointPrivateNetworkPtrInput {
+	return (*documentdbPrivateNetworkEndpointPrivateNetworkPtrType)(v)
+}
+
+func (*documentdbPrivateNetworkEndpointPrivateNetworkPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DocumentdbPrivateNetworkEndpointPrivateNetwork)(nil)).Elem()
+}
+
+func (i *documentdbPrivateNetworkEndpointPrivateNetworkPtrType) ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput() DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput {
+	return i.ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutputWithContext(context.Background())
+}
+
+func (i *documentdbPrivateNetworkEndpointPrivateNetworkPtrType) ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutputWithContext(ctx context.Context) DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput)
+}
+
+type DocumentdbPrivateNetworkEndpointPrivateNetworkOutput struct{ *pulumi.OutputState }
+
+func (DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DocumentdbPrivateNetworkEndpointPrivateNetwork)(nil)).Elem()
+}
+
+func (o DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) ToDocumentdbPrivateNetworkEndpointPrivateNetworkOutput() DocumentdbPrivateNetworkEndpointPrivateNetworkOutput {
+	return o
+}
+
+func (o DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) ToDocumentdbPrivateNetworkEndpointPrivateNetworkOutputWithContext(ctx context.Context) DocumentdbPrivateNetworkEndpointPrivateNetworkOutput {
+	return o
+}
+
+func (o DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput() DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput {
+	return o.ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutputWithContext(context.Background())
+}
+
+func (o DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutputWithContext(ctx context.Context) DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DocumentdbPrivateNetworkEndpointPrivateNetwork) *DocumentdbPrivateNetworkEndpointPrivateNetwork {
+		return &v
+	}).(DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput)
+}
+
+// The hostname of your endpoint.
+func (o DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) Hostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DocumentdbPrivateNetworkEndpointPrivateNetwork) *string { return v.Hostname }).(pulumi.StringPtrOutput)
+}
+
+// The private network ID.
+func (o DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v DocumentdbPrivateNetworkEndpointPrivateNetwork) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The IP of your private network service.
+func (o DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) Ip() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DocumentdbPrivateNetworkEndpointPrivateNetwork) *string { return v.Ip }).(pulumi.StringPtrOutput)
+}
+
+// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM) service if not set.
+func (o DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) IpNet() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DocumentdbPrivateNetworkEndpointPrivateNetwork) *string { return v.IpNet }).(pulumi.StringPtrOutput)
+}
+
+// The name of your private service.
+func (o DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DocumentdbPrivateNetworkEndpointPrivateNetwork) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// The port of your private service.
+func (o DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DocumentdbPrivateNetworkEndpointPrivateNetwork) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// The zone of your endpoint.
+func (o DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DocumentdbPrivateNetworkEndpointPrivateNetwork) *string { return v.Zone }).(pulumi.StringPtrOutput)
+}
+
+type DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput struct{ *pulumi.OutputState }
+
+func (DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DocumentdbPrivateNetworkEndpointPrivateNetwork)(nil)).Elem()
+}
+
+func (o DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput) ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput() DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput {
+	return o
+}
+
+func (o DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput) ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutputWithContext(ctx context.Context) DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput {
+	return o
+}
+
+func (o DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput) Elem() DocumentdbPrivateNetworkEndpointPrivateNetworkOutput {
+	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpointPrivateNetwork) DocumentdbPrivateNetworkEndpointPrivateNetwork {
+		if v != nil {
+			return *v
+		}
+		var ret DocumentdbPrivateNetworkEndpointPrivateNetwork
+		return ret
+	}).(DocumentdbPrivateNetworkEndpointPrivateNetworkOutput)
+}
+
+// The hostname of your endpoint.
+func (o DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput) Hostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpointPrivateNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Hostname
+	}).(pulumi.StringPtrOutput)
+}
+
+// The private network ID.
+func (o DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpointPrivateNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// The IP of your private network service.
+func (o DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput) Ip() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpointPrivateNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Ip
+	}).(pulumi.StringPtrOutput)
+}
+
+// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM) service if not set.
+func (o DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput) IpNet() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpointPrivateNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IpNet
+	}).(pulumi.StringPtrOutput)
+}
+
+// The name of your private service.
+func (o DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpointPrivateNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// The port of your private service.
+func (o DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpointPrivateNetwork) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+// The zone of your endpoint.
+func (o DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpointPrivateNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Zone
+	}).(pulumi.StringPtrOutput)
+}
+
 type DocumentdbReadReplicaDirectAccess struct {
 	// The ID of the endpoint of the read replica.
 	EndpointId *string `pulumi:"endpointId"`
@@ -3221,13 +3472,13 @@ func (o FunctionTriggerSqsPtrOutput) Region() pulumi.StringPtrOutput {
 type IamPolicyRule struct {
 	// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
 	OrganizationId *string `pulumi:"organizationId"`
-	// Names of permission sets bound to the rule.
+	// Names of permission sets bind to the rule.
 	//
-	// **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+	// **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
 	PermissionSetNames []string `pulumi:"permissionSetNames"`
 	// List of project IDs scoped to the rule.
 	//
-	// > **Important** One of `organizationId` or `projectIds`  must be set per rule.
+	// > **Important** One `organizationId` or `projectIds` must be set per rule.
 	ProjectIds []string `pulumi:"projectIds"`
 }
 
@@ -3245,13 +3496,13 @@ type IamPolicyRuleInput interface {
 type IamPolicyRuleArgs struct {
 	// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
 	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
-	// Names of permission sets bound to the rule.
+	// Names of permission sets bind to the rule.
 	//
-	// **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+	// **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
 	PermissionSetNames pulumi.StringArrayInput `pulumi:"permissionSetNames"`
 	// List of project IDs scoped to the rule.
 	//
-	// > **Important** One of `organizationId` or `projectIds`  must be set per rule.
+	// > **Important** One `organizationId` or `projectIds` must be set per rule.
 	ProjectIds pulumi.StringArrayInput `pulumi:"projectIds"`
 }
 
@@ -3311,16 +3562,16 @@ func (o IamPolicyRuleOutput) OrganizationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IamPolicyRule) *string { return v.OrganizationId }).(pulumi.StringPtrOutput)
 }
 
-// Names of permission sets bound to the rule.
+// Names of permission sets bind to the rule.
 //
-// **_TIP:_**  You can use the Scaleway CLI to list the permissions details. e.g:
+// **_TIP:_** You can use the Scaleway CLI to list the permissions details. e.g:
 func (o IamPolicyRuleOutput) PermissionSetNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v IamPolicyRule) []string { return v.PermissionSetNames }).(pulumi.StringArrayOutput)
 }
 
 // List of project IDs scoped to the rule.
 //
-// > **Important** One of `organizationId` or `projectIds`  must be set per rule.
+// > **Important** One `organizationId` or `projectIds` must be set per rule.
 func (o IamPolicyRuleOutput) ProjectIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v IamPolicyRule) []string { return v.ProjectIds }).(pulumi.StringArrayOutput)
 }
@@ -6039,9 +6290,9 @@ func (o IotRouteS3PtrOutput) Strategy() pulumi.StringPtrOutput {
 }
 
 type IpamIpResource struct {
-	// The ID of the resource that the IP is bound to.
+	// The ID of the resource that the IP is attached to.
 	Id *string `pulumi:"id"`
-	// The MAC Address of the resource the IP is attached to.
+	// The MAC address of the resource the IP is attached to.
 	MacAddress *string `pulumi:"macAddress"`
 	// The name of the resource the IP is attached to.
 	Name *string `pulumi:"name"`
@@ -6061,9 +6312,9 @@ type IpamIpResourceInput interface {
 }
 
 type IpamIpResourceArgs struct {
-	// The ID of the resource that the IP is bound to.
+	// The ID of the resource that the IP is attached to.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The MAC Address of the resource the IP is attached to.
+	// The MAC address of the resource the IP is attached to.
 	MacAddress pulumi.StringPtrInput `pulumi:"macAddress"`
 	// The name of the resource the IP is attached to.
 	Name pulumi.StringPtrInput `pulumi:"name"`
@@ -6122,12 +6373,12 @@ func (o IpamIpResourceOutput) ToIpamIpResourceOutputWithContext(ctx context.Cont
 	return o
 }
 
-// The ID of the resource that the IP is bound to.
+// The ID of the resource that the IP is attached to.
 func (o IpamIpResourceOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpamIpResource) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The MAC Address of the resource the IP is attached to.
+// The MAC address of the resource the IP is attached to.
 func (o IpamIpResourceOutput) MacAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpamIpResource) *string { return v.MacAddress }).(pulumi.StringPtrOutput)
 }
@@ -6269,11 +6520,11 @@ func (o IpamIpReverseArrayOutput) Index(i pulumi.IntInput) IpamIpReverseOutput {
 }
 
 type IpamIpSource struct {
-	// The private network the IP lives in if the IP is a private IP.
+	// The Private Network of the IP (if the IP is a private IP).
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
-	// The private network subnet the IP lives in if the IP is a private IP in a private network.
+	// The Private Network subnet of the IP (if the IP is a private IP).
 	SubnetId *string `pulumi:"subnetId"`
-	// The zone the IP lives in if the IP is a public zoned one
+	// The zone of the IP (if the IP is public and zoned, rather than private and/or regional)
 	Zonal *string `pulumi:"zonal"`
 }
 
@@ -6289,11 +6540,11 @@ type IpamIpSourceInput interface {
 }
 
 type IpamIpSourceArgs struct {
-	// The private network the IP lives in if the IP is a private IP.
+	// The Private Network of the IP (if the IP is a private IP).
 	PrivateNetworkId pulumi.StringPtrInput `pulumi:"privateNetworkId"`
-	// The private network subnet the IP lives in if the IP is a private IP in a private network.
+	// The Private Network subnet of the IP (if the IP is a private IP).
 	SubnetId pulumi.StringPtrInput `pulumi:"subnetId"`
-	// The zone the IP lives in if the IP is a public zoned one
+	// The zone of the IP (if the IP is public and zoned, rather than private and/or regional)
 	Zonal pulumi.StringPtrInput `pulumi:"zonal"`
 }
 
@@ -6348,17 +6599,17 @@ func (o IpamIpSourceOutput) ToIpamIpSourceOutputWithContext(ctx context.Context)
 	return o
 }
 
-// The private network the IP lives in if the IP is a private IP.
+// The Private Network of the IP (if the IP is a private IP).
 func (o IpamIpSourceOutput) PrivateNetworkId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpamIpSource) *string { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
 }
 
-// The private network subnet the IP lives in if the IP is a private IP in a private network.
+// The Private Network subnet of the IP (if the IP is a private IP).
 func (o IpamIpSourceOutput) SubnetId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpamIpSource) *string { return v.SubnetId }).(pulumi.StringPtrOutput)
 }
 
-// The zone the IP lives in if the IP is a public zoned one
+// The zone of the IP (if the IP is public and zoned, rather than private and/or regional)
 func (o IpamIpSourceOutput) Zonal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpamIpSource) *string { return v.Zonal }).(pulumi.StringPtrOutput)
 }
@@ -7963,11 +8214,11 @@ type LbAclMatch struct {
 	// If you have `httpFilter` at `httpHeaderMatch`, you can use this field to filter on the HTTP header's value.
 	HttpFilterOption *string `pulumi:"httpFilterOption"`
 	// A list of possible values to match for the given HTTP filter.
-	// Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case-insensitive.
+	// Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case insensitive.
 	HttpFilterValues []string `pulumi:"httpFilterValues"`
 	// If set to `true`, the condition will be of type "unless".
 	Invert *bool `pulumi:"invert"`
-	// A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
 	IpSubnets []string `pulumi:"ipSubnets"`
 }
 
@@ -7990,11 +8241,11 @@ type LbAclMatchArgs struct {
 	// If you have `httpFilter` at `httpHeaderMatch`, you can use this field to filter on the HTTP header's value.
 	HttpFilterOption pulumi.StringPtrInput `pulumi:"httpFilterOption"`
 	// A list of possible values to match for the given HTTP filter.
-	// Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case-insensitive.
+	// Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case insensitive.
 	HttpFilterValues pulumi.StringArrayInput `pulumi:"httpFilterValues"`
 	// If set to `true`, the condition will be of type "unless".
 	Invert pulumi.BoolPtrInput `pulumi:"invert"`
-	// A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
 	IpSubnets pulumi.StringArrayInput `pulumi:"ipSubnets"`
 }
 
@@ -8088,7 +8339,7 @@ func (o LbAclMatchOutput) HttpFilterOption() pulumi.StringPtrOutput {
 }
 
 // A list of possible values to match for the given HTTP filter.
-// Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case-insensitive.
+// Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case insensitive.
 func (o LbAclMatchOutput) HttpFilterValues() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LbAclMatch) []string { return v.HttpFilterValues }).(pulumi.StringArrayOutput)
 }
@@ -8098,7 +8349,7 @@ func (o LbAclMatchOutput) Invert() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LbAclMatch) *bool { return v.Invert }).(pulumi.BoolPtrOutput)
 }
 
-// A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
 func (o LbAclMatchOutput) IpSubnets() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LbAclMatch) []string { return v.IpSubnets }).(pulumi.StringArrayOutput)
 }
@@ -8150,7 +8401,7 @@ func (o LbAclMatchPtrOutput) HttpFilterOption() pulumi.StringPtrOutput {
 }
 
 // A list of possible values to match for the given HTTP filter.
-// Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case-insensitive.
+// Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case insensitive.
 func (o LbAclMatchPtrOutput) HttpFilterValues() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *LbAclMatch) []string {
 		if v == nil {
@@ -8170,7 +8421,7 @@ func (o LbAclMatchPtrOutput) Invert() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
 func (o LbAclMatchPtrOutput) IpSubnets() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *LbAclMatch) []string {
 		if v == nil {
@@ -9204,7 +9455,7 @@ func (o LbFrontendAclActionOutput) Type() pulumi.StringOutput {
 type LbFrontendAclActionRedirect struct {
 	// The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
 	Code *int `pulumi:"code"`
-	// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+	// A URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
 	Target *string `pulumi:"target"`
 	// The redirect type. Possible values are: `location` or `scheme`.
 	Type *string `pulumi:"type"`
@@ -9224,7 +9475,7 @@ type LbFrontendAclActionRedirectInput interface {
 type LbFrontendAclActionRedirectArgs struct {
 	// The HTTP redirect code to use. Valid values are `301`, `302`, `303`, `307` and `308`.
 	Code pulumi.IntPtrInput `pulumi:"code"`
-	// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+	// A URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
 	Target pulumi.StringPtrInput `pulumi:"target"`
 	// The redirect type. Possible values are: `location` or `scheme`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
@@ -9286,7 +9537,7 @@ func (o LbFrontendAclActionRedirectOutput) Code() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LbFrontendAclActionRedirect) *int { return v.Code }).(pulumi.IntPtrOutput)
 }
 
-// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+// A URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
 func (o LbFrontendAclActionRedirectOutput) Target() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LbFrontendAclActionRedirect) *string { return v.Target }).(pulumi.StringPtrOutput)
 }
@@ -9324,11 +9575,11 @@ type LbFrontendAclMatch struct {
 	// If you have `httpFilter` at `httpHeaderMatch`, you can use this field to filter on the HTTP header's value.
 	HttpFilterOption *string `pulumi:"httpFilterOption"`
 	// A list of possible values to match for the given HTTP filter.
-	// Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case-insensitive.
+	// Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case insensitive.
 	HttpFilterValues []string `pulumi:"httpFilterValues"`
 	// If set to `true`, the condition will be of type "unless".
 	Invert *bool `pulumi:"invert"`
-	// A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
 	IpSubnets []string `pulumi:"ipSubnets"`
 }
 
@@ -9351,11 +9602,11 @@ type LbFrontendAclMatchArgs struct {
 	// If you have `httpFilter` at `httpHeaderMatch`, you can use this field to filter on the HTTP header's value.
 	HttpFilterOption pulumi.StringPtrInput `pulumi:"httpFilterOption"`
 	// A list of possible values to match for the given HTTP filter.
-	// Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case-insensitive.
+	// Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case insensitive.
 	HttpFilterValues pulumi.StringArrayInput `pulumi:"httpFilterValues"`
 	// If set to `true`, the condition will be of type "unless".
 	Invert pulumi.BoolPtrInput `pulumi:"invert"`
-	// A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
 	IpSubnets pulumi.StringArrayInput `pulumi:"ipSubnets"`
 }
 
@@ -9398,7 +9649,7 @@ func (o LbFrontendAclMatchOutput) HttpFilterOption() pulumi.StringPtrOutput {
 }
 
 // A list of possible values to match for the given HTTP filter.
-// Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case-insensitive.
+// Keep in mind that in the case of `httpHeaderMatch` the HTTP header field name is case insensitive.
 func (o LbFrontendAclMatchOutput) HttpFilterValues() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LbFrontendAclMatch) []string { return v.HttpFilterValues }).(pulumi.StringArrayOutput)
 }
@@ -9408,21 +9659,23 @@ func (o LbFrontendAclMatchOutput) Invert() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LbFrontendAclMatch) *bool { return v.Invert }).(pulumi.BoolPtrOutput)
 }
 
-// A list of IPs or CIDR v4/v6 addresses of the client of the session to match.
+// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
 func (o LbFrontendAclMatchOutput) IpSubnets() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LbFrontendAclMatch) []string { return v.IpSubnets }).(pulumi.StringArrayOutput)
 }
 
 type LbPrivateNetwork struct {
-	// (Optional) Set to true if you want to let DHCP assign IP addresses. See below.
+	// (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
 	DhcpConfig *bool `pulumi:"dhcpConfig"`
-	// (Required) The ID of the Private Network to associate.
+	// (Required) The ID of the Private Network to attach to.
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
-	// (Optional) Define a local ip address of your choice for the load balancer instance. See below.
+	// (Deprecated) Please use `dhcpConfig`. Define a local ip address of your choice for the load balancer instance.
+	//
+	// Deprecated: static_config field is deprecated, please use dhcpConfig instead
 	StaticConfig *string `pulumi:"staticConfig"`
 	// The status of private network connection
 	Status *string `pulumi:"status"`
-	// `zone`) The zone of the load-balancer.
+	// `zone`) The zone of the Load Balancer.
 	Zone *string `pulumi:"zone"`
 }
 
@@ -9438,15 +9691,17 @@ type LbPrivateNetworkInput interface {
 }
 
 type LbPrivateNetworkArgs struct {
-	// (Optional) Set to true if you want to let DHCP assign IP addresses. See below.
+	// (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
 	DhcpConfig pulumi.BoolPtrInput `pulumi:"dhcpConfig"`
-	// (Required) The ID of the Private Network to associate.
+	// (Required) The ID of the Private Network to attach to.
 	PrivateNetworkId pulumi.StringInput `pulumi:"privateNetworkId"`
-	// (Optional) Define a local ip address of your choice for the load balancer instance. See below.
+	// (Deprecated) Please use `dhcpConfig`. Define a local ip address of your choice for the load balancer instance.
+	//
+	// Deprecated: static_config field is deprecated, please use dhcpConfig instead
 	StaticConfig pulumi.StringPtrInput `pulumi:"staticConfig"`
 	// The status of private network connection
 	Status pulumi.StringPtrInput `pulumi:"status"`
-	// `zone`) The zone of the load-balancer.
+	// `zone`) The zone of the Load Balancer.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
@@ -9501,17 +9756,19 @@ func (o LbPrivateNetworkOutput) ToLbPrivateNetworkOutputWithContext(ctx context.
 	return o
 }
 
-// (Optional) Set to true if you want to let DHCP assign IP addresses. See below.
+// (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
 func (o LbPrivateNetworkOutput) DhcpConfig() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LbPrivateNetwork) *bool { return v.DhcpConfig }).(pulumi.BoolPtrOutput)
 }
 
-// (Required) The ID of the Private Network to associate.
+// (Required) The ID of the Private Network to attach to.
 func (o LbPrivateNetworkOutput) PrivateNetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v LbPrivateNetwork) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
-// (Optional) Define a local ip address of your choice for the load balancer instance. See below.
+// (Deprecated) Please use `dhcpConfig`. Define a local ip address of your choice for the load balancer instance.
+//
+// Deprecated: static_config field is deprecated, please use dhcpConfig instead
 func (o LbPrivateNetworkOutput) StaticConfig() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LbPrivateNetwork) *string { return v.StaticConfig }).(pulumi.StringPtrOutput)
 }
@@ -9521,7 +9778,7 @@ func (o LbPrivateNetworkOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LbPrivateNetwork) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-// `zone`) The zone of the load-balancer.
+// `zone`) The zone of the Load Balancer.
 func (o LbPrivateNetworkOutput) Zone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LbPrivateNetwork) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
@@ -9547,11 +9804,11 @@ func (o LbPrivateNetworkArrayOutput) Index(i pulumi.IntInput) LbPrivateNetworkOu
 }
 
 type MnqSnsCredentialsPermissions struct {
-	// . Defines if user can manage the associated resource(s).
+	// . Defines whether the user can manage the associated resource(s).
 	CanManage *bool `pulumi:"canManage"`
-	// . Defines if user can publish messages to the service.
+	// . Defines whether the user can publish messages to the service.
 	CanPublish *bool `pulumi:"canPublish"`
-	// . Defines if user can receive messages from the service.
+	// . Defines whether the user can receive messages from the service.
 	CanReceive *bool `pulumi:"canReceive"`
 }
 
@@ -9567,11 +9824,11 @@ type MnqSnsCredentialsPermissionsInput interface {
 }
 
 type MnqSnsCredentialsPermissionsArgs struct {
-	// . Defines if user can manage the associated resource(s).
+	// . Defines whether the user can manage the associated resource(s).
 	CanManage pulumi.BoolPtrInput `pulumi:"canManage"`
-	// . Defines if user can publish messages to the service.
+	// . Defines whether the user can publish messages to the service.
 	CanPublish pulumi.BoolPtrInput `pulumi:"canPublish"`
-	// . Defines if user can receive messages from the service.
+	// . Defines whether the user can receive messages from the service.
 	CanReceive pulumi.BoolPtrInput `pulumi:"canReceive"`
 }
 
@@ -9652,17 +9909,17 @@ func (o MnqSnsCredentialsPermissionsOutput) ToMnqSnsCredentialsPermissionsPtrOut
 	}).(MnqSnsCredentialsPermissionsPtrOutput)
 }
 
-// . Defines if user can manage the associated resource(s).
+// . Defines whether the user can manage the associated resource(s).
 func (o MnqSnsCredentialsPermissionsOutput) CanManage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v MnqSnsCredentialsPermissions) *bool { return v.CanManage }).(pulumi.BoolPtrOutput)
 }
 
-// . Defines if user can publish messages to the service.
+// . Defines whether the user can publish messages to the service.
 func (o MnqSnsCredentialsPermissionsOutput) CanPublish() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v MnqSnsCredentialsPermissions) *bool { return v.CanPublish }).(pulumi.BoolPtrOutput)
 }
 
-// . Defines if user can receive messages from the service.
+// . Defines whether the user can receive messages from the service.
 func (o MnqSnsCredentialsPermissionsOutput) CanReceive() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v MnqSnsCredentialsPermissions) *bool { return v.CanReceive }).(pulumi.BoolPtrOutput)
 }
@@ -9691,7 +9948,7 @@ func (o MnqSnsCredentialsPermissionsPtrOutput) Elem() MnqSnsCredentialsPermissio
 	}).(MnqSnsCredentialsPermissionsOutput)
 }
 
-// . Defines if user can manage the associated resource(s).
+// . Defines whether the user can manage the associated resource(s).
 func (o MnqSnsCredentialsPermissionsPtrOutput) CanManage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *MnqSnsCredentialsPermissions) *bool {
 		if v == nil {
@@ -9701,7 +9958,7 @@ func (o MnqSnsCredentialsPermissionsPtrOutput) CanManage() pulumi.BoolPtrOutput 
 	}).(pulumi.BoolPtrOutput)
 }
 
-// . Defines if user can publish messages to the service.
+// . Defines whether the user can publish messages to the service.
 func (o MnqSnsCredentialsPermissionsPtrOutput) CanPublish() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *MnqSnsCredentialsPermissions) *bool {
 		if v == nil {
@@ -9711,7 +9968,7 @@ func (o MnqSnsCredentialsPermissionsPtrOutput) CanPublish() pulumi.BoolPtrOutput
 	}).(pulumi.BoolPtrOutput)
 }
 
-// . Defines if user can receive messages from the service.
+// . Defines whether the user can receive messages from the service.
 func (o MnqSnsCredentialsPermissionsPtrOutput) CanReceive() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *MnqSnsCredentialsPermissions) *bool {
 		if v == nil {
@@ -9722,11 +9979,11 @@ func (o MnqSnsCredentialsPermissionsPtrOutput) CanReceive() pulumi.BoolPtrOutput
 }
 
 type MnqSqsCredentialsPermissions struct {
-	// . Defines if user can manage the associated resource(s).
+	// . Defines whether the user can manage the associated resource(s).
 	CanManage *bool `pulumi:"canManage"`
-	// . Defines if user can publish messages to the service.
+	// . Defines whether the user can publish messages to the service.
 	CanPublish *bool `pulumi:"canPublish"`
-	// . Defines if user can receive messages from the service.
+	// . Defines whether the user can receive messages from the service.
 	CanReceive *bool `pulumi:"canReceive"`
 }
 
@@ -9742,11 +9999,11 @@ type MnqSqsCredentialsPermissionsInput interface {
 }
 
 type MnqSqsCredentialsPermissionsArgs struct {
-	// . Defines if user can manage the associated resource(s).
+	// . Defines whether the user can manage the associated resource(s).
 	CanManage pulumi.BoolPtrInput `pulumi:"canManage"`
-	// . Defines if user can publish messages to the service.
+	// . Defines whether the user can publish messages to the service.
 	CanPublish pulumi.BoolPtrInput `pulumi:"canPublish"`
-	// . Defines if user can receive messages from the service.
+	// . Defines whether the user can receive messages from the service.
 	CanReceive pulumi.BoolPtrInput `pulumi:"canReceive"`
 }
 
@@ -9827,17 +10084,17 @@ func (o MnqSqsCredentialsPermissionsOutput) ToMnqSqsCredentialsPermissionsPtrOut
 	}).(MnqSqsCredentialsPermissionsPtrOutput)
 }
 
-// . Defines if user can manage the associated resource(s).
+// . Defines whether the user can manage the associated resource(s).
 func (o MnqSqsCredentialsPermissionsOutput) CanManage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v MnqSqsCredentialsPermissions) *bool { return v.CanManage }).(pulumi.BoolPtrOutput)
 }
 
-// . Defines if user can publish messages to the service.
+// . Defines whether the user can publish messages to the service.
 func (o MnqSqsCredentialsPermissionsOutput) CanPublish() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v MnqSqsCredentialsPermissions) *bool { return v.CanPublish }).(pulumi.BoolPtrOutput)
 }
 
-// . Defines if user can receive messages from the service.
+// . Defines whether the user can receive messages from the service.
 func (o MnqSqsCredentialsPermissionsOutput) CanReceive() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v MnqSqsCredentialsPermissions) *bool { return v.CanReceive }).(pulumi.BoolPtrOutput)
 }
@@ -9866,7 +10123,7 @@ func (o MnqSqsCredentialsPermissionsPtrOutput) Elem() MnqSqsCredentialsPermissio
 	}).(MnqSqsCredentialsPermissionsOutput)
 }
 
-// . Defines if user can manage the associated resource(s).
+// . Defines whether the user can manage the associated resource(s).
 func (o MnqSqsCredentialsPermissionsPtrOutput) CanManage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *MnqSqsCredentialsPermissions) *bool {
 		if v == nil {
@@ -9876,7 +10133,7 @@ func (o MnqSqsCredentialsPermissionsPtrOutput) CanManage() pulumi.BoolPtrOutput 
 	}).(pulumi.BoolPtrOutput)
 }
 
-// . Defines if user can publish messages to the service.
+// . Defines whether the user can publish messages to the service.
 func (o MnqSqsCredentialsPermissionsPtrOutput) CanPublish() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *MnqSqsCredentialsPermissions) *bool {
 		if v == nil {
@@ -9886,7 +10143,7 @@ func (o MnqSqsCredentialsPermissionsPtrOutput) CanPublish() pulumi.BoolPtrOutput
 	}).(pulumi.BoolPtrOutput)
 }
 
-// . Defines if user can receive messages from the service.
+// . Defines whether the user can receive messages from the service.
 func (o MnqSqsCredentialsPermissionsPtrOutput) CanReceive() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *MnqSqsCredentialsPermissions) *bool {
 		if v == nil {
@@ -11772,7 +12029,7 @@ func (o ObjectBucketWebsiteConfigurationIndexDocumentPtrOutput) Suffix() pulumi.
 type RdbAclAclRule struct {
 	// A text describing this rule. Default description: `IP allowed`
 	Description *string `pulumi:"description"`
-	// The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+	// The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
 	Ip string `pulumi:"ip"`
 }
 
@@ -11790,7 +12047,7 @@ type RdbAclAclRuleInput interface {
 type RdbAclAclRuleArgs struct {
 	// A text describing this rule. Default description: `IP allowed`
 	Description pulumi.StringPtrInput `pulumi:"description"`
-	// The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+	// The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
 	Ip pulumi.StringInput `pulumi:"ip"`
 }
 
@@ -11850,7 +12107,7 @@ func (o RdbAclAclRuleOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RdbAclAclRule) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+// The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
 func (o RdbAclAclRuleOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v RdbAclAclRule) string { return v.Ip }).(pulumi.StringOutput)
 }
@@ -12569,11 +12826,11 @@ func (o RdbInstanceReadReplicaArrayOutput) Index(i pulumi.IntInput) RdbInstanceR
 }
 
 type RdbReadReplicaDirectAccess struct {
-	// The ID of the endpoint of the read replica.
+	// The ID of the endpoint of the Read Replica.
 	EndpointId *string `pulumi:"endpointId"`
-	// Hostname of the endpoint. Only one of ip and hostname may be set.
+	// Hostname of the endpoint. Only one of IP and hostname may be set.
 	Hostname *string `pulumi:"hostname"`
-	// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+	// IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
 	Ip *string `pulumi:"ip"`
 	// Name of the endpoint.
 	Name *string `pulumi:"name"`
@@ -12593,11 +12850,11 @@ type RdbReadReplicaDirectAccessInput interface {
 }
 
 type RdbReadReplicaDirectAccessArgs struct {
-	// The ID of the endpoint of the read replica.
+	// The ID of the endpoint of the Read Replica.
 	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
-	// Hostname of the endpoint. Only one of ip and hostname may be set.
+	// Hostname of the endpoint. Only one of IP and hostname may be set.
 	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
-	// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+	// IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
 	// Name of the endpoint.
 	Name pulumi.StringPtrInput `pulumi:"name"`
@@ -12682,17 +12939,17 @@ func (o RdbReadReplicaDirectAccessOutput) ToRdbReadReplicaDirectAccessPtrOutputW
 	}).(RdbReadReplicaDirectAccessPtrOutput)
 }
 
-// The ID of the endpoint of the read replica.
+// The ID of the endpoint of the Read Replica.
 func (o RdbReadReplicaDirectAccessOutput) EndpointId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RdbReadReplicaDirectAccess) *string { return v.EndpointId }).(pulumi.StringPtrOutput)
 }
 
-// Hostname of the endpoint. Only one of ip and hostname may be set.
+// Hostname of the endpoint. Only one of IP and hostname may be set.
 func (o RdbReadReplicaDirectAccessOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RdbReadReplicaDirectAccess) *string { return v.Hostname }).(pulumi.StringPtrOutput)
 }
 
-// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+// IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
 func (o RdbReadReplicaDirectAccessOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RdbReadReplicaDirectAccess) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
@@ -12731,7 +12988,7 @@ func (o RdbReadReplicaDirectAccessPtrOutput) Elem() RdbReadReplicaDirectAccessOu
 	}).(RdbReadReplicaDirectAccessOutput)
 }
 
-// The ID of the endpoint of the read replica.
+// The ID of the endpoint of the Read Replica.
 func (o RdbReadReplicaDirectAccessPtrOutput) EndpointId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RdbReadReplicaDirectAccess) *string {
 		if v == nil {
@@ -12741,7 +12998,7 @@ func (o RdbReadReplicaDirectAccessPtrOutput) EndpointId() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Hostname of the endpoint. Only one of ip and hostname may be set.
+// Hostname of the endpoint. Only one of IP and hostname may be set.
 func (o RdbReadReplicaDirectAccessPtrOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RdbReadReplicaDirectAccess) *string {
 		if v == nil {
@@ -12751,7 +13008,7 @@ func (o RdbReadReplicaDirectAccessPtrOutput) Hostname() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+// IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
 func (o RdbReadReplicaDirectAccessPtrOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RdbReadReplicaDirectAccess) *string {
 		if v == nil {
@@ -12786,17 +13043,17 @@ type RdbReadReplicaPrivateNetwork struct {
 	//
 	// > **Important:** One of `serviceIp` or `enable_ipam=true` must be set.
 	EnableIpam *bool `pulumi:"enableIpam"`
-	// The ID of the endpoint of the read replica.
+	// The ID of the endpoint of the Read Replica.
 	EndpointId *string `pulumi:"endpointId"`
-	// Hostname of the endpoint. Only one of ip and hostname may be set.
+	// Hostname of the endpoint. Only one of IP and hostname may be set.
 	Hostname *string `pulumi:"hostname"`
-	// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+	// IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
 	Ip *string `pulumi:"ip"`
 	// Name of the endpoint.
 	Name *string `pulumi:"name"`
 	// TCP port of the endpoint.
 	Port *int `pulumi:"port"`
-	// UUID of the private network to be connected to the read replica.
+	// UUID of the Private Netork to be connected to the Read Replica.
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
 	// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 	ServiceIp *string `pulumi:"serviceIp"`
@@ -12820,17 +13077,17 @@ type RdbReadReplicaPrivateNetworkArgs struct {
 	//
 	// > **Important:** One of `serviceIp` or `enable_ipam=true` must be set.
 	EnableIpam pulumi.BoolPtrInput `pulumi:"enableIpam"`
-	// The ID of the endpoint of the read replica.
+	// The ID of the endpoint of the Read Replica.
 	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
-	// Hostname of the endpoint. Only one of ip and hostname may be set.
+	// Hostname of the endpoint. Only one of IP and hostname may be set.
 	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
-	// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+	// IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
 	Ip pulumi.StringPtrInput `pulumi:"ip"`
 	// Name of the endpoint.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// TCP port of the endpoint.
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// UUID of the private network to be connected to the read replica.
+	// UUID of the Private Netork to be connected to the Read Replica.
 	PrivateNetworkId pulumi.StringInput `pulumi:"privateNetworkId"`
 	// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. If not set, The IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 	ServiceIp pulumi.StringPtrInput `pulumi:"serviceIp"`
@@ -12922,17 +13179,17 @@ func (o RdbReadReplicaPrivateNetworkOutput) EnableIpam() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v RdbReadReplicaPrivateNetwork) *bool { return v.EnableIpam }).(pulumi.BoolPtrOutput)
 }
 
-// The ID of the endpoint of the read replica.
+// The ID of the endpoint of the Read Replica.
 func (o RdbReadReplicaPrivateNetworkOutput) EndpointId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RdbReadReplicaPrivateNetwork) *string { return v.EndpointId }).(pulumi.StringPtrOutput)
 }
 
-// Hostname of the endpoint. Only one of ip and hostname may be set.
+// Hostname of the endpoint. Only one of IP and hostname may be set.
 func (o RdbReadReplicaPrivateNetworkOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RdbReadReplicaPrivateNetwork) *string { return v.Hostname }).(pulumi.StringPtrOutput)
 }
 
-// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+// IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
 func (o RdbReadReplicaPrivateNetworkOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RdbReadReplicaPrivateNetwork) *string { return v.Ip }).(pulumi.StringPtrOutput)
 }
@@ -12947,7 +13204,7 @@ func (o RdbReadReplicaPrivateNetworkOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RdbReadReplicaPrivateNetwork) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// UUID of the private network to be connected to the read replica.
+// UUID of the Private Netork to be connected to the Read Replica.
 func (o RdbReadReplicaPrivateNetworkOutput) PrivateNetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v RdbReadReplicaPrivateNetwork) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
@@ -12998,7 +13255,7 @@ func (o RdbReadReplicaPrivateNetworkPtrOutput) EnableIpam() pulumi.BoolPtrOutput
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The ID of the endpoint of the read replica.
+// The ID of the endpoint of the Read Replica.
 func (o RdbReadReplicaPrivateNetworkPtrOutput) EndpointId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RdbReadReplicaPrivateNetwork) *string {
 		if v == nil {
@@ -13008,7 +13265,7 @@ func (o RdbReadReplicaPrivateNetworkPtrOutput) EndpointId() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-// Hostname of the endpoint. Only one of ip and hostname may be set.
+// Hostname of the endpoint. Only one of IP and hostname may be set.
 func (o RdbReadReplicaPrivateNetworkPtrOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RdbReadReplicaPrivateNetwork) *string {
 		if v == nil {
@@ -13018,7 +13275,7 @@ func (o RdbReadReplicaPrivateNetworkPtrOutput) Hostname() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
+// IPv4 address of the endpoint (IP address). Only one of IP and hostname may be set.
 func (o RdbReadReplicaPrivateNetworkPtrOutput) Ip() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RdbReadReplicaPrivateNetwork) *string {
 		if v == nil {
@@ -13048,7 +13305,7 @@ func (o RdbReadReplicaPrivateNetworkPtrOutput) Port() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// UUID of the private network to be connected to the read replica.
+// UUID of the Private Netork to be connected to the Read Replica.
 func (o RdbReadReplicaPrivateNetworkPtrOutput) PrivateNetworkId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RdbReadReplicaPrivateNetwork) *string {
 		if v == nil {
@@ -13085,7 +13342,7 @@ type RedisClusterAcl struct {
 	Description *string `pulumi:"description"`
 	// (Required) The UUID of the endpoint.
 	Id *string `pulumi:"id"`
-	// The ip range to whitelist
+	// The IP range to whitelist
 	// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
 	Ip string `pulumi:"ip"`
 }
@@ -13108,7 +13365,7 @@ type RedisClusterAclArgs struct {
 	Description pulumi.StringPtrInput `pulumi:"description"`
 	// (Required) The UUID of the endpoint.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The ip range to whitelist
+	// The IP range to whitelist
 	// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
 	Ip pulumi.StringInput `pulumi:"ip"`
 }
@@ -13176,7 +13433,7 @@ func (o RedisClusterAclOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RedisClusterAcl) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The ip range to whitelist
+// The IP range to whitelist
 // in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
 func (o RedisClusterAclOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v RedisClusterAcl) string { return v.Ip }).(pulumi.StringOutput)
@@ -13208,23 +13465,23 @@ type RedisClusterPrivateNetwork struct {
 	// The UUID of the Private Network resource.
 	Id string `pulumi:"id"`
 	// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
-	// Keep in mind that in Cluster mode you cannot edit your Private Network after its creation so if you want to be able to
-	// scale your Cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
+	// Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
+	// scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
 	// If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 	//
 	// > The `privateNetwork` conflicts with `acl`. Only one should be specified.
 	//
-	// > **Important:** The way to use private networks differs whether you are using Redis in Standalone or Cluster mode.
+	// > **Important:** The way to use Private Networks differs whether you are using Redis™ in Standalone or cluster mode.
 	//
 	// - Standalone mode (`clusterSize` = 1) : you can attach as many Private Networks as you want (each must be a separate
-	// block). If you detach your only private network, your cluster won't be reachable until you define a new Private or
+	// block). If you detach your only Private Network, your cluster won't be reachable until you define a new Private or
 	// Public Network. You can modify your `privateNetwork` and its specs, you can have both a Private and Public Network side
 	// by side.
 	//
-	// - Cluster mode (`clusterSize` > 2) : you can define a single Private Network as you create your Cluster, you won't be
-	// able to edit or detach it afterward, unless you create another Cluster. This also means that, if you are using a static
-	// configuration (`serviceIps`), you won't be able to scale your Cluster horizontally (add more nodes) since it would
-	// require updating the private network to add IPs.
+	// - Cluster mode (`clusterSize` > 2) : you can define a single Private Network as you create your cluster, you won't be
+	// able to edit or detach it afterward, unless you create another cluster. This also means that, if you are using a static
+	// configuration (`serviceIps`), you won't be able to scale your cluster horizontally (add more nodes) since it would
+	// require updating the Private Network to add IPs.
 	// Your `serviceIps` must be listed as follows:
 	//
 	// ```go
@@ -13242,7 +13499,7 @@ type RedisClusterPrivateNetwork struct {
 	// ```
 	ServiceIps []string `pulumi:"serviceIps"`
 	// `zone`) The zone in which the
-	// Redis Cluster should be created.
+	// Redis™ cluster should be created.
 	Zone *string `pulumi:"zone"`
 }
 
@@ -13263,23 +13520,23 @@ type RedisClusterPrivateNetworkArgs struct {
 	// The UUID of the Private Network resource.
 	Id pulumi.StringInput `pulumi:"id"`
 	// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
-	// Keep in mind that in Cluster mode you cannot edit your Private Network after its creation so if you want to be able to
-	// scale your Cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
+	// Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
+	// scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
 	// If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 	//
 	// > The `privateNetwork` conflicts with `acl`. Only one should be specified.
 	//
-	// > **Important:** The way to use private networks differs whether you are using Redis in Standalone or Cluster mode.
+	// > **Important:** The way to use Private Networks differs whether you are using Redis™ in Standalone or cluster mode.
 	//
 	// - Standalone mode (`clusterSize` = 1) : you can attach as many Private Networks as you want (each must be a separate
-	// block). If you detach your only private network, your cluster won't be reachable until you define a new Private or
+	// block). If you detach your only Private Network, your cluster won't be reachable until you define a new Private or
 	// Public Network. You can modify your `privateNetwork` and its specs, you can have both a Private and Public Network side
 	// by side.
 	//
-	// - Cluster mode (`clusterSize` > 2) : you can define a single Private Network as you create your Cluster, you won't be
-	// able to edit or detach it afterward, unless you create another Cluster. This also means that, if you are using a static
-	// configuration (`serviceIps`), you won't be able to scale your Cluster horizontally (add more nodes) since it would
-	// require updating the private network to add IPs.
+	// - Cluster mode (`clusterSize` > 2) : you can define a single Private Network as you create your cluster, you won't be
+	// able to edit or detach it afterward, unless you create another cluster. This also means that, if you are using a static
+	// configuration (`serviceIps`), you won't be able to scale your cluster horizontally (add more nodes) since it would
+	// require updating the Private Network to add IPs.
 	// Your `serviceIps` must be listed as follows:
 	//
 	// ```go
@@ -13297,7 +13554,7 @@ type RedisClusterPrivateNetworkArgs struct {
 	// ```
 	ServiceIps pulumi.StringArrayInput `pulumi:"serviceIps"`
 	// `zone`) The zone in which the
-	// Redis Cluster should be created.
+	// Redis™ cluster should be created.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
@@ -13363,23 +13620,23 @@ func (o RedisClusterPrivateNetworkOutput) Id() pulumi.StringOutput {
 }
 
 // Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
-// Keep in mind that in Cluster mode you cannot edit your Private Network after its creation so if you want to be able to
-// scale your Cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
+// Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
+// scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
 // If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
 //
 // > The `privateNetwork` conflicts with `acl`. Only one should be specified.
 //
-// > **Important:** The way to use private networks differs whether you are using Redis in Standalone or Cluster mode.
+// > **Important:** The way to use Private Networks differs whether you are using Redis™ in Standalone or cluster mode.
 //
 // - Standalone mode (`clusterSize` = 1) : you can attach as many Private Networks as you want (each must be a separate
-// block). If you detach your only private network, your cluster won't be reachable until you define a new Private or
+// block). If you detach your only Private Network, your cluster won't be reachable until you define a new Private or
 // Public Network. You can modify your `privateNetwork` and its specs, you can have both a Private and Public Network side
 // by side.
 //
-// - Cluster mode (`clusterSize` > 2) : you can define a single Private Network as you create your Cluster, you won't be
-// able to edit or detach it afterward, unless you create another Cluster. This also means that, if you are using a static
-// configuration (`serviceIps`), you won't be able to scale your Cluster horizontally (add more nodes) since it would
-// require updating the private network to add IPs.
+// - Cluster mode (`clusterSize` > 2) : you can define a single Private Network as you create your cluster, you won't be
+// able to edit or detach it afterward, unless you create another cluster. This also means that, if you are using a static
+// configuration (`serviceIps`), you won't be able to scale your cluster horizontally (add more nodes) since it would
+// require updating the Private Network to add IPs.
 // Your `serviceIps` must be listed as follows:
 //
 // ```go
@@ -13403,7 +13660,7 @@ func (o RedisClusterPrivateNetworkOutput) ServiceIps() pulumi.StringArrayOutput 
 }
 
 // `zone`) The zone in which the
-// Redis Cluster should be created.
+// Redis™ cluster should be created.
 func (o RedisClusterPrivateNetworkOutput) Zone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RedisClusterPrivateNetwork) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
@@ -13739,7 +13996,7 @@ func (o TemDomainReputationArrayOutput) Index(i pulumi.IntInput) TemDomainReputa
 type VpcGatewayNetworkIpamConfig struct {
 	// Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
 	IpamIpId *string `pulumi:"ipamIpId"`
-	// Defines whether the default route is enabled on that Gateway Network.
+	// Defines whether to enable the default route on the GatewayNetwork.
 	PushDefaultRoute *bool `pulumi:"pushDefaultRoute"`
 }
 
@@ -13757,7 +14014,7 @@ type VpcGatewayNetworkIpamConfigInput interface {
 type VpcGatewayNetworkIpamConfigArgs struct {
 	// Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
 	IpamIpId pulumi.StringPtrInput `pulumi:"ipamIpId"`
-	// Defines whether the default route is enabled on that Gateway Network.
+	// Defines whether to enable the default route on the GatewayNetwork.
 	PushDefaultRoute pulumi.BoolPtrInput `pulumi:"pushDefaultRoute"`
 }
 
@@ -13817,7 +14074,7 @@ func (o VpcGatewayNetworkIpamConfigOutput) IpamIpId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpcGatewayNetworkIpamConfig) *string { return v.IpamIpId }).(pulumi.StringPtrOutput)
 }
 
-// Defines whether the default route is enabled on that Gateway Network.
+// Defines whether to enable the default route on the GatewayNetwork.
 func (o VpcGatewayNetworkIpamConfigOutput) PushDefaultRoute() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v VpcGatewayNetworkIpamConfig) *bool { return v.PushDefaultRoute }).(pulumi.BoolPtrOutput)
 }
@@ -13843,13 +14100,13 @@ func (o VpcGatewayNetworkIpamConfigArrayOutput) Index(i pulumi.IntInput) VpcGate
 }
 
 type VpcPrivateNetworkIpv4Subnet struct {
-	// The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+	// The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
 	Address *string `pulumi:"address"`
 	// The date and time of the creation of the subnet.
 	CreatedAt *string `pulumi:"createdAt"`
 	// The subnet ID.
 	Id *string `pulumi:"id"`
-	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+	// The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
 	PrefixLength *int `pulumi:"prefixLength"`
 	// The subnet CIDR.
 	Subnet *string `pulumi:"subnet"`
@@ -13871,13 +14128,13 @@ type VpcPrivateNetworkIpv4SubnetInput interface {
 }
 
 type VpcPrivateNetworkIpv4SubnetArgs struct {
-	// The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+	// The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
 	Address pulumi.StringPtrInput `pulumi:"address"`
 	// The date and time of the creation of the subnet.
 	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
 	// The subnet ID.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+	// The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
 	PrefixLength pulumi.IntPtrInput `pulumi:"prefixLength"`
 	// The subnet CIDR.
 	Subnet pulumi.StringPtrInput `pulumi:"subnet"`
@@ -13964,7 +14221,7 @@ func (o VpcPrivateNetworkIpv4SubnetOutput) ToVpcPrivateNetworkIpv4SubnetPtrOutpu
 	}).(VpcPrivateNetworkIpv4SubnetPtrOutput)
 }
 
-// The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+// The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
 func (o VpcPrivateNetworkIpv4SubnetOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpcPrivateNetworkIpv4Subnet) *string { return v.Address }).(pulumi.StringPtrOutput)
 }
@@ -13979,7 +14236,7 @@ func (o VpcPrivateNetworkIpv4SubnetOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpcPrivateNetworkIpv4Subnet) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+// The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
 func (o VpcPrivateNetworkIpv4SubnetOutput) PrefixLength() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v VpcPrivateNetworkIpv4Subnet) *int { return v.PrefixLength }).(pulumi.IntPtrOutput)
 }
@@ -14023,7 +14280,7 @@ func (o VpcPrivateNetworkIpv4SubnetPtrOutput) Elem() VpcPrivateNetworkIpv4Subnet
 	}).(VpcPrivateNetworkIpv4SubnetOutput)
 }
 
-// The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+// The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
 func (o VpcPrivateNetworkIpv4SubnetPtrOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcPrivateNetworkIpv4Subnet) *string {
 		if v == nil {
@@ -14053,7 +14310,7 @@ func (o VpcPrivateNetworkIpv4SubnetPtrOutput) Id() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+// The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
 func (o VpcPrivateNetworkIpv4SubnetPtrOutput) PrefixLength() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *VpcPrivateNetworkIpv4Subnet) *int {
 		if v == nil {
@@ -14094,13 +14351,13 @@ func (o VpcPrivateNetworkIpv4SubnetPtrOutput) UpdatedAt() pulumi.StringPtrOutput
 }
 
 type VpcPrivateNetworkIpv6Subnet struct {
-	// The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+	// The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
 	Address *string `pulumi:"address"`
 	// The date and time of the creation of the subnet.
 	CreatedAt *string `pulumi:"createdAt"`
 	// The subnet ID.
 	Id *string `pulumi:"id"`
-	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+	// The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
 	PrefixLength *int `pulumi:"prefixLength"`
 	// The subnet CIDR.
 	Subnet *string `pulumi:"subnet"`
@@ -14122,13 +14379,13 @@ type VpcPrivateNetworkIpv6SubnetInput interface {
 }
 
 type VpcPrivateNetworkIpv6SubnetArgs struct {
-	// The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+	// The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
 	Address pulumi.StringPtrInput `pulumi:"address"`
 	// The date and time of the creation of the subnet.
 	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
 	// The subnet ID.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+	// The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
 	PrefixLength pulumi.IntPtrInput `pulumi:"prefixLength"`
 	// The subnet CIDR.
 	Subnet pulumi.StringPtrInput `pulumi:"subnet"`
@@ -14189,7 +14446,7 @@ func (o VpcPrivateNetworkIpv6SubnetOutput) ToVpcPrivateNetworkIpv6SubnetOutputWi
 	return o
 }
 
-// The network address of the subnet in dotted decimal notation, e.g., '192.168.0.0' for a '192.168.0.0/24' subnet.
+// The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
 func (o VpcPrivateNetworkIpv6SubnetOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpcPrivateNetworkIpv6Subnet) *string { return v.Address }).(pulumi.StringPtrOutput)
 }
@@ -14204,7 +14461,7 @@ func (o VpcPrivateNetworkIpv6SubnetOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpcPrivateNetworkIpv6Subnet) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask.
+// The length of the network prefix, e.g., 64 for a 'ffff:ffff:ffff:ffff::' mask.
 func (o VpcPrivateNetworkIpv6SubnetOutput) PrefixLength() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v VpcPrivateNetworkIpv6Subnet) *int { return v.PrefixLength }).(pulumi.IntPtrOutput)
 }
@@ -18565,11 +18822,11 @@ func (o GetIotDeviceMessageFilterSubscribeArrayOutput) Index(i pulumi.IntInput) 
 }
 
 type GetIpamIpResource struct {
-	// The ID of the resource that the IP is bound to.
+	// The ID of the resource that the IP is attached to.
 	Id *string `pulumi:"id"`
-	// The name of the resource to get the IP from.
+	// The name of the resource the IP is attached to.
 	Name *string `pulumi:"name"`
-	// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+	// The type of the resource the IP is attached to. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
 	Type string `pulumi:"type"`
 }
 
@@ -18585,11 +18842,11 @@ type GetIpamIpResourceInput interface {
 }
 
 type GetIpamIpResourceArgs struct {
-	// The ID of the resource that the IP is bound to.
+	// The ID of the resource that the IP is attached to.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The name of the resource to get the IP from.
+	// The name of the resource the IP is attached to.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+	// The type of the resource the IP is attached to. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -18670,17 +18927,17 @@ func (o GetIpamIpResourceOutput) ToGetIpamIpResourcePtrOutputWithContext(ctx con
 	}).(GetIpamIpResourcePtrOutput)
 }
 
-// The ID of the resource that the IP is bound to.
+// The ID of the resource that the IP is attached to.
 func (o GetIpamIpResourceOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetIpamIpResource) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The name of the resource to get the IP from.
+// The name of the resource the IP is attached to.
 func (o GetIpamIpResourceOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetIpamIpResource) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+// The type of the resource the IP is attached to. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
 func (o GetIpamIpResourceOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpamIpResource) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -18709,7 +18966,7 @@ func (o GetIpamIpResourcePtrOutput) Elem() GetIpamIpResourceOutput {
 	}).(GetIpamIpResourceOutput)
 }
 
-// The ID of the resource that the IP is bound to.
+// The ID of the resource that the IP is attached to.
 func (o GetIpamIpResourcePtrOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetIpamIpResource) *string {
 		if v == nil {
@@ -18719,7 +18976,7 @@ func (o GetIpamIpResourcePtrOutput) Id() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The name of the resource to get the IP from.
+// The name of the resource the IP is attached to.
 func (o GetIpamIpResourcePtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetIpamIpResource) *string {
 		if v == nil {
@@ -18729,7 +18986,7 @@ func (o GetIpamIpResourcePtrOutput) Name() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+// The type of the resource the IP is attached to. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
 func (o GetIpamIpResourcePtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetIpamIpResource) *string {
 		if v == nil {
@@ -18740,23 +18997,23 @@ func (o GetIpamIpResourcePtrOutput) Type() pulumi.StringPtrOutput {
 }
 
 type GetIpamIpsIp struct {
-	// The Scaleway internal IP address of the server.
+	// The Scaleway internal IP address of the resource.
 	Address string `pulumi:"address"`
 	// The date and time of the creation of the IP.
 	CreatedAt string `pulumi:"createdAt"`
 	// The ID of the resource.
 	Id string `pulumi:"id"`
-	// The ID of the project used as filter.
+	// The ID of the Project to filter for.
 	ProjectId string `pulumi:"projectId"`
-	// The region used as filter.
+	// The region to filter for.
 	Region string `pulumi:"region"`
-	// Filter by resource ID, type or name.
+	// Filter for a resource attached to the IP, using resource ID, type or name.
 	Resources []GetIpamIpsIpResource `pulumi:"resources"`
-	// The tags used as filter.
+	// The IP tags to filter for.
 	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the IP.
 	UpdatedAt string `pulumi:"updatedAt"`
-	// The zone in which the IP is.
+	// The zone of the IP.
 	Zone string `pulumi:"zone"`
 }
 
@@ -18772,23 +19029,23 @@ type GetIpamIpsIpInput interface {
 }
 
 type GetIpamIpsIpArgs struct {
-	// The Scaleway internal IP address of the server.
+	// The Scaleway internal IP address of the resource.
 	Address pulumi.StringInput `pulumi:"address"`
 	// The date and time of the creation of the IP.
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// The ID of the resource.
 	Id pulumi.StringInput `pulumi:"id"`
-	// The ID of the project used as filter.
+	// The ID of the Project to filter for.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// The region used as filter.
+	// The region to filter for.
 	Region pulumi.StringInput `pulumi:"region"`
-	// Filter by resource ID, type or name.
+	// Filter for a resource attached to the IP, using resource ID, type or name.
 	Resources GetIpamIpsIpResourceArrayInput `pulumi:"resources"`
-	// The tags used as filter.
+	// The IP tags to filter for.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
 	// The date and time of the last update of the IP.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
-	// The zone in which the IP is.
+	// The zone of the IP.
 	Zone pulumi.StringInput `pulumi:"zone"`
 }
 
@@ -18843,7 +19100,7 @@ func (o GetIpamIpsIpOutput) ToGetIpamIpsIpOutputWithContext(ctx context.Context)
 	return o
 }
 
-// The Scaleway internal IP address of the server.
+// The Scaleway internal IP address of the resource.
 func (o GetIpamIpsIpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpamIpsIp) string { return v.Address }).(pulumi.StringOutput)
 }
@@ -18858,22 +19115,22 @@ func (o GetIpamIpsIpOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpamIpsIp) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The ID of the project used as filter.
+// The ID of the Project to filter for.
 func (o GetIpamIpsIpOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpamIpsIp) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The region used as filter.
+// The region to filter for.
 func (o GetIpamIpsIpOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpamIpsIp) string { return v.Region }).(pulumi.StringOutput)
 }
 
-// Filter by resource ID, type or name.
+// Filter for a resource attached to the IP, using resource ID, type or name.
 func (o GetIpamIpsIpOutput) Resources() GetIpamIpsIpResourceArrayOutput {
 	return o.ApplyT(func(v GetIpamIpsIp) []GetIpamIpsIpResource { return v.Resources }).(GetIpamIpsIpResourceArrayOutput)
 }
 
-// The tags used as filter.
+// The IP tags to filter for.
 func (o GetIpamIpsIpOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetIpamIpsIp) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
@@ -18883,7 +19140,7 @@ func (o GetIpamIpsIpOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpamIpsIp) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// The zone in which the IP is.
+// The zone of the IP.
 func (o GetIpamIpsIpOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpamIpsIp) string { return v.Zone }).(pulumi.StringOutput)
 }
@@ -18909,13 +19166,13 @@ func (o GetIpamIpsIpArrayOutput) Index(i pulumi.IntInput) GetIpamIpsIpOutput {
 }
 
 type GetIpamIpsIpResource struct {
-	// The ID of the resource that the IP is bound to.
+	// The ID of the attached resource.
 	Id string `pulumi:"id"`
-	// The Mac Address used as filter.
+	// The linked MAC address to filter for.
 	MacAddress string `pulumi:"macAddress"`
-	// The name of the resource to get the IP from.
+	// The name of the attached resource.
 	Name string `pulumi:"name"`
-	// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+	// The type of the attached resource. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
 	Type string `pulumi:"type"`
 }
 
@@ -18931,13 +19188,13 @@ type GetIpamIpsIpResourceInput interface {
 }
 
 type GetIpamIpsIpResourceArgs struct {
-	// The ID of the resource that the IP is bound to.
+	// The ID of the attached resource.
 	Id pulumi.StringInput `pulumi:"id"`
-	// The Mac Address used as filter.
+	// The linked MAC address to filter for.
 	MacAddress pulumi.StringInput `pulumi:"macAddress"`
-	// The name of the resource to get the IP from.
+	// The name of the attached resource.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+	// The type of the attached resource. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -18992,22 +19249,22 @@ func (o GetIpamIpsIpResourceOutput) ToGetIpamIpsIpResourceOutputWithContext(ctx 
 	return o
 }
 
-// The ID of the resource that the IP is bound to.
+// The ID of the attached resource.
 func (o GetIpamIpsIpResourceOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpamIpsIpResource) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The Mac Address used as filter.
+// The linked MAC address to filter for.
 func (o GetIpamIpsIpResourceOutput) MacAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpamIpsIpResource) string { return v.MacAddress }).(pulumi.StringOutput)
 }
 
-// The name of the resource to get the IP from.
+// The name of the attached resource.
 func (o GetIpamIpsIpResourceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpamIpsIpResource) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+// The type of the attached resource. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
 func (o GetIpamIpsIpResourceOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpamIpsIpResource) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -19033,11 +19290,11 @@ func (o GetIpamIpsIpResourceArrayOutput) Index(i pulumi.IntInput) GetIpamIpsIpRe
 }
 
 type GetIpamIpsResource struct {
-	// The ID of the resource that the IP is bound to.
+	// The ID of the attached resource.
 	Id *string `pulumi:"id"`
-	// The name of the resource to get the IP from.
+	// The name of the attached resource.
 	Name *string `pulumi:"name"`
-	// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+	// The type of the attached resource. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
 	Type string `pulumi:"type"`
 }
 
@@ -19053,11 +19310,11 @@ type GetIpamIpsResourceInput interface {
 }
 
 type GetIpamIpsResourceArgs struct {
-	// The ID of the resource that the IP is bound to.
+	// The ID of the attached resource.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The name of the resource to get the IP from.
+	// The name of the attached resource.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+	// The type of the attached resource. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -19138,17 +19395,17 @@ func (o GetIpamIpsResourceOutput) ToGetIpamIpsResourcePtrOutputWithContext(ctx c
 	}).(GetIpamIpsResourcePtrOutput)
 }
 
-// The ID of the resource that the IP is bound to.
+// The ID of the attached resource.
 func (o GetIpamIpsResourceOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetIpamIpsResource) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The name of the resource to get the IP from.
+// The name of the attached resource.
 func (o GetIpamIpsResourceOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetIpamIpsResource) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+// The type of the attached resource. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
 func (o GetIpamIpsResourceOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpamIpsResource) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -19177,7 +19434,7 @@ func (o GetIpamIpsResourcePtrOutput) Elem() GetIpamIpsResourceOutput {
 	}).(GetIpamIpsResourceOutput)
 }
 
-// The ID of the resource that the IP is bound to.
+// The ID of the attached resource.
 func (o GetIpamIpsResourcePtrOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetIpamIpsResource) *string {
 		if v == nil {
@@ -19187,7 +19444,7 @@ func (o GetIpamIpsResourcePtrOutput) Id() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The name of the resource to get the IP from.
+// The name of the attached resource.
 func (o GetIpamIpsResourcePtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetIpamIpsResource) *string {
 		if v == nil {
@@ -19197,7 +19454,7 @@ func (o GetIpamIpsResourcePtrOutput) Name() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The type of the resource to get the IP from. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
+// The type of the attached resource. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
 func (o GetIpamIpsResourcePtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetIpamIpsResource) *string {
 		if v == nil {
@@ -20006,25 +20263,25 @@ func (o GetK8sPoolUpgradePolicyArrayOutput) Index(i pulumi.IntInput) GetK8sPoolU
 }
 
 type GetLbAclsAcl struct {
-	// The action that has been undertaken when an ACL filter had matched.
+	// The action to be undertaken when an ACL filter matches.
 	Actions []GetLbAclsAclAction `pulumi:"actions"`
-	// The date at which the ACL was created (RFC 3339 format).
+	// The date on which the ACL was created (RFC 3339 format).
 	CreatedAt string `pulumi:"createdAt"`
 	// The description of the ACL resource.
 	Description string `pulumi:"description"`
-	// The frontend ID this ACL is attached to. ACLs with a frontend ID like it are listed.
-	// > **Important:** LB Frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+	// The frontend ID this ACL is attached to. ACLs with a matching frontend ID are listed.
+	// > **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
 	FrontendId string `pulumi:"frontendId"`
 	// The associated ACL ID.
 	// > **Important:** LB ACLs' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
 	Id string `pulumi:"id"`
-	// The order between the ACLs.
+	// The priority of this ACL in the ordered list.
 	Index int `pulumi:"index"`
 	// The ACL match rule.
 	Matches []GetLbAclsAclMatch `pulumi:"matches"`
-	// The ACL name used as filter. ACLs with a name like it are listed.
+	// The ACL name to filter for. ACLs with a matching name are listed.
 	Name string `pulumi:"name"`
-	// The date at which the ACL was last updated (RFC 3339 format).
+	// The date on which the ACL was last updated (RFC 3339 format).
 	UpdateAt string `pulumi:"updateAt"`
 }
 
@@ -20040,25 +20297,25 @@ type GetLbAclsAclInput interface {
 }
 
 type GetLbAclsAclArgs struct {
-	// The action that has been undertaken when an ACL filter had matched.
+	// The action to be undertaken when an ACL filter matches.
 	Actions GetLbAclsAclActionArrayInput `pulumi:"actions"`
-	// The date at which the ACL was created (RFC 3339 format).
+	// The date on which the ACL was created (RFC 3339 format).
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// The description of the ACL resource.
 	Description pulumi.StringInput `pulumi:"description"`
-	// The frontend ID this ACL is attached to. ACLs with a frontend ID like it are listed.
-	// > **Important:** LB Frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+	// The frontend ID this ACL is attached to. ACLs with a matching frontend ID are listed.
+	// > **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
 	FrontendId pulumi.StringInput `pulumi:"frontendId"`
 	// The associated ACL ID.
 	// > **Important:** LB ACLs' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
 	Id pulumi.StringInput `pulumi:"id"`
-	// The order between the ACLs.
+	// The priority of this ACL in the ordered list.
 	Index pulumi.IntInput `pulumi:"index"`
 	// The ACL match rule.
 	Matches GetLbAclsAclMatchArrayInput `pulumi:"matches"`
-	// The ACL name used as filter. ACLs with a name like it are listed.
+	// The ACL name to filter for. ACLs with a matching name are listed.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The date at which the ACL was last updated (RFC 3339 format).
+	// The date on which the ACL was last updated (RFC 3339 format).
 	UpdateAt pulumi.StringInput `pulumi:"updateAt"`
 }
 
@@ -20113,12 +20370,12 @@ func (o GetLbAclsAclOutput) ToGetLbAclsAclOutputWithContext(ctx context.Context)
 	return o
 }
 
-// The action that has been undertaken when an ACL filter had matched.
+// The action to be undertaken when an ACL filter matches.
 func (o GetLbAclsAclOutput) Actions() GetLbAclsAclActionArrayOutput {
 	return o.ApplyT(func(v GetLbAclsAcl) []GetLbAclsAclAction { return v.Actions }).(GetLbAclsAclActionArrayOutput)
 }
 
-// The date at which the ACL was created (RFC 3339 format).
+// The date on which the ACL was created (RFC 3339 format).
 func (o GetLbAclsAclOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbAclsAcl) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -20128,8 +20385,8 @@ func (o GetLbAclsAclOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbAclsAcl) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// The frontend ID this ACL is attached to. ACLs with a frontend ID like it are listed.
-// > **Important:** LB Frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+// The frontend ID this ACL is attached to. ACLs with a matching frontend ID are listed.
+// > **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
 func (o GetLbAclsAclOutput) FrontendId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbAclsAcl) string { return v.FrontendId }).(pulumi.StringOutput)
 }
@@ -20140,7 +20397,7 @@ func (o GetLbAclsAclOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbAclsAcl) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The order between the ACLs.
+// The priority of this ACL in the ordered list.
 func (o GetLbAclsAclOutput) Index() pulumi.IntOutput {
 	return o.ApplyT(func(v GetLbAclsAcl) int { return v.Index }).(pulumi.IntOutput)
 }
@@ -20150,12 +20407,12 @@ func (o GetLbAclsAclOutput) Matches() GetLbAclsAclMatchArrayOutput {
 	return o.ApplyT(func(v GetLbAclsAcl) []GetLbAclsAclMatch { return v.Matches }).(GetLbAclsAclMatchArrayOutput)
 }
 
-// The ACL name used as filter. ACLs with a name like it are listed.
+// The ACL name to filter for. ACLs with a matching name are listed.
 func (o GetLbAclsAclOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbAclsAcl) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The date at which the ACL was last updated (RFC 3339 format).
+// The date on which the ACL was last updated (RFC 3339 format).
 func (o GetLbAclsAclOutput) UpdateAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbAclsAcl) string { return v.UpdateAt }).(pulumi.StringOutput)
 }
@@ -20287,9 +20544,9 @@ func (o GetLbAclsAclActionArrayOutput) Index(i pulumi.IntInput) GetLbAclsAclActi
 }
 
 type GetLbAclsAclActionRedirect struct {
-	// The HTTP redirect code used.
+	// The HTTP redirect code to use.
 	Code int `pulumi:"code"`
-	// The URL used in case of a location redirect or the scheme name that replaces the request's original scheme.
+	// The URL used in case of a location redirect, or the scheme name that replaces the request's original scheme.
 	Target string `pulumi:"target"`
 	// The redirect type.
 	Type string `pulumi:"type"`
@@ -20307,9 +20564,9 @@ type GetLbAclsAclActionRedirectInput interface {
 }
 
 type GetLbAclsAclActionRedirectArgs struct {
-	// The HTTP redirect code used.
+	// The HTTP redirect code to use.
 	Code pulumi.IntInput `pulumi:"code"`
-	// The URL used in case of a location redirect or the scheme name that replaces the request's original scheme.
+	// The URL used in case of a location redirect, or the scheme name that replaces the request's original scheme.
 	Target pulumi.StringInput `pulumi:"target"`
 	// The redirect type.
 	Type pulumi.StringInput `pulumi:"type"`
@@ -20366,12 +20623,12 @@ func (o GetLbAclsAclActionRedirectOutput) ToGetLbAclsAclActionRedirectOutputWith
 	return o
 }
 
-// The HTTP redirect code used.
+// The HTTP redirect code to use.
 func (o GetLbAclsAclActionRedirectOutput) Code() pulumi.IntOutput {
 	return o.ApplyT(func(v GetLbAclsAclActionRedirect) int { return v.Code }).(pulumi.IntOutput)
 }
 
-// The URL used in case of a location redirect or the scheme name that replaces the request's original scheme.
+// The URL used in case of a location redirect, or the scheme name that replaces the request's original scheme.
 func (o GetLbAclsAclActionRedirectOutput) Target() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbAclsAclActionRedirect) string { return v.Target }).(pulumi.StringOutput)
 }
@@ -20402,15 +20659,15 @@ func (o GetLbAclsAclActionRedirectArrayOutput) Index(i pulumi.IntInput) GetLbAcl
 }
 
 type GetLbAclsAclMatch struct {
-	// The matched HTTP filter.
+	// The HTTP filter to match.
 	HttpFilter string `pulumi:"httpFilter"`
 	// A list of possible values for the HTTP filter based on the HTTP header.
 	HttpFilterOption string `pulumi:"httpFilterOption"`
-	// The possible values matched for a given HTTP filter.
+	// The possible values to match for a given HTTP filter.
 	HttpFilterValues []string `pulumi:"httpFilterValues"`
 	// The condition will be of type "unless" if invert is set to `true`
 	Invert bool `pulumi:"invert"`
-	// A list of matched IPs or CIDR v4/v6 addresses of the client of the session.
+	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
 	IpSubnets []string `pulumi:"ipSubnets"`
 }
 
@@ -20426,15 +20683,15 @@ type GetLbAclsAclMatchInput interface {
 }
 
 type GetLbAclsAclMatchArgs struct {
-	// The matched HTTP filter.
+	// The HTTP filter to match.
 	HttpFilter pulumi.StringInput `pulumi:"httpFilter"`
 	// A list of possible values for the HTTP filter based on the HTTP header.
 	HttpFilterOption pulumi.StringInput `pulumi:"httpFilterOption"`
-	// The possible values matched for a given HTTP filter.
+	// The possible values to match for a given HTTP filter.
 	HttpFilterValues pulumi.StringArrayInput `pulumi:"httpFilterValues"`
 	// The condition will be of type "unless" if invert is set to `true`
 	Invert pulumi.BoolInput `pulumi:"invert"`
-	// A list of matched IPs or CIDR v4/v6 addresses of the client of the session.
+	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
 	IpSubnets pulumi.StringArrayInput `pulumi:"ipSubnets"`
 }
 
@@ -20489,7 +20746,7 @@ func (o GetLbAclsAclMatchOutput) ToGetLbAclsAclMatchOutputWithContext(ctx contex
 	return o
 }
 
-// The matched HTTP filter.
+// The HTTP filter to match.
 func (o GetLbAclsAclMatchOutput) HttpFilter() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbAclsAclMatch) string { return v.HttpFilter }).(pulumi.StringOutput)
 }
@@ -20499,7 +20756,7 @@ func (o GetLbAclsAclMatchOutput) HttpFilterOption() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbAclsAclMatch) string { return v.HttpFilterOption }).(pulumi.StringOutput)
 }
 
-// The possible values matched for a given HTTP filter.
+// The possible values to match for a given HTTP filter.
 func (o GetLbAclsAclMatchOutput) HttpFilterValues() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetLbAclsAclMatch) []string { return v.HttpFilterValues }).(pulumi.StringArrayOutput)
 }
@@ -20509,7 +20766,7 @@ func (o GetLbAclsAclMatchOutput) Invert() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetLbAclsAclMatch) bool { return v.Invert }).(pulumi.BoolOutput)
 }
 
-// A list of matched IPs or CIDR v4/v6 addresses of the client of the session.
+// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
 func (o GetLbAclsAclMatchOutput) IpSubnets() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetLbAclsAclMatch) []string { return v.IpSubnets }).(pulumi.StringArrayOutput)
 }
@@ -20756,37 +21013,37 @@ func (o GetLbBackendHealthCheckTcpArrayOutput) Index(i pulumi.IntInput) GetLbBac
 }
 
 type GetLbBackendsBackend struct {
-	// The date at which the backend was created (RFC 3339 format).
+	// The date on which the backend was created (RFC 3339 format).
 	CreatedAt string `pulumi:"createdAt"`
-	// Scaleway S3 bucket website to be served in case all backend servers are down.
+	// Scaleway S3 bucket website to be served if all backend servers are down.
 	FailoverHost string `pulumi:"failoverHost"`
-	// User sessions will be forwarded to this port of backend servers.
+	// User sessions will be forwarded to this backend server port.
 	ForwardPort int `pulumi:"forwardPort"`
 	// Load balancing algorithm.
 	ForwardPortAlgorithm string `pulumi:"forwardPortAlgorithm"`
 	// Backend protocol.
 	ForwardProtocol string `pulumi:"forwardProtocol"`
-	// Interval between two HC requests.
+	// Interval between two health check requests.
 	HealthCheckDelay string `pulumi:"healthCheckDelay"`
-	// This block enable HTTP health check.
+	// This block enables HTTP health checks.
 	HealthCheckHttp []GetLbBackendsBackendHealthCheckHttp `pulumi:"healthCheckHttp"`
-	// This block enable HTTPS health check.
+	// This block enables HTTPS health checks.
 	HealthCheckHttps []GetLbBackendsBackendHealthCheckHttp `pulumi:"healthCheckHttps"`
-	// Number of allowed failed HC requests before the backend server is marked down.
+	// Number of allowed failed health check requests before the backend server is marked as down.
 	HealthCheckMaxRetries int `pulumi:"healthCheckMaxRetries"`
-	// Port the HC requests will be sent to.
+	// Port the health check requests will be sent to.
 	HealthCheckPort int `pulumi:"healthCheckPort"`
-	// This block enable TCP health check.
+	// This block enables TCP health checks.
 	HealthCheckTcps []GetLbBackendsBackendHealthCheckTcp `pulumi:"healthCheckTcps"`
-	// Timeout before we consider a HC request failed.
+	// Timeout before a health check request is considered failed.
 	HealthCheckTimeout string `pulumi:"healthCheckTimeout"`
 	// The associated backend ID.
 	Id string `pulumi:"id"`
 	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
 	IgnoreSslServerVerify bool `pulumi:"ignoreSslServerVerify"`
-	// The load-balancer ID this backend is attached to. backends with a LB ID like it are listed.
+	// The Load Balancer ID this backend is attached to. Backends with a matching ID are listed.
 	LbId string `pulumi:"lbId"`
-	// The backend name used as filter. Backends with a name like it are listed.
+	// The backend name to filter for. Backends with a matching name are listed.
 	Name string `pulumi:"name"`
 	// Modify what occurs when a backend server is marked down.
 	OnMarkedDownAction string `pulumi:"onMarkedDownAction"`
@@ -20794,7 +21051,7 @@ type GetLbBackendsBackend struct {
 	ProxyProtocol string `pulumi:"proxyProtocol"`
 	// List of backend server IP addresses.
 	ServerIps []string `pulumi:"serverIps"`
-	// Enables SSL between load balancer and backend servers.
+	// Enables SSL between Load Balancer and backend servers.
 	SslBridging bool `pulumi:"sslBridging"`
 	// Enables cookie-based session persistence.
 	StickySessions string `pulumi:"stickySessions"`
@@ -20806,7 +21063,7 @@ type GetLbBackendsBackend struct {
 	TimeoutServer string `pulumi:"timeoutServer"`
 	// Maximum tunnel inactivity time.
 	TimeoutTunnel string `pulumi:"timeoutTunnel"`
-	// The date at which the backend was last updated (RFC 3339 format).
+	// The date on which the backend was last updated (RFC 3339 format).
 	UpdateAt string `pulumi:"updateAt"`
 }
 
@@ -20822,37 +21079,37 @@ type GetLbBackendsBackendInput interface {
 }
 
 type GetLbBackendsBackendArgs struct {
-	// The date at which the backend was created (RFC 3339 format).
+	// The date on which the backend was created (RFC 3339 format).
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
-	// Scaleway S3 bucket website to be served in case all backend servers are down.
+	// Scaleway S3 bucket website to be served if all backend servers are down.
 	FailoverHost pulumi.StringInput `pulumi:"failoverHost"`
-	// User sessions will be forwarded to this port of backend servers.
+	// User sessions will be forwarded to this backend server port.
 	ForwardPort pulumi.IntInput `pulumi:"forwardPort"`
 	// Load balancing algorithm.
 	ForwardPortAlgorithm pulumi.StringInput `pulumi:"forwardPortAlgorithm"`
 	// Backend protocol.
 	ForwardProtocol pulumi.StringInput `pulumi:"forwardProtocol"`
-	// Interval between two HC requests.
+	// Interval between two health check requests.
 	HealthCheckDelay pulumi.StringInput `pulumi:"healthCheckDelay"`
-	// This block enable HTTP health check.
+	// This block enables HTTP health checks.
 	HealthCheckHttp GetLbBackendsBackendHealthCheckHttpArrayInput `pulumi:"healthCheckHttp"`
-	// This block enable HTTPS health check.
+	// This block enables HTTPS health checks.
 	HealthCheckHttps GetLbBackendsBackendHealthCheckHttpArrayInput `pulumi:"healthCheckHttps"`
-	// Number of allowed failed HC requests before the backend server is marked down.
+	// Number of allowed failed health check requests before the backend server is marked as down.
 	HealthCheckMaxRetries pulumi.IntInput `pulumi:"healthCheckMaxRetries"`
-	// Port the HC requests will be sent to.
+	// Port the health check requests will be sent to.
 	HealthCheckPort pulumi.IntInput `pulumi:"healthCheckPort"`
-	// This block enable TCP health check.
+	// This block enables TCP health checks.
 	HealthCheckTcps GetLbBackendsBackendHealthCheckTcpArrayInput `pulumi:"healthCheckTcps"`
-	// Timeout before we consider a HC request failed.
+	// Timeout before a health check request is considered failed.
 	HealthCheckTimeout pulumi.StringInput `pulumi:"healthCheckTimeout"`
 	// The associated backend ID.
 	Id pulumi.StringInput `pulumi:"id"`
 	// Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection.
 	IgnoreSslServerVerify pulumi.BoolInput `pulumi:"ignoreSslServerVerify"`
-	// The load-balancer ID this backend is attached to. backends with a LB ID like it are listed.
+	// The Load Balancer ID this backend is attached to. Backends with a matching ID are listed.
 	LbId pulumi.StringInput `pulumi:"lbId"`
-	// The backend name used as filter. Backends with a name like it are listed.
+	// The backend name to filter for. Backends with a matching name are listed.
 	Name pulumi.StringInput `pulumi:"name"`
 	// Modify what occurs when a backend server is marked down.
 	OnMarkedDownAction pulumi.StringInput `pulumi:"onMarkedDownAction"`
@@ -20860,7 +21117,7 @@ type GetLbBackendsBackendArgs struct {
 	ProxyProtocol pulumi.StringInput `pulumi:"proxyProtocol"`
 	// List of backend server IP addresses.
 	ServerIps pulumi.StringArrayInput `pulumi:"serverIps"`
-	// Enables SSL between load balancer and backend servers.
+	// Enables SSL between Load Balancer and backend servers.
 	SslBridging pulumi.BoolInput `pulumi:"sslBridging"`
 	// Enables cookie-based session persistence.
 	StickySessions pulumi.StringInput `pulumi:"stickySessions"`
@@ -20872,7 +21129,7 @@ type GetLbBackendsBackendArgs struct {
 	TimeoutServer pulumi.StringInput `pulumi:"timeoutServer"`
 	// Maximum tunnel inactivity time.
 	TimeoutTunnel pulumi.StringInput `pulumi:"timeoutTunnel"`
-	// The date at which the backend was last updated (RFC 3339 format).
+	// The date on which the backend was last updated (RFC 3339 format).
 	UpdateAt pulumi.StringInput `pulumi:"updateAt"`
 }
 
@@ -20927,17 +21184,17 @@ func (o GetLbBackendsBackendOutput) ToGetLbBackendsBackendOutputWithContext(ctx 
 	return o
 }
 
-// The date at which the backend was created (RFC 3339 format).
+// The date on which the backend was created (RFC 3339 format).
 func (o GetLbBackendsBackendOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// Scaleway S3 bucket website to be served in case all backend servers are down.
+// Scaleway S3 bucket website to be served if all backend servers are down.
 func (o GetLbBackendsBackendOutput) FailoverHost() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.FailoverHost }).(pulumi.StringOutput)
 }
 
-// User sessions will be forwarded to this port of backend servers.
+// User sessions will be forwarded to this backend server port.
 func (o GetLbBackendsBackendOutput) ForwardPort() pulumi.IntOutput {
 	return o.ApplyT(func(v GetLbBackendsBackend) int { return v.ForwardPort }).(pulumi.IntOutput)
 }
@@ -20952,37 +21209,37 @@ func (o GetLbBackendsBackendOutput) ForwardProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.ForwardProtocol }).(pulumi.StringOutput)
 }
 
-// Interval between two HC requests.
+// Interval between two health check requests.
 func (o GetLbBackendsBackendOutput) HealthCheckDelay() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.HealthCheckDelay }).(pulumi.StringOutput)
 }
 
-// This block enable HTTP health check.
+// This block enables HTTP health checks.
 func (o GetLbBackendsBackendOutput) HealthCheckHttp() GetLbBackendsBackendHealthCheckHttpArrayOutput {
 	return o.ApplyT(func(v GetLbBackendsBackend) []GetLbBackendsBackendHealthCheckHttp { return v.HealthCheckHttp }).(GetLbBackendsBackendHealthCheckHttpArrayOutput)
 }
 
-// This block enable HTTPS health check.
+// This block enables HTTPS health checks.
 func (o GetLbBackendsBackendOutput) HealthCheckHttps() GetLbBackendsBackendHealthCheckHttpArrayOutput {
 	return o.ApplyT(func(v GetLbBackendsBackend) []GetLbBackendsBackendHealthCheckHttp { return v.HealthCheckHttps }).(GetLbBackendsBackendHealthCheckHttpArrayOutput)
 }
 
-// Number of allowed failed HC requests before the backend server is marked down.
+// Number of allowed failed health check requests before the backend server is marked as down.
 func (o GetLbBackendsBackendOutput) HealthCheckMaxRetries() pulumi.IntOutput {
 	return o.ApplyT(func(v GetLbBackendsBackend) int { return v.HealthCheckMaxRetries }).(pulumi.IntOutput)
 }
 
-// Port the HC requests will be sent to.
+// Port the health check requests will be sent to.
 func (o GetLbBackendsBackendOutput) HealthCheckPort() pulumi.IntOutput {
 	return o.ApplyT(func(v GetLbBackendsBackend) int { return v.HealthCheckPort }).(pulumi.IntOutput)
 }
 
-// This block enable TCP health check.
+// This block enables TCP health checks.
 func (o GetLbBackendsBackendOutput) HealthCheckTcps() GetLbBackendsBackendHealthCheckTcpArrayOutput {
 	return o.ApplyT(func(v GetLbBackendsBackend) []GetLbBackendsBackendHealthCheckTcp { return v.HealthCheckTcps }).(GetLbBackendsBackendHealthCheckTcpArrayOutput)
 }
 
-// Timeout before we consider a HC request failed.
+// Timeout before a health check request is considered failed.
 func (o GetLbBackendsBackendOutput) HealthCheckTimeout() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.HealthCheckTimeout }).(pulumi.StringOutput)
 }
@@ -20997,12 +21254,12 @@ func (o GetLbBackendsBackendOutput) IgnoreSslServerVerify() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetLbBackendsBackend) bool { return v.IgnoreSslServerVerify }).(pulumi.BoolOutput)
 }
 
-// The load-balancer ID this backend is attached to. backends with a LB ID like it are listed.
+// The Load Balancer ID this backend is attached to. Backends with a matching ID are listed.
 func (o GetLbBackendsBackendOutput) LbId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.LbId }).(pulumi.StringOutput)
 }
 
-// The backend name used as filter. Backends with a name like it are listed.
+// The backend name to filter for. Backends with a matching name are listed.
 func (o GetLbBackendsBackendOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -21022,7 +21279,7 @@ func (o GetLbBackendsBackendOutput) ServerIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetLbBackendsBackend) []string { return v.ServerIps }).(pulumi.StringArrayOutput)
 }
 
-// Enables SSL between load balancer and backend servers.
+// Enables SSL between Load Balancer and backend servers.
 func (o GetLbBackendsBackendOutput) SslBridging() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetLbBackendsBackend) bool { return v.SslBridging }).(pulumi.BoolOutput)
 }
@@ -21052,7 +21309,7 @@ func (o GetLbBackendsBackendOutput) TimeoutTunnel() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.TimeoutTunnel }).(pulumi.StringOutput)
 }
 
-// The date at which the backend was last updated (RFC 3339 format).
+// The date on which the backend was last updated (RFC 3339 format).
 func (o GetLbBackendsBackendOutput) UpdateAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbBackendsBackend) string { return v.UpdateAt }).(pulumi.StringOutput)
 }
@@ -21080,13 +21337,13 @@ func (o GetLbBackendsBackendArrayOutput) Index(i pulumi.IntInput) GetLbBackendsB
 type GetLbBackendsBackendHealthCheckHttp struct {
 	// The expected HTTP status code.
 	Code int `pulumi:"code"`
-	// The HTTP host header to use for HC requests.
+	// The HTTP host header to use for health check requests.
 	HostHeader string `pulumi:"hostHeader"`
-	// The HTTP method to use for HC requests.
+	// The HTTP method to use for health check requests.
 	Method string `pulumi:"method"`
 	// The SNI to use for HC requests over SSL.
 	Sni string `pulumi:"sni"`
-	// The HTTPS endpoint URL to call for HC requests.
+	// The HTTPS endpoint URL to call for health check requests.
 	Uri string `pulumi:"uri"`
 }
 
@@ -21104,13 +21361,13 @@ type GetLbBackendsBackendHealthCheckHttpInput interface {
 type GetLbBackendsBackendHealthCheckHttpArgs struct {
 	// The expected HTTP status code.
 	Code pulumi.IntInput `pulumi:"code"`
-	// The HTTP host header to use for HC requests.
+	// The HTTP host header to use for health check requests.
 	HostHeader pulumi.StringInput `pulumi:"hostHeader"`
-	// The HTTP method to use for HC requests.
+	// The HTTP method to use for health check requests.
 	Method pulumi.StringInput `pulumi:"method"`
 	// The SNI to use for HC requests over SSL.
 	Sni pulumi.StringInput `pulumi:"sni"`
-	// The HTTPS endpoint URL to call for HC requests.
+	// The HTTPS endpoint URL to call for health check requests.
 	Uri pulumi.StringInput `pulumi:"uri"`
 }
 
@@ -21170,12 +21427,12 @@ func (o GetLbBackendsBackendHealthCheckHttpOutput) Code() pulumi.IntOutput {
 	return o.ApplyT(func(v GetLbBackendsBackendHealthCheckHttp) int { return v.Code }).(pulumi.IntOutput)
 }
 
-// The HTTP host header to use for HC requests.
+// The HTTP host header to use for health check requests.
 func (o GetLbBackendsBackendHealthCheckHttpOutput) HostHeader() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbBackendsBackendHealthCheckHttp) string { return v.HostHeader }).(pulumi.StringOutput)
 }
 
-// The HTTP method to use for HC requests.
+// The HTTP method to use for health check requests.
 func (o GetLbBackendsBackendHealthCheckHttpOutput) Method() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbBackendsBackendHealthCheckHttp) string { return v.Method }).(pulumi.StringOutput)
 }
@@ -21185,7 +21442,7 @@ func (o GetLbBackendsBackendHealthCheckHttpOutput) Sni() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbBackendsBackendHealthCheckHttp) string { return v.Sni }).(pulumi.StringOutput)
 }
 
-// The HTTPS endpoint URL to call for HC requests.
+// The HTTPS endpoint URL to call for health check requests.
 func (o GetLbBackendsBackendHealthCheckHttpOutput) Uri() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbBackendsBackendHealthCheckHttp) string { return v.Uri }).(pulumi.StringOutput)
 }
@@ -22001,27 +22258,27 @@ func (o GetLbFrontendAclMatchArrayOutput) Index(i pulumi.IntInput) GetLbFrontend
 }
 
 type GetLbFrontendsFrontend struct {
-	// The load-balancer backend ID this frontend is attached to.
-	// > **Important:** LB backends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+	// The Load Balancer backend ID this frontend is attached to.
+	// > **Important:** Load Balancer backend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
 	BackendId string `pulumi:"backendId"`
-	// List of Certificate IDs that are used by the frontend.
+	// List of certificate IDs that are used by the frontend.
 	CertificateIds []string `pulumi:"certificateIds"`
-	// The date at which the frontend was created (RFC 3339 format).
+	// The date on which the frontend was created (RFC 3339 format).
 	CreatedAt string `pulumi:"createdAt"`
-	// If HTTP/3 protocol is activated.
+	// Whether HTTP/3 protocol is activated.
 	EnableHttp3 bool `pulumi:"enableHttp3"`
-	// The associated frontend ID.
-	// > **Important:** LB frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+	// The ID of the associated frontend.
+	// > **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
 	Id string `pulumi:"id"`
-	// TCP port the frontend listen to.
+	// TCP port the frontend listens to.
 	InboundPort int `pulumi:"inboundPort"`
-	// The load-balancer ID this frontend is attached to. frontends with a LB ID like it are listed.
+	// The Load Balancer ID this frontend is attached to. Frontends with a matching ID are listed.
 	LbId string `pulumi:"lbId"`
-	// The frontend name used as filter. Frontends with a name like it are listed.
+	// The frontend name to filter for. Frontends with a matching name are listed.
 	Name string `pulumi:"name"`
 	// Maximum inactivity time on the client side.
 	TimeoutClient string `pulumi:"timeoutClient"`
-	// The date at which the frontend was last updated (RFC 3339 format).
+	// The date aont which the frontend was last updated (RFC 3339 format).
 	UpdateAt string `pulumi:"updateAt"`
 }
 
@@ -22037,27 +22294,27 @@ type GetLbFrontendsFrontendInput interface {
 }
 
 type GetLbFrontendsFrontendArgs struct {
-	// The load-balancer backend ID this frontend is attached to.
-	// > **Important:** LB backends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+	// The Load Balancer backend ID this frontend is attached to.
+	// > **Important:** Load Balancer backend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
 	BackendId pulumi.StringInput `pulumi:"backendId"`
-	// List of Certificate IDs that are used by the frontend.
+	// List of certificate IDs that are used by the frontend.
 	CertificateIds pulumi.StringArrayInput `pulumi:"certificateIds"`
-	// The date at which the frontend was created (RFC 3339 format).
+	// The date on which the frontend was created (RFC 3339 format).
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
-	// If HTTP/3 protocol is activated.
+	// Whether HTTP/3 protocol is activated.
 	EnableHttp3 pulumi.BoolInput `pulumi:"enableHttp3"`
-	// The associated frontend ID.
-	// > **Important:** LB frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+	// The ID of the associated frontend.
+	// > **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
 	Id pulumi.StringInput `pulumi:"id"`
-	// TCP port the frontend listen to.
+	// TCP port the frontend listens to.
 	InboundPort pulumi.IntInput `pulumi:"inboundPort"`
-	// The load-balancer ID this frontend is attached to. frontends with a LB ID like it are listed.
+	// The Load Balancer ID this frontend is attached to. Frontends with a matching ID are listed.
 	LbId pulumi.StringInput `pulumi:"lbId"`
-	// The frontend name used as filter. Frontends with a name like it are listed.
+	// The frontend name to filter for. Frontends with a matching name are listed.
 	Name pulumi.StringInput `pulumi:"name"`
 	// Maximum inactivity time on the client side.
 	TimeoutClient pulumi.StringInput `pulumi:"timeoutClient"`
-	// The date at which the frontend was last updated (RFC 3339 format).
+	// The date aont which the frontend was last updated (RFC 3339 format).
 	UpdateAt pulumi.StringInput `pulumi:"updateAt"`
 }
 
@@ -22112,44 +22369,44 @@ func (o GetLbFrontendsFrontendOutput) ToGetLbFrontendsFrontendOutputWithContext(
 	return o
 }
 
-// The load-balancer backend ID this frontend is attached to.
-// > **Important:** LB backends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+// The Load Balancer backend ID this frontend is attached to.
+// > **Important:** Load Balancer backend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
 func (o GetLbFrontendsFrontendOutput) BackendId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbFrontendsFrontend) string { return v.BackendId }).(pulumi.StringOutput)
 }
 
-// List of Certificate IDs that are used by the frontend.
+// List of certificate IDs that are used by the frontend.
 func (o GetLbFrontendsFrontendOutput) CertificateIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetLbFrontendsFrontend) []string { return v.CertificateIds }).(pulumi.StringArrayOutput)
 }
 
-// The date at which the frontend was created (RFC 3339 format).
+// The date on which the frontend was created (RFC 3339 format).
 func (o GetLbFrontendsFrontendOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbFrontendsFrontend) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// If HTTP/3 protocol is activated.
+// Whether HTTP/3 protocol is activated.
 func (o GetLbFrontendsFrontendOutput) EnableHttp3() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetLbFrontendsFrontend) bool { return v.EnableHttp3 }).(pulumi.BoolOutput)
 }
 
-// The associated frontend ID.
-// > **Important:** LB frontends' IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
+// The ID of the associated frontend.
+// > **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
 func (o GetLbFrontendsFrontendOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbFrontendsFrontend) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// TCP port the frontend listen to.
+// TCP port the frontend listens to.
 func (o GetLbFrontendsFrontendOutput) InboundPort() pulumi.IntOutput {
 	return o.ApplyT(func(v GetLbFrontendsFrontend) int { return v.InboundPort }).(pulumi.IntOutput)
 }
 
-// The load-balancer ID this frontend is attached to. frontends with a LB ID like it are listed.
+// The Load Balancer ID this frontend is attached to. Frontends with a matching ID are listed.
 func (o GetLbFrontendsFrontendOutput) LbId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbFrontendsFrontend) string { return v.LbId }).(pulumi.StringOutput)
 }
 
-// The frontend name used as filter. Frontends with a name like it are listed.
+// The frontend name to filter for. Frontends with a matching name are listed.
 func (o GetLbFrontendsFrontendOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbFrontendsFrontend) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -22159,7 +22416,7 @@ func (o GetLbFrontendsFrontendOutput) TimeoutClient() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbFrontendsFrontend) string { return v.TimeoutClient }).(pulumi.StringOutput)
 }
 
-// The date at which the frontend was last updated (RFC 3339 format).
+// The date aont which the frontend was last updated (RFC 3339 format).
 func (o GetLbFrontendsFrontendOutput) UpdateAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbFrontendsFrontend) string { return v.UpdateAt }).(pulumi.StringOutput)
 }
@@ -22185,19 +22442,19 @@ func (o GetLbFrontendsFrontendArrayOutput) Index(i pulumi.IntInput) GetLbFronten
 }
 
 type GetLbIpsIp struct {
-	// The associated IP ID.
+	// The ID of the associated IP.
 	Id string `pulumi:"id"`
-	// The IP Address
+	// The IP address
 	IpAddress string `pulumi:"ipAddress"`
-	// The associated load-balancer ID if any
+	// The ID of the associated Load BalancerD, if any
 	LbId string `pulumi:"lbId"`
-	// The organization ID the load-balancer is associated with.
+	// The ID of the Organization the Load Balancer is associated with.
 	OrganizationId string `pulumi:"organizationId"`
-	// The ID of the project the load-balancer is associated with.
+	// The ID of the Project the Load Balancer is associated with.
 	ProjectId string `pulumi:"projectId"`
 	// The reverse domain associated with this IP.
 	Reverse string `pulumi:"reverse"`
-	// `zone`) The zone in which IPs exist.
+	// `zone`) The zone in which the IPs exist.
 	Zone string `pulumi:"zone"`
 }
 
@@ -22213,19 +22470,19 @@ type GetLbIpsIpInput interface {
 }
 
 type GetLbIpsIpArgs struct {
-	// The associated IP ID.
+	// The ID of the associated IP.
 	Id pulumi.StringInput `pulumi:"id"`
-	// The IP Address
+	// The IP address
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
-	// The associated load-balancer ID if any
+	// The ID of the associated Load BalancerD, if any
 	LbId pulumi.StringInput `pulumi:"lbId"`
-	// The organization ID the load-balancer is associated with.
+	// The ID of the Organization the Load Balancer is associated with.
 	OrganizationId pulumi.StringInput `pulumi:"organizationId"`
-	// The ID of the project the load-balancer is associated with.
+	// The ID of the Project the Load Balancer is associated with.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// The reverse domain associated with this IP.
 	Reverse pulumi.StringInput `pulumi:"reverse"`
-	// `zone`) The zone in which IPs exist.
+	// `zone`) The zone in which the IPs exist.
 	Zone pulumi.StringInput `pulumi:"zone"`
 }
 
@@ -22280,27 +22537,27 @@ func (o GetLbIpsIpOutput) ToGetLbIpsIpOutputWithContext(ctx context.Context) Get
 	return o
 }
 
-// The associated IP ID.
+// The ID of the associated IP.
 func (o GetLbIpsIpOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbIpsIp) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The IP Address
+// The IP address
 func (o GetLbIpsIpOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbIpsIp) string { return v.IpAddress }).(pulumi.StringOutput)
 }
 
-// The associated load-balancer ID if any
+// The ID of the associated Load BalancerD, if any
 func (o GetLbIpsIpOutput) LbId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbIpsIp) string { return v.LbId }).(pulumi.StringOutput)
 }
 
-// The organization ID the load-balancer is associated with.
+// The ID of the Organization the Load Balancer is associated with.
 func (o GetLbIpsIpOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbIpsIp) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The ID of the project the load-balancer is associated with.
+// The ID of the Project the Load Balancer is associated with.
 func (o GetLbIpsIpOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbIpsIp) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -22310,7 +22567,7 @@ func (o GetLbIpsIpOutput) Reverse() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbIpsIp) string { return v.Reverse }).(pulumi.StringOutput)
 }
 
-// `zone`) The zone in which IPs exist.
+// `zone`) The zone in which the IPs exist.
 func (o GetLbIpsIpOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbIpsIp) string { return v.Zone }).(pulumi.StringOutput)
 }
@@ -22344,7 +22601,7 @@ type GetLbPrivateNetwork struct {
 	StaticConfigs []string `pulumi:"staticConfigs"`
 	// The status of private network connection
 	Status string `pulumi:"status"`
-	// (Defaults to provider `zone`) The zone in which the LB exists.
+	// (Defaults to provider `zone`) The zone in which the Load Balancer exists.
 	Zone string `pulumi:"zone"`
 }
 
@@ -22368,7 +22625,7 @@ type GetLbPrivateNetworkArgs struct {
 	StaticConfigs pulumi.StringArrayInput `pulumi:"staticConfigs"`
 	// The status of private network connection
 	Status pulumi.StringInput `pulumi:"status"`
-	// (Defaults to provider `zone`) The zone in which the LB exists.
+	// (Defaults to provider `zone`) The zone in which the Load Balancer exists.
 	Zone pulumi.StringInput `pulumi:"zone"`
 }
 
@@ -22443,7 +22700,7 @@ func (o GetLbPrivateNetworkOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbPrivateNetwork) string { return v.Status }).(pulumi.StringOutput)
 }
 
-// (Defaults to provider `zone`) The zone in which the LB exists.
+// (Defaults to provider `zone`) The zone in which the Load Balancer exists.
 func (o GetLbPrivateNetworkOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbPrivateNetwork) string { return v.Zone }).(pulumi.StringOutput)
 }
@@ -22469,11 +22726,11 @@ func (o GetLbPrivateNetworkArrayOutput) Index(i pulumi.IntInput) GetLbPrivateNet
 }
 
 type GetLbRoutesRoute struct {
-	// The backend ID destination of redirection
+	// The backend ID to redirect to
 	BackendId string `pulumi:"backendId"`
-	// The date at which the route was created (RFC 3339 format).
+	// The date on which the route was created (RFC 3339 format).
 	CreatedAt string `pulumi:"createdAt"`
-	// The frontend ID origin of redirection used as a filter. routes with a frontend ID like it are listed.
+	// The frontend ID (the origin of the redirection), to filter for. Routes with a matching frontend ID are listed.
 	FrontendId string `pulumi:"frontendId"`
 	// The associated route ID.
 	Id string `pulumi:"id"`
@@ -22481,7 +22738,7 @@ type GetLbRoutesRoute struct {
 	MatchHostHeader string `pulumi:"matchHostHeader"`
 	// Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
 	MatchSni string `pulumi:"matchSni"`
-	// The date at which the route was last updated (RFC 3339 format).
+	// The date on which the route was last updated (RFC 3339 format).
 	UpdateAt string `pulumi:"updateAt"`
 }
 
@@ -22497,11 +22754,11 @@ type GetLbRoutesRouteInput interface {
 }
 
 type GetLbRoutesRouteArgs struct {
-	// The backend ID destination of redirection
+	// The backend ID to redirect to
 	BackendId pulumi.StringInput `pulumi:"backendId"`
-	// The date at which the route was created (RFC 3339 format).
+	// The date on which the route was created (RFC 3339 format).
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
-	// The frontend ID origin of redirection used as a filter. routes with a frontend ID like it are listed.
+	// The frontend ID (the origin of the redirection), to filter for. Routes with a matching frontend ID are listed.
 	FrontendId pulumi.StringInput `pulumi:"frontendId"`
 	// The associated route ID.
 	Id pulumi.StringInput `pulumi:"id"`
@@ -22509,7 +22766,7 @@ type GetLbRoutesRouteArgs struct {
 	MatchHostHeader pulumi.StringInput `pulumi:"matchHostHeader"`
 	// Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
 	MatchSni pulumi.StringInput `pulumi:"matchSni"`
-	// The date at which the route was last updated (RFC 3339 format).
+	// The date on which the route was last updated (RFC 3339 format).
 	UpdateAt pulumi.StringInput `pulumi:"updateAt"`
 }
 
@@ -22564,17 +22821,17 @@ func (o GetLbRoutesRouteOutput) ToGetLbRoutesRouteOutputWithContext(ctx context.
 	return o
 }
 
-// The backend ID destination of redirection
+// The backend ID to redirect to
 func (o GetLbRoutesRouteOutput) BackendId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbRoutesRoute) string { return v.BackendId }).(pulumi.StringOutput)
 }
 
-// The date at which the route was created (RFC 3339 format).
+// The date on which the route was created (RFC 3339 format).
 func (o GetLbRoutesRouteOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbRoutesRoute) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The frontend ID origin of redirection used as a filter. routes with a frontend ID like it are listed.
+// The frontend ID (the origin of the redirection), to filter for. Routes with a matching frontend ID are listed.
 func (o GetLbRoutesRouteOutput) FrontendId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbRoutesRoute) string { return v.FrontendId }).(pulumi.StringOutput)
 }
@@ -22594,7 +22851,7 @@ func (o GetLbRoutesRouteOutput) MatchSni() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbRoutesRoute) string { return v.MatchSni }).(pulumi.StringOutput)
 }
 
-// The date at which the route was last updated (RFC 3339 format).
+// The date on which the route was last updated (RFC 3339 format).
 func (o GetLbRoutesRouteOutput) UpdateAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbRoutesRoute) string { return v.UpdateAt }).(pulumi.StringOutput)
 }
@@ -22620,43 +22877,43 @@ func (o GetLbRoutesRouteArrayOutput) Index(i pulumi.IntInput) GetLbRoutesRouteOu
 }
 
 type GetLbsLb struct {
-	// Number of backends the Load balancer has.
+	// Number of backends the Load Balancer has.
 	BackendCount int `pulumi:"backendCount"`
-	// Date at which the Load balancer was created.
+	// Date on which the Load Balancer was created.
 	CreatedAt string `pulumi:"createdAt"`
-	// The description of the load-balancer.
+	// The description of the Load Balancer.
 	Description string `pulumi:"description"`
-	// Number of frontends the Load balancer has.
+	// Number of frontends the Load Balancer has.
 	FrontendCount int `pulumi:"frontendCount"`
-	// The ID of the load-balancer.
+	// The ID of the Load Balancer.
 	Id string `pulumi:"id"`
-	// List of underlying instances.
+	// List of underlying Instances.
 	Instances []GetLbsLbInstance `pulumi:"instances"`
-	// List of IPs attached to the Load balancer.
+	// List of IPs attached to the Load Balancer.
 	Ips []GetLbsLbIp `pulumi:"ips"`
-	// The load balancer name used as a filter. LBs with a name like it are listed.
+	// The Load Balancer name to filter for. Load Balancers with a matching name are listed.
 	Name string `pulumi:"name"`
-	// The organization ID the load-balancer is associated with.
+	// The ID of the Organization the Load Balancer is associated with.
 	OrganizationId string `pulumi:"organizationId"`
-	// Number of private networks attached to the Load balancer.
+	// Number of Private Networks attached to the Load balancer.
 	PrivateNetworkCount int `pulumi:"privateNetworkCount"`
-	// The ID of the project the load-balancer is associated with.
+	// The ID of the Project the Load Balancer is associated with.
 	ProjectId string `pulumi:"projectId"`
 	// Number of routes the Load balancer has.
 	RouteCount int `pulumi:"routeCount"`
-	// Determines the minimal SSL version which needs to be supported on client side.
+	// Determines the minimal SSL version which needs to be supported on the client side.
 	SslCompatibilityLevel string `pulumi:"sslCompatibilityLevel"`
-	// The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+	// The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
 	Status string `pulumi:"status"`
 	// The subscriber information.
 	Subscriber string `pulumi:"subscriber"`
-	// List of tags used as filter. LBs with these exact tags are listed.
+	// List of tags to filter for. Load Balancers with these exact tags are listed.
 	Tags []string `pulumi:"tags"`
-	// The offer type of the load-balancer.
+	// The offer type of the Load Balancer.
 	Type string `pulumi:"type"`
-	// Date at which the Load balancer was updated.
+	// Date on which the Load Balancer was updated.
 	UpdatedAt string `pulumi:"updatedAt"`
-	// `zone`) The zone in which LBs exist.
+	// `zone`) The zone in which the Load Balancers exist.
 	Zone string `pulumi:"zone"`
 }
 
@@ -22672,43 +22929,43 @@ type GetLbsLbInput interface {
 }
 
 type GetLbsLbArgs struct {
-	// Number of backends the Load balancer has.
+	// Number of backends the Load Balancer has.
 	BackendCount pulumi.IntInput `pulumi:"backendCount"`
-	// Date at which the Load balancer was created.
+	// Date on which the Load Balancer was created.
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
-	// The description of the load-balancer.
+	// The description of the Load Balancer.
 	Description pulumi.StringInput `pulumi:"description"`
-	// Number of frontends the Load balancer has.
+	// Number of frontends the Load Balancer has.
 	FrontendCount pulumi.IntInput `pulumi:"frontendCount"`
-	// The ID of the load-balancer.
+	// The ID of the Load Balancer.
 	Id pulumi.StringInput `pulumi:"id"`
-	// List of underlying instances.
+	// List of underlying Instances.
 	Instances GetLbsLbInstanceArrayInput `pulumi:"instances"`
-	// List of IPs attached to the Load balancer.
+	// List of IPs attached to the Load Balancer.
 	Ips GetLbsLbIpArrayInput `pulumi:"ips"`
-	// The load balancer name used as a filter. LBs with a name like it are listed.
+	// The Load Balancer name to filter for. Load Balancers with a matching name are listed.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The organization ID the load-balancer is associated with.
+	// The ID of the Organization the Load Balancer is associated with.
 	OrganizationId pulumi.StringInput `pulumi:"organizationId"`
-	// Number of private networks attached to the Load balancer.
+	// Number of Private Networks attached to the Load balancer.
 	PrivateNetworkCount pulumi.IntInput `pulumi:"privateNetworkCount"`
-	// The ID of the project the load-balancer is associated with.
+	// The ID of the Project the Load Balancer is associated with.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Number of routes the Load balancer has.
 	RouteCount pulumi.IntInput `pulumi:"routeCount"`
-	// Determines the minimal SSL version which needs to be supported on client side.
+	// Determines the minimal SSL version which needs to be supported on the client side.
 	SslCompatibilityLevel pulumi.StringInput `pulumi:"sslCompatibilityLevel"`
-	// The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+	// The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
 	Status pulumi.StringInput `pulumi:"status"`
 	// The subscriber information.
 	Subscriber pulumi.StringInput `pulumi:"subscriber"`
-	// List of tags used as filter. LBs with these exact tags are listed.
+	// List of tags to filter for. Load Balancers with these exact tags are listed.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
-	// The offer type of the load-balancer.
+	// The offer type of the Load Balancer.
 	Type pulumi.StringInput `pulumi:"type"`
-	// Date at which the Load balancer was updated.
+	// Date on which the Load Balancer was updated.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
-	// `zone`) The zone in which LBs exist.
+	// `zone`) The zone in which the Load Balancers exist.
 	Zone pulumi.StringInput `pulumi:"zone"`
 }
 
@@ -22763,57 +23020,57 @@ func (o GetLbsLbOutput) ToGetLbsLbOutputWithContext(ctx context.Context) GetLbsL
 	return o
 }
 
-// Number of backends the Load balancer has.
+// Number of backends the Load Balancer has.
 func (o GetLbsLbOutput) BackendCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetLbsLb) int { return v.BackendCount }).(pulumi.IntOutput)
 }
 
-// Date at which the Load balancer was created.
+// Date on which the Load Balancer was created.
 func (o GetLbsLbOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLb) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The description of the load-balancer.
+// The description of the Load Balancer.
 func (o GetLbsLbOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLb) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// Number of frontends the Load balancer has.
+// Number of frontends the Load Balancer has.
 func (o GetLbsLbOutput) FrontendCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetLbsLb) int { return v.FrontendCount }).(pulumi.IntOutput)
 }
 
-// The ID of the load-balancer.
+// The ID of the Load Balancer.
 func (o GetLbsLbOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLb) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// List of underlying instances.
+// List of underlying Instances.
 func (o GetLbsLbOutput) Instances() GetLbsLbInstanceArrayOutput {
 	return o.ApplyT(func(v GetLbsLb) []GetLbsLbInstance { return v.Instances }).(GetLbsLbInstanceArrayOutput)
 }
 
-// List of IPs attached to the Load balancer.
+// List of IPs attached to the Load Balancer.
 func (o GetLbsLbOutput) Ips() GetLbsLbIpArrayOutput {
 	return o.ApplyT(func(v GetLbsLb) []GetLbsLbIp { return v.Ips }).(GetLbsLbIpArrayOutput)
 }
 
-// The load balancer name used as a filter. LBs with a name like it are listed.
+// The Load Balancer name to filter for. Load Balancers with a matching name are listed.
 func (o GetLbsLbOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLb) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The organization ID the load-balancer is associated with.
+// The ID of the Organization the Load Balancer is associated with.
 func (o GetLbsLbOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLb) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// Number of private networks attached to the Load balancer.
+// Number of Private Networks attached to the Load balancer.
 func (o GetLbsLbOutput) PrivateNetworkCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetLbsLb) int { return v.PrivateNetworkCount }).(pulumi.IntOutput)
 }
 
-// The ID of the project the load-balancer is associated with.
+// The ID of the Project the Load Balancer is associated with.
 func (o GetLbsLbOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLb) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -22823,12 +23080,12 @@ func (o GetLbsLbOutput) RouteCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetLbsLb) int { return v.RouteCount }).(pulumi.IntOutput)
 }
 
-// Determines the minimal SSL version which needs to be supported on client side.
+// Determines the minimal SSL version which needs to be supported on the client side.
 func (o GetLbsLbOutput) SslCompatibilityLevel() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLb) string { return v.SslCompatibilityLevel }).(pulumi.StringOutput)
 }
 
-// The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+// The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
 func (o GetLbsLbOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLb) string { return v.Status }).(pulumi.StringOutput)
 }
@@ -22838,22 +23095,22 @@ func (o GetLbsLbOutput) Subscriber() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLb) string { return v.Subscriber }).(pulumi.StringOutput)
 }
 
-// List of tags used as filter. LBs with these exact tags are listed.
+// List of tags to filter for. Load Balancers with these exact tags are listed.
 func (o GetLbsLbOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetLbsLb) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The offer type of the load-balancer.
+// The offer type of the Load Balancer.
 func (o GetLbsLbOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLb) string { return v.Type }).(pulumi.StringOutput)
 }
 
-// Date at which the Load balancer was updated.
+// Date on which the Load Balancer was updated.
 func (o GetLbsLbOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLb) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// `zone`) The zone in which LBs exist.
+// `zone`) The zone in which the Load Balancers exist.
 func (o GetLbsLbOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLb) string { return v.Zone }).(pulumi.StringOutput)
 }
@@ -22879,16 +23136,16 @@ func (o GetLbsLbArrayOutput) Index(i pulumi.IntInput) GetLbsLbOutput {
 }
 
 type GetLbsLbInstance struct {
-	// Date at which the Load balancer was created.
+	// Date on which the Load Balancer was created.
 	CreatedAt string `pulumi:"createdAt"`
-	// The ID of the load-balancer.
+	// The ID of the Load Balancer.
 	Id        string `pulumi:"id"`
 	IpAddress string `pulumi:"ipAddress"`
-	// The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+	// The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
 	Status string `pulumi:"status"`
-	// Date at which the Load balancer was updated.
+	// Date on which the Load Balancer was updated.
 	UpdatedAt string `pulumi:"updatedAt"`
-	// `zone`) The zone in which LBs exist.
+	// `zone`) The zone in which the Load Balancers exist.
 	Zone string `pulumi:"zone"`
 }
 
@@ -22904,16 +23161,16 @@ type GetLbsLbInstanceInput interface {
 }
 
 type GetLbsLbInstanceArgs struct {
-	// Date at which the Load balancer was created.
+	// Date on which the Load Balancer was created.
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
-	// The ID of the load-balancer.
+	// The ID of the Load Balancer.
 	Id        pulumi.StringInput `pulumi:"id"`
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
-	// The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+	// The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
 	Status pulumi.StringInput `pulumi:"status"`
-	// Date at which the Load balancer was updated.
+	// Date on which the Load Balancer was updated.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
-	// `zone`) The zone in which LBs exist.
+	// `zone`) The zone in which the Load Balancers exist.
 	Zone pulumi.StringInput `pulumi:"zone"`
 }
 
@@ -22968,12 +23225,12 @@ func (o GetLbsLbInstanceOutput) ToGetLbsLbInstanceOutputWithContext(ctx context.
 	return o
 }
 
-// Date at which the Load balancer was created.
+// Date on which the Load Balancer was created.
 func (o GetLbsLbInstanceOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLbInstance) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The ID of the load-balancer.
+// The ID of the Load Balancer.
 func (o GetLbsLbInstanceOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLbInstance) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -22982,17 +23239,17 @@ func (o GetLbsLbInstanceOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLbInstance) string { return v.IpAddress }).(pulumi.StringOutput)
 }
 
-// The state of the LB's instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+// The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
 func (o GetLbsLbInstanceOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLbInstance) string { return v.Status }).(pulumi.StringOutput)
 }
 
-// Date at which the Load balancer was updated.
+// Date on which the Load Balancer was updated.
 func (o GetLbsLbInstanceOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLbInstance) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// `zone`) The zone in which LBs exist.
+// `zone`) The zone in which the Load Balancers exist.
 func (o GetLbsLbInstanceOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLbInstance) string { return v.Zone }).(pulumi.StringOutput)
 }
@@ -23018,16 +23275,16 @@ func (o GetLbsLbInstanceArrayOutput) Index(i pulumi.IntInput) GetLbsLbInstanceOu
 }
 
 type GetLbsLbIp struct {
-	// The ID of the load-balancer.
+	// The ID of the Load Balancer.
 	Id        string `pulumi:"id"`
 	IpAddress string `pulumi:"ipAddress"`
 	LbId      string `pulumi:"lbId"`
-	// The organization ID the load-balancer is associated with.
+	// The ID of the Organization the Load Balancer is associated with.
 	OrganizationId string `pulumi:"organizationId"`
-	// The ID of the project the load-balancer is associated with.
+	// The ID of the Project the Load Balancer is associated with.
 	ProjectId string `pulumi:"projectId"`
 	Reverse   string `pulumi:"reverse"`
-	// `zone`) The zone in which LBs exist.
+	// `zone`) The zone in which the Load Balancers exist.
 	Zone string `pulumi:"zone"`
 }
 
@@ -23043,16 +23300,16 @@ type GetLbsLbIpInput interface {
 }
 
 type GetLbsLbIpArgs struct {
-	// The ID of the load-balancer.
+	// The ID of the Load Balancer.
 	Id        pulumi.StringInput `pulumi:"id"`
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
 	LbId      pulumi.StringInput `pulumi:"lbId"`
-	// The organization ID the load-balancer is associated with.
+	// The ID of the Organization the Load Balancer is associated with.
 	OrganizationId pulumi.StringInput `pulumi:"organizationId"`
-	// The ID of the project the load-balancer is associated with.
+	// The ID of the Project the Load Balancer is associated with.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	Reverse   pulumi.StringInput `pulumi:"reverse"`
-	// `zone`) The zone in which LBs exist.
+	// `zone`) The zone in which the Load Balancers exist.
 	Zone pulumi.StringInput `pulumi:"zone"`
 }
 
@@ -23107,7 +23364,7 @@ func (o GetLbsLbIpOutput) ToGetLbsLbIpOutputWithContext(ctx context.Context) Get
 	return o
 }
 
-// The ID of the load-balancer.
+// The ID of the Load Balancer.
 func (o GetLbsLbIpOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLbIp) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -23120,12 +23377,12 @@ func (o GetLbsLbIpOutput) LbId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLbIp) string { return v.LbId }).(pulumi.StringOutput)
 }
 
-// The organization ID the load-balancer is associated with.
+// The ID of the Organization the Load Balancer is associated with.
 func (o GetLbsLbIpOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLbIp) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The ID of the project the load-balancer is associated with.
+// The ID of the Project the Load Balancer is associated with.
 func (o GetLbsLbIpOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLbIp) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -23134,7 +23391,7 @@ func (o GetLbsLbIpOutput) Reverse() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLbIp) string { return v.Reverse }).(pulumi.StringOutput)
 }
 
-// `zone`) The zone in which LBs exist.
+// `zone`) The zone in which the Load Balancers exist.
 func (o GetLbsLbIpOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLbIp) string { return v.Zone }).(pulumi.StringOutput)
 }
@@ -23842,7 +24099,6 @@ type GetRdbInstanceLoadBalancer struct {
 	// The IP of your load balancer service
 	Ip string `pulumi:"ip"`
 	// The name of the RDB instance.
-	// Only one of `name` and `instanceId` should be specified.
 	Name string `pulumi:"name"`
 	// The port of your load balancer service
 	Port int `pulumi:"port"`
@@ -23867,7 +24123,6 @@ type GetRdbInstanceLoadBalancerArgs struct {
 	// The IP of your load balancer service
 	Ip pulumi.StringInput `pulumi:"ip"`
 	// The name of the RDB instance.
-	// Only one of `name` and `instanceId` should be specified.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The port of your load balancer service
 	Port pulumi.IntInput `pulumi:"port"`
@@ -23940,7 +24195,6 @@ func (o GetRdbInstanceLoadBalancerOutput) Ip() pulumi.StringOutput {
 }
 
 // The name of the RDB instance.
-// Only one of `name` and `instanceId` should be specified.
 func (o GetRdbInstanceLoadBalancerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRdbInstanceLoadBalancer) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -24088,7 +24342,6 @@ type GetRdbInstancePrivateNetwork struct {
 	// The IP with the given mask within the private subnet
 	IpNet string `pulumi:"ipNet"`
 	// The name of the RDB instance.
-	// Only one of `name` and `instanceId` should be specified.
 	Name string `pulumi:"name"`
 	// The private network ID
 	PnId string `pulumi:"pnId"`
@@ -24121,7 +24374,6 @@ type GetRdbInstancePrivateNetworkArgs struct {
 	// The IP with the given mask within the private subnet
 	IpNet pulumi.StringInput `pulumi:"ipNet"`
 	// The name of the RDB instance.
-	// Only one of `name` and `instanceId` should be specified.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The private network ID
 	PnId pulumi.StringInput `pulumi:"pnId"`
@@ -24208,7 +24460,6 @@ func (o GetRdbInstancePrivateNetworkOutput) IpNet() pulumi.StringOutput {
 }
 
 // The name of the RDB instance.
-// Only one of `name` and `instanceId` should be specified.
 func (o GetRdbInstancePrivateNetworkOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRdbInstancePrivateNetwork) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -24252,7 +24503,6 @@ type GetRdbInstanceReadReplica struct {
 	// IP of the replica
 	Ip string `pulumi:"ip"`
 	// The name of the RDB instance.
-	// Only one of `name` and `instanceId` should be specified.
 	Name string `pulumi:"name"`
 	// Port of the replica
 	Port int `pulumi:"port"`
@@ -24273,7 +24523,6 @@ type GetRdbInstanceReadReplicaArgs struct {
 	// IP of the replica
 	Ip pulumi.StringInput `pulumi:"ip"`
 	// The name of the RDB instance.
-	// Only one of `name` and `instanceId` should be specified.
 	Name pulumi.StringInput `pulumi:"name"`
 	// Port of the replica
 	Port pulumi.IntInput `pulumi:"port"`
@@ -24336,7 +24585,6 @@ func (o GetRdbInstanceReadReplicaOutput) Ip() pulumi.StringOutput {
 }
 
 // The name of the RDB instance.
-// Only one of `name` and `instanceId` should be specified.
 func (o GetRdbInstanceReadReplicaOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRdbInstanceReadReplica) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -24482,7 +24730,7 @@ func (o GetRedisClusterAclArrayOutput) Index(i pulumi.IntInput) GetRedisClusterA
 }
 
 type GetRedisClusterPrivateNetwork struct {
-	// UUID of the endpoint to be connected to the cluster
+	// The ID of the endpoint.
 	EndpointId string `pulumi:"endpointId"`
 	// The ID of the Redis cluster.
 	Id string `pulumi:"id"`
@@ -24504,7 +24752,7 @@ type GetRedisClusterPrivateNetworkInput interface {
 }
 
 type GetRedisClusterPrivateNetworkArgs struct {
-	// UUID of the endpoint to be connected to the cluster
+	// The ID of the endpoint.
 	EndpointId pulumi.StringInput `pulumi:"endpointId"`
 	// The ID of the Redis cluster.
 	Id pulumi.StringInput `pulumi:"id"`
@@ -24565,7 +24813,7 @@ func (o GetRedisClusterPrivateNetworkOutput) ToGetRedisClusterPrivateNetworkOutp
 	return o
 }
 
-// UUID of the endpoint to be connected to the cluster
+// The ID of the endpoint.
 func (o GetRedisClusterPrivateNetworkOutput) EndpointId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRedisClusterPrivateNetwork) string { return v.EndpointId }).(pulumi.StringOutput)
 }
@@ -24961,7 +25209,7 @@ type GetVpcPrivateNetworkIpv4Subnet struct {
 	Address string `pulumi:"address"`
 	// The date and time of the creation of the subnet
 	CreatedAt string `pulumi:"createdAt"`
-	// The ID of the private network.
+	// The ID of the Private Network.
 	Id string `pulumi:"id"`
 	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
 	PrefixLength int `pulumi:"prefixLength"`
@@ -24989,7 +25237,7 @@ type GetVpcPrivateNetworkIpv4SubnetArgs struct {
 	Address pulumi.StringInput `pulumi:"address"`
 	// The date and time of the creation of the subnet
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
-	// The ID of the private network.
+	// The ID of the Private Network.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
 	PrefixLength pulumi.IntInput `pulumi:"prefixLength"`
@@ -25062,7 +25310,7 @@ func (o GetVpcPrivateNetworkIpv4SubnetOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcPrivateNetworkIpv4Subnet) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The ID of the private network.
+// The ID of the Private Network.
 func (o GetVpcPrivateNetworkIpv4SubnetOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcPrivateNetworkIpv4Subnet) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -25112,7 +25360,7 @@ type GetVpcPrivateNetworkIpv6Subnet struct {
 	Address string `pulumi:"address"`
 	// The date and time of the creation of the subnet
 	CreatedAt string `pulumi:"createdAt"`
-	// The ID of the private network.
+	// The ID of the Private Network.
 	Id string `pulumi:"id"`
 	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
 	PrefixLength int `pulumi:"prefixLength"`
@@ -25140,7 +25388,7 @@ type GetVpcPrivateNetworkIpv6SubnetArgs struct {
 	Address pulumi.StringInput `pulumi:"address"`
 	// The date and time of the creation of the subnet
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
-	// The ID of the private network.
+	// The ID of the Private Network.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The length of the network prefix, e.g., 24 for a 255.255.255.0 mask
 	PrefixLength pulumi.IntInput `pulumi:"prefixLength"`
@@ -25213,7 +25461,7 @@ func (o GetVpcPrivateNetworkIpv6SubnetOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcPrivateNetworkIpv6Subnet) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The ID of the private network.
+// The ID of the Private Network.
 func (o GetVpcPrivateNetworkIpv6SubnetOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcPrivateNetworkIpv6Subnet) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -25262,19 +25510,19 @@ type GetVpcsVpc struct {
 	// Date and time of VPC's creation (RFC 3339 format).
 	CreatedAt string `pulumi:"createdAt"`
 	// The associated VPC ID.
-	// > **Important:** VPCs' IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
+	// > **Important:** VPC IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
 	Id string `pulumi:"id"`
 	// Defines whether the VPC is the default one for its Project.
 	IsDefault bool `pulumi:"isDefault"`
-	// The VPC name used as filter. VPCs with a name like it are listed.
+	// The VPC name to filter for. VPCs with a similar name are listed.
 	Name string `pulumi:"name"`
-	// The organization ID the VPC is associated with.
+	// The Organization ID the VPC is associated with.
 	OrganizationId string `pulumi:"organizationId"`
-	// The ID of the project the VPC is associated with.
+	// The ID of the Project the VPC is associated with.
 	ProjectId string `pulumi:"projectId"`
-	// `region`). The region in which vpcs exist.
+	// `region`). The region in which the VPCs exist.
 	Region string `pulumi:"region"`
-	// List of tags used as filter. VPCs with these exact tags are listed.
+	// List of tags to filter for. VPCs with these exact tags are listed.
 	Tags     []string `pulumi:"tags"`
 	UpdateAt string   `pulumi:"updateAt"`
 }
@@ -25294,19 +25542,19 @@ type GetVpcsVpcArgs struct {
 	// Date and time of VPC's creation (RFC 3339 format).
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// The associated VPC ID.
-	// > **Important:** VPCs' IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
+	// > **Important:** VPC IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
 	Id pulumi.StringInput `pulumi:"id"`
 	// Defines whether the VPC is the default one for its Project.
 	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
-	// The VPC name used as filter. VPCs with a name like it are listed.
+	// The VPC name to filter for. VPCs with a similar name are listed.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The organization ID the VPC is associated with.
+	// The Organization ID the VPC is associated with.
 	OrganizationId pulumi.StringInput `pulumi:"organizationId"`
-	// The ID of the project the VPC is associated with.
+	// The ID of the Project the VPC is associated with.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// `region`). The region in which vpcs exist.
+	// `region`). The region in which the VPCs exist.
 	Region pulumi.StringInput `pulumi:"region"`
-	// List of tags used as filter. VPCs with these exact tags are listed.
+	// List of tags to filter for. VPCs with these exact tags are listed.
 	Tags     pulumi.StringArrayInput `pulumi:"tags"`
 	UpdateAt pulumi.StringInput      `pulumi:"updateAt"`
 }
@@ -25368,7 +25616,7 @@ func (o GetVpcsVpcOutput) CreatedAt() pulumi.StringOutput {
 }
 
 // The associated VPC ID.
-// > **Important:** VPCs' IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
+// > **Important:** VPC IDs are regional, which means they are of the form `{region}/{id}`, e.g. `fr-par/11111111-1111-1111-1111-111111111111
 func (o GetVpcsVpcOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcsVpc) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -25378,27 +25626,27 @@ func (o GetVpcsVpcOutput) IsDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetVpcsVpc) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
-// The VPC name used as filter. VPCs with a name like it are listed.
+// The VPC name to filter for. VPCs with a similar name are listed.
 func (o GetVpcsVpcOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcsVpc) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The organization ID the VPC is associated with.
+// The Organization ID the VPC is associated with.
 func (o GetVpcsVpcOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcsVpc) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The ID of the project the VPC is associated with.
+// The ID of the Project the VPC is associated with.
 func (o GetVpcsVpcOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcsVpc) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// `region`). The region in which vpcs exist.
+// `region`). The region in which the VPCs exist.
 func (o GetVpcsVpcOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcsVpc) string { return v.Region }).(pulumi.StringOutput)
 }
 
-// List of tags used as filter. VPCs with these exact tags are listed.
+// List of tags to filter for. VPCs with these exact tags are listed.
 func (o GetVpcsVpcOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetVpcsVpc) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
@@ -25819,6 +26067,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerNatsPtrInput)(nil)).Elem(), ContainerTriggerNatsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerSqsInput)(nil)).Elem(), ContainerTriggerSqsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerSqsPtrInput)(nil)).Elem(), ContainerTriggerSqsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbPrivateNetworkEndpointPrivateNetworkInput)(nil)).Elem(), DocumentdbPrivateNetworkEndpointPrivateNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbPrivateNetworkEndpointPrivateNetworkPtrInput)(nil)).Elem(), DocumentdbPrivateNetworkEndpointPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbReadReplicaDirectAccessInput)(nil)).Elem(), DocumentdbReadReplicaDirectAccessArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbReadReplicaDirectAccessPtrInput)(nil)).Elem(), DocumentdbReadReplicaDirectAccessArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbReadReplicaPrivateNetworkInput)(nil)).Elem(), DocumentdbReadReplicaPrivateNetworkArgs{})
@@ -26167,6 +26417,8 @@ func init() {
 	pulumi.RegisterOutputType(ContainerTriggerNatsPtrOutput{})
 	pulumi.RegisterOutputType(ContainerTriggerSqsOutput{})
 	pulumi.RegisterOutputType(ContainerTriggerSqsPtrOutput{})
+	pulumi.RegisterOutputType(DocumentdbPrivateNetworkEndpointPrivateNetworkOutput{})
+	pulumi.RegisterOutputType(DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput{})
 	pulumi.RegisterOutputType(DocumentdbReadReplicaDirectAccessOutput{})
 	pulumi.RegisterOutputType(DocumentdbReadReplicaDirectAccessPtrOutput{})
 	pulumi.RegisterOutputType(DocumentdbReadReplicaPrivateNetworkOutput{})

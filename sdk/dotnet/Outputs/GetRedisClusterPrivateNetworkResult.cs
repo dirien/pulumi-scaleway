@@ -15,7 +15,7 @@ namespace ediri.Scaleway.Outputs
     public sealed class GetRedisClusterPrivateNetworkResult
     {
         /// <summary>
-        /// UUID of the endpoint to be connected to the cluster
+        /// The ID of the endpoint.
         /// </summary>
         public readonly string EndpointId;
         /// <summary>

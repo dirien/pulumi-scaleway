@@ -43,17 +43,17 @@ export function getRdbDatabaseBackup(args?: GetRdbDatabaseBackupArgs, opts?: pul
  */
 export interface GetRdbDatabaseBackupArgs {
     /**
-     * The RDB backup ID.
-     * Only one of the `name` and `backupId` should be specified.
+     * The backup ID.
      */
     backupId?: string;
     /**
-     * The RDB instance ID.
+     * The Database Instance ID.
      */
     instanceId?: string;
     /**
      * The name of the RDB instance.
-     * Only one of the `name` and `backupId` should be specified.
+     *
+     * > **Note** You must specify at least one: `name` and/or `backupId`.
      */
     name?: string;
     /**
@@ -116,17 +116,17 @@ export function getRdbDatabaseBackupOutput(args?: GetRdbDatabaseBackupOutputArgs
  */
 export interface GetRdbDatabaseBackupOutputArgs {
     /**
-     * The RDB backup ID.
-     * Only one of the `name` and `backupId` should be specified.
+     * The backup ID.
      */
     backupId?: pulumi.Input<string>;
     /**
-     * The RDB instance ID.
+     * The Database Instance ID.
      */
     instanceId?: pulumi.Input<string>;
     /**
      * The name of the RDB instance.
-     * Only one of the `name` and `backupId` should be specified.
+     *
+     * > **Note** You must specify at least one: `name` and/or `backupId`.
      */
     name?: pulumi.Input<string>;
     /**

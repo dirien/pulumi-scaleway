@@ -755,14 +755,14 @@ class K8sCluster(pulumi.CustomResource):
         import pulumi
         import ediri_scaleway as scaleway
 
-        hedy = scaleway.VpcPrivateNetwork("hedy")
-        jack = scaleway.K8sCluster("jack",
-            version="1.24.3",
+        pn = scaleway.VpcPrivateNetwork("pn")
+        cluster = scaleway.K8sCluster("cluster",
+            version="1.29.1",
             cni="cilium",
-            private_network_id=hedy.id,
+            private_network_id=pn.id,
             delete_additional_resources=False)
-        john = scaleway.K8sPool("john",
-            cluster_id=jack.id,
+        pool = scaleway.K8sPool("pool",
+            cluster_id=cluster.id,
             node_type="DEV1-M",
             size=1)
         ```
@@ -773,13 +773,13 @@ class K8sCluster(pulumi.CustomResource):
         import pulumi
         import ediri_scaleway as scaleway
 
-        henry = scaleway.K8sCluster("henry",
+        cluster = scaleway.K8sCluster("cluster",
             type="multicloud",
-            version="1.24.3",
+            version="1.29.1",
             cni="kilo",
             delete_additional_resources=False)
-        friend_from_outer_space = scaleway.K8sPool("friendFromOuterSpace",
-            cluster_id=henry.id,
+        pool = scaleway.K8sPool("pool",
+            cluster_id=cluster.id,
             node_type="external",
             size=0,
             min_size=0)
@@ -793,16 +793,13 @@ class K8sCluster(pulumi.CustomResource):
         import pulumi
         import ediri_scaleway as scaleway
 
-        hedy = scaleway.VpcPrivateNetwork("hedy")
-        john_k8s_cluster = scaleway.K8sCluster("johnK8sCluster",
-            description="my awesome cluster",
-            version="1.24.3",
+        pn = scaleway.VpcPrivateNetwork("pn")
+        cluster = scaleway.K8sCluster("cluster",
+            description="cluster made in terraform",
+            version="1.29.1",
             cni="calico",
-            tags=[
-                "i'm an awesome tag",
-                "yay",
-            ],
-            private_network_id=hedy.id,
+            tags=["terraform"],
+            private_network_id=pn.id,
             delete_additional_resources=False,
             autoscaler_config=scaleway.K8sClusterAutoscalerConfigArgs(
                 disable_scale_down=False,
@@ -813,8 +810,8 @@ class K8sCluster(pulumi.CustomResource):
                 balance_similar_node_groups=True,
                 expendable_pods_priority_cutoff=-5,
             ))
-        john_k8s_pool = scaleway.K8sPool("johnK8sPool",
-            cluster_id=john_k8s_cluster.id,
+        pool = scaleway.K8sPool("pool",
+            cluster_id=cluster.id,
             node_type="DEV1-M",
             size=3,
             autoscaling=True,
@@ -883,14 +880,14 @@ class K8sCluster(pulumi.CustomResource):
         import pulumi
         import ediri_scaleway as scaleway
 
-        hedy = scaleway.VpcPrivateNetwork("hedy")
-        jack = scaleway.K8sCluster("jack",
-            version="1.24.3",
+        pn = scaleway.VpcPrivateNetwork("pn")
+        cluster = scaleway.K8sCluster("cluster",
+            version="1.29.1",
             cni="cilium",
-            private_network_id=hedy.id,
+            private_network_id=pn.id,
             delete_additional_resources=False)
-        john = scaleway.K8sPool("john",
-            cluster_id=jack.id,
+        pool = scaleway.K8sPool("pool",
+            cluster_id=cluster.id,
             node_type="DEV1-M",
             size=1)
         ```
@@ -901,13 +898,13 @@ class K8sCluster(pulumi.CustomResource):
         import pulumi
         import ediri_scaleway as scaleway
 
-        henry = scaleway.K8sCluster("henry",
+        cluster = scaleway.K8sCluster("cluster",
             type="multicloud",
-            version="1.24.3",
+            version="1.29.1",
             cni="kilo",
             delete_additional_resources=False)
-        friend_from_outer_space = scaleway.K8sPool("friendFromOuterSpace",
-            cluster_id=henry.id,
+        pool = scaleway.K8sPool("pool",
+            cluster_id=cluster.id,
             node_type="external",
             size=0,
             min_size=0)
@@ -921,16 +918,13 @@ class K8sCluster(pulumi.CustomResource):
         import pulumi
         import ediri_scaleway as scaleway
 
-        hedy = scaleway.VpcPrivateNetwork("hedy")
-        john_k8s_cluster = scaleway.K8sCluster("johnK8sCluster",
-            description="my awesome cluster",
-            version="1.24.3",
+        pn = scaleway.VpcPrivateNetwork("pn")
+        cluster = scaleway.K8sCluster("cluster",
+            description="cluster made in terraform",
+            version="1.29.1",
             cni="calico",
-            tags=[
-                "i'm an awesome tag",
-                "yay",
-            ],
-            private_network_id=hedy.id,
+            tags=["terraform"],
+            private_network_id=pn.id,
             delete_additional_resources=False,
             autoscaler_config=scaleway.K8sClusterAutoscalerConfigArgs(
                 disable_scale_down=False,
@@ -941,8 +935,8 @@ class K8sCluster(pulumi.CustomResource):
                 balance_similar_node_groups=True,
                 expendable_pods_priority_cutoff=-5,
             ))
-        john_k8s_pool = scaleway.K8sPool("johnK8sPool",
-            cluster_id=john_k8s_cluster.id,
+        pool = scaleway.K8sPool("pool",
+            cluster_id=cluster.id,
             node_type="DEV1-M",
             size=3,
             autoscaling=True,

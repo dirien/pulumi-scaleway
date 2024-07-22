@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about the privilege on RDB database.
+// Gets information about the privileges in a database.
 //
 // ## Example Usage
 //
@@ -54,7 +54,7 @@ func LookupRdbPrivilege(ctx *pulumi.Context, args *LookupRdbPrivilegeArgs, opts 
 type LookupRdbPrivilegeArgs struct {
 	// The database name.
 	DatabaseName string `pulumi:"databaseName"`
-	// The RDB instance ID.
+	// The Database Instance ID.
 	InstanceId string `pulumi:"instanceId"`
 	// `region`) The region in which the resource exists.
 	Region *string `pulumi:"region"`
@@ -92,7 +92,7 @@ func LookupRdbPrivilegeOutput(ctx *pulumi.Context, args LookupRdbPrivilegeOutput
 type LookupRdbPrivilegeOutputArgs struct {
 	// The database name.
 	DatabaseName pulumi.StringInput `pulumi:"databaseName"`
-	// The RDB instance ID.
+	// The Database Instance ID.
 	InstanceId pulumi.StringInput `pulumi:"instanceId"`
 	// `region`) The region in which the resource exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`

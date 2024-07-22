@@ -11,7 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about an RDB instance. For further information see our [developers website](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
+// Gets information about an Database Instance.
+//
+// For further information refer the Managed Databases for PostgreSQL and MySQL [API documentation](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
 func LookupRdbInstance(ctx *pulumi.Context, args *LookupRdbInstanceArgs, opts ...pulumi.InvokeOption) (*LookupRdbInstanceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRdbInstanceResult
@@ -25,14 +27,14 @@ func LookupRdbInstance(ctx *pulumi.Context, args *LookupRdbInstanceArgs, opts ..
 // A collection of arguments for invoking getRdbInstance.
 type LookupRdbInstanceArgs struct {
 	// The RDB instance ID.
-	// Only one of `name` and `instanceId` should be specified.
+	//
+	// > **Note** You must specify at least one: `name` and/or `instanceId`.
 	InstanceId *string `pulumi:"instanceId"`
 	// The name of the RDB instance.
-	// Only one of `name` and `instanceId` should be specified.
 	Name *string `pulumi:"name"`
-	// The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+	// The ID of the project the Database Instance is in. Can be used to filter instances when using `name`.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`) The region in which the RDB instance exists.
+	// `region`) The region in which the Database Instance exists.
 	Region *string `pulumi:"region"`
 }
 
@@ -84,14 +86,14 @@ func LookupRdbInstanceOutput(ctx *pulumi.Context, args LookupRdbInstanceOutputAr
 // A collection of arguments for invoking getRdbInstance.
 type LookupRdbInstanceOutputArgs struct {
 	// The RDB instance ID.
-	// Only one of `name` and `instanceId` should be specified.
+	//
+	// > **Note** You must specify at least one: `name` and/or `instanceId`.
 	InstanceId pulumi.StringPtrInput `pulumi:"instanceId"`
 	// The name of the RDB instance.
-	// Only one of `name` and `instanceId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The ID of the project the RDB instance is in. Can be used to filter instances when using `name`.
+	// The ID of the project the Database Instance is in. Can be used to filter instances when using `name`.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// `region`) The region in which the RDB instance exists.
+	// `region`) The region in which the Database Instance exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 

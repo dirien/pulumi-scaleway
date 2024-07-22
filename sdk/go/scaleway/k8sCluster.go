@@ -30,21 +30,21 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			hedy, err := scaleway.NewVpcPrivateNetwork(ctx, "hedy", nil)
+//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
 //			if err != nil {
 //				return err
 //			}
-//			jack, err := scaleway.NewK8sCluster(ctx, "jack", &scaleway.K8sClusterArgs{
-//				Version:                   pulumi.String("1.24.3"),
+//			cluster, err := scaleway.NewK8sCluster(ctx, "cluster", &scaleway.K8sClusterArgs{
+//				Version:                   pulumi.String("1.29.1"),
 //				Cni:                       pulumi.String("cilium"),
-//				PrivateNetworkId:          hedy.ID(),
+//				PrivateNetworkId:          pn.ID(),
 //				DeleteAdditionalResources: pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewK8sPool(ctx, "john", &scaleway.K8sPoolArgs{
-//				ClusterId: jack.ID(),
+//			_, err = scaleway.NewK8sPool(ctx, "pool", &scaleway.K8sPoolArgs{
+//				ClusterId: cluster.ID(),
 //				NodeType:  pulumi.String("DEV1-M"),
 //				Size:      pulumi.Int(1),
 //			})
@@ -71,17 +71,17 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			henry, err := scaleway.NewK8sCluster(ctx, "henry", &scaleway.K8sClusterArgs{
+//			cluster, err := scaleway.NewK8sCluster(ctx, "cluster", &scaleway.K8sClusterArgs{
 //				Type:                      pulumi.String("multicloud"),
-//				Version:                   pulumi.String("1.24.3"),
+//				Version:                   pulumi.String("1.29.1"),
 //				Cni:                       pulumi.String("kilo"),
 //				DeleteAdditionalResources: pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewK8sPool(ctx, "friendFromOuterSpace", &scaleway.K8sPoolArgs{
-//				ClusterId: henry.ID(),
+//			_, err = scaleway.NewK8sPool(ctx, "pool", &scaleway.K8sPoolArgs{
+//				ClusterId: cluster.ID(),
 //				NodeType:  pulumi.String("external"),
 //				Size:      pulumi.Int(0),
 //				MinSize:   pulumi.Int(0),
@@ -111,19 +111,18 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			hedy, err := scaleway.NewVpcPrivateNetwork(ctx, "hedy", nil)
+//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
 //			if err != nil {
 //				return err
 //			}
-//			johnK8sCluster, err := scaleway.NewK8sCluster(ctx, "johnK8sCluster", &scaleway.K8sClusterArgs{
-//				Description: pulumi.String("my awesome cluster"),
-//				Version:     pulumi.String("1.24.3"),
+//			cluster, err := scaleway.NewK8sCluster(ctx, "cluster", &scaleway.K8sClusterArgs{
+//				Description: pulumi.String("cluster made in terraform"),
+//				Version:     pulumi.String("1.29.1"),
 //				Cni:         pulumi.String("calico"),
 //				Tags: pulumi.StringArray{
-//					pulumi.String("i'm an awesome tag"),
-//					pulumi.String("yay"),
+//					pulumi.String("terraform"),
 //				},
-//				PrivateNetworkId:          hedy.ID(),
+//				PrivateNetworkId:          pn.ID(),
 //				DeleteAdditionalResources: pulumi.Bool(false),
 //				AutoscalerConfig: &scaleway.K8sClusterAutoscalerConfigArgs{
 //					DisableScaleDown:             pulumi.Bool(false),
@@ -138,8 +137,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewK8sPool(ctx, "johnK8sPool", &scaleway.K8sPoolArgs{
-//				ClusterId:   johnK8sCluster.ID(),
+//			_, err = scaleway.NewK8sPool(ctx, "pool", &scaleway.K8sPoolArgs{
+//				ClusterId:   cluster.ID(),
 //				NodeType:    pulumi.String("DEV1-M"),
 //				Size:        pulumi.Int(3),
 //				Autoscaling: pulumi.Bool(true),

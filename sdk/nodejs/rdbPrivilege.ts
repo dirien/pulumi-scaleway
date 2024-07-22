@@ -5,8 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Create and manage Scaleway RDB database privilege.
- * For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#user-and-permissions).
+ * Create and manage Scaleway database privileges.
+ * For more information refer to [the API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#user-and-permissions).
  *
  * ## Example Usage
  *
@@ -79,7 +79,7 @@ export class RdbPrivilege extends pulumi.CustomResource {
      */
     public readonly databaseName!: pulumi.Output<string>;
     /**
-     * UUID of the rdb instance.
+     * UUID of the Database Instance.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
@@ -147,7 +147,7 @@ export interface RdbPrivilegeState {
      */
     databaseName?: pulumi.Input<string>;
     /**
-     * UUID of the rdb instance.
+     * UUID of the Database Instance.
      */
     instanceId?: pulumi.Input<string>;
     /**
@@ -173,7 +173,7 @@ export interface RdbPrivilegeArgs {
      */
     databaseName: pulumi.Input<string>;
     /**
-     * UUID of the rdb instance.
+     * UUID of the Database Instance.
      */
     instanceId: pulumi.Input<string>;
     /**

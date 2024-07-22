@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about your Invoices.
+// Gets information about your Scaleway invoices.
 //
 // ## Example Usage
 //

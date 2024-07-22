@@ -13,7 +13,7 @@ import (
 )
 
 // Creates and manages Scaleway Database instance authorized IPs.
-// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#acl-rules-allowed-ips).
+// For more information refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/#acl-rules-allowed-ips).
 //
 // ## Example Usage
 //
@@ -31,8 +31,19 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewRdbAcl(ctx, "main", &scaleway.RdbAclArgs{
-//				InstanceId: pulumi.Any(scaleway_rdb_instance.Main.Id),
+//			mainRdbInstance, err := scaleway.NewRdbInstance(ctx, "mainRdbInstance", &scaleway.RdbInstanceArgs{
+//				NodeType:      pulumi.String("DB-DEV-S"),
+//				Engine:        pulumi.String("PostgreSQL-15"),
+//				IsHaCluster:   pulumi.Bool(true),
+//				DisableBackup: pulumi.Bool(true),
+//				UserName:      pulumi.String("my_initial_user"),
+//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = scaleway.NewRdbAcl(ctx, "mainRdbAcl", &scaleway.RdbAclArgs{
+//				InstanceId: mainRdbInstance.ID(),
 //				AclRules: scaleway.RdbAclAclRuleArray{
 //					&scaleway.RdbAclAclRuleArgs{
 //						Ip:          pulumi.String("1.2.3.4/32"),
@@ -63,7 +74,7 @@ type RdbAcl struct {
 
 	// A list of ACLs (structure is described below)
 	AclRules RdbAclAclRuleArrayOutput `pulumi:"aclRules"`
-	// UUID of the rdb instance.
+	// UUID of the Database Instance.
 	//
 	// > **Important:** Updates to `instanceId` will recreate the Database ACL.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
@@ -109,7 +120,7 @@ func GetRdbAcl(ctx *pulumi.Context,
 type rdbAclState struct {
 	// A list of ACLs (structure is described below)
 	AclRules []RdbAclAclRule `pulumi:"aclRules"`
-	// UUID of the rdb instance.
+	// UUID of the Database Instance.
 	//
 	// > **Important:** Updates to `instanceId` will recreate the Database ACL.
 	InstanceId *string `pulumi:"instanceId"`
@@ -120,7 +131,7 @@ type rdbAclState struct {
 type RdbAclState struct {
 	// A list of ACLs (structure is described below)
 	AclRules RdbAclAclRuleArrayInput
-	// UUID of the rdb instance.
+	// UUID of the Database Instance.
 	//
 	// > **Important:** Updates to `instanceId` will recreate the Database ACL.
 	InstanceId pulumi.StringPtrInput
@@ -135,7 +146,7 @@ func (RdbAclState) ElementType() reflect.Type {
 type rdbAclArgs struct {
 	// A list of ACLs (structure is described below)
 	AclRules []RdbAclAclRule `pulumi:"aclRules"`
-	// UUID of the rdb instance.
+	// UUID of the Database Instance.
 	//
 	// > **Important:** Updates to `instanceId` will recreate the Database ACL.
 	InstanceId string `pulumi:"instanceId"`
@@ -147,7 +158,7 @@ type rdbAclArgs struct {
 type RdbAclArgs struct {
 	// A list of ACLs (structure is described below)
 	AclRules RdbAclAclRuleArrayInput
-	// UUID of the rdb instance.
+	// UUID of the Database Instance.
 	//
 	// > **Important:** Updates to `instanceId` will recreate the Database ACL.
 	InstanceId pulumi.StringInput
@@ -247,7 +258,7 @@ func (o RdbAclOutput) AclRules() RdbAclAclRuleArrayOutput {
 	return o.ApplyT(func(v *RdbAcl) RdbAclAclRuleArrayOutput { return v.AclRules }).(RdbAclAclRuleArrayOutput)
 }
 
-// UUID of the rdb instance.
+// UUID of the Database Instance.
 //
 // > **Important:** Updates to `instanceId` will recreate the Database ACL.
 func (o RdbAclOutput) InstanceId() pulumi.StringOutput {

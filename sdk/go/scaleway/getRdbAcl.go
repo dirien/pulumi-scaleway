@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about the RDB instance network Access Control List.
+// Gets information about the Database Instance network Access Control List.
 //
 // ## Example Usage
 //

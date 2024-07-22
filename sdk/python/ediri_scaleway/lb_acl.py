@@ -25,8 +25,8 @@ class LbAclArgs:
         """
         The set of arguments for constructing a LbAcl resource.
         :param pulumi.Input['LbAclActionArgs'] action: Action to undertake when an ACL filter matches.
-        :param pulumi.Input[str] frontend_id: The load-balancer Frontend ID to attach the ACL to.
-        :param pulumi.Input[int] index: The Priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
+        :param pulumi.Input[str] frontend_id: The ID of the Load Balancer frontend to attach the ACL to.
+        :param pulumi.Input[int] index: The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
         :param pulumi.Input[str] description: The ACL description.
         :param pulumi.Input['LbAclMatchArgs'] match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
@@ -57,7 +57,7 @@ class LbAclArgs:
     @pulumi.getter(name="frontendId")
     def frontend_id(self) -> pulumi.Input[str]:
         """
-        The load-balancer Frontend ID to attach the ACL to.
+        The ID of the Load Balancer frontend to attach the ACL to.
         """
         return pulumi.get(self, "frontend_id")
 
@@ -69,7 +69,7 @@ class LbAclArgs:
     @pulumi.getter
     def index(self) -> pulumi.Input[int]:
         """
-        The Priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
+        The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
         """
         return pulumi.get(self, "index")
 
@@ -130,8 +130,8 @@ class _LbAclState:
         :param pulumi.Input['LbAclActionArgs'] action: Action to undertake when an ACL filter matches.
         :param pulumi.Input[str] created_at: IsDate and time of ACL's creation (RFC 3339 format)
         :param pulumi.Input[str] description: The ACL description.
-        :param pulumi.Input[str] frontend_id: The load-balancer Frontend ID to attach the ACL to.
-        :param pulumi.Input[int] index: The Priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
+        :param pulumi.Input[str] frontend_id: The ID of the Load Balancer frontend to attach the ACL to.
+        :param pulumi.Input[int] index: The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
         :param pulumi.Input['LbAclMatchArgs'] match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
         :param pulumi.Input[str] updated_at: IsDate and time of ACL's update (RFC 3339 format)
@@ -193,7 +193,7 @@ class _LbAclState:
     @pulumi.getter(name="frontendId")
     def frontend_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The load-balancer Frontend ID to attach the ACL to.
+        The ID of the Load Balancer frontend to attach the ACL to.
         """
         return pulumi.get(self, "frontend_id")
 
@@ -205,7 +205,7 @@ class _LbAclState:
     @pulumi.getter
     def index(self) -> Optional[pulumi.Input[int]]:
         """
-        The Priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
+        The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
         """
         return pulumi.get(self, "index")
 
@@ -263,7 +263,9 @@ class LbAcl(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Load-Balancer ACLs. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls).
+        Creates and manages Scaleway Load Balancer ACLs.
+
+        For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/acls/) or [API reference](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls-get-an-acl).
 
         ## Example Usage
 
@@ -291,7 +293,7 @@ class LbAcl(pulumi.CustomResource):
 
         ## Import
 
-        Load-Balancer ACL can be imported using the `{zone}/{id}`, e.g.
+        Load Balancer ACLs can be imported using `{zone}/{id}`, e.g.
 
         bash
 
@@ -303,8 +305,8 @@ class LbAcl(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['LbAclActionArgs']] action: Action to undertake when an ACL filter matches.
         :param pulumi.Input[str] description: The ACL description.
-        :param pulumi.Input[str] frontend_id: The load-balancer Frontend ID to attach the ACL to.
-        :param pulumi.Input[int] index: The Priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
+        :param pulumi.Input[str] frontend_id: The ID of the Load Balancer frontend to attach the ACL to.
+        :param pulumi.Input[int] index: The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
         :param pulumi.Input[pulumi.InputType['LbAclMatchArgs']] match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
         """
@@ -315,7 +317,9 @@ class LbAcl(pulumi.CustomResource):
                  args: LbAclArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Load-Balancer ACLs. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls).
+        Creates and manages Scaleway Load Balancer ACLs.
+
+        For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/acls/) or [API reference](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls-get-an-acl).
 
         ## Example Usage
 
@@ -343,7 +347,7 @@ class LbAcl(pulumi.CustomResource):
 
         ## Import
 
-        Load-Balancer ACL can be imported using the `{zone}/{id}`, e.g.
+        Load Balancer ACLs can be imported using `{zone}/{id}`, e.g.
 
         bash
 
@@ -423,8 +427,8 @@ class LbAcl(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['LbAclActionArgs']] action: Action to undertake when an ACL filter matches.
         :param pulumi.Input[str] created_at: IsDate and time of ACL's creation (RFC 3339 format)
         :param pulumi.Input[str] description: The ACL description.
-        :param pulumi.Input[str] frontend_id: The load-balancer Frontend ID to attach the ACL to.
-        :param pulumi.Input[int] index: The Priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
+        :param pulumi.Input[str] frontend_id: The ID of the Load Balancer frontend to attach the ACL to.
+        :param pulumi.Input[int] index: The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
         :param pulumi.Input[pulumi.InputType['LbAclMatchArgs']] match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
         :param pulumi.Input[str] updated_at: IsDate and time of ACL's update (RFC 3339 format)
@@ -471,7 +475,7 @@ class LbAcl(pulumi.CustomResource):
     @pulumi.getter(name="frontendId")
     def frontend_id(self) -> pulumi.Output[str]:
         """
-        The load-balancer Frontend ID to attach the ACL to.
+        The ID of the Load Balancer frontend to attach the ACL to.
         """
         return pulumi.get(self, "frontend_id")
 
@@ -479,7 +483,7 @@ class LbAcl(pulumi.CustomResource):
     @pulumi.getter
     def index(self) -> pulumi.Output[int]:
         """
-        The Priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
+        The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
         """
         return pulumi.get(self, "index")
 

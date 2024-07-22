@@ -13,11 +13,11 @@ namespace ediri.Scaleway
     public static class GetLbCertificate
     {
         /// <summary>
-        /// Get information about Scaleway Load-Balancer Certificates.
+        /// Get information about Scaleway Load Balancer certificates.
         /// 
-        /// This data source can prove useful when a module accepts an LB Certificate as an input variable and needs to, for example, determine the security of a certificate for your LB Frontend associated with your domain, etc.
+        /// This data source can prove useful when a module accepts a Load Balancer certificate as an input variable and needs to, for example, determine the security of a certificate for the frontend associated with your domain.
         /// 
-        /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/add-certificate/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
         /// 
         /// ## Examples
         /// </summary>
@@ -25,11 +25,11 @@ namespace ediri.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLbCertificateResult>("scaleway:index/getLbCertificate:getLbCertificate", args ?? new GetLbCertificateArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Get information about Scaleway Load-Balancer Certificates.
+        /// Get information about Scaleway Load Balancer certificates.
         /// 
-        /// This data source can prove useful when a module accepts an LB Certificate as an input variable and needs to, for example, determine the security of a certificate for your LB Frontend associated with your domain, etc.
+        /// This data source can prove useful when a module accepts a Load Balancer certificate as an input variable and needs to, for example, determine the security of a certificate for the frontend associated with your domain.
         /// 
-        /// For more information, see [the documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/add-certificate/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
         /// 
         /// ## Examples
         /// </summary>
@@ -41,20 +41,20 @@ namespace ediri.Scaleway
     public sealed class GetLbCertificateArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The certificate id.
+        /// The certificate ID.
         /// - Only one of `name` and `certificate_id` should be specified.
         /// </summary>
         [Input("certificateId")]
         public string? CertificateId { get; set; }
 
         /// <summary>
-        /// The load-balancer ID this certificate is attached to.
+        /// The Load Balancer ID this certificate is attached to.
         /// </summary>
         [Input("lbId")]
         public string? LbId { get; set; }
 
         /// <summary>
-        /// The name of the certificate backend.
+        /// The name of the Load Balancer certificate.
         /// - When using a certificate `name` you should specify the `lb-id`
         /// </summary>
         [Input("name")]
@@ -69,20 +69,20 @@ namespace ediri.Scaleway
     public sealed class GetLbCertificateInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The certificate id.
+        /// The certificate ID.
         /// - Only one of `name` and `certificate_id` should be specified.
         /// </summary>
         [Input("certificateId")]
         public Input<string>? CertificateId { get; set; }
 
         /// <summary>
-        /// The load-balancer ID this certificate is attached to.
+        /// The Load Balancer ID this certificate is attached to.
         /// </summary>
         [Input("lbId")]
         public Input<string>? LbId { get; set; }
 
         /// <summary>
-        /// The name of the certificate backend.
+        /// The name of the Load Balancer certificate.
         /// - When using a certificate `name` you should specify the `lb-id`
         /// </summary>
         [Input("name")]
