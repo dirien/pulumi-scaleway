@@ -95,6 +95,8 @@ type LbIp struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The reverse domain associated with this IP.
 	Reverse pulumi.StringOutput `pulumi:"reverse"`
+	// The tags associated with this IP.
+	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// `zone`) The zone in which the IP should be reserved.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
@@ -143,6 +145,8 @@ type lbIpState struct {
 	Region *string `pulumi:"region"`
 	// The reverse domain associated with this IP.
 	Reverse *string `pulumi:"reverse"`
+	// The tags associated with this IP.
+	Tags []string `pulumi:"tags"`
 	// `zone`) The zone in which the IP should be reserved.
 	Zone *string `pulumi:"zone"`
 }
@@ -162,6 +166,8 @@ type LbIpState struct {
 	Region pulumi.StringPtrInput
 	// The reverse domain associated with this IP.
 	Reverse pulumi.StringPtrInput
+	// The tags associated with this IP.
+	Tags pulumi.StringArrayInput
 	// `zone`) The zone in which the IP should be reserved.
 	Zone pulumi.StringPtrInput
 }
@@ -177,6 +183,8 @@ type lbIpArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// The reverse domain associated with this IP.
 	Reverse *string `pulumi:"reverse"`
+	// The tags associated with this IP.
+	Tags []string `pulumi:"tags"`
 	// `zone`) The zone in which the IP should be reserved.
 	Zone *string `pulumi:"zone"`
 }
@@ -189,6 +197,8 @@ type LbIpArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// The reverse domain associated with this IP.
 	Reverse pulumi.StringPtrInput
+	// The tags associated with this IP.
+	Tags pulumi.StringArrayInput
 	// `zone`) The zone in which the IP should be reserved.
 	Zone pulumi.StringPtrInput
 }
@@ -313,6 +323,11 @@ func (o LbIpOutput) Region() pulumi.StringOutput {
 // The reverse domain associated with this IP.
 func (o LbIpOutput) Reverse() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbIp) pulumi.StringOutput { return v.Reverse }).(pulumi.StringOutput)
+}
+
+// The tags associated with this IP.
+func (o LbIpOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *LbIp) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 // `zone`) The zone in which the IP should be reserved.

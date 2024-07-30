@@ -63,6 +63,7 @@ from .get_flexible_ip import *
 from .get_flexible_ips import *
 from .get_function import *
 from .get_function_namespace import *
+from .get_iam_api_key import *
 from .get_iam_application import *
 from .get_iam_group import *
 from .get_iam_ssh_key import *
@@ -118,6 +119,7 @@ from .get_vpc_public_gateway_dhcp import *
 from .get_vpc_public_gateway_dhcp_reservation import *
 from .get_vpc_public_gateway_ip import *
 from .get_vpc_public_gateway_pat_rule import *
+from .get_vpc_routes import *
 from .get_vpcs import *
 from .get_webhosting import *
 from .get_webhosting_offer import *

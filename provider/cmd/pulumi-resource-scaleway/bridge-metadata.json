@@ -2119,6 +2119,7 @@
             "scaleway:index/getFlexibleIps:getFlexibleIps": 0,
             "scaleway:index/getFunction:getFunction": 0,
             "scaleway:index/getFunctionNamespace:getFunctionNamespace": 0,
+            "scaleway:index/getIamApiKey:getIamApiKey": 0,
             "scaleway:index/getIamApplication:getIamApplication": 0,
             "scaleway:index/getIamGroup:getIamGroup": 0,
             "scaleway:index/getIamSshKey:getIamSshKey": 0,
@@ -2174,6 +2175,7 @@
             "scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation": 0,
             "scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp": 0,
             "scaleway:index/getVpcPublicGatewayPatRule:getVpcPublicGatewayPatRule": 0,
+            "scaleway:index/getVpcRoutes:getVpcRoutes": 0,
             "scaleway:index/getVpcs:getVpcs": 0,
             "scaleway:index/getWebhosting:getWebhosting": 0,
             "scaleway:index/getWebhostingOffer:getWebhostingOffer": 0

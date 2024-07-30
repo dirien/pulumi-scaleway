@@ -19,6 +19,10 @@ namespace ediri.Scaleway.Outputs
         /// </summary>
         public readonly bool DhcpConfig;
         /// <summary>
+        /// IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network
+        /// </summary>
+        public readonly ImmutableArray<string> IpamIds;
+        /// <summary>
         /// The Private Network ID
         /// </summary>
         public readonly string PrivateNetworkId;
@@ -39,6 +43,8 @@ namespace ediri.Scaleway.Outputs
         private GetLbPrivateNetworkResult(
             bool dhcpConfig,
 
+            ImmutableArray<string> ipamIds,
+
             string privateNetworkId,
 
             ImmutableArray<string> staticConfigs,
@@ -48,6 +54,7 @@ namespace ediri.Scaleway.Outputs
             string zone)
         {
             DhcpConfig = dhcpConfig;
+            IpamIds = ipamIds;
             PrivateNetworkId = privateNetworkId;
             StaticConfigs = staticConfigs;
             Status = status;
