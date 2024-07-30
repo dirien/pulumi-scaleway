@@ -149,6 +149,10 @@ namespace ediri.Scaleway
         /// The reverse domain associated with this IP.
         /// </summary>
         public readonly string Reverse;
+        /// <summary>
+        /// The tags associated with this IP.
+        /// </summary>
+        public readonly ImmutableArray<string> Tags;
         public readonly string Zone;
 
         [OutputConstructor]
@@ -171,6 +175,8 @@ namespace ediri.Scaleway
 
             string reverse,
 
+            ImmutableArray<string> tags,
+
             string zone)
         {
             Id = id;
@@ -182,6 +188,7 @@ namespace ediri.Scaleway
             ProjectId = projectId;
             Region = region;
             Reverse = reverse;
+            Tags = tags;
             Zone = zone;
         }
     }

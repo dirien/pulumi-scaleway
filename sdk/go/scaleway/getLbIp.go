@@ -77,7 +77,9 @@ type LookupLbIpResult struct {
 	Region         string `pulumi:"region"`
 	// The reverse domain associated with this IP.
 	Reverse string `pulumi:"reverse"`
-	Zone    string `pulumi:"zone"`
+	// The tags associated with this IP.
+	Tags []string `pulumi:"tags"`
+	Zone string   `pulumi:"zone"`
 }
 
 func LookupLbIpOutput(ctx *pulumi.Context, args LookupLbIpOutputArgs, opts ...pulumi.InvokeOption) LookupLbIpResultOutput {
@@ -162,6 +164,11 @@ func (o LookupLbIpResultOutput) Region() pulumi.StringOutput {
 // The reverse domain associated with this IP.
 func (o LookupLbIpResultOutput) Reverse() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLbIpResult) string { return v.Reverse }).(pulumi.StringOutput)
+}
+
+// The tags associated with this IP.
+func (o LookupLbIpResultOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupLbIpResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 func (o LookupLbIpResultOutput) Zone() pulumi.StringOutput {

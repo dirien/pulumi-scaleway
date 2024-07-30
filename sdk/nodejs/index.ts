@@ -295,6 +295,11 @@ export const getFunctionNamespace: typeof import("./getFunctionNamespace").getFu
 export const getFunctionNamespaceOutput: typeof import("./getFunctionNamespace").getFunctionNamespaceOutput = null as any;
 utilities.lazyLoad(exports, ["getFunctionNamespace","getFunctionNamespaceOutput"], () => require("./getFunctionNamespace"));
 
+export { GetIamApiKeyArgs, GetIamApiKeyResult, GetIamApiKeyOutputArgs } from "./getIamApiKey";
+export const getIamApiKey: typeof import("./getIamApiKey").getIamApiKey = null as any;
+export const getIamApiKeyOutput: typeof import("./getIamApiKey").getIamApiKeyOutput = null as any;
+utilities.lazyLoad(exports, ["getIamApiKey","getIamApiKeyOutput"], () => require("./getIamApiKey"));
+
 export { GetIamApplicationArgs, GetIamApplicationResult, GetIamApplicationOutputArgs } from "./getIamApplication";
 export const getIamApplication: typeof import("./getIamApplication").getIamApplication = null as any;
 export const getIamApplicationOutput: typeof import("./getIamApplication").getIamApplicationOutput = null as any;
@@ -569,6 +574,11 @@ export { GetVpcPublicGatewayPatRuleArgs, GetVpcPublicGatewayPatRuleResult, GetVp
 export const getVpcPublicGatewayPatRule: typeof import("./getVpcPublicGatewayPatRule").getVpcPublicGatewayPatRule = null as any;
 export const getVpcPublicGatewayPatRuleOutput: typeof import("./getVpcPublicGatewayPatRule").getVpcPublicGatewayPatRuleOutput = null as any;
 utilities.lazyLoad(exports, ["getVpcPublicGatewayPatRule","getVpcPublicGatewayPatRuleOutput"], () => require("./getVpcPublicGatewayPatRule"));
+
+export { GetVpcRoutesArgs, GetVpcRoutesResult, GetVpcRoutesOutputArgs } from "./getVpcRoutes";
+export const getVpcRoutes: typeof import("./getVpcRoutes").getVpcRoutes = null as any;
+export const getVpcRoutesOutput: typeof import("./getVpcRoutes").getVpcRoutesOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcRoutes","getVpcRoutesOutput"], () => require("./getVpcRoutes"));
 
 export { GetVpcsArgs, GetVpcsResult, GetVpcsOutputArgs } from "./getVpcs";
 export const getVpcs: typeof import("./getVpcs").getVpcs = null as any;

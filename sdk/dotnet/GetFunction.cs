@@ -166,6 +166,7 @@ namespace ediri.Scaleway
         public readonly string? ProjectId;
         public readonly string? Region;
         public readonly string Runtime;
+        public readonly string Sandbox;
         public readonly ImmutableDictionary<string, string> SecretEnvironmentVariables;
         public readonly int Timeout;
         public readonly string ZipFile;
@@ -211,6 +212,8 @@ namespace ediri.Scaleway
 
             string runtime,
 
+            string sandbox,
+
             ImmutableDictionary<string, string> secretEnvironmentVariables,
 
             int timeout,
@@ -238,6 +241,7 @@ namespace ediri.Scaleway
             ProjectId = projectId;
             Region = region;
             Runtime = runtime;
+            Sandbox = sandbox;
             SecretEnvironmentVariables = secretEnvironmentVariables;
             Timeout = timeout;
             ZipFile = zipFile;
