@@ -7,14 +7,14 @@ toolchain go1.22.3
 require (
 	github.com/hashicorp/terraform-plugin-framework v1.8.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.34.0
-	github.com/scaleway/terraform-provider-scaleway/v2 v2.41.3
+	github.com/scaleway/terraform-provider-scaleway/v2 v2.42.1
 )
 
 require (
 	github.com/ProtonMail/go-crypto v1.1.0-alpha.2 // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/apparentlymart/go-textseg/v15 v15.0.0 // indirect
-	github.com/aws/aws-sdk-go v1.54.6 // indirect
+	github.com/aws/aws-sdk-go v1.54.12 // indirect
 	github.com/cloudflare/circl v1.3.7 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/fatih/color v1.16.0 // indirect
@@ -59,7 +59,7 @@ require (
 	github.com/oklog/run v1.1.0 // indirect
 	github.com/robfig/cron/v3 v3.0.1 // indirect
 	github.com/rogpeppe/go-internal v1.11.0 // indirect
-	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.27.0.20240603133732-526ae94f1caa // indirect
+	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.28.0.20240704145322-5369dd23c111 // indirect
 	github.com/vmihailenco/msgpack v4.0.4+incompatible // indirect
 	github.com/vmihailenco/msgpack/v5 v5.4.1 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
