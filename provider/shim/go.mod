@@ -5,7 +5,6 @@ go 1.22.0
 toolchain go1.22.3
 
 require (
-	github.com/hashicorp/terraform-plugin-framework v1.8.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.34.0
 	github.com/scaleway/terraform-provider-scaleway/v2 v2.47.0
 )
