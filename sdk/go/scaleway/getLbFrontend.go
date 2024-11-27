@@ -110,14 +110,20 @@ type LookupLbFrontendResult struct {
 
 func LookupLbFrontendOutput(ctx *pulumi.Context, args LookupLbFrontendOutputArgs, opts ...pulumi.InvokeOption) LookupLbFrontendResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupLbFrontendResult, error) {
+		ApplyT(func(v interface{}) (LookupLbFrontendResultOutput, error) {
 			args := v.(LookupLbFrontendArgs)
-			r, err := LookupLbFrontend(ctx, &args, opts...)
-			var s LookupLbFrontendResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupLbFrontendResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getLbFrontend:getLbFrontend", args, &rv, "", opts...)
+			if err != nil {
+				return LookupLbFrontendResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupLbFrontendResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupLbFrontendResultOutput), nil
+			}
+			return output, nil
 		}).(LookupLbFrontendResultOutput)
 }
 

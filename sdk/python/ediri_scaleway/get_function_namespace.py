@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -94,7 +99,7 @@ class GetFunctionNamespaceResult:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
         """
-        The organization ID the namespace is associated with.
+        The unique identifier of the organization with which the namespace is associated.
         """
         return pulumi.get(self, "organization_id")
 
@@ -120,7 +125,7 @@ class GetFunctionNamespaceResult:
     @pulumi.getter(name="registryNamespaceId")
     def registry_namespace_id(self) -> str:
         """
-        The registry namespace ID of the namespace.
+        The unique identifier of the registry namespace of the Serverless Functions namespace.
         """
         return pulumi.get(self, "registry_namespace_id")
 
@@ -155,9 +160,16 @@ def get_function_namespace(name: Optional[str] = None,
                            region: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFunctionNamespaceResult:
     """
-    Gets information about a function namespace.
+    The `FunctionNamespace` data source is used to retrieve information about a Serverless Functions namespace.
 
-    ## Example Usage
+    Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
+
+    ## Retrieve a Serverless Functions namespace
+
+    The following commands allow you to:
+
+    - retrieve a namespace by its name
+    - retrieve a namespace by its ID
 
     ```python
     import pulumi
@@ -167,11 +179,9 @@ def get_function_namespace(name: Optional[str] = None,
     ```
 
 
-    :param str name: The namespace name.
-           Only one of `name` and `namespace_id` should be specified.
-    :param str namespace_id: The namespace id.
-           Only one of `name` and `namespace_id` should be specified.
-    :param str project_id: `project_id`) The ID of the project the namespace is associated with.
+    :param str name: The name of the namespace. Only one of `name` and `namespace_id` should be specified.
+    :param str namespace_id: The unique identifier of the namespace. Only one of `name` and `namespace_id` should be specified.
+    :param str project_id: `project_id`) The unique identifier of the project with which the namespace is associated.
     :param str region: `region`) The region in which the namespace exists.
     """
     __args__ = dict()
@@ -194,18 +204,22 @@ def get_function_namespace(name: Optional[str] = None,
         registry_endpoint=pulumi.get(__ret__, 'registry_endpoint'),
         registry_namespace_id=pulumi.get(__ret__, 'registry_namespace_id'),
         secret_environment_variables=pulumi.get(__ret__, 'secret_environment_variables'))
-
-
-@_utilities.lift_output_func(get_function_namespace)
 def get_function_namespace_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                   namespace_id: Optional[pulumi.Input[Optional[str]]] = None,
                                   project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                   region: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFunctionNamespaceResult]:
     """
-    Gets information about a function namespace.
+    The `FunctionNamespace` data source is used to retrieve information about a Serverless Functions namespace.
 
-    ## Example Usage
+    Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
+
+    ## Retrieve a Serverless Functions namespace
+
+    The following commands allow you to:
+
+    - retrieve a namespace by its name
+    - retrieve a namespace by its ID
 
     ```python
     import pulumi
@@ -215,11 +229,27 @@ def get_function_namespace_output(name: Optional[pulumi.Input[Optional[str]]] = 
     ```
 
 
-    :param str name: The namespace name.
-           Only one of `name` and `namespace_id` should be specified.
-    :param str namespace_id: The namespace id.
-           Only one of `name` and `namespace_id` should be specified.
-    :param str project_id: `project_id`) The ID of the project the namespace is associated with.
+    :param str name: The name of the namespace. Only one of `name` and `namespace_id` should be specified.
+    :param str namespace_id: The unique identifier of the namespace. Only one of `name` and `namespace_id` should be specified.
+    :param str project_id: `project_id`) The unique identifier of the project with which the namespace is associated.
     :param str region: `region`) The region in which the namespace exists.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['namespaceId'] = namespace_id
+    __args__['projectId'] = project_id
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getFunctionNamespace:getFunctionNamespace', __args__, opts=opts, typ=GetFunctionNamespaceResult)
+    return __ret__.apply(lambda __response__: GetFunctionNamespaceResult(
+        description=pulumi.get(__response__, 'description'),
+        environment_variables=pulumi.get(__response__, 'environment_variables'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        namespace_id=pulumi.get(__response__, 'namespace_id'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region'),
+        registry_endpoint=pulumi.get(__response__, 'registry_endpoint'),
+        registry_namespace_id=pulumi.get(__response__, 'registry_namespace_id'),
+        secret_environment_variables=pulumi.get(__response__, 'secret_environment_variables')))

@@ -11,10 +11,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about the Bucket's policy.
-// For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+// The `ObjectBucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
 //
-// ## Example Usage
+// Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/) for more information.
+//
+// ## Retrieve the bucket policy of a bucket
+//
+// The following command allows you to retrieve a bucket policy by its bucket.
 //
 // ```go
 // package main
@@ -51,7 +54,7 @@ func LookupObjectBucketPolicy(ctx *pulumi.Context, args *LookupObjectBucketPolic
 
 // A collection of arguments for invoking getObjectBucketPolicy.
 type LookupObjectBucketPolicyArgs struct {
-	// The bucket name.
+	// The name of the bucket.
 	Bucket    string  `pulumi:"bucket"`
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the Object Storage exists.
@@ -63,7 +66,7 @@ type LookupObjectBucketPolicyResult struct {
 	Bucket string `pulumi:"bucket"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// The bucket's policy in JSON format.
+	// The content of the bucket policy in JSON format.
 	Policy    string  `pulumi:"policy"`
 	ProjectId *string `pulumi:"projectId"`
 	Region    *string `pulumi:"region"`
@@ -71,20 +74,26 @@ type LookupObjectBucketPolicyResult struct {
 
 func LookupObjectBucketPolicyOutput(ctx *pulumi.Context, args LookupObjectBucketPolicyOutputArgs, opts ...pulumi.InvokeOption) LookupObjectBucketPolicyResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupObjectBucketPolicyResult, error) {
+		ApplyT(func(v interface{}) (LookupObjectBucketPolicyResultOutput, error) {
 			args := v.(LookupObjectBucketPolicyArgs)
-			r, err := LookupObjectBucketPolicy(ctx, &args, opts...)
-			var s LookupObjectBucketPolicyResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupObjectBucketPolicyResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy", args, &rv, "", opts...)
+			if err != nil {
+				return LookupObjectBucketPolicyResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupObjectBucketPolicyResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupObjectBucketPolicyResultOutput), nil
+			}
+			return output, nil
 		}).(LookupObjectBucketPolicyResultOutput)
 }
 
 // A collection of arguments for invoking getObjectBucketPolicy.
 type LookupObjectBucketPolicyOutputArgs struct {
-	// The bucket name.
+	// The name of the bucket.
 	Bucket    pulumi.StringInput    `pulumi:"bucket"`
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region in which the Object Storage exists.
@@ -119,7 +128,7 @@ func (o LookupObjectBucketPolicyResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupObjectBucketPolicyResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The bucket's policy in JSON format.
+// The content of the bucket policy in JSON format.
 func (o LookupObjectBucketPolicyResultOutput) Policy() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupObjectBucketPolicyResult) string { return v.Policy }).(pulumi.StringOutput)
 }

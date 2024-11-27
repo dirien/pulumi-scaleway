@@ -22,7 +22,6 @@ import * as utilities from "./utilities";
  */
 export function getTemDomain(args?: GetTemDomainArgs, opts?: pulumi.InvokeOptions): Promise<GetTemDomainResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getTemDomain:getTemDomain", {
         "domainId": args.domainId,
@@ -61,6 +60,7 @@ export interface GetTemDomainArgs {
  */
 export interface GetTemDomainResult {
     readonly acceptTos: boolean;
+    readonly autoconfig: boolean;
     readonly createdAt: string;
     readonly dkimConfig: string;
     readonly dmarcConfig: string;
@@ -104,7 +104,14 @@ export interface GetTemDomainResult {
  * ```
  */
 export function getTemDomainOutput(args?: GetTemDomainOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetTemDomainResult> {
-    return pulumi.output(args).apply((a: any) => getTemDomain(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getTemDomain:getTemDomain", {
+        "domainId": args.domainId,
+        "name": args.name,
+        "projectId": args.projectId,
+        "region": args.region,
+    }, opts);
 }
 
 /**

@@ -52,6 +52,20 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Automatically Configure DNS Settings for Your Domain
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@ediri/scaleway";
+ *
+ * const config = new pulumi.Config();
+ * const domainName = config.require("domainName");
+ * const main = new scaleway.TemDomain("main", {
+ *     acceptTos: true,
+ *     autoconfig: true,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Domains can be imported using the `{region}/{id}`, e.g.
@@ -96,6 +110,10 @@ export class TemDomain extends pulumi.CustomResource {
      */
     public readonly acceptTos!: pulumi.Output<boolean>;
     /**
+     * Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
+     */
+    public readonly autoconfig!: pulumi.Output<boolean | undefined>;
+    /**
      * The date and time of the Transaction Email Domain's creation (RFC 3339 format).
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
@@ -112,7 +130,9 @@ export class TemDomain extends pulumi.CustomResource {
      */
     public /*out*/ readonly dmarcName!: pulumi.Output<string>;
     /**
-     * The error message if the last check failed.
+     * (Deprecated) The error message if the last check failed.
+     *
+     * @deprecated last_error is deprecated
      */
     public /*out*/ readonly lastError!: pulumi.Output<string>;
     /**
@@ -199,6 +219,7 @@ export class TemDomain extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as TemDomainState | undefined;
             resourceInputs["acceptTos"] = state ? state.acceptTos : undefined;
+            resourceInputs["autoconfig"] = state ? state.autoconfig : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["dkimConfig"] = state ? state.dkimConfig : undefined;
             resourceInputs["dmarcConfig"] = state ? state.dmarcConfig : undefined;
@@ -227,6 +248,7 @@ export class TemDomain extends pulumi.CustomResource {
                 throw new Error("Missing required property 'acceptTos'");
             }
             resourceInputs["acceptTos"] = args ? args.acceptTos : undefined;
+            resourceInputs["autoconfig"] = args ? args.autoconfig : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
@@ -265,6 +287,10 @@ export interface TemDomainState {
      */
     acceptTos?: pulumi.Input<boolean>;
     /**
+     * Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
+     */
+    autoconfig?: pulumi.Input<boolean>;
+    /**
      * The date and time of the Transaction Email Domain's creation (RFC 3339 format).
      */
     createdAt?: pulumi.Input<string>;
@@ -281,7 +307,9 @@ export interface TemDomainState {
      */
     dmarcName?: pulumi.Input<string>;
     /**
-     * The error message if the last check failed.
+     * (Deprecated) The error message if the last check failed.
+     *
+     * @deprecated last_error is deprecated
      */
     lastError?: pulumi.Input<string>;
     /**
@@ -364,6 +392,10 @@ export interface TemDomainArgs {
      * > **Important:** This attribute must be set to `true`.
      */
     acceptTos: pulumi.Input<boolean>;
+    /**
+     * Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
+     */
+    autoconfig?: pulumi.Input<boolean>;
     /**
      * The domain name, must not be used in another Transactional Email Domain.
      * > **Important:** Updates to `name` will recreate the domain.

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -171,7 +176,7 @@ def get_ipam_ips(attached: Optional[bool] = None,
                  private_network_id: Optional[str] = None,
                  project_id: Optional[str] = None,
                  region: Optional[str] = None,
-                 resource: Optional[pulumi.InputType['GetIpamIpsResourceArgs']] = None,
+                 resource: Optional[Union['GetIpamIpsResourceArgs', 'GetIpamIpsResourceArgsDict']] = None,
                  tags: Optional[Sequence[str]] = None,
                  type: Optional[str] = None,
                  zonal: Optional[str] = None,
@@ -202,23 +207,23 @@ def get_ipam_ips(attached: Optional[bool] = None,
     vpc01 = scaleway.Vpc("vpc01")
     pn01 = scaleway.VpcPrivateNetwork("pn01",
         vpc_id=vpc01.id,
-        ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
-            subnet="172.16.32.0/22",
-        ))
+        ipv4_subnet={
+            "subnet": "172.16.32.0/22",
+        })
     redis01 = scaleway.RedisCluster("redis01",
         version="7.0.5",
         node_type="RED1-XS",
         user_name="my_initial_user",
         password="thiZ_is_v&ry_s3cret",
         cluster_size=3,
-        private_networks=[scaleway.RedisClusterPrivateNetworkArgs(
-            id=pn01.id,
-        )])
+        private_networks=[{
+            "id": pn01.id,
+        }])
     by_type_and_resource = scaleway.get_ipam_ips_output(type="ipv4",
-        resource=scaleway.GetIpamIpsResourceArgs(
-            id=redis01.id,
-            type="redis_cluster",
-        ))
+        resource={
+            "id": redis01.id,
+            "type": "redis_cluster",
+        })
     ```
 
 
@@ -227,7 +232,7 @@ def get_ipam_ips(attached: Optional[bool] = None,
     :param str private_network_id: The ID of the Private Network to filter for.
     :param str project_id: The ID of the Project to filter for.
     :param str region: The region to filter for.
-    :param pulumi.InputType['GetIpamIpsResourceArgs'] resource: Filter for a resource attached to the IP, using resource ID, type or name.
+    :param Union['GetIpamIpsResourceArgs', 'GetIpamIpsResourceArgsDict'] resource: Filter for a resource attached to the IP, using resource ID, type or name.
     :param Sequence[str] tags: The IP tags to filter for.
     :param str type: The type of IP to filter for (`ipv4` or `ipv6`).
     :param str zonal: Only IPs that are zonal, and in this zone, will be returned.
@@ -258,15 +263,12 @@ def get_ipam_ips(attached: Optional[bool] = None,
         tags=pulumi.get(__ret__, 'tags'),
         type=pulumi.get(__ret__, 'type'),
         zonal=pulumi.get(__ret__, 'zonal'))
-
-
-@_utilities.lift_output_func(get_ipam_ips)
 def get_ipam_ips_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
                         mac_address: Optional[pulumi.Input[Optional[str]]] = None,
                         private_network_id: Optional[pulumi.Input[Optional[str]]] = None,
                         project_id: Optional[pulumi.Input[Optional[str]]] = None,
                         region: Optional[pulumi.Input[Optional[str]]] = None,
-                        resource: Optional[pulumi.Input[Optional[pulumi.InputType['GetIpamIpsResourceArgs']]]] = None,
+                        resource: Optional[pulumi.Input[Optional[Union['GetIpamIpsResourceArgs', 'GetIpamIpsResourceArgsDict']]]] = None,
                         tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                         type: Optional[pulumi.Input[Optional[str]]] = None,
                         zonal: Optional[pulumi.Input[Optional[str]]] = None,
@@ -297,23 +299,23 @@ def get_ipam_ips_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
     vpc01 = scaleway.Vpc("vpc01")
     pn01 = scaleway.VpcPrivateNetwork("pn01",
         vpc_id=vpc01.id,
-        ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
-            subnet="172.16.32.0/22",
-        ))
+        ipv4_subnet={
+            "subnet": "172.16.32.0/22",
+        })
     redis01 = scaleway.RedisCluster("redis01",
         version="7.0.5",
         node_type="RED1-XS",
         user_name="my_initial_user",
         password="thiZ_is_v&ry_s3cret",
         cluster_size=3,
-        private_networks=[scaleway.RedisClusterPrivateNetworkArgs(
-            id=pn01.id,
-        )])
+        private_networks=[{
+            "id": pn01.id,
+        }])
     by_type_and_resource = scaleway.get_ipam_ips_output(type="ipv4",
-        resource=scaleway.GetIpamIpsResourceArgs(
-            id=redis01.id,
-            type="redis_cluster",
-        ))
+        resource={
+            "id": redis01.id,
+            "type": "redis_cluster",
+        })
     ```
 
 
@@ -322,9 +324,33 @@ def get_ipam_ips_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
     :param str private_network_id: The ID of the Private Network to filter for.
     :param str project_id: The ID of the Project to filter for.
     :param str region: The region to filter for.
-    :param pulumi.InputType['GetIpamIpsResourceArgs'] resource: Filter for a resource attached to the IP, using resource ID, type or name.
+    :param Union['GetIpamIpsResourceArgs', 'GetIpamIpsResourceArgsDict'] resource: Filter for a resource attached to the IP, using resource ID, type or name.
     :param Sequence[str] tags: The IP tags to filter for.
     :param str type: The type of IP to filter for (`ipv4` or `ipv6`).
     :param str zonal: Only IPs that are zonal, and in this zone, will be returned.
     """
-    ...
+    __args__ = dict()
+    __args__['attached'] = attached
+    __args__['macAddress'] = mac_address
+    __args__['privateNetworkId'] = private_network_id
+    __args__['projectId'] = project_id
+    __args__['region'] = region
+    __args__['resource'] = resource
+    __args__['tags'] = tags
+    __args__['type'] = type
+    __args__['zonal'] = zonal
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getIpamIps:getIpamIps', __args__, opts=opts, typ=GetIpamIpsResult)
+    return __ret__.apply(lambda __response__: GetIpamIpsResult(
+        attached=pulumi.get(__response__, 'attached'),
+        id=pulumi.get(__response__, 'id'),
+        ips=pulumi.get(__response__, 'ips'),
+        mac_address=pulumi.get(__response__, 'mac_address'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        private_network_id=pulumi.get(__response__, 'private_network_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region'),
+        resource=pulumi.get(__response__, 'resource'),
+        tags=pulumi.get(__response__, 'tags'),
+        type=pulumi.get(__response__, 'type'),
+        zonal=pulumi.get(__response__, 'zonal')))

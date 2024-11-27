@@ -11,7 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Creates and manages Scaleway Serverless SQL Databases. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/serverless-databases/).
+// The `SdbSqlDatabase` resource allows you to create and manage databases for Scaleway Serverless SQL Databases.
+//
+// Refer to the Serverless SQL Databases [documentation](https://www.scaleway.com/en/docs/serverless/sql-databases/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-databases/) for more information.
 //
 // ## Example Usage
 //
@@ -44,7 +46,7 @@ import (
 //
 // ## Import
 //
-// Serverless SQL Database can be imported using the `{region}/{id}`, e.g.
+// Serverless SQL Databases can be imported using the `{region}/{id}`, as shown below:
 //
 // bash
 //
@@ -54,15 +56,15 @@ import (
 type SdbSqlDatabase struct {
 	pulumi.CustomResourceState
 
-	// Endpoint of the database
+	// The endpoint of the database.
 	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
 	// The maximum number of CPU units for your database. Defaults to 15.
 	MaxCpu pulumi.IntPtrOutput `pulumi:"maxCpu"`
 	// The minimum number of CPU units for your database. Defaults to 0.
 	MinCpu pulumi.IntPtrOutput `pulumi:"minCpu"`
-	// Name of the database (e.g. `my-new-database`).
+	// The name of the database (e.g. `my-new-database`).
 	//
-	// > **Important:** Updates to `name` will recreate the database.
+	// > **Important:** Updates to the `name` argument will recreate the database.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -100,15 +102,15 @@ func GetSdbSqlDatabase(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SdbSqlDatabase resources.
 type sdbSqlDatabaseState struct {
-	// Endpoint of the database
+	// The endpoint of the database.
 	Endpoint *string `pulumi:"endpoint"`
 	// The maximum number of CPU units for your database. Defaults to 15.
 	MaxCpu *int `pulumi:"maxCpu"`
 	// The minimum number of CPU units for your database. Defaults to 0.
 	MinCpu *int `pulumi:"minCpu"`
-	// Name of the database (e.g. `my-new-database`).
+	// The name of the database (e.g. `my-new-database`).
 	//
-	// > **Important:** Updates to `name` will recreate the database.
+	// > **Important:** Updates to the `name` argument will recreate the database.
 	Name *string `pulumi:"name"`
 	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
@@ -117,15 +119,15 @@ type sdbSqlDatabaseState struct {
 }
 
 type SdbSqlDatabaseState struct {
-	// Endpoint of the database
+	// The endpoint of the database.
 	Endpoint pulumi.StringPtrInput
 	// The maximum number of CPU units for your database. Defaults to 15.
 	MaxCpu pulumi.IntPtrInput
 	// The minimum number of CPU units for your database. Defaults to 0.
 	MinCpu pulumi.IntPtrInput
-	// Name of the database (e.g. `my-new-database`).
+	// The name of the database (e.g. `my-new-database`).
 	//
-	// > **Important:** Updates to `name` will recreate the database.
+	// > **Important:** Updates to the `name` argument will recreate the database.
 	Name pulumi.StringPtrInput
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
@@ -142,9 +144,9 @@ type sdbSqlDatabaseArgs struct {
 	MaxCpu *int `pulumi:"maxCpu"`
 	// The minimum number of CPU units for your database. Defaults to 0.
 	MinCpu *int `pulumi:"minCpu"`
-	// Name of the database (e.g. `my-new-database`).
+	// The name of the database (e.g. `my-new-database`).
 	//
-	// > **Important:** Updates to `name` will recreate the database.
+	// > **Important:** Updates to the `name` argument will recreate the database.
 	Name *string `pulumi:"name"`
 	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
@@ -158,9 +160,9 @@ type SdbSqlDatabaseArgs struct {
 	MaxCpu pulumi.IntPtrInput
 	// The minimum number of CPU units for your database. Defaults to 0.
 	MinCpu pulumi.IntPtrInput
-	// Name of the database (e.g. `my-new-database`).
+	// The name of the database (e.g. `my-new-database`).
 	//
-	// > **Important:** Updates to `name` will recreate the database.
+	// > **Important:** Updates to the `name` argument will recreate the database.
 	Name pulumi.StringPtrInput
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
@@ -255,7 +257,7 @@ func (o SdbSqlDatabaseOutput) ToSdbSqlDatabaseOutputWithContext(ctx context.Cont
 	return o
 }
 
-// Endpoint of the database
+// The endpoint of the database.
 func (o SdbSqlDatabaseOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *SdbSqlDatabase) pulumi.StringOutput { return v.Endpoint }).(pulumi.StringOutput)
 }
@@ -270,9 +272,9 @@ func (o SdbSqlDatabaseOutput) MinCpu() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SdbSqlDatabase) pulumi.IntPtrOutput { return v.MinCpu }).(pulumi.IntPtrOutput)
 }
 
-// Name of the database (e.g. `my-new-database`).
+// The name of the database (e.g. `my-new-database`).
 //
-// > **Important:** Updates to `name` will recreate the database.
+// > **Important:** Updates to the `name` argument will recreate the database.
 func (o SdbSqlDatabaseOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SdbSqlDatabase) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

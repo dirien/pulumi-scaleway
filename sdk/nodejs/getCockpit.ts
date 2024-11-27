@@ -7,15 +7,22 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * > **Important:**  The data source `scaleway.Cockpit` has been deprecated and will no longer be supported. Instead, use resource `scaleway.Cockpit`.
+ *
  * > **Note:**
- * As of April 2024, Cockpit has introduced regionalization to offer more flexibility and resilience.
- * If you have customized dashboards in Grafana for monitoring Scaleway resources, please update your queries to accommodate the new regionalized data sources.
+ * As of April 2024, Cockpit has introduced [regionalization](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#region) to offer more flexibility and resilience.
+ * If you have created customized dashboards with data for your Scaleway resources before April 2024, you will need to update your queries in Grafana, with the new regionalized data sources.
  *
- * Gets information about the Scaleway Cockpit.
+ * The `scaleway.Cockpit` data source is used to retrieve information about a Scaleway Cockpit associated with a given Project. This can be the default Project or a specific Project identified by its ID.
  *
- * For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/).
+ * Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
  *
- * ## Example Usage
+ * ## Retrieve a Cockpit
+ *
+ * The following commands allow you to:
+ *
+ * - get information on the Cockpit associated with your Scaleway default Project
+ * - get information on the Cockpit associated with a specific Scaleway Project
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -35,7 +42,6 @@ import * as utilities from "./utilities";
  */
 export function getCockpit(args?: GetCockpitArgs, opts?: pulumi.InvokeOptions): Promise<GetCockpitResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getCockpit:getCockpit", {
         "projectId": args.projectId,
@@ -47,7 +53,7 @@ export function getCockpit(args?: GetCockpitArgs, opts?: pulumi.InvokeOptions): 
  */
 export interface GetCockpitArgs {
     /**
-     * `projectId`) The ID of the project the cockpit is associated with.
+     * Specifies the ID of the Scaleway Project that the Cockpit is associated with. If not specified, it defaults to the Project ID specified in the provider configuration.
      */
     projectId?: string;
 }
@@ -57,30 +63,38 @@ export interface GetCockpitArgs {
  */
 export interface GetCockpitResult {
     /**
-     * Endpoints
+     * (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
      */
     readonly endpoints: outputs.GetCockpitEndpoint[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly plan: string;
     /**
-     * The ID of the current plan
+     * (Deprecated) ID of the current pricing plan
      */
     readonly planId: string;
     readonly projectId?: string;
     readonly pushUrls: outputs.GetCockpitPushUrl[];
 }
 /**
+ * > **Important:**  The data source `scaleway.Cockpit` has been deprecated and will no longer be supported. Instead, use resource `scaleway.Cockpit`.
+ *
  * > **Note:**
- * As of April 2024, Cockpit has introduced regionalization to offer more flexibility and resilience.
- * If you have customized dashboards in Grafana for monitoring Scaleway resources, please update your queries to accommodate the new regionalized data sources.
+ * As of April 2024, Cockpit has introduced [regionalization](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#region) to offer more flexibility and resilience.
+ * If you have created customized dashboards with data for your Scaleway resources before April 2024, you will need to update your queries in Grafana, with the new regionalized data sources.
  *
- * Gets information about the Scaleway Cockpit.
+ * The `scaleway.Cockpit` data source is used to retrieve information about a Scaleway Cockpit associated with a given Project. This can be the default Project or a specific Project identified by its ID.
  *
- * For more information consult the [documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/).
+ * Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
  *
- * ## Example Usage
+ * ## Retrieve a Cockpit
+ *
+ * The following commands allow you to:
+ *
+ * - get information on the Cockpit associated with your Scaleway default Project
+ * - get information on the Cockpit associated with a specific Scaleway Project
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -99,7 +113,11 @@ export interface GetCockpitResult {
  * ```
  */
 export function getCockpitOutput(args?: GetCockpitOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCockpitResult> {
-    return pulumi.output(args).apply((a: any) => getCockpit(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getCockpit:getCockpit", {
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**
@@ -107,7 +125,7 @@ export function getCockpitOutput(args?: GetCockpitOutputArgs, opts?: pulumi.Invo
  */
 export interface GetCockpitOutputArgs {
     /**
-     * `projectId`) The ID of the project the cockpit is associated with.
+     * Specifies the ID of the Scaleway Project that the Cockpit is associated with. If not specified, it defaults to the Project ID specified in the provider configuration.
      */
     projectId?: pulumi.Input<string>;
 }

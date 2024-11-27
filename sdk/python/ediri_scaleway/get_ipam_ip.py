@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -175,7 +180,7 @@ def get_ipam_ip(attached: Optional[bool] = None,
                 private_network_id: Optional[str] = None,
                 project_id: Optional[str] = None,
                 region: Optional[str] = None,
-                resource: Optional[pulumi.InputType['GetIpamIpResourceArgs']] = None,
+                resource: Optional[Union['GetIpamIpResourceArgs', 'GetIpamIpResourceArgsDict']] = None,
                 tags: Optional[Sequence[str]] = None,
                 type: Optional[str] = None,
                 zonal: Optional[str] = None,
@@ -211,10 +216,10 @@ def get_ipam_ip(attached: Optional[bool] = None,
         private_network_id=scaleway_vpc_private_network["pn"]["id"])
     by_mac = scaleway.get_ipam_ip_output(mac_address=nic.mac_address,
         type="ipv4")
-    by_id = scaleway.get_ipam_ip_output(resource=scaleway.GetIpamIpResourceArgs(
-            id=nic.id,
-            type="instance_private_nic",
-        ),
+    by_id = scaleway.get_ipam_ip_output(resource={
+            "id": nic.id,
+            "type": "instance_private_nic",
+        },
         type="ipv4")
     ```
 
@@ -234,13 +239,13 @@ def get_ipam_ip(attached: Optional[bool] = None,
         disable_backup=True,
         user_name="my_initial_user",
         password="thiZ_is_v&ry_s3cret",
-        private_network=scaleway.RdbInstancePrivateNetworkArgs(
-            pn_id=pn.id,
-        ))
-    by_name = scaleway.get_ipam_ip_output(resource=scaleway.GetIpamIpResourceArgs(
-            name=main.name,
-            type="rdb_instance",
-        ),
+        private_network={
+            "pn_id": pn.id,
+        })
+    by_name = scaleway.get_ipam_ip_output(resource={
+            "name": main.name,
+            "type": "rdb_instance",
+        },
         type="ipv4")
     ```
 
@@ -251,7 +256,7 @@ def get_ipam_ip(attached: Optional[bool] = None,
     :param str private_network_id: The ID of the Private Network the IP belongs to. Cannot be used with `ipam_ip_id`.
     :param str project_id: `project_id`) The ID of the Project the IP is associated with.
     :param str region: `region`) The region in which the IP exists.
-    :param pulumi.InputType['GetIpamIpResourceArgs'] resource: Filter by resource ID, type or name. Cannot be used with `ipam_ip_id`.
+    :param Union['GetIpamIpResourceArgs', 'GetIpamIpResourceArgsDict'] resource: Filter by resource ID, type or name. Cannot be used with `ipam_ip_id`.
            If specified, `type` is required, and at least one of `id` or `name` must be set.
     :param Sequence[str] tags: The tags associated with the IP. Cannot be used with `ipam_ip_id`.
            As datasource only returns one IP, the search with given tags must return only one result.
@@ -287,16 +292,13 @@ def get_ipam_ip(attached: Optional[bool] = None,
         tags=pulumi.get(__ret__, 'tags'),
         type=pulumi.get(__ret__, 'type'),
         zonal=pulumi.get(__ret__, 'zonal'))
-
-
-@_utilities.lift_output_func(get_ipam_ip)
 def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
                        ipam_ip_id: Optional[pulumi.Input[Optional[str]]] = None,
                        mac_address: Optional[pulumi.Input[Optional[str]]] = None,
                        private_network_id: Optional[pulumi.Input[Optional[str]]] = None,
                        project_id: Optional[pulumi.Input[Optional[str]]] = None,
                        region: Optional[pulumi.Input[Optional[str]]] = None,
-                       resource: Optional[pulumi.Input[Optional[pulumi.InputType['GetIpamIpResourceArgs']]]] = None,
+                       resource: Optional[pulumi.Input[Optional[Union['GetIpamIpResourceArgs', 'GetIpamIpResourceArgsDict']]]] = None,
                        tags: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                        type: Optional[pulumi.Input[Optional[str]]] = None,
                        zonal: Optional[pulumi.Input[Optional[str]]] = None,
@@ -332,10 +334,10 @@ def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
         private_network_id=scaleway_vpc_private_network["pn"]["id"])
     by_mac = scaleway.get_ipam_ip_output(mac_address=nic.mac_address,
         type="ipv4")
-    by_id = scaleway.get_ipam_ip_output(resource=scaleway.GetIpamIpResourceArgs(
-            id=nic.id,
-            type="instance_private_nic",
-        ),
+    by_id = scaleway.get_ipam_ip_output(resource={
+            "id": nic.id,
+            "type": "instance_private_nic",
+        },
         type="ipv4")
     ```
 
@@ -355,13 +357,13 @@ def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
         disable_backup=True,
         user_name="my_initial_user",
         password="thiZ_is_v&ry_s3cret",
-        private_network=scaleway.RdbInstancePrivateNetworkArgs(
-            pn_id=pn.id,
-        ))
-    by_name = scaleway.get_ipam_ip_output(resource=scaleway.GetIpamIpResourceArgs(
-            name=main.name,
-            type="rdb_instance",
-        ),
+        private_network={
+            "pn_id": pn.id,
+        })
+    by_name = scaleway.get_ipam_ip_output(resource={
+            "name": main.name,
+            "type": "rdb_instance",
+        },
         type="ipv4")
     ```
 
@@ -372,11 +374,38 @@ def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
     :param str private_network_id: The ID of the Private Network the IP belongs to. Cannot be used with `ipam_ip_id`.
     :param str project_id: `project_id`) The ID of the Project the IP is associated with.
     :param str region: `region`) The region in which the IP exists.
-    :param pulumi.InputType['GetIpamIpResourceArgs'] resource: Filter by resource ID, type or name. Cannot be used with `ipam_ip_id`.
+    :param Union['GetIpamIpResourceArgs', 'GetIpamIpResourceArgsDict'] resource: Filter by resource ID, type or name. Cannot be used with `ipam_ip_id`.
            If specified, `type` is required, and at least one of `id` or `name` must be set.
     :param Sequence[str] tags: The tags associated with the IP. Cannot be used with `ipam_ip_id`.
            As datasource only returns one IP, the search with given tags must return only one result.
     :param str type: The type of IP to search for (`ipv4` or `ipv6`). Cannot be used with `ipam_ip_id`.
     :param str zonal: Only IPs that are zonal, and in this zone, will be returned.
     """
-    ...
+    __args__ = dict()
+    __args__['attached'] = attached
+    __args__['ipamIpId'] = ipam_ip_id
+    __args__['macAddress'] = mac_address
+    __args__['privateNetworkId'] = private_network_id
+    __args__['projectId'] = project_id
+    __args__['region'] = region
+    __args__['resource'] = resource
+    __args__['tags'] = tags
+    __args__['type'] = type
+    __args__['zonal'] = zonal
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getIpamIp:getIpamIp', __args__, opts=opts, typ=GetIpamIpResult)
+    return __ret__.apply(lambda __response__: GetIpamIpResult(
+        address=pulumi.get(__response__, 'address'),
+        address_cidr=pulumi.get(__response__, 'address_cidr'),
+        attached=pulumi.get(__response__, 'attached'),
+        id=pulumi.get(__response__, 'id'),
+        ipam_ip_id=pulumi.get(__response__, 'ipam_ip_id'),
+        mac_address=pulumi.get(__response__, 'mac_address'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        private_network_id=pulumi.get(__response__, 'private_network_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region'),
+        resource=pulumi.get(__response__, 'resource'),
+        tags=pulumi.get(__response__, 'tags'),
+        type=pulumi.get(__response__, 'type'),
+        zonal=pulumi.get(__response__, 'zonal')))

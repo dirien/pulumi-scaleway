@@ -43,7 +43,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getLbRoute(args: GetLbRouteArgs, opts?: pulumi.InvokeOptions): Promise<GetLbRouteResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLbRoute:getLbRoute", {
         "routeId": args.routeId,
@@ -115,7 +114,10 @@ export interface GetLbRouteResult {
  * ```
  */
 export function getLbRouteOutput(args: GetLbRouteOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbRouteResult> {
-    return pulumi.output(args).apply((a: any) => getLbRoute(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getLbRoute:getLbRoute", {
+        "routeId": args.routeId,
+    }, opts);
 }
 
 /**

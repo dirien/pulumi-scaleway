@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -49,7 +54,7 @@ class GetAvailabilityZonesResult:
     @pulumi.getter
     def zones(self) -> Sequence[str]:
         """
-        List of availability zones by regions
+        The list of availability zones in each Region
         """
         return pulumi.get(self, "zones")
 
@@ -68,12 +73,16 @@ class AwaitableGetAvailabilityZonesResult(GetAvailabilityZonesResult):
 def get_availability_zones(region: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAvailabilityZonesResult:
     """
-    Use this data source to get the available zones information based on its Region.
+    The `get_availability_zones` data source is used to retrieve information about the available zones based on its Region.
 
     For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
-    you can choose the location that better fits your need (country, latency, …).
+    you can choose the location that better fits your need (country, latency, etc.).
 
-    ## Example Usage
+    Refer to the Account [documentation](https://www.scaleway.com/en/docs/console/account/reference-content/products-availability/) for more information.
+
+    ## Retrieve the Availability Zones of a Region
+
+    The following command allow you to retrieve a the AZs of a Region.
 
     ```python
     import pulumi
@@ -83,7 +92,7 @@ def get_availability_zones(region: Optional[str] = None,
     ```
 
 
-    :param str region: Region is represented as a Geographical area such as France. Defaults: `fr-par`.
+    :param str region: Region is represented as a Geographical area, such as France. Defaults to `fr-par`.
     """
     __args__ = dict()
     __args__['region'] = region
@@ -94,18 +103,19 @@ def get_availability_zones(region: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         region=pulumi.get(__ret__, 'region'),
         zones=pulumi.get(__ret__, 'zones'))
-
-
-@_utilities.lift_output_func(get_availability_zones)
 def get_availability_zones_output(region: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAvailabilityZonesResult]:
     """
-    Use this data source to get the available zones information based on its Region.
+    The `get_availability_zones` data source is used to retrieve information about the available zones based on its Region.
 
     For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
-    you can choose the location that better fits your need (country, latency, …).
+    you can choose the location that better fits your need (country, latency, etc.).
 
-    ## Example Usage
+    Refer to the Account [documentation](https://www.scaleway.com/en/docs/console/account/reference-content/products-availability/) for more information.
+
+    ## Retrieve the Availability Zones of a Region
+
+    The following command allow you to retrieve a the AZs of a Region.
 
     ```python
     import pulumi
@@ -115,6 +125,13 @@ def get_availability_zones_output(region: Optional[pulumi.Input[Optional[str]]] 
     ```
 
 
-    :param str region: Region is represented as a Geographical area such as France. Defaults: `fr-par`.
+    :param str region: Region is represented as a Geographical area, such as France. Defaults to `fr-par`.
     """
-    ...
+    __args__ = dict()
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getAvailabilityZones:getAvailabilityZones', __args__, opts=opts, typ=GetAvailabilityZonesResult)
+    return __ret__.apply(lambda __response__: GetAvailabilityZonesResult(
+        id=pulumi.get(__response__, 'id'),
+        region=pulumi.get(__response__, 'region'),
+        zones=pulumi.get(__response__, 'zones')))

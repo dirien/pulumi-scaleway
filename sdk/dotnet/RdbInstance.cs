@@ -29,6 +29,7 @@ namespace ediri.Scaleway
     ///     var main = new Scaleway.RdbInstance("main", new()
     ///     {
     ///         DisableBackup = true,
+    ///         EncryptionAtRest = true,
     ///         Engine = "PostgreSQL-15",
     ///         IsHaCluster = true,
     ///         NodeType = "DB-DEV-S",
@@ -256,13 +257,19 @@ namespace ediri.Scaleway
         public Output<bool?> DisableBackup { get; private set; } = null!;
 
         /// <summary>
-        /// (Deprecated) The IP of the Database Instance.
+        /// Enable or disable encryption at rest for the Database Instance.
+        /// </summary>
+        [Output("encryptionAtRest")]
+        public Output<bool?> EncryptionAtRest { get; private set; } = null!;
+
+        /// <summary>
+        /// (Deprecated) The IP of the Database Instance. Please use the private_network or the load_balancer attribute.
         /// </summary>
         [Output("endpointIp")]
         public Output<string> EndpointIp { get; private set; } = null!;
 
         /// <summary>
-        /// (Deprecated) The port of the Database Instance.
+        /// (Deprecated) The port of the Database Instance. Please use the private_network or the load_balancer attribute.
         /// </summary>
         [Output("endpointPort")]
         public Output<int> EndpointPort { get; private set; } = null!;
@@ -466,6 +473,12 @@ namespace ediri.Scaleway
         public Input<bool>? DisableBackup { get; set; }
 
         /// <summary>
+        /// Enable or disable encryption at rest for the Database Instance.
+        /// </summary>
+        [Input("encryptionAtRest")]
+        public Input<bool>? EncryptionAtRest { get; set; }
+
+        /// <summary>
         /// Database Instance's engine version (e.g. `PostgreSQL-11`).
         /// 
         /// &gt; **Important** Updates to `engine` will recreate the Database Instance.
@@ -649,13 +662,19 @@ namespace ediri.Scaleway
         public Input<bool>? DisableBackup { get; set; }
 
         /// <summary>
-        /// (Deprecated) The IP of the Database Instance.
+        /// Enable or disable encryption at rest for the Database Instance.
+        /// </summary>
+        [Input("encryptionAtRest")]
+        public Input<bool>? EncryptionAtRest { get; set; }
+
+        /// <summary>
+        /// (Deprecated) The IP of the Database Instance. Please use the private_network or the load_balancer attribute.
         /// </summary>
         [Input("endpointIp")]
         public Input<string>? EndpointIp { get; set; }
 
         /// <summary>
-        /// (Deprecated) The port of the Database Instance.
+        /// (Deprecated) The port of the Database Instance. Please use the private_network or the load_balancer attribute.
         /// </summary>
         [Input("endpointPort")]
         public Input<int>? EndpointPort { get; set; }

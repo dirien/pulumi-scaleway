@@ -18,14 +18,14 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@ediri/scaleway";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const main = scaleway.getAccountSshKey({
+ * const main = scaleway.getIamSshKey({
  *     name: "main",
  * });
  * const base = new scaleway.BaremetalServer("base", {
  *     zone: "fr-par-2",
  *     offer: "GP-BM1-S",
  *     os: "d17d6872-0412-45d9-a198-af82c34d3c5c",
- *     sshKeyIds: [main.then(main => main.id)],
+ *     sshKeyIds: [data.scaleway_account_ssh_key.main.id],
  * });
  * ```
  *

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = ['MnqSnsTopicSubscriptionArgs', 'MnqSnsTopicSubscription']
@@ -397,11 +402,11 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
         main_mnq_sns = scaleway.MnqSns("mainMnqSns")
         main_mnq_sns_credentials = scaleway.MnqSnsCredentials("mainMnqSnsCredentials",
             project_id=main_mnq_sns.project_id,
-            permissions=scaleway.MnqSnsCredentialsPermissionsArgs(
-                can_manage=True,
-                can_publish=True,
-                can_receive=True,
-            ))
+            permissions={
+                "can_manage": True,
+                "can_publish": True,
+                "can_receive": True,
+            })
         topic = scaleway.MnqSnsTopic("topic",
             project_id=main_mnq_sns.project_id,
             access_key=main_mnq_sns_credentials.access_key,
@@ -462,11 +467,11 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
         main_mnq_sns = scaleway.MnqSns("mainMnqSns")
         main_mnq_sns_credentials = scaleway.MnqSnsCredentials("mainMnqSnsCredentials",
             project_id=main_mnq_sns.project_id,
-            permissions=scaleway.MnqSnsCredentialsPermissionsArgs(
-                can_manage=True,
-                can_publish=True,
-                can_receive=True,
-            ))
+            permissions={
+                "can_manage": True,
+                "can_publish": True,
+                "can_receive": True,
+            })
         topic = scaleway.MnqSnsTopic("topic",
             project_id=main_mnq_sns.project_id,
             access_key=main_mnq_sns_credentials.access_key,

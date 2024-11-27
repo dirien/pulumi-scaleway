@@ -15,7 +15,7 @@ namespace ediri.Scaleway.Outputs
     public sealed class LbPrivateNetwork
     {
         /// <summary>
-        /// (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
+        /// (Deprecated) Please use `ipam_ids`. Set to `true` if you want to let DHCP assign IP addresses. See below.
         /// </summary>
         public readonly bool? DhcpConfig;
         /// <summary>

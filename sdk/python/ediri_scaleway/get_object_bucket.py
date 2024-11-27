@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -161,10 +166,16 @@ def get_object_bucket(name: Optional[str] = None,
                       region: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetObjectBucketResult:
     """
-    Gets information about the Bucket.
-    For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+    The `ObjectBucket` data source is used to retrieve information about an Object Storage bucket.
 
-    ## Example Usage
+    Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/how-to/create-a-bucket/) for more information.
+
+    ## Retrieve an Object Storage bucket
+
+    The following commands allow you to:
+
+    - retrieve a bucket by its name
+    - retrieve a bucket by its ID
 
     ```python
     import pulumi
@@ -177,7 +188,7 @@ def get_object_bucket(name: Optional[str] = None,
     selected = scaleway.get_object_bucket_output(name=main.id)
     ```
 
-    ### Fetching the bucket from a specific project
+    ## Retrieve a bucket from a specific project
 
     ```python
     import pulumi
@@ -188,7 +199,7 @@ def get_object_bucket(name: Optional[str] = None,
     ```
 
 
-    :param str project_id: `project_id`) The ID of the project the bucket is associated with.
+    :param str project_id: `project_id`) The ID of the project with which the bucket is associated.
     :param str region: `region`) The region in which the bucket exists.
     """
     __args__ = dict()
@@ -212,18 +223,21 @@ def get_object_bucket(name: Optional[str] = None,
         region=pulumi.get(__ret__, 'region'),
         tags=pulumi.get(__ret__, 'tags'),
         versionings=pulumi.get(__ret__, 'versionings'))
-
-
-@_utilities.lift_output_func(get_object_bucket)
 def get_object_bucket_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                              project_id: Optional[pulumi.Input[Optional[str]]] = None,
                              region: Optional[pulumi.Input[Optional[str]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetObjectBucketResult]:
     """
-    Gets information about the Bucket.
-    For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+    The `ObjectBucket` data source is used to retrieve information about an Object Storage bucket.
 
-    ## Example Usage
+    Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/how-to/create-a-bucket/) for more information.
+
+    ## Retrieve an Object Storage bucket
+
+    The following commands allow you to:
+
+    - retrieve a bucket by its name
+    - retrieve a bucket by its ID
 
     ```python
     import pulumi
@@ -236,7 +250,7 @@ def get_object_bucket_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     selected = scaleway.get_object_bucket_output(name=main.id)
     ```
 
-    ### Fetching the bucket from a specific project
+    ## Retrieve a bucket from a specific project
 
     ```python
     import pulumi
@@ -247,7 +261,26 @@ def get_object_bucket_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     ```
 
 
-    :param str project_id: `project_id`) The ID of the project the bucket is associated with.
+    :param str project_id: `project_id`) The ID of the project with which the bucket is associated.
     :param str region: `region`) The region in which the bucket exists.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getObjectBucket:getObjectBucket', __args__, opts=opts, typ=GetObjectBucketResult)
+    return __ret__.apply(lambda __response__: GetObjectBucketResult(
+        acl=pulumi.get(__response__, 'acl'),
+        api_endpoint=pulumi.get(__response__, 'api_endpoint'),
+        cors_rules=pulumi.get(__response__, 'cors_rules'),
+        endpoint=pulumi.get(__response__, 'endpoint'),
+        force_destroy=pulumi.get(__response__, 'force_destroy'),
+        id=pulumi.get(__response__, 'id'),
+        lifecycle_rules=pulumi.get(__response__, 'lifecycle_rules'),
+        name=pulumi.get(__response__, 'name'),
+        object_lock_enabled=pulumi.get(__response__, 'object_lock_enabled'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region'),
+        tags=pulumi.get(__response__, 'tags'),
+        versionings=pulumi.get(__response__, 'versionings')))

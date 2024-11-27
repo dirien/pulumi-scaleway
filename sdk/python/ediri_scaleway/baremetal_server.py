@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -738,10 +743,10 @@ class BaremetalServer(pulumi.CustomResource):
                  install_config_afterward: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  offer: Optional[pulumi.Input[str]] = None,
-                 options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerOptionArgs']]]]] = None,
+                 options: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerOptionArgs', 'BaremetalServerOptionArgsDict']]]]] = None,
                  os: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerPrivateNetworkArgs']]]]] = None,
+                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reinstall_on_config_changes: Optional[pulumi.Input[bool]] = None,
                  service_password: Optional[pulumi.Input[str]] = None,
@@ -763,12 +768,12 @@ class BaremetalServer(pulumi.CustomResource):
         import ediri_scaleway as scaleway
         import pulumi_scaleway as scaleway
 
-        main = scaleway.get_account_ssh_key(name="main")
+        main = scaleway.get_iam_ssh_key(name="main")
         base = scaleway.BaremetalServer("base",
             zone="fr-par-2",
             offer="GP-BM1-S",
             os="d17d6872-0412-45d9-a198-af82c34d3c5c",
-            ssh_key_ids=[main.id])
+            ssh_key_ids=[data["scaleway_account_ssh_key"]["main"]["id"]])
         ```
 
         ### Without install config
@@ -806,13 +811,13 @@ class BaremetalServer(pulumi.CustomResource):
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
                
                > **Important:** Updates to `offer` will recreate the server.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerOptionArgs']]]] options: The options to enable on the server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerOptionArgs', 'BaremetalServerOptionArgsDict']]]] options: The options to enable on the server.
                > The `options` block supports:
         :param pulumi.Input[str] os: The UUID of the os to install on the server.
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerPrivateNetworkArgs']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
         :param pulumi.Input[bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
                > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
@@ -841,12 +846,12 @@ class BaremetalServer(pulumi.CustomResource):
         import ediri_scaleway as scaleway
         import pulumi_scaleway as scaleway
 
-        main = scaleway.get_account_ssh_key(name="main")
+        main = scaleway.get_iam_ssh_key(name="main")
         base = scaleway.BaremetalServer("base",
             zone="fr-par-2",
             offer="GP-BM1-S",
             os="d17d6872-0412-45d9-a198-af82c34d3c5c",
-            ssh_key_ids=[main.id])
+            ssh_key_ids=[data["scaleway_account_ssh_key"]["main"]["id"]])
         ```
 
         ### Without install config
@@ -894,10 +899,10 @@ class BaremetalServer(pulumi.CustomResource):
                  install_config_afterward: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  offer: Optional[pulumi.Input[str]] = None,
-                 options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerOptionArgs']]]]] = None,
+                 options: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerOptionArgs', 'BaremetalServerOptionArgsDict']]]]] = None,
                  os: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
-                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerPrivateNetworkArgs']]]]] = None,
+                 private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reinstall_on_config_changes: Optional[pulumi.Input[bool]] = None,
                  service_password: Optional[pulumi.Input[str]] = None,
@@ -958,19 +963,19 @@ class BaremetalServer(pulumi.CustomResource):
             domain: Optional[pulumi.Input[str]] = None,
             hostname: Optional[pulumi.Input[str]] = None,
             install_config_afterward: Optional[pulumi.Input[bool]] = None,
-            ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerIpArgs']]]]] = None,
-            ipv4s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerIpv4Args']]]]] = None,
-            ipv6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerIpv6Args']]]]] = None,
+            ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerIpArgs', 'BaremetalServerIpArgsDict']]]]] = None,
+            ipv4s: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerIpv4Args', 'BaremetalServerIpv4ArgsDict']]]]] = None,
+            ipv6s: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerIpv6Args', 'BaremetalServerIpv6ArgsDict']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             offer: Optional[pulumi.Input[str]] = None,
             offer_id: Optional[pulumi.Input[str]] = None,
             offer_name: Optional[pulumi.Input[str]] = None,
-            options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerOptionArgs']]]]] = None,
+            options: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerOptionArgs', 'BaremetalServerOptionArgsDict']]]]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             os: Optional[pulumi.Input[str]] = None,
             os_name: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
-            private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerPrivateNetworkArgs']]]]] = None,
+            private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             reinstall_on_config_changes: Optional[pulumi.Input[bool]] = None,
             service_password: Optional[pulumi.Input[str]] = None,
@@ -990,9 +995,9 @@ class BaremetalServer(pulumi.CustomResource):
         :param pulumi.Input[str] domain: The domain of the server.
         :param pulumi.Input[str] hostname: The hostname of the server.
         :param pulumi.Input[bool] install_config_afterward: If True, this boolean allows to create a server without the install config if you want to provide it later.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerIpArgs']]]] ips: (List of) The IPs of the server.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerIpv4Args']]]] ipv4s: (List of) The IPv4 addresses of the server.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerIpv6Args']]]] ipv6s: (List of) The IPv6 addresses of the server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerIpArgs', 'BaremetalServerIpArgsDict']]]] ips: (List of) The IPs of the server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerIpv4Args', 'BaremetalServerIpv4ArgsDict']]]] ipv4s: (List of) The IPv4 addresses of the server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerIpv6Args', 'BaremetalServerIpv6ArgsDict']]]] ipv6s: (List of) The IPv6 addresses of the server.
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] offer: The offer name or UUID of the baremetal server.
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
@@ -1000,7 +1005,7 @@ class BaremetalServer(pulumi.CustomResource):
                > **Important:** Updates to `offer` will recreate the server.
         :param pulumi.Input[str] offer_id: The ID of the offer.
         :param pulumi.Input[str] offer_name: The name of the offer.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerOptionArgs']]]] options: The options to enable on the server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerOptionArgs', 'BaremetalServerOptionArgsDict']]]] options: The options to enable on the server.
                > The `options` block supports:
         :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
         :param pulumi.Input[str] os: The UUID of the os to install on the server.
@@ -1008,7 +1013,7 @@ class BaremetalServer(pulumi.CustomResource):
                > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[str] os_name: The name of the os.
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BaremetalServerPrivateNetworkArgs']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
         :param pulumi.Input[bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
                > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.

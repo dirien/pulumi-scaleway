@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = ['ObjectBucketPolicyArgs', 'ObjectBucketPolicy']
@@ -164,8 +169,9 @@ class ObjectBucketPolicy(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway object storage bucket policy.
-        For more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/).
+        The `ObjectBucketPolicy` resource allows you to create and manage bucket policies for [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+
+        Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/) for more information on Object Storage bucket policies.
 
         ## Example Usage
 
@@ -181,10 +187,10 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         user = scaleway.get_iam_user(email="user@scaleway.com")
         policy_iam_policy = scaleway.IamPolicy("policyIamPolicy",
             user_id=user.id,
-            rules=[scaleway.IamPolicyRuleArgs(
-                project_ids=[default.id],
-                permission_set_names=["ObjectStorageFullAccess"],
-            )])
+            rules=[{
+                "project_ids": [default.id],
+                "permission_set_names": ["ObjectStorageFullAccess"],
+            }])
         # Object storage configuration
         bucket = scaleway.ObjectBucket("bucket")
         policy_object_bucket_policy = scaleway.ObjectBucketPolicy("policyObjectBucketPolicy",
@@ -221,10 +227,10 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         reading_app = scaleway.IamApplication("reading-app")
         policy_iam_policy = scaleway.IamPolicy("policyIamPolicy",
             application_id=reading_app.id,
-            rules=[scaleway.IamPolicyRuleArgs(
-                project_ids=[default.id],
-                permission_set_names=["ObjectStorageBucketsRead"],
-            )])
+            rules=[{
+                "project_ids": [default.id],
+                "permission_set_names": ["ObjectStorageBucketsRead"],
+            }])
         # Object storage configuration
         bucket = scaleway.ObjectBucket("bucket")
         policy_object_bucket_policy = scaleway.ObjectBucketPolicy("policyObjectBucketPolicy",
@@ -326,11 +332,11 @@ class ObjectBucketPolicy(pulumi.CustomResource):
             }))
         ```
 
-        **NB:** To configure the AWS provider with Scaleway credentials, please visit this [tutorial](https://www.scaleway.com/en/docs/storage/object/api-cli/object-storage-aws-cli/).
+        **NB:** To configure the AWS provider with Scaleway credentials, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-storage-aws-cli/).
 
         ## Import
 
-        Bucket policies can be imported using the `{region}/{bucketName}` identifier, e.g.
+        Bucket policies can be imported using the `{region}/{bucketName}` identifier, as shown below:
 
         bash
 
@@ -362,8 +368,9 @@ class ObjectBucketPolicy(pulumi.CustomResource):
                  args: ObjectBucketPolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway object storage bucket policy.
-        For more information, see [the documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/).
+        The `ObjectBucketPolicy` resource allows you to create and manage bucket policies for [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+
+        Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/) for more information on Object Storage bucket policies.
 
         ## Example Usage
 
@@ -379,10 +386,10 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         user = scaleway.get_iam_user(email="user@scaleway.com")
         policy_iam_policy = scaleway.IamPolicy("policyIamPolicy",
             user_id=user.id,
-            rules=[scaleway.IamPolicyRuleArgs(
-                project_ids=[default.id],
-                permission_set_names=["ObjectStorageFullAccess"],
-            )])
+            rules=[{
+                "project_ids": [default.id],
+                "permission_set_names": ["ObjectStorageFullAccess"],
+            }])
         # Object storage configuration
         bucket = scaleway.ObjectBucket("bucket")
         policy_object_bucket_policy = scaleway.ObjectBucketPolicy("policyObjectBucketPolicy",
@@ -419,10 +426,10 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         reading_app = scaleway.IamApplication("reading-app")
         policy_iam_policy = scaleway.IamPolicy("policyIamPolicy",
             application_id=reading_app.id,
-            rules=[scaleway.IamPolicyRuleArgs(
-                project_ids=[default.id],
-                permission_set_names=["ObjectStorageBucketsRead"],
-            )])
+            rules=[{
+                "project_ids": [default.id],
+                "permission_set_names": ["ObjectStorageBucketsRead"],
+            }])
         # Object storage configuration
         bucket = scaleway.ObjectBucket("bucket")
         policy_object_bucket_policy = scaleway.ObjectBucketPolicy("policyObjectBucketPolicy",
@@ -524,11 +531,11 @@ class ObjectBucketPolicy(pulumi.CustomResource):
             }))
         ```
 
-        **NB:** To configure the AWS provider with Scaleway credentials, please visit this [tutorial](https://www.scaleway.com/en/docs/storage/object/api-cli/object-storage-aws-cli/).
+        **NB:** To configure the AWS provider with Scaleway credentials, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-storage-aws-cli/).
 
         ## Import
 
-        Bucket policies can be imported using the `{region}/{bucketName}` identifier, e.g.
+        Bucket policies can be imported using the `{region}/{bucketName}` identifier, as shown below:
 
         bash
 

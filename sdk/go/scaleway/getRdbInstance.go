@@ -45,6 +45,7 @@ type LookupRdbInstanceResult struct {
 	BackupScheduleRetention int    `pulumi:"backupScheduleRetention"`
 	Certificate             string `pulumi:"certificate"`
 	DisableBackup           bool   `pulumi:"disableBackup"`
+	EncryptionAtRest        bool   `pulumi:"encryptionAtRest"`
 	EndpointIp              string `pulumi:"endpointIp"`
 	EndpointPort            int    `pulumi:"endpointPort"`
 	Engine                  string `pulumi:"engine"`
@@ -72,14 +73,20 @@ type LookupRdbInstanceResult struct {
 
 func LookupRdbInstanceOutput(ctx *pulumi.Context, args LookupRdbInstanceOutputArgs, opts ...pulumi.InvokeOption) LookupRdbInstanceResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupRdbInstanceResult, error) {
+		ApplyT(func(v interface{}) (LookupRdbInstanceResultOutput, error) {
 			args := v.(LookupRdbInstanceArgs)
-			r, err := LookupRdbInstance(ctx, &args, opts...)
-			var s LookupRdbInstanceResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupRdbInstanceResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getRdbInstance:getRdbInstance", args, &rv, "", opts...)
+			if err != nil {
+				return LookupRdbInstanceResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupRdbInstanceResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupRdbInstanceResultOutput), nil
+			}
+			return output, nil
 		}).(LookupRdbInstanceResultOutput)
 }
 
@@ -134,6 +141,10 @@ func (o LookupRdbInstanceResultOutput) Certificate() pulumi.StringOutput {
 
 func (o LookupRdbInstanceResultOutput) DisableBackup() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupRdbInstanceResult) bool { return v.DisableBackup }).(pulumi.BoolOutput)
+}
+
+func (o LookupRdbInstanceResultOutput) EncryptionAtRest() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupRdbInstanceResult) bool { return v.EncryptionAtRest }).(pulumi.BoolOutput)
 }
 
 func (o LookupRdbInstanceResultOutput) EndpointIp() pulumi.StringOutput {

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = ['MnqSqsQueueArgs', 'MnqSqsQueue']
@@ -492,11 +497,11 @@ class MnqSqsQueue(pulumi.CustomResource):
         main_mnq_sqs = scaleway.MnqSqs("mainMnqSqs")
         main_mnq_sqs_credentials = scaleway.MnqSqsCredentials("mainMnqSqsCredentials",
             project_id=main_mnq_sqs.project_id,
-            permissions=scaleway.MnqSqsCredentialsPermissionsArgs(
-                can_manage=True,
-                can_receive=False,
-                can_publish=False,
-            ))
+            permissions={
+                "can_manage": True,
+                "can_receive": False,
+                "can_publish": False,
+            })
         main_mnq_sqs_queue = scaleway.MnqSqsQueue("mainMnqSqsQueue",
             project_id=main_mnq_sqs.project_id,
             sqs_endpoint=main_mnq_sqs.endpoint,
@@ -542,11 +547,11 @@ class MnqSqsQueue(pulumi.CustomResource):
         main_mnq_sqs = scaleway.MnqSqs("mainMnqSqs")
         main_mnq_sqs_credentials = scaleway.MnqSqsCredentials("mainMnqSqsCredentials",
             project_id=main_mnq_sqs.project_id,
-            permissions=scaleway.MnqSqsCredentialsPermissionsArgs(
-                can_manage=True,
-                can_receive=False,
-                can_publish=False,
-            ))
+            permissions={
+                "can_manage": True,
+                "can_receive": False,
+                "can_publish": False,
+            })
         main_mnq_sqs_queue = scaleway.MnqSqsQueue("mainMnqSqsQueue",
             project_id=main_mnq_sqs.project_id,
             sqs_endpoint=main_mnq_sqs.endpoint,

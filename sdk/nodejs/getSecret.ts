@@ -2,21 +2,31 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about Scaleway Secrets.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/).
+ * The `scaleway.Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
  *
- * ## Examples
+ * Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
  *
- * ### Basic
+ * ## Example Usage
+ *
+ * ### Create a secret and get its information
+ *
+ * The following commands allow you to:
+ *
+ * - create a secret named `foo` with the description `barr`
+ * - retrieve the secret's information using the secret's ID
+ * - retrieve the secret's information using the secret's name
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@ediri/scaleway";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Create a secret
  * const main = new scaleway.Secret("main", {description: "barr"});
  * const mySecret = scaleway.getSecret({
  *     secretId: "11111111-1111-1111-1111-111111111111",
@@ -28,7 +38,6 @@ import * as utilities from "./utilities";
  */
 export function getSecret(args?: GetSecretArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getSecret:getSecret", {
         "name": args.name,
@@ -45,31 +54,30 @@ export function getSecret(args?: GetSecretArgs, opts?: pulumi.InvokeOptions): Pr
  */
 export interface GetSecretArgs {
     /**
-     * The secret name.
+     * The name of the secret.
      * Only one of `name` and `secretId` should be specified.
      */
     name?: string;
     /**
-     * The organization ID the Project is associated with.
-     * If no default organizationId is set, one must be set explicitly in this datasource
+     * The ID of the Scaleway Organization the Project is associated with. If no default `organizationId` is set, it must be set explicitly in this data source.
      */
     organizationId?: string;
     /**
-     * The secret path.
+     * The path of the secret.
      * Conflicts with `secretId`.
      */
     path?: string;
     /**
-     * `projectId`) The ID of the
-     * project the secret is associated with.
+     * ). The ID of the
+     * Project the secret is associated with.
      */
     projectId?: string;
     /**
-     * `region`) The region in which the secret exists.
+     * ). The region in which the secret exists.
      */
     region?: string;
     /**
-     * The secret id.
+     * The ID of the secret.
      * Only one of `name` and `secretId` should be specified.
      */
     secretId?: string;
@@ -81,6 +89,7 @@ export interface GetSecretArgs {
 export interface GetSecretResult {
     readonly createdAt: string;
     readonly description: string;
+    readonly ephemeralPolicies: outputs.GetSecretEphemeralPolicy[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -89,26 +98,36 @@ export interface GetSecretResult {
     readonly organizationId: string;
     readonly path?: string;
     readonly projectId?: string;
+    readonly protected: boolean;
     readonly region?: string;
     readonly secretId?: string;
     readonly status: string;
     readonly tags: string[];
+    readonly type: string;
     readonly updatedAt: string;
     readonly versionCount: number;
 }
 /**
- * Gets information about Scaleway Secrets.
- * For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/).
+ * The `scaleway.Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
  *
- * ## Examples
+ * Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
  *
- * ### Basic
+ * ## Example Usage
+ *
+ * ### Create a secret and get its information
+ *
+ * The following commands allow you to:
+ *
+ * - create a secret named `foo` with the description `barr`
+ * - retrieve the secret's information using the secret's ID
+ * - retrieve the secret's information using the secret's name
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@ediri/scaleway";
  * import * as scaleway from "@pulumi/scaleway";
  *
+ * // Create a secret
  * const main = new scaleway.Secret("main", {description: "barr"});
  * const mySecret = scaleway.getSecret({
  *     secretId: "11111111-1111-1111-1111-111111111111",
@@ -119,7 +138,16 @@ export interface GetSecretResult {
  * ```
  */
 export function getSecretOutput(args?: GetSecretOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretResult> {
-    return pulumi.output(args).apply((a: any) => getSecret(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getSecret:getSecret", {
+        "name": args.name,
+        "organizationId": args.organizationId,
+        "path": args.path,
+        "projectId": args.projectId,
+        "region": args.region,
+        "secretId": args.secretId,
+    }, opts);
 }
 
 /**
@@ -127,31 +155,30 @@ export function getSecretOutput(args?: GetSecretOutputArgs, opts?: pulumi.Invoke
  */
 export interface GetSecretOutputArgs {
     /**
-     * The secret name.
+     * The name of the secret.
      * Only one of `name` and `secretId` should be specified.
      */
     name?: pulumi.Input<string>;
     /**
-     * The organization ID the Project is associated with.
-     * If no default organizationId is set, one must be set explicitly in this datasource
+     * The ID of the Scaleway Organization the Project is associated with. If no default `organizationId` is set, it must be set explicitly in this data source.
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * The secret path.
+     * The path of the secret.
      * Conflicts with `secretId`.
      */
     path?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the
-     * project the secret is associated with.
+     * ). The ID of the
+     * Project the secret is associated with.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`) The region in which the secret exists.
+     * ). The region in which the secret exists.
      */
     region?: pulumi.Input<string>;
     /**
-     * The secret id.
+     * The ID of the secret.
      * Only one of `name` and `secretId` should be specified.
      */
     secretId?: pulumi.Input<string>;

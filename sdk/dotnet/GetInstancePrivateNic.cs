@@ -197,6 +197,7 @@ namespace ediri.Scaleway
         /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<string> IpIds;
+        public readonly ImmutableArray<string> IpamIpIds;
         public readonly string MacAddress;
         public readonly string? PrivateNetworkId;
         public readonly string? PrivateNicId;
@@ -209,6 +210,8 @@ namespace ediri.Scaleway
             string id,
 
             ImmutableArray<string> ipIds,
+
+            ImmutableArray<string> ipamIpIds,
 
             string macAddress,
 
@@ -224,6 +227,7 @@ namespace ediri.Scaleway
         {
             Id = id;
             IpIds = ipIds;
+            IpamIpIds = ipamIpIds;
             MacAddress = macAddress;
             PrivateNetworkId = privateNetworkId;
             PrivateNicId = privateNicId;

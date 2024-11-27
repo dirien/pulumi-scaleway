@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -103,9 +108,17 @@ def get_account_project(name: Optional[str] = None,
                         project_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccountProjectResult:
     """
-    Gets information about an existing Project.
+    The `AccountProject` data source is used to retrieve information about a Scaleway project.
 
-    ## Example Usage
+    Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
+
+    ## Retrieve a Scaleway Project
+
+    The following commands allow you to:
+
+    - retrieve a Project by its name
+    - retrieve a Project by its ID
+    - retrieve the default project of an Organization
 
     ```python
     import pulumi
@@ -118,9 +131,10 @@ def get_account_project(name: Optional[str] = None,
 
     :param str name: The name of the Project.
            Only one of the `name` and `project_id` should be specified.
-    :param str organization_id: The organization ID the Project is associated with.
-           If no default organization_id is set, one must be set explicitly in this datasource
-    :param str project_id: The ID of the Project.
+    :param str organization_id: The unique identifier of the Organization with which the Project is associated.
+           
+           If no default `organization_id` is set, one must be set explicitly in this datasource
+    :param str project_id: The unique identifier of the Project.
            Only one of the `name` and `project_id` should be specified.
     """
     __args__ = dict()
@@ -138,17 +152,22 @@ def get_account_project(name: Optional[str] = None,
         organization_id=pulumi.get(__ret__, 'organization_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-
-
-@_utilities.lift_output_func(get_account_project)
 def get_account_project_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                organization_id: Optional[pulumi.Input[Optional[str]]] = None,
                                project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccountProjectResult]:
     """
-    Gets information about an existing Project.
+    The `AccountProject` data source is used to retrieve information about a Scaleway project.
 
-    ## Example Usage
+    Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
+
+    ## Retrieve a Scaleway Project
+
+    The following commands allow you to:
+
+    - retrieve a Project by its name
+    - retrieve a Project by its ID
+    - retrieve the default project of an Organization
 
     ```python
     import pulumi
@@ -161,9 +180,23 @@ def get_account_project_output(name: Optional[pulumi.Input[Optional[str]]] = Non
 
     :param str name: The name of the Project.
            Only one of the `name` and `project_id` should be specified.
-    :param str organization_id: The organization ID the Project is associated with.
-           If no default organization_id is set, one must be set explicitly in this datasource
-    :param str project_id: The ID of the Project.
+    :param str organization_id: The unique identifier of the Organization with which the Project is associated.
+           
+           If no default `organization_id` is set, one must be set explicitly in this datasource
+    :param str project_id: The unique identifier of the Project.
            Only one of the `name` and `project_id` should be specified.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['organizationId'] = organization_id
+    __args__['projectId'] = project_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getAccountProject:getAccountProject', __args__, opts=opts, typ=GetAccountProjectResult)
+    return __ret__.apply(lambda __response__: GetAccountProjectResult(
+        created_at=pulumi.get(__response__, 'created_at'),
+        description=pulumi.get(__response__, 'description'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        updated_at=pulumi.get(__response__, 'updated_at')))

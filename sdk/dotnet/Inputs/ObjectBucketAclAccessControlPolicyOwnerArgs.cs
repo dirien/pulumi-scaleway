@@ -20,7 +20,7 @@ namespace ediri.Scaleway.Inputs
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// The `region`,`bucket` and `acl` separated by (`/`).
+        /// The `region`, `bucket` and `acl` separated by (`/`).
         /// </summary>
         [Input("id", required: true)]
         public Input<string> Id { get; set; } = null!;

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -22,6 +27,7 @@ class RdbInstanceArgs:
                  backup_schedule_frequency: Optional[pulumi.Input[int]] = None,
                  backup_schedule_retention: Optional[pulumi.Input[int]] = None,
                  disable_backup: Optional[pulumi.Input[bool]] = None,
+                 encryption_at_rest: Optional[pulumi.Input[bool]] = None,
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[bool]] = None,
                  load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input['RdbInstanceLoadBalancerArgs']]]] = None,
@@ -51,6 +57,7 @@ class RdbInstanceArgs:
         :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours
         :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days
         :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
+        :param pulumi.Input[bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] init_settings: Map of engine settings to be set at database initialisation.
         :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
@@ -84,6 +91,8 @@ class RdbInstanceArgs:
             pulumi.set(__self__, "backup_schedule_retention", backup_schedule_retention)
         if disable_backup is not None:
             pulumi.set(__self__, "disable_backup", disable_backup)
+        if encryption_at_rest is not None:
+            pulumi.set(__self__, "encryption_at_rest", encryption_at_rest)
         if init_settings is not None:
             pulumi.set(__self__, "init_settings", init_settings)
         if is_ha_cluster is not None:
@@ -191,6 +200,18 @@ class RdbInstanceArgs:
     @disable_backup.setter
     def disable_backup(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "disable_backup", value)
+
+    @property
+    @pulumi.getter(name="encryptionAtRest")
+    def encryption_at_rest(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable or disable encryption at rest for the Database Instance.
+        """
+        return pulumi.get(self, "encryption_at_rest")
+
+    @encryption_at_rest.setter
+    def encryption_at_rest(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "encryption_at_rest", value)
 
     @property
     @pulumi.getter(name="initSettings")
@@ -377,6 +398,7 @@ class _RdbInstanceState:
                  backup_schedule_retention: Optional[pulumi.Input[int]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  disable_backup: Optional[pulumi.Input[bool]] = None,
+                 encryption_at_rest: Optional[pulumi.Input[bool]] = None,
                  endpoint_ip: Optional[pulumi.Input[str]] = None,
                  endpoint_port: Optional[pulumi.Input[int]] = None,
                  engine: Optional[pulumi.Input[str]] = None,
@@ -404,8 +426,9 @@ class _RdbInstanceState:
         :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days
         :param pulumi.Input[str] certificate: Certificate of the Database Instance.
         :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
-        :param pulumi.Input[str] endpoint_ip: (Deprecated) The IP of the Database Instance.
-        :param pulumi.Input[int] endpoint_port: (Deprecated) The port of the Database Instance.
+        :param pulumi.Input[bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
+        :param pulumi.Input[str] endpoint_ip: (Deprecated) The IP of the Database Instance. Please use the private_network or the load_balancer attribute.
+        :param pulumi.Input[int] endpoint_port: (Deprecated) The port of the Database Instance. Please use the private_network or the load_balancer attribute.
         :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
                
                > **Important** Updates to `engine` will recreate the Database Instance.
@@ -450,11 +473,16 @@ class _RdbInstanceState:
             pulumi.set(__self__, "certificate", certificate)
         if disable_backup is not None:
             pulumi.set(__self__, "disable_backup", disable_backup)
+        if encryption_at_rest is not None:
+            pulumi.set(__self__, "encryption_at_rest", encryption_at_rest)
         if endpoint_ip is not None:
             warnings.warn("""Please use the private_network or the load_balancer attribute""", DeprecationWarning)
             pulumi.log.warn("""endpoint_ip is deprecated: Please use the private_network or the load_balancer attribute""")
         if endpoint_ip is not None:
             pulumi.set(__self__, "endpoint_ip", endpoint_ip)
+        if endpoint_port is not None:
+            warnings.warn("""Please use the private_network or the load_balancer attribute""", DeprecationWarning)
+            pulumi.log.warn("""endpoint_port is deprecated: Please use the private_network or the load_balancer attribute""")
         if endpoint_port is not None:
             pulumi.set(__self__, "endpoint_port", endpoint_port)
         if engine is not None:
@@ -555,11 +583,23 @@ class _RdbInstanceState:
         pulumi.set(self, "disable_backup", value)
 
     @property
+    @pulumi.getter(name="encryptionAtRest")
+    def encryption_at_rest(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable or disable encryption at rest for the Database Instance.
+        """
+        return pulumi.get(self, "encryption_at_rest")
+
+    @encryption_at_rest.setter
+    def encryption_at_rest(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "encryption_at_rest", value)
+
+    @property
     @pulumi.getter(name="endpointIp")
     @_utilities.deprecated("""Please use the private_network or the load_balancer attribute""")
     def endpoint_ip(self) -> Optional[pulumi.Input[str]]:
         """
-        (Deprecated) The IP of the Database Instance.
+        (Deprecated) The IP of the Database Instance. Please use the private_network or the load_balancer attribute.
         """
         return pulumi.get(self, "endpoint_ip")
 
@@ -569,9 +609,10 @@ class _RdbInstanceState:
 
     @property
     @pulumi.getter(name="endpointPort")
+    @_utilities.deprecated("""Please use the private_network or the load_balancer attribute""")
     def endpoint_port(self) -> Optional[pulumi.Input[int]]:
         """
-        (Deprecated) The port of the Database Instance.
+        (Deprecated) The port of the Database Instance. Please use the private_network or the load_balancer attribute.
         """
         return pulumi.get(self, "endpoint_port")
 
@@ -820,15 +861,16 @@ class RdbInstance(pulumi.CustomResource):
                  backup_schedule_frequency: Optional[pulumi.Input[int]] = None,
                  backup_schedule_retention: Optional[pulumi.Input[int]] = None,
                  disable_backup: Optional[pulumi.Input[bool]] = None,
+                 encryption_at_rest: Optional[pulumi.Input[bool]] = None,
                  engine: Optional[pulumi.Input[str]] = None,
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[bool]] = None,
-                 load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbInstanceLoadBalancerArgs']]]]] = None,
-                 logs_policy: Optional[pulumi.Input[pulumi.InputType['RdbInstanceLogsPolicyArgs']]] = None,
+                 load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RdbInstanceLoadBalancerArgs', 'RdbInstanceLoadBalancerArgsDict']]]]] = None,
+                 logs_policy: Optional[pulumi.Input[Union['RdbInstanceLogsPolicyArgs', 'RdbInstanceLogsPolicyArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
-                 private_network: Optional[pulumi.Input[pulumi.InputType['RdbInstancePrivateNetworkArgs']]] = None,
+                 private_network: Optional[pulumi.Input[Union['RdbInstancePrivateNetworkArgs', 'RdbInstancePrivateNetworkArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -851,6 +893,7 @@ class RdbInstance(pulumi.CustomResource):
 
         main = scaleway.RdbInstance("main",
             disable_backup=True,
+            encryption_at_rest=True,
             engine="PostgreSQL-15",
             is_ha_cluster=True,
             node_type="DB-DEV-S",
@@ -922,16 +965,16 @@ class RdbInstance(pulumi.CustomResource):
         import pulumi
         import ediri_scaleway as scaleway
 
-        pn = scaleway.VpcPrivateNetwork("pn", ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
-            subnet="172.16.20.0/22",
-        ))
+        pn = scaleway.VpcPrivateNetwork("pn", ipv4_subnet={
+            "subnet": "172.16.20.0/22",
+        })
         main = scaleway.RdbInstance("main",
             node_type="db-dev-s",
             engine="PostgreSQL-15",
-            private_network=scaleway.RdbInstancePrivateNetworkArgs(
-                pn_id=pn.id,
-                ip_net="172.16.20.4/22",
-            ))
+            private_network={
+                "pn_id": pn.id,
+                "ip_net": "172.16.20.4/22",
+            })
         ```
 
         ### 1 IPAM Private Network endpoint + 1 public endpoint
@@ -944,11 +987,11 @@ class RdbInstance(pulumi.CustomResource):
         main = scaleway.RdbInstance("main",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
-            private_network=scaleway.RdbInstancePrivateNetworkArgs(
-                pn_id=pn.id,
-                enable_ipam=True,
-            ),
-            load_balancers=[scaleway.RdbInstanceLoadBalancerArgs()])
+            private_network={
+                "pn_id": pn.id,
+                "enable_ipam": True,
+            },
+            load_balancers=[{}])
         ```
 
         ### Default: 1 public endpoint
@@ -986,6 +1029,7 @@ class RdbInstance(pulumi.CustomResource):
         :param pulumi.Input[int] backup_schedule_frequency: Backup schedule frequency in hours
         :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days
         :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
+        :param pulumi.Input[bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
         :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
                
                > **Important** Updates to `engine` will recreate the Database Instance.
@@ -993,8 +1037,8 @@ class RdbInstance(pulumi.CustomResource):
         :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
                > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbInstanceLoadBalancerArgs']]]] load_balancers: List of Load Balancer endpoints of the Database Instance.
-        :param pulumi.Input[pulumi.InputType['RdbInstanceLogsPolicyArgs']] logs_policy: Logs policy configuration
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RdbInstanceLoadBalancerArgs', 'RdbInstanceLoadBalancerArgsDict']]]] load_balancers: List of Load Balancer endpoints of the Database Instance.
+        :param pulumi.Input[Union['RdbInstanceLogsPolicyArgs', 'RdbInstanceLogsPolicyArgsDict']] logs_policy: Logs policy configuration
         :param pulumi.Input[str] name: The name of the Database Instance.
         :param pulumi.Input[str] node_type: The type of Database Instance you want to create (e.g. `db-dev-s`).
                
@@ -1003,7 +1047,7 @@ class RdbInstance(pulumi.CustomResource):
                
                > **Important** Once your Database Instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the `node_type`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
         :param pulumi.Input[str] password: Password for the first user of the Database Instance.
-        :param pulumi.Input[pulumi.InputType['RdbInstancePrivateNetworkArgs']] private_network: List of Private Networks endpoints of the Database Instance.
+        :param pulumi.Input[Union['RdbInstancePrivateNetworkArgs', 'RdbInstancePrivateNetworkArgsDict']] private_network: List of Private Networks endpoints of the Database Instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database
                Instance is associated with.
         :param pulumi.Input[str] region: `region`) The region
@@ -1038,6 +1082,7 @@ class RdbInstance(pulumi.CustomResource):
 
         main = scaleway.RdbInstance("main",
             disable_backup=True,
+            encryption_at_rest=True,
             engine="PostgreSQL-15",
             is_ha_cluster=True,
             node_type="DB-DEV-S",
@@ -1109,16 +1154,16 @@ class RdbInstance(pulumi.CustomResource):
         import pulumi
         import ediri_scaleway as scaleway
 
-        pn = scaleway.VpcPrivateNetwork("pn", ipv4_subnet=scaleway.VpcPrivateNetworkIpv4SubnetArgs(
-            subnet="172.16.20.0/22",
-        ))
+        pn = scaleway.VpcPrivateNetwork("pn", ipv4_subnet={
+            "subnet": "172.16.20.0/22",
+        })
         main = scaleway.RdbInstance("main",
             node_type="db-dev-s",
             engine="PostgreSQL-15",
-            private_network=scaleway.RdbInstancePrivateNetworkArgs(
-                pn_id=pn.id,
-                ip_net="172.16.20.4/22",
-            ))
+            private_network={
+                "pn_id": pn.id,
+                "ip_net": "172.16.20.4/22",
+            })
         ```
 
         ### 1 IPAM Private Network endpoint + 1 public endpoint
@@ -1131,11 +1176,11 @@ class RdbInstance(pulumi.CustomResource):
         main = scaleway.RdbInstance("main",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
-            private_network=scaleway.RdbInstancePrivateNetworkArgs(
-                pn_id=pn.id,
-                enable_ipam=True,
-            ),
-            load_balancers=[scaleway.RdbInstanceLoadBalancerArgs()])
+            private_network={
+                "pn_id": pn.id,
+                "enable_ipam": True,
+            },
+            load_balancers=[{}])
         ```
 
         ### Default: 1 public endpoint
@@ -1186,15 +1231,16 @@ class RdbInstance(pulumi.CustomResource):
                  backup_schedule_frequency: Optional[pulumi.Input[int]] = None,
                  backup_schedule_retention: Optional[pulumi.Input[int]] = None,
                  disable_backup: Optional[pulumi.Input[bool]] = None,
+                 encryption_at_rest: Optional[pulumi.Input[bool]] = None,
                  engine: Optional[pulumi.Input[str]] = None,
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[bool]] = None,
-                 load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbInstanceLoadBalancerArgs']]]]] = None,
-                 logs_policy: Optional[pulumi.Input[pulumi.InputType['RdbInstanceLogsPolicyArgs']]] = None,
+                 load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RdbInstanceLoadBalancerArgs', 'RdbInstanceLoadBalancerArgsDict']]]]] = None,
+                 logs_policy: Optional[pulumi.Input[Union['RdbInstanceLogsPolicyArgs', 'RdbInstanceLogsPolicyArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
-                 private_network: Optional[pulumi.Input[pulumi.InputType['RdbInstancePrivateNetworkArgs']]] = None,
+                 private_network: Optional[pulumi.Input[Union['RdbInstancePrivateNetworkArgs', 'RdbInstancePrivateNetworkArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -1215,6 +1261,7 @@ class RdbInstance(pulumi.CustomResource):
             __props__.__dict__["backup_schedule_frequency"] = backup_schedule_frequency
             __props__.__dict__["backup_schedule_retention"] = backup_schedule_retention
             __props__.__dict__["disable_backup"] = disable_backup
+            __props__.__dict__["encryption_at_rest"] = encryption_at_rest
             if engine is None and not opts.urn:
                 raise TypeError("Missing required property 'engine'")
             __props__.__dict__["engine"] = engine
@@ -1257,20 +1304,21 @@ class RdbInstance(pulumi.CustomResource):
             backup_schedule_retention: Optional[pulumi.Input[int]] = None,
             certificate: Optional[pulumi.Input[str]] = None,
             disable_backup: Optional[pulumi.Input[bool]] = None,
+            encryption_at_rest: Optional[pulumi.Input[bool]] = None,
             endpoint_ip: Optional[pulumi.Input[str]] = None,
             endpoint_port: Optional[pulumi.Input[int]] = None,
             engine: Optional[pulumi.Input[str]] = None,
             init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             is_ha_cluster: Optional[pulumi.Input[bool]] = None,
-            load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbInstanceLoadBalancerArgs']]]]] = None,
-            logs_policy: Optional[pulumi.Input[pulumi.InputType['RdbInstanceLogsPolicyArgs']]] = None,
+            load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RdbInstanceLoadBalancerArgs', 'RdbInstanceLoadBalancerArgsDict']]]]] = None,
+            logs_policy: Optional[pulumi.Input[Union['RdbInstanceLogsPolicyArgs', 'RdbInstanceLogsPolicyArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             node_type: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
-            private_network: Optional[pulumi.Input[pulumi.InputType['RdbInstancePrivateNetworkArgs']]] = None,
+            private_network: Optional[pulumi.Input[Union['RdbInstancePrivateNetworkArgs', 'RdbInstancePrivateNetworkArgsDict']]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
-            read_replicas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbInstanceReadReplicaArgs']]]]] = None,
+            read_replicas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RdbInstanceReadReplicaArgs', 'RdbInstanceReadReplicaArgsDict']]]]] = None,
             region: Optional[pulumi.Input[str]] = None,
             settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1289,8 +1337,9 @@ class RdbInstance(pulumi.CustomResource):
         :param pulumi.Input[int] backup_schedule_retention: Backup schedule retention in days
         :param pulumi.Input[str] certificate: Certificate of the Database Instance.
         :param pulumi.Input[bool] disable_backup: Disable automated backup for the database instance
-        :param pulumi.Input[str] endpoint_ip: (Deprecated) The IP of the Database Instance.
-        :param pulumi.Input[int] endpoint_port: (Deprecated) The port of the Database Instance.
+        :param pulumi.Input[bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
+        :param pulumi.Input[str] endpoint_ip: (Deprecated) The IP of the Database Instance. Please use the private_network or the load_balancer attribute.
+        :param pulumi.Input[int] endpoint_port: (Deprecated) The port of the Database Instance. Please use the private_network or the load_balancer attribute.
         :param pulumi.Input[str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
                
                > **Important** Updates to `engine` will recreate the Database Instance.
@@ -1298,8 +1347,8 @@ class RdbInstance(pulumi.CustomResource):
         :param pulumi.Input[bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
                > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbInstanceLoadBalancerArgs']]]] load_balancers: List of Load Balancer endpoints of the Database Instance.
-        :param pulumi.Input[pulumi.InputType['RdbInstanceLogsPolicyArgs']] logs_policy: Logs policy configuration
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RdbInstanceLoadBalancerArgs', 'RdbInstanceLoadBalancerArgsDict']]]] load_balancers: List of Load Balancer endpoints of the Database Instance.
+        :param pulumi.Input[Union['RdbInstanceLogsPolicyArgs', 'RdbInstanceLogsPolicyArgsDict']] logs_policy: Logs policy configuration
         :param pulumi.Input[str] name: The name of the Database Instance.
         :param pulumi.Input[str] node_type: The type of Database Instance you want to create (e.g. `db-dev-s`).
                
@@ -1309,10 +1358,10 @@ class RdbInstance(pulumi.CustomResource):
                > **Important** Once your Database Instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the `node_type`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
         :param pulumi.Input[str] organization_id: The organization ID the Database Instance is associated with.
         :param pulumi.Input[str] password: Password for the first user of the Database Instance.
-        :param pulumi.Input[pulumi.InputType['RdbInstancePrivateNetworkArgs']] private_network: List of Private Networks endpoints of the Database Instance.
+        :param pulumi.Input[Union['RdbInstancePrivateNetworkArgs', 'RdbInstancePrivateNetworkArgsDict']] private_network: List of Private Networks endpoints of the Database Instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database
                Instance is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbInstanceReadReplicaArgs']]]] read_replicas: List of read replicas of the Database Instance.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RdbInstanceReadReplicaArgs', 'RdbInstanceReadReplicaArgsDict']]]] read_replicas: List of read replicas of the Database Instance.
         :param pulumi.Input[str] region: `region`) The region
                in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set on a running instance.
@@ -1334,6 +1383,7 @@ class RdbInstance(pulumi.CustomResource):
         __props__.__dict__["backup_schedule_retention"] = backup_schedule_retention
         __props__.__dict__["certificate"] = certificate
         __props__.__dict__["disable_backup"] = disable_backup
+        __props__.__dict__["encryption_at_rest"] = encryption_at_rest
         __props__.__dict__["endpoint_ip"] = endpoint_ip
         __props__.__dict__["endpoint_port"] = endpoint_port
         __props__.__dict__["engine"] = engine
@@ -1397,19 +1447,28 @@ class RdbInstance(pulumi.CustomResource):
         return pulumi.get(self, "disable_backup")
 
     @property
+    @pulumi.getter(name="encryptionAtRest")
+    def encryption_at_rest(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Enable or disable encryption at rest for the Database Instance.
+        """
+        return pulumi.get(self, "encryption_at_rest")
+
+    @property
     @pulumi.getter(name="endpointIp")
     @_utilities.deprecated("""Please use the private_network or the load_balancer attribute""")
     def endpoint_ip(self) -> pulumi.Output[str]:
         """
-        (Deprecated) The IP of the Database Instance.
+        (Deprecated) The IP of the Database Instance. Please use the private_network or the load_balancer attribute.
         """
         return pulumi.get(self, "endpoint_ip")
 
     @property
     @pulumi.getter(name="endpointPort")
+    @_utilities.deprecated("""Please use the private_network or the load_balancer attribute""")
     def endpoint_port(self) -> pulumi.Output[int]:
         """
-        (Deprecated) The port of the Database Instance.
+        (Deprecated) The port of the Database Instance. Please use the private_network or the load_balancer attribute.
         """
         return pulumi.get(self, "endpoint_port")
 

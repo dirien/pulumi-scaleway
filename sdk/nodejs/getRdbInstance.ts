@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  */
 export function getRdbInstance(args?: GetRdbInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetRdbInstanceResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getRdbInstance:getRdbInstance", {
         "instanceId": args.instanceId,
@@ -56,6 +55,7 @@ export interface GetRdbInstanceResult {
     readonly backupScheduleRetention: number;
     readonly certificate: string;
     readonly disableBackup: boolean;
+    readonly encryptionAtRest: boolean;
     readonly endpointIp: string;
     readonly endpointPort: number;
     readonly engine: string;
@@ -88,7 +88,14 @@ export interface GetRdbInstanceResult {
  * For further information refer the Managed Databases for PostgreSQL and MySQL [API documentation](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
  */
 export function getRdbInstanceOutput(args?: GetRdbInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRdbInstanceResult> {
-    return pulumi.output(args).apply((a: any) => getRdbInstance(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getRdbInstance:getRdbInstance", {
+        "instanceId": args.instanceId,
+        "name": args.name,
+        "projectId": args.projectId,
+        "region": args.region,
+    }, opts);
 }
 
 /**

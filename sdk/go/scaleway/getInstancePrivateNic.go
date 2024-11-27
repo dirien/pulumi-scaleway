@@ -87,6 +87,7 @@ type LookupInstancePrivateNicResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id               string   `pulumi:"id"`
 	IpIds            []string `pulumi:"ipIds"`
+	IpamIpIds        []string `pulumi:"ipamIpIds"`
 	MacAddress       string   `pulumi:"macAddress"`
 	PrivateNetworkId *string  `pulumi:"privateNetworkId"`
 	PrivateNicId     *string  `pulumi:"privateNicId"`
@@ -97,14 +98,20 @@ type LookupInstancePrivateNicResult struct {
 
 func LookupInstancePrivateNicOutput(ctx *pulumi.Context, args LookupInstancePrivateNicOutputArgs, opts ...pulumi.InvokeOption) LookupInstancePrivateNicResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupInstancePrivateNicResult, error) {
+		ApplyT(func(v interface{}) (LookupInstancePrivateNicResultOutput, error) {
 			args := v.(LookupInstancePrivateNicArgs)
-			r, err := LookupInstancePrivateNic(ctx, &args, opts...)
-			var s LookupInstancePrivateNicResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupInstancePrivateNicResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getInstancePrivateNic:getInstancePrivateNic", args, &rv, "", opts...)
+			if err != nil {
+				return LookupInstancePrivateNicResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupInstancePrivateNicResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupInstancePrivateNicResultOutput), nil
+			}
+			return output, nil
 		}).(LookupInstancePrivateNicResultOutput)
 }
 
@@ -151,6 +158,10 @@ func (o LookupInstancePrivateNicResultOutput) Id() pulumi.StringOutput {
 
 func (o LookupInstancePrivateNicResultOutput) IpIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupInstancePrivateNicResult) []string { return v.IpIds }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupInstancePrivateNicResultOutput) IpamIpIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupInstancePrivateNicResult) []string { return v.IpamIpIds }).(pulumi.StringArrayOutput)
 }
 
 func (o LookupInstancePrivateNicResultOutput) MacAddress() pulumi.StringOutput {

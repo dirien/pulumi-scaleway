@@ -28,7 +28,6 @@ import * as utilities from "./utilities";
  */
 export function getLbs(args?: GetLbsArgs, opts?: pulumi.InvokeOptions): Promise<GetLbsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLbs:getLbs", {
         "name": args.name,
@@ -114,7 +113,14 @@ export interface GetLbsResult {
  * ```
  */
 export function getLbsOutput(args?: GetLbsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbsResult> {
-    return pulumi.output(args).apply((a: any) => getLbs(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getLbs:getLbs", {
+        "name": args.name,
+        "projectId": args.projectId,
+        "tags": args.tags,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

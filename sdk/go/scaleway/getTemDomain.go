@@ -65,6 +65,7 @@ type LookupTemDomainArgs struct {
 // A collection of values returned by getTemDomain.
 type LookupTemDomainResult struct {
 	AcceptTos   bool    `pulumi:"acceptTos"`
+	Autoconfig  bool    `pulumi:"autoconfig"`
 	CreatedAt   string  `pulumi:"createdAt"`
 	DkimConfig  string  `pulumi:"dkimConfig"`
 	DmarcConfig string  `pulumi:"dmarcConfig"`
@@ -94,14 +95,20 @@ type LookupTemDomainResult struct {
 
 func LookupTemDomainOutput(ctx *pulumi.Context, args LookupTemDomainOutputArgs, opts ...pulumi.InvokeOption) LookupTemDomainResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupTemDomainResult, error) {
+		ApplyT(func(v interface{}) (LookupTemDomainResultOutput, error) {
 			args := v.(LookupTemDomainArgs)
-			r, err := LookupTemDomain(ctx, &args, opts...)
-			var s LookupTemDomainResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupTemDomainResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getTemDomain:getTemDomain", args, &rv, "", opts...)
+			if err != nil {
+				return LookupTemDomainResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupTemDomainResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupTemDomainResultOutput), nil
+			}
+			return output, nil
 		}).(LookupTemDomainResultOutput)
 }
 
@@ -140,6 +147,10 @@ func (o LookupTemDomainResultOutput) ToLookupTemDomainResultOutputWithContext(ct
 
 func (o LookupTemDomainResultOutput) AcceptTos() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) bool { return v.AcceptTos }).(pulumi.BoolOutput)
+}
+
+func (o LookupTemDomainResultOutput) Autoconfig() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupTemDomainResult) bool { return v.Autoconfig }).(pulumi.BoolOutput)
 }
 
 func (o LookupTemDomainResultOutput) CreatedAt() pulumi.StringOutput {

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = ['VpcPublicGatewayDhcpReservationArgs', 'VpcPublicGatewayDhcpReservation']
@@ -248,9 +253,9 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
             image="ubuntu_jammy",
             type="DEV1-S",
             zone="fr-par-1",
-            private_networks=[scaleway.InstanceServerPrivateNetworkArgs(
-                pn_id=main_vpc_private_network.id,
-            )])
+            private_networks=[{
+                "pn_id": main_vpc_private_network.id,
+            }])
         main_vpc_public_gateway_ip = scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp")
         main_vpc_public_gateway_dhcp = scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", subnet="192.168.1.0/24")
         main_vpc_public_gateway = scaleway.VpcPublicGateway("mainVpcPublicGateway",
@@ -317,9 +322,9 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
             image="ubuntu_jammy",
             type="DEV1-S",
             zone="fr-par-1",
-            private_networks=[scaleway.InstanceServerPrivateNetworkArgs(
-                pn_id=main_vpc_private_network.id,
-            )])
+            private_networks=[{
+                "pn_id": main_vpc_private_network.id,
+            }])
         main_vpc_public_gateway_ip = scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp")
         main_vpc_public_gateway_dhcp = scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", subnet="192.168.1.0/24")
         main_vpc_public_gateway = scaleway.VpcPublicGateway("mainVpcPublicGateway",

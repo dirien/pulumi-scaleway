@@ -23,7 +23,6 @@ import * as utilities from "./utilities";
  */
 export function getMnqSqs(args?: GetMnqSqsArgs, opts?: pulumi.InvokeOptions): Promise<GetMnqSqsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getMnqSqs:getMnqSqs", {
         "projectId": args.projectId,
@@ -78,7 +77,12 @@ export interface GetMnqSqsResult {
  * ```
  */
 export function getMnqSqsOutput(args?: GetMnqSqsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMnqSqsResult> {
-    return pulumi.output(args).apply((a: any) => getMnqSqs(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getMnqSqs:getMnqSqs", {
+        "projectId": args.projectId,
+        "region": args.region,
+    }, opts);
 }
 
 /**

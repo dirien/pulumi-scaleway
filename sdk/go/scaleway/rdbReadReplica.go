@@ -49,7 +49,7 @@ import (
 //			}
 //			_, err = scaleway.NewRdbReadReplica(ctx, "replica", &scaleway.RdbReadReplicaArgs{
 //				InstanceId:   instance.ID(),
-//				DirectAccess: nil,
+//				DirectAccess: &scaleway.RdbReadReplicaDirectAccessArgs{},
 //			})
 //			if err != nil {
 //				return err

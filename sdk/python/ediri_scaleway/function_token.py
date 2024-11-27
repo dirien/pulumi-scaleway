@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = ['FunctionTokenArgs', 'FunctionToken']
@@ -23,13 +28,13 @@ class FunctionTokenArgs:
         The set of arguments for constructing a FunctionToken resource.
         :param pulumi.Input[str] description: The description of the token.
         :param pulumi.Input[str] expires_at: The expiration date of the token.
-        :param pulumi.Input[str] function_id: The ID of the function.
+        :param pulumi.Input[str] function_id: The unique identifier of the function.
                
                > Only one of `namespace_id` or `function_id` must be set.
-        :param pulumi.Input[str] namespace_id: The ID of the function namespace.
-        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+        :param pulumi.Input[str] namespace_id: The unique identifier of the Functions namespace.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace is created.
                
-               > **Important** Updates to any fields will recreate the token.
+               > **Important** Updating any of the arguments above will recreate the token.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -70,7 +75,7 @@ class FunctionTokenArgs:
     @pulumi.getter(name="functionId")
     def function_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the function.
+        The unique identifier of the function.
 
         > Only one of `namespace_id` or `function_id` must be set.
         """
@@ -84,7 +89,7 @@ class FunctionTokenArgs:
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the function namespace.
+        The unique identifier of the Functions namespace.
         """
         return pulumi.get(self, "namespace_id")
 
@@ -96,9 +101,9 @@ class FunctionTokenArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`). The region in which the namespace should be created.
+        `region`). The region in which the namespace is created.
 
-        > **Important** Updates to any fields will recreate the token.
+        > **Important** Updating any of the arguments above will recreate the token.
         """
         return pulumi.get(self, "region")
 
@@ -120,13 +125,13 @@ class _FunctionTokenState:
         Input properties used for looking up and filtering FunctionToken resources.
         :param pulumi.Input[str] description: The description of the token.
         :param pulumi.Input[str] expires_at: The expiration date of the token.
-        :param pulumi.Input[str] function_id: The ID of the function.
+        :param pulumi.Input[str] function_id: The unique identifier of the function.
                
                > Only one of `namespace_id` or `function_id` must be set.
-        :param pulumi.Input[str] namespace_id: The ID of the function namespace.
-        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+        :param pulumi.Input[str] namespace_id: The unique identifier of the Functions namespace.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace is created.
                
-               > **Important** Updates to any fields will recreate the token.
+               > **Important** Updating any of the arguments above will recreate the token.
         :param pulumi.Input[str] token: The token.
         """
         if description is not None:
@@ -170,7 +175,7 @@ class _FunctionTokenState:
     @pulumi.getter(name="functionId")
     def function_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the function.
+        The unique identifier of the function.
 
         > Only one of `namespace_id` or `function_id` must be set.
         """
@@ -184,7 +189,7 @@ class _FunctionTokenState:
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the function namespace.
+        The unique identifier of the Functions namespace.
         """
         return pulumi.get(self, "namespace_id")
 
@@ -196,9 +201,9 @@ class _FunctionTokenState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`). The region in which the namespace should be created.
+        `region`). The region in which the namespace is created.
 
-        > **Important** Updates to any fields will recreate the token.
+        > **Important** Updating any of the arguments above will recreate the token.
         """
         return pulumi.get(self, "region")
 
@@ -231,12 +236,11 @@ class FunctionToken(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Function Token.
-        For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#tokens-26b085).
+        The `FunctionToken` resource allows you to create and manage authentication tokens for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+
+        Refer to the Functions tokens [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-auth-token-from-console/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-tokens-list-all-tokens) for more information.
 
         ## Example Usage
-
-        ### Basic
 
         ```python
         import pulumi
@@ -258,7 +262,7 @@ class FunctionToken(pulumi.CustomResource):
 
         ## Import
 
-        Tokens can be imported using the `{region}/{id}`, e.g.
+        Tokens can be imported using `{region}/{id}`, as shown below:
 
         bash
 
@@ -270,13 +274,13 @@ class FunctionToken(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the token.
         :param pulumi.Input[str] expires_at: The expiration date of the token.
-        :param pulumi.Input[str] function_id: The ID of the function.
+        :param pulumi.Input[str] function_id: The unique identifier of the function.
                
                > Only one of `namespace_id` or `function_id` must be set.
-        :param pulumi.Input[str] namespace_id: The ID of the function namespace.
-        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+        :param pulumi.Input[str] namespace_id: The unique identifier of the Functions namespace.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace is created.
                
-               > **Important** Updates to any fields will recreate the token.
+               > **Important** Updating any of the arguments above will recreate the token.
         """
         ...
     @overload
@@ -285,12 +289,11 @@ class FunctionToken(pulumi.CustomResource):
                  args: Optional[FunctionTokenArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Function Token.
-        For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#tokens-26b085).
+        The `FunctionToken` resource allows you to create and manage authentication tokens for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+
+        Refer to the Functions tokens [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-auth-token-from-console/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-tokens-list-all-tokens) for more information.
 
         ## Example Usage
-
-        ### Basic
 
         ```python
         import pulumi
@@ -312,7 +315,7 @@ class FunctionToken(pulumi.CustomResource):
 
         ## Import
 
-        Tokens can be imported using the `{region}/{id}`, e.g.
+        Tokens can be imported using `{region}/{id}`, as shown below:
 
         bash
 
@@ -382,13 +385,13 @@ class FunctionToken(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the token.
         :param pulumi.Input[str] expires_at: The expiration date of the token.
-        :param pulumi.Input[str] function_id: The ID of the function.
+        :param pulumi.Input[str] function_id: The unique identifier of the function.
                
                > Only one of `namespace_id` or `function_id` must be set.
-        :param pulumi.Input[str] namespace_id: The ID of the function namespace.
-        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+        :param pulumi.Input[str] namespace_id: The unique identifier of the Functions namespace.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace is created.
                
-               > **Important** Updates to any fields will recreate the token.
+               > **Important** Updating any of the arguments above will recreate the token.
         :param pulumi.Input[str] token: The token.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -423,7 +426,7 @@ class FunctionToken(pulumi.CustomResource):
     @pulumi.getter(name="functionId")
     def function_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The ID of the function.
+        The unique identifier of the function.
 
         > Only one of `namespace_id` or `function_id` must be set.
         """
@@ -433,7 +436,7 @@ class FunctionToken(pulumi.CustomResource):
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The ID of the function namespace.
+        The unique identifier of the Functions namespace.
         """
         return pulumi.get(self, "namespace_id")
 
@@ -441,9 +444,9 @@ class FunctionToken(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        `region`). The region in which the namespace should be created.
+        `region`). The region in which the namespace is created.
 
-        > **Important** Updates to any fields will recreate the token.
+        > **Important** Updating any of the arguments above will recreate the token.
         """
         return pulumi.get(self, "region")
 

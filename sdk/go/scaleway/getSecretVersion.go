@@ -11,12 +11,22 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about Scaleway a Secret Version.
-// For more information, see [the documentation](https://developers.scaleway.com/en/products/secret_manager/api/v1alpha1/#secret-versions-079501).
+// The `SecretVersion` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
 //
-// ## Examples
+// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
 //
-// ### Basic
+// ## Example Usage
+//
+// ### Use Secret Manager
+//
+// The following commands allow you to:
+//
+// - create a secret named `fooii`
+// - create a new version of `fooii` containing data (`yourSecret`)
+// - retrieve the secret version specified by the secret ID and the desired version
+// - retrieve the secret version specified by the secret name and the desired version
+//
+// The output blocks display the sensitive data contained in your secret version.
 //
 // ```go
 // package main
@@ -30,12 +40,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Create a secret named fooii
 //			mainSecret, err := scaleway.NewSecret(ctx, "mainSecret", &scaleway.SecretArgs{
 //				Description: pulumi.String("barr"),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			// Create a version of fooii containing data
 //			_, err = scaleway.NewSecretVersion(ctx, "mainSecretVersion", &scaleway.SecretVersionArgs{
 //				Description: pulumi.String("your description"),
 //				SecretId:    mainSecret.ID(),
@@ -64,14 +76,14 @@ import (
 //
 // ```
 //
-// ## Data
+// ## Data information
 //
-// Note: This Data Source give you **access** to the secret payload encoded en base64.
+// Note: This data source provides you with access to the secret payload, which is encoded in base64.
 //
-// Be aware that this is a sensitive attribute. For more information,
+// Keep in mind that this is a sensitive attribute. For more information,
 // see Sensitive Data in State.
 //
-// > **Important:**  This property is sensitive and will not be displayed in the plan.
+// > **Important:**  This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
 func LookupSecretVersion(ctx *pulumi.Context, args *LookupSecretVersionArgs, opts ...pulumi.InvokeOption) (*LookupSecretVersionResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSecretVersionResult
@@ -84,68 +96,71 @@ func LookupSecretVersion(ctx *pulumi.Context, args *LookupSecretVersionArgs, opt
 
 // A collection of arguments for invoking getSecretVersion.
 type LookupSecretVersionArgs struct {
-	// The ID of the project the Secret version is associated with.
+	OrganizationId *string `pulumi:"organizationId"`
+	// The ID of the Scaleway Project associated with the secret version.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`) The region
-	// in which the resource exists.
-	Region *string `pulumi:"region"`
-	// The revision for this Secret Version.
+	Region    *string `pulumi:"region"`
+	// The revision for this secret version. Refer to alternative values (ex: `latest`) in the [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/#path-secret-versions-access-a-secrets-version-using-the-secrets-id)
 	Revision *string `pulumi:"revision"`
-	// The Secret ID associated wit the secret version.
-	// Only one of `secretId` and `secretName` should be specified.
+	// The ID of the secret associated with the secret version. Only one of `secretId` and `secretName` should be specified.
 	SecretId *string `pulumi:"secretId"`
-	// The Name of Secret associated wit the secret version.
+	// The name of the secret associated with the secret version.
 	// Only one of `secretId` and `secretName` should be specified.
 	SecretName *string `pulumi:"secretName"`
 }
 
 // A collection of values returned by getSecretVersion.
 type LookupSecretVersionResult struct {
-	// Date and time of secret version's creation (RFC 3339 format).
+	// The date and time of the secret version's creation in RFC 3339 format.
 	CreatedAt string `pulumi:"createdAt"`
-	// The data payload of the secret version. more on the data section
+	// The data payload of the secret version. This is a sensitive attribute containing the secret value. Learn more in the [data section](https://www.terraform.io/#data-information).
 	Data string `pulumi:"data"`
-	// (Optional) Description of the secret version (e.g. `my-new-description`).
+	// (Optional) The description of the secret version (e.g. `my-new-description`).
 	Description string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string  `pulumi:"id"`
-	ProjectId  *string `pulumi:"projectId"`
-	Region     *string `pulumi:"region"`
-	Revision   *string `pulumi:"revision"`
-	SecretId   *string `pulumi:"secretId"`
-	SecretName *string `pulumi:"secretName"`
-	// The status of the Secret Version.
+	Id             string  `pulumi:"id"`
+	OrganizationId string  `pulumi:"organizationId"`
+	ProjectId      *string `pulumi:"projectId"`
+	Region         *string `pulumi:"region"`
+	Revision       *string `pulumi:"revision"`
+	SecretId       *string `pulumi:"secretId"`
+	SecretName     *string `pulumi:"secretName"`
+	// The status of the secret version.
 	Status string `pulumi:"status"`
-	// Date and time of secret version's last update (RFC 3339 format).
+	// The date and time of the secret version's last update in RFC 3339 format.
 	UpdatedAt string `pulumi:"updatedAt"`
 }
 
 func LookupSecretVersionOutput(ctx *pulumi.Context, args LookupSecretVersionOutputArgs, opts ...pulumi.InvokeOption) LookupSecretVersionResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupSecretVersionResult, error) {
+		ApplyT(func(v interface{}) (LookupSecretVersionResultOutput, error) {
 			args := v.(LookupSecretVersionArgs)
-			r, err := LookupSecretVersion(ctx, &args, opts...)
-			var s LookupSecretVersionResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupSecretVersionResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getSecretVersion:getSecretVersion", args, &rv, "", opts...)
+			if err != nil {
+				return LookupSecretVersionResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupSecretVersionResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupSecretVersionResultOutput), nil
+			}
+			return output, nil
 		}).(LookupSecretVersionResultOutput)
 }
 
 // A collection of arguments for invoking getSecretVersion.
 type LookupSecretVersionOutputArgs struct {
-	// The ID of the project the Secret version is associated with.
+	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
+	// The ID of the Scaleway Project associated with the secret version.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// `region`) The region
-	// in which the resource exists.
-	Region pulumi.StringPtrInput `pulumi:"region"`
-	// The revision for this Secret Version.
+	Region    pulumi.StringPtrInput `pulumi:"region"`
+	// The revision for this secret version. Refer to alternative values (ex: `latest`) in the [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/#path-secret-versions-access-a-secrets-version-using-the-secrets-id)
 	Revision pulumi.StringPtrInput `pulumi:"revision"`
-	// The Secret ID associated wit the secret version.
-	// Only one of `secretId` and `secretName` should be specified.
+	// The ID of the secret associated with the secret version. Only one of `secretId` and `secretName` should be specified.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
-	// The Name of Secret associated wit the secret version.
+	// The name of the secret associated with the secret version.
 	// Only one of `secretId` and `secretName` should be specified.
 	SecretName pulumi.StringPtrInput `pulumi:"secretName"`
 }
@@ -169,17 +184,17 @@ func (o LookupSecretVersionResultOutput) ToLookupSecretVersionResultOutputWithCo
 	return o
 }
 
-// Date and time of secret version's creation (RFC 3339 format).
+// The date and time of the secret version's creation in RFC 3339 format.
 func (o LookupSecretVersionResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSecretVersionResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The data payload of the secret version. more on the data section
+// The data payload of the secret version. This is a sensitive attribute containing the secret value. Learn more in the [data section](https://www.terraform.io/#data-information).
 func (o LookupSecretVersionResultOutput) Data() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSecretVersionResult) string { return v.Data }).(pulumi.StringOutput)
 }
 
-// (Optional) Description of the secret version (e.g. `my-new-description`).
+// (Optional) The description of the secret version (e.g. `my-new-description`).
 func (o LookupSecretVersionResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSecretVersionResult) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -187,6 +202,10 @@ func (o LookupSecretVersionResultOutput) Description() pulumi.StringOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o LookupSecretVersionResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSecretVersionResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupSecretVersionResultOutput) OrganizationId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSecretVersionResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
 func (o LookupSecretVersionResultOutput) ProjectId() pulumi.StringPtrOutput {
@@ -209,12 +228,12 @@ func (o LookupSecretVersionResultOutput) SecretName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSecretVersionResult) *string { return v.SecretName }).(pulumi.StringPtrOutput)
 }
 
-// The status of the Secret Version.
+// The status of the secret version.
 func (o LookupSecretVersionResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSecretVersionResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
-// Date and time of secret version's last update (RFC 3339 format).
+// The date and time of the secret version's last update in RFC 3339 format.
 func (o LookupSecretVersionResultOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSecretVersionResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }

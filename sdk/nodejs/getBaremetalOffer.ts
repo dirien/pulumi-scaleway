@@ -23,7 +23,6 @@ import * as utilities from "./utilities";
  */
 export function getBaremetalOffer(args?: GetBaremetalOfferArgs, opts?: pulumi.InvokeOptions): Promise<GetBaremetalOfferResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getBaremetalOffer:getBaremetalOffer", {
         "includeDisabled": args.includeDisabled,
@@ -114,7 +113,15 @@ export interface GetBaremetalOfferResult {
  * ```
  */
 export function getBaremetalOfferOutput(args?: GetBaremetalOfferOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBaremetalOfferResult> {
-    return pulumi.output(args).apply((a: any) => getBaremetalOffer(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getBaremetalOffer:getBaremetalOffer", {
+        "includeDisabled": args.includeDisabled,
+        "name": args.name,
+        "offerId": args.offerId,
+        "subscriptionPeriod": args.subscriptionPeriod,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

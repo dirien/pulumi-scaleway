@@ -127,6 +127,49 @@ namespace ediri.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Book an IP for a custom resource
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpc01 = new Scaleway.Vpc("vpc01");
+    /// 
+    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     {
+    ///         VpcId = vpc01.Id,
+    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+    ///         {
+    ///             Subnet = "172.16.32.0/22",
+    ///         },
+    ///     });
+    /// 
+    ///     var ip01 = new Scaleway.IpamIp("ip01", new()
+    ///     {
+    ///         Address = "172.16.32.7",
+    ///         Sources = new[]
+    ///         {
+    ///             new Scaleway.Inputs.IpamIpSourceArgs
+    ///             {
+    ///                 PrivateNetworkId = pn01.Id,
+    ///             },
+    ///         },
+    ///         CustomResources = new[]
+    ///         {
+    ///             new Scaleway.Inputs.IpamIpCustomResourceArgs
+    ///             {
+    ///                 MacAddress = "bc:24:11:74:d0:6a",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// IPAM IPs can be imported using `{region}/{id}`, e.g.
@@ -151,6 +194,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// The custom resource in which to book the IP
+        /// </summary>
+        [Output("customResources")]
+        public Output<ImmutableArray<Outputs.IpamIpCustomResource>> CustomResources { get; private set; } = null!;
 
         /// <summary>
         /// Defines whether to request an IPv6 address instead of IPv4.
@@ -259,6 +308,18 @@ namespace ediri.Scaleway
         [Input("address")]
         public Input<string>? Address { get; set; }
 
+        [Input("customResources")]
+        private InputList<Inputs.IpamIpCustomResourceArgs>? _customResources;
+
+        /// <summary>
+        /// The custom resource in which to book the IP
+        /// </summary>
+        public InputList<Inputs.IpamIpCustomResourceArgs> CustomResources
+        {
+            get => _customResources ?? (_customResources = new InputList<Inputs.IpamIpCustomResourceArgs>());
+            set => _customResources = value;
+        }
+
         /// <summary>
         /// Defines whether to request an IPv6 address instead of IPv4.
         /// </summary>
@@ -320,6 +381,18 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
+
+        [Input("customResources")]
+        private InputList<Inputs.IpamIpCustomResourceGetArgs>? _customResources;
+
+        /// <summary>
+        /// The custom resource in which to book the IP
+        /// </summary>
+        public InputList<Inputs.IpamIpCustomResourceGetArgs> CustomResources
+        {
+            get => _customResources ?? (_customResources = new InputList<Inputs.IpamIpCustomResourceGetArgs>());
+            set => _customResources = value;
+        }
 
         /// <summary>
         /// Defines whether to request an IPv6 address instead of IPv4.

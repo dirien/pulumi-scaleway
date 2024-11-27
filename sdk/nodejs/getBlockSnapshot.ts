@@ -6,7 +6,6 @@ import * as utilities from "./utilities";
 
 export function getBlockSnapshot(args?: GetBlockSnapshotArgs, opts?: pulumi.InvokeOptions): Promise<GetBlockSnapshotResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getBlockSnapshot:getBlockSnapshot", {
         "name": args.name,
@@ -44,7 +43,15 @@ export interface GetBlockSnapshotResult {
     readonly zone?: string;
 }
 export function getBlockSnapshotOutput(args?: GetBlockSnapshotOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBlockSnapshotResult> {
-    return pulumi.output(args).apply((a: any) => getBlockSnapshot(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getBlockSnapshot:getBlockSnapshot", {
+        "name": args.name,
+        "projectId": args.projectId,
+        "snapshotId": args.snapshotId,
+        "volumeId": args.volumeId,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

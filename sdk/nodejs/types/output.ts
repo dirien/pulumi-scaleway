@@ -87,6 +87,10 @@ export interface BaremetalServerPrivateNetwork {
      */
     id: string;
     /**
+     * List of IPAM IP IDs to assign to the server in the requested private network.
+     */
+    ipamIpIds: string[];
+    /**
      * The private network status.
      */
     status: string;
@@ -109,23 +113,23 @@ export interface CockpitAlertManagerContactPoint {
 
 export interface CockpitEndpoint {
     /**
-     * The alertmanager URL.
+     * (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
      */
     alertmanagerUrl: string;
     /**
-     * The grafana URL.
+     * (Deprecated) URL for Grafana.
      */
     grafanaUrl: string;
     /**
-     * The logs URL.
+     * (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
      */
     logsUrl: string;
     /**
-     * The metrics URL.
+     * (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
      */
     metricsUrl: string;
     /**
-     * The traces URL.
+     * (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
      */
     tracesUrl: string;
 }
@@ -143,172 +147,81 @@ export interface CockpitPushUrl {
 
 export interface CockpitTokenScopes {
     /**
-     * Query logs.
+     * Permission to query logs.
      */
     queryLogs?: boolean;
     /**
-     * Query metrics.
+     * Permission to query metrics.
      */
     queryMetrics?: boolean;
     /**
-     * Query traces.
+     * Permission to query traces.
      */
     queryTraces?: boolean;
     /**
-     * Setup alerts.
+     * Permission to set up alerts.
      */
     setupAlerts?: boolean;
     /**
-     * Setup logs rules.
+     * Permission to set up logs rules.
      */
     setupLogsRules?: boolean;
     /**
-     * Setup metrics rules.
+     * Permission to set up metrics rules.
      */
     setupMetricsRules?: boolean;
     /**
-     * Write logs.
+     * Permission to write logs.
      */
     writeLogs?: boolean;
     /**
-     * Write metrics.
+     * Permission to write metrics.
      */
     writeMetrics?: boolean;
     /**
-     * Write traces.
+     * Permission to write traces.
      */
     writeTraces?: boolean;
 }
 
 export interface ContainerTriggerNats {
     /**
-     * ID of the mnq nats account.
+     * unique identifier of the Messaging and Queuing NATS account.
      */
     accountId?: string;
     /**
-     * ID of the project that contain the mnq nats account, defaults to provider's project
+     * THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
      */
     projectId: string;
     /**
-     * Region where the mnq nats account is, defaults to provider's region
+     * Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
      */
     region: string;
     /**
-     * The subject to listen to
+     * The subject to listen to.
      */
     subject: string;
 }
 
 export interface ContainerTriggerSqs {
     /**
-     * ID of the mnq namespace. Deprecated.
+     * ID of the Messaging and Queuing namespace. This argument is deprecated.
      *
      * @deprecated The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
      */
     namespaceId?: string;
     /**
-     * ID of the project where sqs is enabled, defaults to provider's project
+     * The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
      */
     projectId: string;
     /**
-     * Name of the queue
+     * The name of the SQS queue.
      */
     queue: string;
     /**
-     * Region where sqs is enabled, defaults to provider's region
+     * Region where SQS is enabled (defaults to provider `region`)
      */
     region: string;
-}
-
-export interface DocumentdbPrivateNetworkEndpointPrivateNetwork {
-    /**
-     * The hostname of your endpoint.
-     */
-    hostname: string;
-    /**
-     * The private network ID.
-     */
-    id: string;
-    /**
-     * The IP of your private network service.
-     */
-    ip: string;
-    /**
-     * The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM) service if not set.
-     */
-    ipNet: string;
-    /**
-     * The name of your private service.
-     */
-    name: string;
-    /**
-     * The port of your private service.
-     */
-    port: number;
-    /**
-     * The zone of your endpoint.
-     */
-    zone: string;
-}
-
-export interface DocumentdbReadReplicaDirectAccess {
-    /**
-     * The ID of the endpoint of the read replica.
-     */
-    endpointId: string;
-    /**
-     * Hostname of the endpoint. Only one of ip and hostname may be set.
-     */
-    hostname: string;
-    /**
-     * IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
-     */
-    ip: string;
-    /**
-     * Name of the endpoint.
-     */
-    name: string;
-    /**
-     * TCP port of the endpoint.
-     */
-    port: number;
-}
-
-export interface DocumentdbReadReplicaPrivateNetwork {
-    /**
-     * The ID of the endpoint of the read replica.
-     */
-    endpointId: string;
-    /**
-     * Hostname of the endpoint. Only one of ip and hostname may be set.
-     */
-    hostname: string;
-    /**
-     * IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
-     */
-    ip: string;
-    /**
-     * Name of the endpoint.
-     */
-    name: string;
-    /**
-     * TCP port of the endpoint.
-     */
-    port: number;
-    /**
-     * UUID of the private network to be connected to the read replica.
-     */
-    privateNetworkId: string;
-    /**
-     * The IP network address within the private subnet. This must be an IPv4 address with a
-     * CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-     * service if not set.
-     */
-    serviceIp: string;
-    /**
-     * Private network zone
-     */
-    zone: string;
 }
 
 export interface DomainRecordGeoIp {
@@ -328,7 +241,7 @@ export interface DomainRecordGeoIpMatch {
      */
     countries?: string[];
     /**
-     * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+     * The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
      */
     data: string;
 }
@@ -358,7 +271,7 @@ export interface DomainRecordHttpService {
 
 export interface DomainRecordView {
     /**
-     * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+     * The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
      */
     data: string;
     /**
@@ -380,40 +293,40 @@ export interface DomainRecordWeighted {
 
 export interface FunctionTriggerNats {
     /**
-     * ID of the mnq nats account.
+     * unique identifier of the Messaging and Queuing NATS account.
      */
     accountId?: string;
     /**
-     * ID of the project that contain the mnq nats account, defaults to provider's project
+     * THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
      */
     projectId: string;
     /**
-     * Region where the mnq nats account is, defaults to provider's region
+     * Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
      */
     region: string;
     /**
-     * The subject to listen to
+     * The subject to listen to.
      */
     subject: string;
 }
 
 export interface FunctionTriggerSqs {
     /**
-     * ID of the mnq namespace. Deprecated.
+     * ID of the Messaging and Queuing namespace. This argument is deprecated.
      *
      * @deprecated The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
      */
     namespaceId?: string;
     /**
-     * ID of the project that contain the mnq namespace, defaults to provider's project
+     * The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
      */
     projectId: string;
     /**
-     * Name of the queue
+     * The name of the SQS queue.
      */
     queue: string;
     /**
-     * Region where the mnq namespace is, defaults to provider's region
+     * Region where SQS is enabled (defaults to provider `region`)
      */
     region: string;
 }
@@ -549,6 +462,10 @@ export interface GetBaremetalServerPrivateNetwork {
      */
     id: string;
     /**
+     * List of IPAM IP IDs to attach to the server
+     */
+    ipamIpIds: string[];
+    /**
      * The private network status
      */
     status: string;
@@ -662,19 +579,19 @@ export interface GetBillingInvoicesInvoice {
 
 export interface GetCockpitEndpoint {
     /**
-     * The alertmanager URL
+     * (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
      */
     alertmanagerUrl: string;
     /**
-     * The grafana URL
+     * (Deprecated) URL for Grafana.
      */
     grafanaUrl: string;
     /**
-     * The logs URL
+     * (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
      */
     logsUrl: string;
     /**
-     * The metrics URL
+     * (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
      */
     metricsUrl: string;
     /**
@@ -711,8 +628,7 @@ export interface GetDomainRecordGeoIpMatch {
      */
     countries: string[];
     /**
-     * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-     * Cannot be used with `recordId`.
+     * The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `recordId`.
      */
     data: string;
 }
@@ -742,8 +658,7 @@ export interface GetDomainRecordHttpService {
 
 export interface GetDomainRecordView {
     /**
-     * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-     * Cannot be used with `recordId`.
+     * The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `recordId`.
      */
     data: string;
     /**
@@ -948,6 +863,10 @@ export interface GetInstanceServerRootVolume {
      */
     name: string;
     /**
+     * SBS Volume IOPS, only with volumeType as sbs_volume
+     */
+    sbsIops: number;
+    /**
      * Size of the root volume in gigabytes.
      */
     sizeInGb: number;
@@ -967,7 +886,7 @@ export interface GetInstanceServersServer {
      */
     bootType: string;
     /**
-     * The ID of the bootscript.
+     * @deprecated bootscript are not supported
      */
     bootscriptId: string;
     /**
@@ -1021,6 +940,8 @@ export interface GetInstanceServersServer {
     projectId: string;
     /**
      * The public IP address of the server.
+     *
+     * @deprecated Use publicIps instead
      */
     publicIp: string;
     /**
@@ -1952,6 +1873,21 @@ export interface GetLbsLbIp {
     zone: string;
 }
 
+export interface GetMongodbInstancePublicNetwork {
+    /**
+     * The DNS record of your endpoint
+     */
+    dnsRecord: string;
+    /**
+     * The ID of the MongoDB® Instance.
+     */
+    id: string;
+    /**
+     * TCP port of the endpoint
+     */
+    port: number;
+}
+
 export interface GetObjectBucketCorsRule {
     allowedHeaders: string[];
     allowedMethods: string[];
@@ -1974,7 +1910,7 @@ export interface GetObjectBucketLifecycleRule {
      */
     expirations: outputs.GetObjectBucketLifecycleRuleExpiration[];
     /**
-     * The unique name of the bucket.
+     * The unique identifier of the bucket.
      */
     id: string;
     /**
@@ -2159,6 +2095,21 @@ export interface GetRedisClusterPublicNetwork {
      * TCP port of the endpoint
      */
     port: number;
+}
+
+export interface GetSecretEphemeralPolicy {
+    /**
+     * Action to perform when the version of a secret expires.
+     */
+    action: string;
+    /**
+     * True if the secret version expires after a single user access.
+     */
+    expiresOnceAccessed: boolean;
+    /**
+     * Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in Go Duration format
+     */
+    ttl: string;
 }
 
 export interface GetTemDomainReputation {
@@ -2397,6 +2348,10 @@ export interface GetWebhostingOption {
 
 export interface IamPolicyRule {
     /**
+     * The condition of the IAM policy.
+     */
+    condition?: string;
+    /**
      * ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
      */
     organizationId?: string;
@@ -2416,6 +2371,44 @@ export interface IamPolicyRule {
      * > **Important** One `organizationId` or `projectIds` must be set per rule.
      */
     projectIds?: string[];
+}
+
+export interface InferenceDeploymentPrivateEndpoint {
+    /**
+     * Disable the authentication on the endpoint.
+     */
+    disableAuth?: boolean;
+    /**
+     * (Optional) The id of the public endpoint.
+     */
+    id: string;
+    /**
+     * The ID of the private network to use.
+     */
+    privateNetworkId?: string;
+    /**
+     * (Optional) The URL of the endpoint.
+     */
+    url: string;
+}
+
+export interface InferenceDeploymentPublicEndpoint {
+    /**
+     * Disable the authentication on the endpoint.
+     */
+    disableAuth?: boolean;
+    /**
+     * (Optional) The id of the public endpoint.
+     */
+    id: string;
+    /**
+     * Enable or disable public endpoint.
+     */
+    isEnabled?: boolean;
+    /**
+     * (Optional) The URL of the endpoint.
+     */
+    url: string;
 }
 
 export interface InstanceImageAdditionalVolume {
@@ -2630,14 +2623,18 @@ export interface InstanceServerRootVolume {
     boot?: boolean;
     /**
      * Forces deletion of the root volume on instance termination.
-     *
-     * > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
      */
     deleteOnTermination?: boolean;
     /**
      * The name of the server.
      */
     name: string;
+    /**
+     * Choose IOPS of your sbs volume, has to be used with `sbsVolume` for root volume type.
+     *
+     * > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+     */
+    sbsIops: number;
     /**
      * Size of the root volume in gigabytes.
      * To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
@@ -2650,7 +2647,7 @@ export interface InstanceServerRootVolume {
      */
     volumeId: string;
     /**
-     * Volume type of root volume, can be `bSsd` or `lSsd`, default value depends on server type
+     * Volume type of root volume, can be `bSsd`, `lSsd` or `sbsVolume`, default value depends on server type
      */
     volumeType: string;
 }
@@ -2775,6 +2772,17 @@ export interface IotRouteS3 {
      * How the S3 route's objects will be created (e.g. `perTopic`). See [documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Messages-Store-Strategies) for behaviour details.
      */
     strategy: string;
+}
+
+export interface IpamIpCustomResource {
+    /**
+     * The MAC address of the resource the IP is attached to.
+     */
+    macAddress: string;
+    /**
+     * The name of the resource the IP is attached to.
+     */
+    name?: string;
 }
 
 export interface IpamIpResource {
@@ -2949,11 +2957,15 @@ export interface K8sPoolNode {
      */
     name: string;
     /**
-     * The public IPv4.
+     * The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
+     *
+     * @deprecated Please use the official Kubernetes provider and the kubernetesNodes data source
      */
     publicIp: string;
     /**
-     * The public IPv6.
+     * The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
+     *
+     * @deprecated Please use the official Kubernetes provider and the kubernetesNodes data source
      */
     publicIpV6: string;
     /**
@@ -3169,7 +3181,9 @@ export interface LbFrontendAclMatch {
 
 export interface LbPrivateNetwork {
     /**
-     * (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
+     * (Deprecated) Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses. See below.
+     *
+     * @deprecated dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
      */
     dhcpConfig: boolean;
     /**
@@ -3183,7 +3197,7 @@ export interface LbPrivateNetwork {
     /**
      * (Deprecated) Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
      *
-     * @deprecated static_config field is deprecated, please use dhcpConfig instead
+     * @deprecated static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
      */
     staticConfig?: string;
     /**
@@ -3226,6 +3240,21 @@ export interface MnqSqsCredentialsPermissions {
     canReceive: boolean;
 }
 
+export interface MongodbInstancePublicNetwork {
+    /**
+     * The DNS record of your endpoint
+     */
+    dnsRecord: string;
+    /**
+     * The ID of the MongoDB® instance.
+     */
+    id: string;
+    /**
+     * TCP port of the endpoint
+     */
+    port: number;
+}
+
 export interface ObjectBucketAclAccessControlPolicy {
     grants?: outputs.ObjectBucketAclAccessControlPolicyGrant[];
     /**
@@ -3248,7 +3277,7 @@ export interface ObjectBucketAclAccessControlPolicyGrant {
 export interface ObjectBucketAclAccessControlPolicyGrantGrantee {
     displayName: string;
     /**
-     * The `region`,`bucket` and `acl` separated by (`/`).
+     * The `region`, `bucket` and `acl` separated by (`/`).
      */
     id: string;
     /**
@@ -3263,7 +3292,7 @@ export interface ObjectBucketAclAccessControlPolicyOwner {
      */
     displayName: string;
     /**
-     * The `region`,`bucket` and `acl` separated by (`/`).
+     * The `region`, `bucket` and `acl` separated by (`/`).
      */
     id: string;
 }
@@ -3274,7 +3303,7 @@ export interface ObjectBucketCorsRule {
      */
     allowedHeaders?: string[];
     /**
-     * Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+     * Specifies which methods are allowed (`GET`, `PUT`, `POST`, `DELETE` or `HEAD`).
      */
     allowedMethods: string[];
     /**
@@ -3282,11 +3311,11 @@ export interface ObjectBucketCorsRule {
      */
     allowedOrigins: string[];
     /**
-     * Specifies expose header in the response.
+     * Specifies header exposure in the response.
      */
     exposeHeaders?: string[];
     /**
-     * Specifies time in seconds that browser can cache the response for a preflight request.
+     * Specifies time in seconds that the browser can cache the response for a preflight request.
      */
     maxAgeSeconds?: number;
 }
@@ -3295,15 +3324,15 @@ export interface ObjectBucketLifecycleRule {
     /**
      * Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
      *
-     * * > **Important:** It's not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
+     * > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
      */
     abortIncompleteMultipartUploadDays?: number;
     /**
-     * The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+     * The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
      */
     enabled: boolean;
     /**
-     * Specifies a period in the object's expire (documented below).
+     * Specifies a period in the object's expire
      */
     expiration?: outputs.ObjectBucketLifecycleRuleExpiration;
     /**
@@ -3319,9 +3348,7 @@ export interface ObjectBucketLifecycleRule {
      */
     tags?: {[key: string]: string};
     /**
-     * Specifies a period in the object's transitions (documented below).
-     *
-     * At least one of `abortIncompleteMultipartUploadDays`, `expiration`, `transition` must be specified.
+     * Define when objects transition to another storage class
      */
     transitions?: outputs.ObjectBucketLifecycleRuleTransition[];
 }
@@ -3329,8 +3356,6 @@ export interface ObjectBucketLifecycleRule {
 export interface ObjectBucketLifecycleRuleExpiration {
     /**
      * Specifies the number of days after object creation when the specific rule action takes effect.
-     *
-     * > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
      */
     days: number;
 }
@@ -3343,6 +3368,12 @@ export interface ObjectBucketLifecycleRuleTransition {
     /**
      * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
      *
+     *
+     * > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+     * > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+     *
+     *
+     * > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
      * > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
      */
     storageClass: string;
@@ -3357,15 +3388,15 @@ export interface ObjectBucketLockConfigurationRule {
 
 export interface ObjectBucketLockConfigurationRuleDefaultRetention {
     /**
-     * The number of days that you want to specify for the default retention period.
+     * The number of days you want to specify for the default retention period.
      */
     days?: number;
     /**
-     * The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
+     * The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
      */
     mode: string;
     /**
-     * The number of years that you want to specify for the default retention period.
+     * The number of years you want to specify for the default retention period.
      */
     years?: number;
 }
@@ -3386,7 +3417,7 @@ export interface ObjectBucketWebsiteConfigurationErrorDocument {
 
 export interface ObjectBucketWebsiteConfigurationIndexDocument {
     /**
-     * A suffix that is appended to a request that is for a directory on the website endpoint.
+     * A suffix that is appended to a request targeting a specific directory on the website endpoint.
      *
      * > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
      */
@@ -3629,6 +3660,21 @@ export interface RedisClusterPublicNetwork {
      * TCP port of the endpoint.
      */
     port: number;
+}
+
+export interface SecretEphemeralPolicy {
+    /**
+     * Action to perform when the version of a secret expires. Available values can be found in [SDK constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+     */
+    action: string;
+    /**
+     * True if the secret version expires after a single user access.
+     */
+    expiresOnceAccessed?: boolean;
+    /**
+     * Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in [Go Duration format](https://pkg.go.dev/time#ParseDuration) (ex: "30m", "24h").
+     */
+    ttl?: string;
 }
 
 export interface TemDomainReputation {

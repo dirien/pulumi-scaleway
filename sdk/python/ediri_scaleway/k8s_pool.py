@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -791,7 +796,7 @@ class K8sPool(pulumi.CustomResource):
                  root_volume_type: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 upgrade_policy: Optional[pulumi.Input[pulumi.InputType['K8sPoolUpgradePolicyArgs']]] = None,
+                 upgrade_policy: Optional[pulumi.Input[Union['K8sPoolUpgradePolicyArgs', 'K8sPoolUpgradePolicyArgsDict']]] = None,
                  wait_for_pool_ready: Optional[pulumi.Input[bool]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -833,7 +838,7 @@ class K8sPool(pulumi.CustomResource):
                > **Important:** This field will only be used at creation if autoscaling is enabled.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the pool.
                > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
-        :param pulumi.Input[pulumi.InputType['K8sPoolUpgradePolicyArgs']] upgrade_policy: The Pool upgrade policy
+        :param pulumi.Input[Union['K8sPoolUpgradePolicyArgs', 'K8sPoolUpgradePolicyArgsDict']] upgrade_policy: The Pool upgrade policy
         :param pulumi.Input[bool] wait_for_pool_ready: Whether to wait for the pool to be ready.
         :param pulumi.Input[str] zone: `zone`) The zone in which the pool should be created.
                > **Important:** Updates to this field will recreate a new resource.
@@ -886,7 +891,7 @@ class K8sPool(pulumi.CustomResource):
                  root_volume_type: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 upgrade_policy: Optional[pulumi.Input[pulumi.InputType['K8sPoolUpgradePolicyArgs']]] = None,
+                 upgrade_policy: Optional[pulumi.Input[Union['K8sPoolUpgradePolicyArgs', 'K8sPoolUpgradePolicyArgsDict']]] = None,
                  wait_for_pool_ready: Optional[pulumi.Input[bool]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -950,7 +955,7 @@ class K8sPool(pulumi.CustomResource):
             min_size: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             node_type: Optional[pulumi.Input[str]] = None,
-            nodes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['K8sPoolNodeArgs']]]]] = None,
+            nodes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['K8sPoolNodeArgs', 'K8sPoolNodeArgsDict']]]]] = None,
             placement_group_id: Optional[pulumi.Input[str]] = None,
             public_ip_disabled: Optional[pulumi.Input[bool]] = None,
             region: Optional[pulumi.Input[str]] = None,
@@ -960,7 +965,7 @@ class K8sPool(pulumi.CustomResource):
             status: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
-            upgrade_policy: Optional[pulumi.Input[pulumi.InputType['K8sPoolUpgradePolicyArgs']]] = None,
+            upgrade_policy: Optional[pulumi.Input[Union['K8sPoolUpgradePolicyArgs', 'K8sPoolUpgradePolicyArgsDict']]] = None,
             version: Optional[pulumi.Input[str]] = None,
             wait_for_pool_ready: Optional[pulumi.Input[bool]] = None,
             zone: Optional[pulumi.Input[str]] = None) -> 'K8sPool':
@@ -987,7 +992,7 @@ class K8sPool(pulumi.CustomResource):
         :param pulumi.Input[str] node_type: The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
                
                > **Important:** Updates to this field will recreate a new resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['K8sPoolNodeArgs']]]] nodes: (List of) The nodes in the default pool.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['K8sPoolNodeArgs', 'K8sPoolNodeArgsDict']]]] nodes: (List of) The nodes in the default pool.
         :param pulumi.Input[str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[bool] public_ip_disabled: Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
@@ -1001,7 +1006,7 @@ class K8sPool(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the pool.
                > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (Example: "taint=taintName=taineValue:Effect")
         :param pulumi.Input[str] updated_at: The last update date of the pool.
-        :param pulumi.Input[pulumi.InputType['K8sPoolUpgradePolicyArgs']] upgrade_policy: The Pool upgrade policy
+        :param pulumi.Input[Union['K8sPoolUpgradePolicyArgs', 'K8sPoolUpgradePolicyArgsDict']] upgrade_policy: The Pool upgrade policy
         :param pulumi.Input[str] version: The version of the pool.
         :param pulumi.Input[bool] wait_for_pool_ready: Whether to wait for the pool to be ready.
         :param pulumi.Input[str] zone: `zone`) The zone in which the pool should be created.

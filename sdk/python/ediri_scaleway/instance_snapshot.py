@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -318,7 +323,7 @@ class InstanceSnapshot(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 import_: Optional[pulumi.Input[pulumi.InputType['InstanceSnapshotImportArgs']]] = None,
+                 import_: Optional[pulumi.Input[Union['InstanceSnapshotImportArgs', 'InstanceSnapshotImportArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -352,10 +357,10 @@ class InstanceSnapshot(pulumi.CustomResource):
         main_instance_server = scaleway.InstanceServer("mainInstanceServer",
             image="ubuntu_jammy",
             type="DEV1-S",
-            root_volume=scaleway.InstanceServerRootVolumeArgs(
-                size_in_gb=10,
-                volume_type="l_ssd",
-            ),
+            root_volume={
+                "size_in_gb": 10,
+                "volume_type": "l_ssd",
+            },
             additional_volume_ids=[main_instance_volume.id])
         main_instance_snapshot = scaleway.InstanceSnapshot("mainInstanceSnapshot",
             volume_id=main_instance_volume.id,
@@ -376,10 +381,10 @@ class InstanceSnapshot(pulumi.CustomResource):
             file="myqcow.qcow2")
         snapshot = scaleway.InstanceSnapshot("snapshot",
             type="unified",
-            import_=scaleway.InstanceSnapshotImportArgs(
-                bucket=qcow.bucket,
-                key=qcow.key,
-            ))
+            import_={
+                "bucket": qcow.bucket,
+                "key": qcow.key,
+            })
         ```
 
         ## Import
@@ -394,7 +399,7 @@ class InstanceSnapshot(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['InstanceSnapshotImportArgs']] import_: Import a snapshot from a qcow2 file located in a bucket
+        :param pulumi.Input[Union['InstanceSnapshotImportArgs', 'InstanceSnapshotImportArgsDict']] import_: Import a snapshot from a qcow2 file located in a bucket
         :param pulumi.Input[str] name: The name of the snapshot. If not provided it will be randomly generated.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the snapshot is
                associated with.
@@ -437,10 +442,10 @@ class InstanceSnapshot(pulumi.CustomResource):
         main_instance_server = scaleway.InstanceServer("mainInstanceServer",
             image="ubuntu_jammy",
             type="DEV1-S",
-            root_volume=scaleway.InstanceServerRootVolumeArgs(
-                size_in_gb=10,
-                volume_type="l_ssd",
-            ),
+            root_volume={
+                "size_in_gb": 10,
+                "volume_type": "l_ssd",
+            },
             additional_volume_ids=[main_instance_volume.id])
         main_instance_snapshot = scaleway.InstanceSnapshot("mainInstanceSnapshot",
             volume_id=main_instance_volume.id,
@@ -461,10 +466,10 @@ class InstanceSnapshot(pulumi.CustomResource):
             file="myqcow.qcow2")
         snapshot = scaleway.InstanceSnapshot("snapshot",
             type="unified",
-            import_=scaleway.InstanceSnapshotImportArgs(
-                bucket=qcow.bucket,
-                key=qcow.key,
-            ))
+            import_={
+                "bucket": qcow.bucket,
+                "key": qcow.key,
+            })
         ```
 
         ## Import
@@ -492,7 +497,7 @@ class InstanceSnapshot(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 import_: Optional[pulumi.Input[pulumi.InputType['InstanceSnapshotImportArgs']]] = None,
+                 import_: Optional[pulumi.Input[Union['InstanceSnapshotImportArgs', 'InstanceSnapshotImportArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -529,7 +534,7 @@ class InstanceSnapshot(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: Optional[pulumi.Input[str]] = None,
-            import_: Optional[pulumi.Input[pulumi.InputType['InstanceSnapshotImportArgs']]] = None,
+            import_: Optional[pulumi.Input[Union['InstanceSnapshotImportArgs', 'InstanceSnapshotImportArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
@@ -546,7 +551,7 @@ class InstanceSnapshot(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] created_at: The snapshot creation time.
-        :param pulumi.Input[pulumi.InputType['InstanceSnapshotImportArgs']] import_: Import a snapshot from a qcow2 file located in a bucket
+        :param pulumi.Input[Union['InstanceSnapshotImportArgs', 'InstanceSnapshotImportArgsDict']] import_: Import a snapshot from a qcow2 file located in a bucket
         :param pulumi.Input[str] name: The name of the snapshot. If not provided it will be randomly generated.
         :param pulumi.Input[str] organization_id: The organization ID the snapshot is associated with.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the snapshot is

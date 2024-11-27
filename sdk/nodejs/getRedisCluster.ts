@@ -24,7 +24,6 @@ import * as utilities from "./utilities";
  */
 export function getRedisCluster(args?: GetRedisClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetRedisClusterResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getRedisCluster:getRedisCluster", {
         "clusterId": args.clusterId,
@@ -144,7 +143,14 @@ export interface GetRedisClusterResult {
  * ```
  */
 export function getRedisClusterOutput(args?: GetRedisClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRedisClusterResult> {
-    return pulumi.output(args).apply((a: any) => getRedisCluster(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getRedisCluster:getRedisCluster", {
+        "clusterId": args.clusterId,
+        "name": args.name,
+        "projectId": args.projectId,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

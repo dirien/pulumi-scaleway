@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -564,7 +569,7 @@ class InstanceImage(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             additional_volume_ids: Optional[pulumi.Input[str]] = None,
-            additional_volumes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceImageAdditionalVolumeArgs']]]]] = None,
+            additional_volumes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceImageAdditionalVolumeArgs', 'InstanceImageAdditionalVolumeArgsDict']]]]] = None,
             architecture: Optional[pulumi.Input[str]] = None,
             creation_date: Optional[pulumi.Input[str]] = None,
             from_server_id: Optional[pulumi.Input[str]] = None,
@@ -587,7 +592,7 @@ class InstanceImage(pulumi.CustomResource):
         :param pulumi.Input[str] additional_volume_ids: List of IDs of the snapshots of the additional volumes to be attached to the image.
                
                > **Important:** For now it is only possible to have 1 additional_volume.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceImageAdditionalVolumeArgs']]]] additional_volumes: The description of the extra volumes attached to the image.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceImageAdditionalVolumeArgs', 'InstanceImageAdditionalVolumeArgsDict']]]] additional_volumes: The description of the extra volumes attached to the image.
         :param pulumi.Input[str] architecture: The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.
         :param pulumi.Input[str] creation_date: Date of the volume creation.
         :param pulumi.Input[str] from_server_id: ID of the server the image is based on (in case it is a backup).

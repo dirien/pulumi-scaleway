@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = ['FunctionNamespaceArgs', 'FunctionNamespace']
@@ -24,12 +29,12 @@ class FunctionNamespaceArgs:
         The set of arguments for constructing a FunctionNamespace resource.
         :param pulumi.Input[str] description: The description of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
-        :param pulumi.Input[str] name: The unique name of the function namespace.
+        :param pulumi.Input[str] name: The unique name of the Functions namespace.
                
-               > **Important** Updates to `name` will recreate the namespace.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
-        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+               > **Important** Updates to the `name` argument will recreate the namespace.
+        :param pulumi.Input[str] project_id: `project_id`) The unique identifier of the project that contains the namespace.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace is created.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The secret environment variables of the namespace.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -72,9 +77,9 @@ class FunctionNamespaceArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique name of the function namespace.
+        The unique name of the Functions namespace.
 
-        > **Important** Updates to `name` will recreate the namespace.
+        > **Important** Updates to the `name` argument will recreate the namespace.
         """
         return pulumi.get(self, "name")
 
@@ -86,7 +91,7 @@ class FunctionNamespaceArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the namespace is associated with.
+        `project_id`) The unique identifier of the project that contains the namespace.
         """
         return pulumi.get(self, "project_id")
 
@@ -98,7 +103,7 @@ class FunctionNamespaceArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`). The region in which the namespace should be created.
+        `region`). The region in which the namespace is created.
         """
         return pulumi.get(self, "region")
 
@@ -110,7 +115,7 @@ class FunctionNamespaceArgs:
     @pulumi.getter(name="secretEnvironmentVariables")
     def secret_environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+        The secret environment variables of the namespace.
         """
         return pulumi.get(self, "secret_environment_variables")
 
@@ -135,15 +140,15 @@ class _FunctionNamespaceState:
         Input properties used for looking up and filtering FunctionNamespace resources.
         :param pulumi.Input[str] description: The description of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
-        :param pulumi.Input[str] name: The unique name of the function namespace.
+        :param pulumi.Input[str] name: The unique name of the Functions namespace.
                
-               > **Important** Updates to `name` will recreate the namespace.
-        :param pulumi.Input[str] organization_id: The organization ID the namespace is associated with.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
-        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+               > **Important** Updates to the `name` argument will recreate the namespace.
+        :param pulumi.Input[str] organization_id: The Organization ID with which the namespace is associated.
+        :param pulumi.Input[str] project_id: `project_id`) The unique identifier of the project that contains the namespace.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace is created.
         :param pulumi.Input[str] registry_endpoint: The registry endpoint of the namespace.
         :param pulumi.Input[str] registry_namespace_id: The registry namespace ID of the namespace.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The secret environment variables of the namespace.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -192,9 +197,9 @@ class _FunctionNamespaceState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique name of the function namespace.
+        The unique name of the Functions namespace.
 
-        > **Important** Updates to `name` will recreate the namespace.
+        > **Important** Updates to the `name` argument will recreate the namespace.
         """
         return pulumi.get(self, "name")
 
@@ -206,7 +211,7 @@ class _FunctionNamespaceState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The organization ID the namespace is associated with.
+        The Organization ID with which the namespace is associated.
         """
         return pulumi.get(self, "organization_id")
 
@@ -218,7 +223,7 @@ class _FunctionNamespaceState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
-        `project_id`) The ID of the project the namespace is associated with.
+        `project_id`) The unique identifier of the project that contains the namespace.
         """
         return pulumi.get(self, "project_id")
 
@@ -230,7 +235,7 @@ class _FunctionNamespaceState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`). The region in which the namespace should be created.
+        `region`). The region in which the namespace is created.
         """
         return pulumi.get(self, "region")
 
@@ -266,7 +271,7 @@ class _FunctionNamespaceState:
     @pulumi.getter(name="secretEnvironmentVariables")
     def secret_environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+        The secret environment variables of the namespace.
         """
         return pulumi.get(self, "secret_environment_variables")
 
@@ -288,12 +293,12 @@ class FunctionNamespace(pulumi.CustomResource):
                  secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Function Namespace.
-        For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions/).
+        The `FunctionNamespace` resource allows you to
+        for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+
+        Refer to the Functions namespace [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-a-functions-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-namespaces-list-all-your-namespaces) for more information.
 
         ## Example Usage
-
-        ### Basic
 
         ```python
         import pulumi
@@ -304,7 +309,7 @@ class FunctionNamespace(pulumi.CustomResource):
 
         ## Import
 
-        Namespaces can be imported using the `{region}/{id}`, e.g.
+        Functions namespaces can be imported using `{region}/{id}`, as shown below:
 
         bash
 
@@ -316,12 +321,12 @@ class FunctionNamespace(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
-        :param pulumi.Input[str] name: The unique name of the function namespace.
+        :param pulumi.Input[str] name: The unique name of the Functions namespace.
                
-               > **Important** Updates to `name` will recreate the namespace.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
-        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+               > **Important** Updates to the `name` argument will recreate the namespace.
+        :param pulumi.Input[str] project_id: `project_id`) The unique identifier of the project that contains the namespace.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace is created.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The secret environment variables of the namespace.
         """
         ...
     @overload
@@ -330,12 +335,12 @@ class FunctionNamespace(pulumi.CustomResource):
                  args: Optional[FunctionNamespaceArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Function Namespace.
-        For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions/).
+        The `FunctionNamespace` resource allows you to
+        for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+
+        Refer to the Functions namespace [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-a-functions-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-namespaces-list-all-your-namespaces) for more information.
 
         ## Example Usage
-
-        ### Basic
 
         ```python
         import pulumi
@@ -346,7 +351,7 @@ class FunctionNamespace(pulumi.CustomResource):
 
         ## Import
 
-        Namespaces can be imported using the `{region}/{id}`, e.g.
+        Functions namespaces can be imported using `{region}/{id}`, as shown below:
 
         bash
 
@@ -423,15 +428,15 @@ class FunctionNamespace(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The environment variables of the namespace.
-        :param pulumi.Input[str] name: The unique name of the function namespace.
+        :param pulumi.Input[str] name: The unique name of the Functions namespace.
                
-               > **Important** Updates to `name` will recreate the namespace.
-        :param pulumi.Input[str] organization_id: The organization ID the namespace is associated with.
-        :param pulumi.Input[str] project_id: `project_id`) The ID of the project the namespace is associated with.
-        :param pulumi.Input[str] region: `region`). The region in which the namespace should be created.
+               > **Important** Updates to the `name` argument will recreate the namespace.
+        :param pulumi.Input[str] organization_id: The Organization ID with which the namespace is associated.
+        :param pulumi.Input[str] project_id: `project_id`) The unique identifier of the project that contains the namespace.
+        :param pulumi.Input[str] region: `region`). The region in which the namespace is created.
         :param pulumi.Input[str] registry_endpoint: The registry endpoint of the namespace.
         :param pulumi.Input[str] registry_namespace_id: The registry namespace ID of the namespace.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The secret environment variables of the namespace.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -468,9 +473,9 @@ class FunctionNamespace(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The unique name of the function namespace.
+        The unique name of the Functions namespace.
 
-        > **Important** Updates to `name` will recreate the namespace.
+        > **Important** Updates to the `name` argument will recreate the namespace.
         """
         return pulumi.get(self, "name")
 
@@ -478,7 +483,7 @@ class FunctionNamespace(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
         """
-        The organization ID the namespace is associated with.
+        The Organization ID with which the namespace is associated.
         """
         return pulumi.get(self, "organization_id")
 
@@ -486,7 +491,7 @@ class FunctionNamespace(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
-        `project_id`) The ID of the project the namespace is associated with.
+        `project_id`) The unique identifier of the project that contains the namespace.
         """
         return pulumi.get(self, "project_id")
 
@@ -494,7 +499,7 @@ class FunctionNamespace(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        `region`). The region in which the namespace should be created.
+        `region`). The region in which the namespace is created.
         """
         return pulumi.get(self, "region")
 
@@ -518,7 +523,7 @@ class FunctionNamespace(pulumi.CustomResource):
     @pulumi.getter(name="secretEnvironmentVariables")
     def secret_environment_variables(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the namespace.
+        The secret environment variables of the namespace.
         """
         return pulumi.get(self, "secret_environment_variables")
 

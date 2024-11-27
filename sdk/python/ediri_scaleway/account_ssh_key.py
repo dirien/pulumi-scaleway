@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = ['AccountSshKeyArgs', 'AccountSshKey']
@@ -229,9 +234,11 @@ class AccountSshKey(pulumi.CustomResource):
                  public_key: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages user SSH keys to access servers provisioned on Scaleway.
+        The `AccountSshKey` resource allows you to create and manage the Projects of a Scaleway Organization.
 
-        > **Important:**  The resource `AccountSshKey` has been deprecated and will no longer be supported. Instead, use `IamSshKey`.
+        Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
+
+        !> **Important:**  The resource `AccountSshKey` has been deprecated and will no longer be supported. Instead, use `IamSshKey`.
 
         ## Example Usage
 
@@ -266,9 +273,11 @@ class AccountSshKey(pulumi.CustomResource):
                  args: AccountSshKeyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages user SSH keys to access servers provisioned on Scaleway.
+        The `AccountSshKey` resource allows you to create and manage the Projects of a Scaleway Organization.
 
-        > **Important:**  The resource `AccountSshKey` has been deprecated and will no longer be supported. Instead, use `IamSshKey`.
+        Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
+
+        !> **Important:**  The resource `AccountSshKey` has been deprecated and will no longer be supported. Instead, use `IamSshKey`.
 
         ## Example Usage
 

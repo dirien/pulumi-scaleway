@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -113,7 +118,7 @@ class GetContainerResult:
     @pulumi.getter(name="cpuLimit")
     def cpu_limit(self) -> int:
         """
-        The amount of vCPU computing resources to allocate to each container. Defaults  to 70.
+        The amount of vCPU computing resources to allocate to each container.
         """
         return pulumi.get(self, "cpu_limit")
 
@@ -182,7 +187,7 @@ class GetContainerResult:
     @pulumi.getter(name="maxConcurrency")
     def max_concurrency(self) -> int:
         """
-        The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
+        The maximum number of simultaneous requests your container can handle at the same time.
         """
         return pulumi.get(self, "max_concurrency")
 
@@ -190,7 +195,7 @@ class GetContainerResult:
     @pulumi.getter(name="maxScale")
     def max_scale(self) -> int:
         """
-        The maximum of number of instances this container can scale to. Default to 20.
+        The maximum number of instances the container can scale to.
         """
         return pulumi.get(self, "max_scale")
 
@@ -198,7 +203,7 @@ class GetContainerResult:
     @pulumi.getter(name="memoryLimit")
     def memory_limit(self) -> int:
         """
-        The memory computing resources in MB to allocate to each container. Defaults to 128.
+        The memory resources in MB to allocate to each container.
         """
         return pulumi.get(self, "memory_limit")
 
@@ -206,7 +211,7 @@ class GetContainerResult:
     @pulumi.getter(name="minScale")
     def min_scale(self) -> int:
         """
-        The minimum of running container instances continuously. Defaults to 0.
+        The minimum number of container instances running continuously.
         """
         return pulumi.get(self, "min_scale")
 
@@ -224,7 +229,7 @@ class GetContainerResult:
     @pulumi.getter
     def port(self) -> int:
         """
-        The port to expose the container. Defaults to 8080.
+        The port to expose the container.
         """
         return pulumi.get(self, "port")
 
@@ -232,7 +237,7 @@ class GetContainerResult:
     @pulumi.getter
     def privacy(self) -> str:
         """
-        The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8).
+        The privacy type define the way to authenticate to your container. Refer to the [dedicated documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) for more information.
         """
         return pulumi.get(self, "privacy")
 
@@ -245,7 +250,7 @@ class GetContainerResult:
     @pulumi.getter
     def protocol(self) -> str:
         """
-        The communication [protocol](https://developers.scaleway.com/en/products/containers/api/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+        The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
         """
         return pulumi.get(self, "protocol")
 
@@ -261,7 +266,7 @@ class GetContainerResult:
     @pulumi.getter(name="registryImage")
     def registry_image(self) -> str:
         """
-        The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
+        The registry image address (e.g. `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`).
         """
         return pulumi.get(self, "registry_image")
 
@@ -298,7 +303,7 @@ class GetContainerResult:
     @pulumi.getter
     def timeout(self) -> int:
         """
-        The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
+        The maximum amount of time your container can spend processing a request before being stopped.
         """
         return pulumi.get(self, "timeout")
 
@@ -345,15 +350,18 @@ def get_container(container_id: Optional[str] = None,
                   region: Optional[str] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetContainerResult:
     """
-    Gets information about the Scaleway Container.
+    The `Container` data source is used to retrieve information about a Serverless Container.
 
-    For more information consult the [documentation](https://www.scaleway.com/en/docs/faq/serverless-containers/).
+    Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
 
-    For more details about the limitation check [containers-limitations](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
+    For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
 
-    You can check also our [containers guide](https://www.scaleway.com/en/docs/compute/containers/concepts/).
+    ## Retrieve a Serverless Container
 
-    ## Example Usage
+    The following commands allow you to:
+
+    - retrieve a container by its name
+    - retrieve a container by its ID
 
     ```python
     import pulumi
@@ -368,12 +376,19 @@ def get_container(container_id: Optional[str] = None,
         container_id=main_container.id)
     ```
 
+    ## Arguments reference
 
-    :param str name: The unique name of the container name.
-    :param str namespace_id: The container namespace ID of the container.
-    :param str project_id: The ID of the project the container is associated with.
-           
-           > **Important** Updates to `name` will recreate the container.
+    This section lists the arguments that you can provide to the `Container` data source to filter and retrieve the desired namespace. Each argument has a specific purpose:
+
+    - `name` - (Required) The unique name of the container.
+
+    - `namespace_id` - (Required) The container namespace ID of the container.
+
+    - `project_id` - (Optional) The unique identifier of the project with which the container is associated.
+
+    > **Important** Updating the `name` argument will recreate the container.
+
+
     :param str region: (Defaults to provider `region`) The region in which the container was created.
     """
     __args__ = dict()
@@ -413,9 +428,6 @@ def get_container(container_id: Optional[str] = None,
         secret_environment_variables=pulumi.get(__ret__, 'secret_environment_variables'),
         status=pulumi.get(__ret__, 'status'),
         timeout=pulumi.get(__ret__, 'timeout'))
-
-
-@_utilities.lift_output_func(get_container)
 def get_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = None,
                          name: Optional[pulumi.Input[Optional[str]]] = None,
                          namespace_id: Optional[pulumi.Input[str]] = None,
@@ -423,15 +435,18 @@ def get_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = N
                          region: Optional[pulumi.Input[Optional[str]]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetContainerResult]:
     """
-    Gets information about the Scaleway Container.
+    The `Container` data source is used to retrieve information about a Serverless Container.
 
-    For more information consult the [documentation](https://www.scaleway.com/en/docs/faq/serverless-containers/).
+    Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
 
-    For more details about the limitation check [containers-limitations](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
+    For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
 
-    You can check also our [containers guide](https://www.scaleway.com/en/docs/compute/containers/concepts/).
+    ## Retrieve a Serverless Container
 
-    ## Example Usage
+    The following commands allow you to:
+
+    - retrieve a container by its name
+    - retrieve a container by its ID
 
     ```python
     import pulumi
@@ -446,12 +461,54 @@ def get_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = N
         container_id=main_container.id)
     ```
 
+    ## Arguments reference
 
-    :param str name: The unique name of the container name.
-    :param str namespace_id: The container namespace ID of the container.
-    :param str project_id: The ID of the project the container is associated with.
-           
-           > **Important** Updates to `name` will recreate the container.
+    This section lists the arguments that you can provide to the `Container` data source to filter and retrieve the desired namespace. Each argument has a specific purpose:
+
+    - `name` - (Required) The unique name of the container.
+
+    - `namespace_id` - (Required) The container namespace ID of the container.
+
+    - `project_id` - (Optional) The unique identifier of the project with which the container is associated.
+
+    > **Important** Updating the `name` argument will recreate the container.
+
+
     :param str region: (Defaults to provider `region`) The region in which the container was created.
     """
-    ...
+    __args__ = dict()
+    __args__['containerId'] = container_id
+    __args__['name'] = name
+    __args__['namespaceId'] = namespace_id
+    __args__['projectId'] = project_id
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getContainer:getContainer', __args__, opts=opts, typ=GetContainerResult)
+    return __ret__.apply(lambda __response__: GetContainerResult(
+        container_id=pulumi.get(__response__, 'container_id'),
+        cpu_limit=pulumi.get(__response__, 'cpu_limit'),
+        cron_status=pulumi.get(__response__, 'cron_status'),
+        deploy=pulumi.get(__response__, 'deploy'),
+        description=pulumi.get(__response__, 'description'),
+        domain_name=pulumi.get(__response__, 'domain_name'),
+        environment_variables=pulumi.get(__response__, 'environment_variables'),
+        error_message=pulumi.get(__response__, 'error_message'),
+        http_option=pulumi.get(__response__, 'http_option'),
+        id=pulumi.get(__response__, 'id'),
+        max_concurrency=pulumi.get(__response__, 'max_concurrency'),
+        max_scale=pulumi.get(__response__, 'max_scale'),
+        memory_limit=pulumi.get(__response__, 'memory_limit'),
+        min_scale=pulumi.get(__response__, 'min_scale'),
+        name=pulumi.get(__response__, 'name'),
+        namespace_id=pulumi.get(__response__, 'namespace_id'),
+        port=pulumi.get(__response__, 'port'),
+        privacy=pulumi.get(__response__, 'privacy'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        protocol=pulumi.get(__response__, 'protocol'),
+        region=pulumi.get(__response__, 'region'),
+        registry_image=pulumi.get(__response__, 'registry_image'),
+        registry_sha256=pulumi.get(__response__, 'registry_sha256'),
+        sandbox=pulumi.get(__response__, 'sandbox'),
+        secret_environment_variables=pulumi.get(__response__, 'secret_environment_variables'),
+        status=pulumi.get(__response__, 'status'),
+        timeout=pulumi.get(__response__, 'timeout')))

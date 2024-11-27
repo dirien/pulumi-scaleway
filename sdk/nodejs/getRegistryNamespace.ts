@@ -20,7 +20,6 @@ import * as utilities from "./utilities";
  */
 export function getRegistryNamespace(args?: GetRegistryNamespaceArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryNamespaceResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getRegistryNamespace:getRegistryNamespace", {
         "name": args.name,
@@ -95,7 +94,14 @@ export interface GetRegistryNamespaceResult {
  * ```
  */
 export function getRegistryNamespaceOutput(args?: GetRegistryNamespaceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRegistryNamespaceResult> {
-    return pulumi.output(args).apply((a: any) => getRegistryNamespace(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getRegistryNamespace:getRegistryNamespace", {
+        "name": args.name,
+        "namespaceId": args.namespaceId,
+        "projectId": args.projectId,
+        "region": args.region,
+    }, opts);
 }
 
 /**

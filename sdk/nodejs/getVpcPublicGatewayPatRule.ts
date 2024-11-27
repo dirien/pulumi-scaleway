@@ -65,7 +65,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getVpcPublicGatewayPatRule(args: GetVpcPublicGatewayPatRuleArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicGatewayPatRuleResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpcPublicGatewayPatRule:getVpcPublicGatewayPatRule", {
         "patRuleId": args.patRuleId,
@@ -183,7 +182,11 @@ export interface GetVpcPublicGatewayPatRuleResult {
  * ```
  */
 export function getVpcPublicGatewayPatRuleOutput(args: GetVpcPublicGatewayPatRuleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpcPublicGatewayPatRuleResult> {
-    return pulumi.output(args).apply((a: any) => getVpcPublicGatewayPatRule(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getVpcPublicGatewayPatRule:getVpcPublicGatewayPatRule", {
+        "patRuleId": args.patRuleId,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

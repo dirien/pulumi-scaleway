@@ -4,24 +4,8 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Gets information about a domain zone.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const main = scaleway.getDomainZone({
- *     domain: "scaleway-terraform.com",
- *     subdomain: "test",
- * });
- * ```
- */
 export function getDomainZone(args?: GetDomainZoneArgs, opts?: pulumi.InvokeOptions): Promise<GetDomainZoneResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getDomainZone:getDomainZone", {
         "domain": args.domain,
@@ -34,11 +18,11 @@ export function getDomainZone(args?: GetDomainZoneArgs, opts?: pulumi.InvokeOpti
  */
 export interface GetDomainZoneArgs {
     /**
-     * The domain where the DNS zone will be created.
+     * The primary domain name where the DNS zone is located. This is a mandatory field.
      */
     domain?: string;
     /**
-     * The subdomain(zone name) to create in the domain.
+     * The subdomain (or zone name) within the primary domain. This is a mandatory field.
      */
     subdomain?: string;
 }
@@ -53,49 +37,39 @@ export interface GetDomainZoneResult {
      */
     readonly id: string;
     /**
-     * Message
+     * Message associated with the domain zone (typically used for status or error messages).
      */
     readonly message: string;
     /**
-     * NameServer list for zone.
+     * The list of name servers for the zone.
      */
     readonly ns: string[];
     /**
-     * NameServer default list for zone.
+     * The default list of name servers for the zone.
      */
     readonly nsDefaults: string[];
     /**
-     * NameServer master list for zone.
+     * The master list of name servers for the zone.
      */
     readonly nsMasters: string[];
     readonly projectId: string;
     /**
-     * The domain zone status.
+     * The status of the domain zone.
      */
     readonly status: string;
     readonly subdomain?: string;
     /**
-     * The date and time of the last update of the DNS zone.
+     * The date and time of the last update to the DNS zone.
      */
     readonly updatedAt: string;
 }
-/**
- * Gets information about a domain zone.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- *
- * const main = scaleway.getDomainZone({
- *     domain: "scaleway-terraform.com",
- *     subdomain: "test",
- * });
- * ```
- */
 export function getDomainZoneOutput(args?: GetDomainZoneOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDomainZoneResult> {
-    return pulumi.output(args).apply((a: any) => getDomainZone(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getDomainZone:getDomainZone", {
+        "domain": args.domain,
+        "subdomain": args.subdomain,
+    }, opts);
 }
 
 /**
@@ -103,11 +77,11 @@ export function getDomainZoneOutput(args?: GetDomainZoneOutputArgs, opts?: pulum
  */
 export interface GetDomainZoneOutputArgs {
     /**
-     * The domain where the DNS zone will be created.
+     * The primary domain name where the DNS zone is located. This is a mandatory field.
      */
     domain?: pulumi.Input<string>;
     /**
-     * The subdomain(zone name) to create in the domain.
+     * The subdomain (or zone name) within the primary domain. This is a mandatory field.
      */
     subdomain?: pulumi.Input<string>;
 }

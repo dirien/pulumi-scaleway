@@ -20,7 +20,6 @@ import * as utilities from "./utilities";
  */
 export function getInstancePlacementGroup(args?: GetInstancePlacementGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetInstancePlacementGroupResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstancePlacementGroup:getInstancePlacementGroup", {
         "name": args.name,
@@ -100,7 +99,14 @@ export interface GetInstancePlacementGroupResult {
  * ```
  */
 export function getInstancePlacementGroupOutput(args?: GetInstancePlacementGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstancePlacementGroupResult> {
-    return pulumi.output(args).apply((a: any) => getInstancePlacementGroup(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getInstancePlacementGroup:getInstancePlacementGroup", {
+        "name": args.name,
+        "placementGroupId": args.placementGroupId,
+        "projectId": args.projectId,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

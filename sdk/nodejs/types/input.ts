@@ -87,6 +87,10 @@ export interface BaremetalServerPrivateNetwork {
      */
     id: pulumi.Input<string>;
     /**
+     * List of IPAM IP IDs to assign to the server in the requested private network.
+     */
+    ipamIpIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The private network status.
      */
     status?: pulumi.Input<string>;
@@ -109,23 +113,23 @@ export interface CockpitAlertManagerContactPoint {
 
 export interface CockpitEndpoint {
     /**
-     * The alertmanager URL.
+     * (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
      */
     alertmanagerUrl?: pulumi.Input<string>;
     /**
-     * The grafana URL.
+     * (Deprecated) URL for Grafana.
      */
     grafanaUrl?: pulumi.Input<string>;
     /**
-     * The logs URL.
+     * (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
      */
     logsUrl?: pulumi.Input<string>;
     /**
-     * The metrics URL.
+     * (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
      */
     metricsUrl?: pulumi.Input<string>;
     /**
-     * The traces URL.
+     * (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
      */
     tracesUrl?: pulumi.Input<string>;
 }
@@ -143,172 +147,81 @@ export interface CockpitPushUrl {
 
 export interface CockpitTokenScopes {
     /**
-     * Query logs.
+     * Permission to query logs.
      */
     queryLogs?: pulumi.Input<boolean>;
     /**
-     * Query metrics.
+     * Permission to query metrics.
      */
     queryMetrics?: pulumi.Input<boolean>;
     /**
-     * Query traces.
+     * Permission to query traces.
      */
     queryTraces?: pulumi.Input<boolean>;
     /**
-     * Setup alerts.
+     * Permission to set up alerts.
      */
     setupAlerts?: pulumi.Input<boolean>;
     /**
-     * Setup logs rules.
+     * Permission to set up logs rules.
      */
     setupLogsRules?: pulumi.Input<boolean>;
     /**
-     * Setup metrics rules.
+     * Permission to set up metrics rules.
      */
     setupMetricsRules?: pulumi.Input<boolean>;
     /**
-     * Write logs.
+     * Permission to write logs.
      */
     writeLogs?: pulumi.Input<boolean>;
     /**
-     * Write metrics.
+     * Permission to write metrics.
      */
     writeMetrics?: pulumi.Input<boolean>;
     /**
-     * Write traces.
+     * Permission to write traces.
      */
     writeTraces?: pulumi.Input<boolean>;
 }
 
 export interface ContainerTriggerNats {
     /**
-     * ID of the mnq nats account.
+     * unique identifier of the Messaging and Queuing NATS account.
      */
     accountId?: pulumi.Input<string>;
     /**
-     * ID of the project that contain the mnq nats account, defaults to provider's project
+     * THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Region where the mnq nats account is, defaults to provider's region
+     * Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
      */
     region?: pulumi.Input<string>;
     /**
-     * The subject to listen to
+     * The subject to listen to.
      */
     subject: pulumi.Input<string>;
 }
 
 export interface ContainerTriggerSqs {
     /**
-     * ID of the mnq namespace. Deprecated.
+     * ID of the Messaging and Queuing namespace. This argument is deprecated.
      *
      * @deprecated The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
      */
     namespaceId?: pulumi.Input<string>;
     /**
-     * ID of the project where sqs is enabled, defaults to provider's project
+     * The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Name of the queue
+     * The name of the SQS queue.
      */
     queue: pulumi.Input<string>;
     /**
-     * Region where sqs is enabled, defaults to provider's region
+     * Region where SQS is enabled (defaults to provider `region`)
      */
     region?: pulumi.Input<string>;
-}
-
-export interface DocumentdbPrivateNetworkEndpointPrivateNetwork {
-    /**
-     * The hostname of your endpoint.
-     */
-    hostname?: pulumi.Input<string>;
-    /**
-     * The private network ID.
-     */
-    id: pulumi.Input<string>;
-    /**
-     * The IP of your private network service.
-     */
-    ip?: pulumi.Input<string>;
-    /**
-     * The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM) service if not set.
-     */
-    ipNet?: pulumi.Input<string>;
-    /**
-     * The name of your private service.
-     */
-    name?: pulumi.Input<string>;
-    /**
-     * The port of your private service.
-     */
-    port?: pulumi.Input<number>;
-    /**
-     * The zone of your endpoint.
-     */
-    zone?: pulumi.Input<string>;
-}
-
-export interface DocumentdbReadReplicaDirectAccess {
-    /**
-     * The ID of the endpoint of the read replica.
-     */
-    endpointId?: pulumi.Input<string>;
-    /**
-     * Hostname of the endpoint. Only one of ip and hostname may be set.
-     */
-    hostname?: pulumi.Input<string>;
-    /**
-     * IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
-     */
-    ip?: pulumi.Input<string>;
-    /**
-     * Name of the endpoint.
-     */
-    name?: pulumi.Input<string>;
-    /**
-     * TCP port of the endpoint.
-     */
-    port?: pulumi.Input<number>;
-}
-
-export interface DocumentdbReadReplicaPrivateNetwork {
-    /**
-     * The ID of the endpoint of the read replica.
-     */
-    endpointId?: pulumi.Input<string>;
-    /**
-     * Hostname of the endpoint. Only one of ip and hostname may be set.
-     */
-    hostname?: pulumi.Input<string>;
-    /**
-     * IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
-     */
-    ip?: pulumi.Input<string>;
-    /**
-     * Name of the endpoint.
-     */
-    name?: pulumi.Input<string>;
-    /**
-     * TCP port of the endpoint.
-     */
-    port?: pulumi.Input<number>;
-    /**
-     * UUID of the private network to be connected to the read replica.
-     */
-    privateNetworkId: pulumi.Input<string>;
-    /**
-     * The IP network address within the private subnet. This must be an IPv4 address with a
-     * CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-     * service if not set.
-     */
-    serviceIp?: pulumi.Input<string>;
-    /**
-     * Private network zone
-     */
-    zone?: pulumi.Input<string>;
 }
 
 export interface DomainRecordGeoIp {
@@ -328,7 +241,7 @@ export interface DomainRecordGeoIpMatch {
      */
     countries?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+     * The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
      */
     data: pulumi.Input<string>;
 }
@@ -358,7 +271,7 @@ export interface DomainRecordHttpService {
 
 export interface DomainRecordView {
     /**
-     * The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+     * The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
      */
     data: pulumi.Input<string>;
     /**
@@ -380,40 +293,40 @@ export interface DomainRecordWeighted {
 
 export interface FunctionTriggerNats {
     /**
-     * ID of the mnq nats account.
+     * unique identifier of the Messaging and Queuing NATS account.
      */
     accountId?: pulumi.Input<string>;
     /**
-     * ID of the project that contain the mnq nats account, defaults to provider's project
+     * THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Region where the mnq nats account is, defaults to provider's region
+     * Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
      */
     region?: pulumi.Input<string>;
     /**
-     * The subject to listen to
+     * The subject to listen to.
      */
     subject: pulumi.Input<string>;
 }
 
 export interface FunctionTriggerSqs {
     /**
-     * ID of the mnq namespace. Deprecated.
+     * ID of the Messaging and Queuing namespace. This argument is deprecated.
      *
      * @deprecated The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
      */
     namespaceId?: pulumi.Input<string>;
     /**
-     * ID of the project that contain the mnq namespace, defaults to provider's project
+     * The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Name of the queue
+     * The name of the SQS queue.
      */
     queue: pulumi.Input<string>;
     /**
-     * Region where the mnq namespace is, defaults to provider's region
+     * Region where SQS is enabled (defaults to provider `region`)
      */
     region?: pulumi.Input<string>;
 }
@@ -480,6 +393,10 @@ export interface GetIpamIpsResourceArgs {
 
 export interface IamPolicyRule {
     /**
+     * The condition of the IAM policy.
+     */
+    condition?: pulumi.Input<string>;
+    /**
      * ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
      */
     organizationId?: pulumi.Input<string>;
@@ -499,6 +416,44 @@ export interface IamPolicyRule {
      * > **Important** One `organizationId` or `projectIds` must be set per rule.
      */
     projectIds?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface InferenceDeploymentPrivateEndpoint {
+    /**
+     * Disable the authentication on the endpoint.
+     */
+    disableAuth?: pulumi.Input<boolean>;
+    /**
+     * (Optional) The id of the public endpoint.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * The ID of the private network to use.
+     */
+    privateNetworkId?: pulumi.Input<string>;
+    /**
+     * (Optional) The URL of the endpoint.
+     */
+    url?: pulumi.Input<string>;
+}
+
+export interface InferenceDeploymentPublicEndpoint {
+    /**
+     * Disable the authentication on the endpoint.
+     */
+    disableAuth?: pulumi.Input<boolean>;
+    /**
+     * (Optional) The id of the public endpoint.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Enable or disable public endpoint.
+     */
+    isEnabled?: pulumi.Input<boolean>;
+    /**
+     * (Optional) The URL of the endpoint.
+     */
+    url?: pulumi.Input<string>;
 }
 
 export interface InstanceImageAdditionalVolume {
@@ -713,14 +668,18 @@ export interface InstanceServerRootVolume {
     boot?: pulumi.Input<boolean>;
     /**
      * Forces deletion of the root volume on instance termination.
-     *
-     * > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
      */
     deleteOnTermination?: pulumi.Input<boolean>;
     /**
      * The name of the server.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Choose IOPS of your sbs volume, has to be used with `sbsVolume` for root volume type.
+     *
+     * > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+     */
+    sbsIops?: pulumi.Input<number>;
     /**
      * Size of the root volume in gigabytes.
      * To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
@@ -733,7 +692,7 @@ export interface InstanceServerRootVolume {
      */
     volumeId?: pulumi.Input<string>;
     /**
-     * Volume type of root volume, can be `bSsd` or `lSsd`, default value depends on server type
+     * Volume type of root volume, can be `bSsd`, `lSsd` or `sbsVolume`, default value depends on server type
      */
     volumeType?: pulumi.Input<string>;
 }
@@ -858,6 +817,17 @@ export interface IotRouteS3 {
      * How the S3 route's objects will be created (e.g. `perTopic`). See [documentation](https://www.scaleway.com/en/docs/scaleway-iothub-route/#-Messages-Store-Strategies) for behaviour details.
      */
     strategy: pulumi.Input<string>;
+}
+
+export interface IpamIpCustomResource {
+    /**
+     * The MAC address of the resource the IP is attached to.
+     */
+    macAddress: pulumi.Input<string>;
+    /**
+     * The name of the resource the IP is attached to.
+     */
+    name?: pulumi.Input<string>;
 }
 
 export interface IpamIpResource {
@@ -1032,11 +1002,15 @@ export interface K8sPoolNode {
      */
     name?: pulumi.Input<string>;
     /**
-     * The public IPv4.
+     * The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
+     *
+     * @deprecated Please use the official Kubernetes provider and the kubernetesNodes data source
      */
     publicIp?: pulumi.Input<string>;
     /**
-     * The public IPv6.
+     * The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
+     *
+     * @deprecated Please use the official Kubernetes provider and the kubernetesNodes data source
      */
     publicIpV6?: pulumi.Input<string>;
     /**
@@ -1252,7 +1226,9 @@ export interface LbFrontendAclMatch {
 
 export interface LbPrivateNetwork {
     /**
-     * (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
+     * (Deprecated) Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses. See below.
+     *
+     * @deprecated dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
      */
     dhcpConfig?: pulumi.Input<boolean>;
     /**
@@ -1266,7 +1242,7 @@ export interface LbPrivateNetwork {
     /**
      * (Deprecated) Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
      *
-     * @deprecated static_config field is deprecated, please use dhcpConfig instead
+     * @deprecated static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
      */
     staticConfig?: pulumi.Input<string>;
     /**
@@ -1309,6 +1285,21 @@ export interface MnqSqsCredentialsPermissions {
     canReceive?: pulumi.Input<boolean>;
 }
 
+export interface MongodbInstancePublicNetwork {
+    /**
+     * The DNS record of your endpoint
+     */
+    dnsRecord?: pulumi.Input<string>;
+    /**
+     * The ID of the MongoDB® instance.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * TCP port of the endpoint
+     */
+    port?: pulumi.Input<number>;
+}
+
 export interface ObjectBucketAclAccessControlPolicy {
     grants?: pulumi.Input<pulumi.Input<inputs.ObjectBucketAclAccessControlPolicyGrant>[]>;
     /**
@@ -1331,7 +1322,7 @@ export interface ObjectBucketAclAccessControlPolicyGrant {
 export interface ObjectBucketAclAccessControlPolicyGrantGrantee {
     displayName?: pulumi.Input<string>;
     /**
-     * The `region`,`bucket` and `acl` separated by (`/`).
+     * The `region`, `bucket` and `acl` separated by (`/`).
      */
     id: pulumi.Input<string>;
     /**
@@ -1346,7 +1337,7 @@ export interface ObjectBucketAclAccessControlPolicyOwner {
      */
     displayName?: pulumi.Input<string>;
     /**
-     * The `region`,`bucket` and `acl` separated by (`/`).
+     * The `region`, `bucket` and `acl` separated by (`/`).
      */
     id: pulumi.Input<string>;
 }
@@ -1357,7 +1348,7 @@ export interface ObjectBucketCorsRule {
      */
     allowedHeaders?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+     * Specifies which methods are allowed (`GET`, `PUT`, `POST`, `DELETE` or `HEAD`).
      */
     allowedMethods: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -1365,11 +1356,11 @@ export interface ObjectBucketCorsRule {
      */
     allowedOrigins: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Specifies expose header in the response.
+     * Specifies header exposure in the response.
      */
     exposeHeaders?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Specifies time in seconds that browser can cache the response for a preflight request.
+     * Specifies time in seconds that the browser can cache the response for a preflight request.
      */
     maxAgeSeconds?: pulumi.Input<number>;
 }
@@ -1378,15 +1369,15 @@ export interface ObjectBucketLifecycleRule {
     /**
      * Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
      *
-     * * > **Important:** It's not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
+     * > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
      */
     abortIncompleteMultipartUploadDays?: pulumi.Input<number>;
     /**
-     * The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+     * The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
      */
     enabled: pulumi.Input<boolean>;
     /**
-     * Specifies a period in the object's expire (documented below).
+     * Specifies a period in the object's expire
      */
     expiration?: pulumi.Input<inputs.ObjectBucketLifecycleRuleExpiration>;
     /**
@@ -1402,9 +1393,7 @@ export interface ObjectBucketLifecycleRule {
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Specifies a period in the object's transitions (documented below).
-     *
-     * At least one of `abortIncompleteMultipartUploadDays`, `expiration`, `transition` must be specified.
+     * Define when objects transition to another storage class
      */
     transitions?: pulumi.Input<pulumi.Input<inputs.ObjectBucketLifecycleRuleTransition>[]>;
 }
@@ -1412,8 +1401,6 @@ export interface ObjectBucketLifecycleRule {
 export interface ObjectBucketLifecycleRuleExpiration {
     /**
      * Specifies the number of days after object creation when the specific rule action takes effect.
-     *
-     * > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
      */
     days: pulumi.Input<number>;
 }
@@ -1426,6 +1413,12 @@ export interface ObjectBucketLifecycleRuleTransition {
     /**
      * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
      *
+     *
+     * > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+     * > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+     *
+     *
+     * > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
      * > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
      */
     storageClass: pulumi.Input<string>;
@@ -1440,15 +1433,15 @@ export interface ObjectBucketLockConfigurationRule {
 
 export interface ObjectBucketLockConfigurationRuleDefaultRetention {
     /**
-     * The number of days that you want to specify for the default retention period.
+     * The number of days you want to specify for the default retention period.
      */
     days?: pulumi.Input<number>;
     /**
-     * The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
+     * The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
      */
     mode: pulumi.Input<string>;
     /**
-     * The number of years that you want to specify for the default retention period.
+     * The number of years you want to specify for the default retention period.
      */
     years?: pulumi.Input<number>;
 }
@@ -1469,7 +1462,7 @@ export interface ObjectBucketWebsiteConfigurationErrorDocument {
 
 export interface ObjectBucketWebsiteConfigurationIndexDocument {
     /**
-     * A suffix that is appended to a request that is for a directory on the website endpoint.
+     * A suffix that is appended to a request targeting a specific directory on the website endpoint.
      *
      * > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
      */
@@ -1712,6 +1705,21 @@ export interface RedisClusterPublicNetwork {
      * TCP port of the endpoint.
      */
     port?: pulumi.Input<number>;
+}
+
+export interface SecretEphemeralPolicy {
+    /**
+     * Action to perform when the version of a secret expires. Available values can be found in [SDK constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+     */
+    action: pulumi.Input<string>;
+    /**
+     * True if the secret version expires after a single user access.
+     */
+    expiresOnceAccessed?: pulumi.Input<boolean>;
+    /**
+     * Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in [Go Duration format](https://pkg.go.dev/time#ParseDuration) (ex: "30m", "24h").
+     */
+    ttl?: pulumi.Input<string>;
 }
 
 export interface TemDomainReputation {

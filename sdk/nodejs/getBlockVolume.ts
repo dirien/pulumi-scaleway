@@ -5,9 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about a Block Volume.
+ * The `scaleway.BlockVolume` data source is used to retrieve information about a Block Storage volume.
+ * Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
  *
- * ## Example Usage
+ * ## Retrieve a Block Storage volume
+ *
+ * The following commands allow you to:
+ *
+ * - retrieve a Block Storage volume specified by its name
+ * - retrieve a Block Storage volume specified by its ID
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -20,7 +26,6 @@ import * as utilities from "./utilities";
  */
 export function getBlockVolume(args?: GetBlockVolumeArgs, opts?: pulumi.InvokeOptions): Promise<GetBlockVolumeResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getBlockVolume:getBlockVolume", {
         "name": args.name,
@@ -39,15 +44,15 @@ export interface GetBlockVolumeArgs {
      */
     name?: string;
     /**
-     * The ID of the project the volume is associated with.
+     * The unique identifier of the Project to which the volume is associated.
      */
     projectId?: string;
     /**
-     * The ID of the volume. Only one of `name` and `volumeId` should be specified.
+     * The unique identifier of the volume. Only one of `name` and `volumeId` should be specified.
      */
     volumeId?: string;
     /**
-     * `zone`) The zone in which the volume exists.
+     * ). The zone in which the volume exists.
      */
     zone?: string;
 }
@@ -70,9 +75,15 @@ export interface GetBlockVolumeResult {
     readonly zone?: string;
 }
 /**
- * Gets information about a Block Volume.
+ * The `scaleway.BlockVolume` data source is used to retrieve information about a Block Storage volume.
+ * Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
  *
- * ## Example Usage
+ * ## Retrieve a Block Storage volume
+ *
+ * The following commands allow you to:
+ *
+ * - retrieve a Block Storage volume specified by its name
+ * - retrieve a Block Storage volume specified by its ID
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -84,7 +95,14 @@ export interface GetBlockVolumeResult {
  * ```
  */
 export function getBlockVolumeOutput(args?: GetBlockVolumeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBlockVolumeResult> {
-    return pulumi.output(args).apply((a: any) => getBlockVolume(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getBlockVolume:getBlockVolume", {
+        "name": args.name,
+        "projectId": args.projectId,
+        "volumeId": args.volumeId,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**
@@ -96,15 +114,15 @@ export interface GetBlockVolumeOutputArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the project the volume is associated with.
+     * The unique identifier of the Project to which the volume is associated.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The ID of the volume. Only one of `name` and `volumeId` should be specified.
+     * The unique identifier of the volume. Only one of `name` and `volumeId` should be specified.
      */
     volumeId?: pulumi.Input<string>;
     /**
-     * `zone`) The zone in which the volume exists.
+     * ). The zone in which the volume exists.
      */
     zone?: pulumi.Input<string>;
 }

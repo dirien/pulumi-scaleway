@@ -7,8 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Container Triggers.
- * For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers).
+ * The `scaleway.ContainerTrigger` resource allows you to create and manage triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+ *
+ * Refer to the Containers triggers [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/add-trigger-to-a-container/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers-list-all-triggers) for more information.
  *
  * ## Example Usage
  *
@@ -28,7 +29,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Nats
+ * ### NATS
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -46,7 +47,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Container Triggers can be imported using the `{region}/{id}`, e.g.
+ * Container Triggers can be imported using `{region}/{id}`, as shown below:
  *
  * bash
  *
@@ -83,7 +84,7 @@ export class ContainerTrigger extends pulumi.CustomResource {
     }
 
     /**
-     * The ID of the container to create a trigger for
+     * The unique identifier of the container to create a trigger for.
      */
     public readonly containerId!: pulumi.Output<string>;
     /**
@@ -91,19 +92,19 @@ export class ContainerTrigger extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The unique name of the trigger. Default to a generated name.
+     * The unique name of the trigger. If not provided, a random name is generated.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The configuration for the Scaleway's Nats used by the trigger
+     * The configuration for the Scaleway NATS account used by the trigger
      */
     public readonly nats!: pulumi.Output<outputs.ContainerTriggerNats | undefined>;
     /**
-     * `region`). The region in which the namespace should be created.
+     * `region`). The region in which the namespace is created.
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * The configuration of the Scaleway's SQS used by the trigger
+     * The configuration of the Scaleway SQS queue used by the trigger
      */
     public readonly sqs!: pulumi.Output<outputs.ContainerTriggerSqs | undefined>;
 
@@ -148,7 +149,7 @@ export class ContainerTrigger extends pulumi.CustomResource {
  */
 export interface ContainerTriggerState {
     /**
-     * The ID of the container to create a trigger for
+     * The unique identifier of the container to create a trigger for.
      */
     containerId?: pulumi.Input<string>;
     /**
@@ -156,19 +157,19 @@ export interface ContainerTriggerState {
      */
     description?: pulumi.Input<string>;
     /**
-     * The unique name of the trigger. Default to a generated name.
+     * The unique name of the trigger. If not provided, a random name is generated.
      */
     name?: pulumi.Input<string>;
     /**
-     * The configuration for the Scaleway's Nats used by the trigger
+     * The configuration for the Scaleway NATS account used by the trigger
      */
     nats?: pulumi.Input<inputs.ContainerTriggerNats>;
     /**
-     * `region`). The region in which the namespace should be created.
+     * `region`). The region in which the namespace is created.
      */
     region?: pulumi.Input<string>;
     /**
-     * The configuration of the Scaleway's SQS used by the trigger
+     * The configuration of the Scaleway SQS queue used by the trigger
      */
     sqs?: pulumi.Input<inputs.ContainerTriggerSqs>;
 }
@@ -178,7 +179,7 @@ export interface ContainerTriggerState {
  */
 export interface ContainerTriggerArgs {
     /**
-     * The ID of the container to create a trigger for
+     * The unique identifier of the container to create a trigger for.
      */
     containerId: pulumi.Input<string>;
     /**
@@ -186,19 +187,19 @@ export interface ContainerTriggerArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The unique name of the trigger. Default to a generated name.
+     * The unique name of the trigger. If not provided, a random name is generated.
      */
     name?: pulumi.Input<string>;
     /**
-     * The configuration for the Scaleway's Nats used by the trigger
+     * The configuration for the Scaleway NATS account used by the trigger
      */
     nats?: pulumi.Input<inputs.ContainerTriggerNats>;
     /**
-     * `region`). The region in which the namespace should be created.
+     * `region`). The region in which the namespace is created.
      */
     region?: pulumi.Input<string>;
     /**
-     * The configuration of the Scaleway's SQS used by the trigger
+     * The configuration of the Scaleway SQS queue used by the trigger
      */
     sqs?: pulumi.Input<inputs.ContainerTriggerSqs>;
 }

@@ -11,9 +11,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about a Block Volume.
+// The `BlockVolume` data source is used to retrieve information about a Block Storage volume.
+// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 //
-// ## Example Usage
+// ## Retrieve a Block Storage volume
+//
+// The following commands allow you to:
+//
+// - retrieve a Block Storage volume specified by its name
+// - retrieve a Block Storage volume specified by its ID
 //
 // ```go
 // package main
@@ -52,11 +58,11 @@ func LookupBlockVolume(ctx *pulumi.Context, args *LookupBlockVolumeArgs, opts ..
 type LookupBlockVolumeArgs struct {
 	// The name of the volume. Only one of `name` and `volumeId` should be specified.
 	Name *string `pulumi:"name"`
-	// The ID of the project the volume is associated with.
+	// The unique identifier of the Project to which the volume is associated.
 	ProjectId *string `pulumi:"projectId"`
-	// The ID of the volume. Only one of `name` and `volumeId` should be specified.
+	// The unique identifier of the volume. Only one of `name` and `volumeId` should be specified.
 	VolumeId *string `pulumi:"volumeId"`
-	// `zone`) The zone in which the volume exists.
+	// ). The zone in which the volume exists.
 	Zone *string `pulumi:"zone"`
 }
 
@@ -76,14 +82,20 @@ type LookupBlockVolumeResult struct {
 
 func LookupBlockVolumeOutput(ctx *pulumi.Context, args LookupBlockVolumeOutputArgs, opts ...pulumi.InvokeOption) LookupBlockVolumeResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupBlockVolumeResult, error) {
+		ApplyT(func(v interface{}) (LookupBlockVolumeResultOutput, error) {
 			args := v.(LookupBlockVolumeArgs)
-			r, err := LookupBlockVolume(ctx, &args, opts...)
-			var s LookupBlockVolumeResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupBlockVolumeResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getBlockVolume:getBlockVolume", args, &rv, "", opts...)
+			if err != nil {
+				return LookupBlockVolumeResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupBlockVolumeResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupBlockVolumeResultOutput), nil
+			}
+			return output, nil
 		}).(LookupBlockVolumeResultOutput)
 }
 
@@ -91,11 +103,11 @@ func LookupBlockVolumeOutput(ctx *pulumi.Context, args LookupBlockVolumeOutputAr
 type LookupBlockVolumeOutputArgs struct {
 	// The name of the volume. Only one of `name` and `volumeId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The ID of the project the volume is associated with.
+	// The unique identifier of the Project to which the volume is associated.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// The ID of the volume. Only one of `name` and `volumeId` should be specified.
+	// The unique identifier of the volume. Only one of `name` and `volumeId` should be specified.
 	VolumeId pulumi.StringPtrInput `pulumi:"volumeId"`
-	// `zone`) The zone in which the volume exists.
+	// ). The zone in which the volume exists.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 

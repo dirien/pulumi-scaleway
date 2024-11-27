@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -23,7 +28,7 @@ class ObjectBucketLockConfigurationArgs:
         """
         The set of arguments for constructing a ObjectBucketLockConfiguration resource.
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
-        :param pulumi.Input['ObjectBucketLockConfigurationRuleArgs'] rule: Specifies the Object Lock rule for the specified object.
+        :param pulumi.Input['ObjectBucketLockConfigurationRuleArgs'] rule: Specifies the object lock rule for the specified object.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The region you want to attach the resource to
         """
@@ -50,7 +55,7 @@ class ObjectBucketLockConfigurationArgs:
     @pulumi.getter
     def rule(self) -> pulumi.Input['ObjectBucketLockConfigurationRuleArgs']:
         """
-        Specifies the Object Lock rule for the specified object.
+        Specifies the object lock rule for the specified object.
         """
         return pulumi.get(self, "rule")
 
@@ -95,7 +100,7 @@ class _ObjectBucketLockConfigurationState:
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input['ObjectBucketLockConfigurationRuleArgs'] rule: Specifies the Object Lock rule for the specified object.
+        :param pulumi.Input['ObjectBucketLockConfigurationRuleArgs'] rule: Specifies the object lock rule for the specified object.
         """
         if bucket is not None:
             pulumi.set(__self__, "bucket", bucket)
@@ -146,7 +151,7 @@ class _ObjectBucketLockConfigurationState:
     @pulumi.getter
     def rule(self) -> Optional[pulumi.Input['ObjectBucketLockConfigurationRuleArgs']]:
         """
-        Specifies the Object Lock rule for the specified object.
+        Specifies the object lock rule for the specified object.
         """
         return pulumi.get(self, "rule")
 
@@ -163,17 +168,18 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
                  bucket: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 rule: Optional[pulumi.Input[pulumi.InputType['ObjectBucketLockConfigurationRuleArgs']]] = None,
+                 rule: Optional[pulumi.Input[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict']]] = None,
                  __props__=None):
         """
-        Provides an Object bucket lock configuration resource.
-        For more information, see [Setting up object lock](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/).
+        The `ObjectBucketLockConfiguration` resource allows you to create and manage an object lock configuration for [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+
+        Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/) for more information on object lock.
 
         ## Example Usage
 
         ### Configure an Object Lock for a new bucket
 
-        Please note that `object_lock_enabled` must be set to `true` before configuring the lock.
+        > **Note:** `object_lock_enabled` must be set to `true` before configuring the lock.
 
         ```python
         import pulumi
@@ -184,21 +190,21 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
             object_lock_enabled=True)
         main_object_bucket_lock_configuration = scaleway.ObjectBucketLockConfiguration("mainObjectBucketLockConfiguration",
             bucket=main_object_bucket.name,
-            rule=scaleway.ObjectBucketLockConfigurationRuleArgs(
-                default_retention=scaleway.ObjectBucketLockConfigurationRuleDefaultRetentionArgs(
-                    mode="GOVERNANCE",
-                    days=1,
-                ),
-            ))
+            rule={
+                "default_retention": {
+                    "mode": "GOVERNANCE",
+                    "days": 1,
+                },
+            })
         ```
 
-        ### Configure an Object Lock for an existing bucket
+        ### Configure an object Lock for an existing bucket
 
-        You should [contact Scaleway support](https://console.scaleway.com/support/tickets/create) to enable object lock on an existing bucket.
+        [Contact Scaleway support](https://console.scaleway.com/support/tickets/create) to enable object lock on an existing bucket.
 
         ## Import
 
-        Bucket lock configurations can be imported using the `{region}/{bucketName}` identifier, e.g.
+        Bucket lock configurations can be imported using the `{region}/{bucketName}` identifier, as shown below:
 
         bash
 
@@ -221,7 +227,7 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[pulumi.InputType['ObjectBucketLockConfigurationRuleArgs']] rule: Specifies the Object Lock rule for the specified object.
+        :param pulumi.Input[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict']] rule: Specifies the object lock rule for the specified object.
         """
         ...
     @overload
@@ -230,14 +236,15 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
                  args: ObjectBucketLockConfigurationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Provides an Object bucket lock configuration resource.
-        For more information, see [Setting up object lock](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/).
+        The `ObjectBucketLockConfiguration` resource allows you to create and manage an object lock configuration for [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+
+        Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/) for more information on object lock.
 
         ## Example Usage
 
         ### Configure an Object Lock for a new bucket
 
-        Please note that `object_lock_enabled` must be set to `true` before configuring the lock.
+        > **Note:** `object_lock_enabled` must be set to `true` before configuring the lock.
 
         ```python
         import pulumi
@@ -248,21 +255,21 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
             object_lock_enabled=True)
         main_object_bucket_lock_configuration = scaleway.ObjectBucketLockConfiguration("mainObjectBucketLockConfiguration",
             bucket=main_object_bucket.name,
-            rule=scaleway.ObjectBucketLockConfigurationRuleArgs(
-                default_retention=scaleway.ObjectBucketLockConfigurationRuleDefaultRetentionArgs(
-                    mode="GOVERNANCE",
-                    days=1,
-                ),
-            ))
+            rule={
+                "default_retention": {
+                    "mode": "GOVERNANCE",
+                    "days": 1,
+                },
+            })
         ```
 
-        ### Configure an Object Lock for an existing bucket
+        ### Configure an object Lock for an existing bucket
 
-        You should [contact Scaleway support](https://console.scaleway.com/support/tickets/create) to enable object lock on an existing bucket.
+        [Contact Scaleway support](https://console.scaleway.com/support/tickets/create) to enable object lock on an existing bucket.
 
         ## Import
 
-        Bucket lock configurations can be imported using the `{region}/{bucketName}` identifier, e.g.
+        Bucket lock configurations can be imported using the `{region}/{bucketName}` identifier, as shown below:
 
         bash
 
@@ -298,7 +305,7 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
                  bucket: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 rule: Optional[pulumi.Input[pulumi.InputType['ObjectBucketLockConfigurationRuleArgs']]] = None,
+                 rule: Optional[pulumi.Input[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -329,7 +336,7 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
             bucket: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
-            rule: Optional[pulumi.Input[pulumi.InputType['ObjectBucketLockConfigurationRuleArgs']]] = None) -> 'ObjectBucketLockConfiguration':
+            rule: Optional[pulumi.Input[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict']]] = None) -> 'ObjectBucketLockConfiguration':
         """
         Get an existing ObjectBucketLockConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -340,7 +347,7 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] bucket: The bucket's name or regional ID.
         :param pulumi.Input[str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[str] region: The region you want to attach the resource to
-        :param pulumi.Input[pulumi.InputType['ObjectBucketLockConfigurationRuleArgs']] rule: Specifies the Object Lock rule for the specified object.
+        :param pulumi.Input[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict']] rule: Specifies the object lock rule for the specified object.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -380,7 +387,7 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
     @pulumi.getter
     def rule(self) -> pulumi.Output['outputs.ObjectBucketLockConfigurationRule']:
         """
-        Specifies the Object Lock rule for the specified object.
+        Specifies the object lock rule for the specified object.
         """
         return pulumi.get(self, "rule")
 

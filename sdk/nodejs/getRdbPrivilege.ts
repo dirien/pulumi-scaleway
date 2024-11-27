@@ -21,7 +21,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getRdbPrivilege(args: GetRdbPrivilegeArgs, opts?: pulumi.InvokeOptions): Promise<GetRdbPrivilegeResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getRdbPrivilege:getRdbPrivilege", {
         "databaseName": args.databaseName,
@@ -88,7 +87,13 @@ export interface GetRdbPrivilegeResult {
  * ```
  */
 export function getRdbPrivilegeOutput(args: GetRdbPrivilegeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRdbPrivilegeResult> {
-    return pulumi.output(args).apply((a: any) => getRdbPrivilege(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getRdbPrivilege:getRdbPrivilege", {
+        "databaseName": args.databaseName,
+        "instanceId": args.instanceId,
+        "region": args.region,
+        "userName": args.userName,
+    }, opts);
 }
 
 /**
