@@ -15,13 +15,11 @@
 package scaleway
 
 import (
-	"context"
 	_ "embed"
 	"fmt"
 	"path/filepath"
 
 	"github.com/dirien/pulumi-scaleway/provider/v2/pkg/version"
-	pfbridge "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tfbridgetokens "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
@@ -44,13 +42,8 @@ var metadata []byte
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
 
-	p := pfbridge.MuxShimWithPF(context.Background(),
-		shimv2.NewProvider(shim.NewProvider()),
-		shim.Framework()(),
-	)
-
 	prov := tfbridge.ProviderInfo{
-		P:       p,
+		P:       shimv2.NewProvider(shim.NewProvider()),
 		Version: version.Version,
 		Name:    "scaleway",
 		// DisplayName is a way to be able to change the casing of the provider
