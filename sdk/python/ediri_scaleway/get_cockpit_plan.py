@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -56,9 +61,15 @@ class AwaitableGetCockpitPlanResult(GetCockpitPlanResult):
 def get_cockpit_plan(name: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCockpitPlanResult:
     """
-    Gets information about a Scaleway Cockpit plan.
+    The `get_cockpit_plan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `Cockpit`.
 
-    ## Example Usage
+    Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
+
+    Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+
+    ## Fetch and associate a pricing plan to a Cockpit
+
+    The following command shows how to fetch information about the `premium` pricing plan and how to associate it with the Cockpit of your Scaleway default Project.
 
     ```python
     import pulumi
@@ -70,7 +81,7 @@ def get_cockpit_plan(name: Optional[str] = None,
     ```
 
 
-    :param str name: The name of the plan.
+    :param str name: Name of the pricing plan you want to retrieve information about.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -80,15 +91,18 @@ def get_cockpit_plan(name: Optional[str] = None,
     return AwaitableGetCockpitPlanResult(
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'))
-
-
-@_utilities.lift_output_func(get_cockpit_plan)
 def get_cockpit_plan_output(name: Optional[pulumi.Input[str]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCockpitPlanResult]:
     """
-    Gets information about a Scaleway Cockpit plan.
+    The `get_cockpit_plan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `Cockpit`.
 
-    ## Example Usage
+    Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
+
+    Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+
+    ## Fetch and associate a pricing plan to a Cockpit
+
+    The following command shows how to fetch information about the `premium` pricing plan and how to associate it with the Cockpit of your Scaleway default Project.
 
     ```python
     import pulumi
@@ -100,6 +114,12 @@ def get_cockpit_plan_output(name: Optional[pulumi.Input[str]] = None,
     ```
 
 
-    :param str name: The name of the plan.
+    :param str name: Name of the pricing plan you want to retrieve information about.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getCockpitPlan:getCockpitPlan', __args__, opts=opts, typ=GetCockpitPlanResult)
+    return __ret__.apply(lambda __response__: GetCockpitPlanResult(
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name')))

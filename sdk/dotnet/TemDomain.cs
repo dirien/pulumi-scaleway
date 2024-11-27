@@ -82,6 +82,27 @@ namespace ediri.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Automatically Configure DNS Settings for Your Domain
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Config();
+    ///     var domainName = config.Require("domainName");
+    ///     var main = new Scaleway.TemDomain("main", new()
+    ///     {
+    ///         AcceptTos = true,
+    ///         Autoconfig = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Domains can be imported using the `{region}/{id}`, e.g.
@@ -101,6 +122,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Output("acceptTos")]
         public Output<bool> AcceptTos { get; private set; } = null!;
+
+        /// <summary>
+        /// Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
+        /// </summary>
+        [Output("autoconfig")]
+        public Output<bool?> Autoconfig { get; private set; } = null!;
 
         /// <summary>
         /// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
@@ -127,7 +154,7 @@ namespace ediri.Scaleway
         public Output<string> DmarcName { get; private set; } = null!;
 
         /// <summary>
-        /// The error message if the last check failed.
+        /// (Deprecated) The error message if the last check failed.
         /// </summary>
         [Output("lastError")]
         public Output<string> LastError { get; private set; } = null!;
@@ -290,6 +317,12 @@ namespace ediri.Scaleway
         public Input<bool> AcceptTos { get; set; } = null!;
 
         /// <summary>
+        /// Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
+        /// </summary>
+        [Input("autoconfig")]
+        public Input<bool>? Autoconfig { get; set; }
+
+        /// <summary>
         /// The domain name, must not be used in another Transactional Email Domain.
         /// &gt; **Important:** Updates to `name` will recreate the domain.
         /// </summary>
@@ -324,6 +357,12 @@ namespace ediri.Scaleway
         public Input<bool>? AcceptTos { get; set; }
 
         /// <summary>
+        /// Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
+        /// </summary>
+        [Input("autoconfig")]
+        public Input<bool>? Autoconfig { get; set; }
+
+        /// <summary>
         /// The date and time of the Transaction Email Domain's creation (RFC 3339 format).
         /// </summary>
         [Input("createdAt")]
@@ -348,7 +387,7 @@ namespace ediri.Scaleway
         public Input<string>? DmarcName { get; set; }
 
         /// <summary>
-        /// The error message if the last check failed.
+        /// (Deprecated) The error message if the last check failed.
         /// </summary>
         [Input("lastError")]
         public Input<string>? LastError { get; set; }

@@ -26,7 +26,7 @@ namespace ediri.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = Scaleway.GetAccountSshKey.Invoke(new()
+    ///     var main = Scaleway.GetIamSshKey.Invoke(new()
     ///     {
     ///         Name = "main",
     ///     });
@@ -38,7 +38,7 @@ namespace ediri.Scaleway
     ///         Os = "d17d6872-0412-45d9-a198-af82c34d3c5c",
     ///         SshKeyIds = new[]
     ///         {
-    ///             main.Apply(getAccountSshKeyResult =&gt; getAccountSshKeyResult.Id),
+    ///             data.Scaleway_account_ssh_key.Main.Id,
     ///         },
     ///     });
     /// 

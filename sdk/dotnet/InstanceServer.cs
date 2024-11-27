@@ -270,6 +270,31 @@ namespace ediri.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Using Scaleway Block Storage (SBS) volume
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var server = new Scaleway.InstanceServer("server", new()
+    ///     {
+    ///         Image = "ubuntu_jammy",
+    ///         RootVolume = new Scaleway.Inputs.InstanceServerRootVolumeArgs
+    ///         {
+    ///             SbsIops = 15000,
+    ///             SizeInGb = 50,
+    ///             VolumeType = "sbs_volume",
+    ///         },
+    ///         Type = "PLAY2-MICRO",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Private Network
     /// 
     /// &gt; **Important:** Updates to `private_network` will recreate a new private network interface.
@@ -315,7 +340,7 @@ namespace ediri.Scaleway
         public Output<string?> BootType { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the bootscript to use  (set boot_type to `bootscript`).
+        /// ID of the target bootscript (set boot_type to bootscript)
         /// </summary>
         [Output("bootscriptId")]
         public Output<string> BootscriptId { get; private set; } = null!;
@@ -334,6 +359,7 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
+        /// Deprecated: Please use a scaleway.InstanceIp with a `routed_ipv6` type.
         /// </summary>
         [Output("enableIpv6")]
         public Output<bool?> EnableIpv6 { get; private set; } = null!;
@@ -365,18 +391,21 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
+        /// Deprecated: Please use a scaleway.InstanceIp with a `routed_ipv6` type.
         /// </summary>
         [Output("ipv6Address")]
         public Output<string> Ipv6Address { get; private set; } = null!;
 
         /// <summary>
         /// The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
+        /// Deprecated: Please use a scaleway.InstanceIp with a `routed_ipv6` type.
         /// </summary>
         [Output("ipv6Gateway")]
         public Output<string> Ipv6Gateway { get; private set; } = null!;
 
         /// <summary>
         /// The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
+        /// Deprecated: Please use a scaleway.InstanceIp with a `routed_ipv6` type.
         /// </summary>
         [Output("ipv6PrefixLength")]
         public Output<int> Ipv6PrefixLength { get; private set; } = null!;
@@ -428,7 +457,7 @@ namespace ediri.Scaleway
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The public IP address of the server.
+        /// The public IP address of the server (Deprecated use `public_ips` instead).
         /// </summary>
         [Output("publicIp")]
         public Output<string> PublicIp { get; private set; } = null!;
@@ -576,7 +605,7 @@ namespace ediri.Scaleway
         public Input<string>? BootType { get; set; }
 
         /// <summary>
-        /// The ID of the bootscript to use  (set boot_type to `bootscript`).
+        /// ID of the target bootscript (set boot_type to bootscript)
         /// </summary>
         [Input("bootscriptId")]
         public Input<string>? BootscriptId { get; set; }
@@ -595,6 +624,7 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
+        /// Deprecated: Please use a scaleway.InstanceIp with a `routed_ipv6` type.
         /// </summary>
         [Input("enableIpv6")]
         public Input<bool>? EnableIpv6 { get; set; }
@@ -786,7 +816,7 @@ namespace ediri.Scaleway
         public Input<string>? BootType { get; set; }
 
         /// <summary>
-        /// The ID of the bootscript to use  (set boot_type to `bootscript`).
+        /// ID of the target bootscript (set boot_type to bootscript)
         /// </summary>
         [Input("bootscriptId")]
         public Input<string>? BootscriptId { get; set; }
@@ -805,6 +835,7 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
+        /// Deprecated: Please use a scaleway.InstanceIp with a `routed_ipv6` type.
         /// </summary>
         [Input("enableIpv6")]
         public Input<bool>? EnableIpv6 { get; set; }
@@ -842,18 +873,21 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
+        /// Deprecated: Please use a scaleway.InstanceIp with a `routed_ipv6` type.
         /// </summary>
         [Input("ipv6Address")]
         public Input<string>? Ipv6Address { get; set; }
 
         /// <summary>
         /// The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
+        /// Deprecated: Please use a scaleway.InstanceIp with a `routed_ipv6` type.
         /// </summary>
         [Input("ipv6Gateway")]
         public Input<string>? Ipv6Gateway { get; set; }
 
         /// <summary>
         /// The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
+        /// Deprecated: Please use a scaleway.InstanceIp with a `routed_ipv6` type.
         /// </summary>
         [Input("ipv6PrefixLength")]
         public Input<int>? Ipv6PrefixLength { get; set; }
@@ -911,7 +945,7 @@ namespace ediri.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The public IP address of the server.
+        /// The public IP address of the server (Deprecated use `public_ips` instead).
         /// </summary>
         [Input("publicIp")]
         public Input<string>? PublicIp { get; set; }

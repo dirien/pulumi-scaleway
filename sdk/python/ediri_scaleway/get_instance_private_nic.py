@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -21,13 +26,16 @@ class GetInstancePrivateNicResult:
     """
     A collection of values returned by getInstancePrivateNic.
     """
-    def __init__(__self__, id=None, ip_ids=None, mac_address=None, private_network_id=None, private_nic_id=None, server_id=None, tags=None, zone=None):
+    def __init__(__self__, id=None, ip_ids=None, ipam_ip_ids=None, mac_address=None, private_network_id=None, private_nic_id=None, server_id=None, tags=None, zone=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
         if ip_ids and not isinstance(ip_ids, list):
             raise TypeError("Expected argument 'ip_ids' to be a list")
         pulumi.set(__self__, "ip_ids", ip_ids)
+        if ipam_ip_ids and not isinstance(ipam_ip_ids, list):
+            raise TypeError("Expected argument 'ipam_ip_ids' to be a list")
+        pulumi.set(__self__, "ipam_ip_ids", ipam_ip_ids)
         if mac_address and not isinstance(mac_address, str):
             raise TypeError("Expected argument 'mac_address' to be a str")
         pulumi.set(__self__, "mac_address", mac_address)
@@ -59,6 +67,11 @@ class GetInstancePrivateNicResult:
     @pulumi.getter(name="ipIds")
     def ip_ids(self) -> Sequence[str]:
         return pulumi.get(self, "ip_ids")
+
+    @property
+    @pulumi.getter(name="ipamIpIds")
+    def ipam_ip_ids(self) -> Sequence[str]:
+        return pulumi.get(self, "ipam_ip_ids")
 
     @property
     @pulumi.getter(name="macAddress")
@@ -99,6 +112,7 @@ class AwaitableGetInstancePrivateNicResult(GetInstancePrivateNicResult):
         return GetInstancePrivateNicResult(
             id=self.id,
             ip_ids=self.ip_ids,
+            ipam_ip_ids=self.ipam_ip_ids,
             mac_address=self.mac_address,
             private_network_id=self.private_network_id,
             private_nic_id=self.private_nic_id,
@@ -152,15 +166,13 @@ def get_instance_private_nic(private_network_id: Optional[str] = None,
     return AwaitableGetInstancePrivateNicResult(
         id=pulumi.get(__ret__, 'id'),
         ip_ids=pulumi.get(__ret__, 'ip_ids'),
+        ipam_ip_ids=pulumi.get(__ret__, 'ipam_ip_ids'),
         mac_address=pulumi.get(__ret__, 'mac_address'),
         private_network_id=pulumi.get(__ret__, 'private_network_id'),
         private_nic_id=pulumi.get(__ret__, 'private_nic_id'),
         server_id=pulumi.get(__ret__, 'server_id'),
         tags=pulumi.get(__ret__, 'tags'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_instance_private_nic)
 def get_instance_private_nic_output(private_network_id: Optional[pulumi.Input[Optional[str]]] = None,
                                     private_nic_id: Optional[pulumi.Input[Optional[str]]] = None,
                                     server_id: Optional[pulumi.Input[str]] = None,
@@ -194,4 +206,21 @@ def get_instance_private_nic_output(private_network_id: Optional[pulumi.Input[Op
            As datasource only returns one private NIC, the search with given tags must return only one result
     :param str zone: `zone`) The zone in which the private nic exists.
     """
-    ...
+    __args__ = dict()
+    __args__['privateNetworkId'] = private_network_id
+    __args__['privateNicId'] = private_nic_id
+    __args__['serverId'] = server_id
+    __args__['tags'] = tags
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getInstancePrivateNic:getInstancePrivateNic', __args__, opts=opts, typ=GetInstancePrivateNicResult)
+    return __ret__.apply(lambda __response__: GetInstancePrivateNicResult(
+        id=pulumi.get(__response__, 'id'),
+        ip_ids=pulumi.get(__response__, 'ip_ids'),
+        ipam_ip_ids=pulumi.get(__response__, 'ipam_ip_ids'),
+        mac_address=pulumi.get(__response__, 'mac_address'),
+        private_network_id=pulumi.get(__response__, 'private_network_id'),
+        private_nic_id=pulumi.get(__response__, 'private_nic_id'),
+        server_id=pulumi.get(__response__, 'server_id'),
+        tags=pulumi.get(__response__, 'tags'),
+        zone=pulumi.get(__response__, 'zone')))

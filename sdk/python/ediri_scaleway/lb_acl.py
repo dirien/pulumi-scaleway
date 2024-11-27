@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -255,11 +260,11 @@ class LbAcl(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 action: Optional[pulumi.Input[pulumi.InputType['LbAclActionArgs']]] = None,
+                 action: Optional[pulumi.Input[Union['LbAclActionArgs', 'LbAclActionArgsDict']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  frontend_id: Optional[pulumi.Input[str]] = None,
                  index: Optional[pulumi.Input[int]] = None,
-                 match: Optional[pulumi.Input[pulumi.InputType['LbAclMatchArgs']]] = None,
+                 match: Optional[pulumi.Input[Union['LbAclMatchArgs', 'LbAclMatchArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -279,16 +284,16 @@ class LbAcl(pulumi.CustomResource):
             frontend_id=scaleway_lb_frontend["frt01"]["id"],
             description="Exclude well-known IPs",
             index=0,
-            action=scaleway.LbAclActionArgs(
-                type="allow",
-            ),
-            match=scaleway.LbAclMatchArgs(
-                ip_subnets=[
+            action={
+                "type": "allow",
+            },
+            match={
+                "ip_subnets": [
                     "192.168.0.1",
                     "192.168.0.2",
                     "192.168.10.0/24",
                 ],
-            ))
+            })
         ```
 
         ## Import
@@ -303,11 +308,11 @@ class LbAcl(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['LbAclActionArgs']] action: Action to undertake when an ACL filter matches.
+        :param pulumi.Input[Union['LbAclActionArgs', 'LbAclActionArgsDict']] action: Action to undertake when an ACL filter matches.
         :param pulumi.Input[str] description: The ACL description.
         :param pulumi.Input[str] frontend_id: The ID of the Load Balancer frontend to attach the ACL to.
         :param pulumi.Input[int] index: The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
-        :param pulumi.Input[pulumi.InputType['LbAclMatchArgs']] match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        :param pulumi.Input[Union['LbAclMatchArgs', 'LbAclMatchArgsDict']] match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
         """
         ...
@@ -333,16 +338,16 @@ class LbAcl(pulumi.CustomResource):
             frontend_id=scaleway_lb_frontend["frt01"]["id"],
             description="Exclude well-known IPs",
             index=0,
-            action=scaleway.LbAclActionArgs(
-                type="allow",
-            ),
-            match=scaleway.LbAclMatchArgs(
-                ip_subnets=[
+            action={
+                "type": "allow",
+            },
+            match={
+                "ip_subnets": [
                     "192.168.0.1",
                     "192.168.0.2",
                     "192.168.10.0/24",
                 ],
-            ))
+            })
         ```
 
         ## Import
@@ -370,11 +375,11 @@ class LbAcl(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 action: Optional[pulumi.Input[pulumi.InputType['LbAclActionArgs']]] = None,
+                 action: Optional[pulumi.Input[Union['LbAclActionArgs', 'LbAclActionArgsDict']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  frontend_id: Optional[pulumi.Input[str]] = None,
                  index: Optional[pulumi.Input[int]] = None,
-                 match: Optional[pulumi.Input[pulumi.InputType['LbAclMatchArgs']]] = None,
+                 match: Optional[pulumi.Input[Union['LbAclMatchArgs', 'LbAclMatchArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -409,12 +414,12 @@ class LbAcl(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            action: Optional[pulumi.Input[pulumi.InputType['LbAclActionArgs']]] = None,
+            action: Optional[pulumi.Input[Union['LbAclActionArgs', 'LbAclActionArgsDict']]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             frontend_id: Optional[pulumi.Input[str]] = None,
             index: Optional[pulumi.Input[int]] = None,
-            match: Optional[pulumi.Input[pulumi.InputType['LbAclMatchArgs']]] = None,
+            match: Optional[pulumi.Input[Union['LbAclMatchArgs', 'LbAclMatchArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             updated_at: Optional[pulumi.Input[str]] = None) -> 'LbAcl':
         """
@@ -424,12 +429,12 @@ class LbAcl(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['LbAclActionArgs']] action: Action to undertake when an ACL filter matches.
+        :param pulumi.Input[Union['LbAclActionArgs', 'LbAclActionArgsDict']] action: Action to undertake when an ACL filter matches.
         :param pulumi.Input[str] created_at: IsDate and time of ACL's creation (RFC 3339 format)
         :param pulumi.Input[str] description: The ACL description.
         :param pulumi.Input[str] frontend_id: The ID of the Load Balancer frontend to attach the ACL to.
         :param pulumi.Input[int] index: The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
-        :param pulumi.Input[pulumi.InputType['LbAclMatchArgs']] match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        :param pulumi.Input[Union['LbAclMatchArgs', 'LbAclMatchArgsDict']] match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
         :param pulumi.Input[str] name: The ACL name. If not provided it will be randomly generated.
         :param pulumi.Input[str] updated_at: IsDate and time of ACL's update (RFC 3339 format)
         """

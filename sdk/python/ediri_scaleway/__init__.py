@@ -22,12 +22,6 @@ from .container_domain import *
 from .container_namespace import *
 from .container_token import *
 from .container_trigger import *
-from .documentdb_database import *
-from .documentdb_instance import *
-from .documentdb_private_network_endpoint import *
-from .documentdb_privilege import *
-from .documentdb_read_replica import *
-from .documentdb_user import *
 from .domain_record import *
 from .domain_zone import *
 from .flexible_ip import *
@@ -54,9 +48,6 @@ from .get_cockpit_plan import *
 from .get_config import *
 from .get_container import *
 from .get_container_namespace import *
-from .get_documentdb_database import *
-from .get_documentdb_instance import *
-from .get_documentdb_load_balancer_endpoint import *
 from .get_domain_record import *
 from .get_domain_zone import *
 from .get_flexible_ip import *
@@ -97,7 +88,9 @@ from .get_lb_route import *
 from .get_lb_routes import *
 from .get_lbs import *
 from .get_marketplace_image import *
+from .get_mnq_sns import *
 from .get_mnq_sqs import *
+from .get_mongodb_instance import *
 from .get_object_bucket import *
 from .get_object_bucket_policy import *
 from .get_rdb_acl import *
@@ -107,6 +100,7 @@ from .get_rdb_instance import *
 from .get_rdb_privilege import *
 from .get_redis_cluster import *
 from .get_registry_image import *
+from .get_registry_image_tag import *
 from .get_registry_namespace import *
 from .get_secret import *
 from .get_secret_version import *
@@ -130,6 +124,7 @@ from .iam_group_membership import *
 from .iam_policy import *
 from .iam_ssh_key import *
 from .iam_user import *
+from .inference_deployment import *
 from .instance_image import *
 from .instance_ip import *
 from .instance_ip_reverse_dns import *
@@ -166,6 +161,8 @@ from .mnq_sns_topic_subscription import *
 from .mnq_sqs import *
 from .mnq_sqs_credentials import *
 from .mnq_sqs_queue import *
+from .mongodb_instance import *
+from .mongodb_snapshot import *
 from .object_bucket import *
 from .object_bucket_acl import *
 from .object_bucket_lock_configuration import *
@@ -187,6 +184,7 @@ from .secret import *
 from .secret_version import *
 from .tem_domain import *
 from .tem_domain_validation import *
+from .tem_webhook import *
 from .vpc import *
 from .vpc_gateway_network import *
 from .vpc_private_network import *
@@ -196,6 +194,7 @@ from .vpc_public_gateway_dhcp_reservation import *
 from .vpc_public_gateway_ip import *
 from .vpc_public_gateway_ip_reverse_dns import *
 from .vpc_public_gateway_pat_rule import *
+from .vpc_route import *
 from .webhosting import *
 from ._inputs import *
 from . import outputs
@@ -348,54 +347,6 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
-  "mod": "index/documentdbDatabase",
-  "fqn": "ediri_scaleway",
-  "classes": {
-   "scaleway:index/documentdbDatabase:DocumentdbDatabase": "DocumentdbDatabase"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/documentdbInstance",
-  "fqn": "ediri_scaleway",
-  "classes": {
-   "scaleway:index/documentdbInstance:DocumentdbInstance": "DocumentdbInstance"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/documentdbPrivateNetworkEndpoint",
-  "fqn": "ediri_scaleway",
-  "classes": {
-   "scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint": "DocumentdbPrivateNetworkEndpoint"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/documentdbPrivilege",
-  "fqn": "ediri_scaleway",
-  "classes": {
-   "scaleway:index/documentdbPrivilege:DocumentdbPrivilege": "DocumentdbPrivilege"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/documentdbReadReplica",
-  "fqn": "ediri_scaleway",
-  "classes": {
-   "scaleway:index/documentdbReadReplica:DocumentdbReadReplica": "DocumentdbReadReplica"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/documentdbUser",
-  "fqn": "ediri_scaleway",
-  "classes": {
-   "scaleway:index/documentdbUser:DocumentdbUser": "DocumentdbUser"
-  }
- },
- {
-  "pkg": "scaleway",
   "mod": "index/domainRecord",
   "fqn": "ediri_scaleway",
   "classes": {
@@ -528,6 +479,14 @@ _utilities.register(
   "fqn": "ediri_scaleway",
   "classes": {
    "scaleway:index/iamUser:IamUser": "IamUser"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/inferenceDeployment",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/inferenceDeployment:InferenceDeployment": "InferenceDeployment"
   }
  },
  {
@@ -820,6 +779,22 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/mongodbInstance",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/mongodbInstance:MongodbInstance": "MongodbInstance"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/mongodbSnapshot",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/mongodbSnapshot:MongodbSnapshot": "MongodbSnapshot"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/objectBucket",
   "fqn": "ediri_scaleway",
   "classes": {
@@ -980,6 +955,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/temWebhook",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/temWebhook:TemWebhook": "TemWebhook"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/vpc",
   "fqn": "ediri_scaleway",
   "classes": {
@@ -1048,6 +1031,14 @@ _utilities.register(
   "fqn": "ediri_scaleway",
   "classes": {
    "scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule": "VpcPublicGatewayPatRule"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/vpcRoute",
+  "fqn": "ediri_scaleway",
+  "classes": {
+   "scaleway:index/vpcRoute:VpcRoute": "VpcRoute"
   }
  },
  {

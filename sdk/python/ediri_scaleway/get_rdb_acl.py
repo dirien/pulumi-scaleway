@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -105,9 +110,6 @@ def get_rdb_acl(instance_id: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         instance_id=pulumi.get(__ret__, 'instance_id'),
         region=pulumi.get(__ret__, 'region'))
-
-
-@_utilities.lift_output_func(get_rdb_acl)
 def get_rdb_acl_output(instance_id: Optional[pulumi.Input[str]] = None,
                        region: Optional[pulumi.Input[Optional[str]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRdbAclResult]:
@@ -127,4 +129,13 @@ def get_rdb_acl_output(instance_id: Optional[pulumi.Input[str]] = None,
     :param str instance_id: The RDB instance ID.
     :param str region: `region`) The region in which the Database Instance should be created.
     """
-    ...
+    __args__ = dict()
+    __args__['instanceId'] = instance_id
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getRdbAcl:getRdbAcl', __args__, opts=opts, typ=GetRdbAclResult)
+    return __ret__.apply(lambda __response__: GetRdbAclResult(
+        acl_rules=pulumi.get(__response__, 'acl_rules'),
+        id=pulumi.get(__response__, 'id'),
+        instance_id=pulumi.get(__response__, 'instance_id'),
+        region=pulumi.get(__response__, 'region')))

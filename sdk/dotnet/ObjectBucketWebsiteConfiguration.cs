@@ -11,8 +11,9 @@ using Pulumi;
 namespace ediri.Scaleway
 {
     /// <summary>
-    /// Provides an Object bucket website configuration resource.
-    /// For more information, see [Hosting Websites on Object bucket](https://www.scaleway.com/en/docs/storage/object/how-to/use-bucket-website/).
+    /// The `scaleway.ObjectBucketWebsiteConfiguration` resource allows you to deploy and manage a bucket website with [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+    /// 
+    /// Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/how-to/use-bucket-website/) for more information on bucket websites.
     /// 
     /// ## Example Usage
     /// 
@@ -41,7 +42,7 @@ namespace ediri.Scaleway
     /// });
     /// ```
     /// 
-    /// ### With `Policy`
+    /// ### With A Bucket Policy
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -98,7 +99,7 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Bucket website configurations can be imported using the `{region}/{bucketName}` identifier, e.g.
+    /// Bucket website configurations can be imported using the `{region}/{bucketName}` identifier, as shown below:
     /// 
     /// bash
     /// 
@@ -126,13 +127,13 @@ namespace ediri.Scaleway
         public Output<string> Bucket { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the error document for the website detailed below.
+        /// The name of the error file for the website detailed below.
         /// </summary>
         [Output("errorDocument")]
         public Output<Outputs.ObjectBucketWebsiteConfigurationErrorDocument?> ErrorDocument { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the index document for the website detailed below.
+        /// The name of the index file for the website detailed below.
         /// </summary>
         [Output("indexDocument")]
         public Output<Outputs.ObjectBucketWebsiteConfigurationIndexDocument> IndexDocument { get; private set; } = null!;
@@ -215,13 +216,13 @@ namespace ediri.Scaleway
         public Input<string> Bucket { get; set; } = null!;
 
         /// <summary>
-        /// The name of the error document for the website detailed below.
+        /// The name of the error file for the website detailed below.
         /// </summary>
         [Input("errorDocument")]
         public Input<Inputs.ObjectBucketWebsiteConfigurationErrorDocumentArgs>? ErrorDocument { get; set; }
 
         /// <summary>
-        /// The name of the index document for the website detailed below.
+        /// The name of the index file for the website detailed below.
         /// </summary>
         [Input("indexDocument", required: true)]
         public Input<Inputs.ObjectBucketWebsiteConfigurationIndexDocumentArgs> IndexDocument { get; set; } = null!;
@@ -253,13 +254,13 @@ namespace ediri.Scaleway
         public Input<string>? Bucket { get; set; }
 
         /// <summary>
-        /// The name of the error document for the website detailed below.
+        /// The name of the error file for the website detailed below.
         /// </summary>
         [Input("errorDocument")]
         public Input<Inputs.ObjectBucketWebsiteConfigurationErrorDocumentGetArgs>? ErrorDocument { get; set; }
 
         /// <summary>
-        /// The name of the index document for the website detailed below.
+        /// The name of the index file for the website detailed below.
         /// </summary>
         [Input("indexDocument")]
         public Input<Inputs.ObjectBucketWebsiteConfigurationIndexDocumentGetArgs>? IndexDocument { get; set; }

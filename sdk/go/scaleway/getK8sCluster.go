@@ -110,14 +110,20 @@ type LookupK8sClusterResult struct {
 
 func LookupK8sClusterOutput(ctx *pulumi.Context, args LookupK8sClusterOutputArgs, opts ...pulumi.InvokeOption) LookupK8sClusterResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupK8sClusterResult, error) {
+		ApplyT(func(v interface{}) (LookupK8sClusterResultOutput, error) {
 			args := v.(LookupK8sClusterArgs)
-			r, err := LookupK8sCluster(ctx, &args, opts...)
-			var s LookupK8sClusterResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupK8sClusterResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getK8sCluster:getK8sCluster", args, &rv, "", opts...)
+			if err != nil {
+				return LookupK8sClusterResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupK8sClusterResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupK8sClusterResultOutput), nil
+			}
+			return output, nil
 		}).(LookupK8sClusterResultOutput)
 }
 

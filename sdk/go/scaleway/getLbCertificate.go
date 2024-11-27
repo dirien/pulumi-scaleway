@@ -59,14 +59,20 @@ type LookupLbCertificateResult struct {
 
 func LookupLbCertificateOutput(ctx *pulumi.Context, args LookupLbCertificateOutputArgs, opts ...pulumi.InvokeOption) LookupLbCertificateResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupLbCertificateResult, error) {
+		ApplyT(func(v interface{}) (LookupLbCertificateResultOutput, error) {
 			args := v.(LookupLbCertificateArgs)
-			r, err := LookupLbCertificate(ctx, &args, opts...)
-			var s LookupLbCertificateResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupLbCertificateResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getLbCertificate:getLbCertificate", args, &rv, "", opts...)
+			if err != nil {
+				return LookupLbCertificateResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupLbCertificateResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupLbCertificateResultOutput), nil
+			}
+			return output, nil
 		}).(LookupLbCertificateResultOutput)
 }
 

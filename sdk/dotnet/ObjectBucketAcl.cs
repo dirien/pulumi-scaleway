@@ -32,6 +32,8 @@ namespace ediri.Scaleway
     /// });
     /// ```
     /// 
+    /// For more information, refer to the [PutBucketAcl API call documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-operations/#putbucketacl).
+    /// 
     /// ### With Grants
     /// 
     /// ```csharp
@@ -82,16 +84,16 @@ namespace ediri.Scaleway
     /// 
     /// ## The ACL
     /// 
-    /// Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl)
+    /// Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
     /// 
-    /// ## The Access Control policy
+    /// ## The access control policy
     /// 
     /// The `access_control_policy` configuration block supports the following arguments:
     /// 
     /// * `grant` - (Required) Set of grant configuration blocks documented below.
     /// * `owner` - (Required) Configuration block of the bucket owner's display name and ID documented below.
     /// 
-    /// ## The Grant
+    /// ## The grant
     /// 
     /// The `grant` configuration block supports the following arguments:
     /// 
@@ -122,7 +124,7 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Bucket ACLs can be imported using the `{region}/{bucketName}/{acl}` identifier, e.g.
+    /// Bucket ACLs can be imported using the `{region}/{bucketName}/{acl}` identifier, as shown below:
     /// 
     /// bash
     /// 
@@ -150,7 +152,7 @@ namespace ediri.Scaleway
         public Output<Outputs.ObjectBucketAclAccessControlPolicy> AccessControlPolicy { get; private set; } = null!;
 
         /// <summary>
-        /// The canned ACL you want to apply to the bucket.
+        /// The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
         /// </summary>
         [Output("acl")]
         public Output<string?> Acl { get; private set; } = null!;
@@ -233,7 +235,7 @@ namespace ediri.Scaleway
         public Input<Inputs.ObjectBucketAclAccessControlPolicyArgs>? AccessControlPolicy { get; set; }
 
         /// <summary>
-        /// The canned ACL you want to apply to the bucket.
+        /// The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
         /// </summary>
         [Input("acl")]
         public Input<string>? Acl { get; set; }
@@ -277,7 +279,7 @@ namespace ediri.Scaleway
         public Input<Inputs.ObjectBucketAclAccessControlPolicyGetArgs>? AccessControlPolicy { get; set; }
 
         /// <summary>
-        /// The canned ACL you want to apply to the bucket.
+        /// The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
         /// </summary>
         [Input("acl")]
         public Input<string>? Acl { get; set; }

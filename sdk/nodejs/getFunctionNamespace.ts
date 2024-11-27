@@ -5,9 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about a function namespace.
+ * The `scaleway.FunctionNamespace` data source is used to retrieve information about a Serverless Functions namespace.
  *
- * ## Example Usage
+ * Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
+ *
+ * ## Retrieve a Serverless Functions namespace
+ *
+ * The following commands allow you to:
+ *
+ * - retrieve a namespace by its name
+ * - retrieve a namespace by its ID
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -20,7 +27,6 @@ import * as utilities from "./utilities";
  */
 export function getFunctionNamespace(args?: GetFunctionNamespaceArgs, opts?: pulumi.InvokeOptions): Promise<GetFunctionNamespaceResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getFunctionNamespace:getFunctionNamespace", {
         "name": args.name,
@@ -35,17 +41,15 @@ export function getFunctionNamespace(args?: GetFunctionNamespaceArgs, opts?: pul
  */
 export interface GetFunctionNamespaceArgs {
     /**
-     * The namespace name.
-     * Only one of `name` and `namespaceId` should be specified.
+     * The name of the namespace. Only one of `name` and `namespaceId` should be specified.
      */
     name?: string;
     /**
-     * The namespace id.
-     * Only one of `name` and `namespaceId` should be specified.
+     * The unique identifier of the namespace. Only one of `name` and `namespaceId` should be specified.
      */
     namespaceId?: string;
     /**
-     * `projectId`) The ID of the project the namespace is associated with.
+     * `projectId`) The unique identifier of the project with which the namespace is associated.
      */
     projectId?: string;
     /**
@@ -73,7 +77,7 @@ export interface GetFunctionNamespaceResult {
     readonly name?: string;
     readonly namespaceId?: string;
     /**
-     * The organization ID the namespace is associated with.
+     * The unique identifier of the organization with which the namespace is associated.
      */
     readonly organizationId: string;
     readonly projectId?: string;
@@ -83,15 +87,22 @@ export interface GetFunctionNamespaceResult {
      */
     readonly registryEndpoint: string;
     /**
-     * The registry namespace ID of the namespace.
+     * The unique identifier of the registry namespace of the Serverless Functions namespace.
      */
     readonly registryNamespaceId: string;
     readonly secretEnvironmentVariables: {[key: string]: string};
 }
 /**
- * Gets information about a function namespace.
+ * The `scaleway.FunctionNamespace` data source is used to retrieve information about a Serverless Functions namespace.
  *
- * ## Example Usage
+ * Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
+ *
+ * ## Retrieve a Serverless Functions namespace
+ *
+ * The following commands allow you to:
+ *
+ * - retrieve a namespace by its name
+ * - retrieve a namespace by its ID
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -103,7 +114,14 @@ export interface GetFunctionNamespaceResult {
  * ```
  */
 export function getFunctionNamespaceOutput(args?: GetFunctionNamespaceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFunctionNamespaceResult> {
-    return pulumi.output(args).apply((a: any) => getFunctionNamespace(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getFunctionNamespace:getFunctionNamespace", {
+        "name": args.name,
+        "namespaceId": args.namespaceId,
+        "projectId": args.projectId,
+        "region": args.region,
+    }, opts);
 }
 
 /**
@@ -111,17 +129,15 @@ export function getFunctionNamespaceOutput(args?: GetFunctionNamespaceOutputArgs
  */
 export interface GetFunctionNamespaceOutputArgs {
     /**
-     * The namespace name.
-     * Only one of `name` and `namespaceId` should be specified.
+     * The name of the namespace. Only one of `name` and `namespaceId` should be specified.
      */
     name?: pulumi.Input<string>;
     /**
-     * The namespace id.
-     * Only one of `name` and `namespaceId` should be specified.
+     * The unique identifier of the namespace. Only one of `name` and `namespaceId` should be specified.
      */
     namespaceId?: pulumi.Input<string>;
     /**
-     * `projectId`) The ID of the project the namespace is associated with.
+     * `projectId`) The unique identifier of the project with which the namespace is associated.
      */
     projectId?: pulumi.Input<string>;
     /**

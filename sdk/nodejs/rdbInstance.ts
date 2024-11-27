@@ -20,6 +20,7 @@ import * as utilities from "./utilities";
  *
  * const main = new scaleway.RdbInstance("main", {
  *     disableBackup: true,
+ *     encryptionAtRest: true,
  *     engine: "PostgreSQL-15",
  *     isHaCluster: true,
  *     nodeType: "DB-DEV-S",
@@ -205,13 +206,19 @@ export class RdbInstance extends pulumi.CustomResource {
      */
     public readonly disableBackup!: pulumi.Output<boolean | undefined>;
     /**
-     * (Deprecated) The IP of the Database Instance.
+     * Enable or disable encryption at rest for the Database Instance.
+     */
+    public readonly encryptionAtRest!: pulumi.Output<boolean | undefined>;
+    /**
+     * (Deprecated) The IP of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
      *
      * @deprecated Please use the privateNetwork or the loadBalancer attribute
      */
     public /*out*/ readonly endpointIp!: pulumi.Output<string>;
     /**
-     * (Deprecated) The port of the Database Instance.
+     * (Deprecated) The port of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
+     *
+     * @deprecated Please use the privateNetwork or the loadBalancer attribute
      */
     public /*out*/ readonly endpointPort!: pulumi.Output<number>;
     /**
@@ -320,6 +327,7 @@ export class RdbInstance extends pulumi.CustomResource {
             resourceInputs["backupScheduleRetention"] = state ? state.backupScheduleRetention : undefined;
             resourceInputs["certificate"] = state ? state.certificate : undefined;
             resourceInputs["disableBackup"] = state ? state.disableBackup : undefined;
+            resourceInputs["encryptionAtRest"] = state ? state.encryptionAtRest : undefined;
             resourceInputs["endpointIp"] = state ? state.endpointIp : undefined;
             resourceInputs["endpointPort"] = state ? state.endpointPort : undefined;
             resourceInputs["engine"] = state ? state.engine : undefined;
@@ -352,6 +360,7 @@ export class RdbInstance extends pulumi.CustomResource {
             resourceInputs["backupScheduleFrequency"] = args ? args.backupScheduleFrequency : undefined;
             resourceInputs["backupScheduleRetention"] = args ? args.backupScheduleRetention : undefined;
             resourceInputs["disableBackup"] = args ? args.disableBackup : undefined;
+            resourceInputs["encryptionAtRest"] = args ? args.encryptionAtRest : undefined;
             resourceInputs["engine"] = args ? args.engine : undefined;
             resourceInputs["initSettings"] = args ? args.initSettings : undefined;
             resourceInputs["isHaCluster"] = args ? args.isHaCluster : undefined;
@@ -406,13 +415,19 @@ export interface RdbInstanceState {
      */
     disableBackup?: pulumi.Input<boolean>;
     /**
-     * (Deprecated) The IP of the Database Instance.
+     * Enable or disable encryption at rest for the Database Instance.
+     */
+    encryptionAtRest?: pulumi.Input<boolean>;
+    /**
+     * (Deprecated) The IP of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
      *
      * @deprecated Please use the privateNetwork or the loadBalancer attribute
      */
     endpointIp?: pulumi.Input<string>;
     /**
-     * (Deprecated) The port of the Database Instance.
+     * (Deprecated) The port of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
+     *
+     * @deprecated Please use the privateNetwork or the loadBalancer attribute
      */
     endpointPort?: pulumi.Input<number>;
     /**
@@ -524,6 +539,10 @@ export interface RdbInstanceArgs {
      * Disable automated backup for the database instance
      */
     disableBackup?: pulumi.Input<boolean>;
+    /**
+     * Enable or disable encryption at rest for the Database Instance.
+     */
+    encryptionAtRest?: pulumi.Input<boolean>;
     /**
      * Database Instance's engine version (e.g. `PostgreSQL-11`).
      *

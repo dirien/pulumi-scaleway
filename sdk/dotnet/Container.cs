@@ -11,13 +11,11 @@ using Pulumi;
 namespace ediri.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Container.
+    /// The `scaleway.Container` resource allows you to create and manage [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
     /// 
-    /// For more information consult the [documentation](https://www.scaleway.com/en/docs/faq/serverless-containers/).
+    /// Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
     /// 
-    /// For more details about the limitation check [containers-limitations](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
-    /// 
-    /// You can check also our [containers guide](https://www.scaleway.com/en/docs/compute/containers/concepts/).
+    /// For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
     /// 
     /// ## Example Usage
     /// 
@@ -64,30 +62,28 @@ namespace ediri.Scaleway
     /// 
     /// ## Protocols
     /// 
-    /// The supported protocols are:
+    /// The following protocols are supported:
     /// 
     /// * `h2c`: HTTP/2 over TCP.
     /// * `http1`: Hypertext Transfer Protocol.
     /// 
-    /// **Important:** For details about the protocols check [this](https://httpd.apache.org/docs/2.4/howto/http2.html)
+    /// &gt; **Important:** Refer to the official [Apache documentation](https://httpd.apache.org/docs/2.4/howto/http2.html) for more information.
     /// 
     /// ## Privacy
     /// 
-    /// By default, creating a container will make it `public`, meaning that anybody knowing the endpoint could execute it.
+    /// By default, creating a container will make it `public`, meaning that anybody knowing the endpoint can execute it.
+    /// 
     /// A container can be made `private` with the privacy parameter.
     /// 
-    /// Please check our [authentication](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) section
+    /// Refer to the [technical information](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) for more information on container authentication.
     /// 
     /// ## Memory and vCPUs configuration
     /// 
-    /// The vCPU represents a portion or share of the underlying, physical CPU that is assigned to a particular virtual machine (VM).
+    /// The vCPU represents a portion of the underlying, physical CPU that is assigned to a particular virtual machine (VM).
     /// 
-    /// You may decide how much computing resources to allocate to each container.
-    /// The `memory_limit` (in MB) must correspond with the right amount of vCPU.
+    /// You can determine the computing resources to allocate to each container.
     /// 
-    /// **Important:** The right choice for your container's resources is very important, as you will be billed based on compute usage over time and the number of Containers executions.
-    /// 
-    /// Please check our [price](https://www.scaleway.com/en/docs/faq/serverless-containers/#prices) section for more details.
+    /// The `memory_limit` (in MB) must correspond with the right amount of vCPU. Refer to the table below to determine the right memory/vCPU combination.
     /// 
     /// | Memory (in MB) | vCPU |
     /// |----------------|------|
@@ -95,12 +91,16 @@ namespace ediri.Scaleway
     /// | 256            | 140m |
     /// | 512            | 280m |
     /// | 1024           | 560m |
+    /// | 2048           | 1120 |
+    /// | 3072           | 1680 |
+    /// | 4096           | 2240 |
     /// 
-    /// **Note:** 560mCPU accounts roughly for half of one CPU power of a Scaleway General Purpose instance
+    /// ~&gt;**Important:** Make sure to select the right resources, as you will be billed based on compute usage over time and the number of Containers executions.
+    /// Refer to the [Serverless Containers pricing](https://www.scaleway.com/en/docs/faq/serverless-containers/#prices) for more information.
     /// 
     /// ## Import
     /// 
-    /// Container can be imported using the `{region}/{id}`, e.g.
+    /// Containers can be imported using, `{region}/{id}`, as shown below:
     /// 
     /// bash
     /// 
@@ -112,7 +112,7 @@ namespace ediri.Scaleway
     public partial class Container : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The amount of vCPU computing resources to allocate to each container. Defaults to 140.
+        /// The amount of vCPU computing resources to allocate to each container.
         /// </summary>
         [Output("cpuLimit")]
         public Output<int> CpuLimit { get; private set; } = null!;
@@ -124,7 +124,7 @@ namespace ediri.Scaleway
         public Output<string> CronStatus { get; private set; } = null!;
 
         /// <summary>
-        /// Boolean controlling whether the container is on a production environment.
+        /// Boolean indicating whether the container is in a production environment.
         /// 
         /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
@@ -144,7 +144,7 @@ namespace ediri.Scaleway
         public Output<string> DomainName { get; private set; } = null!;
 
         /// <summary>
-        /// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
+        /// The [environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) of the container.
         /// </summary>
         [Output("environmentVariables")]
         public Output<ImmutableDictionary<string, string>> EnvironmentVariables { get; private set; } = null!;
@@ -156,31 +156,31 @@ namespace ediri.Scaleway
         public Output<string> ErrorMessage { get; private set; } = null!;
 
         /// <summary>
-        /// Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
+        /// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
         /// </summary>
         [Output("httpOption")]
         public Output<string?> HttpOption { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
+        /// The maximum number of simultaneous requests your container can handle at the same time.
         /// </summary>
         [Output("maxConcurrency")]
         public Output<int> MaxConcurrency { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum of number of instances this container can scale to. Default to 20.
+        /// The maximum number of instances this container can scale to.
         /// </summary>
         [Output("maxScale")]
         public Output<int> MaxScale { get; private set; } = null!;
 
         /// <summary>
-        /// The memory computing resources in MB to allocate to each container. Defaults to 256.
+        /// The memory resources in MB to allocate to each container.
         /// </summary>
         [Output("memoryLimit")]
         public Output<int> MemoryLimit { get; private set; } = null!;
 
         /// <summary>
-        /// The minimum of running container instances continuously. Defaults to 0.
+        /// The minimum number of container instances running continuously.
         /// </summary>
         [Output("minScale")]
         public Output<int> MinScale { get; private set; } = null!;
@@ -192,29 +192,27 @@ namespace ediri.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The container namespace ID of the container.
+        /// The Containers namespace ID of the container.
         /// 
-        /// &gt; **Important** Updates to `name` will recreate the container.
-        /// 
-        /// The following arguments are optional:
+        /// &gt; **Important** Updating the `name` argument will recreate the container.
         /// </summary>
         [Output("namespaceId")]
         public Output<string> NamespaceId { get; private set; } = null!;
 
         /// <summary>
-        /// The port to expose the container. Defaults to 8080.
+        /// The port to expose the container.
         /// </summary>
         [Output("port")]
         public Output<int> Port { get; private set; } = null!;
 
         /// <summary>
-        /// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
+        /// The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         /// </summary>
         [Output("privacy")]
         public Output<string?> Privacy { get; private set; } = null!;
 
         /// <summary>
-        /// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+        /// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
         /// </summary>
         [Output("protocol")]
         public Output<string?> Protocol { get; private set; } = null!;
@@ -226,7 +224,7 @@ namespace ediri.Scaleway
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
+        /// The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
         /// </summary>
         [Output("registryImage")]
         public Output<string> RegistryImage { get; private set; } = null!;
@@ -244,7 +242,7 @@ namespace ediri.Scaleway
         public Output<string> Sandbox { get; private set; } = null!;
 
         /// <summary>
-        /// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+        /// The [secret environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) of the container.
         /// </summary>
         [Output("secretEnvironmentVariables")]
         public Output<ImmutableDictionary<string, string>?> SecretEnvironmentVariables { get; private set; } = null!;
@@ -256,7 +254,7 @@ namespace ediri.Scaleway
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
+        /// The maximum amount of time your container can spend processing a request before being stopped.
         /// </summary>
         [Output("timeout")]
         public Output<int> Timeout { get; private set; } = null!;
@@ -313,13 +311,13 @@ namespace ediri.Scaleway
     public sealed class ContainerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The amount of vCPU computing resources to allocate to each container. Defaults to 140.
+        /// The amount of vCPU computing resources to allocate to each container.
         /// </summary>
         [Input("cpuLimit")]
         public Input<int>? CpuLimit { get; set; }
 
         /// <summary>
-        /// Boolean controlling whether the container is on a production environment.
+        /// Boolean indicating whether the container is in a production environment.
         /// 
         /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
@@ -336,7 +334,7 @@ namespace ediri.Scaleway
         private InputMap<string>? _environmentVariables;
 
         /// <summary>
-        /// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
+        /// The [environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) of the container.
         /// </summary>
         public InputMap<string> EnvironmentVariables
         {
@@ -345,31 +343,31 @@ namespace ediri.Scaleway
         }
 
         /// <summary>
-        /// Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
+        /// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
         /// </summary>
         [Input("httpOption")]
         public Input<string>? HttpOption { get; set; }
 
         /// <summary>
-        /// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
+        /// The maximum number of simultaneous requests your container can handle at the same time.
         /// </summary>
         [Input("maxConcurrency")]
         public Input<int>? MaxConcurrency { get; set; }
 
         /// <summary>
-        /// The maximum of number of instances this container can scale to. Default to 20.
+        /// The maximum number of instances this container can scale to.
         /// </summary>
         [Input("maxScale")]
         public Input<int>? MaxScale { get; set; }
 
         /// <summary>
-        /// The memory computing resources in MB to allocate to each container. Defaults to 256.
+        /// The memory resources in MB to allocate to each container.
         /// </summary>
         [Input("memoryLimit")]
         public Input<int>? MemoryLimit { get; set; }
 
         /// <summary>
-        /// The minimum of running container instances continuously. Defaults to 0.
+        /// The minimum number of container instances running continuously.
         /// </summary>
         [Input("minScale")]
         public Input<int>? MinScale { get; set; }
@@ -381,29 +379,27 @@ namespace ediri.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The container namespace ID of the container.
+        /// The Containers namespace ID of the container.
         /// 
-        /// &gt; **Important** Updates to `name` will recreate the container.
-        /// 
-        /// The following arguments are optional:
+        /// &gt; **Important** Updating the `name` argument will recreate the container.
         /// </summary>
         [Input("namespaceId", required: true)]
         public Input<string> NamespaceId { get; set; } = null!;
 
         /// <summary>
-        /// The port to expose the container. Defaults to 8080.
+        /// The port to expose the container.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
+        /// The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         /// </summary>
         [Input("privacy")]
         public Input<string>? Privacy { get; set; }
 
         /// <summary>
-        /// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+        /// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
@@ -415,7 +411,7 @@ namespace ediri.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
+        /// The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
         /// </summary>
         [Input("registryImage")]
         public Input<string>? RegistryImage { get; set; }
@@ -436,7 +432,7 @@ namespace ediri.Scaleway
         private InputMap<string>? _secretEnvironmentVariables;
 
         /// <summary>
-        /// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+        /// The [secret environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) of the container.
         /// </summary>
         public InputMap<string> SecretEnvironmentVariables
         {
@@ -455,7 +451,7 @@ namespace ediri.Scaleway
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
+        /// The maximum amount of time your container can spend processing a request before being stopped.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
@@ -469,7 +465,7 @@ namespace ediri.Scaleway
     public sealed class ContainerState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The amount of vCPU computing resources to allocate to each container. Defaults to 140.
+        /// The amount of vCPU computing resources to allocate to each container.
         /// </summary>
         [Input("cpuLimit")]
         public Input<int>? CpuLimit { get; set; }
@@ -481,7 +477,7 @@ namespace ediri.Scaleway
         public Input<string>? CronStatus { get; set; }
 
         /// <summary>
-        /// Boolean controlling whether the container is on a production environment.
+        /// Boolean indicating whether the container is in a production environment.
         /// 
         /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
@@ -504,7 +500,7 @@ namespace ediri.Scaleway
         private InputMap<string>? _environmentVariables;
 
         /// <summary>
-        /// The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
+        /// The [environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) of the container.
         /// </summary>
         public InputMap<string> EnvironmentVariables
         {
@@ -519,31 +515,31 @@ namespace ediri.Scaleway
         public Input<string>? ErrorMessage { get; set; }
 
         /// <summary>
-        /// Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
+        /// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
         /// </summary>
         [Input("httpOption")]
         public Input<string>? HttpOption { get; set; }
 
         /// <summary>
-        /// The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
+        /// The maximum number of simultaneous requests your container can handle at the same time.
         /// </summary>
         [Input("maxConcurrency")]
         public Input<int>? MaxConcurrency { get; set; }
 
         /// <summary>
-        /// The maximum of number of instances this container can scale to. Default to 20.
+        /// The maximum number of instances this container can scale to.
         /// </summary>
         [Input("maxScale")]
         public Input<int>? MaxScale { get; set; }
 
         /// <summary>
-        /// The memory computing resources in MB to allocate to each container. Defaults to 256.
+        /// The memory resources in MB to allocate to each container.
         /// </summary>
         [Input("memoryLimit")]
         public Input<int>? MemoryLimit { get; set; }
 
         /// <summary>
-        /// The minimum of running container instances continuously. Defaults to 0.
+        /// The minimum number of container instances running continuously.
         /// </summary>
         [Input("minScale")]
         public Input<int>? MinScale { get; set; }
@@ -555,29 +551,27 @@ namespace ediri.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The container namespace ID of the container.
+        /// The Containers namespace ID of the container.
         /// 
-        /// &gt; **Important** Updates to `name` will recreate the container.
-        /// 
-        /// The following arguments are optional:
+        /// &gt; **Important** Updating the `name` argument will recreate the container.
         /// </summary>
         [Input("namespaceId")]
         public Input<string>? NamespaceId { get; set; }
 
         /// <summary>
-        /// The port to expose the container. Defaults to 8080.
+        /// The port to expose the container.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
+        /// The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         /// </summary>
         [Input("privacy")]
         public Input<string>? Privacy { get; set; }
 
         /// <summary>
-        /// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+        /// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
@@ -589,7 +583,7 @@ namespace ediri.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
+        /// The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
         /// </summary>
         [Input("registryImage")]
         public Input<string>? RegistryImage { get; set; }
@@ -610,7 +604,7 @@ namespace ediri.Scaleway
         private InputMap<string>? _secretEnvironmentVariables;
 
         /// <summary>
-        /// The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+        /// The [secret environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) of the container.
         /// </summary>
         public InputMap<string> SecretEnvironmentVariables
         {
@@ -629,7 +623,7 @@ namespace ediri.Scaleway
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
+        /// The maximum amount of time your container can spend processing a request before being stopped.
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }

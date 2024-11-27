@@ -5,9 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about a Scaleway Cockpit plan.
+ * The `scaleway.getCockpitPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `scaleway.Cockpit`.
  *
- * ## Example Usage
+ * Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
+ *
+ * Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+ *
+ * ## Fetch and associate a pricing plan to a Cockpit
+ *
+ * The following command shows how to fetch information about the `premium` pricing plan and how to associate it with the Cockpit of your Scaleway default Project.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -21,7 +27,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getCockpitPlan(args: GetCockpitPlanArgs, opts?: pulumi.InvokeOptions): Promise<GetCockpitPlanResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getCockpitPlan:getCockpitPlan", {
         "name": args.name,
@@ -33,7 +38,7 @@ export function getCockpitPlan(args: GetCockpitPlanArgs, opts?: pulumi.InvokeOpt
  */
 export interface GetCockpitPlanArgs {
     /**
-     * The name of the plan.
+     * Name of the pricing plan you want to retrieve information about.
      */
     name: string;
 }
@@ -49,9 +54,15 @@ export interface GetCockpitPlanResult {
     readonly name: string;
 }
 /**
- * Gets information about a Scaleway Cockpit plan.
+ * The `scaleway.getCockpitPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `scaleway.Cockpit`.
  *
- * ## Example Usage
+ * Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
+ *
+ * Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
+ *
+ * ## Fetch and associate a pricing plan to a Cockpit
+ *
+ * The following command shows how to fetch information about the `premium` pricing plan and how to associate it with the Cockpit of your Scaleway default Project.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -65,7 +76,10 @@ export interface GetCockpitPlanResult {
  * ```
  */
 export function getCockpitPlanOutput(args: GetCockpitPlanOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCockpitPlanResult> {
-    return pulumi.output(args).apply((a: any) => getCockpitPlan(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getCockpitPlan:getCockpitPlan", {
+        "name": args.name,
+    }, opts);
 }
 
 /**
@@ -73,7 +87,7 @@ export function getCockpitPlanOutput(args: GetCockpitPlanOutputArgs, opts?: pulu
  */
 export interface GetCockpitPlanOutputArgs {
     /**
-     * The name of the plan.
+     * Name of the pricing plan you want to retrieve information about.
      */
     name: pulumi.Input<string>;
 }

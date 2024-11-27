@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = ['FunctionDomainArgs', 'FunctionDomain']
@@ -19,12 +24,13 @@ class FunctionDomainArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FunctionDomain resource.
-        :param pulumi.Input[str] function_id: The ID of the function you want to create a domain with.
-        :param pulumi.Input[str] hostname: The hostname that should resolve to your function id native domain.
-               You should use a CNAME domain record that point to your native function `domain_name` for it.
+        :param pulumi.Input[str] function_id: The unique identifier of the function.
+        :param pulumi.Input[str] hostname: The hostname with a CNAME record.
                
-               > **Important** Updates to `function_id` or `hostname` will recreate the domain.
-        :param pulumi.Input[str] region: (Defaults to provider `region`) The region in where the domain was created.
+               We recommend you use a CNAME domain record that point to your native function `domain_name` for it.
+               
+               > **Important** Updating the `function_id` or `hostname` arguments will recreate the domain.
+        :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the domain was created.
         """
         pulumi.set(__self__, "function_id", function_id)
         pulumi.set(__self__, "hostname", hostname)
@@ -35,7 +41,7 @@ class FunctionDomainArgs:
     @pulumi.getter(name="functionId")
     def function_id(self) -> pulumi.Input[str]:
         """
-        The ID of the function you want to create a domain with.
+        The unique identifier of the function.
         """
         return pulumi.get(self, "function_id")
 
@@ -47,10 +53,11 @@ class FunctionDomainArgs:
     @pulumi.getter
     def hostname(self) -> pulumi.Input[str]:
         """
-        The hostname that should resolve to your function id native domain.
-        You should use a CNAME domain record that point to your native function `domain_name` for it.
+        The hostname with a CNAME record.
 
-        > **Important** Updates to `function_id` or `hostname` will recreate the domain.
+        We recommend you use a CNAME domain record that point to your native function `domain_name` for it.
+
+        > **Important** Updating the `function_id` or `hostname` arguments will recreate the domain.
         """
         return pulumi.get(self, "hostname")
 
@@ -62,7 +69,7 @@ class FunctionDomainArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        (Defaults to provider `region`) The region in where the domain was created.
+        (Defaults to provider `region`) The region in which the domain was created.
         """
         return pulumi.get(self, "region")
 
@@ -80,13 +87,14 @@ class _FunctionDomainState:
                  url: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FunctionDomain resources.
-        :param pulumi.Input[str] function_id: The ID of the function you want to create a domain with.
-        :param pulumi.Input[str] hostname: The hostname that should resolve to your function id native domain.
-               You should use a CNAME domain record that point to your native function `domain_name` for it.
+        :param pulumi.Input[str] function_id: The unique identifier of the function.
+        :param pulumi.Input[str] hostname: The hostname with a CNAME record.
                
-               > **Important** Updates to `function_id` or `hostname` will recreate the domain.
-        :param pulumi.Input[str] region: (Defaults to provider `region`) The region in where the domain was created.
-        :param pulumi.Input[str] url: The URL that triggers the function
+               We recommend you use a CNAME domain record that point to your native function `domain_name` for it.
+               
+               > **Important** Updating the `function_id` or `hostname` arguments will recreate the domain.
+        :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the domain was created.
+        :param pulumi.Input[str] url: The URL used to query the function.
         """
         if function_id is not None:
             pulumi.set(__self__, "function_id", function_id)
@@ -101,7 +109,7 @@ class _FunctionDomainState:
     @pulumi.getter(name="functionId")
     def function_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the function you want to create a domain with.
+        The unique identifier of the function.
         """
         return pulumi.get(self, "function_id")
 
@@ -113,10 +121,11 @@ class _FunctionDomainState:
     @pulumi.getter
     def hostname(self) -> Optional[pulumi.Input[str]]:
         """
-        The hostname that should resolve to your function id native domain.
-        You should use a CNAME domain record that point to your native function `domain_name` for it.
+        The hostname with a CNAME record.
 
-        > **Important** Updates to `function_id` or `hostname` will recreate the domain.
+        We recommend you use a CNAME domain record that point to your native function `domain_name` for it.
+
+        > **Important** Updating the `function_id` or `hostname` arguments will recreate the domain.
         """
         return pulumi.get(self, "hostname")
 
@@ -128,7 +137,7 @@ class _FunctionDomainState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        (Defaults to provider `region`) The region in where the domain was created.
+        (Defaults to provider `region`) The region in which the domain was created.
         """
         return pulumi.get(self, "region")
 
@@ -140,7 +149,7 @@ class _FunctionDomainState:
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[str]]:
         """
-        The URL that triggers the function
+        The URL used to query the function.
         """
         return pulumi.get(self, "url")
 
@@ -159,12 +168,13 @@ class FunctionDomain(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Function Domain bindings.
-        For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions).
+        The `FunctionDomain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+
+        Refer to the Functions domain [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-a-custom-domain-name-to-a-function/) and the [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-domains-list-all-domain-name-bindings) for more information.
 
         ## Example Usage
 
-        ### Basic
+        This command allows to bind a custom domain name to a function.
 
         ```python
         import pulumi
@@ -186,7 +196,7 @@ class FunctionDomain(pulumi.CustomResource):
 
         ## Import
 
-        Domain can be imported using the `{region}/{id}`, e.g.
+        Function domain binding can be imported using `{region}/{id}`, as shown below:
 
         bash
 
@@ -196,12 +206,13 @@ class FunctionDomain(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] function_id: The ID of the function you want to create a domain with.
-        :param pulumi.Input[str] hostname: The hostname that should resolve to your function id native domain.
-               You should use a CNAME domain record that point to your native function `domain_name` for it.
+        :param pulumi.Input[str] function_id: The unique identifier of the function.
+        :param pulumi.Input[str] hostname: The hostname with a CNAME record.
                
-               > **Important** Updates to `function_id` or `hostname` will recreate the domain.
-        :param pulumi.Input[str] region: (Defaults to provider `region`) The region in where the domain was created.
+               We recommend you use a CNAME domain record that point to your native function `domain_name` for it.
+               
+               > **Important** Updating the `function_id` or `hostname` arguments will recreate the domain.
+        :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the domain was created.
         """
         ...
     @overload
@@ -210,12 +221,13 @@ class FunctionDomain(pulumi.CustomResource):
                  args: FunctionDomainArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Function Domain bindings.
-        For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions).
+        The `FunctionDomain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+
+        Refer to the Functions domain [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-a-custom-domain-name-to-a-function/) and the [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-domains-list-all-domain-name-bindings) for more information.
 
         ## Example Usage
 
-        ### Basic
+        This command allows to bind a custom domain name to a function.
 
         ```python
         import pulumi
@@ -237,7 +249,7 @@ class FunctionDomain(pulumi.CustomResource):
 
         ## Import
 
-        Domain can be imported using the `{region}/{id}`, e.g.
+        Function domain binding can be imported using `{region}/{id}`, as shown below:
 
         bash
 
@@ -301,13 +313,14 @@ class FunctionDomain(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] function_id: The ID of the function you want to create a domain with.
-        :param pulumi.Input[str] hostname: The hostname that should resolve to your function id native domain.
-               You should use a CNAME domain record that point to your native function `domain_name` for it.
+        :param pulumi.Input[str] function_id: The unique identifier of the function.
+        :param pulumi.Input[str] hostname: The hostname with a CNAME record.
                
-               > **Important** Updates to `function_id` or `hostname` will recreate the domain.
-        :param pulumi.Input[str] region: (Defaults to provider `region`) The region in where the domain was created.
-        :param pulumi.Input[str] url: The URL that triggers the function
+               We recommend you use a CNAME domain record that point to your native function `domain_name` for it.
+               
+               > **Important** Updating the `function_id` or `hostname` arguments will recreate the domain.
+        :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the domain was created.
+        :param pulumi.Input[str] url: The URL used to query the function.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -323,7 +336,7 @@ class FunctionDomain(pulumi.CustomResource):
     @pulumi.getter(name="functionId")
     def function_id(self) -> pulumi.Output[str]:
         """
-        The ID of the function you want to create a domain with.
+        The unique identifier of the function.
         """
         return pulumi.get(self, "function_id")
 
@@ -331,10 +344,11 @@ class FunctionDomain(pulumi.CustomResource):
     @pulumi.getter
     def hostname(self) -> pulumi.Output[str]:
         """
-        The hostname that should resolve to your function id native domain.
-        You should use a CNAME domain record that point to your native function `domain_name` for it.
+        The hostname with a CNAME record.
 
-        > **Important** Updates to `function_id` or `hostname` will recreate the domain.
+        We recommend you use a CNAME domain record that point to your native function `domain_name` for it.
+
+        > **Important** Updating the `function_id` or `hostname` arguments will recreate the domain.
         """
         return pulumi.get(self, "hostname")
 
@@ -342,7 +356,7 @@ class FunctionDomain(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        (Defaults to provider `region`) The region in where the domain was created.
+        (Defaults to provider `region`) The region in which the domain was created.
         """
         return pulumi.get(self, "region")
 
@@ -350,7 +364,7 @@ class FunctionDomain(pulumi.CustomResource):
     @pulumi.getter
     def url(self) -> pulumi.Output[str]:
         """
-        The URL that triggers the function
+        The URL used to query the function.
         """
         return pulumi.get(self, "url")
 

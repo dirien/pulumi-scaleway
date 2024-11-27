@@ -11,10 +11,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about the Bucket.
-// For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+// The `ObjectBucket` data source is used to retrieve information about an Object Storage bucket.
 //
-// ## Example Usage
+// Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/how-to/create-a-bucket/) for more information.
+//
+// ## Retrieve an Object Storage bucket
+//
+// The following commands allow you to:
+//
+// - retrieve a bucket by its name
+// - retrieve a bucket by its ID
 //
 // ```go
 // package main
@@ -45,7 +51,7 @@ import (
 //
 // ```
 //
-// ### Fetching the bucket from a specific project
+// ## Retrieve a bucket from a specific project
 //
 // ```go
 // package main
@@ -84,7 +90,7 @@ func LookupObjectBucket(ctx *pulumi.Context, args *LookupObjectBucketArgs, opts 
 // A collection of arguments for invoking getObjectBucket.
 type LookupObjectBucketArgs struct {
 	Name *string `pulumi:"name"`
-	// `projectId`) The ID of the project the bucket is associated with.
+	// `projectId`) The ID of the project with which the bucket is associated.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the bucket exists.
 	Region *string `pulumi:"region"`
@@ -111,21 +117,27 @@ type LookupObjectBucketResult struct {
 
 func LookupObjectBucketOutput(ctx *pulumi.Context, args LookupObjectBucketOutputArgs, opts ...pulumi.InvokeOption) LookupObjectBucketResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupObjectBucketResult, error) {
+		ApplyT(func(v interface{}) (LookupObjectBucketResultOutput, error) {
 			args := v.(LookupObjectBucketArgs)
-			r, err := LookupObjectBucket(ctx, &args, opts...)
-			var s LookupObjectBucketResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupObjectBucketResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getObjectBucket:getObjectBucket", args, &rv, "", opts...)
+			if err != nil {
+				return LookupObjectBucketResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupObjectBucketResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupObjectBucketResultOutput), nil
+			}
+			return output, nil
 		}).(LookupObjectBucketResultOutput)
 }
 
 // A collection of arguments for invoking getObjectBucket.
 type LookupObjectBucketOutputArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// `projectId`) The ID of the project the bucket is associated with.
+	// `projectId`) The ID of the project with which the bucket is associated.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region in which the bucket exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`

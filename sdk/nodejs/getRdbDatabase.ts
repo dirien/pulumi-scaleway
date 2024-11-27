@@ -20,7 +20,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getRdbDatabase(args: GetRdbDatabaseArgs, opts?: pulumi.InvokeOptions): Promise<GetRdbDatabaseResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getRdbDatabase:getRdbDatabase", {
         "instanceId": args.instanceId,
@@ -84,7 +83,12 @@ export interface GetRdbDatabaseResult {
  * ```
  */
 export function getRdbDatabaseOutput(args: GetRdbDatabaseOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRdbDatabaseResult> {
-    return pulumi.output(args).apply((a: any) => getRdbDatabase(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getRdbDatabase:getRdbDatabase", {
+        "instanceId": args.instanceId,
+        "name": args.name,
+        "region": args.region,
+    }, opts);
 }
 
 /**

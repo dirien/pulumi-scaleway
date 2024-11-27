@@ -22,7 +22,6 @@ import * as utilities from "./utilities";
  */
 export function getK8sCluster(args?: GetK8sClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetK8sClusterResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getK8sCluster:getK8sCluster", {
         "clusterId": args.clusterId,
@@ -156,7 +155,14 @@ export interface GetK8sClusterResult {
  * ```
  */
 export function getK8sClusterOutput(args?: GetK8sClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetK8sClusterResult> {
-    return pulumi.output(args).apply((a: any) => getK8sCluster(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getK8sCluster:getK8sCluster", {
+        "clusterId": args.clusterId,
+        "name": args.name,
+        "projectId": args.projectId,
+        "region": args.region,
+    }, opts);
 }
 
 /**

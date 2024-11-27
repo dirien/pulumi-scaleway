@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = ['VpcPublicGatewayPatRuleArgs', 'VpcPublicGatewayPatRule']
@@ -288,11 +293,11 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
         sg01 = scaleway.InstanceSecurityGroup("sg01",
             inbound_default_policy="drop",
             outbound_default_policy="accept",
-            inbound_rules=[scaleway.InstanceSecurityGroupInboundRuleArgs(
-                action="accept",
-                port=22,
-                protocol="TCP",
-            )])
+            inbound_rules=[{
+                "action": "accept",
+                "port": 22,
+                "protocol": "TCP",
+            }])
         srv01 = scaleway.InstanceServer("srv01",
             type="PLAY2-NANO",
             image="ubuntu_jammy",
@@ -363,11 +368,11 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
         sg01 = scaleway.InstanceSecurityGroup("sg01",
             inbound_default_policy="drop",
             outbound_default_policy="accept",
-            inbound_rules=[scaleway.InstanceSecurityGroupInboundRuleArgs(
-                action="accept",
-                port=22,
-                protocol="TCP",
-            )])
+            inbound_rules=[{
+                "action": "accept",
+                "port": 22,
+                "protocol": "TCP",
+            }])
         srv01 = scaleway.InstanceServer("srv01",
             type="PLAY2-NANO",
             image="ubuntu_jammy",

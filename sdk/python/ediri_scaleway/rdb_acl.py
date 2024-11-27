@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -136,7 +141,7 @@ class RdbAcl(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acl_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbAclAclRuleArgs']]]]] = None,
+                 acl_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RdbAclAclRuleArgs', 'RdbAclAclRuleArgsDict']]]]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -161,10 +166,10 @@ class RdbAcl(pulumi.CustomResource):
             password="thiZ_is_v&ry_s3cret")
         main_rdb_acl = scaleway.RdbAcl("mainRdbAcl",
             instance_id=main_rdb_instance.id,
-            acl_rules=[scaleway.RdbAclAclRuleArgs(
-                ip="1.2.3.4/32",
-                description="foo",
-            )])
+            acl_rules=[{
+                "ip": "1.2.3.4/32",
+                "description": "foo",
+            }])
         ```
 
         ## Import
@@ -179,7 +184,7 @@ class RdbAcl(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbAclAclRuleArgs']]]] acl_rules: A list of ACLs (structure is described below)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RdbAclAclRuleArgs', 'RdbAclAclRuleArgsDict']]]] acl_rules: A list of ACLs (structure is described below)
         :param pulumi.Input[str] instance_id: UUID of the Database Instance.
                
                > **Important:** Updates to `instance_id` will recreate the Database ACL.
@@ -212,10 +217,10 @@ class RdbAcl(pulumi.CustomResource):
             password="thiZ_is_v&ry_s3cret")
         main_rdb_acl = scaleway.RdbAcl("mainRdbAcl",
             instance_id=main_rdb_instance.id,
-            acl_rules=[scaleway.RdbAclAclRuleArgs(
-                ip="1.2.3.4/32",
-                description="foo",
-            )])
+            acl_rules=[{
+                "ip": "1.2.3.4/32",
+                "description": "foo",
+            }])
         ```
 
         ## Import
@@ -243,7 +248,7 @@ class RdbAcl(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acl_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbAclAclRuleArgs']]]]] = None,
+                 acl_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RdbAclAclRuleArgs', 'RdbAclAclRuleArgsDict']]]]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -272,7 +277,7 @@ class RdbAcl(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            acl_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbAclAclRuleArgs']]]]] = None,
+            acl_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RdbAclAclRuleArgs', 'RdbAclAclRuleArgsDict']]]]] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None) -> 'RdbAcl':
         """
@@ -282,7 +287,7 @@ class RdbAcl(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RdbAclAclRuleArgs']]]] acl_rules: A list of ACLs (structure is described below)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RdbAclAclRuleArgs', 'RdbAclAclRuleArgsDict']]]] acl_rules: A list of ACLs (structure is described below)
         :param pulumi.Input[str] instance_id: UUID of the Database Instance.
                
                > **Important:** Updates to `instance_id` will recreate the Database ACL.

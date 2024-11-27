@@ -163,7 +163,7 @@ export class LbFrontend extends pulumi.CustomResource {
      */
     public readonly backendId!: pulumi.Output<string>;
     /**
-     * (Deprecated) First certificate ID used by the frontend.
+     * (Deprecated, use `certificateIds` instead) First certificate ID used by the frontend.
      *
      * @deprecated Please use certificate_ids
      */
@@ -265,7 +265,7 @@ export interface LbFrontendState {
      */
     backendId?: pulumi.Input<string>;
     /**
-     * (Deprecated) First certificate ID used by the frontend.
+     * (Deprecated, use `certificateIds` instead) First certificate ID used by the frontend.
      *
      * @deprecated Please use certificate_ids
      */

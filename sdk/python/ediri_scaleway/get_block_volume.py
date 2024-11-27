@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -122,9 +127,15 @@ def get_block_volume(name: Optional[str] = None,
                      zone: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBlockVolumeResult:
     """
-    Gets information about a Block Volume.
+    The `BlockVolume` data source is used to retrieve information about a Block Storage volume.
+    Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
-    ## Example Usage
+    ## Retrieve a Block Storage volume
+
+    The following commands allow you to:
+
+    - retrieve a Block Storage volume specified by its name
+    - retrieve a Block Storage volume specified by its ID
 
     ```python
     import pulumi
@@ -135,9 +146,9 @@ def get_block_volume(name: Optional[str] = None,
 
 
     :param str name: The name of the volume. Only one of `name` and `volume_id` should be specified.
-    :param str project_id: The ID of the project the volume is associated with.
-    :param str volume_id: The ID of the volume. Only one of `name` and `volume_id` should be specified.
-    :param str zone: `zone`) The zone in which the volume exists.
+    :param str project_id: The unique identifier of the Project to which the volume is associated.
+    :param str volume_id: The unique identifier of the volume. Only one of `name` and `volume_id` should be specified.
+    :param str zone: ). The zone in which the volume exists.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -157,18 +168,21 @@ def get_block_volume(name: Optional[str] = None,
         tags=pulumi.get(__ret__, 'tags'),
         volume_id=pulumi.get(__ret__, 'volume_id'),
         zone=pulumi.get(__ret__, 'zone'))
-
-
-@_utilities.lift_output_func(get_block_volume)
 def get_block_volume_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                             project_id: Optional[pulumi.Input[Optional[str]]] = None,
                             volume_id: Optional[pulumi.Input[Optional[str]]] = None,
                             zone: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBlockVolumeResult]:
     """
-    Gets information about a Block Volume.
+    The `BlockVolume` data source is used to retrieve information about a Block Storage volume.
+    Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
-    ## Example Usage
+    ## Retrieve a Block Storage volume
+
+    The following commands allow you to:
+
+    - retrieve a Block Storage volume specified by its name
+    - retrieve a Block Storage volume specified by its ID
 
     ```python
     import pulumi
@@ -179,8 +193,24 @@ def get_block_volume_output(name: Optional[pulumi.Input[Optional[str]]] = None,
 
 
     :param str name: The name of the volume. Only one of `name` and `volume_id` should be specified.
-    :param str project_id: The ID of the project the volume is associated with.
-    :param str volume_id: The ID of the volume. Only one of `name` and `volume_id` should be specified.
-    :param str zone: `zone`) The zone in which the volume exists.
+    :param str project_id: The unique identifier of the Project to which the volume is associated.
+    :param str volume_id: The unique identifier of the volume. Only one of `name` and `volume_id` should be specified.
+    :param str zone: ). The zone in which the volume exists.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['volumeId'] = volume_id
+    __args__['zone'] = zone
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getBlockVolume:getBlockVolume', __args__, opts=opts, typ=GetBlockVolumeResult)
+    return __ret__.apply(lambda __response__: GetBlockVolumeResult(
+        id=pulumi.get(__response__, 'id'),
+        iops=pulumi.get(__response__, 'iops'),
+        name=pulumi.get(__response__, 'name'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        size_in_gb=pulumi.get(__response__, 'size_in_gb'),
+        snapshot_id=pulumi.get(__response__, 'snapshot_id'),
+        tags=pulumi.get(__response__, 'tags'),
+        volume_id=pulumi.get(__response__, 'volume_id'),
+        zone=pulumi.get(__response__, 'zone')))

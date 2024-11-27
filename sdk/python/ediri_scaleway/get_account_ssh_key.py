@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -85,7 +90,7 @@ class GetAccountSshKeyResult:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
         """
-        The ID of the organization the SSH key is associated with.
+        The unique identifier of the Organization with which the SSH key is associated.
         """
         return pulumi.get(self, "organization_id")
 
@@ -98,7 +103,7 @@ class GetAccountSshKeyResult:
     @pulumi.getter(name="publicKey")
     def public_key(self) -> str:
         """
-        The SSH public key string
+        The string of the SSH public key.
         """
         return pulumi.get(self, "public_key")
 
@@ -136,9 +141,16 @@ def get_account_ssh_key(name: Optional[str] = None,
                         ssh_key_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccountSshKeyResult:
     """
-    Use this data source to get SSH key information based on its ID or name.
+    The `AccountSshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
 
-    ## Example Usage
+    Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/how-to/create-ssh-key/) and [API documentation](https://www.scaleway.com/en/developers/api/iam/#path-ssh-keys) for more information.
+
+    ## Retrieve the SSH key of a Scaleway account
+
+    The following commands allow you to:
+
+    - retrieve an SSH key by its name
+    - retrieve an SSH key by its ID
 
     ```python
     import pulumi
@@ -148,9 +160,9 @@ def get_account_ssh_key(name: Optional[str] = None,
     ```
 
 
-    :param str name: The SSH key name.
-    :param str project_id: `project_id`) The ID of the project the SSH key is associated with.
-    :param str ssh_key_id: The SSH key id.
+    :param str name: The name of the SSH key.
+    :param str project_id: `project_id`) The unique identifier of the project with which the SSH key is associated.
+    :param str ssh_key_id: The unique identifier of the SSH key.
            
            > **Note** You must specify at least one: `name` and/or `ssh_key_id`.
     """
@@ -172,17 +184,21 @@ def get_account_ssh_key(name: Optional[str] = None,
         public_key=pulumi.get(__ret__, 'public_key'),
         ssh_key_id=pulumi.get(__ret__, 'ssh_key_id'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-
-
-@_utilities.lift_output_func(get_account_ssh_key)
 def get_account_ssh_key_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                ssh_key_id: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccountSshKeyResult]:
     """
-    Use this data source to get SSH key information based on its ID or name.
+    The `AccountSshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
 
-    ## Example Usage
+    Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/how-to/create-ssh-key/) and [API documentation](https://www.scaleway.com/en/developers/api/iam/#path-ssh-keys) for more information.
+
+    ## Retrieve the SSH key of a Scaleway account
+
+    The following commands allow you to:
+
+    - retrieve an SSH key by its name
+    - retrieve an SSH key by its ID
 
     ```python
     import pulumi
@@ -192,10 +208,26 @@ def get_account_ssh_key_output(name: Optional[pulumi.Input[Optional[str]]] = Non
     ```
 
 
-    :param str name: The SSH key name.
-    :param str project_id: `project_id`) The ID of the project the SSH key is associated with.
-    :param str ssh_key_id: The SSH key id.
+    :param str name: The name of the SSH key.
+    :param str project_id: `project_id`) The unique identifier of the project with which the SSH key is associated.
+    :param str ssh_key_id: The unique identifier of the SSH key.
            
            > **Note** You must specify at least one: `name` and/or `ssh_key_id`.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['projectId'] = project_id
+    __args__['sshKeyId'] = ssh_key_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getAccountSshKey:getAccountSshKey', __args__, opts=opts, typ=GetAccountSshKeyResult)
+    return __ret__.apply(lambda __response__: GetAccountSshKeyResult(
+        created_at=pulumi.get(__response__, 'created_at'),
+        disabled=pulumi.get(__response__, 'disabled'),
+        fingerprint=pulumi.get(__response__, 'fingerprint'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        public_key=pulumi.get(__response__, 'public_key'),
+        ssh_key_id=pulumi.get(__response__, 'ssh_key_id'),
+        updated_at=pulumi.get(__response__, 'updated_at')))

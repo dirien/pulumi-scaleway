@@ -11,12 +11,11 @@ using Pulumi;
 namespace ediri.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Function Token.
-    /// For more information see [the documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#tokens-26b085).
+    /// The `scaleway.FunctionToken` resource allows you to create and manage authentication tokens for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+    /// 
+    /// Refer to the Functions tokens [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-auth-token-from-console/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-tokens-list-all-tokens) for more information.
     /// 
     /// ## Example Usage
-    /// 
-    /// ### Basic
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -54,7 +53,7 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Tokens can be imported using the `{region}/{id}`, e.g.
+    /// Tokens can be imported using `{region}/{id}`, as shown below:
     /// 
     /// bash
     /// 
@@ -78,7 +77,7 @@ namespace ediri.Scaleway
         public Output<string?> ExpiresAt { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the function.
+        /// The unique identifier of the function.
         /// 
         /// &gt; Only one of `namespace_id` or `function_id` must be set.
         /// </summary>
@@ -86,15 +85,15 @@ namespace ediri.Scaleway
         public Output<string?> FunctionId { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the function namespace.
+        /// The unique identifier of the Functions namespace.
         /// </summary>
         [Output("namespaceId")]
         public Output<string?> NamespaceId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`). The region in which the namespace should be created.
+        /// `region`). The region in which the namespace is created.
         /// 
-        /// &gt; **Important** Updates to any fields will recreate the token.
+        /// &gt; **Important** Updating any of the arguments above will recreate the token.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -169,7 +168,7 @@ namespace ediri.Scaleway
         public Input<string>? ExpiresAt { get; set; }
 
         /// <summary>
-        /// The ID of the function.
+        /// The unique identifier of the function.
         /// 
         /// &gt; Only one of `namespace_id` or `function_id` must be set.
         /// </summary>
@@ -177,15 +176,15 @@ namespace ediri.Scaleway
         public Input<string>? FunctionId { get; set; }
 
         /// <summary>
-        /// The ID of the function namespace.
+        /// The unique identifier of the Functions namespace.
         /// </summary>
         [Input("namespaceId")]
         public Input<string>? NamespaceId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the namespace should be created.
+        /// `region`). The region in which the namespace is created.
         /// 
-        /// &gt; **Important** Updates to any fields will recreate the token.
+        /// &gt; **Important** Updating any of the arguments above will recreate the token.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -211,7 +210,7 @@ namespace ediri.Scaleway
         public Input<string>? ExpiresAt { get; set; }
 
         /// <summary>
-        /// The ID of the function.
+        /// The unique identifier of the function.
         /// 
         /// &gt; Only one of `namespace_id` or `function_id` must be set.
         /// </summary>
@@ -219,15 +218,15 @@ namespace ediri.Scaleway
         public Input<string>? FunctionId { get; set; }
 
         /// <summary>
-        /// The ID of the function namespace.
+        /// The unique identifier of the Functions namespace.
         /// </summary>
         [Input("namespaceId")]
         public Input<string>? NamespaceId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the namespace should be created.
+        /// `region`). The region in which the namespace is created.
         /// 
-        /// &gt; **Important** Updates to any fields will recreate the token.
+        /// &gt; **Important** Updating any of the arguments above will recreate the token.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

@@ -16,10 +16,11 @@ package main
 
 import (
 	scaleway "github.com/dirien/pulumi-scaleway/provider/v2"
-	"github.com/pulumi/pulumi-terraform-bridge/pf/tfgen"
+	"github.com/dirien/pulumi-scaleway/provider/v2/pkg/version"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 )
 
 func main() {
 	// Modify the path to point to the new provider
-	tfgen.MainWithMuxer("scaleway", scaleway.Provider())
+	tfgen.Main("scaleway", version.Version, scaleway.Provider())
 }

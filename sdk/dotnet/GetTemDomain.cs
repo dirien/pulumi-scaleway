@@ -135,6 +135,7 @@ namespace ediri.Scaleway
     public sealed class GetTemDomainResult
     {
         public readonly bool AcceptTos;
+        public readonly bool Autoconfig;
         public readonly string CreatedAt;
         public readonly string DkimConfig;
         public readonly string DmarcConfig;
@@ -166,6 +167,8 @@ namespace ediri.Scaleway
         [OutputConstructor]
         private GetTemDomainResult(
             bool acceptTos,
+
+            bool autoconfig,
 
             string createdAt,
 
@@ -216,6 +219,7 @@ namespace ediri.Scaleway
             string status)
         {
             AcceptTos = acceptTos;
+            Autoconfig = autoconfig;
             CreatedAt = createdAt;
             DkimConfig = dkimConfig;
             DmarcConfig = dmarcConfig;

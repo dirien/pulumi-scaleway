@@ -505,6 +505,8 @@ type BaremetalServerPrivateNetwork struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// The id of the private network to attach.
 	Id string `pulumi:"id"`
+	// List of IPAM IP IDs to assign to the server in the requested private network.
+	IpamIpIds []string `pulumi:"ipamIpIds"`
 	// The private network status.
 	Status *string `pulumi:"status"`
 	// The date and time of the last update of the private network.
@@ -529,6 +531,8 @@ type BaremetalServerPrivateNetworkArgs struct {
 	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
 	// The id of the private network to attach.
 	Id pulumi.StringInput `pulumi:"id"`
+	// List of IPAM IP IDs to assign to the server in the requested private network.
+	IpamIpIds pulumi.StringArrayInput `pulumi:"ipamIpIds"`
 	// The private network status.
 	Status pulumi.StringPtrInput `pulumi:"status"`
 	// The date and time of the last update of the private network.
@@ -596,6 +600,11 @@ func (o BaremetalServerPrivateNetworkOutput) CreatedAt() pulumi.StringPtrOutput 
 // The id of the private network to attach.
 func (o BaremetalServerPrivateNetworkOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v BaremetalServerPrivateNetwork) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// List of IPAM IP IDs to assign to the server in the requested private network.
+func (o BaremetalServerPrivateNetworkOutput) IpamIpIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v BaremetalServerPrivateNetwork) []string { return v.IpamIpIds }).(pulumi.StringArrayOutput)
 }
 
 // The private network status.
@@ -731,15 +740,15 @@ func (o CockpitAlertManagerContactPointArrayOutput) Index(i pulumi.IntInput) Coc
 }
 
 type CockpitEndpoint struct {
-	// The alertmanager URL.
+	// (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
 	AlertmanagerUrl *string `pulumi:"alertmanagerUrl"`
-	// The grafana URL.
+	// (Deprecated) URL for Grafana.
 	GrafanaUrl *string `pulumi:"grafanaUrl"`
-	// The logs URL.
+	// (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 	LogsUrl *string `pulumi:"logsUrl"`
-	// The metrics URL.
+	// (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 	MetricsUrl *string `pulumi:"metricsUrl"`
-	// The traces URL.
+	// (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 	TracesUrl *string `pulumi:"tracesUrl"`
 }
 
@@ -755,15 +764,15 @@ type CockpitEndpointInput interface {
 }
 
 type CockpitEndpointArgs struct {
-	// The alertmanager URL.
+	// (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
 	AlertmanagerUrl pulumi.StringPtrInput `pulumi:"alertmanagerUrl"`
-	// The grafana URL.
+	// (Deprecated) URL for Grafana.
 	GrafanaUrl pulumi.StringPtrInput `pulumi:"grafanaUrl"`
-	// The logs URL.
+	// (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 	LogsUrl pulumi.StringPtrInput `pulumi:"logsUrl"`
-	// The metrics URL.
+	// (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 	MetricsUrl pulumi.StringPtrInput `pulumi:"metricsUrl"`
-	// The traces URL.
+	// (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 	TracesUrl pulumi.StringPtrInput `pulumi:"tracesUrl"`
 }
 
@@ -818,27 +827,27 @@ func (o CockpitEndpointOutput) ToCockpitEndpointOutputWithContext(ctx context.Co
 	return o
 }
 
-// The alertmanager URL.
+// (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
 func (o CockpitEndpointOutput) AlertmanagerUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CockpitEndpoint) *string { return v.AlertmanagerUrl }).(pulumi.StringPtrOutput)
 }
 
-// The grafana URL.
+// (Deprecated) URL for Grafana.
 func (o CockpitEndpointOutput) GrafanaUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CockpitEndpoint) *string { return v.GrafanaUrl }).(pulumi.StringPtrOutput)
 }
 
-// The logs URL.
+// (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 func (o CockpitEndpointOutput) LogsUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CockpitEndpoint) *string { return v.LogsUrl }).(pulumi.StringPtrOutput)
 }
 
-// The metrics URL.
+// (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 func (o CockpitEndpointOutput) MetricsUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CockpitEndpoint) *string { return v.MetricsUrl }).(pulumi.StringPtrOutput)
 }
 
-// The traces URL.
+// (Deprecated) URL for [traces](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#traces) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 func (o CockpitEndpointOutput) TracesUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CockpitEndpoint) *string { return v.TracesUrl }).(pulumi.StringPtrOutput)
 }
@@ -970,23 +979,23 @@ func (o CockpitPushUrlArrayOutput) Index(i pulumi.IntInput) CockpitPushUrlOutput
 }
 
 type CockpitTokenScopes struct {
-	// Query logs.
+	// Permission to query logs.
 	QueryLogs *bool `pulumi:"queryLogs"`
-	// Query metrics.
+	// Permission to query metrics.
 	QueryMetrics *bool `pulumi:"queryMetrics"`
-	// Query traces.
+	// Permission to query traces.
 	QueryTraces *bool `pulumi:"queryTraces"`
-	// Setup alerts.
+	// Permission to set up alerts.
 	SetupAlerts *bool `pulumi:"setupAlerts"`
-	// Setup logs rules.
+	// Permission to set up logs rules.
 	SetupLogsRules *bool `pulumi:"setupLogsRules"`
-	// Setup metrics rules.
+	// Permission to set up metrics rules.
 	SetupMetricsRules *bool `pulumi:"setupMetricsRules"`
-	// Write logs.
+	// Permission to write logs.
 	WriteLogs *bool `pulumi:"writeLogs"`
-	// Write metrics.
+	// Permission to write metrics.
 	WriteMetrics *bool `pulumi:"writeMetrics"`
-	// Write traces.
+	// Permission to write traces.
 	WriteTraces *bool `pulumi:"writeTraces"`
 }
 
@@ -1002,23 +1011,23 @@ type CockpitTokenScopesInput interface {
 }
 
 type CockpitTokenScopesArgs struct {
-	// Query logs.
+	// Permission to query logs.
 	QueryLogs pulumi.BoolPtrInput `pulumi:"queryLogs"`
-	// Query metrics.
+	// Permission to query metrics.
 	QueryMetrics pulumi.BoolPtrInput `pulumi:"queryMetrics"`
-	// Query traces.
+	// Permission to query traces.
 	QueryTraces pulumi.BoolPtrInput `pulumi:"queryTraces"`
-	// Setup alerts.
+	// Permission to set up alerts.
 	SetupAlerts pulumi.BoolPtrInput `pulumi:"setupAlerts"`
-	// Setup logs rules.
+	// Permission to set up logs rules.
 	SetupLogsRules pulumi.BoolPtrInput `pulumi:"setupLogsRules"`
-	// Setup metrics rules.
+	// Permission to set up metrics rules.
 	SetupMetricsRules pulumi.BoolPtrInput `pulumi:"setupMetricsRules"`
-	// Write logs.
+	// Permission to write logs.
 	WriteLogs pulumi.BoolPtrInput `pulumi:"writeLogs"`
-	// Write metrics.
+	// Permission to write metrics.
 	WriteMetrics pulumi.BoolPtrInput `pulumi:"writeMetrics"`
-	// Write traces.
+	// Permission to write traces.
 	WriteTraces pulumi.BoolPtrInput `pulumi:"writeTraces"`
 }
 
@@ -1099,47 +1108,47 @@ func (o CockpitTokenScopesOutput) ToCockpitTokenScopesPtrOutputWithContext(ctx c
 	}).(CockpitTokenScopesPtrOutput)
 }
 
-// Query logs.
+// Permission to query logs.
 func (o CockpitTokenScopesOutput) QueryLogs() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.QueryLogs }).(pulumi.BoolPtrOutput)
 }
 
-// Query metrics.
+// Permission to query metrics.
 func (o CockpitTokenScopesOutput) QueryMetrics() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.QueryMetrics }).(pulumi.BoolPtrOutput)
 }
 
-// Query traces.
+// Permission to query traces.
 func (o CockpitTokenScopesOutput) QueryTraces() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.QueryTraces }).(pulumi.BoolPtrOutput)
 }
 
-// Setup alerts.
+// Permission to set up alerts.
 func (o CockpitTokenScopesOutput) SetupAlerts() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.SetupAlerts }).(pulumi.BoolPtrOutput)
 }
 
-// Setup logs rules.
+// Permission to set up logs rules.
 func (o CockpitTokenScopesOutput) SetupLogsRules() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.SetupLogsRules }).(pulumi.BoolPtrOutput)
 }
 
-// Setup metrics rules.
+// Permission to set up metrics rules.
 func (o CockpitTokenScopesOutput) SetupMetricsRules() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.SetupMetricsRules }).(pulumi.BoolPtrOutput)
 }
 
-// Write logs.
+// Permission to write logs.
 func (o CockpitTokenScopesOutput) WriteLogs() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.WriteLogs }).(pulumi.BoolPtrOutput)
 }
 
-// Write metrics.
+// Permission to write metrics.
 func (o CockpitTokenScopesOutput) WriteMetrics() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.WriteMetrics }).(pulumi.BoolPtrOutput)
 }
 
-// Write traces.
+// Permission to write traces.
 func (o CockpitTokenScopesOutput) WriteTraces() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v CockpitTokenScopes) *bool { return v.WriteTraces }).(pulumi.BoolPtrOutput)
 }
@@ -1168,7 +1177,7 @@ func (o CockpitTokenScopesPtrOutput) Elem() CockpitTokenScopesOutput {
 	}).(CockpitTokenScopesOutput)
 }
 
-// Query logs.
+// Permission to query logs.
 func (o CockpitTokenScopesPtrOutput) QueryLogs() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
 		if v == nil {
@@ -1178,7 +1187,7 @@ func (o CockpitTokenScopesPtrOutput) QueryLogs() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Query metrics.
+// Permission to query metrics.
 func (o CockpitTokenScopesPtrOutput) QueryMetrics() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
 		if v == nil {
@@ -1188,7 +1197,7 @@ func (o CockpitTokenScopesPtrOutput) QueryMetrics() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Query traces.
+// Permission to query traces.
 func (o CockpitTokenScopesPtrOutput) QueryTraces() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
 		if v == nil {
@@ -1198,7 +1207,7 @@ func (o CockpitTokenScopesPtrOutput) QueryTraces() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Setup alerts.
+// Permission to set up alerts.
 func (o CockpitTokenScopesPtrOutput) SetupAlerts() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
 		if v == nil {
@@ -1208,7 +1217,7 @@ func (o CockpitTokenScopesPtrOutput) SetupAlerts() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Setup logs rules.
+// Permission to set up logs rules.
 func (o CockpitTokenScopesPtrOutput) SetupLogsRules() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
 		if v == nil {
@@ -1218,7 +1227,7 @@ func (o CockpitTokenScopesPtrOutput) SetupLogsRules() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Setup metrics rules.
+// Permission to set up metrics rules.
 func (o CockpitTokenScopesPtrOutput) SetupMetricsRules() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
 		if v == nil {
@@ -1228,7 +1237,7 @@ func (o CockpitTokenScopesPtrOutput) SetupMetricsRules() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Write logs.
+// Permission to write logs.
 func (o CockpitTokenScopesPtrOutput) WriteLogs() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
 		if v == nil {
@@ -1238,7 +1247,7 @@ func (o CockpitTokenScopesPtrOutput) WriteLogs() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Write metrics.
+// Permission to write metrics.
 func (o CockpitTokenScopesPtrOutput) WriteMetrics() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
 		if v == nil {
@@ -1248,7 +1257,7 @@ func (o CockpitTokenScopesPtrOutput) WriteMetrics() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Write traces.
+// Permission to write traces.
 func (o CockpitTokenScopesPtrOutput) WriteTraces() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CockpitTokenScopes) *bool {
 		if v == nil {
@@ -1259,13 +1268,13 @@ func (o CockpitTokenScopesPtrOutput) WriteTraces() pulumi.BoolPtrOutput {
 }
 
 type ContainerTriggerNats struct {
-	// ID of the mnq nats account.
+	// unique identifier of the Messaging and Queuing NATS account.
 	AccountId *string `pulumi:"accountId"`
-	// ID of the project that contain the mnq nats account, defaults to provider's project
+	// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
 	ProjectId *string `pulumi:"projectId"`
-	// Region where the mnq nats account is, defaults to provider's region
+	// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
 	Region *string `pulumi:"region"`
-	// The subject to listen to
+	// The subject to listen to.
 	Subject string `pulumi:"subject"`
 }
 
@@ -1281,13 +1290,13 @@ type ContainerTriggerNatsInput interface {
 }
 
 type ContainerTriggerNatsArgs struct {
-	// ID of the mnq nats account.
+	// unique identifier of the Messaging and Queuing NATS account.
 	AccountId pulumi.StringPtrInput `pulumi:"accountId"`
-	// ID of the project that contain the mnq nats account, defaults to provider's project
+	// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// Region where the mnq nats account is, defaults to provider's region
+	// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
 	Region pulumi.StringPtrInput `pulumi:"region"`
-	// The subject to listen to
+	// The subject to listen to.
 	Subject pulumi.StringInput `pulumi:"subject"`
 }
 
@@ -1368,22 +1377,22 @@ func (o ContainerTriggerNatsOutput) ToContainerTriggerNatsPtrOutputWithContext(c
 	}).(ContainerTriggerNatsPtrOutput)
 }
 
-// ID of the mnq nats account.
+// unique identifier of the Messaging and Queuing NATS account.
 func (o ContainerTriggerNatsOutput) AccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerNats) *string { return v.AccountId }).(pulumi.StringPtrOutput)
 }
 
-// ID of the project that contain the mnq nats account, defaults to provider's project
+// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
 func (o ContainerTriggerNatsOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerNats) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
-// Region where the mnq nats account is, defaults to provider's region
+// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
 func (o ContainerTriggerNatsOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerNats) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// The subject to listen to
+// The subject to listen to.
 func (o ContainerTriggerNatsOutput) Subject() pulumi.StringOutput {
 	return o.ApplyT(func(v ContainerTriggerNats) string { return v.Subject }).(pulumi.StringOutput)
 }
@@ -1412,7 +1421,7 @@ func (o ContainerTriggerNatsPtrOutput) Elem() ContainerTriggerNatsOutput {
 	}).(ContainerTriggerNatsOutput)
 }
 
-// ID of the mnq nats account.
+// unique identifier of the Messaging and Queuing NATS account.
 func (o ContainerTriggerNatsPtrOutput) AccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerNats) *string {
 		if v == nil {
@@ -1422,7 +1431,7 @@ func (o ContainerTriggerNatsPtrOutput) AccountId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// ID of the project that contain the mnq nats account, defaults to provider's project
+// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
 func (o ContainerTriggerNatsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerNats) *string {
 		if v == nil {
@@ -1432,7 +1441,7 @@ func (o ContainerTriggerNatsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Region where the mnq nats account is, defaults to provider's region
+// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
 func (o ContainerTriggerNatsPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerNats) *string {
 		if v == nil {
@@ -1442,7 +1451,7 @@ func (o ContainerTriggerNatsPtrOutput) Region() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The subject to listen to
+// The subject to listen to.
 func (o ContainerTriggerNatsPtrOutput) Subject() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerNats) *string {
 		if v == nil {
@@ -1453,15 +1462,15 @@ func (o ContainerTriggerNatsPtrOutput) Subject() pulumi.StringPtrOutput {
 }
 
 type ContainerTriggerSqs struct {
-	// ID of the mnq namespace. Deprecated.
+	// ID of the Messaging and Queuing namespace. This argument is deprecated.
 	//
 	// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 	NamespaceId *string `pulumi:"namespaceId"`
-	// ID of the project where sqs is enabled, defaults to provider's project
+	// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 	ProjectId *string `pulumi:"projectId"`
-	// Name of the queue
+	// The name of the SQS queue.
 	Queue string `pulumi:"queue"`
-	// Region where sqs is enabled, defaults to provider's region
+	// Region where SQS is enabled (defaults to provider `region`)
 	Region *string `pulumi:"region"`
 }
 
@@ -1477,15 +1486,15 @@ type ContainerTriggerSqsInput interface {
 }
 
 type ContainerTriggerSqsArgs struct {
-	// ID of the mnq namespace. Deprecated.
+	// ID of the Messaging and Queuing namespace. This argument is deprecated.
 	//
 	// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 	NamespaceId pulumi.StringPtrInput `pulumi:"namespaceId"`
-	// ID of the project where sqs is enabled, defaults to provider's project
+	// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// Name of the queue
+	// The name of the SQS queue.
 	Queue pulumi.StringInput `pulumi:"queue"`
-	// Region where sqs is enabled, defaults to provider's region
+	// Region where SQS is enabled (defaults to provider `region`)
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
@@ -1566,24 +1575,24 @@ func (o ContainerTriggerSqsOutput) ToContainerTriggerSqsPtrOutputWithContext(ctx
 	}).(ContainerTriggerSqsPtrOutput)
 }
 
-// ID of the mnq namespace. Deprecated.
+// ID of the Messaging and Queuing namespace. This argument is deprecated.
 //
 // Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 func (o ContainerTriggerSqsOutput) NamespaceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) *string { return v.NamespaceId }).(pulumi.StringPtrOutput)
 }
 
-// ID of the project where sqs is enabled, defaults to provider's project
+// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 func (o ContainerTriggerSqsOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
-// Name of the queue
+// The name of the SQS queue.
 func (o ContainerTriggerSqsOutput) Queue() pulumi.StringOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) string { return v.Queue }).(pulumi.StringOutput)
 }
 
-// Region where sqs is enabled, defaults to provider's region
+// Region where SQS is enabled (defaults to provider `region`)
 func (o ContainerTriggerSqsOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ContainerTriggerSqs) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -1612,7 +1621,7 @@ func (o ContainerTriggerSqsPtrOutput) Elem() ContainerTriggerSqsOutput {
 	}).(ContainerTriggerSqsOutput)
 }
 
-// ID of the mnq namespace. Deprecated.
+// ID of the Messaging and Queuing namespace. This argument is deprecated.
 //
 // Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 func (o ContainerTriggerSqsPtrOutput) NamespaceId() pulumi.StringPtrOutput {
@@ -1624,7 +1633,7 @@ func (o ContainerTriggerSqsPtrOutput) NamespaceId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// ID of the project where sqs is enabled, defaults to provider's project
+// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 func (o ContainerTriggerSqsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
 		if v == nil {
@@ -1634,7 +1643,7 @@ func (o ContainerTriggerSqsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Name of the queue
+// The name of the SQS queue.
 func (o ContainerTriggerSqsPtrOutput) Queue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
 		if v == nil {
@@ -1644,755 +1653,13 @@ func (o ContainerTriggerSqsPtrOutput) Queue() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Region where sqs is enabled, defaults to provider's region
+// Region where SQS is enabled (defaults to provider `region`)
 func (o ContainerTriggerSqsPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ContainerTriggerSqs) *string {
 		if v == nil {
 			return nil
 		}
 		return v.Region
-	}).(pulumi.StringPtrOutput)
-}
-
-type DocumentdbPrivateNetworkEndpointPrivateNetwork struct {
-	// The hostname of your endpoint.
-	Hostname *string `pulumi:"hostname"`
-	// The private network ID.
-	Id string `pulumi:"id"`
-	// The IP of your private network service.
-	Ip *string `pulumi:"ip"`
-	// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM) service if not set.
-	IpNet *string `pulumi:"ipNet"`
-	// The name of your private service.
-	Name *string `pulumi:"name"`
-	// The port of your private service.
-	Port *int `pulumi:"port"`
-	// The zone of your endpoint.
-	Zone *string `pulumi:"zone"`
-}
-
-// DocumentdbPrivateNetworkEndpointPrivateNetworkInput is an input type that accepts DocumentdbPrivateNetworkEndpointPrivateNetworkArgs and DocumentdbPrivateNetworkEndpointPrivateNetworkOutput values.
-// You can construct a concrete instance of `DocumentdbPrivateNetworkEndpointPrivateNetworkInput` via:
-//
-//	DocumentdbPrivateNetworkEndpointPrivateNetworkArgs{...}
-type DocumentdbPrivateNetworkEndpointPrivateNetworkInput interface {
-	pulumi.Input
-
-	ToDocumentdbPrivateNetworkEndpointPrivateNetworkOutput() DocumentdbPrivateNetworkEndpointPrivateNetworkOutput
-	ToDocumentdbPrivateNetworkEndpointPrivateNetworkOutputWithContext(context.Context) DocumentdbPrivateNetworkEndpointPrivateNetworkOutput
-}
-
-type DocumentdbPrivateNetworkEndpointPrivateNetworkArgs struct {
-	// The hostname of your endpoint.
-	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
-	// The private network ID.
-	Id pulumi.StringInput `pulumi:"id"`
-	// The IP of your private network service.
-	Ip pulumi.StringPtrInput `pulumi:"ip"`
-	// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM) service if not set.
-	IpNet pulumi.StringPtrInput `pulumi:"ipNet"`
-	// The name of your private service.
-	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The port of your private service.
-	Port pulumi.IntPtrInput `pulumi:"port"`
-	// The zone of your endpoint.
-	Zone pulumi.StringPtrInput `pulumi:"zone"`
-}
-
-func (DocumentdbPrivateNetworkEndpointPrivateNetworkArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*DocumentdbPrivateNetworkEndpointPrivateNetwork)(nil)).Elem()
-}
-
-func (i DocumentdbPrivateNetworkEndpointPrivateNetworkArgs) ToDocumentdbPrivateNetworkEndpointPrivateNetworkOutput() DocumentdbPrivateNetworkEndpointPrivateNetworkOutput {
-	return i.ToDocumentdbPrivateNetworkEndpointPrivateNetworkOutputWithContext(context.Background())
-}
-
-func (i DocumentdbPrivateNetworkEndpointPrivateNetworkArgs) ToDocumentdbPrivateNetworkEndpointPrivateNetworkOutputWithContext(ctx context.Context) DocumentdbPrivateNetworkEndpointPrivateNetworkOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbPrivateNetworkEndpointPrivateNetworkOutput)
-}
-
-func (i DocumentdbPrivateNetworkEndpointPrivateNetworkArgs) ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput() DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput {
-	return i.ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutputWithContext(context.Background())
-}
-
-func (i DocumentdbPrivateNetworkEndpointPrivateNetworkArgs) ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutputWithContext(ctx context.Context) DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbPrivateNetworkEndpointPrivateNetworkOutput).ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutputWithContext(ctx)
-}
-
-// DocumentdbPrivateNetworkEndpointPrivateNetworkPtrInput is an input type that accepts DocumentdbPrivateNetworkEndpointPrivateNetworkArgs, DocumentdbPrivateNetworkEndpointPrivateNetworkPtr and DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput values.
-// You can construct a concrete instance of `DocumentdbPrivateNetworkEndpointPrivateNetworkPtrInput` via:
-//
-//	        DocumentdbPrivateNetworkEndpointPrivateNetworkArgs{...}
-//
-//	or:
-//
-//	        nil
-type DocumentdbPrivateNetworkEndpointPrivateNetworkPtrInput interface {
-	pulumi.Input
-
-	ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput() DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput
-	ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutputWithContext(context.Context) DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput
-}
-
-type documentdbPrivateNetworkEndpointPrivateNetworkPtrType DocumentdbPrivateNetworkEndpointPrivateNetworkArgs
-
-func DocumentdbPrivateNetworkEndpointPrivateNetworkPtr(v *DocumentdbPrivateNetworkEndpointPrivateNetworkArgs) DocumentdbPrivateNetworkEndpointPrivateNetworkPtrInput {
-	return (*documentdbPrivateNetworkEndpointPrivateNetworkPtrType)(v)
-}
-
-func (*documentdbPrivateNetworkEndpointPrivateNetworkPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DocumentdbPrivateNetworkEndpointPrivateNetwork)(nil)).Elem()
-}
-
-func (i *documentdbPrivateNetworkEndpointPrivateNetworkPtrType) ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput() DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput {
-	return i.ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutputWithContext(context.Background())
-}
-
-func (i *documentdbPrivateNetworkEndpointPrivateNetworkPtrType) ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutputWithContext(ctx context.Context) DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput)
-}
-
-type DocumentdbPrivateNetworkEndpointPrivateNetworkOutput struct{ *pulumi.OutputState }
-
-func (DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DocumentdbPrivateNetworkEndpointPrivateNetwork)(nil)).Elem()
-}
-
-func (o DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) ToDocumentdbPrivateNetworkEndpointPrivateNetworkOutput() DocumentdbPrivateNetworkEndpointPrivateNetworkOutput {
-	return o
-}
-
-func (o DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) ToDocumentdbPrivateNetworkEndpointPrivateNetworkOutputWithContext(ctx context.Context) DocumentdbPrivateNetworkEndpointPrivateNetworkOutput {
-	return o
-}
-
-func (o DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput() DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput {
-	return o.ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutputWithContext(context.Background())
-}
-
-func (o DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutputWithContext(ctx context.Context) DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v DocumentdbPrivateNetworkEndpointPrivateNetwork) *DocumentdbPrivateNetworkEndpointPrivateNetwork {
-		return &v
-	}).(DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput)
-}
-
-// The hostname of your endpoint.
-func (o DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) Hostname() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DocumentdbPrivateNetworkEndpointPrivateNetwork) *string { return v.Hostname }).(pulumi.StringPtrOutput)
-}
-
-// The private network ID.
-func (o DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v DocumentdbPrivateNetworkEndpointPrivateNetwork) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// The IP of your private network service.
-func (o DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) Ip() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DocumentdbPrivateNetworkEndpointPrivateNetwork) *string { return v.Ip }).(pulumi.StringPtrOutput)
-}
-
-// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM) service if not set.
-func (o DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) IpNet() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DocumentdbPrivateNetworkEndpointPrivateNetwork) *string { return v.IpNet }).(pulumi.StringPtrOutput)
-}
-
-// The name of your private service.
-func (o DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DocumentdbPrivateNetworkEndpointPrivateNetwork) *string { return v.Name }).(pulumi.StringPtrOutput)
-}
-
-// The port of your private service.
-func (o DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) Port() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v DocumentdbPrivateNetworkEndpointPrivateNetwork) *int { return v.Port }).(pulumi.IntPtrOutput)
-}
-
-// The zone of your endpoint.
-func (o DocumentdbPrivateNetworkEndpointPrivateNetworkOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DocumentdbPrivateNetworkEndpointPrivateNetwork) *string { return v.Zone }).(pulumi.StringPtrOutput)
-}
-
-type DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput struct{ *pulumi.OutputState }
-
-func (DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DocumentdbPrivateNetworkEndpointPrivateNetwork)(nil)).Elem()
-}
-
-func (o DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput) ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput() DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput {
-	return o
-}
-
-func (o DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput) ToDocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutputWithContext(ctx context.Context) DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput {
-	return o
-}
-
-func (o DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput) Elem() DocumentdbPrivateNetworkEndpointPrivateNetworkOutput {
-	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpointPrivateNetwork) DocumentdbPrivateNetworkEndpointPrivateNetwork {
-		if v != nil {
-			return *v
-		}
-		var ret DocumentdbPrivateNetworkEndpointPrivateNetwork
-		return ret
-	}).(DocumentdbPrivateNetworkEndpointPrivateNetworkOutput)
-}
-
-// The hostname of your endpoint.
-func (o DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput) Hostname() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpointPrivateNetwork) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Hostname
-	}).(pulumi.StringPtrOutput)
-}
-
-// The private network ID.
-func (o DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpointPrivateNetwork) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Id
-	}).(pulumi.StringPtrOutput)
-}
-
-// The IP of your private network service.
-func (o DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput) Ip() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpointPrivateNetwork) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Ip
-	}).(pulumi.StringPtrOutput)
-}
-
-// The IP network address within the private subnet. This must be an IPv4 address with a CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM) service if not set.
-func (o DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput) IpNet() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpointPrivateNetwork) *string {
-		if v == nil {
-			return nil
-		}
-		return v.IpNet
-	}).(pulumi.StringPtrOutput)
-}
-
-// The name of your private service.
-func (o DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpointPrivateNetwork) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Name
-	}).(pulumi.StringPtrOutput)
-}
-
-// The port of your private service.
-func (o DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput) Port() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpointPrivateNetwork) *int {
-		if v == nil {
-			return nil
-		}
-		return v.Port
-	}).(pulumi.IntPtrOutput)
-}
-
-// The zone of your endpoint.
-func (o DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DocumentdbPrivateNetworkEndpointPrivateNetwork) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Zone
-	}).(pulumi.StringPtrOutput)
-}
-
-type DocumentdbReadReplicaDirectAccess struct {
-	// The ID of the endpoint of the read replica.
-	EndpointId *string `pulumi:"endpointId"`
-	// Hostname of the endpoint. Only one of ip and hostname may be set.
-	Hostname *string `pulumi:"hostname"`
-	// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
-	Ip *string `pulumi:"ip"`
-	// Name of the endpoint.
-	Name *string `pulumi:"name"`
-	// TCP port of the endpoint.
-	Port *int `pulumi:"port"`
-}
-
-// DocumentdbReadReplicaDirectAccessInput is an input type that accepts DocumentdbReadReplicaDirectAccessArgs and DocumentdbReadReplicaDirectAccessOutput values.
-// You can construct a concrete instance of `DocumentdbReadReplicaDirectAccessInput` via:
-//
-//	DocumentdbReadReplicaDirectAccessArgs{...}
-type DocumentdbReadReplicaDirectAccessInput interface {
-	pulumi.Input
-
-	ToDocumentdbReadReplicaDirectAccessOutput() DocumentdbReadReplicaDirectAccessOutput
-	ToDocumentdbReadReplicaDirectAccessOutputWithContext(context.Context) DocumentdbReadReplicaDirectAccessOutput
-}
-
-type DocumentdbReadReplicaDirectAccessArgs struct {
-	// The ID of the endpoint of the read replica.
-	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
-	// Hostname of the endpoint. Only one of ip and hostname may be set.
-	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
-	// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
-	Ip pulumi.StringPtrInput `pulumi:"ip"`
-	// Name of the endpoint.
-	Name pulumi.StringPtrInput `pulumi:"name"`
-	// TCP port of the endpoint.
-	Port pulumi.IntPtrInput `pulumi:"port"`
-}
-
-func (DocumentdbReadReplicaDirectAccessArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*DocumentdbReadReplicaDirectAccess)(nil)).Elem()
-}
-
-func (i DocumentdbReadReplicaDirectAccessArgs) ToDocumentdbReadReplicaDirectAccessOutput() DocumentdbReadReplicaDirectAccessOutput {
-	return i.ToDocumentdbReadReplicaDirectAccessOutputWithContext(context.Background())
-}
-
-func (i DocumentdbReadReplicaDirectAccessArgs) ToDocumentdbReadReplicaDirectAccessOutputWithContext(ctx context.Context) DocumentdbReadReplicaDirectAccessOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbReadReplicaDirectAccessOutput)
-}
-
-func (i DocumentdbReadReplicaDirectAccessArgs) ToDocumentdbReadReplicaDirectAccessPtrOutput() DocumentdbReadReplicaDirectAccessPtrOutput {
-	return i.ToDocumentdbReadReplicaDirectAccessPtrOutputWithContext(context.Background())
-}
-
-func (i DocumentdbReadReplicaDirectAccessArgs) ToDocumentdbReadReplicaDirectAccessPtrOutputWithContext(ctx context.Context) DocumentdbReadReplicaDirectAccessPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbReadReplicaDirectAccessOutput).ToDocumentdbReadReplicaDirectAccessPtrOutputWithContext(ctx)
-}
-
-// DocumentdbReadReplicaDirectAccessPtrInput is an input type that accepts DocumentdbReadReplicaDirectAccessArgs, DocumentdbReadReplicaDirectAccessPtr and DocumentdbReadReplicaDirectAccessPtrOutput values.
-// You can construct a concrete instance of `DocumentdbReadReplicaDirectAccessPtrInput` via:
-//
-//	        DocumentdbReadReplicaDirectAccessArgs{...}
-//
-//	or:
-//
-//	        nil
-type DocumentdbReadReplicaDirectAccessPtrInput interface {
-	pulumi.Input
-
-	ToDocumentdbReadReplicaDirectAccessPtrOutput() DocumentdbReadReplicaDirectAccessPtrOutput
-	ToDocumentdbReadReplicaDirectAccessPtrOutputWithContext(context.Context) DocumentdbReadReplicaDirectAccessPtrOutput
-}
-
-type documentdbReadReplicaDirectAccessPtrType DocumentdbReadReplicaDirectAccessArgs
-
-func DocumentdbReadReplicaDirectAccessPtr(v *DocumentdbReadReplicaDirectAccessArgs) DocumentdbReadReplicaDirectAccessPtrInput {
-	return (*documentdbReadReplicaDirectAccessPtrType)(v)
-}
-
-func (*documentdbReadReplicaDirectAccessPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DocumentdbReadReplicaDirectAccess)(nil)).Elem()
-}
-
-func (i *documentdbReadReplicaDirectAccessPtrType) ToDocumentdbReadReplicaDirectAccessPtrOutput() DocumentdbReadReplicaDirectAccessPtrOutput {
-	return i.ToDocumentdbReadReplicaDirectAccessPtrOutputWithContext(context.Background())
-}
-
-func (i *documentdbReadReplicaDirectAccessPtrType) ToDocumentdbReadReplicaDirectAccessPtrOutputWithContext(ctx context.Context) DocumentdbReadReplicaDirectAccessPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbReadReplicaDirectAccessPtrOutput)
-}
-
-type DocumentdbReadReplicaDirectAccessOutput struct{ *pulumi.OutputState }
-
-func (DocumentdbReadReplicaDirectAccessOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DocumentdbReadReplicaDirectAccess)(nil)).Elem()
-}
-
-func (o DocumentdbReadReplicaDirectAccessOutput) ToDocumentdbReadReplicaDirectAccessOutput() DocumentdbReadReplicaDirectAccessOutput {
-	return o
-}
-
-func (o DocumentdbReadReplicaDirectAccessOutput) ToDocumentdbReadReplicaDirectAccessOutputWithContext(ctx context.Context) DocumentdbReadReplicaDirectAccessOutput {
-	return o
-}
-
-func (o DocumentdbReadReplicaDirectAccessOutput) ToDocumentdbReadReplicaDirectAccessPtrOutput() DocumentdbReadReplicaDirectAccessPtrOutput {
-	return o.ToDocumentdbReadReplicaDirectAccessPtrOutputWithContext(context.Background())
-}
-
-func (o DocumentdbReadReplicaDirectAccessOutput) ToDocumentdbReadReplicaDirectAccessPtrOutputWithContext(ctx context.Context) DocumentdbReadReplicaDirectAccessPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v DocumentdbReadReplicaDirectAccess) *DocumentdbReadReplicaDirectAccess {
-		return &v
-	}).(DocumentdbReadReplicaDirectAccessPtrOutput)
-}
-
-// The ID of the endpoint of the read replica.
-func (o DocumentdbReadReplicaDirectAccessOutput) EndpointId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DocumentdbReadReplicaDirectAccess) *string { return v.EndpointId }).(pulumi.StringPtrOutput)
-}
-
-// Hostname of the endpoint. Only one of ip and hostname may be set.
-func (o DocumentdbReadReplicaDirectAccessOutput) Hostname() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DocumentdbReadReplicaDirectAccess) *string { return v.Hostname }).(pulumi.StringPtrOutput)
-}
-
-// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
-func (o DocumentdbReadReplicaDirectAccessOutput) Ip() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DocumentdbReadReplicaDirectAccess) *string { return v.Ip }).(pulumi.StringPtrOutput)
-}
-
-// Name of the endpoint.
-func (o DocumentdbReadReplicaDirectAccessOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DocumentdbReadReplicaDirectAccess) *string { return v.Name }).(pulumi.StringPtrOutput)
-}
-
-// TCP port of the endpoint.
-func (o DocumentdbReadReplicaDirectAccessOutput) Port() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v DocumentdbReadReplicaDirectAccess) *int { return v.Port }).(pulumi.IntPtrOutput)
-}
-
-type DocumentdbReadReplicaDirectAccessPtrOutput struct{ *pulumi.OutputState }
-
-func (DocumentdbReadReplicaDirectAccessPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DocumentdbReadReplicaDirectAccess)(nil)).Elem()
-}
-
-func (o DocumentdbReadReplicaDirectAccessPtrOutput) ToDocumentdbReadReplicaDirectAccessPtrOutput() DocumentdbReadReplicaDirectAccessPtrOutput {
-	return o
-}
-
-func (o DocumentdbReadReplicaDirectAccessPtrOutput) ToDocumentdbReadReplicaDirectAccessPtrOutputWithContext(ctx context.Context) DocumentdbReadReplicaDirectAccessPtrOutput {
-	return o
-}
-
-func (o DocumentdbReadReplicaDirectAccessPtrOutput) Elem() DocumentdbReadReplicaDirectAccessOutput {
-	return o.ApplyT(func(v *DocumentdbReadReplicaDirectAccess) DocumentdbReadReplicaDirectAccess {
-		if v != nil {
-			return *v
-		}
-		var ret DocumentdbReadReplicaDirectAccess
-		return ret
-	}).(DocumentdbReadReplicaDirectAccessOutput)
-}
-
-// The ID of the endpoint of the read replica.
-func (o DocumentdbReadReplicaDirectAccessPtrOutput) EndpointId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DocumentdbReadReplicaDirectAccess) *string {
-		if v == nil {
-			return nil
-		}
-		return v.EndpointId
-	}).(pulumi.StringPtrOutput)
-}
-
-// Hostname of the endpoint. Only one of ip and hostname may be set.
-func (o DocumentdbReadReplicaDirectAccessPtrOutput) Hostname() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DocumentdbReadReplicaDirectAccess) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Hostname
-	}).(pulumi.StringPtrOutput)
-}
-
-// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
-func (o DocumentdbReadReplicaDirectAccessPtrOutput) Ip() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DocumentdbReadReplicaDirectAccess) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Ip
-	}).(pulumi.StringPtrOutput)
-}
-
-// Name of the endpoint.
-func (o DocumentdbReadReplicaDirectAccessPtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DocumentdbReadReplicaDirectAccess) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Name
-	}).(pulumi.StringPtrOutput)
-}
-
-// TCP port of the endpoint.
-func (o DocumentdbReadReplicaDirectAccessPtrOutput) Port() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *DocumentdbReadReplicaDirectAccess) *int {
-		if v == nil {
-			return nil
-		}
-		return v.Port
-	}).(pulumi.IntPtrOutput)
-}
-
-type DocumentdbReadReplicaPrivateNetwork struct {
-	// The ID of the endpoint of the read replica.
-	EndpointId *string `pulumi:"endpointId"`
-	// Hostname of the endpoint. Only one of ip and hostname may be set.
-	Hostname *string `pulumi:"hostname"`
-	// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
-	Ip *string `pulumi:"ip"`
-	// Name of the endpoint.
-	Name *string `pulumi:"name"`
-	// TCP port of the endpoint.
-	Port *int `pulumi:"port"`
-	// UUID of the private network to be connected to the read replica.
-	PrivateNetworkId string `pulumi:"privateNetworkId"`
-	// The IP network address within the private subnet. This must be an IPv4 address with a
-	// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-	// service if not set.
-	ServiceIp *string `pulumi:"serviceIp"`
-	// Private network zone
-	Zone *string `pulumi:"zone"`
-}
-
-// DocumentdbReadReplicaPrivateNetworkInput is an input type that accepts DocumentdbReadReplicaPrivateNetworkArgs and DocumentdbReadReplicaPrivateNetworkOutput values.
-// You can construct a concrete instance of `DocumentdbReadReplicaPrivateNetworkInput` via:
-//
-//	DocumentdbReadReplicaPrivateNetworkArgs{...}
-type DocumentdbReadReplicaPrivateNetworkInput interface {
-	pulumi.Input
-
-	ToDocumentdbReadReplicaPrivateNetworkOutput() DocumentdbReadReplicaPrivateNetworkOutput
-	ToDocumentdbReadReplicaPrivateNetworkOutputWithContext(context.Context) DocumentdbReadReplicaPrivateNetworkOutput
-}
-
-type DocumentdbReadReplicaPrivateNetworkArgs struct {
-	// The ID of the endpoint of the read replica.
-	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
-	// Hostname of the endpoint. Only one of ip and hostname may be set.
-	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
-	// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
-	Ip pulumi.StringPtrInput `pulumi:"ip"`
-	// Name of the endpoint.
-	Name pulumi.StringPtrInput `pulumi:"name"`
-	// TCP port of the endpoint.
-	Port pulumi.IntPtrInput `pulumi:"port"`
-	// UUID of the private network to be connected to the read replica.
-	PrivateNetworkId pulumi.StringInput `pulumi:"privateNetworkId"`
-	// The IP network address within the private subnet. This must be an IPv4 address with a
-	// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-	// service if not set.
-	ServiceIp pulumi.StringPtrInput `pulumi:"serviceIp"`
-	// Private network zone
-	Zone pulumi.StringPtrInput `pulumi:"zone"`
-}
-
-func (DocumentdbReadReplicaPrivateNetworkArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*DocumentdbReadReplicaPrivateNetwork)(nil)).Elem()
-}
-
-func (i DocumentdbReadReplicaPrivateNetworkArgs) ToDocumentdbReadReplicaPrivateNetworkOutput() DocumentdbReadReplicaPrivateNetworkOutput {
-	return i.ToDocumentdbReadReplicaPrivateNetworkOutputWithContext(context.Background())
-}
-
-func (i DocumentdbReadReplicaPrivateNetworkArgs) ToDocumentdbReadReplicaPrivateNetworkOutputWithContext(ctx context.Context) DocumentdbReadReplicaPrivateNetworkOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbReadReplicaPrivateNetworkOutput)
-}
-
-func (i DocumentdbReadReplicaPrivateNetworkArgs) ToDocumentdbReadReplicaPrivateNetworkPtrOutput() DocumentdbReadReplicaPrivateNetworkPtrOutput {
-	return i.ToDocumentdbReadReplicaPrivateNetworkPtrOutputWithContext(context.Background())
-}
-
-func (i DocumentdbReadReplicaPrivateNetworkArgs) ToDocumentdbReadReplicaPrivateNetworkPtrOutputWithContext(ctx context.Context) DocumentdbReadReplicaPrivateNetworkPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbReadReplicaPrivateNetworkOutput).ToDocumentdbReadReplicaPrivateNetworkPtrOutputWithContext(ctx)
-}
-
-// DocumentdbReadReplicaPrivateNetworkPtrInput is an input type that accepts DocumentdbReadReplicaPrivateNetworkArgs, DocumentdbReadReplicaPrivateNetworkPtr and DocumentdbReadReplicaPrivateNetworkPtrOutput values.
-// You can construct a concrete instance of `DocumentdbReadReplicaPrivateNetworkPtrInput` via:
-//
-//	        DocumentdbReadReplicaPrivateNetworkArgs{...}
-//
-//	or:
-//
-//	        nil
-type DocumentdbReadReplicaPrivateNetworkPtrInput interface {
-	pulumi.Input
-
-	ToDocumentdbReadReplicaPrivateNetworkPtrOutput() DocumentdbReadReplicaPrivateNetworkPtrOutput
-	ToDocumentdbReadReplicaPrivateNetworkPtrOutputWithContext(context.Context) DocumentdbReadReplicaPrivateNetworkPtrOutput
-}
-
-type documentdbReadReplicaPrivateNetworkPtrType DocumentdbReadReplicaPrivateNetworkArgs
-
-func DocumentdbReadReplicaPrivateNetworkPtr(v *DocumentdbReadReplicaPrivateNetworkArgs) DocumentdbReadReplicaPrivateNetworkPtrInput {
-	return (*documentdbReadReplicaPrivateNetworkPtrType)(v)
-}
-
-func (*documentdbReadReplicaPrivateNetworkPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DocumentdbReadReplicaPrivateNetwork)(nil)).Elem()
-}
-
-func (i *documentdbReadReplicaPrivateNetworkPtrType) ToDocumentdbReadReplicaPrivateNetworkPtrOutput() DocumentdbReadReplicaPrivateNetworkPtrOutput {
-	return i.ToDocumentdbReadReplicaPrivateNetworkPtrOutputWithContext(context.Background())
-}
-
-func (i *documentdbReadReplicaPrivateNetworkPtrType) ToDocumentdbReadReplicaPrivateNetworkPtrOutputWithContext(ctx context.Context) DocumentdbReadReplicaPrivateNetworkPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DocumentdbReadReplicaPrivateNetworkPtrOutput)
-}
-
-type DocumentdbReadReplicaPrivateNetworkOutput struct{ *pulumi.OutputState }
-
-func (DocumentdbReadReplicaPrivateNetworkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DocumentdbReadReplicaPrivateNetwork)(nil)).Elem()
-}
-
-func (o DocumentdbReadReplicaPrivateNetworkOutput) ToDocumentdbReadReplicaPrivateNetworkOutput() DocumentdbReadReplicaPrivateNetworkOutput {
-	return o
-}
-
-func (o DocumentdbReadReplicaPrivateNetworkOutput) ToDocumentdbReadReplicaPrivateNetworkOutputWithContext(ctx context.Context) DocumentdbReadReplicaPrivateNetworkOutput {
-	return o
-}
-
-func (o DocumentdbReadReplicaPrivateNetworkOutput) ToDocumentdbReadReplicaPrivateNetworkPtrOutput() DocumentdbReadReplicaPrivateNetworkPtrOutput {
-	return o.ToDocumentdbReadReplicaPrivateNetworkPtrOutputWithContext(context.Background())
-}
-
-func (o DocumentdbReadReplicaPrivateNetworkOutput) ToDocumentdbReadReplicaPrivateNetworkPtrOutputWithContext(ctx context.Context) DocumentdbReadReplicaPrivateNetworkPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v DocumentdbReadReplicaPrivateNetwork) *DocumentdbReadReplicaPrivateNetwork {
-		return &v
-	}).(DocumentdbReadReplicaPrivateNetworkPtrOutput)
-}
-
-// The ID of the endpoint of the read replica.
-func (o DocumentdbReadReplicaPrivateNetworkOutput) EndpointId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DocumentdbReadReplicaPrivateNetwork) *string { return v.EndpointId }).(pulumi.StringPtrOutput)
-}
-
-// Hostname of the endpoint. Only one of ip and hostname may be set.
-func (o DocumentdbReadReplicaPrivateNetworkOutput) Hostname() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DocumentdbReadReplicaPrivateNetwork) *string { return v.Hostname }).(pulumi.StringPtrOutput)
-}
-
-// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
-func (o DocumentdbReadReplicaPrivateNetworkOutput) Ip() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DocumentdbReadReplicaPrivateNetwork) *string { return v.Ip }).(pulumi.StringPtrOutput)
-}
-
-// Name of the endpoint.
-func (o DocumentdbReadReplicaPrivateNetworkOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DocumentdbReadReplicaPrivateNetwork) *string { return v.Name }).(pulumi.StringPtrOutput)
-}
-
-// TCP port of the endpoint.
-func (o DocumentdbReadReplicaPrivateNetworkOutput) Port() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v DocumentdbReadReplicaPrivateNetwork) *int { return v.Port }).(pulumi.IntPtrOutput)
-}
-
-// UUID of the private network to be connected to the read replica.
-func (o DocumentdbReadReplicaPrivateNetworkOutput) PrivateNetworkId() pulumi.StringOutput {
-	return o.ApplyT(func(v DocumentdbReadReplicaPrivateNetwork) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
-}
-
-// The IP network address within the private subnet. This must be an IPv4 address with a
-// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-// service if not set.
-func (o DocumentdbReadReplicaPrivateNetworkOutput) ServiceIp() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DocumentdbReadReplicaPrivateNetwork) *string { return v.ServiceIp }).(pulumi.StringPtrOutput)
-}
-
-// Private network zone
-func (o DocumentdbReadReplicaPrivateNetworkOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DocumentdbReadReplicaPrivateNetwork) *string { return v.Zone }).(pulumi.StringPtrOutput)
-}
-
-type DocumentdbReadReplicaPrivateNetworkPtrOutput struct{ *pulumi.OutputState }
-
-func (DocumentdbReadReplicaPrivateNetworkPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DocumentdbReadReplicaPrivateNetwork)(nil)).Elem()
-}
-
-func (o DocumentdbReadReplicaPrivateNetworkPtrOutput) ToDocumentdbReadReplicaPrivateNetworkPtrOutput() DocumentdbReadReplicaPrivateNetworkPtrOutput {
-	return o
-}
-
-func (o DocumentdbReadReplicaPrivateNetworkPtrOutput) ToDocumentdbReadReplicaPrivateNetworkPtrOutputWithContext(ctx context.Context) DocumentdbReadReplicaPrivateNetworkPtrOutput {
-	return o
-}
-
-func (o DocumentdbReadReplicaPrivateNetworkPtrOutput) Elem() DocumentdbReadReplicaPrivateNetworkOutput {
-	return o.ApplyT(func(v *DocumentdbReadReplicaPrivateNetwork) DocumentdbReadReplicaPrivateNetwork {
-		if v != nil {
-			return *v
-		}
-		var ret DocumentdbReadReplicaPrivateNetwork
-		return ret
-	}).(DocumentdbReadReplicaPrivateNetworkOutput)
-}
-
-// The ID of the endpoint of the read replica.
-func (o DocumentdbReadReplicaPrivateNetworkPtrOutput) EndpointId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DocumentdbReadReplicaPrivateNetwork) *string {
-		if v == nil {
-			return nil
-		}
-		return v.EndpointId
-	}).(pulumi.StringPtrOutput)
-}
-
-// Hostname of the endpoint. Only one of ip and hostname may be set.
-func (o DocumentdbReadReplicaPrivateNetworkPtrOutput) Hostname() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DocumentdbReadReplicaPrivateNetwork) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Hostname
-	}).(pulumi.StringPtrOutput)
-}
-
-// IPv4 address of the endpoint (IP address). Only one of ip and hostname may be set.
-func (o DocumentdbReadReplicaPrivateNetworkPtrOutput) Ip() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DocumentdbReadReplicaPrivateNetwork) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Ip
-	}).(pulumi.StringPtrOutput)
-}
-
-// Name of the endpoint.
-func (o DocumentdbReadReplicaPrivateNetworkPtrOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DocumentdbReadReplicaPrivateNetwork) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Name
-	}).(pulumi.StringPtrOutput)
-}
-
-// TCP port of the endpoint.
-func (o DocumentdbReadReplicaPrivateNetworkPtrOutput) Port() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *DocumentdbReadReplicaPrivateNetwork) *int {
-		if v == nil {
-			return nil
-		}
-		return v.Port
-	}).(pulumi.IntPtrOutput)
-}
-
-// UUID of the private network to be connected to the read replica.
-func (o DocumentdbReadReplicaPrivateNetworkPtrOutput) PrivateNetworkId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DocumentdbReadReplicaPrivateNetwork) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.PrivateNetworkId
-	}).(pulumi.StringPtrOutput)
-}
-
-// The IP network address within the private subnet. This must be an IPv4 address with a
-// CIDR notation. The IP network address within the private subnet is determined by the IP Address Management (IPAM)
-// service if not set.
-func (o DocumentdbReadReplicaPrivateNetworkPtrOutput) ServiceIp() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DocumentdbReadReplicaPrivateNetwork) *string {
-		if v == nil {
-			return nil
-		}
-		return v.ServiceIp
-	}).(pulumi.StringPtrOutput)
-}
-
-// Private network zone
-func (o DocumentdbReadReplicaPrivateNetworkPtrOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *DocumentdbReadReplicaPrivateNetwork) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Zone
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -2538,7 +1805,7 @@ type DomainRecordGeoIpMatch struct {
 	Continents []string `pulumi:"continents"`
 	// List of countries (eg: FR for France, US for the United States, GB for Great Britain...). List of all countries code: https://api.scaleway.com/domain-private/v2beta1/countries
 	Countries []string `pulumi:"countries"`
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+	// The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
 	Data string `pulumi:"data"`
 }
 
@@ -2558,7 +1825,7 @@ type DomainRecordGeoIpMatchArgs struct {
 	Continents pulumi.StringArrayInput `pulumi:"continents"`
 	// List of countries (eg: FR for France, US for the United States, GB for Great Britain...). List of all countries code: https://api.scaleway.com/domain-private/v2beta1/countries
 	Countries pulumi.StringArrayInput `pulumi:"countries"`
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+	// The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
 	Data pulumi.StringInput `pulumi:"data"`
 }
 
@@ -2623,7 +1890,7 @@ func (o DomainRecordGeoIpMatchOutput) Countries() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DomainRecordGeoIpMatch) []string { return v.Countries }).(pulumi.StringArrayOutput)
 }
 
-// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+// The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
 func (o DomainRecordGeoIpMatchOutput) Data() pulumi.StringOutput {
 	return o.ApplyT(func(v DomainRecordGeoIpMatch) string { return v.Data }).(pulumi.StringOutput)
 }
@@ -2862,7 +2129,7 @@ func (o DomainRecordHttpServicePtrOutput) UserAgent() pulumi.StringPtrOutput {
 }
 
 type DomainRecordView struct {
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+	// The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
 	Data string `pulumi:"data"`
 	// The subnet of the view
 	Subnet string `pulumi:"subnet"`
@@ -2880,7 +2147,7 @@ type DomainRecordViewInput interface {
 }
 
 type DomainRecordViewArgs struct {
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+	// The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
 	Data pulumi.StringInput `pulumi:"data"`
 	// The subnet of the view
 	Subnet pulumi.StringInput `pulumi:"subnet"`
@@ -2937,7 +2204,7 @@ func (o DomainRecordViewOutput) ToDomainRecordViewOutputWithContext(ctx context.
 	return o
 }
 
-// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
+// The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
 func (o DomainRecordViewOutput) Data() pulumi.StringOutput {
 	return o.ApplyT(func(v DomainRecordView) string { return v.Data }).(pulumi.StringOutput)
 }
@@ -3074,13 +2341,13 @@ func (o DomainRecordWeightedArrayOutput) Index(i pulumi.IntInput) DomainRecordWe
 }
 
 type FunctionTriggerNats struct {
-	// ID of the mnq nats account.
+	// unique identifier of the Messaging and Queuing NATS account.
 	AccountId *string `pulumi:"accountId"`
-	// ID of the project that contain the mnq nats account, defaults to provider's project
+	// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
 	ProjectId *string `pulumi:"projectId"`
-	// Region where the mnq nats account is, defaults to provider's region
+	// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
 	Region *string `pulumi:"region"`
-	// The subject to listen to
+	// The subject to listen to.
 	Subject string `pulumi:"subject"`
 }
 
@@ -3096,13 +2363,13 @@ type FunctionTriggerNatsInput interface {
 }
 
 type FunctionTriggerNatsArgs struct {
-	// ID of the mnq nats account.
+	// unique identifier of the Messaging and Queuing NATS account.
 	AccountId pulumi.StringPtrInput `pulumi:"accountId"`
-	// ID of the project that contain the mnq nats account, defaults to provider's project
+	// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// Region where the mnq nats account is, defaults to provider's region
+	// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
 	Region pulumi.StringPtrInput `pulumi:"region"`
-	// The subject to listen to
+	// The subject to listen to.
 	Subject pulumi.StringInput `pulumi:"subject"`
 }
 
@@ -3183,22 +2450,22 @@ func (o FunctionTriggerNatsOutput) ToFunctionTriggerNatsPtrOutputWithContext(ctx
 	}).(FunctionTriggerNatsPtrOutput)
 }
 
-// ID of the mnq nats account.
+// unique identifier of the Messaging and Queuing NATS account.
 func (o FunctionTriggerNatsOutput) AccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FunctionTriggerNats) *string { return v.AccountId }).(pulumi.StringPtrOutput)
 }
 
-// ID of the project that contain the mnq nats account, defaults to provider's project
+// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
 func (o FunctionTriggerNatsOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FunctionTriggerNats) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
-// Region where the mnq nats account is, defaults to provider's region
+// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
 func (o FunctionTriggerNatsOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FunctionTriggerNats) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// The subject to listen to
+// The subject to listen to.
 func (o FunctionTriggerNatsOutput) Subject() pulumi.StringOutput {
 	return o.ApplyT(func(v FunctionTriggerNats) string { return v.Subject }).(pulumi.StringOutput)
 }
@@ -3227,7 +2494,7 @@ func (o FunctionTriggerNatsPtrOutput) Elem() FunctionTriggerNatsOutput {
 	}).(FunctionTriggerNatsOutput)
 }
 
-// ID of the mnq nats account.
+// unique identifier of the Messaging and Queuing NATS account.
 func (o FunctionTriggerNatsPtrOutput) AccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTriggerNats) *string {
 		if v == nil {
@@ -3237,7 +2504,7 @@ func (o FunctionTriggerNatsPtrOutput) AccountId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// ID of the project that contain the mnq nats account, defaults to provider's project
+// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `projectId`)
 func (o FunctionTriggerNatsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTriggerNats) *string {
 		if v == nil {
@@ -3247,7 +2514,7 @@ func (o FunctionTriggerNatsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Region where the mnq nats account is, defaults to provider's region
+// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
 func (o FunctionTriggerNatsPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTriggerNats) *string {
 		if v == nil {
@@ -3257,7 +2524,7 @@ func (o FunctionTriggerNatsPtrOutput) Region() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The subject to listen to
+// The subject to listen to.
 func (o FunctionTriggerNatsPtrOutput) Subject() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTriggerNats) *string {
 		if v == nil {
@@ -3268,15 +2535,15 @@ func (o FunctionTriggerNatsPtrOutput) Subject() pulumi.StringPtrOutput {
 }
 
 type FunctionTriggerSqs struct {
-	// ID of the mnq namespace. Deprecated.
+	// ID of the Messaging and Queuing namespace. This argument is deprecated.
 	//
 	// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 	NamespaceId *string `pulumi:"namespaceId"`
-	// ID of the project that contain the mnq namespace, defaults to provider's project
+	// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 	ProjectId *string `pulumi:"projectId"`
-	// Name of the queue
+	// The name of the SQS queue.
 	Queue string `pulumi:"queue"`
-	// Region where the mnq namespace is, defaults to provider's region
+	// Region where SQS is enabled (defaults to provider `region`)
 	Region *string `pulumi:"region"`
 }
 
@@ -3292,15 +2559,15 @@ type FunctionTriggerSqsInput interface {
 }
 
 type FunctionTriggerSqsArgs struct {
-	// ID of the mnq namespace. Deprecated.
+	// ID of the Messaging and Queuing namespace. This argument is deprecated.
 	//
 	// Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 	NamespaceId pulumi.StringPtrInput `pulumi:"namespaceId"`
-	// ID of the project that contain the mnq namespace, defaults to provider's project
+	// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// Name of the queue
+	// The name of the SQS queue.
 	Queue pulumi.StringInput `pulumi:"queue"`
-	// Region where the mnq namespace is, defaults to provider's region
+	// Region where SQS is enabled (defaults to provider `region`)
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
@@ -3381,24 +2648,24 @@ func (o FunctionTriggerSqsOutput) ToFunctionTriggerSqsPtrOutputWithContext(ctx c
 	}).(FunctionTriggerSqsPtrOutput)
 }
 
-// ID of the mnq namespace. Deprecated.
+// ID of the Messaging and Queuing namespace. This argument is deprecated.
 //
 // Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 func (o FunctionTriggerSqsOutput) NamespaceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FunctionTriggerSqs) *string { return v.NamespaceId }).(pulumi.StringPtrOutput)
 }
 
-// ID of the project that contain the mnq namespace, defaults to provider's project
+// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 func (o FunctionTriggerSqsOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FunctionTriggerSqs) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
-// Name of the queue
+// The name of the SQS queue.
 func (o FunctionTriggerSqsOutput) Queue() pulumi.StringOutput {
 	return o.ApplyT(func(v FunctionTriggerSqs) string { return v.Queue }).(pulumi.StringOutput)
 }
 
-// Region where the mnq namespace is, defaults to provider's region
+// Region where SQS is enabled (defaults to provider `region`)
 func (o FunctionTriggerSqsOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FunctionTriggerSqs) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -3427,7 +2694,7 @@ func (o FunctionTriggerSqsPtrOutput) Elem() FunctionTriggerSqsOutput {
 	}).(FunctionTriggerSqsOutput)
 }
 
-// ID of the mnq namespace. Deprecated.
+// ID of the Messaging and Queuing namespace. This argument is deprecated.
 //
 // Deprecated: The 'namespace_id' field is deprecated and will be removed in the next major version. It is no longer necessary to specify it
 func (o FunctionTriggerSqsPtrOutput) NamespaceId() pulumi.StringPtrOutput {
@@ -3439,7 +2706,7 @@ func (o FunctionTriggerSqsPtrOutput) NamespaceId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// ID of the project that contain the mnq namespace, defaults to provider's project
+// The ID of the project in which SQS is enabled, (defaults to provider `projectId`)
 func (o FunctionTriggerSqsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTriggerSqs) *string {
 		if v == nil {
@@ -3449,7 +2716,7 @@ func (o FunctionTriggerSqsPtrOutput) ProjectId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Name of the queue
+// The name of the SQS queue.
 func (o FunctionTriggerSqsPtrOutput) Queue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTriggerSqs) *string {
 		if v == nil {
@@ -3459,7 +2726,7 @@ func (o FunctionTriggerSqsPtrOutput) Queue() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Region where the mnq namespace is, defaults to provider's region
+// Region where SQS is enabled (defaults to provider `region`)
 func (o FunctionTriggerSqsPtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTriggerSqs) *string {
 		if v == nil {
@@ -3470,6 +2737,8 @@ func (o FunctionTriggerSqsPtrOutput) Region() pulumi.StringPtrOutput {
 }
 
 type IamPolicyRule struct {
+	// The condition of the IAM policy.
+	Condition *string `pulumi:"condition"`
 	// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
 	OrganizationId *string `pulumi:"organizationId"`
 	// Names of permission sets bind to the rule.
@@ -3494,6 +2763,8 @@ type IamPolicyRuleInput interface {
 }
 
 type IamPolicyRuleArgs struct {
+	// The condition of the IAM policy.
+	Condition pulumi.StringPtrInput `pulumi:"condition"`
 	// ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
 	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
 	// Names of permission sets bind to the rule.
@@ -3557,6 +2828,11 @@ func (o IamPolicyRuleOutput) ToIamPolicyRuleOutputWithContext(ctx context.Contex
 	return o
 }
 
+// The condition of the IAM policy.
+func (o IamPolicyRuleOutput) Condition() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IamPolicyRule) *string { return v.Condition }).(pulumi.StringPtrOutput)
+}
+
 // ID of organization scoped to the rule, this can be used to create a rule for all projects in an organization.
 func (o IamPolicyRuleOutput) OrganizationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IamPolicyRule) *string { return v.OrganizationId }).(pulumi.StringPtrOutput)
@@ -3594,6 +2870,394 @@ func (o IamPolicyRuleArrayOutput) Index(i pulumi.IntInput) IamPolicyRuleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IamPolicyRule {
 		return vs[0].([]IamPolicyRule)[vs[1].(int)]
 	}).(IamPolicyRuleOutput)
+}
+
+type InferenceDeploymentPrivateEndpoint struct {
+	// Disable the authentication on the endpoint.
+	DisableAuth *bool `pulumi:"disableAuth"`
+	// (Optional) The id of the public endpoint.
+	Id *string `pulumi:"id"`
+	// The ID of the private network to use.
+	PrivateNetworkId *string `pulumi:"privateNetworkId"`
+	// (Optional) The URL of the endpoint.
+	Url *string `pulumi:"url"`
+}
+
+// InferenceDeploymentPrivateEndpointInput is an input type that accepts InferenceDeploymentPrivateEndpointArgs and InferenceDeploymentPrivateEndpointOutput values.
+// You can construct a concrete instance of `InferenceDeploymentPrivateEndpointInput` via:
+//
+//	InferenceDeploymentPrivateEndpointArgs{...}
+type InferenceDeploymentPrivateEndpointInput interface {
+	pulumi.Input
+
+	ToInferenceDeploymentPrivateEndpointOutput() InferenceDeploymentPrivateEndpointOutput
+	ToInferenceDeploymentPrivateEndpointOutputWithContext(context.Context) InferenceDeploymentPrivateEndpointOutput
+}
+
+type InferenceDeploymentPrivateEndpointArgs struct {
+	// Disable the authentication on the endpoint.
+	DisableAuth pulumi.BoolPtrInput `pulumi:"disableAuth"`
+	// (Optional) The id of the public endpoint.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The ID of the private network to use.
+	PrivateNetworkId pulumi.StringPtrInput `pulumi:"privateNetworkId"`
+	// (Optional) The URL of the endpoint.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+}
+
+func (InferenceDeploymentPrivateEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InferenceDeploymentPrivateEndpoint)(nil)).Elem()
+}
+
+func (i InferenceDeploymentPrivateEndpointArgs) ToInferenceDeploymentPrivateEndpointOutput() InferenceDeploymentPrivateEndpointOutput {
+	return i.ToInferenceDeploymentPrivateEndpointOutputWithContext(context.Background())
+}
+
+func (i InferenceDeploymentPrivateEndpointArgs) ToInferenceDeploymentPrivateEndpointOutputWithContext(ctx context.Context) InferenceDeploymentPrivateEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InferenceDeploymentPrivateEndpointOutput)
+}
+
+func (i InferenceDeploymentPrivateEndpointArgs) ToInferenceDeploymentPrivateEndpointPtrOutput() InferenceDeploymentPrivateEndpointPtrOutput {
+	return i.ToInferenceDeploymentPrivateEndpointPtrOutputWithContext(context.Background())
+}
+
+func (i InferenceDeploymentPrivateEndpointArgs) ToInferenceDeploymentPrivateEndpointPtrOutputWithContext(ctx context.Context) InferenceDeploymentPrivateEndpointPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InferenceDeploymentPrivateEndpointOutput).ToInferenceDeploymentPrivateEndpointPtrOutputWithContext(ctx)
+}
+
+// InferenceDeploymentPrivateEndpointPtrInput is an input type that accepts InferenceDeploymentPrivateEndpointArgs, InferenceDeploymentPrivateEndpointPtr and InferenceDeploymentPrivateEndpointPtrOutput values.
+// You can construct a concrete instance of `InferenceDeploymentPrivateEndpointPtrInput` via:
+//
+//	        InferenceDeploymentPrivateEndpointArgs{...}
+//
+//	or:
+//
+//	        nil
+type InferenceDeploymentPrivateEndpointPtrInput interface {
+	pulumi.Input
+
+	ToInferenceDeploymentPrivateEndpointPtrOutput() InferenceDeploymentPrivateEndpointPtrOutput
+	ToInferenceDeploymentPrivateEndpointPtrOutputWithContext(context.Context) InferenceDeploymentPrivateEndpointPtrOutput
+}
+
+type inferenceDeploymentPrivateEndpointPtrType InferenceDeploymentPrivateEndpointArgs
+
+func InferenceDeploymentPrivateEndpointPtr(v *InferenceDeploymentPrivateEndpointArgs) InferenceDeploymentPrivateEndpointPtrInput {
+	return (*inferenceDeploymentPrivateEndpointPtrType)(v)
+}
+
+func (*inferenceDeploymentPrivateEndpointPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**InferenceDeploymentPrivateEndpoint)(nil)).Elem()
+}
+
+func (i *inferenceDeploymentPrivateEndpointPtrType) ToInferenceDeploymentPrivateEndpointPtrOutput() InferenceDeploymentPrivateEndpointPtrOutput {
+	return i.ToInferenceDeploymentPrivateEndpointPtrOutputWithContext(context.Background())
+}
+
+func (i *inferenceDeploymentPrivateEndpointPtrType) ToInferenceDeploymentPrivateEndpointPtrOutputWithContext(ctx context.Context) InferenceDeploymentPrivateEndpointPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InferenceDeploymentPrivateEndpointPtrOutput)
+}
+
+type InferenceDeploymentPrivateEndpointOutput struct{ *pulumi.OutputState }
+
+func (InferenceDeploymentPrivateEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InferenceDeploymentPrivateEndpoint)(nil)).Elem()
+}
+
+func (o InferenceDeploymentPrivateEndpointOutput) ToInferenceDeploymentPrivateEndpointOutput() InferenceDeploymentPrivateEndpointOutput {
+	return o
+}
+
+func (o InferenceDeploymentPrivateEndpointOutput) ToInferenceDeploymentPrivateEndpointOutputWithContext(ctx context.Context) InferenceDeploymentPrivateEndpointOutput {
+	return o
+}
+
+func (o InferenceDeploymentPrivateEndpointOutput) ToInferenceDeploymentPrivateEndpointPtrOutput() InferenceDeploymentPrivateEndpointPtrOutput {
+	return o.ToInferenceDeploymentPrivateEndpointPtrOutputWithContext(context.Background())
+}
+
+func (o InferenceDeploymentPrivateEndpointOutput) ToInferenceDeploymentPrivateEndpointPtrOutputWithContext(ctx context.Context) InferenceDeploymentPrivateEndpointPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v InferenceDeploymentPrivateEndpoint) *InferenceDeploymentPrivateEndpoint {
+		return &v
+	}).(InferenceDeploymentPrivateEndpointPtrOutput)
+}
+
+// Disable the authentication on the endpoint.
+func (o InferenceDeploymentPrivateEndpointOutput) DisableAuth() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v InferenceDeploymentPrivateEndpoint) *bool { return v.DisableAuth }).(pulumi.BoolPtrOutput)
+}
+
+// (Optional) The id of the public endpoint.
+func (o InferenceDeploymentPrivateEndpointOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InferenceDeploymentPrivateEndpoint) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the private network to use.
+func (o InferenceDeploymentPrivateEndpointOutput) PrivateNetworkId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InferenceDeploymentPrivateEndpoint) *string { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
+}
+
+// (Optional) The URL of the endpoint.
+func (o InferenceDeploymentPrivateEndpointOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InferenceDeploymentPrivateEndpoint) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+type InferenceDeploymentPrivateEndpointPtrOutput struct{ *pulumi.OutputState }
+
+func (InferenceDeploymentPrivateEndpointPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InferenceDeploymentPrivateEndpoint)(nil)).Elem()
+}
+
+func (o InferenceDeploymentPrivateEndpointPtrOutput) ToInferenceDeploymentPrivateEndpointPtrOutput() InferenceDeploymentPrivateEndpointPtrOutput {
+	return o
+}
+
+func (o InferenceDeploymentPrivateEndpointPtrOutput) ToInferenceDeploymentPrivateEndpointPtrOutputWithContext(ctx context.Context) InferenceDeploymentPrivateEndpointPtrOutput {
+	return o
+}
+
+func (o InferenceDeploymentPrivateEndpointPtrOutput) Elem() InferenceDeploymentPrivateEndpointOutput {
+	return o.ApplyT(func(v *InferenceDeploymentPrivateEndpoint) InferenceDeploymentPrivateEndpoint {
+		if v != nil {
+			return *v
+		}
+		var ret InferenceDeploymentPrivateEndpoint
+		return ret
+	}).(InferenceDeploymentPrivateEndpointOutput)
+}
+
+// Disable the authentication on the endpoint.
+func (o InferenceDeploymentPrivateEndpointPtrOutput) DisableAuth() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *InferenceDeploymentPrivateEndpoint) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DisableAuth
+	}).(pulumi.BoolPtrOutput)
+}
+
+// (Optional) The id of the public endpoint.
+func (o InferenceDeploymentPrivateEndpointPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InferenceDeploymentPrivateEndpoint) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of the private network to use.
+func (o InferenceDeploymentPrivateEndpointPtrOutput) PrivateNetworkId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InferenceDeploymentPrivateEndpoint) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateNetworkId
+	}).(pulumi.StringPtrOutput)
+}
+
+// (Optional) The URL of the endpoint.
+func (o InferenceDeploymentPrivateEndpointPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InferenceDeploymentPrivateEndpoint) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+type InferenceDeploymentPublicEndpoint struct {
+	// Disable the authentication on the endpoint.
+	DisableAuth *bool `pulumi:"disableAuth"`
+	// (Optional) The id of the public endpoint.
+	Id *string `pulumi:"id"`
+	// Enable or disable public endpoint.
+	IsEnabled *bool `pulumi:"isEnabled"`
+	// (Optional) The URL of the endpoint.
+	Url *string `pulumi:"url"`
+}
+
+// InferenceDeploymentPublicEndpointInput is an input type that accepts InferenceDeploymentPublicEndpointArgs and InferenceDeploymentPublicEndpointOutput values.
+// You can construct a concrete instance of `InferenceDeploymentPublicEndpointInput` via:
+//
+//	InferenceDeploymentPublicEndpointArgs{...}
+type InferenceDeploymentPublicEndpointInput interface {
+	pulumi.Input
+
+	ToInferenceDeploymentPublicEndpointOutput() InferenceDeploymentPublicEndpointOutput
+	ToInferenceDeploymentPublicEndpointOutputWithContext(context.Context) InferenceDeploymentPublicEndpointOutput
+}
+
+type InferenceDeploymentPublicEndpointArgs struct {
+	// Disable the authentication on the endpoint.
+	DisableAuth pulumi.BoolPtrInput `pulumi:"disableAuth"`
+	// (Optional) The id of the public endpoint.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Enable or disable public endpoint.
+	IsEnabled pulumi.BoolPtrInput `pulumi:"isEnabled"`
+	// (Optional) The URL of the endpoint.
+	Url pulumi.StringPtrInput `pulumi:"url"`
+}
+
+func (InferenceDeploymentPublicEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InferenceDeploymentPublicEndpoint)(nil)).Elem()
+}
+
+func (i InferenceDeploymentPublicEndpointArgs) ToInferenceDeploymentPublicEndpointOutput() InferenceDeploymentPublicEndpointOutput {
+	return i.ToInferenceDeploymentPublicEndpointOutputWithContext(context.Background())
+}
+
+func (i InferenceDeploymentPublicEndpointArgs) ToInferenceDeploymentPublicEndpointOutputWithContext(ctx context.Context) InferenceDeploymentPublicEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InferenceDeploymentPublicEndpointOutput)
+}
+
+func (i InferenceDeploymentPublicEndpointArgs) ToInferenceDeploymentPublicEndpointPtrOutput() InferenceDeploymentPublicEndpointPtrOutput {
+	return i.ToInferenceDeploymentPublicEndpointPtrOutputWithContext(context.Background())
+}
+
+func (i InferenceDeploymentPublicEndpointArgs) ToInferenceDeploymentPublicEndpointPtrOutputWithContext(ctx context.Context) InferenceDeploymentPublicEndpointPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InferenceDeploymentPublicEndpointOutput).ToInferenceDeploymentPublicEndpointPtrOutputWithContext(ctx)
+}
+
+// InferenceDeploymentPublicEndpointPtrInput is an input type that accepts InferenceDeploymentPublicEndpointArgs, InferenceDeploymentPublicEndpointPtr and InferenceDeploymentPublicEndpointPtrOutput values.
+// You can construct a concrete instance of `InferenceDeploymentPublicEndpointPtrInput` via:
+//
+//	        InferenceDeploymentPublicEndpointArgs{...}
+//
+//	or:
+//
+//	        nil
+type InferenceDeploymentPublicEndpointPtrInput interface {
+	pulumi.Input
+
+	ToInferenceDeploymentPublicEndpointPtrOutput() InferenceDeploymentPublicEndpointPtrOutput
+	ToInferenceDeploymentPublicEndpointPtrOutputWithContext(context.Context) InferenceDeploymentPublicEndpointPtrOutput
+}
+
+type inferenceDeploymentPublicEndpointPtrType InferenceDeploymentPublicEndpointArgs
+
+func InferenceDeploymentPublicEndpointPtr(v *InferenceDeploymentPublicEndpointArgs) InferenceDeploymentPublicEndpointPtrInput {
+	return (*inferenceDeploymentPublicEndpointPtrType)(v)
+}
+
+func (*inferenceDeploymentPublicEndpointPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**InferenceDeploymentPublicEndpoint)(nil)).Elem()
+}
+
+func (i *inferenceDeploymentPublicEndpointPtrType) ToInferenceDeploymentPublicEndpointPtrOutput() InferenceDeploymentPublicEndpointPtrOutput {
+	return i.ToInferenceDeploymentPublicEndpointPtrOutputWithContext(context.Background())
+}
+
+func (i *inferenceDeploymentPublicEndpointPtrType) ToInferenceDeploymentPublicEndpointPtrOutputWithContext(ctx context.Context) InferenceDeploymentPublicEndpointPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InferenceDeploymentPublicEndpointPtrOutput)
+}
+
+type InferenceDeploymentPublicEndpointOutput struct{ *pulumi.OutputState }
+
+func (InferenceDeploymentPublicEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InferenceDeploymentPublicEndpoint)(nil)).Elem()
+}
+
+func (o InferenceDeploymentPublicEndpointOutput) ToInferenceDeploymentPublicEndpointOutput() InferenceDeploymentPublicEndpointOutput {
+	return o
+}
+
+func (o InferenceDeploymentPublicEndpointOutput) ToInferenceDeploymentPublicEndpointOutputWithContext(ctx context.Context) InferenceDeploymentPublicEndpointOutput {
+	return o
+}
+
+func (o InferenceDeploymentPublicEndpointOutput) ToInferenceDeploymentPublicEndpointPtrOutput() InferenceDeploymentPublicEndpointPtrOutput {
+	return o.ToInferenceDeploymentPublicEndpointPtrOutputWithContext(context.Background())
+}
+
+func (o InferenceDeploymentPublicEndpointOutput) ToInferenceDeploymentPublicEndpointPtrOutputWithContext(ctx context.Context) InferenceDeploymentPublicEndpointPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v InferenceDeploymentPublicEndpoint) *InferenceDeploymentPublicEndpoint {
+		return &v
+	}).(InferenceDeploymentPublicEndpointPtrOutput)
+}
+
+// Disable the authentication on the endpoint.
+func (o InferenceDeploymentPublicEndpointOutput) DisableAuth() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v InferenceDeploymentPublicEndpoint) *bool { return v.DisableAuth }).(pulumi.BoolPtrOutput)
+}
+
+// (Optional) The id of the public endpoint.
+func (o InferenceDeploymentPublicEndpointOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InferenceDeploymentPublicEndpoint) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Enable or disable public endpoint.
+func (o InferenceDeploymentPublicEndpointOutput) IsEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v InferenceDeploymentPublicEndpoint) *bool { return v.IsEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// (Optional) The URL of the endpoint.
+func (o InferenceDeploymentPublicEndpointOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InferenceDeploymentPublicEndpoint) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+type InferenceDeploymentPublicEndpointPtrOutput struct{ *pulumi.OutputState }
+
+func (InferenceDeploymentPublicEndpointPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InferenceDeploymentPublicEndpoint)(nil)).Elem()
+}
+
+func (o InferenceDeploymentPublicEndpointPtrOutput) ToInferenceDeploymentPublicEndpointPtrOutput() InferenceDeploymentPublicEndpointPtrOutput {
+	return o
+}
+
+func (o InferenceDeploymentPublicEndpointPtrOutput) ToInferenceDeploymentPublicEndpointPtrOutputWithContext(ctx context.Context) InferenceDeploymentPublicEndpointPtrOutput {
+	return o
+}
+
+func (o InferenceDeploymentPublicEndpointPtrOutput) Elem() InferenceDeploymentPublicEndpointOutput {
+	return o.ApplyT(func(v *InferenceDeploymentPublicEndpoint) InferenceDeploymentPublicEndpoint {
+		if v != nil {
+			return *v
+		}
+		var ret InferenceDeploymentPublicEndpoint
+		return ret
+	}).(InferenceDeploymentPublicEndpointOutput)
+}
+
+// Disable the authentication on the endpoint.
+func (o InferenceDeploymentPublicEndpointPtrOutput) DisableAuth() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *InferenceDeploymentPublicEndpoint) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DisableAuth
+	}).(pulumi.BoolPtrOutput)
+}
+
+// (Optional) The id of the public endpoint.
+func (o InferenceDeploymentPublicEndpointPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InferenceDeploymentPublicEndpoint) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Enable or disable public endpoint.
+func (o InferenceDeploymentPublicEndpointPtrOutput) IsEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *InferenceDeploymentPublicEndpoint) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// (Optional) The URL of the endpoint.
+func (o InferenceDeploymentPublicEndpointPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InferenceDeploymentPublicEndpoint) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
 }
 
 type InstanceImageAdditionalVolume struct {
@@ -4636,11 +4300,13 @@ type InstanceServerRootVolume struct {
 	// Set the volume where the boot the server
 	Boot *bool `pulumi:"boot"`
 	// Forces deletion of the root volume on instance termination.
-	//
-	// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
 	DeleteOnTermination *bool `pulumi:"deleteOnTermination"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
+	// Choose IOPS of your sbs volume, has to be used with `sbsVolume` for root volume type.
+	//
+	// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+	SbsIops *int `pulumi:"sbsIops"`
 	// Size of the root volume in gigabytes.
 	// To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
 	// check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
@@ -4648,7 +4314,7 @@ type InstanceServerRootVolume struct {
 	SizeInGb *int `pulumi:"sizeInGb"`
 	// The volume ID of the root volume of the server, allows you to create server with an existing volume. If empty, will be computed to a created volume ID.
 	VolumeId *string `pulumi:"volumeId"`
-	// Volume type of root volume, can be `bSsd` or `lSsd`, default value depends on server type
+	// Volume type of root volume, can be `bSsd`, `lSsd` or `sbsVolume`, default value depends on server type
 	VolumeType *string `pulumi:"volumeType"`
 }
 
@@ -4667,11 +4333,13 @@ type InstanceServerRootVolumeArgs struct {
 	// Set the volume where the boot the server
 	Boot pulumi.BoolPtrInput `pulumi:"boot"`
 	// Forces deletion of the root volume on instance termination.
-	//
-	// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
 	DeleteOnTermination pulumi.BoolPtrInput `pulumi:"deleteOnTermination"`
 	// The name of the server.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Choose IOPS of your sbs volume, has to be used with `sbsVolume` for root volume type.
+	//
+	// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+	SbsIops pulumi.IntPtrInput `pulumi:"sbsIops"`
 	// Size of the root volume in gigabytes.
 	// To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
 	// check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercialType`.
@@ -4679,7 +4347,7 @@ type InstanceServerRootVolumeArgs struct {
 	SizeInGb pulumi.IntPtrInput `pulumi:"sizeInGb"`
 	// The volume ID of the root volume of the server, allows you to create server with an existing volume. If empty, will be computed to a created volume ID.
 	VolumeId pulumi.StringPtrInput `pulumi:"volumeId"`
-	// Volume type of root volume, can be `bSsd` or `lSsd`, default value depends on server type
+	// Volume type of root volume, can be `bSsd`, `lSsd` or `sbsVolume`, default value depends on server type
 	VolumeType pulumi.StringPtrInput `pulumi:"volumeType"`
 }
 
@@ -4766,8 +4434,6 @@ func (o InstanceServerRootVolumeOutput) Boot() pulumi.BoolPtrOutput {
 }
 
 // Forces deletion of the root volume on instance termination.
-//
-// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
 func (o InstanceServerRootVolumeOutput) DeleteOnTermination() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v InstanceServerRootVolume) *bool { return v.DeleteOnTermination }).(pulumi.BoolPtrOutput)
 }
@@ -4775,6 +4441,13 @@ func (o InstanceServerRootVolumeOutput) DeleteOnTermination() pulumi.BoolPtrOutp
 // The name of the server.
 func (o InstanceServerRootVolumeOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceServerRootVolume) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// Choose IOPS of your sbs volume, has to be used with `sbsVolume` for root volume type.
+//
+// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+func (o InstanceServerRootVolumeOutput) SbsIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v InstanceServerRootVolume) *int { return v.SbsIops }).(pulumi.IntPtrOutput)
 }
 
 // Size of the root volume in gigabytes.
@@ -4790,7 +4463,7 @@ func (o InstanceServerRootVolumeOutput) VolumeId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceServerRootVolume) *string { return v.VolumeId }).(pulumi.StringPtrOutput)
 }
 
-// Volume type of root volume, can be `bSsd` or `lSsd`, default value depends on server type
+// Volume type of root volume, can be `bSsd`, `lSsd` or `sbsVolume`, default value depends on server type
 func (o InstanceServerRootVolumeOutput) VolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceServerRootVolume) *string { return v.VolumeType }).(pulumi.StringPtrOutput)
 }
@@ -4830,8 +4503,6 @@ func (o InstanceServerRootVolumePtrOutput) Boot() pulumi.BoolPtrOutput {
 }
 
 // Forces deletion of the root volume on instance termination.
-//
-// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
 func (o InstanceServerRootVolumePtrOutput) DeleteOnTermination() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *InstanceServerRootVolume) *bool {
 		if v == nil {
@@ -4849,6 +4520,18 @@ func (o InstanceServerRootVolumePtrOutput) Name() pulumi.StringPtrOutput {
 		}
 		return v.Name
 	}).(pulumi.StringPtrOutput)
+}
+
+// Choose IOPS of your sbs volume, has to be used with `sbsVolume` for root volume type.
+//
+// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+func (o InstanceServerRootVolumePtrOutput) SbsIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *InstanceServerRootVolume) *int {
+		if v == nil {
+			return nil
+		}
+		return v.SbsIops
+	}).(pulumi.IntPtrOutput)
 }
 
 // Size of the root volume in gigabytes.
@@ -4874,7 +4557,7 @@ func (o InstanceServerRootVolumePtrOutput) VolumeId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Volume type of root volume, can be `bSsd` or `lSsd`, default value depends on server type
+// Volume type of root volume, can be `bSsd`, `lSsd` or `sbsVolume`, default value depends on server type
 func (o InstanceServerRootVolumePtrOutput) VolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceServerRootVolume) *string {
 		if v == nil {
@@ -6289,6 +5972,112 @@ func (o IotRouteS3PtrOutput) Strategy() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type IpamIpCustomResource struct {
+	// The MAC address of the resource the IP is attached to.
+	MacAddress string `pulumi:"macAddress"`
+	// The name of the resource the IP is attached to.
+	Name *string `pulumi:"name"`
+}
+
+// IpamIpCustomResourceInput is an input type that accepts IpamIpCustomResourceArgs and IpamIpCustomResourceOutput values.
+// You can construct a concrete instance of `IpamIpCustomResourceInput` via:
+//
+//	IpamIpCustomResourceArgs{...}
+type IpamIpCustomResourceInput interface {
+	pulumi.Input
+
+	ToIpamIpCustomResourceOutput() IpamIpCustomResourceOutput
+	ToIpamIpCustomResourceOutputWithContext(context.Context) IpamIpCustomResourceOutput
+}
+
+type IpamIpCustomResourceArgs struct {
+	// The MAC address of the resource the IP is attached to.
+	MacAddress pulumi.StringInput `pulumi:"macAddress"`
+	// The name of the resource the IP is attached to.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (IpamIpCustomResourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IpamIpCustomResource)(nil)).Elem()
+}
+
+func (i IpamIpCustomResourceArgs) ToIpamIpCustomResourceOutput() IpamIpCustomResourceOutput {
+	return i.ToIpamIpCustomResourceOutputWithContext(context.Background())
+}
+
+func (i IpamIpCustomResourceArgs) ToIpamIpCustomResourceOutputWithContext(ctx context.Context) IpamIpCustomResourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IpamIpCustomResourceOutput)
+}
+
+// IpamIpCustomResourceArrayInput is an input type that accepts IpamIpCustomResourceArray and IpamIpCustomResourceArrayOutput values.
+// You can construct a concrete instance of `IpamIpCustomResourceArrayInput` via:
+//
+//	IpamIpCustomResourceArray{ IpamIpCustomResourceArgs{...} }
+type IpamIpCustomResourceArrayInput interface {
+	pulumi.Input
+
+	ToIpamIpCustomResourceArrayOutput() IpamIpCustomResourceArrayOutput
+	ToIpamIpCustomResourceArrayOutputWithContext(context.Context) IpamIpCustomResourceArrayOutput
+}
+
+type IpamIpCustomResourceArray []IpamIpCustomResourceInput
+
+func (IpamIpCustomResourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IpamIpCustomResource)(nil)).Elem()
+}
+
+func (i IpamIpCustomResourceArray) ToIpamIpCustomResourceArrayOutput() IpamIpCustomResourceArrayOutput {
+	return i.ToIpamIpCustomResourceArrayOutputWithContext(context.Background())
+}
+
+func (i IpamIpCustomResourceArray) ToIpamIpCustomResourceArrayOutputWithContext(ctx context.Context) IpamIpCustomResourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IpamIpCustomResourceArrayOutput)
+}
+
+type IpamIpCustomResourceOutput struct{ *pulumi.OutputState }
+
+func (IpamIpCustomResourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IpamIpCustomResource)(nil)).Elem()
+}
+
+func (o IpamIpCustomResourceOutput) ToIpamIpCustomResourceOutput() IpamIpCustomResourceOutput {
+	return o
+}
+
+func (o IpamIpCustomResourceOutput) ToIpamIpCustomResourceOutputWithContext(ctx context.Context) IpamIpCustomResourceOutput {
+	return o
+}
+
+// The MAC address of the resource the IP is attached to.
+func (o IpamIpCustomResourceOutput) MacAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v IpamIpCustomResource) string { return v.MacAddress }).(pulumi.StringOutput)
+}
+
+// The name of the resource the IP is attached to.
+func (o IpamIpCustomResourceOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IpamIpCustomResource) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type IpamIpCustomResourceArrayOutput struct{ *pulumi.OutputState }
+
+func (IpamIpCustomResourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IpamIpCustomResource)(nil)).Elem()
+}
+
+func (o IpamIpCustomResourceArrayOutput) ToIpamIpCustomResourceArrayOutput() IpamIpCustomResourceArrayOutput {
+	return o
+}
+
+func (o IpamIpCustomResourceArrayOutput) ToIpamIpCustomResourceArrayOutputWithContext(ctx context.Context) IpamIpCustomResourceArrayOutput {
+	return o
+}
+
+func (o IpamIpCustomResourceArrayOutput) Index(i pulumi.IntInput) IpamIpCustomResourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IpamIpCustomResource {
+		return vs[0].([]IpamIpCustomResource)[vs[1].(int)]
+	}).(IpamIpCustomResourceOutput)
+}
+
 type IpamIpResource struct {
 	// The ID of the resource that the IP is attached to.
 	Id *string `pulumi:"id"`
@@ -7656,9 +7445,13 @@ type K8sPoolNode struct {
 	// The name for the pool.
 	// > **Important:** Updates to this field will recreate a new resource.
 	Name *string `pulumi:"name"`
-	// The public IPv4.
+	// The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
+	//
+	// Deprecated: Please use the official Kubernetes provider and the kubernetesNodes data source
 	PublicIp *string `pulumi:"publicIp"`
-	// The public IPv6.
+	// The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
+	//
+	// Deprecated: Please use the official Kubernetes provider and the kubernetesNodes data source
 	PublicIpV6 *string `pulumi:"publicIpV6"`
 	// The status of the node.
 	Status *string `pulumi:"status"`
@@ -7679,9 +7472,13 @@ type K8sPoolNodeArgs struct {
 	// The name for the pool.
 	// > **Important:** Updates to this field will recreate a new resource.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The public IPv4.
+	// The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
+	//
+	// Deprecated: Please use the official Kubernetes provider and the kubernetesNodes data source
 	PublicIp pulumi.StringPtrInput `pulumi:"publicIp"`
-	// The public IPv6.
+	// The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
+	//
+	// Deprecated: Please use the official Kubernetes provider and the kubernetesNodes data source
 	PublicIpV6 pulumi.StringPtrInput `pulumi:"publicIpV6"`
 	// The status of the node.
 	Status pulumi.StringPtrInput `pulumi:"status"`
@@ -7744,12 +7541,16 @@ func (o K8sPoolNodeOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v K8sPoolNode) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The public IPv4.
+// The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
+//
+// Deprecated: Please use the official Kubernetes provider and the kubernetesNodes data source
 func (o K8sPoolNodeOutput) PublicIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v K8sPoolNode) *string { return v.PublicIp }).(pulumi.StringPtrOutput)
 }
 
-// The public IPv6.
+// The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
+//
+// Deprecated: Please use the official Kubernetes provider and the kubernetesNodes data source
 func (o K8sPoolNodeOutput) PublicIpV6() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v K8sPoolNode) *string { return v.PublicIpV6 }).(pulumi.StringPtrOutput)
 }
@@ -9665,7 +9466,9 @@ func (o LbFrontendAclMatchOutput) IpSubnets() pulumi.StringArrayOutput {
 }
 
 type LbPrivateNetwork struct {
-	// (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
+	// (Deprecated) Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses. See below.
+	//
+	// Deprecated: dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 	DhcpConfig *bool `pulumi:"dhcpConfig"`
 	// (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
 	IpamIds *string `pulumi:"ipamIds"`
@@ -9673,7 +9476,7 @@ type LbPrivateNetwork struct {
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
 	// (Deprecated) Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
 	//
-	// Deprecated: static_config field is deprecated, please use dhcpConfig instead
+	// Deprecated: static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 	StaticConfig *string `pulumi:"staticConfig"`
 	// The status of private network connection
 	Status *string `pulumi:"status"`
@@ -9693,7 +9496,9 @@ type LbPrivateNetworkInput interface {
 }
 
 type LbPrivateNetworkArgs struct {
-	// (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
+	// (Deprecated) Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses. See below.
+	//
+	// Deprecated: dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 	DhcpConfig pulumi.BoolPtrInput `pulumi:"dhcpConfig"`
 	// (Optional) IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
 	IpamIds pulumi.StringPtrInput `pulumi:"ipamIds"`
@@ -9701,7 +9506,7 @@ type LbPrivateNetworkArgs struct {
 	PrivateNetworkId pulumi.StringInput `pulumi:"privateNetworkId"`
 	// (Deprecated) Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
 	//
-	// Deprecated: static_config field is deprecated, please use dhcpConfig instead
+	// Deprecated: static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 	StaticConfig pulumi.StringPtrInput `pulumi:"staticConfig"`
 	// The status of private network connection
 	Status pulumi.StringPtrInput `pulumi:"status"`
@@ -9760,7 +9565,9 @@ func (o LbPrivateNetworkOutput) ToLbPrivateNetworkOutputWithContext(ctx context.
 	return o
 }
 
-// (Optional) Set to `true` if you want to let DHCP assign IP addresses. See below.
+// (Deprecated) Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses. See below.
+//
+// Deprecated: dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 func (o LbPrivateNetworkOutput) DhcpConfig() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LbPrivateNetwork) *bool { return v.DhcpConfig }).(pulumi.BoolPtrOutput)
 }
@@ -9777,7 +9584,7 @@ func (o LbPrivateNetworkOutput) PrivateNetworkId() pulumi.StringOutput {
 
 // (Deprecated) Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
 //
-// Deprecated: static_config field is deprecated, please use dhcpConfig instead
+// Deprecated: static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 func (o LbPrivateNetworkOutput) StaticConfig() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LbPrivateNetwork) *string { return v.StaticConfig }).(pulumi.StringPtrOutput)
 }
@@ -10162,6 +9969,181 @@ func (o MnqSqsCredentialsPermissionsPtrOutput) CanReceive() pulumi.BoolPtrOutput
 	}).(pulumi.BoolPtrOutput)
 }
 
+type MongodbInstancePublicNetwork struct {
+	// The DNS record of your endpoint
+	DnsRecord *string `pulumi:"dnsRecord"`
+	// The ID of the MongoDB® instance.
+	Id *string `pulumi:"id"`
+	// TCP port of the endpoint
+	Port *int `pulumi:"port"`
+}
+
+// MongodbInstancePublicNetworkInput is an input type that accepts MongodbInstancePublicNetworkArgs and MongodbInstancePublicNetworkOutput values.
+// You can construct a concrete instance of `MongodbInstancePublicNetworkInput` via:
+//
+//	MongodbInstancePublicNetworkArgs{...}
+type MongodbInstancePublicNetworkInput interface {
+	pulumi.Input
+
+	ToMongodbInstancePublicNetworkOutput() MongodbInstancePublicNetworkOutput
+	ToMongodbInstancePublicNetworkOutputWithContext(context.Context) MongodbInstancePublicNetworkOutput
+}
+
+type MongodbInstancePublicNetworkArgs struct {
+	// The DNS record of your endpoint
+	DnsRecord pulumi.StringPtrInput `pulumi:"dnsRecord"`
+	// The ID of the MongoDB® instance.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// TCP port of the endpoint
+	Port pulumi.IntPtrInput `pulumi:"port"`
+}
+
+func (MongodbInstancePublicNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MongodbInstancePublicNetwork)(nil)).Elem()
+}
+
+func (i MongodbInstancePublicNetworkArgs) ToMongodbInstancePublicNetworkOutput() MongodbInstancePublicNetworkOutput {
+	return i.ToMongodbInstancePublicNetworkOutputWithContext(context.Background())
+}
+
+func (i MongodbInstancePublicNetworkArgs) ToMongodbInstancePublicNetworkOutputWithContext(ctx context.Context) MongodbInstancePublicNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MongodbInstancePublicNetworkOutput)
+}
+
+func (i MongodbInstancePublicNetworkArgs) ToMongodbInstancePublicNetworkPtrOutput() MongodbInstancePublicNetworkPtrOutput {
+	return i.ToMongodbInstancePublicNetworkPtrOutputWithContext(context.Background())
+}
+
+func (i MongodbInstancePublicNetworkArgs) ToMongodbInstancePublicNetworkPtrOutputWithContext(ctx context.Context) MongodbInstancePublicNetworkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MongodbInstancePublicNetworkOutput).ToMongodbInstancePublicNetworkPtrOutputWithContext(ctx)
+}
+
+// MongodbInstancePublicNetworkPtrInput is an input type that accepts MongodbInstancePublicNetworkArgs, MongodbInstancePublicNetworkPtr and MongodbInstancePublicNetworkPtrOutput values.
+// You can construct a concrete instance of `MongodbInstancePublicNetworkPtrInput` via:
+//
+//	        MongodbInstancePublicNetworkArgs{...}
+//
+//	or:
+//
+//	        nil
+type MongodbInstancePublicNetworkPtrInput interface {
+	pulumi.Input
+
+	ToMongodbInstancePublicNetworkPtrOutput() MongodbInstancePublicNetworkPtrOutput
+	ToMongodbInstancePublicNetworkPtrOutputWithContext(context.Context) MongodbInstancePublicNetworkPtrOutput
+}
+
+type mongodbInstancePublicNetworkPtrType MongodbInstancePublicNetworkArgs
+
+func MongodbInstancePublicNetworkPtr(v *MongodbInstancePublicNetworkArgs) MongodbInstancePublicNetworkPtrInput {
+	return (*mongodbInstancePublicNetworkPtrType)(v)
+}
+
+func (*mongodbInstancePublicNetworkPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MongodbInstancePublicNetwork)(nil)).Elem()
+}
+
+func (i *mongodbInstancePublicNetworkPtrType) ToMongodbInstancePublicNetworkPtrOutput() MongodbInstancePublicNetworkPtrOutput {
+	return i.ToMongodbInstancePublicNetworkPtrOutputWithContext(context.Background())
+}
+
+func (i *mongodbInstancePublicNetworkPtrType) ToMongodbInstancePublicNetworkPtrOutputWithContext(ctx context.Context) MongodbInstancePublicNetworkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MongodbInstancePublicNetworkPtrOutput)
+}
+
+type MongodbInstancePublicNetworkOutput struct{ *pulumi.OutputState }
+
+func (MongodbInstancePublicNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MongodbInstancePublicNetwork)(nil)).Elem()
+}
+
+func (o MongodbInstancePublicNetworkOutput) ToMongodbInstancePublicNetworkOutput() MongodbInstancePublicNetworkOutput {
+	return o
+}
+
+func (o MongodbInstancePublicNetworkOutput) ToMongodbInstancePublicNetworkOutputWithContext(ctx context.Context) MongodbInstancePublicNetworkOutput {
+	return o
+}
+
+func (o MongodbInstancePublicNetworkOutput) ToMongodbInstancePublicNetworkPtrOutput() MongodbInstancePublicNetworkPtrOutput {
+	return o.ToMongodbInstancePublicNetworkPtrOutputWithContext(context.Background())
+}
+
+func (o MongodbInstancePublicNetworkOutput) ToMongodbInstancePublicNetworkPtrOutputWithContext(ctx context.Context) MongodbInstancePublicNetworkPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MongodbInstancePublicNetwork) *MongodbInstancePublicNetwork {
+		return &v
+	}).(MongodbInstancePublicNetworkPtrOutput)
+}
+
+// The DNS record of your endpoint
+func (o MongodbInstancePublicNetworkOutput) DnsRecord() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MongodbInstancePublicNetwork) *string { return v.DnsRecord }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the MongoDB® instance.
+func (o MongodbInstancePublicNetworkOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MongodbInstancePublicNetwork) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// TCP port of the endpoint
+func (o MongodbInstancePublicNetworkOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v MongodbInstancePublicNetwork) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+type MongodbInstancePublicNetworkPtrOutput struct{ *pulumi.OutputState }
+
+func (MongodbInstancePublicNetworkPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MongodbInstancePublicNetwork)(nil)).Elem()
+}
+
+func (o MongodbInstancePublicNetworkPtrOutput) ToMongodbInstancePublicNetworkPtrOutput() MongodbInstancePublicNetworkPtrOutput {
+	return o
+}
+
+func (o MongodbInstancePublicNetworkPtrOutput) ToMongodbInstancePublicNetworkPtrOutputWithContext(ctx context.Context) MongodbInstancePublicNetworkPtrOutput {
+	return o
+}
+
+func (o MongodbInstancePublicNetworkPtrOutput) Elem() MongodbInstancePublicNetworkOutput {
+	return o.ApplyT(func(v *MongodbInstancePublicNetwork) MongodbInstancePublicNetwork {
+		if v != nil {
+			return *v
+		}
+		var ret MongodbInstancePublicNetwork
+		return ret
+	}).(MongodbInstancePublicNetworkOutput)
+}
+
+// The DNS record of your endpoint
+func (o MongodbInstancePublicNetworkPtrOutput) DnsRecord() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MongodbInstancePublicNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DnsRecord
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of the MongoDB® instance.
+func (o MongodbInstancePublicNetworkPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MongodbInstancePublicNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// TCP port of the endpoint
+func (o MongodbInstancePublicNetworkPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MongodbInstancePublicNetwork) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
 type ObjectBucketAclAccessControlPolicy struct {
 	Grants []ObjectBucketAclAccessControlPolicyGrant `pulumi:"grants"`
 	// Configuration block of the bucket project owner's display organization ID.
@@ -10424,7 +10406,7 @@ func (o ObjectBucketAclAccessControlPolicyGrantArrayOutput) Index(i pulumi.IntIn
 
 type ObjectBucketAclAccessControlPolicyGrantGrantee struct {
 	DisplayName *string `pulumi:"displayName"`
-	// The `region`,`bucket` and `acl` separated by (`/`).
+	// The `region`, `bucket` and `acl` separated by (`/`).
 	Id string `pulumi:"id"`
 	// Type of grantee. Valid values: `CanonicalUser`
 	Type string `pulumi:"type"`
@@ -10443,7 +10425,7 @@ type ObjectBucketAclAccessControlPolicyGrantGranteeInput interface {
 
 type ObjectBucketAclAccessControlPolicyGrantGranteeArgs struct {
 	DisplayName pulumi.StringPtrInput `pulumi:"displayName"`
-	// The `region`,`bucket` and `acl` separated by (`/`).
+	// The `region`, `bucket` and `acl` separated by (`/`).
 	Id pulumi.StringInput `pulumi:"id"`
 	// Type of grantee. Valid values: `CanonicalUser`
 	Type pulumi.StringInput `pulumi:"type"`
@@ -10530,7 +10512,7 @@ func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) DisplayName() pulu
 	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyGrantGrantee) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
 }
 
-// The `region`,`bucket` and `acl` separated by (`/`).
+// The `region`, `bucket` and `acl` separated by (`/`).
 func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyGrantGrantee) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -10573,7 +10555,7 @@ func (o ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput) DisplayName() p
 	}).(pulumi.StringPtrOutput)
 }
 
-// The `region`,`bucket` and `acl` separated by (`/`).
+// The `region`, `bucket` and `acl` separated by (`/`).
 func (o ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketAclAccessControlPolicyGrantGrantee) *string {
 		if v == nil {
@@ -10596,7 +10578,7 @@ func (o ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput) Type() pulumi.S
 type ObjectBucketAclAccessControlPolicyOwner struct {
 	// The project ID of the grantee.
 	DisplayName *string `pulumi:"displayName"`
-	// The `region`,`bucket` and `acl` separated by (`/`).
+	// The `region`, `bucket` and `acl` separated by (`/`).
 	Id string `pulumi:"id"`
 }
 
@@ -10614,7 +10596,7 @@ type ObjectBucketAclAccessControlPolicyOwnerInput interface {
 type ObjectBucketAclAccessControlPolicyOwnerArgs struct {
 	// The project ID of the grantee.
 	DisplayName pulumi.StringPtrInput `pulumi:"displayName"`
-	// The `region`,`bucket` and `acl` separated by (`/`).
+	// The `region`, `bucket` and `acl` separated by (`/`).
 	Id pulumi.StringInput `pulumi:"id"`
 }
 
@@ -10700,7 +10682,7 @@ func (o ObjectBucketAclAccessControlPolicyOwnerOutput) DisplayName() pulumi.Stri
 	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyOwner) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
 }
 
-// The `region`,`bucket` and `acl` separated by (`/`).
+// The `region`, `bucket` and `acl` separated by (`/`).
 func (o ObjectBucketAclAccessControlPolicyOwnerOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyOwner) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -10739,7 +10721,7 @@ func (o ObjectBucketAclAccessControlPolicyOwnerPtrOutput) DisplayName() pulumi.S
 	}).(pulumi.StringPtrOutput)
 }
 
-// The `region`,`bucket` and `acl` separated by (`/`).
+// The `region`, `bucket` and `acl` separated by (`/`).
 func (o ObjectBucketAclAccessControlPolicyOwnerPtrOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketAclAccessControlPolicyOwner) *string {
 		if v == nil {
@@ -10752,13 +10734,13 @@ func (o ObjectBucketAclAccessControlPolicyOwnerPtrOutput) Id() pulumi.StringPtrO
 type ObjectBucketCorsRule struct {
 	// Specifies which headers are allowed.
 	AllowedHeaders []string `pulumi:"allowedHeaders"`
-	// Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+	// Specifies which methods are allowed (`GET`, `PUT`, `POST`, `DELETE` or `HEAD`).
 	AllowedMethods []string `pulumi:"allowedMethods"`
 	// Specifies which origins are allowed.
 	AllowedOrigins []string `pulumi:"allowedOrigins"`
-	// Specifies expose header in the response.
+	// Specifies header exposure in the response.
 	ExposeHeaders []string `pulumi:"exposeHeaders"`
-	// Specifies time in seconds that browser can cache the response for a preflight request.
+	// Specifies time in seconds that the browser can cache the response for a preflight request.
 	MaxAgeSeconds *int `pulumi:"maxAgeSeconds"`
 }
 
@@ -10776,13 +10758,13 @@ type ObjectBucketCorsRuleInput interface {
 type ObjectBucketCorsRuleArgs struct {
 	// Specifies which headers are allowed.
 	AllowedHeaders pulumi.StringArrayInput `pulumi:"allowedHeaders"`
-	// Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+	// Specifies which methods are allowed (`GET`, `PUT`, `POST`, `DELETE` or `HEAD`).
 	AllowedMethods pulumi.StringArrayInput `pulumi:"allowedMethods"`
 	// Specifies which origins are allowed.
 	AllowedOrigins pulumi.StringArrayInput `pulumi:"allowedOrigins"`
-	// Specifies expose header in the response.
+	// Specifies header exposure in the response.
 	ExposeHeaders pulumi.StringArrayInput `pulumi:"exposeHeaders"`
-	// Specifies time in seconds that browser can cache the response for a preflight request.
+	// Specifies time in seconds that the browser can cache the response for a preflight request.
 	MaxAgeSeconds pulumi.IntPtrInput `pulumi:"maxAgeSeconds"`
 }
 
@@ -10842,7 +10824,7 @@ func (o ObjectBucketCorsRuleOutput) AllowedHeaders() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ObjectBucketCorsRule) []string { return v.AllowedHeaders }).(pulumi.StringArrayOutput)
 }
 
-// Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+// Specifies which methods are allowed (`GET`, `PUT`, `POST`, `DELETE` or `HEAD`).
 func (o ObjectBucketCorsRuleOutput) AllowedMethods() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ObjectBucketCorsRule) []string { return v.AllowedMethods }).(pulumi.StringArrayOutput)
 }
@@ -10852,12 +10834,12 @@ func (o ObjectBucketCorsRuleOutput) AllowedOrigins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ObjectBucketCorsRule) []string { return v.AllowedOrigins }).(pulumi.StringArrayOutput)
 }
 
-// Specifies expose header in the response.
+// Specifies header exposure in the response.
 func (o ObjectBucketCorsRuleOutput) ExposeHeaders() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ObjectBucketCorsRule) []string { return v.ExposeHeaders }).(pulumi.StringArrayOutput)
 }
 
-// Specifies time in seconds that browser can cache the response for a preflight request.
+// Specifies time in seconds that the browser can cache the response for a preflight request.
 func (o ObjectBucketCorsRuleOutput) MaxAgeSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketCorsRule) *int { return v.MaxAgeSeconds }).(pulumi.IntPtrOutput)
 }
@@ -10885,11 +10867,11 @@ func (o ObjectBucketCorsRuleArrayOutput) Index(i pulumi.IntInput) ObjectBucketCo
 type ObjectBucketLifecycleRule struct {
 	// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
 	//
-	// * > **Important:** It's not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
+	// > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
 	AbortIncompleteMultipartUploadDays *int `pulumi:"abortIncompleteMultipartUploadDays"`
-	// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+	// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
 	Enabled bool `pulumi:"enabled"`
-	// Specifies a period in the object's expire (documented below).
+	// Specifies a period in the object's expire
 	Expiration *ObjectBucketLifecycleRuleExpiration `pulumi:"expiration"`
 	// Unique identifier for the rule. Must be less than or equal to 255 characters in length.
 	Id *string `pulumi:"id"`
@@ -10897,9 +10879,7 @@ type ObjectBucketLifecycleRule struct {
 	Prefix *string `pulumi:"prefix"`
 	// Specifies object tags key and value.
 	Tags map[string]string `pulumi:"tags"`
-	// Specifies a period in the object's transitions (documented below).
-	//
-	// At least one of `abortIncompleteMultipartUploadDays`, `expiration`, `transition` must be specified.
+	// Define when objects transition to another storage class
 	Transitions []ObjectBucketLifecycleRuleTransition `pulumi:"transitions"`
 }
 
@@ -10917,11 +10897,11 @@ type ObjectBucketLifecycleRuleInput interface {
 type ObjectBucketLifecycleRuleArgs struct {
 	// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
 	//
-	// * > **Important:** It's not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
+	// > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
 	AbortIncompleteMultipartUploadDays pulumi.IntPtrInput `pulumi:"abortIncompleteMultipartUploadDays"`
-	// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+	// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// Specifies a period in the object's expire (documented below).
+	// Specifies a period in the object's expire
 	Expiration ObjectBucketLifecycleRuleExpirationPtrInput `pulumi:"expiration"`
 	// Unique identifier for the rule. Must be less than or equal to 255 characters in length.
 	Id pulumi.StringPtrInput `pulumi:"id"`
@@ -10929,9 +10909,7 @@ type ObjectBucketLifecycleRuleArgs struct {
 	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
 	// Specifies object tags key and value.
 	Tags pulumi.StringMapInput `pulumi:"tags"`
-	// Specifies a period in the object's transitions (documented below).
-	//
-	// At least one of `abortIncompleteMultipartUploadDays`, `expiration`, `transition` must be specified.
+	// Define when objects transition to another storage class
 	Transitions ObjectBucketLifecycleRuleTransitionArrayInput `pulumi:"transitions"`
 }
 
@@ -10988,17 +10966,17 @@ func (o ObjectBucketLifecycleRuleOutput) ToObjectBucketLifecycleRuleOutputWithCo
 
 // Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
 //
-// * > **Important:** It's not recommended using `prefix` for `AbortIncompleteMultipartUpload` as any incomplete multipart upload will be billed
+// > **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
 func (o ObjectBucketLifecycleRuleOutput) AbortIncompleteMultipartUploadDays() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) *int { return v.AbortIncompleteMultipartUploadDays }).(pulumi.IntPtrOutput)
 }
 
-// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway S3 doesn't perform any of the actions defined in the rule.
+// The element value can be either Enabled or Disabled. If a rule is disabled, Scaleway Object Storage does not perform any of the actions defined in the rule.
 func (o ObjectBucketLifecycleRuleOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// Specifies a period in the object's expire (documented below).
+// Specifies a period in the object's expire
 func (o ObjectBucketLifecycleRuleOutput) Expiration() ObjectBucketLifecycleRuleExpirationPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) *ObjectBucketLifecycleRuleExpiration { return v.Expiration }).(ObjectBucketLifecycleRuleExpirationPtrOutput)
 }
@@ -11018,9 +10996,7 @@ func (o ObjectBucketLifecycleRuleOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
 }
 
-// Specifies a period in the object's transitions (documented below).
-//
-// At least one of `abortIncompleteMultipartUploadDays`, `expiration`, `transition` must be specified.
+// Define when objects transition to another storage class
 func (o ObjectBucketLifecycleRuleOutput) Transitions() ObjectBucketLifecycleRuleTransitionArrayOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRule) []ObjectBucketLifecycleRuleTransition { return v.Transitions }).(ObjectBucketLifecycleRuleTransitionArrayOutput)
 }
@@ -11047,8 +11023,6 @@ func (o ObjectBucketLifecycleRuleArrayOutput) Index(i pulumi.IntInput) ObjectBuc
 
 type ObjectBucketLifecycleRuleExpiration struct {
 	// Specifies the number of days after object creation when the specific rule action takes effect.
-	//
-	// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
 	Days int `pulumi:"days"`
 }
 
@@ -11065,8 +11039,6 @@ type ObjectBucketLifecycleRuleExpirationInput interface {
 
 type ObjectBucketLifecycleRuleExpirationArgs struct {
 	// Specifies the number of days after object creation when the specific rule action takes effect.
-	//
-	// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
 	Days pulumi.IntInput `pulumi:"days"`
 }
 
@@ -11148,8 +11120,6 @@ func (o ObjectBucketLifecycleRuleExpirationOutput) ToObjectBucketLifecycleRuleEx
 }
 
 // Specifies the number of days after object creation when the specific rule action takes effect.
-//
-// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
 func (o ObjectBucketLifecycleRuleExpirationOutput) Days() pulumi.IntOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleExpiration) int { return v.Days }).(pulumi.IntOutput)
 }
@@ -11179,8 +11149,6 @@ func (o ObjectBucketLifecycleRuleExpirationPtrOutput) Elem() ObjectBucketLifecyc
 }
 
 // Specifies the number of days after object creation when the specific rule action takes effect.
-//
-// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
 func (o ObjectBucketLifecycleRuleExpirationPtrOutput) Days() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketLifecycleRuleExpiration) *int {
 		if v == nil {
@@ -11195,7 +11163,11 @@ type ObjectBucketLifecycleRuleTransition struct {
 	Days *int `pulumi:"days"`
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
 	//
+	// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+	// **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+	//
 	// > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+	// **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
 	StorageClass string `pulumi:"storageClass"`
 }
 
@@ -11215,7 +11187,11 @@ type ObjectBucketLifecycleRuleTransitionArgs struct {
 	Days pulumi.IntPtrInput `pulumi:"days"`
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
 	//
+	// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+	// **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+	//
 	// > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+	// **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
 	StorageClass pulumi.StringInput `pulumi:"storageClass"`
 }
 
@@ -11277,7 +11253,11 @@ func (o ObjectBucketLifecycleRuleTransitionOutput) Days() pulumi.IntPtrOutput {
 
 // Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) `STANDARD`, `GLACIER`, `ONEZONE_IA`  to which you want the object to transition.
 //
+// > **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+// **Important:**  If versioning is enabled, this rule only deletes the current version of an object.
+//
 // > **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
+// **Important:**  `ONEZONE_IA` is only available in `fr-par` region. The storage class `GLACIER` is not available in `pl-waw` region.
 func (o ObjectBucketLifecycleRuleTransitionOutput) StorageClass() pulumi.StringOutput {
 	return o.ApplyT(func(v ObjectBucketLifecycleRuleTransition) string { return v.StorageClass }).(pulumi.StringOutput)
 }
@@ -11442,11 +11422,11 @@ func (o ObjectBucketLockConfigurationRulePtrOutput) DefaultRetention() ObjectBuc
 }
 
 type ObjectBucketLockConfigurationRuleDefaultRetention struct {
-	// The number of days that you want to specify for the default retention period.
+	// The number of days you want to specify for the default retention period.
 	Days *int `pulumi:"days"`
-	// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
+	// The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
 	Mode string `pulumi:"mode"`
-	// The number of years that you want to specify for the default retention period.
+	// The number of years you want to specify for the default retention period.
 	Years *int `pulumi:"years"`
 }
 
@@ -11462,11 +11442,11 @@ type ObjectBucketLockConfigurationRuleDefaultRetentionInput interface {
 }
 
 type ObjectBucketLockConfigurationRuleDefaultRetentionArgs struct {
-	// The number of days that you want to specify for the default retention period.
+	// The number of days you want to specify for the default retention period.
 	Days pulumi.IntPtrInput `pulumi:"days"`
-	// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
+	// The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
 	Mode pulumi.StringInput `pulumi:"mode"`
-	// The number of years that you want to specify for the default retention period.
+	// The number of years you want to specify for the default retention period.
 	Years pulumi.IntPtrInput `pulumi:"years"`
 }
 
@@ -11547,17 +11527,17 @@ func (o ObjectBucketLockConfigurationRuleDefaultRetentionOutput) ToObjectBucketL
 	}).(ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput)
 }
 
-// The number of days that you want to specify for the default retention period.
+// The number of days you want to specify for the default retention period.
 func (o ObjectBucketLockConfigurationRuleDefaultRetentionOutput) Days() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLockConfigurationRuleDefaultRetention) *int { return v.Days }).(pulumi.IntPtrOutput)
 }
 
-// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
+// The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
 func (o ObjectBucketLockConfigurationRuleDefaultRetentionOutput) Mode() pulumi.StringOutput {
 	return o.ApplyT(func(v ObjectBucketLockConfigurationRuleDefaultRetention) string { return v.Mode }).(pulumi.StringOutput)
 }
 
-// The number of years that you want to specify for the default retention period.
+// The number of years you want to specify for the default retention period.
 func (o ObjectBucketLockConfigurationRuleDefaultRetentionOutput) Years() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ObjectBucketLockConfigurationRuleDefaultRetention) *int { return v.Years }).(pulumi.IntPtrOutput)
 }
@@ -11586,7 +11566,7 @@ func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) Elem() Objec
 	}).(ObjectBucketLockConfigurationRuleDefaultRetentionOutput)
 }
 
-// The number of days that you want to specify for the default retention period.
+// The number of days you want to specify for the default retention period.
 func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) Days() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketLockConfigurationRuleDefaultRetention) *int {
 		if v == nil {
@@ -11596,7 +11576,7 @@ func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) Days() pulum
 	}).(pulumi.IntPtrOutput)
 }
 
-// The default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. To learn more about the difference between these modes, see [Object Lock retention modes](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes).
+// The default object lock retention mode you want to apply to new objects placed in the specified bucket. Valid values are `GOVERNANCE` or `COMPLIANCE`. Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/#retention-modes) for more information on retention modes.
 func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketLockConfigurationRuleDefaultRetention) *string {
 		if v == nil {
@@ -11606,7 +11586,7 @@ func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) Mode() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
-// The number of years that you want to specify for the default retention period.
+// The number of years you want to specify for the default retention period.
 func (o ObjectBucketLockConfigurationRuleDefaultRetentionPtrOutput) Years() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketLockConfigurationRuleDefaultRetention) *int {
 		if v == nil {
@@ -11891,7 +11871,7 @@ func (o ObjectBucketWebsiteConfigurationErrorDocumentPtrOutput) Key() pulumi.Str
 }
 
 type ObjectBucketWebsiteConfigurationIndexDocument struct {
-	// A suffix that is appended to a request that is for a directory on the website endpoint.
+	// A suffix that is appended to a request targeting a specific directory on the website endpoint.
 	//
 	// > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
 	Suffix string `pulumi:"suffix"`
@@ -11909,7 +11889,7 @@ type ObjectBucketWebsiteConfigurationIndexDocumentInput interface {
 }
 
 type ObjectBucketWebsiteConfigurationIndexDocumentArgs struct {
-	// A suffix that is appended to a request that is for a directory on the website endpoint.
+	// A suffix that is appended to a request targeting a specific directory on the website endpoint.
 	//
 	// > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
 	Suffix pulumi.StringInput `pulumi:"suffix"`
@@ -11992,7 +11972,7 @@ func (o ObjectBucketWebsiteConfigurationIndexDocumentOutput) ToObjectBucketWebsi
 	}).(ObjectBucketWebsiteConfigurationIndexDocumentPtrOutput)
 }
 
-// A suffix that is appended to a request that is for a directory on the website endpoint.
+// A suffix that is appended to a request targeting a specific directory on the website endpoint.
 //
 // > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
 func (o ObjectBucketWebsiteConfigurationIndexDocumentOutput) Suffix() pulumi.StringOutput {
@@ -12023,7 +12003,7 @@ func (o ObjectBucketWebsiteConfigurationIndexDocumentPtrOutput) Elem() ObjectBuc
 	}).(ObjectBucketWebsiteConfigurationIndexDocumentOutput)
 }
 
-// A suffix that is appended to a request that is for a directory on the website endpoint.
+// A suffix that is appended to a request targeting a specific directory on the website endpoint.
 //
 // > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
 func (o ObjectBucketWebsiteConfigurationIndexDocumentPtrOutput) Suffix() pulumi.StringPtrOutput {
@@ -13869,6 +13849,121 @@ func (o RedisClusterPublicNetworkPtrOutput) Port() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+type SecretEphemeralPolicy struct {
+	// Action to perform when the version of a secret expires. Available values can be found in [SDK constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+	Action string `pulumi:"action"`
+	// True if the secret version expires after a single user access.
+	ExpiresOnceAccessed *bool `pulumi:"expiresOnceAccessed"`
+	// Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in [Go Duration format](https://pkg.go.dev/time#ParseDuration) (ex: "30m", "24h").
+	Ttl *string `pulumi:"ttl"`
+}
+
+// SecretEphemeralPolicyInput is an input type that accepts SecretEphemeralPolicyArgs and SecretEphemeralPolicyOutput values.
+// You can construct a concrete instance of `SecretEphemeralPolicyInput` via:
+//
+//	SecretEphemeralPolicyArgs{...}
+type SecretEphemeralPolicyInput interface {
+	pulumi.Input
+
+	ToSecretEphemeralPolicyOutput() SecretEphemeralPolicyOutput
+	ToSecretEphemeralPolicyOutputWithContext(context.Context) SecretEphemeralPolicyOutput
+}
+
+type SecretEphemeralPolicyArgs struct {
+	// Action to perform when the version of a secret expires. Available values can be found in [SDK constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+	Action pulumi.StringInput `pulumi:"action"`
+	// True if the secret version expires after a single user access.
+	ExpiresOnceAccessed pulumi.BoolPtrInput `pulumi:"expiresOnceAccessed"`
+	// Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in [Go Duration format](https://pkg.go.dev/time#ParseDuration) (ex: "30m", "24h").
+	Ttl pulumi.StringPtrInput `pulumi:"ttl"`
+}
+
+func (SecretEphemeralPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretEphemeralPolicy)(nil)).Elem()
+}
+
+func (i SecretEphemeralPolicyArgs) ToSecretEphemeralPolicyOutput() SecretEphemeralPolicyOutput {
+	return i.ToSecretEphemeralPolicyOutputWithContext(context.Background())
+}
+
+func (i SecretEphemeralPolicyArgs) ToSecretEphemeralPolicyOutputWithContext(ctx context.Context) SecretEphemeralPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretEphemeralPolicyOutput)
+}
+
+// SecretEphemeralPolicyArrayInput is an input type that accepts SecretEphemeralPolicyArray and SecretEphemeralPolicyArrayOutput values.
+// You can construct a concrete instance of `SecretEphemeralPolicyArrayInput` via:
+//
+//	SecretEphemeralPolicyArray{ SecretEphemeralPolicyArgs{...} }
+type SecretEphemeralPolicyArrayInput interface {
+	pulumi.Input
+
+	ToSecretEphemeralPolicyArrayOutput() SecretEphemeralPolicyArrayOutput
+	ToSecretEphemeralPolicyArrayOutputWithContext(context.Context) SecretEphemeralPolicyArrayOutput
+}
+
+type SecretEphemeralPolicyArray []SecretEphemeralPolicyInput
+
+func (SecretEphemeralPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretEphemeralPolicy)(nil)).Elem()
+}
+
+func (i SecretEphemeralPolicyArray) ToSecretEphemeralPolicyArrayOutput() SecretEphemeralPolicyArrayOutput {
+	return i.ToSecretEphemeralPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i SecretEphemeralPolicyArray) ToSecretEphemeralPolicyArrayOutputWithContext(ctx context.Context) SecretEphemeralPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretEphemeralPolicyArrayOutput)
+}
+
+type SecretEphemeralPolicyOutput struct{ *pulumi.OutputState }
+
+func (SecretEphemeralPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretEphemeralPolicy)(nil)).Elem()
+}
+
+func (o SecretEphemeralPolicyOutput) ToSecretEphemeralPolicyOutput() SecretEphemeralPolicyOutput {
+	return o
+}
+
+func (o SecretEphemeralPolicyOutput) ToSecretEphemeralPolicyOutputWithContext(ctx context.Context) SecretEphemeralPolicyOutput {
+	return o
+}
+
+// Action to perform when the version of a secret expires. Available values can be found in [SDK constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
+func (o SecretEphemeralPolicyOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v SecretEphemeralPolicy) string { return v.Action }).(pulumi.StringOutput)
+}
+
+// True if the secret version expires after a single user access.
+func (o SecretEphemeralPolicyOutput) ExpiresOnceAccessed() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretEphemeralPolicy) *bool { return v.ExpiresOnceAccessed }).(pulumi.BoolPtrOutput)
+}
+
+// Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in [Go Duration format](https://pkg.go.dev/time#ParseDuration) (ex: "30m", "24h").
+func (o SecretEphemeralPolicyOutput) Ttl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretEphemeralPolicy) *string { return v.Ttl }).(pulumi.StringPtrOutput)
+}
+
+type SecretEphemeralPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretEphemeralPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretEphemeralPolicy)(nil)).Elem()
+}
+
+func (o SecretEphemeralPolicyArrayOutput) ToSecretEphemeralPolicyArrayOutput() SecretEphemeralPolicyArrayOutput {
+	return o
+}
+
+func (o SecretEphemeralPolicyArrayOutput) ToSecretEphemeralPolicyArrayOutputWithContext(ctx context.Context) SecretEphemeralPolicyArrayOutput {
+	return o
+}
+
+func (o SecretEphemeralPolicyArrayOutput) Index(i pulumi.IntInput) SecretEphemeralPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretEphemeralPolicy {
+		return vs[0].([]SecretEphemeralPolicy)[vs[1].(int)]
+	}).(SecretEphemeralPolicyOutput)
+}
+
 type TemDomainReputation struct {
 	// The previously-calculated domain's reputation score.
 	PreviousScore *int `pulumi:"previousScore"`
@@ -15568,6 +15663,8 @@ type GetBaremetalServerPrivateNetwork struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// The ID of the server.
 	Id string `pulumi:"id"`
+	// List of IPAM IP IDs to attach to the server
+	IpamIpIds []string `pulumi:"ipamIpIds"`
 	// The private network status
 	Status string `pulumi:"status"`
 	// The date and time of the last update of the private network
@@ -15592,6 +15689,8 @@ type GetBaremetalServerPrivateNetworkArgs struct {
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// The ID of the server.
 	Id pulumi.StringInput `pulumi:"id"`
+	// List of IPAM IP IDs to attach to the server
+	IpamIpIds pulumi.StringArrayInput `pulumi:"ipamIpIds"`
 	// The private network status
 	Status pulumi.StringInput `pulumi:"status"`
 	// The date and time of the last update of the private network
@@ -15659,6 +15758,11 @@ func (o GetBaremetalServerPrivateNetworkOutput) CreatedAt() pulumi.StringOutput 
 // The ID of the server.
 func (o GetBaremetalServerPrivateNetworkOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBaremetalServerPrivateNetwork) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// List of IPAM IP IDs to attach to the server
+func (o GetBaremetalServerPrivateNetworkOutput) IpamIpIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetBaremetalServerPrivateNetwork) []string { return v.IpamIpIds }).(pulumi.StringArrayOutput)
 }
 
 // The private network status
@@ -16080,13 +16184,13 @@ func (o GetBillingInvoicesInvoiceArrayOutput) Index(i pulumi.IntInput) GetBillin
 }
 
 type GetCockpitEndpoint struct {
-	// The alertmanager URL
+	// (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
 	AlertmanagerUrl string `pulumi:"alertmanagerUrl"`
-	// The grafana URL
+	// (Deprecated) URL for Grafana.
 	GrafanaUrl string `pulumi:"grafanaUrl"`
-	// The logs URL
+	// (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 	LogsUrl string `pulumi:"logsUrl"`
-	// The metrics URL
+	// (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 	MetricsUrl string `pulumi:"metricsUrl"`
 	// The traces URL
 	TracesUrl string `pulumi:"tracesUrl"`
@@ -16104,13 +16208,13 @@ type GetCockpitEndpointInput interface {
 }
 
 type GetCockpitEndpointArgs struct {
-	// The alertmanager URL
+	// (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
 	AlertmanagerUrl pulumi.StringInput `pulumi:"alertmanagerUrl"`
-	// The grafana URL
+	// (Deprecated) URL for Grafana.
 	GrafanaUrl pulumi.StringInput `pulumi:"grafanaUrl"`
-	// The logs URL
+	// (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 	LogsUrl pulumi.StringInput `pulumi:"logsUrl"`
-	// The metrics URL
+	// (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 	MetricsUrl pulumi.StringInput `pulumi:"metricsUrl"`
 	// The traces URL
 	TracesUrl pulumi.StringInput `pulumi:"tracesUrl"`
@@ -16167,22 +16271,22 @@ func (o GetCockpitEndpointOutput) ToGetCockpitEndpointOutputWithContext(ctx cont
 	return o
 }
 
-// The alertmanager URL
+// (Deprecated) URL for the [Alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
 func (o GetCockpitEndpointOutput) AlertmanagerUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCockpitEndpoint) string { return v.AlertmanagerUrl }).(pulumi.StringOutput)
 }
 
-// The grafana URL
+// (Deprecated) URL for Grafana.
 func (o GetCockpitEndpointOutput) GrafanaUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCockpitEndpoint) string { return v.GrafanaUrl }).(pulumi.StringOutput)
 }
 
-// The logs URL
+// (Deprecated) URL for [logs](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#logs) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 func (o GetCockpitEndpointOutput) LogsUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCockpitEndpoint) string { return v.LogsUrl }).(pulumi.StringOutput)
 }
 
-// The metrics URL
+// (Deprecated) URL for [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) to retrieve in the [Data sources tab](https://console.scaleway.com/cockpit/dataSource) of the Scaleway console.
 func (o GetCockpitEndpointOutput) MetricsUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCockpitEndpoint) string { return v.MetricsUrl }).(pulumi.StringOutput)
 }
@@ -16420,8 +16524,7 @@ type GetDomainRecordGeoIpMatch struct {
 	Continents []string `pulumi:"continents"`
 	// List of countries (eg: FR for France, US for the United States, GB for Great Britain...). List of all countries code: https://api.scaleway.com/domain-private/v2beta1/countries
 	Countries []string `pulumi:"countries"`
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-	// Cannot be used with `recordId`.
+	// The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `recordId`.
 	Data string `pulumi:"data"`
 }
 
@@ -16441,8 +16544,7 @@ type GetDomainRecordGeoIpMatchArgs struct {
 	Continents pulumi.StringArrayInput `pulumi:"continents"`
 	// List of countries (eg: FR for France, US for the United States, GB for Great Britain...). List of all countries code: https://api.scaleway.com/domain-private/v2beta1/countries
 	Countries pulumi.StringArrayInput `pulumi:"countries"`
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-	// Cannot be used with `recordId`.
+	// The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `recordId`.
 	Data pulumi.StringInput `pulumi:"data"`
 }
 
@@ -16507,8 +16609,7 @@ func (o GetDomainRecordGeoIpMatchOutput) Countries() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetDomainRecordGeoIpMatch) []string { return v.Countries }).(pulumi.StringArrayOutput)
 }
 
-// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-// Cannot be used with `recordId`.
+// The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `recordId`.
 func (o GetDomainRecordGeoIpMatchOutput) Data() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDomainRecordGeoIpMatch) string { return v.Data }).(pulumi.StringOutput)
 }
@@ -16667,8 +16768,7 @@ func (o GetDomainRecordHttpServiceArrayOutput) Index(i pulumi.IntInput) GetDomai
 }
 
 type GetDomainRecordView struct {
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-	// Cannot be used with `recordId`.
+	// The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `recordId`.
 	Data string `pulumi:"data"`
 	// The subnet of the view
 	Subnet string `pulumi:"subnet"`
@@ -16686,8 +16786,7 @@ type GetDomainRecordViewInput interface {
 }
 
 type GetDomainRecordViewArgs struct {
-	// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-	// Cannot be used with `recordId`.
+	// The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `recordId`.
 	Data pulumi.StringInput `pulumi:"data"`
 	// The subnet of the view
 	Subnet pulumi.StringInput `pulumi:"subnet"`
@@ -16744,8 +16843,7 @@ func (o GetDomainRecordViewOutput) ToGetDomainRecordViewOutputWithContext(ctx co
 	return o
 }
 
-// The content of the record (an IPv4 for an `A`, a string for a `TXT`...).
-// Cannot be used with `recordId`.
+// The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `recordId`.
 func (o GetDomainRecordViewOutput) Data() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDomainRecordView) string { return v.Data }).(pulumi.StringOutput)
 }
@@ -17767,6 +17865,8 @@ type GetInstanceServerRootVolume struct {
 	DeleteOnTermination bool `pulumi:"deleteOnTermination"`
 	// The server name. Only one of `name` and `serverId` should be specified.
 	Name string `pulumi:"name"`
+	// SBS Volume IOPS, only with volumeType as sbs_volume
+	SbsIops int `pulumi:"sbsIops"`
 	// Size of the root volume in gigabytes.
 	SizeInGb int `pulumi:"sizeInGb"`
 	// The volume ID of the root volume of the server.
@@ -17793,6 +17893,8 @@ type GetInstanceServerRootVolumeArgs struct {
 	DeleteOnTermination pulumi.BoolInput `pulumi:"deleteOnTermination"`
 	// The server name. Only one of `name` and `serverId` should be specified.
 	Name pulumi.StringInput `pulumi:"name"`
+	// SBS Volume IOPS, only with volumeType as sbs_volume
+	SbsIops pulumi.IntInput `pulumi:"sbsIops"`
 	// Size of the root volume in gigabytes.
 	SizeInGb pulumi.IntInput `pulumi:"sizeInGb"`
 	// The volume ID of the root volume of the server.
@@ -17867,6 +17969,11 @@ func (o GetInstanceServerRootVolumeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServerRootVolume) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// SBS Volume IOPS, only with volumeType as sbs_volume
+func (o GetInstanceServerRootVolumeOutput) SbsIops() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstanceServerRootVolume) int { return v.SbsIops }).(pulumi.IntOutput)
+}
+
 // Size of the root volume in gigabytes.
 func (o GetInstanceServerRootVolumeOutput) SizeInGb() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInstanceServerRootVolume) int { return v.SizeInGb }).(pulumi.IntOutput)
@@ -17905,7 +18012,7 @@ func (o GetInstanceServerRootVolumeArrayOutput) Index(i pulumi.IntInput) GetInst
 type GetInstanceServersServer struct {
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType string `pulumi:"bootType"`
-	// The ID of the bootscript.
+	// Deprecated: bootscript are not supported
 	BootscriptId string `pulumi:"bootscriptId"`
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp bool `pulumi:"enableDynamicIp"`
@@ -17933,6 +18040,8 @@ type GetInstanceServersServer struct {
 	// The ID of the project the server is associated with.
 	ProjectId string `pulumi:"projectId"`
 	// The public IP address of the server.
+	//
+	// Deprecated: Use publicIps instead
 	PublicIp string `pulumi:"publicIp"`
 	// The list of public IPs of the server
 	PublicIps []GetInstanceServersServerPublicIp `pulumi:"publicIps"`
@@ -17964,7 +18073,7 @@ type GetInstanceServersServerInput interface {
 type GetInstanceServersServerArgs struct {
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType pulumi.StringInput `pulumi:"bootType"`
-	// The ID of the bootscript.
+	// Deprecated: bootscript are not supported
 	BootscriptId pulumi.StringInput `pulumi:"bootscriptId"`
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp pulumi.BoolInput `pulumi:"enableDynamicIp"`
@@ -17992,6 +18101,8 @@ type GetInstanceServersServerArgs struct {
 	// The ID of the project the server is associated with.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// The public IP address of the server.
+	//
+	// Deprecated: Use publicIps instead
 	PublicIp pulumi.StringInput `pulumi:"publicIp"`
 	// The list of public IPs of the server
 	PublicIps GetInstanceServersServerPublicIpArrayInput `pulumi:"publicIps"`
@@ -18065,7 +18176,7 @@ func (o GetInstanceServersServerOutput) BootType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServersServer) string { return v.BootType }).(pulumi.StringOutput)
 }
 
-// The ID of the bootscript.
+// Deprecated: bootscript are not supported
 func (o GetInstanceServersServerOutput) BootscriptId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServersServer) string { return v.BootscriptId }).(pulumi.StringOutput)
 }
@@ -18135,6 +18246,8 @@ func (o GetInstanceServersServerOutput) ProjectId() pulumi.StringOutput {
 }
 
 // The public IP address of the server.
+//
+// Deprecated: Use publicIps instead
 func (o GetInstanceServersServerOutput) PublicIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServersServer) string { return v.PublicIp }).(pulumi.StringOutput)
 }
@@ -23443,6 +23556,121 @@ func (o GetLbsLbIpArrayOutput) Index(i pulumi.IntInput) GetLbsLbIpOutput {
 	}).(GetLbsLbIpOutput)
 }
 
+type GetMongodbInstancePublicNetwork struct {
+	// The DNS record of your endpoint
+	DnsRecord string `pulumi:"dnsRecord"`
+	// The ID of the MongoDB® Instance.
+	Id string `pulumi:"id"`
+	// TCP port of the endpoint
+	Port int `pulumi:"port"`
+}
+
+// GetMongodbInstancePublicNetworkInput is an input type that accepts GetMongodbInstancePublicNetworkArgs and GetMongodbInstancePublicNetworkOutput values.
+// You can construct a concrete instance of `GetMongodbInstancePublicNetworkInput` via:
+//
+//	GetMongodbInstancePublicNetworkArgs{...}
+type GetMongodbInstancePublicNetworkInput interface {
+	pulumi.Input
+
+	ToGetMongodbInstancePublicNetworkOutput() GetMongodbInstancePublicNetworkOutput
+	ToGetMongodbInstancePublicNetworkOutputWithContext(context.Context) GetMongodbInstancePublicNetworkOutput
+}
+
+type GetMongodbInstancePublicNetworkArgs struct {
+	// The DNS record of your endpoint
+	DnsRecord pulumi.StringInput `pulumi:"dnsRecord"`
+	// The ID of the MongoDB® Instance.
+	Id pulumi.StringInput `pulumi:"id"`
+	// TCP port of the endpoint
+	Port pulumi.IntInput `pulumi:"port"`
+}
+
+func (GetMongodbInstancePublicNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongodbInstancePublicNetwork)(nil)).Elem()
+}
+
+func (i GetMongodbInstancePublicNetworkArgs) ToGetMongodbInstancePublicNetworkOutput() GetMongodbInstancePublicNetworkOutput {
+	return i.ToGetMongodbInstancePublicNetworkOutputWithContext(context.Background())
+}
+
+func (i GetMongodbInstancePublicNetworkArgs) ToGetMongodbInstancePublicNetworkOutputWithContext(ctx context.Context) GetMongodbInstancePublicNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMongodbInstancePublicNetworkOutput)
+}
+
+// GetMongodbInstancePublicNetworkArrayInput is an input type that accepts GetMongodbInstancePublicNetworkArray and GetMongodbInstancePublicNetworkArrayOutput values.
+// You can construct a concrete instance of `GetMongodbInstancePublicNetworkArrayInput` via:
+//
+//	GetMongodbInstancePublicNetworkArray{ GetMongodbInstancePublicNetworkArgs{...} }
+type GetMongodbInstancePublicNetworkArrayInput interface {
+	pulumi.Input
+
+	ToGetMongodbInstancePublicNetworkArrayOutput() GetMongodbInstancePublicNetworkArrayOutput
+	ToGetMongodbInstancePublicNetworkArrayOutputWithContext(context.Context) GetMongodbInstancePublicNetworkArrayOutput
+}
+
+type GetMongodbInstancePublicNetworkArray []GetMongodbInstancePublicNetworkInput
+
+func (GetMongodbInstancePublicNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMongodbInstancePublicNetwork)(nil)).Elem()
+}
+
+func (i GetMongodbInstancePublicNetworkArray) ToGetMongodbInstancePublicNetworkArrayOutput() GetMongodbInstancePublicNetworkArrayOutput {
+	return i.ToGetMongodbInstancePublicNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i GetMongodbInstancePublicNetworkArray) ToGetMongodbInstancePublicNetworkArrayOutputWithContext(ctx context.Context) GetMongodbInstancePublicNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMongodbInstancePublicNetworkArrayOutput)
+}
+
+type GetMongodbInstancePublicNetworkOutput struct{ *pulumi.OutputState }
+
+func (GetMongodbInstancePublicNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongodbInstancePublicNetwork)(nil)).Elem()
+}
+
+func (o GetMongodbInstancePublicNetworkOutput) ToGetMongodbInstancePublicNetworkOutput() GetMongodbInstancePublicNetworkOutput {
+	return o
+}
+
+func (o GetMongodbInstancePublicNetworkOutput) ToGetMongodbInstancePublicNetworkOutputWithContext(ctx context.Context) GetMongodbInstancePublicNetworkOutput {
+	return o
+}
+
+// The DNS record of your endpoint
+func (o GetMongodbInstancePublicNetworkOutput) DnsRecord() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongodbInstancePublicNetwork) string { return v.DnsRecord }).(pulumi.StringOutput)
+}
+
+// The ID of the MongoDB® Instance.
+func (o GetMongodbInstancePublicNetworkOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongodbInstancePublicNetwork) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// TCP port of the endpoint
+func (o GetMongodbInstancePublicNetworkOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMongodbInstancePublicNetwork) int { return v.Port }).(pulumi.IntOutput)
+}
+
+type GetMongodbInstancePublicNetworkArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMongodbInstancePublicNetworkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMongodbInstancePublicNetwork)(nil)).Elem()
+}
+
+func (o GetMongodbInstancePublicNetworkArrayOutput) ToGetMongodbInstancePublicNetworkArrayOutput() GetMongodbInstancePublicNetworkArrayOutput {
+	return o
+}
+
+func (o GetMongodbInstancePublicNetworkArrayOutput) ToGetMongodbInstancePublicNetworkArrayOutputWithContext(ctx context.Context) GetMongodbInstancePublicNetworkArrayOutput {
+	return o
+}
+
+func (o GetMongodbInstancePublicNetworkArrayOutput) Index(i pulumi.IntInput) GetMongodbInstancePublicNetworkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMongodbInstancePublicNetwork {
+		return vs[0].([]GetMongodbInstancePublicNetwork)[vs[1].(int)]
+	}).(GetMongodbInstancePublicNetworkOutput)
+}
+
 type GetObjectBucketCorsRule struct {
 	AllowedHeaders []string `pulumi:"allowedHeaders"`
 	AllowedMethods []string `pulumi:"allowedMethods"`
@@ -23568,7 +23796,7 @@ type GetObjectBucketLifecycleRule struct {
 	Enabled bool `pulumi:"enabled"`
 	// Specifies a period in the object's expire
 	Expirations []GetObjectBucketLifecycleRuleExpiration `pulumi:"expirations"`
-	// The unique name of the bucket.
+	// The unique identifier of the bucket.
 	Id string `pulumi:"id"`
 	// The prefix identifying one or more objects to which the rule applies
 	Prefix string `pulumi:"prefix"`
@@ -23596,7 +23824,7 @@ type GetObjectBucketLifecycleRuleArgs struct {
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 	// Specifies a period in the object's expire
 	Expirations GetObjectBucketLifecycleRuleExpirationArrayInput `pulumi:"expirations"`
-	// The unique name of the bucket.
+	// The unique identifier of the bucket.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The prefix identifying one or more objects to which the rule applies
 	Prefix pulumi.StringInput `pulumi:"prefix"`
@@ -23672,7 +23900,7 @@ func (o GetObjectBucketLifecycleRuleOutput) Expirations() GetObjectBucketLifecyc
 	return o.ApplyT(func(v GetObjectBucketLifecycleRule) []GetObjectBucketLifecycleRuleExpiration { return v.Expirations }).(GetObjectBucketLifecycleRuleExpirationArrayOutput)
 }
 
-// The unique name of the bucket.
+// The unique identifier of the bucket.
 func (o GetObjectBucketLifecycleRuleOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetObjectBucketLifecycleRule) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -24992,6 +25220,121 @@ func (o GetRedisClusterPublicNetworkArrayOutput) Index(i pulumi.IntInput) GetRed
 	}).(GetRedisClusterPublicNetworkOutput)
 }
 
+type GetSecretEphemeralPolicy struct {
+	// Action to perform when the version of a secret expires.
+	Action string `pulumi:"action"`
+	// True if the secret version expires after a single user access.
+	ExpiresOnceAccessed bool `pulumi:"expiresOnceAccessed"`
+	// Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in Go Duration format
+	Ttl string `pulumi:"ttl"`
+}
+
+// GetSecretEphemeralPolicyInput is an input type that accepts GetSecretEphemeralPolicyArgs and GetSecretEphemeralPolicyOutput values.
+// You can construct a concrete instance of `GetSecretEphemeralPolicyInput` via:
+//
+//	GetSecretEphemeralPolicyArgs{...}
+type GetSecretEphemeralPolicyInput interface {
+	pulumi.Input
+
+	ToGetSecretEphemeralPolicyOutput() GetSecretEphemeralPolicyOutput
+	ToGetSecretEphemeralPolicyOutputWithContext(context.Context) GetSecretEphemeralPolicyOutput
+}
+
+type GetSecretEphemeralPolicyArgs struct {
+	// Action to perform when the version of a secret expires.
+	Action pulumi.StringInput `pulumi:"action"`
+	// True if the secret version expires after a single user access.
+	ExpiresOnceAccessed pulumi.BoolInput `pulumi:"expiresOnceAccessed"`
+	// Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in Go Duration format
+	Ttl pulumi.StringInput `pulumi:"ttl"`
+}
+
+func (GetSecretEphemeralPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSecretEphemeralPolicy)(nil)).Elem()
+}
+
+func (i GetSecretEphemeralPolicyArgs) ToGetSecretEphemeralPolicyOutput() GetSecretEphemeralPolicyOutput {
+	return i.ToGetSecretEphemeralPolicyOutputWithContext(context.Background())
+}
+
+func (i GetSecretEphemeralPolicyArgs) ToGetSecretEphemeralPolicyOutputWithContext(ctx context.Context) GetSecretEphemeralPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSecretEphemeralPolicyOutput)
+}
+
+// GetSecretEphemeralPolicyArrayInput is an input type that accepts GetSecretEphemeralPolicyArray and GetSecretEphemeralPolicyArrayOutput values.
+// You can construct a concrete instance of `GetSecretEphemeralPolicyArrayInput` via:
+//
+//	GetSecretEphemeralPolicyArray{ GetSecretEphemeralPolicyArgs{...} }
+type GetSecretEphemeralPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetSecretEphemeralPolicyArrayOutput() GetSecretEphemeralPolicyArrayOutput
+	ToGetSecretEphemeralPolicyArrayOutputWithContext(context.Context) GetSecretEphemeralPolicyArrayOutput
+}
+
+type GetSecretEphemeralPolicyArray []GetSecretEphemeralPolicyInput
+
+func (GetSecretEphemeralPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSecretEphemeralPolicy)(nil)).Elem()
+}
+
+func (i GetSecretEphemeralPolicyArray) ToGetSecretEphemeralPolicyArrayOutput() GetSecretEphemeralPolicyArrayOutput {
+	return i.ToGetSecretEphemeralPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetSecretEphemeralPolicyArray) ToGetSecretEphemeralPolicyArrayOutputWithContext(ctx context.Context) GetSecretEphemeralPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSecretEphemeralPolicyArrayOutput)
+}
+
+type GetSecretEphemeralPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetSecretEphemeralPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSecretEphemeralPolicy)(nil)).Elem()
+}
+
+func (o GetSecretEphemeralPolicyOutput) ToGetSecretEphemeralPolicyOutput() GetSecretEphemeralPolicyOutput {
+	return o
+}
+
+func (o GetSecretEphemeralPolicyOutput) ToGetSecretEphemeralPolicyOutputWithContext(ctx context.Context) GetSecretEphemeralPolicyOutput {
+	return o
+}
+
+// Action to perform when the version of a secret expires.
+func (o GetSecretEphemeralPolicyOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretEphemeralPolicy) string { return v.Action }).(pulumi.StringOutput)
+}
+
+// True if the secret version expires after a single user access.
+func (o GetSecretEphemeralPolicyOutput) ExpiresOnceAccessed() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSecretEphemeralPolicy) bool { return v.ExpiresOnceAccessed }).(pulumi.BoolOutput)
+}
+
+// Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in Go Duration format
+func (o GetSecretEphemeralPolicyOutput) Ttl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretEphemeralPolicy) string { return v.Ttl }).(pulumi.StringOutput)
+}
+
+type GetSecretEphemeralPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSecretEphemeralPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSecretEphemeralPolicy)(nil)).Elem()
+}
+
+func (o GetSecretEphemeralPolicyArrayOutput) ToGetSecretEphemeralPolicyArrayOutput() GetSecretEphemeralPolicyArrayOutput {
+	return o
+}
+
+func (o GetSecretEphemeralPolicyArrayOutput) ToGetSecretEphemeralPolicyArrayOutputWithContext(ctx context.Context) GetSecretEphemeralPolicyArrayOutput {
+	return o
+}
+
+func (o GetSecretEphemeralPolicyArrayOutput) Index(i pulumi.IntInput) GetSecretEphemeralPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSecretEphemeralPolicy {
+		return vs[0].([]GetSecretEphemeralPolicy)[vs[1].(int)]
+	}).(GetSecretEphemeralPolicyOutput)
+}
+
 type GetTemDomainReputation struct {
 	// The previously-calculated domain's reputation score
 	PreviousScore int `pulumi:"previousScore"`
@@ -26293,12 +26636,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerNatsPtrInput)(nil)).Elem(), ContainerTriggerNatsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerSqsInput)(nil)).Elem(), ContainerTriggerSqsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContainerTriggerSqsPtrInput)(nil)).Elem(), ContainerTriggerSqsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbPrivateNetworkEndpointPrivateNetworkInput)(nil)).Elem(), DocumentdbPrivateNetworkEndpointPrivateNetworkArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbPrivateNetworkEndpointPrivateNetworkPtrInput)(nil)).Elem(), DocumentdbPrivateNetworkEndpointPrivateNetworkArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbReadReplicaDirectAccessInput)(nil)).Elem(), DocumentdbReadReplicaDirectAccessArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbReadReplicaDirectAccessPtrInput)(nil)).Elem(), DocumentdbReadReplicaDirectAccessArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbReadReplicaPrivateNetworkInput)(nil)).Elem(), DocumentdbReadReplicaPrivateNetworkArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DocumentdbReadReplicaPrivateNetworkPtrInput)(nil)).Elem(), DocumentdbReadReplicaPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordGeoIpInput)(nil)).Elem(), DomainRecordGeoIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordGeoIpPtrInput)(nil)).Elem(), DomainRecordGeoIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordGeoIpMatchInput)(nil)).Elem(), DomainRecordGeoIpMatchArgs{})
@@ -26315,6 +26652,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FunctionTriggerSqsPtrInput)(nil)).Elem(), FunctionTriggerSqsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IamPolicyRuleInput)(nil)).Elem(), IamPolicyRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IamPolicyRuleArrayInput)(nil)).Elem(), IamPolicyRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InferenceDeploymentPrivateEndpointInput)(nil)).Elem(), InferenceDeploymentPrivateEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InferenceDeploymentPrivateEndpointPtrInput)(nil)).Elem(), InferenceDeploymentPrivateEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InferenceDeploymentPublicEndpointInput)(nil)).Elem(), InferenceDeploymentPublicEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InferenceDeploymentPublicEndpointPtrInput)(nil)).Elem(), InferenceDeploymentPublicEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceImageAdditionalVolumeInput)(nil)).Elem(), InstanceImageAdditionalVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceImageAdditionalVolumeArrayInput)(nil)).Elem(), InstanceImageAdditionalVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSecurityGroupInboundRuleInput)(nil)).Elem(), InstanceSecurityGroupInboundRuleArgs{})
@@ -26347,6 +26688,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteRestPtrInput)(nil)).Elem(), IotRouteRestArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteS3Input)(nil)).Elem(), IotRouteS3Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IotRouteS3PtrInput)(nil)).Elem(), IotRouteS3Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpCustomResourceInput)(nil)).Elem(), IpamIpCustomResourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpCustomResourceArrayInput)(nil)).Elem(), IpamIpCustomResourceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpResourceInput)(nil)).Elem(), IpamIpResourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpResourceArrayInput)(nil)).Elem(), IpamIpResourceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IpamIpReverseInput)(nil)).Elem(), IpamIpReverseArgs{})
@@ -26395,6 +26738,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqSnsCredentialsPermissionsPtrInput)(nil)).Elem(), MnqSnsCredentialsPermissionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqSqsCredentialsPermissionsInput)(nil)).Elem(), MnqSqsCredentialsPermissionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqSqsCredentialsPermissionsPtrInput)(nil)).Elem(), MnqSqsCredentialsPermissionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MongodbInstancePublicNetworkInput)(nil)).Elem(), MongodbInstancePublicNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MongodbInstancePublicNetworkPtrInput)(nil)).Elem(), MongodbInstancePublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketAclAccessControlPolicyInput)(nil)).Elem(), ObjectBucketAclAccessControlPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketAclAccessControlPolicyPtrInput)(nil)).Elem(), ObjectBucketAclAccessControlPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketAclAccessControlPolicyGrantInput)(nil)).Elem(), ObjectBucketAclAccessControlPolicyGrantArgs{})
@@ -26441,6 +26786,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPrivateNetworkArrayInput)(nil)).Elem(), RedisClusterPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPublicNetworkInput)(nil)).Elem(), RedisClusterPublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPublicNetworkPtrInput)(nil)).Elem(), RedisClusterPublicNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretEphemeralPolicyInput)(nil)).Elem(), SecretEphemeralPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretEphemeralPolicyArrayInput)(nil)).Elem(), SecretEphemeralPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TemDomainReputationInput)(nil)).Elem(), TemDomainReputationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TemDomainReputationArrayInput)(nil)).Elem(), TemDomainReputationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcGatewayNetworkIpamConfigInput)(nil)).Elem(), VpcGatewayNetworkIpamConfigArgs{})
@@ -26579,6 +26926,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLbsLbInstanceArrayInput)(nil)).Elem(), GetLbsLbInstanceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLbsLbIpInput)(nil)).Elem(), GetLbsLbIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLbsLbIpArrayInput)(nil)).Elem(), GetLbsLbIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMongodbInstancePublicNetworkInput)(nil)).Elem(), GetMongodbInstancePublicNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMongodbInstancePublicNetworkArrayInput)(nil)).Elem(), GetMongodbInstancePublicNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketCorsRuleInput)(nil)).Elem(), GetObjectBucketCorsRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketCorsRuleArrayInput)(nil)).Elem(), GetObjectBucketCorsRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketLifecycleRuleInput)(nil)).Elem(), GetObjectBucketLifecycleRuleArgs{})
@@ -26605,6 +26954,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPrivateNetworkArrayInput)(nil)).Elem(), GetRedisClusterPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPublicNetworkInput)(nil)).Elem(), GetRedisClusterPublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPublicNetworkArrayInput)(nil)).Elem(), GetRedisClusterPublicNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretEphemeralPolicyInput)(nil)).Elem(), GetSecretEphemeralPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretEphemeralPolicyArrayInput)(nil)).Elem(), GetSecretEphemeralPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTemDomainReputationInput)(nil)).Elem(), GetTemDomainReputationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTemDomainReputationArrayInput)(nil)).Elem(), GetTemDomainReputationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcGatewayNetworkIpamConfigInput)(nil)).Elem(), GetVpcGatewayNetworkIpamConfigArgs{})
@@ -26645,12 +26996,6 @@ func init() {
 	pulumi.RegisterOutputType(ContainerTriggerNatsPtrOutput{})
 	pulumi.RegisterOutputType(ContainerTriggerSqsOutput{})
 	pulumi.RegisterOutputType(ContainerTriggerSqsPtrOutput{})
-	pulumi.RegisterOutputType(DocumentdbPrivateNetworkEndpointPrivateNetworkOutput{})
-	pulumi.RegisterOutputType(DocumentdbPrivateNetworkEndpointPrivateNetworkPtrOutput{})
-	pulumi.RegisterOutputType(DocumentdbReadReplicaDirectAccessOutput{})
-	pulumi.RegisterOutputType(DocumentdbReadReplicaDirectAccessPtrOutput{})
-	pulumi.RegisterOutputType(DocumentdbReadReplicaPrivateNetworkOutput{})
-	pulumi.RegisterOutputType(DocumentdbReadReplicaPrivateNetworkPtrOutput{})
 	pulumi.RegisterOutputType(DomainRecordGeoIpOutput{})
 	pulumi.RegisterOutputType(DomainRecordGeoIpPtrOutput{})
 	pulumi.RegisterOutputType(DomainRecordGeoIpMatchOutput{})
@@ -26667,6 +27012,10 @@ func init() {
 	pulumi.RegisterOutputType(FunctionTriggerSqsPtrOutput{})
 	pulumi.RegisterOutputType(IamPolicyRuleOutput{})
 	pulumi.RegisterOutputType(IamPolicyRuleArrayOutput{})
+	pulumi.RegisterOutputType(InferenceDeploymentPrivateEndpointOutput{})
+	pulumi.RegisterOutputType(InferenceDeploymentPrivateEndpointPtrOutput{})
+	pulumi.RegisterOutputType(InferenceDeploymentPublicEndpointOutput{})
+	pulumi.RegisterOutputType(InferenceDeploymentPublicEndpointPtrOutput{})
 	pulumi.RegisterOutputType(InstanceImageAdditionalVolumeOutput{})
 	pulumi.RegisterOutputType(InstanceImageAdditionalVolumeArrayOutput{})
 	pulumi.RegisterOutputType(InstanceSecurityGroupInboundRuleOutput{})
@@ -26699,6 +27048,8 @@ func init() {
 	pulumi.RegisterOutputType(IotRouteRestPtrOutput{})
 	pulumi.RegisterOutputType(IotRouteS3Output{})
 	pulumi.RegisterOutputType(IotRouteS3PtrOutput{})
+	pulumi.RegisterOutputType(IpamIpCustomResourceOutput{})
+	pulumi.RegisterOutputType(IpamIpCustomResourceArrayOutput{})
 	pulumi.RegisterOutputType(IpamIpResourceOutput{})
 	pulumi.RegisterOutputType(IpamIpResourceArrayOutput{})
 	pulumi.RegisterOutputType(IpamIpReverseOutput{})
@@ -26747,6 +27098,8 @@ func init() {
 	pulumi.RegisterOutputType(MnqSnsCredentialsPermissionsPtrOutput{})
 	pulumi.RegisterOutputType(MnqSqsCredentialsPermissionsOutput{})
 	pulumi.RegisterOutputType(MnqSqsCredentialsPermissionsPtrOutput{})
+	pulumi.RegisterOutputType(MongodbInstancePublicNetworkOutput{})
+	pulumi.RegisterOutputType(MongodbInstancePublicNetworkPtrOutput{})
 	pulumi.RegisterOutputType(ObjectBucketAclAccessControlPolicyOutput{})
 	pulumi.RegisterOutputType(ObjectBucketAclAccessControlPolicyPtrOutput{})
 	pulumi.RegisterOutputType(ObjectBucketAclAccessControlPolicyGrantOutput{})
@@ -26793,6 +27146,8 @@ func init() {
 	pulumi.RegisterOutputType(RedisClusterPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(RedisClusterPublicNetworkOutput{})
 	pulumi.RegisterOutputType(RedisClusterPublicNetworkPtrOutput{})
+	pulumi.RegisterOutputType(SecretEphemeralPolicyOutput{})
+	pulumi.RegisterOutputType(SecretEphemeralPolicyArrayOutput{})
 	pulumi.RegisterOutputType(TemDomainReputationOutput{})
 	pulumi.RegisterOutputType(TemDomainReputationArrayOutput{})
 	pulumi.RegisterOutputType(VpcGatewayNetworkIpamConfigOutput{})
@@ -26931,6 +27286,8 @@ func init() {
 	pulumi.RegisterOutputType(GetLbsLbInstanceArrayOutput{})
 	pulumi.RegisterOutputType(GetLbsLbIpOutput{})
 	pulumi.RegisterOutputType(GetLbsLbIpArrayOutput{})
+	pulumi.RegisterOutputType(GetMongodbInstancePublicNetworkOutput{})
+	pulumi.RegisterOutputType(GetMongodbInstancePublicNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetObjectBucketCorsRuleOutput{})
 	pulumi.RegisterOutputType(GetObjectBucketCorsRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetObjectBucketLifecycleRuleOutput{})
@@ -26957,6 +27314,8 @@ func init() {
 	pulumi.RegisterOutputType(GetRedisClusterPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetRedisClusterPublicNetworkOutput{})
 	pulumi.RegisterOutputType(GetRedisClusterPublicNetworkArrayOutput{})
+	pulumi.RegisterOutputType(GetSecretEphemeralPolicyOutput{})
+	pulumi.RegisterOutputType(GetSecretEphemeralPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetTemDomainReputationOutput{})
 	pulumi.RegisterOutputType(GetTemDomainReputationArrayOutput{})
 	pulumi.RegisterOutputType(GetVpcGatewayNetworkIpamConfigOutput{})

@@ -5,10 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Container domain name bindings.
- * You can check our [containers guide](https://www.scaleway.com/en/docs/compute/containers/how-to/add-a-custom-domain-to-a-container/) for further information.
+ * The `scaleway.ContainerDomain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+ *
+ * Refer to the Containers domain [documentation](https://www.scaleway.com/en/docs/compute/containers/how-to/add-a-custom-domain-to-a-container/) and the [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-domains-list-all-domain-name-bindings) for more information.
  *
  * ## Example Usage
+ *
+ * The commands below shows how to bind a custom domain name to a container.
  *
  * ### Simple
  *
@@ -58,7 +61,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Container domain binding can be imported using the `{region}/{id}`, e.g.
+ * Container domain binding can be imported using `{region}/{id}`, as shown below:
  *
  * bash
  *
@@ -95,7 +98,7 @@ export class ContainerDomain extends pulumi.CustomResource {
     }
 
     /**
-     * The ID of the container.
+     * The unique identifier of the container.
      */
     public readonly containerId!: pulumi.Output<string>;
     /**
@@ -103,11 +106,11 @@ export class ContainerDomain extends pulumi.CustomResource {
      */
     public readonly hostname!: pulumi.Output<string>;
     /**
-     * `region`) The region in which the container exists
+     * `region`) The region in which the container exists.
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * The URL used to query the container
+     * The URL used to query the container.
      */
     public /*out*/ readonly url!: pulumi.Output<string>;
 
@@ -151,7 +154,7 @@ export class ContainerDomain extends pulumi.CustomResource {
  */
 export interface ContainerDomainState {
     /**
-     * The ID of the container.
+     * The unique identifier of the container.
      */
     containerId?: pulumi.Input<string>;
     /**
@@ -159,11 +162,11 @@ export interface ContainerDomainState {
      */
     hostname?: pulumi.Input<string>;
     /**
-     * `region`) The region in which the container exists
+     * `region`) The region in which the container exists.
      */
     region?: pulumi.Input<string>;
     /**
-     * The URL used to query the container
+     * The URL used to query the container.
      */
     url?: pulumi.Input<string>;
 }
@@ -173,7 +176,7 @@ export interface ContainerDomainState {
  */
 export interface ContainerDomainArgs {
     /**
-     * The ID of the container.
+     * The unique identifier of the container.
      */
     containerId: pulumi.Input<string>;
     /**
@@ -181,7 +184,7 @@ export interface ContainerDomainArgs {
      */
     hostname: pulumi.Input<string>;
     /**
-     * `region`) The region in which the container exists
+     * `region`) The region in which the container exists.
      */
     region?: pulumi.Input<string>;
 }

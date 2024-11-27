@@ -30,7 +30,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.LookupAccountSshKey(ctx, &scaleway.LookupAccountSshKeyArgs{
+//			_, err := scaleway.LookupIamSshKey(ctx, &scaleway.LookupIamSshKeyArgs{
 //				Name: pulumi.StringRef("main"),
 //			}, nil)
 //			if err != nil {
@@ -41,7 +41,7 @@ import (
 //				Offer: pulumi.String("GP-BM1-S"),
 //				Os:    pulumi.String("d17d6872-0412-45d9-a198-af82c34d3c5c"),
 //				SshKeyIds: pulumi.StringArray{
-//					pulumi.String(main.Id),
+//					data.Scaleway_account_ssh_key.Main.Id,
 //				},
 //			})
 //			if err != nil {

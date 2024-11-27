@@ -21,7 +21,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getRdbAcl(args: GetRdbAclArgs, opts?: pulumi.InvokeOptions): Promise<GetRdbAclResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getRdbAcl:getRdbAcl", {
         "instanceId": args.instanceId,
@@ -73,7 +72,11 @@ export interface GetRdbAclResult {
  * ```
  */
 export function getRdbAclOutput(args: GetRdbAclOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRdbAclResult> {
-    return pulumi.output(args).apply((a: any) => getRdbAcl(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getRdbAcl:getRdbAcl", {
+        "instanceId": args.instanceId,
+        "region": args.region,
+    }, opts);
 }
 
 /**

@@ -17,7 +17,6 @@ import * as utilities from "./utilities";
  */
 export function getLbCertificate(args?: GetLbCertificateArgs, opts?: pulumi.InvokeOptions): Promise<GetLbCertificateResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLbCertificate:getLbCertificate", {
         "certificateId": args.certificateId,
@@ -76,7 +75,13 @@ export interface GetLbCertificateResult {
  * ## Examples
  */
 export function getLbCertificateOutput(args?: GetLbCertificateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbCertificateResult> {
-    return pulumi.output(args).apply((a: any) => getLbCertificate(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getLbCertificate:getLbCertificate", {
+        "certificateId": args.certificateId,
+        "lbId": args.lbId,
+        "name": args.name,
+    }, opts);
 }
 
 /**

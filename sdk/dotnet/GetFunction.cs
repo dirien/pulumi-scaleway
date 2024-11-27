@@ -13,9 +13,18 @@ namespace ediri.Scaleway
     public static class GetFunction
     {
         /// <summary>
-        /// Gets information about a function.
+        /// The `scaleway.Function` data source is used to retrieve information about a Serverless Function.
         /// 
-        /// ## Example Usage
+        /// Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
+        /// 
+        /// For more information on the limitations of Serverless Functions, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
+        /// 
+        /// ## Retrieve a Serverless Function
+        /// 
+        /// The following commands allow you to:
+        /// 
+        /// - retrieve a function by its name
+        /// - retrieve a function by its ID
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -38,9 +47,18 @@ namespace ediri.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFunctionResult>("scaleway:index/getFunction:getFunction", args ?? new GetFunctionArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a function.
+        /// The `scaleway.Function` data source is used to retrieve information about a Serverless Function.
         /// 
-        /// ## Example Usage
+        /// Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
+        /// 
+        /// For more information on the limitations of Serverless Functions, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
+        /// 
+        /// ## Retrieve a Serverless Function
+        /// 
+        /// The following commands allow you to:
+        /// 
+        /// - retrieve a function by its name
+        /// - retrieve a function by its ID
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -67,31 +85,31 @@ namespace ediri.Scaleway
     public sealed class GetFunctionArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The function id. Only one of `name` and `function_id` should be specified.
+        /// The unique identifier of the function. Only one of `name` and `function_id` should be specified.
         /// </summary>
         [Input("functionId")]
         public string? FunctionId { get; set; }
 
         /// <summary>
-        /// The function name. Only one of `name` and `namespace_id` should be specified.
+        /// The name of the function. Only one of `name` and `namespace_id` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// The namespace id associated with this function.
+        /// The namespace ID associated with this function.
         /// </summary>
         [Input("namespaceId", required: true)]
         public string NamespaceId { get; set; } = null!;
 
         /// <summary>
-        /// The ID of the project the function is associated with.
+        /// The unique identifier of the project with which the function is associated.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the function exists.
+        /// `region`) The region in which the container exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -105,31 +123,31 @@ namespace ediri.Scaleway
     public sealed class GetFunctionInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The function id. Only one of `name` and `function_id` should be specified.
+        /// The unique identifier of the function. Only one of `name` and `function_id` should be specified.
         /// </summary>
         [Input("functionId")]
         public Input<string>? FunctionId { get; set; }
 
         /// <summary>
-        /// The function name. Only one of `name` and `namespace_id` should be specified.
+        /// The name of the function. Only one of `name` and `namespace_id` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The namespace id associated with this function.
+        /// The namespace ID associated with this function.
         /// </summary>
         [Input("namespaceId", required: true)]
         public Input<string> NamespaceId { get; set; } = null!;
 
         /// <summary>
-        /// The ID of the project the function is associated with.
+        /// The unique identifier of the project with which the function is associated.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the function exists.
+        /// `region`) The region in which the container exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

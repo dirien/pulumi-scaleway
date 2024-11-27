@@ -20,7 +20,6 @@ import * as utilities from "./utilities";
  */
 export function getIamSshKey(args?: GetIamSshKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetIamSshKeyResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getIamSshKey:getIamSshKey", {
         "name": args.name,
@@ -98,7 +97,13 @@ export interface GetIamSshKeyResult {
  * ```
  */
 export function getIamSshKeyOutput(args?: GetIamSshKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIamSshKeyResult> {
-    return pulumi.output(args).apply((a: any) => getIamSshKey(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getIamSshKey:getIamSshKey", {
+        "name": args.name,
+        "projectId": args.projectId,
+        "sshKeyId": args.sshKeyId,
+    }, opts);
 }
 
 /**

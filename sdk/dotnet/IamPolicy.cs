@@ -90,6 +90,43 @@ namespace ediri.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Create a policy with a particular condition
+    /// 
+    /// IAM policy rule can use a condition to be applied.
+    /// The following variables are available:
+    /// 
+    /// - `request.ip`
+    /// - `request.user_agent`
+    /// - `request.time`
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.IamPolicy("main", new()
+    ///     {
+    ///         NoPrincipal = true,
+    ///         Rules = new[]
+    ///         {
+    ///             new Scaleway.Inputs.IamPolicyRuleArgs
+    ///             {
+    ///                 Condition = "request.user_agent == 'My User Agent'",
+    ///                 OrganizationId = "%s",
+    ///                 PermissionSetNames = new[]
+    ///                 {
+    ///                     "AllProductsFullAccess",
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Policies can be imported using the `{id}`, e.g.

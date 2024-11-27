@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = ['ContainerDomainArgs', 'ContainerDomain']
@@ -19,9 +24,9 @@ class ContainerDomainArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ContainerDomain resource.
-        :param pulumi.Input[str] container_id: The ID of the container.
+        :param pulumi.Input[str] container_id: The unique identifier of the container.
         :param pulumi.Input[str] hostname: The hostname with a CNAME record.
-        :param pulumi.Input[str] region: `region`) The region in which the container exists
+        :param pulumi.Input[str] region: `region`) The region in which the container exists.
         """
         pulumi.set(__self__, "container_id", container_id)
         pulumi.set(__self__, "hostname", hostname)
@@ -32,7 +37,7 @@ class ContainerDomainArgs:
     @pulumi.getter(name="containerId")
     def container_id(self) -> pulumi.Input[str]:
         """
-        The ID of the container.
+        The unique identifier of the container.
         """
         return pulumi.get(self, "container_id")
 
@@ -56,7 +61,7 @@ class ContainerDomainArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`) The region in which the container exists
+        `region`) The region in which the container exists.
         """
         return pulumi.get(self, "region")
 
@@ -74,10 +79,10 @@ class _ContainerDomainState:
                  url: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ContainerDomain resources.
-        :param pulumi.Input[str] container_id: The ID of the container.
+        :param pulumi.Input[str] container_id: The unique identifier of the container.
         :param pulumi.Input[str] hostname: The hostname with a CNAME record.
-        :param pulumi.Input[str] region: `region`) The region in which the container exists
-        :param pulumi.Input[str] url: The URL used to query the container
+        :param pulumi.Input[str] region: `region`) The region in which the container exists.
+        :param pulumi.Input[str] url: The URL used to query the container.
         """
         if container_id is not None:
             pulumi.set(__self__, "container_id", container_id)
@@ -92,7 +97,7 @@ class _ContainerDomainState:
     @pulumi.getter(name="containerId")
     def container_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the container.
+        The unique identifier of the container.
         """
         return pulumi.get(self, "container_id")
 
@@ -116,7 +121,7 @@ class _ContainerDomainState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        `region`) The region in which the container exists
+        `region`) The region in which the container exists.
         """
         return pulumi.get(self, "region")
 
@@ -128,7 +133,7 @@ class _ContainerDomainState:
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[str]]:
         """
-        The URL used to query the container
+        The URL used to query the container.
         """
         return pulumi.get(self, "url")
 
@@ -147,10 +152,13 @@ class ContainerDomain(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Container domain name bindings.
-        You can check our [containers guide](https://www.scaleway.com/en/docs/compute/containers/how-to/add-a-custom-domain-to-a-container/) for further information.
+        The `ContainerDomain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+
+        Refer to the Containers domain [documentation](https://www.scaleway.com/en/docs/compute/containers/how-to/add-a-custom-domain-to-a-container/) and the [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-domains-list-all-domain-name-bindings) for more information.
 
         ## Example Usage
+
+        The commands below shows how to bind a custom domain name to a container.
 
         ### Simple
 
@@ -191,12 +199,16 @@ class ContainerDomain(pulumi.CustomResource):
             ttl=3600)
         app_container_domain = scaleway.ContainerDomain("appContainerDomain",
             container_id=app_container.id,
-            hostname=pulumi.Output.all(app_domain_record.name, app_domain_record.dns_zone).apply(lambda name, dns_zone: f"{name}.{dns_zone}"))
+            hostname=pulumi.Output.all(
+                name=app_domain_record.name,
+                dns_zone=app_domain_record.dns_zone
+        ).apply(lambda resolved_outputs: f"{resolved_outputs['name']}.{resolved_outputs['dns_zone']}")
+        )
         ```
 
         ## Import
 
-        Container domain binding can be imported using the `{region}/{id}`, e.g.
+        Container domain binding can be imported using `{region}/{id}`, as shown below:
 
         bash
 
@@ -206,9 +218,9 @@ class ContainerDomain(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] container_id: The ID of the container.
+        :param pulumi.Input[str] container_id: The unique identifier of the container.
         :param pulumi.Input[str] hostname: The hostname with a CNAME record.
-        :param pulumi.Input[str] region: `region`) The region in which the container exists
+        :param pulumi.Input[str] region: `region`) The region in which the container exists.
         """
         ...
     @overload
@@ -217,10 +229,13 @@ class ContainerDomain(pulumi.CustomResource):
                  args: ContainerDomainArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Container domain name bindings.
-        You can check our [containers guide](https://www.scaleway.com/en/docs/compute/containers/how-to/add-a-custom-domain-to-a-container/) for further information.
+        The `ContainerDomain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+
+        Refer to the Containers domain [documentation](https://www.scaleway.com/en/docs/compute/containers/how-to/add-a-custom-domain-to-a-container/) and the [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-domains-list-all-domain-name-bindings) for more information.
 
         ## Example Usage
+
+        The commands below shows how to bind a custom domain name to a container.
 
         ### Simple
 
@@ -261,12 +276,16 @@ class ContainerDomain(pulumi.CustomResource):
             ttl=3600)
         app_container_domain = scaleway.ContainerDomain("appContainerDomain",
             container_id=app_container.id,
-            hostname=pulumi.Output.all(app_domain_record.name, app_domain_record.dns_zone).apply(lambda name, dns_zone: f"{name}.{dns_zone}"))
+            hostname=pulumi.Output.all(
+                name=app_domain_record.name,
+                dns_zone=app_domain_record.dns_zone
+        ).apply(lambda resolved_outputs: f"{resolved_outputs['name']}.{resolved_outputs['dns_zone']}")
+        )
         ```
 
         ## Import
 
-        Container domain binding can be imported using the `{region}/{id}`, e.g.
+        Container domain binding can be imported using `{region}/{id}`, as shown below:
 
         bash
 
@@ -330,10 +349,10 @@ class ContainerDomain(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] container_id: The ID of the container.
+        :param pulumi.Input[str] container_id: The unique identifier of the container.
         :param pulumi.Input[str] hostname: The hostname with a CNAME record.
-        :param pulumi.Input[str] region: `region`) The region in which the container exists
-        :param pulumi.Input[str] url: The URL used to query the container
+        :param pulumi.Input[str] region: `region`) The region in which the container exists.
+        :param pulumi.Input[str] url: The URL used to query the container.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -349,7 +368,7 @@ class ContainerDomain(pulumi.CustomResource):
     @pulumi.getter(name="containerId")
     def container_id(self) -> pulumi.Output[str]:
         """
-        The ID of the container.
+        The unique identifier of the container.
         """
         return pulumi.get(self, "container_id")
 
@@ -365,7 +384,7 @@ class ContainerDomain(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        `region`) The region in which the container exists
+        `region`) The region in which the container exists.
         """
         return pulumi.get(self, "region")
 
@@ -373,7 +392,7 @@ class ContainerDomain(pulumi.CustomResource):
     @pulumi.getter
     def url(self) -> pulumi.Output[str]:
         """
-        The URL used to query the container
+        The URL used to query the container.
         """
         return pulumi.get(self, "url")
 

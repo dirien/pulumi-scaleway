@@ -5,12 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Use this data source to get the available zones information based on its Region.
+ * The `scaleway.getAvailabilityZones` data source is used to retrieve information about the available zones based on its Region.
  *
  * For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
- * you can choose the location that better fits your need (country, latency, …).
+ * you can choose the location that better fits your need (country, latency, etc.).
  *
- * ## Example Usage
+ * Refer to the Account [documentation](https://www.scaleway.com/en/docs/console/account/reference-content/products-availability/) for more information.
+ *
+ * ## Retrieve the Availability Zones of a Region
+ *
+ * The following command allow you to retrieve a the AZs of a Region.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -23,7 +27,6 @@ import * as utilities from "./utilities";
  */
 export function getAvailabilityZones(args?: GetAvailabilityZonesArgs, opts?: pulumi.InvokeOptions): Promise<GetAvailabilityZonesResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getAvailabilityZones:getAvailabilityZones", {
         "region": args.region,
@@ -35,7 +38,7 @@ export function getAvailabilityZones(args?: GetAvailabilityZonesArgs, opts?: pul
  */
 export interface GetAvailabilityZonesArgs {
     /**
-     * Region is represented as a Geographical area such as France. Defaults: `fr-par`.
+     * Region is represented as a Geographical area, such as France. Defaults to `fr-par`.
      */
     region?: string;
 }
@@ -50,17 +53,21 @@ export interface GetAvailabilityZonesResult {
     readonly id: string;
     readonly region?: string;
     /**
-     * List of availability zones by regions
+     * The list of availability zones in each Region
      */
     readonly zones: string[];
 }
 /**
- * Use this data source to get the available zones information based on its Region.
+ * The `scaleway.getAvailabilityZones` data source is used to retrieve information about the available zones based on its Region.
  *
  * For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
- * you can choose the location that better fits your need (country, latency, …).
+ * you can choose the location that better fits your need (country, latency, etc.).
  *
- * ## Example Usage
+ * Refer to the Account [documentation](https://www.scaleway.com/en/docs/console/account/reference-content/products-availability/) for more information.
+ *
+ * ## Retrieve the Availability Zones of a Region
+ *
+ * The following command allow you to retrieve a the AZs of a Region.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -72,7 +79,11 @@ export interface GetAvailabilityZonesResult {
  * ```
  */
 export function getAvailabilityZonesOutput(args?: GetAvailabilityZonesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAvailabilityZonesResult> {
-    return pulumi.output(args).apply((a: any) => getAvailabilityZones(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getAvailabilityZones:getAvailabilityZones", {
+        "region": args.region,
+    }, opts);
 }
 
 /**
@@ -80,7 +91,7 @@ export function getAvailabilityZonesOutput(args?: GetAvailabilityZonesOutputArgs
  */
 export interface GetAvailabilityZonesOutputArgs {
     /**
-     * Region is represented as a Geographical area such as France. Defaults: `fr-par`.
+     * Region is represented as a Geographical area, such as France. Defaults to `fr-par`.
      */
     region?: pulumi.Input<string>;
 }

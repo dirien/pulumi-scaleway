@@ -11,8 +11,9 @@ using Pulumi;
 namespace ediri.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway object storage buckets.
-    /// For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+    /// The `scaleway.ObjectBucket` resource allows you to create and manage buckets for [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+    /// 
+    /// Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/how-to/create-a-bucket/) for more information on Object Storage buckets.
     /// 
     /// ## Example Usage
     /// 
@@ -141,7 +142,7 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Buckets can be imported using the `{region}/{bucketName}` identifier, e.g.
+    /// Buckets can be imported using the `{region}/{bucketName}` identifier, as shown below:
     /// 
     /// bash
     /// 
@@ -149,7 +150,9 @@ namespace ediri.Scaleway
     /// $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket
     /// ```
     /// 
-    /// If you are importing a bucket from a specific project (that is not your default project), you can use the following syntax:
+    /// ~&gt; **Important:** The `project_id` attribute has a particular behavior with s3 products because the s3 API is scoped by project.
+    /// 
+    /// If you are using a project different from the default one, you have to specify the project ID at the end of the import command.
     /// 
     /// bash
     /// 
@@ -162,6 +165,8 @@ namespace ediri.Scaleway
     {
         /// <summary>
         /// (Deprecated) The canned ACL you want to apply to the bucket.
+        /// 
+        /// &gt; **Note:** The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
         /// </summary>
         [Output("acl")]
         public Output<string?> Acl { get; private set; } = null!;
@@ -172,20 +177,17 @@ namespace ediri.Scaleway
         [Output("apiEndpoint")]
         public Output<string> ApiEndpoint { get; private set; } = null!;
 
-        /// <summary>
-        /// A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
-        /// </summary>
         [Output("corsRules")]
         public Output<ImmutableArray<Outputs.ObjectBucketCorsRule>> CorsRules { get; private set; } = null!;
 
         /// <summary>
-        /// The endpoint URL of the bucket
+        /// The endpoint URL of the bucket.
         /// </summary>
         [Output("endpoint")]
         public Output<string> Endpoint { get; private set; } = null!;
 
         /// <summary>
-        /// Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+        /// Whether to allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has object lock enabled.
         /// </summary>
         [Output("forceDestroy")]
         public Output<bool?> ForceDestroy { get; private set; } = null!;
@@ -210,30 +212,27 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// `project_id`) The ID of the project the bucket is associated with.
-        /// 
-        /// The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation.
-        /// Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket should be created.
+        /// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket will be created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// A list of tags (key / value) for the bucket.
+        /// A list of tags (key/value) for the bucket.
         /// 
         /// * &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
-        /// Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
+        /// If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         /// </summary>
         [Output("tags")]
         public Output<ImmutableDictionary<string, string>?> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
+        /// Allow multiple versions of an object in the same bucket
         /// </summary>
         [Output("versioning")]
         public Output<Outputs.ObjectBucketVersioning> Versioning { get; private set; } = null!;
@@ -287,16 +286,14 @@ namespace ediri.Scaleway
     {
         /// <summary>
         /// (Deprecated) The canned ACL you want to apply to the bucket.
+        /// 
+        /// &gt; **Note:** The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
         /// </summary>
         [Input("acl")]
         public Input<string>? Acl { get; set; }
 
         [Input("corsRules")]
         private InputList<Inputs.ObjectBucketCorsRuleArgs>? _corsRules;
-
-        /// <summary>
-        /// A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
-        /// </summary>
         public InputList<Inputs.ObjectBucketCorsRuleArgs> CorsRules
         {
             get => _corsRules ?? (_corsRules = new InputList<Inputs.ObjectBucketCorsRuleArgs>());
@@ -304,7 +301,7 @@ namespace ediri.Scaleway
         }
 
         /// <summary>
-        /// Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+        /// Whether to allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has object lock enabled.
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
@@ -335,15 +332,12 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// `project_id`) The ID of the project the bucket is associated with.
-        /// 
-        /// The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation.
-        /// Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket should be created.
+        /// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket will be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -352,10 +346,10 @@ namespace ediri.Scaleway
         private InputMap<string>? _tags;
 
         /// <summary>
-        /// A list of tags (key / value) for the bucket.
+        /// A list of tags (key/value) for the bucket.
         /// 
         /// * &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
-        /// Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
+        /// If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         /// </summary>
         public InputMap<string> Tags
         {
@@ -364,7 +358,7 @@ namespace ediri.Scaleway
         }
 
         /// <summary>
-        /// A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
+        /// Allow multiple versions of an object in the same bucket
         /// </summary>
         [Input("versioning")]
         public Input<Inputs.ObjectBucketVersioningArgs>? Versioning { get; set; }
@@ -379,6 +373,8 @@ namespace ediri.Scaleway
     {
         /// <summary>
         /// (Deprecated) The canned ACL you want to apply to the bucket.
+        /// 
+        /// &gt; **Note:** The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
         /// </summary>
         [Input("acl")]
         public Input<string>? Acl { get; set; }
@@ -391,10 +387,6 @@ namespace ediri.Scaleway
 
         [Input("corsRules")]
         private InputList<Inputs.ObjectBucketCorsRuleGetArgs>? _corsRules;
-
-        /// <summary>
-        /// A rule of [Cross-Origin Resource Sharing](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) (documented below).
-        /// </summary>
         public InputList<Inputs.ObjectBucketCorsRuleGetArgs> CorsRules
         {
             get => _corsRules ?? (_corsRules = new InputList<Inputs.ObjectBucketCorsRuleGetArgs>());
@@ -402,13 +394,13 @@ namespace ediri.Scaleway
         }
 
         /// <summary>
-        /// The endpoint URL of the bucket
+        /// The endpoint URL of the bucket.
         /// </summary>
         [Input("endpoint")]
         public Input<string>? Endpoint { get; set; }
 
         /// <summary>
-        /// Enable deletion of objects in bucket before destroying, locked objects or under legal hold are also deleted and **not** recoverable
+        /// Whether to allow the object to be deleted by removing any legal hold on any object version. Default is false. This value should be set to true only if the bucket has object lock enabled.
         /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
@@ -439,15 +431,12 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// `project_id`) The ID of the project the bucket is associated with.
-        /// 
-        /// The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation.
-        /// Please check the [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation for supported values.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket should be created.
+        /// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket will be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -456,10 +445,10 @@ namespace ediri.Scaleway
         private InputMap<string>? _tags;
 
         /// <summary>
-        /// A list of tags (key / value) for the bucket.
+        /// A list of tags (key/value) for the bucket.
         /// 
         /// * &gt; **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
-        /// Keep in mind that if you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
+        /// If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
         /// </summary>
         public InputMap<string> Tags
         {
@@ -468,7 +457,7 @@ namespace ediri.Scaleway
         }
 
         /// <summary>
-        /// A state of [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) (documented below)
+        /// Allow multiple versions of an object in the same bucket
         /// </summary>
         [Input("versioning")]
         public Input<Inputs.ObjectBucketVersioningGetArgs>? Versioning { get; set; }

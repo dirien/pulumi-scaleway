@@ -7,8 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Provides an Object bucket website configuration resource.
- * For more information, see [Hosting Websites on Object bucket](https://www.scaleway.com/en/docs/storage/object/how-to/use-bucket-website/).
+ * The `scaleway.ObjectBucketWebsiteConfiguration` resource allows you to deploy and manage a bucket website with [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+ *
+ * Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/how-to/use-bucket-website/) for more information on bucket websites.
  *
  * ## Example Usage
  *
@@ -25,7 +26,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### With `Policy`
+ * ### With A Bucket Policy
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -56,7 +57,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Bucket website configurations can be imported using the `{region}/{bucketName}` identifier, e.g.
+ * Bucket website configurations can be imported using the `{region}/{bucketName}` identifier, as shown below:
  *
  * bash
  *
@@ -107,11 +108,11 @@ export class ObjectBucketWebsiteConfiguration extends pulumi.CustomResource {
      */
     public readonly bucket!: pulumi.Output<string>;
     /**
-     * The name of the error document for the website detailed below.
+     * The name of the error file for the website detailed below.
      */
     public readonly errorDocument!: pulumi.Output<outputs.ObjectBucketWebsiteConfigurationErrorDocument | undefined>;
     /**
-     * The name of the index document for the website detailed below.
+     * The name of the index file for the website detailed below.
      */
     public readonly indexDocument!: pulumi.Output<outputs.ObjectBucketWebsiteConfigurationIndexDocument>;
     /**
@@ -181,11 +182,11 @@ export interface ObjectBucketWebsiteConfigurationState {
      */
     bucket?: pulumi.Input<string>;
     /**
-     * The name of the error document for the website detailed below.
+     * The name of the error file for the website detailed below.
      */
     errorDocument?: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationErrorDocument>;
     /**
-     * The name of the index document for the website detailed below.
+     * The name of the index file for the website detailed below.
      */
     indexDocument?: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationIndexDocument>;
     /**
@@ -215,11 +216,11 @@ export interface ObjectBucketWebsiteConfigurationArgs {
      */
     bucket: pulumi.Input<string>;
     /**
-     * The name of the error document for the website detailed below.
+     * The name of the error file for the website detailed below.
      */
     errorDocument?: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationErrorDocument>;
     /**
-     * The name of the index document for the website detailed below.
+     * The name of the index file for the website detailed below.
      */
     indexDocument: pulumi.Input<inputs.ObjectBucketWebsiteConfigurationIndexDocument>;
     /**

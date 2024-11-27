@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -586,7 +591,7 @@ class Webhosting(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cpanel_urls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebhostingCpanelUrlArgs']]]]] = None,
+            cpanel_urls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['WebhostingCpanelUrlArgs', 'WebhostingCpanelUrlArgsDict']]]]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             dns_status: Optional[pulumi.Input[str]] = None,
             domain: Optional[pulumi.Input[str]] = None,
@@ -594,7 +599,7 @@ class Webhosting(pulumi.CustomResource):
             offer_id: Optional[pulumi.Input[str]] = None,
             offer_name: Optional[pulumi.Input[str]] = None,
             option_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebhostingOptionArgs']]]]] = None,
+            options: Optional[pulumi.Input[Sequence[pulumi.Input[Union['WebhostingOptionArgs', 'WebhostingOptionArgsDict']]]]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             platform_hostname: Optional[pulumi.Input[str]] = None,
             platform_number: Optional[pulumi.Input[int]] = None,
@@ -611,7 +616,7 @@ class Webhosting(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebhostingCpanelUrlArgs']]]] cpanel_urls: The URL to connect to cPanel Dashboard and to Webmail interface.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['WebhostingCpanelUrlArgs', 'WebhostingCpanelUrlArgsDict']]]] cpanel_urls: The URL to connect to cPanel Dashboard and to Webmail interface.
         :param pulumi.Input[str] created_at: Date and time of hosting's creation (RFC 3339 format).
         :param pulumi.Input[str] dns_status: The DNS status of the hosting.
         :param pulumi.Input[str] domain: The domain name of the hosting.
@@ -619,7 +624,7 @@ class Webhosting(pulumi.CustomResource):
         :param pulumi.Input[str] offer_id: The ID of the selected offer for the hosting.
         :param pulumi.Input[str] offer_name: The name of the active offer.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] option_ids: The IDs of the selected options for the hosting.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebhostingOptionArgs']]]] options: The active options of the hosting.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['WebhostingOptionArgs', 'WebhostingOptionArgsDict']]]] options: The active options of the hosting.
         :param pulumi.Input[str] organization_id: The organization ID the hosting is associated with.
         :param pulumi.Input[str] platform_hostname: The hostname of the host platform.
         :param pulumi.Input[int] platform_number: The number of the host platform.

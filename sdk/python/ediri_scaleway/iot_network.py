@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = ['IotNetworkArgs', 'IotNetwork']
@@ -17,18 +22,22 @@ class IotNetworkArgs:
                  hub_id: pulumi.Input[str],
                  type: pulumi.Input[str],
                  name: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  topic_prefix: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a IotNetwork resource.
         :param pulumi.Input[str] hub_id: The hub ID to which the Network will be attached to.
         :param pulumi.Input[str] type: The network type to create (e.g. `sigfox`).
         :param pulumi.Input[str] name: The name of the IoT Network you want to create (e.g. `my-net`).
+        :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the Network is attached to.
         :param pulumi.Input[str] topic_prefix: The prefix that will be prepended to all topics for this Network.
         """
         pulumi.set(__self__, "hub_id", hub_id)
         pulumi.set(__self__, "type", type)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
         if topic_prefix is not None:
             pulumi.set(__self__, "topic_prefix", topic_prefix)
 
@@ -69,6 +78,18 @@ class IotNetworkArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Defaults to provider `region`) The region in which the Network is attached to.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+    @property
     @pulumi.getter(name="topicPrefix")
     def topic_prefix(self) -> Optional[pulumi.Input[str]]:
         """
@@ -88,6 +109,7 @@ class _IotNetworkState:
                  endpoint: Optional[pulumi.Input[str]] = None,
                  hub_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  secret: Optional[pulumi.Input[str]] = None,
                  topic_prefix: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
@@ -97,6 +119,7 @@ class _IotNetworkState:
         :param pulumi.Input[str] endpoint: The endpoint to use when interacting with the network.
         :param pulumi.Input[str] hub_id: The hub ID to which the Network will be attached to.
         :param pulumi.Input[str] name: The name of the IoT Network you want to create (e.g. `my-net`).
+        :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the Network is attached to.
         :param pulumi.Input[str] secret: The endpoint key to keep secret.
         :param pulumi.Input[str] topic_prefix: The prefix that will be prepended to all topics for this Network.
         :param pulumi.Input[str] type: The network type to create (e.g. `sigfox`).
@@ -109,6 +132,8 @@ class _IotNetworkState:
             pulumi.set(__self__, "hub_id", hub_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
         if secret is not None:
             pulumi.set(__self__, "secret", secret)
         if topic_prefix is not None:
@@ -166,6 +191,18 @@ class _IotNetworkState:
 
     @property
     @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Defaults to provider `region`) The region in which the Network is attached to.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter
     def secret(self) -> Optional[pulumi.Input[str]]:
         """
         The endpoint key to keep secret.
@@ -208,6 +245,7 @@ class IotNetwork(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  hub_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  topic_prefix: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -238,6 +276,7 @@ class IotNetwork(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] hub_id: The hub ID to which the Network will be attached to.
         :param pulumi.Input[str] name: The name of the IoT Network you want to create (e.g. `my-net`).
+        :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the Network is attached to.
         :param pulumi.Input[str] topic_prefix: The prefix that will be prepended to all topics for this Network.
         :param pulumi.Input[str] type: The network type to create (e.g. `sigfox`).
         """
@@ -287,6 +326,7 @@ class IotNetwork(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  hub_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  topic_prefix: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -302,6 +342,7 @@ class IotNetwork(pulumi.CustomResource):
                 raise TypeError("Missing required property 'hub_id'")
             __props__.__dict__["hub_id"] = hub_id
             __props__.__dict__["name"] = name
+            __props__.__dict__["region"] = region
             __props__.__dict__["topic_prefix"] = topic_prefix
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
@@ -325,6 +366,7 @@ class IotNetwork(pulumi.CustomResource):
             endpoint: Optional[pulumi.Input[str]] = None,
             hub_id: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            region: Optional[pulumi.Input[str]] = None,
             secret: Optional[pulumi.Input[str]] = None,
             topic_prefix: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'IotNetwork':
@@ -339,6 +381,7 @@ class IotNetwork(pulumi.CustomResource):
         :param pulumi.Input[str] endpoint: The endpoint to use when interacting with the network.
         :param pulumi.Input[str] hub_id: The hub ID to which the Network will be attached to.
         :param pulumi.Input[str] name: The name of the IoT Network you want to create (e.g. `my-net`).
+        :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the Network is attached to.
         :param pulumi.Input[str] secret: The endpoint key to keep secret.
         :param pulumi.Input[str] topic_prefix: The prefix that will be prepended to all topics for this Network.
         :param pulumi.Input[str] type: The network type to create (e.g. `sigfox`).
@@ -351,6 +394,7 @@ class IotNetwork(pulumi.CustomResource):
         __props__.__dict__["endpoint"] = endpoint
         __props__.__dict__["hub_id"] = hub_id
         __props__.__dict__["name"] = name
+        __props__.__dict__["region"] = region
         __props__.__dict__["secret"] = secret
         __props__.__dict__["topic_prefix"] = topic_prefix
         __props__.__dict__["type"] = type
@@ -387,6 +431,14 @@ class IotNetwork(pulumi.CustomResource):
         The name of the IoT Network you want to create (e.g. `my-net`).
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def region(self) -> pulumi.Output[str]:
+        """
+        (Defaults to provider `region`) The region in which the Network is attached to.
+        """
+        return pulumi.get(self, "region")
 
     @property
     @pulumi.getter

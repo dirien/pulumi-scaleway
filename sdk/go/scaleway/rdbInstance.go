@@ -32,12 +32,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewRdbInstance(ctx, "main", &scaleway.RdbInstanceArgs{
-//				DisableBackup: pulumi.Bool(true),
-//				Engine:        pulumi.String("PostgreSQL-15"),
-//				IsHaCluster:   pulumi.Bool(true),
-//				NodeType:      pulumi.String("DB-DEV-S"),
-//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
-//				UserName:      pulumi.String("my_initial_user"),
+//				DisableBackup:    pulumi.Bool(true),
+//				EncryptionAtRest: pulumi.Bool(true),
+//				Engine:           pulumi.String("PostgreSQL-15"),
+//				IsHaCluster:      pulumi.Bool(true),
+//				NodeType:         pulumi.String("DB-DEV-S"),
+//				Password:         pulumi.String("thiZ_is_v&ry_s3cret"),
+//				UserName:         pulumi.String("my_initial_user"),
 //			})
 //			if err != nil {
 //				return err
@@ -219,7 +220,7 @@ import (
 //					EnableIpam: pulumi.Bool(true),
 //				},
 //				LoadBalancers: scaleway.RdbInstanceLoadBalancerArray{
-//					nil,
+//					&scaleway.RdbInstanceLoadBalancerArgs{},
 //				},
 //			})
 //			if err != nil {
@@ -288,11 +289,15 @@ type RdbInstance struct {
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
 	// Disable automated backup for the database instance
 	DisableBackup pulumi.BoolPtrOutput `pulumi:"disableBackup"`
-	// (Deprecated) The IP of the Database Instance.
+	// Enable or disable encryption at rest for the Database Instance.
+	EncryptionAtRest pulumi.BoolPtrOutput `pulumi:"encryptionAtRest"`
+	// (Deprecated) The IP of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
 	//
 	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 	EndpointIp pulumi.StringOutput `pulumi:"endpointIp"`
-	// (Deprecated) The port of the Database Instance.
+	// (Deprecated) The port of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
+	//
+	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 	EndpointPort pulumi.IntOutput `pulumi:"endpointPort"`
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	//
@@ -400,11 +405,15 @@ type rdbInstanceState struct {
 	Certificate *string `pulumi:"certificate"`
 	// Disable automated backup for the database instance
 	DisableBackup *bool `pulumi:"disableBackup"`
-	// (Deprecated) The IP of the Database Instance.
+	// Enable or disable encryption at rest for the Database Instance.
+	EncryptionAtRest *bool `pulumi:"encryptionAtRest"`
+	// (Deprecated) The IP of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
 	//
 	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 	EndpointIp *string `pulumi:"endpointIp"`
-	// (Deprecated) The port of the Database Instance.
+	// (Deprecated) The port of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
+	//
+	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 	EndpointPort *int `pulumi:"endpointPort"`
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	//
@@ -470,11 +479,15 @@ type RdbInstanceState struct {
 	Certificate pulumi.StringPtrInput
 	// Disable automated backup for the database instance
 	DisableBackup pulumi.BoolPtrInput
-	// (Deprecated) The IP of the Database Instance.
+	// Enable or disable encryption at rest for the Database Instance.
+	EncryptionAtRest pulumi.BoolPtrInput
+	// (Deprecated) The IP of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
 	//
 	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 	EndpointIp pulumi.StringPtrInput
-	// (Deprecated) The port of the Database Instance.
+	// (Deprecated) The port of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
+	//
+	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 	EndpointPort pulumi.IntPtrInput
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	//
@@ -542,6 +555,8 @@ type rdbInstanceArgs struct {
 	BackupScheduleRetention *int `pulumi:"backupScheduleRetention"`
 	// Disable automated backup for the database instance
 	DisableBackup *bool `pulumi:"disableBackup"`
+	// Enable or disable encryption at rest for the Database Instance.
+	EncryptionAtRest *bool `pulumi:"encryptionAtRest"`
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	//
 	// > **Important** Updates to `engine` will recreate the Database Instance.
@@ -601,6 +616,8 @@ type RdbInstanceArgs struct {
 	BackupScheduleRetention pulumi.IntPtrInput
 	// Disable automated backup for the database instance
 	DisableBackup pulumi.BoolPtrInput
+	// Enable or disable encryption at rest for the Database Instance.
+	EncryptionAtRest pulumi.BoolPtrInput
 	// Database Instance's engine version (e.g. `PostgreSQL-11`).
 	//
 	// > **Important** Updates to `engine` will recreate the Database Instance.
@@ -762,14 +779,21 @@ func (o RdbInstanceOutput) DisableBackup() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.BoolPtrOutput { return v.DisableBackup }).(pulumi.BoolPtrOutput)
 }
 
-// (Deprecated) The IP of the Database Instance.
+// Enable or disable encryption at rest for the Database Instance.
+func (o RdbInstanceOutput) EncryptionAtRest() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RdbInstance) pulumi.BoolPtrOutput { return v.EncryptionAtRest }).(pulumi.BoolPtrOutput)
+}
+
+// (Deprecated) The IP of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
 //
 // Deprecated: Please use the privateNetwork or the loadBalancer attribute
 func (o RdbInstanceOutput) EndpointIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.StringOutput { return v.EndpointIp }).(pulumi.StringOutput)
 }
 
-// (Deprecated) The port of the Database Instance.
+// (Deprecated) The port of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
+//
+// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 func (o RdbInstanceOutput) EndpointPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *RdbInstance) pulumi.IntOutput { return v.EndpointPort }).(pulumi.IntOutput)
 }

@@ -11,9 +11,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about an existing Project.
+// The `AccountProject` data source is used to retrieve information about a Scaleway project.
 //
-// ## Example Usage
+// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
+//
+// ## Retrieve a Scaleway Project
+//
+// The following commands allow you to:
+//
+// - retrieve a Project by its name
+// - retrieve a Project by its ID
+// - retrieve the default project of an Organization
 //
 // ```go
 // package main
@@ -59,10 +67,11 @@ type LookupAccountProjectArgs struct {
 	// The name of the Project.
 	// Only one of the `name` and `projectId` should be specified.
 	Name *string `pulumi:"name"`
-	// The organization ID the Project is associated with.
-	// If no default organizationId is set, one must be set explicitly in this datasource
+	// The unique identifier of the Organization with which the Project is associated.
+	//
+	// If no default `organizationId` is set, one must be set explicitly in this datasource
 	OrganizationId *string `pulumi:"organizationId"`
-	// The ID of the Project.
+	// The unique identifier of the Project.
 	// Only one of the `name` and `projectId` should be specified.
 	ProjectId *string `pulumi:"projectId"`
 }
@@ -81,14 +90,20 @@ type LookupAccountProjectResult struct {
 
 func LookupAccountProjectOutput(ctx *pulumi.Context, args LookupAccountProjectOutputArgs, opts ...pulumi.InvokeOption) LookupAccountProjectResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupAccountProjectResult, error) {
+		ApplyT(func(v interface{}) (LookupAccountProjectResultOutput, error) {
 			args := v.(LookupAccountProjectArgs)
-			r, err := LookupAccountProject(ctx, &args, opts...)
-			var s LookupAccountProjectResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupAccountProjectResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getAccountProject:getAccountProject", args, &rv, "", opts...)
+			if err != nil {
+				return LookupAccountProjectResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupAccountProjectResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupAccountProjectResultOutput), nil
+			}
+			return output, nil
 		}).(LookupAccountProjectResultOutput)
 }
 
@@ -97,10 +112,11 @@ type LookupAccountProjectOutputArgs struct {
 	// The name of the Project.
 	// Only one of the `name` and `projectId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The organization ID the Project is associated with.
-	// If no default organizationId is set, one must be set explicitly in this datasource
+	// The unique identifier of the Organization with which the Project is associated.
+	//
+	// If no default `organizationId` is set, one must be set explicitly in this datasource
 	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
-	// The ID of the Project.
+	// The unique identifier of the Project.
 	// Only one of the `name` and `projectId` should be specified.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 }

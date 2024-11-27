@@ -104,14 +104,20 @@ type LookupLbRouteResult struct {
 
 func LookupLbRouteOutput(ctx *pulumi.Context, args LookupLbRouteOutputArgs, opts ...pulumi.InvokeOption) LookupLbRouteResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupLbRouteResult, error) {
+		ApplyT(func(v interface{}) (LookupLbRouteResultOutput, error) {
 			args := v.(LookupLbRouteArgs)
-			r, err := LookupLbRoute(ctx, &args, opts...)
-			var s LookupLbRouteResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupLbRouteResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getLbRoute:getLbRoute", args, &rv, "", opts...)
+			if err != nil {
+				return LookupLbRouteResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupLbRouteResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupLbRouteResultOutput), nil
+			}
+			return output, nil
 		}).(LookupLbRouteResultOutput)
 }
 

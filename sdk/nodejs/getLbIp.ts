@@ -22,7 +22,6 @@ import * as utilities from "./utilities";
  */
 export function getLbIp(args?: GetLbIpArgs, opts?: pulumi.InvokeOptions): Promise<GetLbIpResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLbIp:getLbIp", {
         "ipAddress": args.ipAddress,
@@ -99,7 +98,13 @@ export interface GetLbIpResult {
  * ```
  */
 export function getLbIpOutput(args?: GetLbIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbIpResult> {
-    return pulumi.output(args).apply((a: any) => getLbIp(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getLbIp:getLbIp", {
+        "ipAddress": args.ipAddress,
+        "ipId": args.ipId,
+        "projectId": args.projectId,
+    }, opts);
 }
 
 /**

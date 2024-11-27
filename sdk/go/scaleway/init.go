@@ -55,18 +55,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ContainerToken{}
 	case "scaleway:index/containerTrigger:ContainerTrigger":
 		r = &ContainerTrigger{}
-	case "scaleway:index/documentdbDatabase:DocumentdbDatabase":
-		r = &DocumentdbDatabase{}
-	case "scaleway:index/documentdbInstance:DocumentdbInstance":
-		r = &DocumentdbInstance{}
-	case "scaleway:index/documentdbPrivateNetworkEndpoint:DocumentdbPrivateNetworkEndpoint":
-		r = &DocumentdbPrivateNetworkEndpoint{}
-	case "scaleway:index/documentdbPrivilege:DocumentdbPrivilege":
-		r = &DocumentdbPrivilege{}
-	case "scaleway:index/documentdbReadReplica:DocumentdbReadReplica":
-		r = &DocumentdbReadReplica{}
-	case "scaleway:index/documentdbUser:DocumentdbUser":
-		r = &DocumentdbUser{}
 	case "scaleway:index/domainRecord:DomainRecord":
 		r = &DomainRecord{}
 	case "scaleway:index/domainZone:DomainZone":
@@ -101,6 +89,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &IamSshKey{}
 	case "scaleway:index/iamUser:IamUser":
 		r = &IamUser{}
+	case "scaleway:index/inferenceDeployment:InferenceDeployment":
+		r = &InferenceDeployment{}
 	case "scaleway:index/instanceImage:InstanceImage":
 		r = &InstanceImage{}
 	case "scaleway:index/instanceIp:InstanceIp":
@@ -173,6 +163,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &MnqSqsCredentials{}
 	case "scaleway:index/mnqSqsQueue:MnqSqsQueue":
 		r = &MnqSqsQueue{}
+	case "scaleway:index/mongodbInstance:MongodbInstance":
+		r = &MongodbInstance{}
+	case "scaleway:index/mongodbSnapshot:MongodbSnapshot":
+		r = &MongodbSnapshot{}
 	case "scaleway:index/objectBucket:ObjectBucket":
 		r = &ObjectBucket{}
 	case "scaleway:index/objectBucketAcl:ObjectBucketAcl":
@@ -213,6 +207,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &TemDomain{}
 	case "scaleway:index/temDomainValidation:TemDomainValidation":
 		r = &TemDomainValidation{}
+	case "scaleway:index/temWebhook:TemWebhook":
+		r = &TemWebhook{}
 	case "scaleway:index/vpc:Vpc":
 		r = &Vpc{}
 	case "scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork":
@@ -231,6 +227,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &VpcPublicGatewayIpReverseDns{}
 	case "scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule":
 		r = &VpcPublicGatewayPatRule{}
+	case "scaleway:index/vpcRoute:VpcRoute":
+		r = &VpcRoute{}
 	case "scaleway:index/webhosting:Webhosting":
 		r = &Webhosting{}
 	default:
@@ -351,36 +349,6 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
-		"index/documentdbDatabase",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"scaleway",
-		"index/documentdbInstance",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"scaleway",
-		"index/documentdbPrivateNetworkEndpoint",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"scaleway",
-		"index/documentdbPrivilege",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"scaleway",
-		"index/documentdbReadReplica",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"scaleway",
-		"index/documentdbUser",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"scaleway",
 		"index/domainRecord",
 		&module{version},
 	)
@@ -462,6 +430,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/iamUser",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/inferenceDeployment",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -646,6 +619,16 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/mongodbInstance",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/mongodbSnapshot",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/objectBucket",
 		&module{version},
 	)
@@ -746,6 +729,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
+		"index/temWebhook",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
 		"index/vpc",
 		&module{version},
 	)
@@ -787,6 +775,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/vpcPublicGatewayPatRule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/vpcRoute",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

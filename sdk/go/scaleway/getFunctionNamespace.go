@@ -11,9 +11,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about a function namespace.
+// The `FunctionNamespace` data source is used to retrieve information about a Serverless Functions namespace.
 //
-// ## Example Usage
+// Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
+//
+// ## Retrieve a Serverless Functions namespace
+//
+// The following commands allow you to:
+//
+// - retrieve a namespace by its name
+// - retrieve a namespace by its ID
 //
 // ```go
 // package main
@@ -50,13 +57,11 @@ func LookupFunctionNamespace(ctx *pulumi.Context, args *LookupFunctionNamespaceA
 
 // A collection of arguments for invoking getFunctionNamespace.
 type LookupFunctionNamespaceArgs struct {
-	// The namespace name.
-	// Only one of `name` and `namespaceId` should be specified.
+	// The name of the namespace. Only one of `name` and `namespaceId` should be specified.
 	Name *string `pulumi:"name"`
-	// The namespace id.
-	// Only one of `name` and `namespaceId` should be specified.
+	// The unique identifier of the namespace. Only one of `name` and `namespaceId` should be specified.
 	NamespaceId *string `pulumi:"namespaceId"`
-	// `projectId`) The ID of the project the namespace is associated with.
+	// `projectId`) The unique identifier of the project with which the namespace is associated.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the namespace exists.
 	Region *string `pulumi:"region"`
@@ -72,39 +77,43 @@ type LookupFunctionNamespaceResult struct {
 	Id          string  `pulumi:"id"`
 	Name        *string `pulumi:"name"`
 	NamespaceId *string `pulumi:"namespaceId"`
-	// The organization ID the namespace is associated with.
+	// The unique identifier of the organization with which the namespace is associated.
 	OrganizationId string  `pulumi:"organizationId"`
 	ProjectId      *string `pulumi:"projectId"`
 	Region         *string `pulumi:"region"`
 	// The registry endpoint of the namespace.
 	RegistryEndpoint string `pulumi:"registryEndpoint"`
-	// The registry namespace ID of the namespace.
+	// The unique identifier of the registry namespace of the Serverless Functions namespace.
 	RegistryNamespaceId        string            `pulumi:"registryNamespaceId"`
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
 }
 
 func LookupFunctionNamespaceOutput(ctx *pulumi.Context, args LookupFunctionNamespaceOutputArgs, opts ...pulumi.InvokeOption) LookupFunctionNamespaceResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupFunctionNamespaceResult, error) {
+		ApplyT(func(v interface{}) (LookupFunctionNamespaceResultOutput, error) {
 			args := v.(LookupFunctionNamespaceArgs)
-			r, err := LookupFunctionNamespace(ctx, &args, opts...)
-			var s LookupFunctionNamespaceResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupFunctionNamespaceResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getFunctionNamespace:getFunctionNamespace", args, &rv, "", opts...)
+			if err != nil {
+				return LookupFunctionNamespaceResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupFunctionNamespaceResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupFunctionNamespaceResultOutput), nil
+			}
+			return output, nil
 		}).(LookupFunctionNamespaceResultOutput)
 }
 
 // A collection of arguments for invoking getFunctionNamespace.
 type LookupFunctionNamespaceOutputArgs struct {
-	// The namespace name.
-	// Only one of `name` and `namespaceId` should be specified.
+	// The name of the namespace. Only one of `name` and `namespaceId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The namespace id.
-	// Only one of `name` and `namespaceId` should be specified.
+	// The unique identifier of the namespace. Only one of `name` and `namespaceId` should be specified.
 	NamespaceId pulumi.StringPtrInput `pulumi:"namespaceId"`
-	// `projectId`) The ID of the project the namespace is associated with.
+	// `projectId`) The unique identifier of the project with which the namespace is associated.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// `region`) The region in which the namespace exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
@@ -152,7 +161,7 @@ func (o LookupFunctionNamespaceResultOutput) NamespaceId() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v LookupFunctionNamespaceResult) *string { return v.NamespaceId }).(pulumi.StringPtrOutput)
 }
 
-// The organization ID the namespace is associated with.
+// The unique identifier of the organization with which the namespace is associated.
 func (o LookupFunctionNamespaceResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFunctionNamespaceResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
@@ -170,7 +179,7 @@ func (o LookupFunctionNamespaceResultOutput) RegistryEndpoint() pulumi.StringOut
 	return o.ApplyT(func(v LookupFunctionNamespaceResult) string { return v.RegistryEndpoint }).(pulumi.StringOutput)
 }
 
-// The registry namespace ID of the namespace.
+// The unique identifier of the registry namespace of the Serverless Functions namespace.
 func (o LookupFunctionNamespaceResultOutput) RegistryNamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFunctionNamespaceResult) string { return v.RegistryNamespaceId }).(pulumi.StringOutput)
 }

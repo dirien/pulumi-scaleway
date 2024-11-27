@@ -20,7 +20,6 @@ import * as utilities from "./utilities";
  */
 export function getInstanceImage(args?: GetInstanceImageArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceImageResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceImage:getInstanceImage", {
         "architecture": args.architecture,
@@ -131,7 +130,16 @@ export interface GetInstanceImageResult {
  * ```
  */
 export function getInstanceImageOutput(args?: GetInstanceImageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceImageResult> {
-    return pulumi.output(args).apply((a: any) => getInstanceImage(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getInstanceImage:getInstanceImage", {
+        "architecture": args.architecture,
+        "imageId": args.imageId,
+        "latest": args.latest,
+        "name": args.name,
+        "projectId": args.projectId,
+        "zone": args.zone,
+    }, opts);
 }
 
 /**

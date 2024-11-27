@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -55,7 +60,7 @@ class GetObjectBucketPolicyResult:
     @pulumi.getter
     def policy(self) -> str:
         """
-        The bucket's policy in JSON format.
+        The content of the bucket policy in JSON format.
         """
         return pulumi.get(self, "policy")
 
@@ -88,10 +93,13 @@ def get_object_bucket_policy(bucket: Optional[str] = None,
                              region: Optional[str] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetObjectBucketPolicyResult:
     """
-    Gets information about the Bucket's policy.
-    For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+    The `ObjectBucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
 
-    ## Example Usage
+    Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/) for more information.
+
+    ## Retrieve the bucket policy of a bucket
+
+    The following command allows you to retrieve a bucket policy by its bucket.
 
     ```python
     import pulumi
@@ -101,7 +109,7 @@ def get_object_bucket_policy(bucket: Optional[str] = None,
     ```
 
 
-    :param str bucket: The bucket name.
+    :param str bucket: The name of the bucket.
     :param str region: `region`) The region in which the Object Storage exists.
     """
     __args__ = dict()
@@ -117,18 +125,18 @@ def get_object_bucket_policy(bucket: Optional[str] = None,
         policy=pulumi.get(__ret__, 'policy'),
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'))
-
-
-@_utilities.lift_output_func(get_object_bucket_policy)
 def get_object_bucket_policy_output(bucket: Optional[pulumi.Input[str]] = None,
                                     project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                     region: Optional[pulumi.Input[Optional[str]]] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetObjectBucketPolicyResult]:
     """
-    Gets information about the Bucket's policy.
-    For more information, see [the documentation](https://www.scaleway.com/en/docs/object-storage-feature/).
+    The `ObjectBucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
 
-    ## Example Usage
+    Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/bucket-policy/) for more information.
+
+    ## Retrieve the bucket policy of a bucket
+
+    The following command allows you to retrieve a bucket policy by its bucket.
 
     ```python
     import pulumi
@@ -138,7 +146,18 @@ def get_object_bucket_policy_output(bucket: Optional[pulumi.Input[str]] = None,
     ```
 
 
-    :param str bucket: The bucket name.
+    :param str bucket: The name of the bucket.
     :param str region: `region`) The region in which the Object Storage exists.
     """
-    ...
+    __args__ = dict()
+    __args__['bucket'] = bucket
+    __args__['projectId'] = project_id
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy', __args__, opts=opts, typ=GetObjectBucketPolicyResult)
+    return __ret__.apply(lambda __response__: GetObjectBucketPolicyResult(
+        bucket=pulumi.get(__response__, 'bucket'),
+        id=pulumi.get(__response__, 'id'),
+        policy=pulumi.get(__response__, 'policy'),
+        project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region')))

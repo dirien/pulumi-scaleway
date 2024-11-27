@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -395,10 +400,10 @@ class IotDevice(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_insecure: Optional[pulumi.Input[bool]] = None,
                  allow_multiple_connections: Optional[pulumi.Input[bool]] = None,
-                 certificate: Optional[pulumi.Input[pulumi.InputType['IotDeviceCertificateArgs']]] = None,
+                 certificate: Optional[pulumi.Input[Union['IotDeviceCertificateArgs', 'IotDeviceCertificateArgsDict']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  hub_id: Optional[pulumi.Input[str]] = None,
-                 message_filters: Optional[pulumi.Input[pulumi.InputType['IotDeviceMessageFiltersArgs']]] = None,
+                 message_filters: Optional[pulumi.Input[Union['IotDeviceMessageFiltersArgs', 'IotDeviceMessageFiltersArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -426,9 +431,9 @@ class IotDevice(pulumi.CustomResource):
         device_cert = local.get_file(filename="device-certificate.pem")
         main_iot_device = scaleway.IotDevice("mainIotDevice",
             hub_id=main_iot_hub.id,
-            certificate=scaleway.IotDeviceCertificateArgs(
-                crt=device_cert.content,
-            ))
+            certificate={
+                "crt": device_cert.content,
+            })
         ```
 
         ## Import
@@ -449,10 +454,10 @@ class IotDevice(pulumi.CustomResource):
         :param pulumi.Input[bool] allow_multiple_connections: Allow more than one simultaneous connection using the same device credentials.
                
                > **Important:** Updates to `allow_multiple_connections` can disconnect eventually connected devices.
-        :param pulumi.Input[pulumi.InputType['IotDeviceCertificateArgs']] certificate: The certificate bundle of the device.
+        :param pulumi.Input[Union['IotDeviceCertificateArgs', 'IotDeviceCertificateArgsDict']] certificate: The certificate bundle of the device.
         :param pulumi.Input[str] description: The description of the IoT device (e.g. `living room`).
         :param pulumi.Input[str] hub_id: The ID of the hub on which this device will be created.
-        :param pulumi.Input[pulumi.InputType['IotDeviceMessageFiltersArgs']] message_filters: Rules that define which messages are authorized or denied based on their topic.
+        :param pulumi.Input[Union['IotDeviceMessageFiltersArgs', 'IotDeviceMessageFiltersArgsDict']] message_filters: Rules that define which messages are authorized or denied based on their topic.
         :param pulumi.Input[str] name: The name of the IoT device you want to create (e.g. `my-device`).
                
                > **Important:** Updates to `name` will destroy and recreate a new resource.
@@ -488,9 +493,9 @@ class IotDevice(pulumi.CustomResource):
         device_cert = local.get_file(filename="device-certificate.pem")
         main_iot_device = scaleway.IotDevice("mainIotDevice",
             hub_id=main_iot_hub.id,
-            certificate=scaleway.IotDeviceCertificateArgs(
-                crt=device_cert.content,
-            ))
+            certificate={
+                "crt": device_cert.content,
+            })
         ```
 
         ## Import
@@ -520,10 +525,10 @@ class IotDevice(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_insecure: Optional[pulumi.Input[bool]] = None,
                  allow_multiple_connections: Optional[pulumi.Input[bool]] = None,
-                 certificate: Optional[pulumi.Input[pulumi.InputType['IotDeviceCertificateArgs']]] = None,
+                 certificate: Optional[pulumi.Input[Union['IotDeviceCertificateArgs', 'IotDeviceCertificateArgsDict']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  hub_id: Optional[pulumi.Input[str]] = None,
-                 message_filters: Optional[pulumi.Input[pulumi.InputType['IotDeviceMessageFiltersArgs']]] = None,
+                 message_filters: Optional[pulumi.Input[Union['IotDeviceMessageFiltersArgs', 'IotDeviceMessageFiltersArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -562,13 +567,13 @@ class IotDevice(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             allow_insecure: Optional[pulumi.Input[bool]] = None,
             allow_multiple_connections: Optional[pulumi.Input[bool]] = None,
-            certificate: Optional[pulumi.Input[pulumi.InputType['IotDeviceCertificateArgs']]] = None,
+            certificate: Optional[pulumi.Input[Union['IotDeviceCertificateArgs', 'IotDeviceCertificateArgsDict']]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             hub_id: Optional[pulumi.Input[str]] = None,
             is_connected: Optional[pulumi.Input[bool]] = None,
             last_activity_at: Optional[pulumi.Input[str]] = None,
-            message_filters: Optional[pulumi.Input[pulumi.InputType['IotDeviceMessageFiltersArgs']]] = None,
+            message_filters: Optional[pulumi.Input[Union['IotDeviceMessageFiltersArgs', 'IotDeviceMessageFiltersArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -586,13 +591,13 @@ class IotDevice(pulumi.CustomResource):
         :param pulumi.Input[bool] allow_multiple_connections: Allow more than one simultaneous connection using the same device credentials.
                
                > **Important:** Updates to `allow_multiple_connections` can disconnect eventually connected devices.
-        :param pulumi.Input[pulumi.InputType['IotDeviceCertificateArgs']] certificate: The certificate bundle of the device.
+        :param pulumi.Input[Union['IotDeviceCertificateArgs', 'IotDeviceCertificateArgsDict']] certificate: The certificate bundle of the device.
         :param pulumi.Input[str] created_at: The date and time the device was created.
         :param pulumi.Input[str] description: The description of the IoT device (e.g. `living room`).
         :param pulumi.Input[str] hub_id: The ID of the hub on which this device will be created.
         :param pulumi.Input[bool] is_connected: The current connection status of the device.
         :param pulumi.Input[str] last_activity_at: The last MQTT activity of the device.
-        :param pulumi.Input[pulumi.InputType['IotDeviceMessageFiltersArgs']] message_filters: Rules that define which messages are authorized or denied based on their topic.
+        :param pulumi.Input[Union['IotDeviceMessageFiltersArgs', 'IotDeviceMessageFiltersArgsDict']] message_filters: Rules that define which messages are authorized or denied based on their topic.
         :param pulumi.Input[str] name: The name of the IoT device you want to create (e.g. `my-device`).
                
                > **Important:** Updates to `name` will destroy and recreate a new resource.

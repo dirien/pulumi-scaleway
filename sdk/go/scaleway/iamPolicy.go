@@ -104,6 +104,48 @@ import (
 //
 // ```
 //
+// ### Create a policy with a particular condition
+//
+// IAM policy rule can use a condition to be applied.
+// The following variables are available:
+//
+// - `request.ip`
+// - `request.user_agent`
+// - `request.time`
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewIamPolicy(ctx, "main", &scaleway.IamPolicyArgs{
+//				NoPrincipal: pulumi.Bool(true),
+//				Rules: scaleway.IamPolicyRuleArray{
+//					&scaleway.IamPolicyRuleArgs{
+//						Condition:      pulumi.String("request.user_agent == 'My User Agent'"),
+//						OrganizationId: pulumi.String("%s"),
+//						PermissionSetNames: pulumi.StringArray{
+//							pulumi.String("AllProductsFullAccess"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Policies can be imported using the `{id}`, e.g.

@@ -84,14 +84,20 @@ type LookupLbIpResult struct {
 
 func LookupLbIpOutput(ctx *pulumi.Context, args LookupLbIpOutputArgs, opts ...pulumi.InvokeOption) LookupLbIpResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupLbIpResult, error) {
+		ApplyT(func(v interface{}) (LookupLbIpResultOutput, error) {
 			args := v.(LookupLbIpArgs)
-			r, err := LookupLbIp(ctx, &args, opts...)
-			var s LookupLbIpResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupLbIpResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getLbIp:getLbIp", args, &rv, "", opts...)
+			if err != nil {
+				return LookupLbIpResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupLbIpResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupLbIpResultOutput), nil
+			}
+			return output, nil
 		}).(LookupLbIpResultOutput)
 }
 

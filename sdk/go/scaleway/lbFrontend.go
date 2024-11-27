@@ -177,7 +177,7 @@ type LbFrontend struct {
 	//
 	// > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
 	BackendId pulumi.StringOutput `pulumi:"backendId"`
-	// (Deprecated) First certificate ID used by the frontend.
+	// (Deprecated, use `certificateIds` instead) First certificate ID used by the frontend.
 	//
 	// Deprecated: Please use certificate_ids
 	CertificateId pulumi.StringOutput `pulumi:"certificateId"`
@@ -245,7 +245,7 @@ type lbFrontendState struct {
 	//
 	// > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
 	BackendId *string `pulumi:"backendId"`
-	// (Deprecated) First certificate ID used by the frontend.
+	// (Deprecated, use `certificateIds` instead) First certificate ID used by the frontend.
 	//
 	// Deprecated: Please use certificate_ids
 	CertificateId *string `pulumi:"certificateId"`
@@ -275,7 +275,7 @@ type LbFrontendState struct {
 	//
 	// > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
 	BackendId pulumi.StringPtrInput
-	// (Deprecated) First certificate ID used by the frontend.
+	// (Deprecated, use `certificateIds` instead) First certificate ID used by the frontend.
 	//
 	// Deprecated: Please use certificate_ids
 	CertificateId pulumi.StringPtrInput
@@ -454,7 +454,7 @@ func (o LbFrontendOutput) BackendId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbFrontend) pulumi.StringOutput { return v.BackendId }).(pulumi.StringOutput)
 }
 
-// (Deprecated) First certificate ID used by the frontend.
+// (Deprecated, use `certificateIds` instead) First certificate ID used by the frontend.
 //
 // Deprecated: Please use certificate_ids
 func (o LbFrontendOutput) CertificateId() pulumi.StringOutput {

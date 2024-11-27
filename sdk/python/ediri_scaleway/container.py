@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = ['ContainerArgs', 'Container']
@@ -37,33 +42,31 @@ class ContainerArgs:
                  timeout: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a Container resource.
-        :param pulumi.Input[str] namespace_id: The container namespace ID of the container.
+        :param pulumi.Input[str] namespace_id: The Containers namespace ID of the container.
                
-               > **Important** Updates to `name` will recreate the container.
-               
-               The following arguments are optional:
-        :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container. Defaults to 140.
-        :param pulumi.Input[bool] deploy: Boolean controlling whether the container is on a production environment.
+               > **Important** Updating the `name` argument will recreate the container.
+        :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container.
+        :param pulumi.Input[bool] deploy: Boolean indicating whether the container is in a production environment.
                
                Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[str] description: The description of the container.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
-        :param pulumi.Input[str] http_option: Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
-        :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
-        :param pulumi.Input[int] max_scale: The maximum of number of instances this container can scale to. Default to 20.
-        :param pulumi.Input[int] memory_limit: The memory computing resources in MB to allocate to each container. Defaults to 256.
-        :param pulumi.Input[int] min_scale: The minimum of running container instances continuously. Defaults to 0.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) of the container.
+        :param pulumi.Input[str] http_option: Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
+        :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time.
+        :param pulumi.Input[int] max_scale: The maximum number of instances this container can scale to.
+        :param pulumi.Input[int] memory_limit: The memory resources in MB to allocate to each container.
+        :param pulumi.Input[int] min_scale: The minimum number of container instances running continuously.
         :param pulumi.Input[str] name: The unique name of the container name.
-        :param pulumi.Input[int] port: The port to expose the container. Defaults to 8080.
-        :param pulumi.Input[str] privacy: The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
-        :param pulumi.Input[str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+        :param pulumi.Input[int] port: The port to expose the container.
+        :param pulumi.Input[str] privacy: The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
+        :param pulumi.Input[str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
         :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the container was created.
-        :param pulumi.Input[str] registry_image: The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
+        :param pulumi.Input[str] registry_image: The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
         :param pulumi.Input[str] registry_sha256: The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
         :param pulumi.Input[str] sandbox: Execution environment of the container.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) of the container.
         :param pulumi.Input[str] status: The container status.
-        :param pulumi.Input[int] timeout: The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
+        :param pulumi.Input[int] timeout: The maximum amount of time your container can spend processing a request before being stopped.
         """
         pulumi.set(__self__, "namespace_id", namespace_id)
         if cpu_limit is not None:
@@ -111,11 +114,9 @@ class ContainerArgs:
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> pulumi.Input[str]:
         """
-        The container namespace ID of the container.
+        The Containers namespace ID of the container.
 
-        > **Important** Updates to `name` will recreate the container.
-
-        The following arguments are optional:
+        > **Important** Updating the `name` argument will recreate the container.
         """
         return pulumi.get(self, "namespace_id")
 
@@ -127,7 +128,7 @@ class ContainerArgs:
     @pulumi.getter(name="cpuLimit")
     def cpu_limit(self) -> Optional[pulumi.Input[int]]:
         """
-        The amount of vCPU computing resources to allocate to each container. Defaults to 140.
+        The amount of vCPU computing resources to allocate to each container.
         """
         return pulumi.get(self, "cpu_limit")
 
@@ -139,7 +140,7 @@ class ContainerArgs:
     @pulumi.getter
     def deploy(self) -> Optional[pulumi.Input[bool]]:
         """
-        Boolean controlling whether the container is on a production environment.
+        Boolean indicating whether the container is in a production environment.
 
         Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
         """
@@ -165,7 +166,7 @@ class ContainerArgs:
     @pulumi.getter(name="environmentVariables")
     def environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
+        The [environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) of the container.
         """
         return pulumi.get(self, "environment_variables")
 
@@ -177,7 +178,7 @@ class ContainerArgs:
     @pulumi.getter(name="httpOption")
     def http_option(self) -> Optional[pulumi.Input[str]]:
         """
-        Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
+        Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
         """
         return pulumi.get(self, "http_option")
 
@@ -189,7 +190,7 @@ class ContainerArgs:
     @pulumi.getter(name="maxConcurrency")
     def max_concurrency(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
+        The maximum number of simultaneous requests your container can handle at the same time.
         """
         return pulumi.get(self, "max_concurrency")
 
@@ -201,7 +202,7 @@ class ContainerArgs:
     @pulumi.getter(name="maxScale")
     def max_scale(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum of number of instances this container can scale to. Default to 20.
+        The maximum number of instances this container can scale to.
         """
         return pulumi.get(self, "max_scale")
 
@@ -213,7 +214,7 @@ class ContainerArgs:
     @pulumi.getter(name="memoryLimit")
     def memory_limit(self) -> Optional[pulumi.Input[int]]:
         """
-        The memory computing resources in MB to allocate to each container. Defaults to 256.
+        The memory resources in MB to allocate to each container.
         """
         return pulumi.get(self, "memory_limit")
 
@@ -225,7 +226,7 @@ class ContainerArgs:
     @pulumi.getter(name="minScale")
     def min_scale(self) -> Optional[pulumi.Input[int]]:
         """
-        The minimum of running container instances continuously. Defaults to 0.
+        The minimum number of container instances running continuously.
         """
         return pulumi.get(self, "min_scale")
 
@@ -249,7 +250,7 @@ class ContainerArgs:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        The port to expose the container. Defaults to 8080.
+        The port to expose the container.
         """
         return pulumi.get(self, "port")
 
@@ -261,7 +262,7 @@ class ContainerArgs:
     @pulumi.getter
     def privacy(self) -> Optional[pulumi.Input[str]]:
         """
-        The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
+        The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         """
         return pulumi.get(self, "privacy")
 
@@ -273,7 +274,7 @@ class ContainerArgs:
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+        The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
         """
         return pulumi.get(self, "protocol")
 
@@ -297,7 +298,7 @@ class ContainerArgs:
     @pulumi.getter(name="registryImage")
     def registry_image(self) -> Optional[pulumi.Input[str]]:
         """
-        The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
+        The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
         """
         return pulumi.get(self, "registry_image")
 
@@ -333,7 +334,7 @@ class ContainerArgs:
     @pulumi.getter(name="secretEnvironmentVariables")
     def secret_environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+        The [secret environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) of the container.
         """
         return pulumi.get(self, "secret_environment_variables")
 
@@ -357,7 +358,7 @@ class ContainerArgs:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
+        The maximum amount of time your container can spend processing a request before being stopped.
         """
         return pulumi.get(self, "timeout")
 
@@ -395,36 +396,34 @@ class _ContainerState:
                  timeout: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering Container resources.
-        :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container. Defaults to 140.
+        :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container.
         :param pulumi.Input[str] cron_status: The cron status of the container.
-        :param pulumi.Input[bool] deploy: Boolean controlling whether the container is on a production environment.
+        :param pulumi.Input[bool] deploy: Boolean indicating whether the container is in a production environment.
                
                Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[str] description: The description of the container.
         :param pulumi.Input[str] domain_name: The native domain name of the container
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) of the container.
         :param pulumi.Input[str] error_message: The error message of the container.
-        :param pulumi.Input[str] http_option: Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
-        :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
-        :param pulumi.Input[int] max_scale: The maximum of number of instances this container can scale to. Default to 20.
-        :param pulumi.Input[int] memory_limit: The memory computing resources in MB to allocate to each container. Defaults to 256.
-        :param pulumi.Input[int] min_scale: The minimum of running container instances continuously. Defaults to 0.
+        :param pulumi.Input[str] http_option: Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
+        :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time.
+        :param pulumi.Input[int] max_scale: The maximum number of instances this container can scale to.
+        :param pulumi.Input[int] memory_limit: The memory resources in MB to allocate to each container.
+        :param pulumi.Input[int] min_scale: The minimum number of container instances running continuously.
         :param pulumi.Input[str] name: The unique name of the container name.
-        :param pulumi.Input[str] namespace_id: The container namespace ID of the container.
+        :param pulumi.Input[str] namespace_id: The Containers namespace ID of the container.
                
-               > **Important** Updates to `name` will recreate the container.
-               
-               The following arguments are optional:
-        :param pulumi.Input[int] port: The port to expose the container. Defaults to 8080.
-        :param pulumi.Input[str] privacy: The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
-        :param pulumi.Input[str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+               > **Important** Updating the `name` argument will recreate the container.
+        :param pulumi.Input[int] port: The port to expose the container.
+        :param pulumi.Input[str] privacy: The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
+        :param pulumi.Input[str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
         :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the container was created.
-        :param pulumi.Input[str] registry_image: The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
+        :param pulumi.Input[str] registry_image: The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
         :param pulumi.Input[str] registry_sha256: The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
         :param pulumi.Input[str] sandbox: Execution environment of the container.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) of the container.
         :param pulumi.Input[str] status: The container status.
-        :param pulumi.Input[int] timeout: The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
+        :param pulumi.Input[int] timeout: The maximum amount of time your container can spend processing a request before being stopped.
         """
         if cpu_limit is not None:
             pulumi.set(__self__, "cpu_limit", cpu_limit)
@@ -479,7 +478,7 @@ class _ContainerState:
     @pulumi.getter(name="cpuLimit")
     def cpu_limit(self) -> Optional[pulumi.Input[int]]:
         """
-        The amount of vCPU computing resources to allocate to each container. Defaults to 140.
+        The amount of vCPU computing resources to allocate to each container.
         """
         return pulumi.get(self, "cpu_limit")
 
@@ -503,7 +502,7 @@ class _ContainerState:
     @pulumi.getter
     def deploy(self) -> Optional[pulumi.Input[bool]]:
         """
-        Boolean controlling whether the container is on a production environment.
+        Boolean indicating whether the container is in a production environment.
 
         Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
         """
@@ -541,7 +540,7 @@ class _ContainerState:
     @pulumi.getter(name="environmentVariables")
     def environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
+        The [environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) of the container.
         """
         return pulumi.get(self, "environment_variables")
 
@@ -565,7 +564,7 @@ class _ContainerState:
     @pulumi.getter(name="httpOption")
     def http_option(self) -> Optional[pulumi.Input[str]]:
         """
-        Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
+        Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
         """
         return pulumi.get(self, "http_option")
 
@@ -577,7 +576,7 @@ class _ContainerState:
     @pulumi.getter(name="maxConcurrency")
     def max_concurrency(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
+        The maximum number of simultaneous requests your container can handle at the same time.
         """
         return pulumi.get(self, "max_concurrency")
 
@@ -589,7 +588,7 @@ class _ContainerState:
     @pulumi.getter(name="maxScale")
     def max_scale(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum of number of instances this container can scale to. Default to 20.
+        The maximum number of instances this container can scale to.
         """
         return pulumi.get(self, "max_scale")
 
@@ -601,7 +600,7 @@ class _ContainerState:
     @pulumi.getter(name="memoryLimit")
     def memory_limit(self) -> Optional[pulumi.Input[int]]:
         """
-        The memory computing resources in MB to allocate to each container. Defaults to 256.
+        The memory resources in MB to allocate to each container.
         """
         return pulumi.get(self, "memory_limit")
 
@@ -613,7 +612,7 @@ class _ContainerState:
     @pulumi.getter(name="minScale")
     def min_scale(self) -> Optional[pulumi.Input[int]]:
         """
-        The minimum of running container instances continuously. Defaults to 0.
+        The minimum number of container instances running continuously.
         """
         return pulumi.get(self, "min_scale")
 
@@ -637,11 +636,9 @@ class _ContainerState:
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The container namespace ID of the container.
+        The Containers namespace ID of the container.
 
-        > **Important** Updates to `name` will recreate the container.
-
-        The following arguments are optional:
+        > **Important** Updating the `name` argument will recreate the container.
         """
         return pulumi.get(self, "namespace_id")
 
@@ -653,7 +650,7 @@ class _ContainerState:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        The port to expose the container. Defaults to 8080.
+        The port to expose the container.
         """
         return pulumi.get(self, "port")
 
@@ -665,7 +662,7 @@ class _ContainerState:
     @pulumi.getter
     def privacy(self) -> Optional[pulumi.Input[str]]:
         """
-        The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
+        The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         """
         return pulumi.get(self, "privacy")
 
@@ -677,7 +674,7 @@ class _ContainerState:
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+        The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
         """
         return pulumi.get(self, "protocol")
 
@@ -701,7 +698,7 @@ class _ContainerState:
     @pulumi.getter(name="registryImage")
     def registry_image(self) -> Optional[pulumi.Input[str]]:
         """
-        The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
+        The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
         """
         return pulumi.get(self, "registry_image")
 
@@ -737,7 +734,7 @@ class _ContainerState:
     @pulumi.getter(name="secretEnvironmentVariables")
     def secret_environment_variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+        The [secret environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) of the container.
         """
         return pulumi.get(self, "secret_environment_variables")
 
@@ -761,7 +758,7 @@ class _ContainerState:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
+        The maximum amount of time your container can spend processing a request before being stopped.
         """
         return pulumi.get(self, "timeout")
 
@@ -798,13 +795,11 @@ class Container(pulumi.CustomResource):
                  timeout: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Container.
+        The `Container` resource allows you to create and manage [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 
-        For more information consult the [documentation](https://www.scaleway.com/en/docs/faq/serverless-containers/).
+        Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
 
-        For more details about the limitation check [containers-limitations](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
-
-        You can check also our [containers guide](https://www.scaleway.com/en/docs/compute/containers/concepts/).
+        For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
 
         ## Example Usage
 
@@ -837,30 +832,28 @@ class Container(pulumi.CustomResource):
 
         ## Protocols
 
-        The supported protocols are:
+        The following protocols are supported:
 
         * `h2c`: HTTP/2 over TCP.
         * `http1`: Hypertext Transfer Protocol.
 
-        **Important:** For details about the protocols check [this](https://httpd.apache.org/docs/2.4/howto/http2.html)
+        > **Important:** Refer to the official [Apache documentation](https://httpd.apache.org/docs/2.4/howto/http2.html) for more information.
 
         ## Privacy
 
-        By default, creating a container will make it `public`, meaning that anybody knowing the endpoint could execute it.
+        By default, creating a container will make it `public`, meaning that anybody knowing the endpoint can execute it.
+
         A container can be made `private` with the privacy parameter.
 
-        Please check our [authentication](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) section
+        Refer to the [technical information](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) for more information on container authentication.
 
         ## Memory and vCPUs configuration
 
-        The vCPU represents a portion or share of the underlying, physical CPU that is assigned to a particular virtual machine (VM).
+        The vCPU represents a portion of the underlying, physical CPU that is assigned to a particular virtual machine (VM).
 
-        You may decide how much computing resources to allocate to each container.
-        The `memory_limit` (in MB) must correspond with the right amount of vCPU.
+        You can determine the computing resources to allocate to each container.
 
-        **Important:** The right choice for your container's resources is very important, as you will be billed based on compute usage over time and the number of Containers executions.
-
-        Please check our [price](https://www.scaleway.com/en/docs/faq/serverless-containers/#prices) section for more details.
+        The `memory_limit` (in MB) must correspond with the right amount of vCPU. Refer to the table below to determine the right memory/vCPU combination.
 
         | Memory (in MB) | vCPU |
         |----------------|------|
@@ -868,12 +861,16 @@ class Container(pulumi.CustomResource):
         | 256            | 140m |
         | 512            | 280m |
         | 1024           | 560m |
+        | 2048           | 1120 |
+        | 3072           | 1680 |
+        | 4096           | 2240 |
 
-        **Note:** 560mCPU accounts roughly for half of one CPU power of a Scaleway General Purpose instance
+        ~>**Important:** Make sure to select the right resources, as you will be billed based on compute usage over time and the number of Containers executions.
+        Refer to the [Serverless Containers pricing](https://www.scaleway.com/en/docs/faq/serverless-containers/#prices) for more information.
 
         ## Import
 
-        Container can be imported using the `{region}/{id}`, e.g.
+        Containers can be imported using, `{region}/{id}`, as shown below:
 
         bash
 
@@ -883,33 +880,31 @@ class Container(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container. Defaults to 140.
-        :param pulumi.Input[bool] deploy: Boolean controlling whether the container is on a production environment.
+        :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container.
+        :param pulumi.Input[bool] deploy: Boolean indicating whether the container is in a production environment.
                
                Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[str] description: The description of the container.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
-        :param pulumi.Input[str] http_option: Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
-        :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
-        :param pulumi.Input[int] max_scale: The maximum of number of instances this container can scale to. Default to 20.
-        :param pulumi.Input[int] memory_limit: The memory computing resources in MB to allocate to each container. Defaults to 256.
-        :param pulumi.Input[int] min_scale: The minimum of running container instances continuously. Defaults to 0.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) of the container.
+        :param pulumi.Input[str] http_option: Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
+        :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time.
+        :param pulumi.Input[int] max_scale: The maximum number of instances this container can scale to.
+        :param pulumi.Input[int] memory_limit: The memory resources in MB to allocate to each container.
+        :param pulumi.Input[int] min_scale: The minimum number of container instances running continuously.
         :param pulumi.Input[str] name: The unique name of the container name.
-        :param pulumi.Input[str] namespace_id: The container namespace ID of the container.
+        :param pulumi.Input[str] namespace_id: The Containers namespace ID of the container.
                
-               > **Important** Updates to `name` will recreate the container.
-               
-               The following arguments are optional:
-        :param pulumi.Input[int] port: The port to expose the container. Defaults to 8080.
-        :param pulumi.Input[str] privacy: The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
-        :param pulumi.Input[str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+               > **Important** Updating the `name` argument will recreate the container.
+        :param pulumi.Input[int] port: The port to expose the container.
+        :param pulumi.Input[str] privacy: The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
+        :param pulumi.Input[str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
         :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the container was created.
-        :param pulumi.Input[str] registry_image: The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
+        :param pulumi.Input[str] registry_image: The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
         :param pulumi.Input[str] registry_sha256: The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
         :param pulumi.Input[str] sandbox: Execution environment of the container.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) of the container.
         :param pulumi.Input[str] status: The container status.
-        :param pulumi.Input[int] timeout: The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
+        :param pulumi.Input[int] timeout: The maximum amount of time your container can spend processing a request before being stopped.
         """
         ...
     @overload
@@ -918,13 +913,11 @@ class Container(pulumi.CustomResource):
                  args: ContainerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Container.
+        The `Container` resource allows you to create and manage [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 
-        For more information consult the [documentation](https://www.scaleway.com/en/docs/faq/serverless-containers/).
+        Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
 
-        For more details about the limitation check [containers-limitations](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
-
-        You can check also our [containers guide](https://www.scaleway.com/en/docs/compute/containers/concepts/).
+        For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
 
         ## Example Usage
 
@@ -957,30 +950,28 @@ class Container(pulumi.CustomResource):
 
         ## Protocols
 
-        The supported protocols are:
+        The following protocols are supported:
 
         * `h2c`: HTTP/2 over TCP.
         * `http1`: Hypertext Transfer Protocol.
 
-        **Important:** For details about the protocols check [this](https://httpd.apache.org/docs/2.4/howto/http2.html)
+        > **Important:** Refer to the official [Apache documentation](https://httpd.apache.org/docs/2.4/howto/http2.html) for more information.
 
         ## Privacy
 
-        By default, creating a container will make it `public`, meaning that anybody knowing the endpoint could execute it.
+        By default, creating a container will make it `public`, meaning that anybody knowing the endpoint can execute it.
+
         A container can be made `private` with the privacy parameter.
 
-        Please check our [authentication](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) section
+        Refer to the [technical information](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) for more information on container authentication.
 
         ## Memory and vCPUs configuration
 
-        The vCPU represents a portion or share of the underlying, physical CPU that is assigned to a particular virtual machine (VM).
+        The vCPU represents a portion of the underlying, physical CPU that is assigned to a particular virtual machine (VM).
 
-        You may decide how much computing resources to allocate to each container.
-        The `memory_limit` (in MB) must correspond with the right amount of vCPU.
+        You can determine the computing resources to allocate to each container.
 
-        **Important:** The right choice for your container's resources is very important, as you will be billed based on compute usage over time and the number of Containers executions.
-
-        Please check our [price](https://www.scaleway.com/en/docs/faq/serverless-containers/#prices) section for more details.
+        The `memory_limit` (in MB) must correspond with the right amount of vCPU. Refer to the table below to determine the right memory/vCPU combination.
 
         | Memory (in MB) | vCPU |
         |----------------|------|
@@ -988,12 +979,16 @@ class Container(pulumi.CustomResource):
         | 256            | 140m |
         | 512            | 280m |
         | 1024           | 560m |
+        | 2048           | 1120 |
+        | 3072           | 1680 |
+        | 4096           | 2240 |
 
-        **Note:** 560mCPU accounts roughly for half of one CPU power of a Scaleway General Purpose instance
+        ~>**Important:** Make sure to select the right resources, as you will be billed based on compute usage over time and the number of Containers executions.
+        Refer to the [Serverless Containers pricing](https://www.scaleway.com/en/docs/faq/serverless-containers/#prices) for more information.
 
         ## Import
 
-        Container can be imported using the `{region}/{id}`, e.g.
+        Containers can be imported using, `{region}/{id}`, as shown below:
 
         bash
 
@@ -1115,36 +1110,34 @@ class Container(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container. Defaults to 140.
+        :param pulumi.Input[int] cpu_limit: The amount of vCPU computing resources to allocate to each container.
         :param pulumi.Input[str] cron_status: The cron status of the container.
-        :param pulumi.Input[bool] deploy: Boolean controlling whether the container is on a production environment.
+        :param pulumi.Input[bool] deploy: Boolean indicating whether the container is in a production environment.
                
                Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
         :param pulumi.Input[str] description: The description of the container.
         :param pulumi.Input[str] domain_name: The native domain name of the container
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment_variables: The [environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) of the container.
         :param pulumi.Input[str] error_message: The error message of the container.
-        :param pulumi.Input[str] http_option: Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
-        :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
-        :param pulumi.Input[int] max_scale: The maximum of number of instances this container can scale to. Default to 20.
-        :param pulumi.Input[int] memory_limit: The memory computing resources in MB to allocate to each container. Defaults to 256.
-        :param pulumi.Input[int] min_scale: The minimum of running container instances continuously. Defaults to 0.
+        :param pulumi.Input[str] http_option: Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
+        :param pulumi.Input[int] max_concurrency: The maximum number of simultaneous requests your container can handle at the same time.
+        :param pulumi.Input[int] max_scale: The maximum number of instances this container can scale to.
+        :param pulumi.Input[int] memory_limit: The memory resources in MB to allocate to each container.
+        :param pulumi.Input[int] min_scale: The minimum number of container instances running continuously.
         :param pulumi.Input[str] name: The unique name of the container name.
-        :param pulumi.Input[str] namespace_id: The container namespace ID of the container.
+        :param pulumi.Input[str] namespace_id: The Containers namespace ID of the container.
                
-               > **Important** Updates to `name` will recreate the container.
-               
-               The following arguments are optional:
-        :param pulumi.Input[int] port: The port to expose the container. Defaults to 8080.
-        :param pulumi.Input[str] privacy: The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
-        :param pulumi.Input[str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+               > **Important** Updating the `name` argument will recreate the container.
+        :param pulumi.Input[int] port: The port to expose the container.
+        :param pulumi.Input[str] privacy: The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
+        :param pulumi.Input[str] protocol: The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
         :param pulumi.Input[str] region: (Defaults to provider `region`) The region in which the container was created.
-        :param pulumi.Input[str] registry_image: The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
+        :param pulumi.Input[str] registry_image: The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
         :param pulumi.Input[str] registry_sha256: The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
         :param pulumi.Input[str] sandbox: Execution environment of the container.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secret_environment_variables: The [secret environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) of the container.
         :param pulumi.Input[str] status: The container status.
-        :param pulumi.Input[int] timeout: The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
+        :param pulumi.Input[int] timeout: The maximum amount of time your container can spend processing a request before being stopped.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1180,7 +1173,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter(name="cpuLimit")
     def cpu_limit(self) -> pulumi.Output[int]:
         """
-        The amount of vCPU computing resources to allocate to each container. Defaults to 140.
+        The amount of vCPU computing resources to allocate to each container.
         """
         return pulumi.get(self, "cpu_limit")
 
@@ -1196,7 +1189,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter
     def deploy(self) -> pulumi.Output[Optional[bool]]:
         """
-        Boolean controlling whether the container is on a production environment.
+        Boolean indicating whether the container is in a production environment.
 
         Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/#configuration-restrictions) section.
         """
@@ -1222,7 +1215,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter(name="environmentVariables")
     def environment_variables(self) -> pulumi.Output[Mapping[str, str]]:
         """
-        The [environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) variables of the container.
+        The [environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#environment-variables) of the container.
         """
         return pulumi.get(self, "environment_variables")
 
@@ -1238,7 +1231,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter(name="httpOption")
     def http_option(self) -> pulumi.Output[Optional[str]]:
         """
-        Allow both HTTP and HTTPS (enabled) or redirect HTTP to HTTPS (redirected). Defaults to enabled.
+        Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
         """
         return pulumi.get(self, "http_option")
 
@@ -1246,7 +1239,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter(name="maxConcurrency")
     def max_concurrency(self) -> pulumi.Output[int]:
         """
-        The maximum number of simultaneous requests your container can handle at the same time. Defaults to 50.
+        The maximum number of simultaneous requests your container can handle at the same time.
         """
         return pulumi.get(self, "max_concurrency")
 
@@ -1254,7 +1247,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter(name="maxScale")
     def max_scale(self) -> pulumi.Output[int]:
         """
-        The maximum of number of instances this container can scale to. Default to 20.
+        The maximum number of instances this container can scale to.
         """
         return pulumi.get(self, "max_scale")
 
@@ -1262,7 +1255,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter(name="memoryLimit")
     def memory_limit(self) -> pulumi.Output[int]:
         """
-        The memory computing resources in MB to allocate to each container. Defaults to 256.
+        The memory resources in MB to allocate to each container.
         """
         return pulumi.get(self, "memory_limit")
 
@@ -1270,7 +1263,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter(name="minScale")
     def min_scale(self) -> pulumi.Output[int]:
         """
-        The minimum of running container instances continuously. Defaults to 0.
+        The minimum number of container instances running continuously.
         """
         return pulumi.get(self, "min_scale")
 
@@ -1286,11 +1279,9 @@ class Container(pulumi.CustomResource):
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> pulumi.Output[str]:
         """
-        The container namespace ID of the container.
+        The Containers namespace ID of the container.
 
-        > **Important** Updates to `name` will recreate the container.
-
-        The following arguments are optional:
+        > **Important** Updating the `name` argument will recreate the container.
         """
         return pulumi.get(self, "namespace_id")
 
@@ -1298,7 +1289,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter
     def port(self) -> pulumi.Output[int]:
         """
-        The port to expose the container. Defaults to 8080.
+        The port to expose the container.
         """
         return pulumi.get(self, "port")
 
@@ -1306,7 +1297,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter
     def privacy(self) -> pulumi.Output[Optional[str]]:
         """
-        The privacy type define the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
+        The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
         """
         return pulumi.get(self, "privacy")
 
@@ -1314,7 +1305,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter
     def protocol(self) -> pulumi.Output[Optional[str]]:
         """
-        The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) http1 or h2c. Defaults to http1.
+        The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
         """
         return pulumi.get(self, "protocol")
 
@@ -1330,7 +1321,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter(name="registryImage")
     def registry_image(self) -> pulumi.Output[str]:
         """
-        The registry image address. e.g: **"rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE"**.
+        The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
         """
         return pulumi.get(self, "registry_image")
 
@@ -1354,7 +1345,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter(name="secretEnvironmentVariables")
     def secret_environment_variables(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        The [secret environment](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) variables of the container.
+        The [secret environment variables](https://www.scaleway.com/en/docs/compute/containers/concepts/#secrets) of the container.
         """
         return pulumi.get(self, "secret_environment_variables")
 
@@ -1370,7 +1361,7 @@ class Container(pulumi.CustomResource):
     @pulumi.getter
     def timeout(self) -> pulumi.Output[int]:
         """
-        The maximum amount of time in seconds during which your container can process a request before we stop it. Defaults to 300s.
+        The maximum amount of time your container can spend processing a request before being stopped.
         """
         return pulumi.get(self, "timeout")
 

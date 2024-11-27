@@ -5,9 +5,18 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about a function.
+ * The `scaleway.Function` data source is used to retrieve information about a Serverless Function.
  *
- * ## Example Usage
+ * Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
+ *
+ * For more information on the limitations of Serverless Functions, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
+ *
+ * ## Retrieve a Serverless Function
+ *
+ * The following commands allow you to:
+ *
+ * - retrieve a function by its name
+ * - retrieve a function by its ID
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -20,7 +29,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getFunction(args: GetFunctionArgs, opts?: pulumi.InvokeOptions): Promise<GetFunctionResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getFunction:getFunction", {
         "functionId": args.functionId,
@@ -36,23 +44,23 @@ export function getFunction(args: GetFunctionArgs, opts?: pulumi.InvokeOptions):
  */
 export interface GetFunctionArgs {
     /**
-     * The function id. Only one of `name` and `functionId` should be specified.
+     * The unique identifier of the function. Only one of `name` and `functionId` should be specified.
      */
     functionId?: string;
     /**
-     * The function name. Only one of `name` and `namespaceId` should be specified.
+     * The name of the function. Only one of `name` and `namespaceId` should be specified.
      */
     name?: string;
     /**
-     * The namespace id associated with this function.
+     * The namespace ID associated with this function.
      */
     namespaceId: string;
     /**
-     * The ID of the project the function is associated with.
+     * The unique identifier of the project with which the function is associated.
      */
     projectId?: string;
     /**
-     * `region`) The region in which the function exists.
+     * `region`) The region in which the container exists.
      */
     region?: string;
 }
@@ -90,9 +98,18 @@ export interface GetFunctionResult {
     readonly zipHash: string;
 }
 /**
- * Gets information about a function.
+ * The `scaleway.Function` data source is used to retrieve information about a Serverless Function.
  *
- * ## Example Usage
+ * Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
+ *
+ * For more information on the limitations of Serverless Functions, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
+ *
+ * ## Retrieve a Serverless Function
+ *
+ * The following commands allow you to:
+ *
+ * - retrieve a function by its name
+ * - retrieve a function by its ID
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -105,7 +122,14 @@ export interface GetFunctionResult {
  * ```
  */
 export function getFunctionOutput(args: GetFunctionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFunctionResult> {
-    return pulumi.output(args).apply((a: any) => getFunction(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getFunction:getFunction", {
+        "functionId": args.functionId,
+        "name": args.name,
+        "namespaceId": args.namespaceId,
+        "projectId": args.projectId,
+        "region": args.region,
+    }, opts);
 }
 
 /**
@@ -113,23 +137,23 @@ export function getFunctionOutput(args: GetFunctionOutputArgs, opts?: pulumi.Inv
  */
 export interface GetFunctionOutputArgs {
     /**
-     * The function id. Only one of `name` and `functionId` should be specified.
+     * The unique identifier of the function. Only one of `name` and `functionId` should be specified.
      */
     functionId?: pulumi.Input<string>;
     /**
-     * The function name. Only one of `name` and `namespaceId` should be specified.
+     * The name of the function. Only one of `name` and `namespaceId` should be specified.
      */
     name?: pulumi.Input<string>;
     /**
-     * The namespace id associated with this function.
+     * The namespace ID associated with this function.
      */
     namespaceId: pulumi.Input<string>;
     /**
-     * The ID of the project the function is associated with.
+     * The unique identifier of the project with which the function is associated.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * `region`) The region in which the function exists.
+     * `region`) The region in which the container exists.
      */
     region?: pulumi.Input<string>;
 }

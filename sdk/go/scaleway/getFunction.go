@@ -11,9 +11,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Gets information about a function.
+// The `Function` data source is used to retrieve information about a Serverless Function.
 //
-// ## Example Usage
+// Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
+//
+// For more information on the limitations of Serverless Functions, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
+//
+// ## Retrieve a Serverless Function
+//
+// The following commands allow you to:
+//
+// - retrieve a function by its name
+// - retrieve a function by its ID
 //
 // ```go
 // package main
@@ -51,15 +60,15 @@ func LookupFunction(ctx *pulumi.Context, args *LookupFunctionArgs, opts ...pulum
 
 // A collection of arguments for invoking getFunction.
 type LookupFunctionArgs struct {
-	// The function id. Only one of `name` and `functionId` should be specified.
+	// The unique identifier of the function. Only one of `name` and `functionId` should be specified.
 	FunctionId *string `pulumi:"functionId"`
-	// The function name. Only one of `name` and `namespaceId` should be specified.
+	// The name of the function. Only one of `name` and `namespaceId` should be specified.
 	Name *string `pulumi:"name"`
-	// The namespace id associated with this function.
+	// The namespace ID associated with this function.
 	NamespaceId string `pulumi:"namespaceId"`
-	// The ID of the project the function is associated with.
+	// The unique identifier of the project with which the function is associated.
 	ProjectId *string `pulumi:"projectId"`
-	// `region`) The region in which the function exists.
+	// `region`) The region in which the container exists.
 	Region *string `pulumi:"region"`
 }
 
@@ -94,28 +103,34 @@ type LookupFunctionResult struct {
 
 func LookupFunctionOutput(ctx *pulumi.Context, args LookupFunctionOutputArgs, opts ...pulumi.InvokeOption) LookupFunctionResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupFunctionResult, error) {
+		ApplyT(func(v interface{}) (LookupFunctionResultOutput, error) {
 			args := v.(LookupFunctionArgs)
-			r, err := LookupFunction(ctx, &args, opts...)
-			var s LookupFunctionResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupFunctionResult
+			secret, err := ctx.InvokePackageRaw("scaleway:index/getFunction:getFunction", args, &rv, "", opts...)
+			if err != nil {
+				return LookupFunctionResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupFunctionResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupFunctionResultOutput), nil
+			}
+			return output, nil
 		}).(LookupFunctionResultOutput)
 }
 
 // A collection of arguments for invoking getFunction.
 type LookupFunctionOutputArgs struct {
-	// The function id. Only one of `name` and `functionId` should be specified.
+	// The unique identifier of the function. Only one of `name` and `functionId` should be specified.
 	FunctionId pulumi.StringPtrInput `pulumi:"functionId"`
-	// The function name. Only one of `name` and `namespaceId` should be specified.
+	// The name of the function. Only one of `name` and `namespaceId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The namespace id associated with this function.
+	// The namespace ID associated with this function.
 	NamespaceId pulumi.StringInput `pulumi:"namespaceId"`
-	// The ID of the project the function is associated with.
+	// The unique identifier of the project with which the function is associated.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	// `region`) The region in which the function exists.
+	// `region`) The region in which the container exists.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 

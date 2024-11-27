@@ -11,7 +11,9 @@ using Pulumi;
 namespace ediri.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Serverless SQL Databases. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/serverless-databases/).
+    /// The `scaleway.SdbSqlDatabase` resource allows you to create and manage databases for Scaleway Serverless SQL Databases.
+    /// 
+    /// Refer to the Serverless SQL Databases [documentation](https://www.scaleway.com/en/docs/serverless/sql-databases/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-databases/) for more information.
     /// 
     /// ## Example Usage
     /// 
@@ -36,7 +38,7 @@ namespace ediri.Scaleway
     /// 
     /// ## Import
     /// 
-    /// Serverless SQL Database can be imported using the `{region}/{id}`, e.g.
+    /// Serverless SQL Databases can be imported using the `{region}/{id}`, as shown below:
     /// 
     /// bash
     /// 
@@ -48,7 +50,7 @@ namespace ediri.Scaleway
     public partial class SdbSqlDatabase : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Endpoint of the database
+        /// The endpoint of the database.
         /// </summary>
         [Output("endpoint")]
         public Output<string> Endpoint { get; private set; } = null!;
@@ -66,9 +68,9 @@ namespace ediri.Scaleway
         public Output<int?> MinCpu { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the database (e.g. `my-new-database`).
+        /// The name of the database (e.g. `my-new-database`).
         /// 
-        /// &gt; **Important:** Updates to `name` will recreate the database.
+        /// &gt; **Important:** Updates to the `name` argument will recreate the database.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -145,9 +147,9 @@ namespace ediri.Scaleway
         public Input<int>? MinCpu { get; set; }
 
         /// <summary>
-        /// Name of the database (e.g. `my-new-database`).
+        /// The name of the database (e.g. `my-new-database`).
         /// 
-        /// &gt; **Important:** Updates to `name` will recreate the database.
+        /// &gt; **Important:** Updates to the `name` argument will recreate the database.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -173,7 +175,7 @@ namespace ediri.Scaleway
     public sealed class SdbSqlDatabaseState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Endpoint of the database
+        /// The endpoint of the database.
         /// </summary>
         [Input("endpoint")]
         public Input<string>? Endpoint { get; set; }
@@ -191,9 +193,9 @@ namespace ediri.Scaleway
         public Input<int>? MinCpu { get; set; }
 
         /// <summary>
-        /// Name of the database (e.g. `my-new-database`).
+        /// The name of the database (e.g. `my-new-database`).
         /// 
-        /// &gt; **Important:** Updates to `name` will recreate the database.
+        /// &gt; **Important:** Updates to the `name` argument will recreate the database.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

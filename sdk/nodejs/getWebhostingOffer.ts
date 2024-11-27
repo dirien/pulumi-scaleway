@@ -25,7 +25,6 @@ import * as utilities from "./utilities";
  */
 export function getWebhostingOffer(args?: GetWebhostingOfferArgs, opts?: pulumi.InvokeOptions): Promise<GetWebhostingOfferResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getWebhostingOffer:getWebhostingOffer", {
         "name": args.name,
@@ -94,7 +93,13 @@ export interface GetWebhostingOfferResult {
  * ```
  */
 export function getWebhostingOfferOutput(args?: GetWebhostingOfferOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetWebhostingOfferResult> {
-    return pulumi.output(args).apply((a: any) => getWebhostingOffer(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("scaleway:index/getWebhostingOffer:getWebhostingOffer", {
+        "name": args.name,
+        "offerId": args.offerId,
+        "region": args.region,
+    }, opts);
 }
 
 /**

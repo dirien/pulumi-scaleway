@@ -11,14 +11,15 @@ using Pulumi;
 namespace ediri.Scaleway
 {
     /// <summary>
-    /// Provides an Object bucket lock configuration resource.
-    /// For more information, see [Setting up object lock](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/).
+    /// The `scaleway.ObjectBucketLockConfiguration` resource allows you to create and manage an object lock configuration for [Scaleway Object storage](https://www.scaleway.com/en/docs/storage/object/).
+    /// 
+    /// Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/storage/object/api-cli/object-lock/) for more information on object lock.
     /// 
     /// ## Example Usage
     /// 
     /// ### Configure an Object Lock for a new bucket
     /// 
-    /// Please note that `object_lock_enabled` must be set to `true` before configuring the lock.
+    /// &gt; **Note:** `object_lock_enabled` must be set to `true` before configuring the lock.
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -50,13 +51,13 @@ namespace ediri.Scaleway
     /// });
     /// ```
     /// 
-    /// ### Configure an Object Lock for an existing bucket
+    /// ### Configure an object Lock for an existing bucket
     /// 
-    /// You should [contact Scaleway support](https://console.scaleway.com/support/tickets/create) to enable object lock on an existing bucket.
+    /// [Contact Scaleway support](https://console.scaleway.com/support/tickets/create) to enable object lock on an existing bucket.
     /// 
     /// ## Import
     /// 
-    /// Bucket lock configurations can be imported using the `{region}/{bucketName}` identifier, e.g.
+    /// Bucket lock configurations can be imported using the `{region}/{bucketName}` identifier, as shown below:
     /// 
     /// bash
     /// 
@@ -96,7 +97,7 @@ namespace ediri.Scaleway
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the Object Lock rule for the specified object.
+        /// Specifies the object lock rule for the specified object.
         /// </summary>
         [Output("rule")]
         public Output<Outputs.ObjectBucketLockConfigurationRule> Rule { get; private set; } = null!;
@@ -167,7 +168,7 @@ namespace ediri.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Specifies the Object Lock rule for the specified object.
+        /// Specifies the object lock rule for the specified object.
         /// </summary>
         [Input("rule", required: true)]
         public Input<Inputs.ObjectBucketLockConfigurationRuleArgs> Rule { get; set; } = null!;
@@ -199,7 +200,7 @@ namespace ediri.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Specifies the Object Lock rule for the specified object.
+        /// Specifies the object lock rule for the specified object.
         /// </summary>
         [Input("rule")]
         public Input<Inputs.ObjectBucketLockConfigurationRuleGetArgs>? Rule { get; set; }

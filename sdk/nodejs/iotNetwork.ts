@@ -73,6 +73,10 @@ export class IotNetwork extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * (Defaults to provider `region`) The region in which the Network is attached to.
+     */
+    public readonly region!: pulumi.Output<string>;
+    /**
      * The endpoint key to keep secret.
      */
     public /*out*/ readonly secret!: pulumi.Output<string>;
@@ -102,6 +106,7 @@ export class IotNetwork extends pulumi.CustomResource {
             resourceInputs["endpoint"] = state ? state.endpoint : undefined;
             resourceInputs["hubId"] = state ? state.hubId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["secret"] = state ? state.secret : undefined;
             resourceInputs["topicPrefix"] = state ? state.topicPrefix : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
@@ -115,6 +120,7 @@ export class IotNetwork extends pulumi.CustomResource {
             }
             resourceInputs["hubId"] = args ? args.hubId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["topicPrefix"] = args ? args.topicPrefix : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -149,6 +155,10 @@ export interface IotNetworkState {
      */
     name?: pulumi.Input<string>;
     /**
+     * (Defaults to provider `region`) The region in which the Network is attached to.
+     */
+    region?: pulumi.Input<string>;
+    /**
      * The endpoint key to keep secret.
      */
     secret?: pulumi.Input<string>;
@@ -174,6 +184,10 @@ export interface IotNetworkArgs {
      * The name of the IoT Network you want to create (e.g. `my-net`).
      */
     name?: pulumi.Input<string>;
+    /**
+     * (Defaults to provider `region`) The region in which the Network is attached to.
+     */
+    region?: pulumi.Input<string>;
     /**
      * The prefix that will be prepended to all topics for this Network.
      */

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -195,7 +200,7 @@ class MnqSqsCredentials(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 permissions: Optional[pulumi.Input[pulumi.InputType['MnqSqsCredentialsPermissionsArgs']]] = None,
+                 permissions: Optional[pulumi.Input[Union['MnqSqsCredentialsPermissionsArgs', 'MnqSqsCredentialsPermissionsArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -215,11 +220,11 @@ class MnqSqsCredentials(pulumi.CustomResource):
         main_mnq_sqs = scaleway.MnqSqs("mainMnqSqs")
         main_mnq_sqs_credentials = scaleway.MnqSqsCredentials("mainMnqSqsCredentials",
             project_id=main_mnq_sqs.project_id,
-            permissions=scaleway.MnqSqsCredentialsPermissionsArgs(
-                can_manage=False,
-                can_receive=True,
-                can_publish=False,
-            ))
+            permissions={
+                "can_manage": False,
+                "can_receive": True,
+                "can_publish": False,
+            })
         ```
 
         ## Import
@@ -235,7 +240,7 @@ class MnqSqsCredentials(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The unique name of the SQS credentials.
-        :param pulumi.Input[pulumi.InputType['MnqSqsCredentialsPermissionsArgs']] permissions: . List of permissions associated with these credentials. Only one of the following permissions may be set:
+        :param pulumi.Input[Union['MnqSqsCredentialsPermissionsArgs', 'MnqSqsCredentialsPermissionsArgsDict']] permissions: . List of permissions associated with these credentials. Only one of the following permissions may be set:
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SQS is enabled.
         :param pulumi.Input[str] region: `region`). The region in which SQS is enabled.
         """
@@ -261,11 +266,11 @@ class MnqSqsCredentials(pulumi.CustomResource):
         main_mnq_sqs = scaleway.MnqSqs("mainMnqSqs")
         main_mnq_sqs_credentials = scaleway.MnqSqsCredentials("mainMnqSqsCredentials",
             project_id=main_mnq_sqs.project_id,
-            permissions=scaleway.MnqSqsCredentialsPermissionsArgs(
-                can_manage=False,
-                can_receive=True,
-                can_publish=False,
-            ))
+            permissions={
+                "can_manage": False,
+                "can_receive": True,
+                "can_publish": False,
+            })
         ```
 
         ## Import
@@ -294,7 +299,7 @@ class MnqSqsCredentials(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 permissions: Optional[pulumi.Input[pulumi.InputType['MnqSqsCredentialsPermissionsArgs']]] = None,
+                 permissions: Optional[pulumi.Input[Union['MnqSqsCredentialsPermissionsArgs', 'MnqSqsCredentialsPermissionsArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -326,7 +331,7 @@ class MnqSqsCredentials(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             access_key: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            permissions: Optional[pulumi.Input[pulumi.InputType['MnqSqsCredentialsPermissionsArgs']]] = None,
+            permissions: Optional[pulumi.Input[Union['MnqSqsCredentialsPermissionsArgs', 'MnqSqsCredentialsPermissionsArgsDict']]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             secret_key: Optional[pulumi.Input[str]] = None) -> 'MnqSqsCredentials':
@@ -339,7 +344,7 @@ class MnqSqsCredentials(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: The ID of the key.
         :param pulumi.Input[str] name: The unique name of the SQS credentials.
-        :param pulumi.Input[pulumi.InputType['MnqSqsCredentialsPermissionsArgs']] permissions: . List of permissions associated with these credentials. Only one of the following permissions may be set:
+        :param pulumi.Input[Union['MnqSqsCredentialsPermissionsArgs', 'MnqSqsCredentialsPermissionsArgsDict']] permissions: . List of permissions associated with these credentials. Only one of the following permissions may be set:
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SQS is enabled.
         :param pulumi.Input[str] region: `region`). The region in which SQS is enabled.
         :param pulumi.Input[str] secret_key: The secret value of the key.

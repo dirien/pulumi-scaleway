@@ -107,6 +107,7 @@ namespace ediri.Scaleway
         public readonly int BackupScheduleRetention;
         public readonly string Certificate;
         public readonly bool DisableBackup;
+        public readonly bool EncryptionAtRest;
         public readonly string EndpointIp;
         public readonly int EndpointPort;
         public readonly string Engine;
@@ -144,6 +145,8 @@ namespace ediri.Scaleway
             string certificate,
 
             bool disableBackup,
+
+            bool encryptionAtRest,
 
             string endpointIp,
 
@@ -194,6 +197,7 @@ namespace ediri.Scaleway
             BackupScheduleRetention = backupScheduleRetention;
             Certificate = certificate;
             DisableBackup = disableBackup;
+            EncryptionAtRest = encryptionAtRest;
             EndpointIp = endpointIp;
             EndpointPort = endpointPort;
             Engine = engine;

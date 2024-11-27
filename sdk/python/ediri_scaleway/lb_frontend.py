@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -191,7 +196,7 @@ class _LbFrontendState:
         :param pulumi.Input[str] backend_id: The ID of the Load Balancer backend this frontend is attached to.
                
                > **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
-        :param pulumi.Input[str] certificate_id: (Deprecated) First certificate ID used by the frontend.
+        :param pulumi.Input[str] certificate_id: (Deprecated, use `certificate_ids` instead) First certificate ID used by the frontend.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: List of certificate IDs that should be used by the frontend.
                
                > **Important:** Certificates are not allowed on port 80.
@@ -258,7 +263,7 @@ class _LbFrontendState:
     @_utilities.deprecated("""Please use certificate_ids""")
     def certificate_id(self) -> Optional[pulumi.Input[str]]:
         """
-        (Deprecated) First certificate ID used by the frontend.
+        (Deprecated, use `certificate_ids` instead) First certificate ID used by the frontend.
         """
         return pulumi.get(self, "certificate_id")
 
@@ -359,7 +364,7 @@ class LbFrontend(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbFrontendAclArgs']]]]] = None,
+                 acls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LbFrontendAclArgs', 'LbFrontendAclArgsDict']]]]] = None,
                  backend_id: Optional[pulumi.Input[str]] = None,
                  certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  enable_http3: Optional[pulumi.Input[bool]] = None,
@@ -399,79 +404,79 @@ class LbFrontend(pulumi.CustomResource):
             backend_id=scaleway_lb_backend["backend01"]["id"],
             inbound_port=80,
             acls=[
-                scaleway.LbFrontendAclArgs(
-                    name="blacklist wellknwon IPs",
-                    action=scaleway.LbFrontendAclActionArgs(
-                        type="allow",
-                    ),
-                    match=scaleway.LbFrontendAclMatchArgs(
-                        ip_subnets=[
+                {
+                    "name": "blacklist wellknwon IPs",
+                    "action": {
+                        "type": "allow",
+                    },
+                    "match": {
+                        "ip_subnets": [
                             "192.168.0.1",
                             "192.168.0.2",
                             "192.168.10.0/24",
                         ],
-                    ),
-                ),
-                scaleway.LbFrontendAclArgs(
-                    action=scaleway.LbFrontendAclActionArgs(
-                        type="deny",
-                    ),
-                    match=scaleway.LbFrontendAclMatchArgs(
-                        ip_subnets=["51.51.51.51"],
-                        http_filter="regex",
-                        http_filter_values=["^foo*bar$"],
-                    ),
-                ),
-                scaleway.LbFrontendAclArgs(
-                    action=scaleway.LbFrontendAclActionArgs(
-                        type="allow",
-                    ),
-                    match=scaleway.LbFrontendAclMatchArgs(
-                        http_filter="path_begin",
-                        http_filter_values=[
+                    },
+                },
+                {
+                    "action": {
+                        "type": "deny",
+                    },
+                    "match": {
+                        "ip_subnets": ["51.51.51.51"],
+                        "http_filter": "regex",
+                        "http_filter_values": ["^foo*bar$"],
+                    },
+                },
+                {
+                    "action": {
+                        "type": "allow",
+                    },
+                    "match": {
+                        "http_filter": "path_begin",
+                        "http_filter_values": [
                             "foo",
                             "bar",
                         ],
-                    ),
-                ),
-                scaleway.LbFrontendAclArgs(
-                    action=scaleway.LbFrontendAclActionArgs(
-                        type="allow",
-                    ),
-                    match=scaleway.LbFrontendAclMatchArgs(
-                        http_filter="path_begin",
-                        http_filter_values=["hi"],
-                        invert=True,
-                    ),
-                ),
-                scaleway.LbFrontendAclArgs(
-                    action=scaleway.LbFrontendAclActionArgs(
-                        type="allow",
-                    ),
-                    match=scaleway.LbFrontendAclMatchArgs(
-                        http_filter="http_header_match",
-                        http_filter_values="foo",
-                        http_filter_option="bar",
-                    ),
-                ),
-                scaleway.LbFrontendAclArgs(
-                    action=scaleway.LbFrontendAclActionArgs(
-                        type="redirect",
-                        redirects=[scaleway.LbFrontendAclActionRedirectArgs(
-                            type="location",
-                            target="https://example.com",
-                            code=307,
-                        )],
-                    ),
-                    match=scaleway.LbFrontendAclMatchArgs(
-                        ip_subnets=["10.0.0.10"],
-                        http_filter="path_begin",
-                        http_filter_values=[
+                    },
+                },
+                {
+                    "action": {
+                        "type": "allow",
+                    },
+                    "match": {
+                        "http_filter": "path_begin",
+                        "http_filter_values": ["hi"],
+                        "invert": True,
+                    },
+                },
+                {
+                    "action": {
+                        "type": "allow",
+                    },
+                    "match": {
+                        "http_filter": "http_header_match",
+                        "http_filter_values": "foo",
+                        "http_filter_option": "bar",
+                    },
+                },
+                {
+                    "action": {
+                        "type": "redirect",
+                        "redirects": [{
+                            "type": "location",
+                            "target": "https://example.com",
+                            "code": 307,
+                        }],
+                    },
+                    "match": {
+                        "ip_subnets": ["10.0.0.10"],
+                        "http_filter": "path_begin",
+                        "http_filter_values": [
                             "foo",
                             "bar",
                         ],
-                    ),
-                ),
+                    },
+                },
             ])
         ```
 
@@ -487,7 +492,7 @@ class LbFrontend(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbFrontendAclArgs']]]] acls: A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LbFrontendAclArgs', 'LbFrontendAclArgsDict']]]] acls: A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
         :param pulumi.Input[str] backend_id: The ID of the Load Balancer backend this frontend is attached to.
                
                > **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
@@ -538,79 +543,79 @@ class LbFrontend(pulumi.CustomResource):
             backend_id=scaleway_lb_backend["backend01"]["id"],
             inbound_port=80,
             acls=[
-                scaleway.LbFrontendAclArgs(
-                    name="blacklist wellknwon IPs",
-                    action=scaleway.LbFrontendAclActionArgs(
-                        type="allow",
-                    ),
-                    match=scaleway.LbFrontendAclMatchArgs(
-                        ip_subnets=[
+                {
+                    "name": "blacklist wellknwon IPs",
+                    "action": {
+                        "type": "allow",
+                    },
+                    "match": {
+                        "ip_subnets": [
                             "192.168.0.1",
                             "192.168.0.2",
                             "192.168.10.0/24",
                         ],
-                    ),
-                ),
-                scaleway.LbFrontendAclArgs(
-                    action=scaleway.LbFrontendAclActionArgs(
-                        type="deny",
-                    ),
-                    match=scaleway.LbFrontendAclMatchArgs(
-                        ip_subnets=["51.51.51.51"],
-                        http_filter="regex",
-                        http_filter_values=["^foo*bar$"],
-                    ),
-                ),
-                scaleway.LbFrontendAclArgs(
-                    action=scaleway.LbFrontendAclActionArgs(
-                        type="allow",
-                    ),
-                    match=scaleway.LbFrontendAclMatchArgs(
-                        http_filter="path_begin",
-                        http_filter_values=[
+                    },
+                },
+                {
+                    "action": {
+                        "type": "deny",
+                    },
+                    "match": {
+                        "ip_subnets": ["51.51.51.51"],
+                        "http_filter": "regex",
+                        "http_filter_values": ["^foo*bar$"],
+                    },
+                },
+                {
+                    "action": {
+                        "type": "allow",
+                    },
+                    "match": {
+                        "http_filter": "path_begin",
+                        "http_filter_values": [
                             "foo",
                             "bar",
                         ],
-                    ),
-                ),
-                scaleway.LbFrontendAclArgs(
-                    action=scaleway.LbFrontendAclActionArgs(
-                        type="allow",
-                    ),
-                    match=scaleway.LbFrontendAclMatchArgs(
-                        http_filter="path_begin",
-                        http_filter_values=["hi"],
-                        invert=True,
-                    ),
-                ),
-                scaleway.LbFrontendAclArgs(
-                    action=scaleway.LbFrontendAclActionArgs(
-                        type="allow",
-                    ),
-                    match=scaleway.LbFrontendAclMatchArgs(
-                        http_filter="http_header_match",
-                        http_filter_values="foo",
-                        http_filter_option="bar",
-                    ),
-                ),
-                scaleway.LbFrontendAclArgs(
-                    action=scaleway.LbFrontendAclActionArgs(
-                        type="redirect",
-                        redirects=[scaleway.LbFrontendAclActionRedirectArgs(
-                            type="location",
-                            target="https://example.com",
-                            code=307,
-                        )],
-                    ),
-                    match=scaleway.LbFrontendAclMatchArgs(
-                        ip_subnets=["10.0.0.10"],
-                        http_filter="path_begin",
-                        http_filter_values=[
+                    },
+                },
+                {
+                    "action": {
+                        "type": "allow",
+                    },
+                    "match": {
+                        "http_filter": "path_begin",
+                        "http_filter_values": ["hi"],
+                        "invert": True,
+                    },
+                },
+                {
+                    "action": {
+                        "type": "allow",
+                    },
+                    "match": {
+                        "http_filter": "http_header_match",
+                        "http_filter_values": "foo",
+                        "http_filter_option": "bar",
+                    },
+                },
+                {
+                    "action": {
+                        "type": "redirect",
+                        "redirects": [{
+                            "type": "location",
+                            "target": "https://example.com",
+                            "code": 307,
+                        }],
+                    },
+                    "match": {
+                        "ip_subnets": ["10.0.0.10"],
+                        "http_filter": "path_begin",
+                        "http_filter_values": [
                             "foo",
                             "bar",
                         ],
-                    ),
-                ),
+                    },
+                },
             ])
         ```
 
@@ -639,7 +644,7 @@ class LbFrontend(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbFrontendAclArgs']]]]] = None,
+                 acls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LbFrontendAclArgs', 'LbFrontendAclArgsDict']]]]] = None,
                  backend_id: Optional[pulumi.Input[str]] = None,
                  certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  enable_http3: Optional[pulumi.Input[bool]] = None,
@@ -683,7 +688,7 @@ class LbFrontend(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            acls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbFrontendAclArgs']]]]] = None,
+            acls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LbFrontendAclArgs', 'LbFrontendAclArgsDict']]]]] = None,
             backend_id: Optional[pulumi.Input[str]] = None,
             certificate_id: Optional[pulumi.Input[str]] = None,
             certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -700,11 +705,11 @@ class LbFrontend(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbFrontendAclArgs']]]] acls: A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LbFrontendAclArgs', 'LbFrontendAclArgsDict']]]] acls: A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
         :param pulumi.Input[str] backend_id: The ID of the Load Balancer backend this frontend is attached to.
                
                > **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
-        :param pulumi.Input[str] certificate_id: (Deprecated) First certificate ID used by the frontend.
+        :param pulumi.Input[str] certificate_id: (Deprecated, use `certificate_ids` instead) First certificate ID used by the frontend.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: List of certificate IDs that should be used by the frontend.
                
                > **Important:** Certificates are not allowed on port 80.
@@ -755,7 +760,7 @@ class LbFrontend(pulumi.CustomResource):
     @_utilities.deprecated("""Please use certificate_ids""")
     def certificate_id(self) -> pulumi.Output[str]:
         """
-        (Deprecated) First certificate ID used by the frontend.
+        (Deprecated, use `certificate_ids` instead) First certificate ID used by the frontend.
         """
         return pulumi.get(self, "certificate_id")
 
