@@ -7,6 +7,7 @@ RUN wget https://github.com/pulumi/pulumictl/releases/download/v0.0.42/pulumictl
 RUN tar -xvf /root/pulumictl/pulumictl-v0.0.42-linux-amd64.tar.gz -C /root/pulumictl/
 ENV PATH="//root/pulumictl/:${PATH}"
 
+RUN apt update
 RUN apt install sudo -y
 
 RUN type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
