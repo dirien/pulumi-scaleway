@@ -315,6 +315,158 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetVpcPublicGatewayDhcpReservationResult> Invoke(GetVpcPublicGatewayDhcpReservationInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcPublicGatewayDhcpReservationResult>("scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation", args ?? new GetVpcPublicGatewayDhcpReservationInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a DHCP entry. For further information, please see the
+        /// API [documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries)/
+        /// 
+        /// ## Example Dynamic
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = ediri.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var mainVpcPrivateNetwork = new Scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork");
+        /// 
+        ///     var mainInstanceServer = new Scaleway.InstanceServer("mainInstanceServer", new()
+        ///     {
+        ///         Image = "ubuntu_jammy",
+        ///         Type = "DEV1-S",
+        ///         Zone = "fr-par-1",
+        ///     });
+        /// 
+        ///     var mainInstancePrivateNic = new Scaleway.InstancePrivateNic("mainInstancePrivateNic", new()
+        ///     {
+        ///         ServerId = mainInstanceServer.Id,
+        ///         PrivateNetworkId = mainVpcPrivateNetwork.Id,
+        ///     });
+        /// 
+        ///     var mainVpcPublicGatewayIp = new Scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp");
+        /// 
+        ///     var mainVpcPublicGatewayDhcp = new Scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", new()
+        ///     {
+        ///         Subnet = "192.168.1.0/24",
+        ///     });
+        /// 
+        ///     var mainVpcPublicGateway = new Scaleway.VpcPublicGateway("mainVpcPublicGateway", new()
+        ///     {
+        ///         Type = "VPC-GW-S",
+        ///         IpId = mainVpcPublicGatewayIp.Id,
+        ///     });
+        /// 
+        ///     var mainVpcGatewayNetwork = new Scaleway.VpcGatewayNetwork("mainVpcGatewayNetwork", new()
+        ///     {
+        ///         GatewayId = mainVpcPublicGateway.Id,
+        ///         PrivateNetworkId = mainVpcPrivateNetwork.Id,
+        ///         DhcpId = mainVpcPublicGatewayDhcp.Id,
+        ///         CleanupDhcp = true,
+        ///         EnableMasquerade = true,
+        ///     });
+        /// 
+        ///     var byMacAddressAndGwNetwork = Scaleway.GetVpcPublicGatewayDhcpReservation.Invoke(new()
+        ///     {
+        ///         MacAddress = mainInstancePrivateNic.MacAddress,
+        ///         GatewayNetworkId = mainVpcGatewayNetwork.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Example Static and PAT Rule
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = ediri.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var mainVpcPrivateNetwork = new Scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork");
+        /// 
+        ///     var mainInstanceSecurityGroup = new Scaleway.InstanceSecurityGroup("mainInstanceSecurityGroup", new()
+        ///     {
+        ///         InboundDefaultPolicy = "drop",
+        ///         OutboundDefaultPolicy = "accept",
+        ///         InboundRules = new[]
+        ///         {
+        ///             new Scaleway.Inputs.InstanceSecurityGroupInboundRuleArgs
+        ///             {
+        ///                 Action = "accept",
+        ///                 Port = 22,
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var mainInstanceServer = new Scaleway.InstanceServer("mainInstanceServer", new()
+        ///     {
+        ///         Image = "ubuntu_jammy",
+        ///         Type = "DEV1-S",
+        ///         Zone = "fr-par-1",
+        ///         SecurityGroupId = mainInstanceSecurityGroup.Id,
+        ///     });
+        /// 
+        ///     var mainInstancePrivateNic = new Scaleway.InstancePrivateNic("mainInstancePrivateNic", new()
+        ///     {
+        ///         ServerId = mainInstanceServer.Id,
+        ///         PrivateNetworkId = mainVpcPrivateNetwork.Id,
+        ///     });
+        /// 
+        ///     var mainVpcPublicGatewayIp = new Scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp");
+        /// 
+        ///     var mainVpcPublicGatewayDhcp = new Scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", new()
+        ///     {
+        ///         Subnet = "192.168.1.0/24",
+        ///     });
+        /// 
+        ///     var mainVpcPublicGateway = new Scaleway.VpcPublicGateway("mainVpcPublicGateway", new()
+        ///     {
+        ///         Type = "VPC-GW-S",
+        ///         IpId = mainVpcPublicGatewayIp.Id,
+        ///     });
+        /// 
+        ///     var mainVpcGatewayNetwork = new Scaleway.VpcGatewayNetwork("mainVpcGatewayNetwork", new()
+        ///     {
+        ///         GatewayId = mainVpcPublicGateway.Id,
+        ///         PrivateNetworkId = mainVpcPrivateNetwork.Id,
+        ///         DhcpId = mainVpcPublicGatewayDhcp.Id,
+        ///         CleanupDhcp = true,
+        ///         EnableMasquerade = true,
+        ///     });
+        /// 
+        ///     var mainVpcPublicGatewayDhcpReservation = new Scaleway.VpcPublicGatewayDhcpReservation("mainVpcPublicGatewayDhcpReservation", new()
+        ///     {
+        ///         GatewayNetworkId = mainVpcGatewayNetwork.Id,
+        ///         MacAddress = mainInstancePrivateNic.MacAddress,
+        ///         IpAddress = "192.168.1.4",
+        ///     });
+        /// 
+        ///     //## VPC PAT RULE
+        ///     var mainVpcPublicGatewayPatRule = new Scaleway.VpcPublicGatewayPatRule("mainVpcPublicGatewayPatRule", new()
+        ///     {
+        ///         GatewayId = mainVpcPublicGateway.Id,
+        ///         PrivateIp = mainVpcPublicGatewayDhcpReservation.IpAddress,
+        ///         PrivatePort = 22,
+        ///         PublicPort = 2222,
+        ///         Protocol = "tcp",
+        ///     });
+        /// 
+        ///     var byId = Scaleway.GetVpcPublicGatewayDhcpReservation.Invoke(new()
+        ///     {
+        ///         ReservationId = mainVpcPublicGatewayDhcpReservation.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetVpcPublicGatewayDhcpReservationResult> Invoke(GetVpcPublicGatewayDhcpReservationInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetVpcPublicGatewayDhcpReservationResult>("scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation", args ?? new GetVpcPublicGatewayDhcpReservationInvokeArgs(), options.WithDefaults());
     }
 
 

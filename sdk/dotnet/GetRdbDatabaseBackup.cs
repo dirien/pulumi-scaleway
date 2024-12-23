@@ -81,6 +81,41 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetRdbDatabaseBackupResult> Invoke(GetRdbDatabaseBackupInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRdbDatabaseBackupResult>("scaleway:index/getRdbDatabaseBackup:getRdbDatabaseBackup", args ?? new GetRdbDatabaseBackupInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about an RDB backup.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var findByName = Scaleway.GetRdbDatabaseBackup.Invoke(new()
+        ///     {
+        ///         Name = "mybackup",
+        ///     });
+        /// 
+        ///     var findByNameAndInstance = Scaleway.GetRdbDatabaseBackup.Invoke(new()
+        ///     {
+        ///         InstanceId = "11111111-1111-1111-1111-111111111111",
+        ///         Name = "mybackup",
+        ///     });
+        /// 
+        ///     var findById = Scaleway.GetRdbDatabaseBackup.Invoke(new()
+        ///     {
+        ///         BackupId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetRdbDatabaseBackupResult> Invoke(GetRdbDatabaseBackupInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetRdbDatabaseBackupResult>("scaleway:index/getRdbDatabaseBackup:getRdbDatabaseBackup", args ?? new GetRdbDatabaseBackupInvokeArgs(), options.WithDefaults());
     }
 
 

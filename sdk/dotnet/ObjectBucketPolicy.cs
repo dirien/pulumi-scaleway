@@ -207,68 +207,6 @@ namespace ediri.Scaleway
     /// });
     /// ```
     /// 
-    /// ### Example with AWS provider
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Aws = Pulumi.Aws;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// using Scaleway = ediri.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var @default = Scaleway.GetAccountProject.Invoke(new()
-    ///     {
-    ///         Name = "default",
-    ///     });
-    /// 
-    ///     // Object storage configuration
-    ///     var bucket = new Scaleway.ObjectBucket("bucket");
-    /// 
-    ///     var policy = Aws.Iam.GetPolicyDocument.Invoke(new()
-    ///     {
-    ///         Version = "2012-10-17",
-    ///         Statements = new[]
-    ///         {
-    ///             new Aws.Iam.Inputs.GetPolicyDocumentStatementInputArgs
-    ///             {
-    ///                 Sid = "Delegate access",
-    ///                 Effect = "Allow",
-    ///                 Principals = new[]
-    ///                 {
-    ///                     new Aws.Iam.Inputs.GetPolicyDocumentStatementPrincipalInputArgs
-    ///                     {
-    ///                         Type = "SCW",
-    ///                         Identifiers = new[]
-    ///                         {
-    ///                             $"project_id:{@default.Apply(getAccountProjectResult =&gt; getAccountProjectResult.Id)}",
-    ///                         },
-    ///                     },
-    ///                 },
-    ///                 Actions = new[]
-    ///                 {
-    ///                     "s3:ListBucket",
-    ///                 },
-    ///                 Resources = new[]
-    ///                 {
-    ///                     bucket.Name,
-    ///                     $"{bucket.Name}/*",
-    ///                 },
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    ///     var main = new Scaleway.ObjectBucketPolicy("main", new()
-    ///     {
-    ///         Bucket = bucket.Id,
-    ///         Policy = policy.Apply(getPolicyDocumentResult =&gt; getPolicyDocumentResult.Json),
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ### Example with deprecated version 2012-10-17
     /// 
     /// ```csharp

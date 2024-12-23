@@ -120,21 +120,11 @@ type LookupLbBackendResult struct {
 }
 
 func LookupLbBackendOutput(ctx *pulumi.Context, args LookupLbBackendOutputArgs, opts ...pulumi.InvokeOption) LookupLbBackendResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupLbBackendResultOutput, error) {
 			args := v.(LookupLbBackendArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupLbBackendResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getLbBackend:getLbBackend", args, &rv, "", opts...)
-			if err != nil {
-				return LookupLbBackendResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupLbBackendResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupLbBackendResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getLbBackend:getLbBackend", args, LookupLbBackendResultOutput{}, options).(LookupLbBackendResultOutput), nil
 		}).(LookupLbBackendResultOutput)
 }
 

@@ -73,6 +73,37 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetFunctionNamespaceResult> Invoke(GetFunctionNamespaceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFunctionNamespaceResult>("scaleway:index/getFunctionNamespace:getFunctionNamespace", args ?? new GetFunctionNamespaceInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The `scaleway.FunctionNamespace` data source is used to retrieve information about a Serverless Functions namespace.
+        /// 
+        /// Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
+        /// 
+        /// ## Retrieve a Serverless Functions namespace
+        /// 
+        /// The following commands allow you to:
+        /// 
+        /// - retrieve a namespace by its name
+        /// - retrieve a namespace by its ID
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myNamespace = Scaleway.GetFunctionNamespace.Invoke(new()
+        ///     {
+        ///         NamespaceId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetFunctionNamespaceResult> Invoke(GetFunctionNamespaceInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetFunctionNamespaceResult>("scaleway:index/getFunctionNamespace:getFunctionNamespace", args ?? new GetFunctionNamespaceInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -173,6 +204,7 @@ namespace ediri.Scaleway
         /// </summary>
         public readonly string RegistryNamespaceId;
         public readonly ImmutableDictionary<string, string> SecretEnvironmentVariables;
+        public readonly ImmutableArray<string> Tags;
 
         [OutputConstructor]
         private GetFunctionNamespaceResult(
@@ -196,7 +228,9 @@ namespace ediri.Scaleway
 
             string registryNamespaceId,
 
-            ImmutableDictionary<string, string> secretEnvironmentVariables)
+            ImmutableDictionary<string, string> secretEnvironmentVariables,
+
+            ImmutableArray<string> tags)
         {
             Description = description;
             EnvironmentVariables = environmentVariables;
@@ -209,6 +243,7 @@ namespace ediri.Scaleway
             RegistryEndpoint = registryEndpoint;
             RegistryNamespaceId = registryNamespaceId;
             SecretEnvironmentVariables = secretEnvironmentVariables;
+            Tags = tags;
         }
     }
 }

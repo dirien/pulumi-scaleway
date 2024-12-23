@@ -59,6 +59,30 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetK8sPoolResult> Invoke(GetK8sPoolInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetK8sPoolResult>("scaleway:index/getK8sPool:getK8sPool", args ?? new GetK8sPoolInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a Kubernetes Cluster's Pool.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myKey = Scaleway.GetK8sPool.Invoke(new()
+        ///     {
+        ///         PoolId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetK8sPoolResult> Invoke(GetK8sPoolInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetK8sPoolResult>("scaleway:index/getK8sPool:getK8sPool", args ?? new GetK8sPoolInvokeArgs(), options.WithDefaults());
     }
 
 

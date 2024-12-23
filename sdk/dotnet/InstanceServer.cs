@@ -304,10 +304,8 @@ namespace ediri.Scaleway
     /// - `status` The private NIC state.
     /// - `zone` - (Defaults to provider `zone`) The zone in which the server must be created.
     /// 
-    /// &gt; **Important:**
-    /// 
-    /// - You can only attach an instance in the same zone as a private network.
-    /// - Instance supports maximum 8 different private networks.
+    /// &gt; **Important:** You can only attach an instance in the same zone as a private network.
+    /// **Important:** Instance supports a maximum of 8 different private networks.
     /// 
     /// ## Import
     /// 
@@ -489,7 +487,7 @@ namespace ediri.Scaleway
         public Output<bool> RoutedIpEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+        /// The security group the server is attached to
         /// </summary>
         [Output("securityGroupId")]
         public Output<string> SecurityGroupId { get; private set; } = null!;
@@ -727,7 +725,7 @@ namespace ediri.Scaleway
         public Input<bool>? RoutedIpEnabled { get; set; }
 
         /// <summary>
-        /// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+        /// The security group the server is attached to
         /// </summary>
         [Input("securityGroupId")]
         public Input<string>? SecurityGroupId { get; set; }
@@ -983,7 +981,7 @@ namespace ediri.Scaleway
         public Input<bool>? RoutedIpEnabled { get; set; }
 
         /// <summary>
-        /// The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+        /// The security group the server is attached to
         /// </summary>
         [Input("securityGroupId")]
         public Input<string>? SecurityGroupId { get; set; }

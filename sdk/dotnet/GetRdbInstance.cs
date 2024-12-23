@@ -27,6 +27,14 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetRdbInstanceResult> Invoke(GetRdbInstanceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRdbInstanceResult>("scaleway:index/getRdbInstance:getRdbInstance", args ?? new GetRdbInstanceInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about an Database Instance.
+        /// 
+        /// For further information refer the Managed Databases for PostgreSQL and MySQL [API documentation](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
+        /// </summary>
+        public static Output<GetRdbInstanceResult> Invoke(GetRdbInstanceInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetRdbInstanceResult>("scaleway:index/getRdbInstance:getRdbInstance", args ?? new GetRdbInstanceInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -125,6 +125,63 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetLbRouteResult> Invoke(GetLbRouteInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLbRouteResult>("scaleway:index/getLbRoute:getLbRoute", args ?? new GetLbRouteInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Get information about Scaleway Load Balancer routes.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-routes/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-route).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = ediri.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var ip01 = new Scaleway.LbIp("ip01");
+        /// 
+        ///     var lb01 = new Scaleway.Lb("lb01", new()
+        ///     {
+        ///         IpId = ip01.Id,
+        ///         Type = "lb-s",
+        ///     });
+        /// 
+        ///     var bkd01 = new Scaleway.LbBackend("bkd01", new()
+        ///     {
+        ///         LbId = lb01.Id,
+        ///         ForwardProtocol = "tcp",
+        ///         ForwardPort = 80,
+        ///         ProxyProtocol = "none",
+        ///     });
+        /// 
+        ///     var frt01 = new Scaleway.LbFrontend("frt01", new()
+        ///     {
+        ///         LbId = lb01.Id,
+        ///         BackendId = bkd01.Id,
+        ///         InboundPort = 80,
+        ///     });
+        /// 
+        ///     var rt01 = new Scaleway.LbRoute("rt01", new()
+        ///     {
+        ///         FrontendId = frt01.Id,
+        ///         BackendId = bkd01.Id,
+        ///         MatchSni = "sni.scaleway.com",
+        ///     });
+        /// 
+        ///     var byID = Scaleway.GetLbRoute.Invoke(new()
+        ///     {
+        ///         RouteId = rt01.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetLbRouteResult> Invoke(GetLbRouteInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetLbRouteResult>("scaleway:index/getLbRoute:getLbRoute", args ?? new GetLbRouteInvokeArgs(), options.WithDefaults());
     }
 
 

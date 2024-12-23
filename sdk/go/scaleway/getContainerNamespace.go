@@ -93,24 +93,15 @@ type LookupContainerNamespaceResult struct {
 	// The unique identifier of the registry namespace of the Serverless Containers namespace.
 	RegistryNamespaceId        string            `pulumi:"registryNamespaceId"`
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
+	Tags                       []string          `pulumi:"tags"`
 }
 
 func LookupContainerNamespaceOutput(ctx *pulumi.Context, args LookupContainerNamespaceOutputArgs, opts ...pulumi.InvokeOption) LookupContainerNamespaceResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupContainerNamespaceResultOutput, error) {
 			args := v.(LookupContainerNamespaceArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupContainerNamespaceResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getContainerNamespace:getContainerNamespace", args, &rv, "", opts...)
-			if err != nil {
-				return LookupContainerNamespaceResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupContainerNamespaceResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupContainerNamespaceResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getContainerNamespace:getContainerNamespace", args, LookupContainerNamespaceResultOutput{}, options).(LookupContainerNamespaceResultOutput), nil
 		}).(LookupContainerNamespaceResultOutput)
 }
 
@@ -197,6 +188,10 @@ func (o LookupContainerNamespaceResultOutput) RegistryNamespaceId() pulumi.Strin
 
 func (o LookupContainerNamespaceResultOutput) SecretEnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupContainerNamespaceResult) map[string]string { return v.SecretEnvironmentVariables }).(pulumi.StringMapOutput)
+}
+
+func (o LookupContainerNamespaceResultOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupContainerNamespaceResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 func init() {

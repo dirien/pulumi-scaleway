@@ -14,7 +14,7 @@ namespace ediri.Scaleway
     /// The `scaleway.FunctionNamespace` resource allows you to
     /// for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
     /// 
-    /// Refer to the Functions namespace [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-a-functions-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-namespaces-list-all-your-namespaces) for more information.
+    /// Refer to the Functions namespace [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-manage-delete-functions-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-namespaces-list-all-your-namespaces) for more information.
     /// 
     /// ## Example Usage
     /// 
@@ -102,6 +102,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Output("secretEnvironmentVariables")]
         public Output<ImmutableDictionary<string, string>?> SecretEnvironmentVariables { get; private set; } = null!;
+
+        /// <summary>
+        /// List of tags ["tag1", "tag2", ...] attached to the function namespace
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
 
         /// <summary>
@@ -208,6 +214,18 @@ namespace ediri.Scaleway
             }
         }
 
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// List of tags ["tag1", "tag2", ...] attached to the function namespace
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
+
         public FunctionNamespaceArgs()
         {
         }
@@ -286,6 +304,18 @@ namespace ediri.Scaleway
                 var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
                 _secretEnvironmentVariables = Output.All(value, emptySecret).Apply(v => v[0]);
             }
+        }
+
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// List of tags ["tag1", "tag2", ...] attached to the function namespace
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
         }
 
         public FunctionNamespaceState()

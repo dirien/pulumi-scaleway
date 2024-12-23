@@ -86,24 +86,15 @@ type LookupFunctionNamespaceResult struct {
 	// The unique identifier of the registry namespace of the Serverless Functions namespace.
 	RegistryNamespaceId        string            `pulumi:"registryNamespaceId"`
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
+	Tags                       []string          `pulumi:"tags"`
 }
 
 func LookupFunctionNamespaceOutput(ctx *pulumi.Context, args LookupFunctionNamespaceOutputArgs, opts ...pulumi.InvokeOption) LookupFunctionNamespaceResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupFunctionNamespaceResultOutput, error) {
 			args := v.(LookupFunctionNamespaceArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupFunctionNamespaceResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getFunctionNamespace:getFunctionNamespace", args, &rv, "", opts...)
-			if err != nil {
-				return LookupFunctionNamespaceResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupFunctionNamespaceResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupFunctionNamespaceResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getFunctionNamespace:getFunctionNamespace", args, LookupFunctionNamespaceResultOutput{}, options).(LookupFunctionNamespaceResultOutput), nil
 		}).(LookupFunctionNamespaceResultOutput)
 }
 
@@ -186,6 +177,10 @@ func (o LookupFunctionNamespaceResultOutput) RegistryNamespaceId() pulumi.String
 
 func (o LookupFunctionNamespaceResultOutput) SecretEnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupFunctionNamespaceResult) map[string]string { return v.SecretEnvironmentVariables }).(pulumi.StringMapOutput)
+}
+
+func (o LookupFunctionNamespaceResultOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupFunctionNamespaceResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 func init() {

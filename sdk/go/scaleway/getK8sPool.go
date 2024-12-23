@@ -110,21 +110,11 @@ type LookupK8sPoolResult struct {
 }
 
 func LookupK8sPoolOutput(ctx *pulumi.Context, args LookupK8sPoolOutputArgs, opts ...pulumi.InvokeOption) LookupK8sPoolResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupK8sPoolResultOutput, error) {
 			args := v.(LookupK8sPoolArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupK8sPoolResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getK8sPool:getK8sPool", args, &rv, "", opts...)
-			if err != nil {
-				return LookupK8sPoolResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupK8sPoolResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupK8sPoolResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getK8sPool:getK8sPool", args, LookupK8sPoolResultOutput{}, options).(LookupK8sPoolResultOutput), nil
 		}).(LookupK8sPoolResultOutput)
 }
 

@@ -65,6 +65,33 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetLbIpResult> Invoke(GetLbIpInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLbIpResult>("scaleway:index/getLbIp:getLbIp", args ?? new GetLbIpInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a Load Balancer IP address.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myIp = Scaleway.GetLbIp.Invoke(new()
+        ///     {
+        ///         IpId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetLbIpResult> Invoke(GetLbIpInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetLbIpResult>("scaleway:index/getLbIp:getLbIp", args ?? new GetLbIpInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -89,6 +116,12 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
+
+        /// <summary>
+        /// `zone`) The zone in which the IP was reserved.
+        /// </summary>
+        [Input("zone")]
+        public string? Zone { get; set; }
 
         public GetLbIpArgs()
         {
@@ -118,6 +151,12 @@ namespace ediri.Scaleway
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        /// <summary>
+        /// `zone`) The zone in which the IP was reserved.
+        /// </summary>
+        [Input("zone")]
+        public Input<string>? Zone { get; set; }
+
         public GetLbIpInvokeArgs()
         {
         }
@@ -143,7 +182,7 @@ namespace ediri.Scaleway
         /// (Defaults to provider `organization_id`) The ID of the Organization the Load Balancer IP is associated with.
         /// </summary>
         public readonly string OrganizationId;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         public readonly string Region;
         /// <summary>
         /// The reverse domain associated with this IP.
@@ -153,7 +192,7 @@ namespace ediri.Scaleway
         /// The tags associated with this IP.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetLbIpResult(
@@ -169,7 +208,7 @@ namespace ediri.Scaleway
 
             string organizationId,
 
-            string projectId,
+            string? projectId,
 
             string region,
 
@@ -177,7 +216,7 @@ namespace ediri.Scaleway
 
             ImmutableArray<string> tags,
 
-            string zone)
+            string? zone)
         {
             Id = id;
             IpAddress = ipAddress;

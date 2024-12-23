@@ -74,21 +74,11 @@ type LookupRdbDatabaseResult struct {
 }
 
 func LookupRdbDatabaseOutput(ctx *pulumi.Context, args LookupRdbDatabaseOutputArgs, opts ...pulumi.InvokeOption) LookupRdbDatabaseResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupRdbDatabaseResultOutput, error) {
 			args := v.(LookupRdbDatabaseArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupRdbDatabaseResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getRdbDatabase:getRdbDatabase", args, &rv, "", opts...)
-			if err != nil {
-				return LookupRdbDatabaseResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupRdbDatabaseResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupRdbDatabaseResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getRdbDatabase:getRdbDatabase", args, LookupRdbDatabaseResultOutput{}, options).(LookupRdbDatabaseResultOutput), nil
 		}).(LookupRdbDatabaseResultOutput)
 }
 

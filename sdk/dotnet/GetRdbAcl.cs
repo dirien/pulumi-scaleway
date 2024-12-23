@@ -59,6 +59,30 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetRdbAclResult> Invoke(GetRdbAclInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRdbAclResult>("scaleway:index/getRdbAcl:getRdbAcl", args ?? new GetRdbAclInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about the Database Instance network Access Control List.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myAcl = Scaleway.GetRdbAcl.Invoke(new()
+        ///     {
+        ///         InstanceId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetRdbAclResult> Invoke(GetRdbAclInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetRdbAclResult>("scaleway:index/getRdbAcl:getRdbAcl", args ?? new GetRdbAclInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -76,21 +76,11 @@ type LookupRdbPrivilegeResult struct {
 }
 
 func LookupRdbPrivilegeOutput(ctx *pulumi.Context, args LookupRdbPrivilegeOutputArgs, opts ...pulumi.InvokeOption) LookupRdbPrivilegeResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupRdbPrivilegeResultOutput, error) {
 			args := v.(LookupRdbPrivilegeArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupRdbPrivilegeResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getRdbPrivilege:getRdbPrivilege", args, &rv, "", opts...)
-			if err != nil {
-				return LookupRdbPrivilegeResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupRdbPrivilegeResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupRdbPrivilegeResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getRdbPrivilege:getRdbPrivilege", args, LookupRdbPrivilegeResultOutput{}, options).(LookupRdbPrivilegeResultOutput), nil
 		}).(LookupRdbPrivilegeResultOutput)
 }
 

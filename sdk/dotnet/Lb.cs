@@ -94,145 +94,6 @@ namespace ediri.Scaleway
     /// });
     /// ```
     /// 
-    /// ### Multiple configurations
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = ediri.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     //## IP for Public Gateway
-    ///     var mainVpcPublicGatewayIp = new Scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp");
-    /// 
-    ///     //## Scaleway Private Network
-    ///     var mainVpcPrivateNetwork = new Scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork");
-    /// 
-    ///     //## VPC Public Gateway Network
-    ///     var mainVpcPublicGateway = new Scaleway.VpcPublicGateway("mainVpcPublicGateway", new()
-    ///     {
-    ///         Type = "VPC-GW-S",
-    ///         IpId = mainVpcPublicGatewayIp.Id,
-    ///     });
-    /// 
-    ///     //## VPC Public Gateway Network DHCP config
-    ///     var mainVpcPublicGatewayDhcp = new Scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", new()
-    ///     {
-    ///         Subnet = "10.0.0.0/24",
-    ///     });
-    /// 
-    ///     //## VPC Gateway Network
-    ///     var mainVpcGatewayNetwork = new Scaleway.VpcGatewayNetwork("mainVpcGatewayNetwork", new()
-    ///     {
-    ///         GatewayId = mainVpcPublicGateway.Id,
-    ///         PrivateNetworkId = mainVpcPrivateNetwork.Id,
-    ///         DhcpId = mainVpcPublicGatewayDhcp.Id,
-    ///         CleanupDhcp = true,
-    ///         EnableMasquerade = true,
-    ///     });
-    /// 
-    ///     //## Scaleway Instance
-    ///     var mainInstanceServer = new Scaleway.InstanceServer("mainInstanceServer", new()
-    ///     {
-    ///         Type = "DEV1-S",
-    ///         Image = "debian_bullseye",
-    ///         EnableIpv6 = false,
-    ///         PrivateNetworks = new[]
-    ///         {
-    ///             new Scaleway.Inputs.InstanceServerPrivateNetworkArgs
-    ///             {
-    ///                 PnId = mainVpcPrivateNetwork.Id,
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    ///     //## IP for LB IP
-    ///     var mainLbIp = new Scaleway.LbIp("mainLbIp");
-    /// 
-    ///     //## Scaleway Private Network
-    ///     var mainIndex_vpcPrivateNetworkVpcPrivateNetwork = new Scaleway.VpcPrivateNetwork("mainIndex/vpcPrivateNetworkVpcPrivateNetwork");
-    /// 
-    ///     //## Scaleway Load Balancer
-    ///     var mainLb = new Scaleway.Lb("mainLb", new()
-    ///     {
-    ///         IpId = mainLbIp.Id,
-    ///         Type = "LB-S",
-    ///         PrivateNetworks = new[]
-    ///         {
-    ///             new Scaleway.Inputs.LbPrivateNetworkArgs
-    ///             {
-    ///                 PrivateNetworkId = mainVpcPrivateNetwork.Id,
-    ///                 DhcpConfig = true,
-    ///             },
-    ///         },
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         DependsOn =
-    ///         {
-    ///             mainVpcPublicGateway,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Migration
-    /// 
-    /// In order to migrate to other Load Balancer types, you can check upwards or downwards migration via our CLI `scw lb lb-types list`.
-    /// This change will not recreate your Load Balancer.
-    /// 
-    /// Please check our [documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-migrate-a-load-balancer) for further details
-    /// 
-    /// ## IP ID
-    /// 
-    /// Since v1.15.0, `ip_id` is a required field. This means that now a separate `scaleway.LbIp` is required.
-    /// When importing, the IP needs to be imported as well as the Load Balancer.
-    /// When upgrading to v1.15.0, you will need to create a new `scaleway.LbIp` resource and import it.
-    /// 
-    /// For instance, if you had the following:
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = ediri.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var main = new Scaleway.Lb("main", new()
-    ///     {
-    ///         Type = "LB-S",
-    ///         Zone = "fr-par-1",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// You will need to update it to:
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = ediri.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var mainLbIp = new Scaleway.LbIp("mainLbIp");
-    /// 
-    ///     var mainLb = new Scaleway.Lb("mainLb", new()
-    ///     {
-    ///         IpId = mainLbIp.Id,
-    ///         Zone = "fr-par-1",
-    ///         Type = "LB-S",
-    ///         ReleaseIp = false,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Load Balancers can be imported using `{zone}/{id}`, e.g.
@@ -273,7 +134,7 @@ namespace ediri.Scaleway
         public Output<string> IpAddress { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the associated Load Balancer IP. See below.
+        /// Please use `ip_ids`. The ID of the associated Load Balancer IP. See below.
         /// 
         /// &gt; **Important:** Updates to `ip_id` will recreate the Load Balancer.
         /// </summary>
@@ -282,6 +143,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// The List of IP IDs to attach to the Load Balancer.
+        /// 
+        /// &gt; **Important:** Make sure to use a `scaleway.LbIp` resource to create the IPs.
         /// </summary>
         [Output("ipIds")]
         public Output<ImmutableArray<string>> IpIds { get; private set; } = null!;
@@ -305,7 +168,7 @@ namespace ediri.Scaleway
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// List of private network to connect with your load balancer
+        /// List of private network to connect with your load balancer.
         /// </summary>
         [Output("privateNetworks")]
         public Output<ImmutableArray<Outputs.LbPrivateNetwork>> PrivateNetworks { get; private set; } = null!;
@@ -418,7 +281,7 @@ namespace ediri.Scaleway
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The ID of the associated Load Balancer IP. See below.
+        /// Please use `ip_ids`. The ID of the associated Load Balancer IP. See below.
         /// 
         /// &gt; **Important:** Updates to `ip_id` will recreate the Load Balancer.
         /// </summary>
@@ -430,6 +293,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// The List of IP IDs to attach to the Load Balancer.
+        /// 
+        /// &gt; **Important:** Make sure to use a `scaleway.LbIp` resource to create the IPs.
         /// </summary>
         public InputList<string> IpIds
         {
@@ -447,7 +312,7 @@ namespace ediri.Scaleway
         private InputList<Inputs.LbPrivateNetworkArgs>? _privateNetworks;
 
         /// <summary>
-        /// List of private network to connect with your load balancer
+        /// List of private network to connect with your load balancer.
         /// </summary>
         public InputList<Inputs.LbPrivateNetworkArgs> PrivateNetworks
         {
@@ -530,7 +395,7 @@ namespace ediri.Scaleway
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// The ID of the associated Load Balancer IP. See below.
+        /// Please use `ip_ids`. The ID of the associated Load Balancer IP. See below.
         /// 
         /// &gt; **Important:** Updates to `ip_id` will recreate the Load Balancer.
         /// </summary>
@@ -542,6 +407,8 @@ namespace ediri.Scaleway
 
         /// <summary>
         /// The List of IP IDs to attach to the Load Balancer.
+        /// 
+        /// &gt; **Important:** Make sure to use a `scaleway.LbIp` resource to create the IPs.
         /// </summary>
         public InputList<string> IpIds
         {
@@ -571,7 +438,7 @@ namespace ediri.Scaleway
         private InputList<Inputs.LbPrivateNetworkGetArgs>? _privateNetworks;
 
         /// <summary>
-        /// List of private network to connect with your load balancer
+        /// List of private network to connect with your load balancer.
         /// </summary>
         public InputList<Inputs.LbPrivateNetworkGetArgs> PrivateNetworks
         {

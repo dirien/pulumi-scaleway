@@ -59,6 +59,30 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetInstanceImageResult> Invoke(GetInstanceImageInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInstanceImageResult>("scaleway:index/getInstanceImage:getInstanceImage", args ?? new GetInstanceImageInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about an instance image.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myImage = Scaleway.GetInstanceImage.Invoke(new()
+        ///     {
+        ///         ImageId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetInstanceImageResult> Invoke(GetInstanceImageInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetInstanceImageResult>("scaleway:index/getInstanceImage:getInstanceImage", args ?? new GetInstanceImageInvokeArgs(), options.WithDefaults());
     }
 
 

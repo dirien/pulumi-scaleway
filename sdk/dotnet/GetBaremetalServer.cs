@@ -73,6 +73,37 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetBaremetalServerResult> Invoke(GetBaremetalServerInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBaremetalServerResult>("scaleway:index/getBaremetalServer:getBaremetalServer", args ?? new GetBaremetalServerInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a baremetal server.
+        /// For more information, see [the documentation](https://developers.scaleway.com/en/products/baremetal/api).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var byName = Scaleway.GetBaremetalServer.Invoke(new()
+        ///     {
+        ///         Name = "foobar",
+        ///         Zone = "fr-par-2",
+        ///     });
+        /// 
+        ///     var byId = Scaleway.GetBaremetalServer.Invoke(new()
+        ///     {
+        ///         ServerId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetBaremetalServerResult> Invoke(GetBaremetalServerInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetBaremetalServerResult>("scaleway:index/getBaremetalServer:getBaremetalServer", args ?? new GetBaremetalServerInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -157,6 +188,7 @@ namespace ediri.Scaleway
         public readonly string OrganizationId;
         public readonly string Os;
         public readonly string OsName;
+        public readonly string Partitioning;
         public readonly string Password;
         public readonly ImmutableArray<Outputs.GetBaremetalServerPrivateNetworkResult> PrivateNetworks;
         public readonly string? ProjectId;
@@ -203,6 +235,8 @@ namespace ediri.Scaleway
 
             string osName,
 
+            string partitioning,
+
             string password,
 
             ImmutableArray<Outputs.GetBaremetalServerPrivateNetworkResult> privateNetworks,
@@ -241,6 +275,7 @@ namespace ediri.Scaleway
             OrganizationId = organizationId;
             Os = os;
             OsName = osName;
+            Partitioning = partitioning;
             Password = password;
             PrivateNetworks = privateNetworks;
             ProjectId = projectId;

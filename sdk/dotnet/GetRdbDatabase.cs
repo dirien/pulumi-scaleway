@@ -61,6 +61,31 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetRdbDatabaseResult> Invoke(GetRdbDatabaseInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRdbDatabaseResult>("scaleway:index/getRdbDatabase:getRdbDatabase", args ?? new GetRdbDatabaseInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a database.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myDb = Scaleway.GetRdbDatabase.Invoke(new()
+        ///     {
+        ///         InstanceId = "11111111-1111-1111-1111-111111111111",
+        ///         Name = "foobar",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetRdbDatabaseResult> Invoke(GetRdbDatabaseInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetRdbDatabaseResult>("scaleway:index/getRdbDatabase:getRdbDatabase", args ?? new GetRdbDatabaseInvokeArgs(), options.WithDefaults());
     }
 
 
