@@ -98,7 +98,7 @@ export interface GetInstancePlacementGroupResult {
  * });
  * ```
  */
-export function getInstancePlacementGroupOutput(args?: GetInstancePlacementGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstancePlacementGroupResult> {
+export function getInstancePlacementGroupOutput(args?: GetInstancePlacementGroupOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetInstancePlacementGroupResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getInstancePlacementGroup:getInstancePlacementGroup", {

@@ -62,6 +62,8 @@ type LookupIamUserArgs struct {
 	// `organizationId`) The ID of the
 	// organization the user is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The tags associated with the user.
+	Tags []string `pulumi:"tags"`
 	// The ID of the IAM user.
 	//
 	// > **Note** You must specify at least one: `name` and/or `userId`.
@@ -74,25 +76,17 @@ type LookupIamUserResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id             string  `pulumi:"id"`
 	OrganizationId *string `pulumi:"organizationId"`
-	UserId         *string `pulumi:"userId"`
+	// The tags associated with the user.
+	Tags   []string `pulumi:"tags"`
+	UserId *string  `pulumi:"userId"`
 }
 
 func LookupIamUserOutput(ctx *pulumi.Context, args LookupIamUserOutputArgs, opts ...pulumi.InvokeOption) LookupIamUserResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupIamUserResultOutput, error) {
 			args := v.(LookupIamUserArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupIamUserResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getIamUser:getIamUser", args, &rv, "", opts...)
-			if err != nil {
-				return LookupIamUserResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupIamUserResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupIamUserResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getIamUser:getIamUser", args, LookupIamUserResultOutput{}, options).(LookupIamUserResultOutput), nil
 		}).(LookupIamUserResultOutput)
 }
 
@@ -103,6 +97,8 @@ type LookupIamUserOutputArgs struct {
 	// `organizationId`) The ID of the
 	// organization the user is associated with.
 	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
+	// The tags associated with the user.
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
 	// The ID of the IAM user.
 	//
 	// > **Note** You must specify at least one: `name` and/or `userId`.
@@ -139,6 +135,11 @@ func (o LookupIamUserResultOutput) Id() pulumi.StringOutput {
 
 func (o LookupIamUserResultOutput) OrganizationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupIamUserResult) *string { return v.OrganizationId }).(pulumi.StringPtrOutput)
+}
+
+// The tags associated with the user.
+func (o LookupIamUserResultOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupIamUserResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 func (o LookupIamUserResultOutput) UserId() pulumi.StringPtrOutput {

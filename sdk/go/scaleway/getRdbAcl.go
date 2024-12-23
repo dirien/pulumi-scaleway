@@ -67,21 +67,11 @@ type LookupRdbAclResult struct {
 }
 
 func LookupRdbAclOutput(ctx *pulumi.Context, args LookupRdbAclOutputArgs, opts ...pulumi.InvokeOption) LookupRdbAclResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupRdbAclResultOutput, error) {
 			args := v.(LookupRdbAclArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupRdbAclResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getRdbAcl:getRdbAcl", args, &rv, "", opts...)
-			if err != nil {
-				return LookupRdbAclResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupRdbAclResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupRdbAclResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getRdbAcl:getRdbAcl", args, LookupRdbAclResultOutput{}, options).(LookupRdbAclResultOutput), nil
 		}).(LookupRdbAclResultOutput)
 }
 

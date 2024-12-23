@@ -100,7 +100,7 @@ export interface GetAccountSshKeyResult {
  * });
  * ```
  */
-export function getAccountSshKeyOutput(args?: GetAccountSshKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccountSshKeyResult> {
+export function getAccountSshKeyOutput(args?: GetAccountSshKeyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAccountSshKeyResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getAccountSshKey:getAccountSshKey", {

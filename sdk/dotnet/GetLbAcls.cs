@@ -75,6 +75,38 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetLbAclsResult> Invoke(GetLbAclsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLbAclsResult>("scaleway:index/getLbAcls:getLbAcls", args ?? new GetLbAclsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about multiple Load Balancer ACLs.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/reference-content/acls/) or [API reference](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-acls-get-an-acl).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var byFrontID = Scaleway.GetLbAcls.Invoke(new()
+        ///     {
+        ///         FrontendId = scaleway_lb_frontend.Frt01.Id,
+        ///     });
+        /// 
+        ///     var byFrontIDAndName = Scaleway.GetLbAcls.Invoke(new()
+        ///     {
+        ///         FrontendId = scaleway_lb_frontend.Frt01.Id,
+        ///         Name = "tf-acls-datasource",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetLbAclsResult> Invoke(GetLbAclsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetLbAclsResult>("scaleway:index/getLbAcls:getLbAcls", args ?? new GetLbAclsInvokeArgs(), options.WithDefaults());
     }
 
 

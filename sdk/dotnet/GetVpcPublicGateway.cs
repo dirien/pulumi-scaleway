@@ -85,6 +85,43 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetVpcPublicGatewayResult> Invoke(GetVpcPublicGatewayInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcPublicGatewayResult>("scaleway:index/getVpcPublicGateway:getVpcPublicGateway", args ?? new GetVpcPublicGatewayInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a Public Gateway.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = ediri.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = new Scaleway.VpcPublicGateway("main", new()
+        ///     {
+        ///         Type = "VPC-GW-S",
+        ///         Zone = "nl-ams-1",
+        ///     });
+        /// 
+        ///     var pgTestByName = Scaleway.GetVpcPublicGateway.Invoke(new()
+        ///     {
+        ///         Name = main.Name,
+        ///         Zone = "nl-ams-1",
+        ///     });
+        /// 
+        ///     var pgTestById = Scaleway.GetVpcPublicGateway.Invoke(new()
+        ///     {
+        ///         PublicGatewayId = main.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetVpcPublicGatewayResult> Invoke(GetVpcPublicGatewayInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetVpcPublicGatewayResult>("scaleway:index/getVpcPublicGateway:getVpcPublicGateway", args ?? new GetVpcPublicGatewayInvokeArgs(), options.WithDefaults());
     }
 
 

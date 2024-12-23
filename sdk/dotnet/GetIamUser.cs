@@ -71,6 +71,36 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetIamUserResult> Invoke(GetIamUserInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetIamUserResult>("scaleway:index/getIamUser:getIamUser", args ?? new GetIamUserInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to get information on an existing IAM user based on its ID or email address.
+        /// For more information refer to the [IAM API documentation](https://developers.scaleway.com/en/products/iam/api/v1alpha1/#users-06bdcf).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var findById = Scaleway.GetIamUser.Invoke(new()
+        ///     {
+        ///         UserId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        ///     var findByEmail = Scaleway.GetIamUser.Invoke(new()
+        ///     {
+        ///         Email = "foo@bar.com",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetIamUserResult> Invoke(GetIamUserInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetIamUserResult>("scaleway:index/getIamUser:getIamUser", args ?? new GetIamUserInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -88,6 +118,18 @@ namespace ediri.Scaleway
         /// </summary>
         [Input("organizationId")]
         public string? OrganizationId { get; set; }
+
+        [Input("tags")]
+        private List<string>? _tags;
+
+        /// <summary>
+        /// The tags associated with the user.
+        /// </summary>
+        public List<string> Tags
+        {
+            get => _tags ?? (_tags = new List<string>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The ID of the IAM user.
@@ -118,6 +160,18 @@ namespace ediri.Scaleway
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// The tags associated with the user.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The ID of the IAM user.
         /// 
@@ -142,6 +196,10 @@ namespace ediri.Scaleway
         /// </summary>
         public readonly string Id;
         public readonly string? OrganizationId;
+        /// <summary>
+        /// The tags associated with the user.
+        /// </summary>
+        public readonly ImmutableArray<string> Tags;
         public readonly string? UserId;
 
         [OutputConstructor]
@@ -152,11 +210,14 @@ namespace ediri.Scaleway
 
             string? organizationId,
 
+            ImmutableArray<string> tags,
+
             string? userId)
         {
             Email = email;
             Id = id;
             OrganizationId = organizationId;
+            Tags = tags;
             UserId = userId;
         }
     }

@@ -87,7 +87,7 @@ export interface GetRdbInstanceResult {
  *
  * For further information refer the Managed Databases for PostgreSQL and MySQL [API documentation](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
  */
-export function getRdbInstanceOutput(args?: GetRdbInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRdbInstanceResult> {
+export function getRdbInstanceOutput(args?: GetRdbInstanceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRdbInstanceResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getRdbInstance:getRdbInstance", {

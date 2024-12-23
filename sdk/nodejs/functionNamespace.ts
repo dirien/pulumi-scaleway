@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
  * The `scaleway.FunctionNamespace` resource allows you to
  * for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
  *
- * Refer to the Functions namespace [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-a-functions-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-namespaces-list-all-your-namespaces) for more information.
+ * Refer to the Functions namespace [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-manage-delete-functions-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-namespaces-list-all-your-namespaces) for more information.
  *
  * ## Example Usage
  *
@@ -95,6 +95,10 @@ export class FunctionNamespace extends pulumi.CustomResource {
      * The secret environment variables of the namespace.
      */
     public readonly secretEnvironmentVariables!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * List of tags ["tag1", "tag2", ...] attached to the function namespace
+     */
+    public readonly tags!: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a FunctionNamespace resource with the given unique name, arguments, and options.
@@ -118,6 +122,7 @@ export class FunctionNamespace extends pulumi.CustomResource {
             resourceInputs["registryEndpoint"] = state ? state.registryEndpoint : undefined;
             resourceInputs["registryNamespaceId"] = state ? state.registryNamespaceId : undefined;
             resourceInputs["secretEnvironmentVariables"] = state ? state.secretEnvironmentVariables : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
             const args = argsOrState as FunctionNamespaceArgs | undefined;
             resourceInputs["description"] = args ? args.description : undefined;
@@ -126,6 +131,7 @@ export class FunctionNamespace extends pulumi.CustomResource {
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["secretEnvironmentVariables"] = args?.secretEnvironmentVariables ? pulumi.secret(args.secretEnvironmentVariables) : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["registryEndpoint"] = undefined /*out*/;
             resourceInputs["registryNamespaceId"] = undefined /*out*/;
@@ -179,6 +185,10 @@ export interface FunctionNamespaceState {
      * The secret environment variables of the namespace.
      */
     secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * List of tags ["tag1", "tag2", ...] attached to the function namespace
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 /**
@@ -211,4 +221,8 @@ export interface FunctionNamespaceArgs {
      * The secret environment variables of the namespace.
      */
     secretEnvironmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * List of tags ["tag1", "tag2", ...] attached to the function namespace
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
 }

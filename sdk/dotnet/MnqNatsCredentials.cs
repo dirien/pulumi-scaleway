@@ -99,6 +99,10 @@ namespace ediri.Scaleway
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/dirien/pulumi-scaleway",
+                AdditionalSecretOutputs =
+                {
+                    "file",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -155,11 +159,21 @@ namespace ediri.Scaleway
         [Input("accountId")]
         public Input<string>? AccountId { get; set; }
 
+        [Input("file")]
+        private Input<string>? _file;
+
         /// <summary>
         /// The content of the credentials file.
         /// </summary>
-        [Input("file")]
-        public Input<string>? File { get; set; }
+        public Input<string>? File
+        {
+            get => _file;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _file = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The unique name of the NATS credentials.

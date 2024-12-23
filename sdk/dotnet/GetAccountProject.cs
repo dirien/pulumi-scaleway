@@ -87,6 +87,44 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetAccountProjectResult> Invoke(GetAccountProjectInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAccountProjectResult>("scaleway:index/getAccountProject:getAccountProject", args ?? new GetAccountProjectInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The `scaleway.AccountProject` data source is used to retrieve information about a Scaleway project.
+        /// 
+        /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
+        /// 
+        /// 
+        /// ## Retrieve a Scaleway Project
+        /// 
+        /// The following commands allow you to:
+        /// 
+        /// - retrieve a Project by its name
+        /// - retrieve a Project by its ID
+        /// - retrieve the default project of an Organization
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var byName = Scaleway.GetAccountProject.Invoke(new()
+        ///     {
+        ///         Name = "default",
+        ///     });
+        /// 
+        ///     var byId = Scaleway.GetAccountProject.Invoke(new()
+        ///     {
+        ///         ProjectId = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetAccountProjectResult> Invoke(GetAccountProjectInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAccountProjectResult>("scaleway:index/getAccountProject:getAccountProject", args ?? new GetAccountProjectInvokeArgs(), options.WithDefaults());
     }
 
 

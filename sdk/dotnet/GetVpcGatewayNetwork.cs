@@ -91,6 +91,46 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetVpcGatewayNetworkResult> Invoke(GetVpcGatewayNetworkInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcGatewayNetworkResult>("scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork", args ?? new GetVpcGatewayNetworkInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a GatewayNetwork (a connection between a Public Gateway and a Private Network).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = ediri.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = new Scaleway.VpcGatewayNetwork("main", new()
+        ///     {
+        ///         GatewayId = scaleway_vpc_public_gateway.Pg01.Id,
+        ///         PrivateNetworkId = scaleway_vpc_private_network.Pn01.Id,
+        ///         DhcpId = scaleway_vpc_public_gateway_dhcp.Dhcp01.Id,
+        ///         CleanupDhcp = true,
+        ///         EnableMasquerade = true,
+        ///     });
+        /// 
+        ///     var byId = Scaleway.GetVpcGatewayNetwork.Invoke(new()
+        ///     {
+        ///         GatewayNetworkId = main.Id,
+        ///     });
+        /// 
+        ///     var byGatewayAndPn = Scaleway.GetVpcGatewayNetwork.Invoke(new()
+        ///     {
+        ///         GatewayId = scaleway_vpc_public_gateway.Pg01.Id,
+        ///         PrivateNetworkId = scaleway_vpc_private_network.Pn01.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetVpcGatewayNetworkResult> Invoke(GetVpcGatewayNetworkInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetVpcGatewayNetworkResult>("scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork", args ?? new GetVpcGatewayNetworkInvokeArgs(), options.WithDefaults());
     }
 
 

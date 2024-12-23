@@ -94,7 +94,7 @@ export interface GetBlockVolumeResult {
  * });
  * ```
  */
-export function getBlockVolumeOutput(args?: GetBlockVolumeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBlockVolumeResult> {
+export function getBlockVolumeOutput(args?: GetBlockVolumeOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBlockVolumeResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getBlockVolume:getBlockVolume", {

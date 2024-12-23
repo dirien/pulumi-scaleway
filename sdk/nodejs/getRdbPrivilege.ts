@@ -86,7 +86,7 @@ export interface GetRdbPrivilegeResult {
  * });
  * ```
  */
-export function getRdbPrivilegeOutput(args: GetRdbPrivilegeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRdbPrivilegeResult> {
+export function getRdbPrivilegeOutput(args: GetRdbPrivilegeOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRdbPrivilegeResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getRdbPrivilege:getRdbPrivilege", {
         "databaseName": args.databaseName,

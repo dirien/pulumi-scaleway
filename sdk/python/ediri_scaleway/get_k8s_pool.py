@@ -396,7 +396,7 @@ def get_k8s_pool_output(cluster_id: Optional[pulumi.Input[Optional[str]]] = None
                         pool_id: Optional[pulumi.Input[Optional[str]]] = None,
                         region: Optional[pulumi.Input[Optional[str]]] = None,
                         size: Optional[pulumi.Input[Optional[int]]] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetK8sPoolResult]:
+                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetK8sPoolResult]:
     """
     Gets information about a Kubernetes Cluster's Pool.
 
@@ -422,7 +422,7 @@ def get_k8s_pool_output(cluster_id: Optional[pulumi.Input[Optional[str]]] = None
     __args__['poolId'] = pool_id
     __args__['region'] = region
     __args__['size'] = size
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getK8sPool:getK8sPool', __args__, opts=opts, typ=GetK8sPoolResult)
     return __ret__.apply(lambda __response__: GetK8sPoolResult(
         autohealing=pulumi.get(__response__, 'autohealing'),

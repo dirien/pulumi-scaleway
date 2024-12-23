@@ -381,7 +381,7 @@ def get_k8s_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str]]] = N
                            name: Optional[pulumi.Input[Optional[str]]] = None,
                            project_id: Optional[pulumi.Input[Optional[str]]] = None,
                            region: Optional[pulumi.Input[Optional[str]]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetK8sClusterResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetK8sClusterResult]:
     """
     Gets information about a Kubernetes Cluster.
 
@@ -405,7 +405,7 @@ def get_k8s_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str]]] = N
     __args__['name'] = name
     __args__['projectId'] = project_id
     __args__['region'] = region
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getK8sCluster:getK8sCluster', __args__, opts=opts, typ=GetK8sClusterResult)
     return __ret__.apply(lambda __response__: GetK8sClusterResult(
         admission_plugins=pulumi.get(__response__, 'admission_plugins'),

@@ -59,6 +59,30 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetBillingInvoicesResult> Invoke(GetBillingInvoicesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBillingInvoicesResult>("scaleway:index/getBillingInvoices:getBillingInvoices", args ?? new GetBillingInvoicesInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about your Scaleway invoices.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var my_invoices = Scaleway.GetBillingInvoices.Invoke(new()
+        ///     {
+        ///         InvoiceType = "periodic",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetBillingInvoicesResult> Invoke(GetBillingInvoicesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetBillingInvoicesResult>("scaleway:index/getBillingInvoices:getBillingInvoices", args ?? new GetBillingInvoicesInvokeArgs(), options.WithDefaults());
     }
 
 

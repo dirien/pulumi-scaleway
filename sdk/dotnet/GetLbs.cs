@@ -81,6 +81,41 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetLbsResult> Invoke(GetLbsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLbsResult>("scaleway:index/getLbs:getLbs", args ?? new GetLbsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about multiple Load Balancers.
+        /// 
+        /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/network/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myKey = Scaleway.GetLbs.Invoke(new()
+        ///     {
+        ///         Name = "foobar",
+        ///         Zone = "fr-par-2",
+        ///     });
+        /// 
+        ///     var lbsByTags = Scaleway.GetLbs.Invoke(new()
+        ///     {
+        ///         Tags = new[]
+        ///         {
+        ///             "a tag",
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetLbsResult> Invoke(GetLbsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetLbsResult>("scaleway:index/getLbs:getLbs", args ?? new GetLbsInvokeArgs(), options.WithDefaults());
     }
 
 

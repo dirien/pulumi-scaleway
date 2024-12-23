@@ -75,6 +75,38 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetAccountSshKeyResult> Invoke(GetAccountSshKeyInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAccountSshKeyResult>("scaleway:index/getAccountSshKey:getAccountSshKey", args ?? new GetAccountSshKeyInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The `scaleway.AccountSshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
+        /// 
+        /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/identity-and-access-management/organizations-and-projects/how-to/create-ssh-key/) and [API documentation](https://www.scaleway.com/en/developers/api/iam/#path-ssh-keys) for more information.
+        /// 
+        /// 
+        /// ## Retrieve the SSH key of a Scaleway account
+        /// 
+        /// The following commands allow you to:
+        /// 
+        /// - retrieve an SSH key by its name
+        /// - retrieve an SSH key by its ID
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myKey = Scaleway.GetAccountSshKey.Invoke(new()
+        ///     {
+        ///         SshKeyId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetAccountSshKeyResult> Invoke(GetAccountSshKeyInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAccountSshKeyResult>("scaleway:index/getAccountSshKey:getAccountSshKey", args ?? new GetAccountSshKeyInvokeArgs(), options.WithDefaults());
     }
 
 

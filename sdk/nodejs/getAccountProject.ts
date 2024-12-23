@@ -101,7 +101,7 @@ export interface GetAccountProjectResult {
  * });
  * ```
  */
-export function getAccountProjectOutput(args?: GetAccountProjectOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccountProjectResult> {
+export function getAccountProjectOutput(args?: GetAccountProjectOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAccountProjectResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getAccountProject:getAccountProject", {

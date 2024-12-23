@@ -91,6 +91,7 @@ export interface GetFunctionNamespaceResult {
      */
     readonly registryNamespaceId: string;
     readonly secretEnvironmentVariables: {[key: string]: string};
+    readonly tags: string[];
 }
 /**
  * The `scaleway.FunctionNamespace` data source is used to retrieve information about a Serverless Functions namespace.
@@ -113,7 +114,7 @@ export interface GetFunctionNamespaceResult {
  * });
  * ```
  */
-export function getFunctionNamespaceOutput(args?: GetFunctionNamespaceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFunctionNamespaceResult> {
+export function getFunctionNamespaceOutput(args?: GetFunctionNamespaceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFunctionNamespaceResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getFunctionNamespace:getFunctionNamespace", {

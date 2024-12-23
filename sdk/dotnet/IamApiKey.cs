@@ -67,11 +67,11 @@ namespace ediri.Scaleway
     /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = ediri.Scaleway;
-    /// using Time = Pulumiverse.Time;
+    /// using Time = Pulumi.Time;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var rotateAfterAYear = new Time.Rotating("rotateAfterAYear", new()
+    ///     var rotateAfterAYear = new Time.Index.Time_rotating("rotateAfterAYear", new()
     ///     {
     ///         RotationYears = 1,
     ///     });

@@ -14,7 +14,7 @@ import (
 // The `FunctionNamespace` resource allows you to
 // for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
 //
-// Refer to the Functions namespace [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-a-functions-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-namespaces-list-all-your-namespaces) for more information.
+// Refer to the Functions namespace [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-manage-delete-functions-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-namespaces-list-all-your-namespaces) for more information.
 //
 // ## Example Usage
 //
@@ -74,6 +74,8 @@ type FunctionNamespace struct {
 	RegistryNamespaceId pulumi.StringOutput `pulumi:"registryNamespaceId"`
 	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables pulumi.StringMapOutput `pulumi:"secretEnvironmentVariables"`
+	// List of tags ["tag1", "tag2", ...] attached to the function namespace
+	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 }
 
 // NewFunctionNamespace registers a new resource with the given unique name, arguments, and options.
@@ -133,6 +135,8 @@ type functionNamespaceState struct {
 	RegistryNamespaceId *string `pulumi:"registryNamespaceId"`
 	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
+	// List of tags ["tag1", "tag2", ...] attached to the function namespace
+	Tags []string `pulumi:"tags"`
 }
 
 type FunctionNamespaceState struct {
@@ -156,6 +160,8 @@ type FunctionNamespaceState struct {
 	RegistryNamespaceId pulumi.StringPtrInput
 	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables pulumi.StringMapInput
+	// List of tags ["tag1", "tag2", ...] attached to the function namespace
+	Tags pulumi.StringArrayInput
 }
 
 func (FunctionNamespaceState) ElementType() reflect.Type {
@@ -177,6 +183,8 @@ type functionNamespaceArgs struct {
 	Region *string `pulumi:"region"`
 	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables map[string]string `pulumi:"secretEnvironmentVariables"`
+	// List of tags ["tag1", "tag2", ...] attached to the function namespace
+	Tags []string `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a FunctionNamespace resource.
@@ -195,6 +203,8 @@ type FunctionNamespaceArgs struct {
 	Region pulumi.StringPtrInput
 	// The secret environment variables of the namespace.
 	SecretEnvironmentVariables pulumi.StringMapInput
+	// List of tags ["tag1", "tag2", ...] attached to the function namespace
+	Tags pulumi.StringArrayInput
 }
 
 func (FunctionNamespaceArgs) ElementType() reflect.Type {
@@ -329,6 +339,11 @@ func (o FunctionNamespaceOutput) RegistryNamespaceId() pulumi.StringOutput {
 // The secret environment variables of the namespace.
 func (o FunctionNamespaceOutput) SecretEnvironmentVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *FunctionNamespace) pulumi.StringMapOutput { return v.SecretEnvironmentVariables }).(pulumi.StringMapOutput)
+}
+
+// List of tags ["tag1", "tag2", ...] attached to the function namespace
+func (o FunctionNamespaceOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FunctionNamespace) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 type FunctionNamespaceArrayOutput struct{ *pulumi.OutputState }

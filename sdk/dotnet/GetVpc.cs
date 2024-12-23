@@ -79,6 +79,40 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetVpcResult> Invoke(GetVpcInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcResult>("scaleway:index/getVpc:getVpc", args ?? new GetVpcInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a Scaleway Virtual Private Cloud.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var byName = Scaleway.GetVpc.Invoke(new()
+        ///     {
+        ///         Name = "foobar",
+        ///     });
+        /// 
+        ///     var byId = Scaleway.GetVpc.Invoke(new()
+        ///     {
+        ///         VpcId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        ///     var @default = Scaleway.GetVpc.Invoke(new()
+        ///     {
+        ///         IsDefault = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetVpcResult> Invoke(GetVpcInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetVpcResult>("scaleway:index/getVpc:getVpc", args ?? new GetVpcInvokeArgs(), options.WithDefaults());
     }
 
 

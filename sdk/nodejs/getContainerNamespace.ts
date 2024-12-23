@@ -95,6 +95,7 @@ export interface GetContainerNamespaceResult {
      */
     readonly registryNamespaceId: string;
     readonly secretEnvironmentVariables: {[key: string]: string};
+    readonly tags: string[];
 }
 /**
  * The `scaleway.ContainerNamespace` data source is used to retrieve information about a Serverless Containers namespace.
@@ -120,7 +121,7 @@ export interface GetContainerNamespaceResult {
  * });
  * ```
  */
-export function getContainerNamespaceOutput(args?: GetContainerNamespaceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetContainerNamespaceResult> {
+export function getContainerNamespaceOutput(args?: GetContainerNamespaceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetContainerNamespaceResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getContainerNamespace:getContainerNamespace", {

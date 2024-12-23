@@ -92,7 +92,7 @@ export interface GetWebhostingOfferResult {
  * });
  * ```
  */
-export function getWebhostingOfferOutput(args?: GetWebhostingOfferOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetWebhostingOfferResult> {
+export function getWebhostingOfferOutput(args?: GetWebhostingOfferOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetWebhostingOfferResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getWebhostingOffer:getWebhostingOffer", {

@@ -71,7 +71,7 @@ export interface GetRdbAclResult {
  * });
  * ```
  */
-export function getRdbAclOutput(args: GetRdbAclOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRdbAclResult> {
+export function getRdbAclOutput(args: GetRdbAclOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRdbAclResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getRdbAcl:getRdbAcl", {
         "instanceId": args.instanceId,

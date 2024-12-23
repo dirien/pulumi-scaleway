@@ -27,6 +27,14 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetMongodbInstanceResult> Invoke(GetMongodbInstanceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetMongodbInstanceResult>("scaleway:index/getMongodbInstance:getMongodbInstance", args ?? new GetMongodbInstanceInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a MongoDB® Instance.
+        /// 
+        /// For further information refer to the Managed Databases for MongoDB® [API documentation](https://developers.scaleway.com/en/products/mongodb/api/)
+        /// </summary>
+        public static Output<GetMongodbInstanceResult> Invoke(GetMongodbInstanceInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetMongodbInstanceResult>("scaleway:index/getMongodbInstance:getMongodbInstance", args ?? new GetMongodbInstanceInvokeArgs(), options.WithDefaults());
     }
 
 

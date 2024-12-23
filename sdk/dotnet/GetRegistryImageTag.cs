@@ -61,6 +61,31 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetRegistryImageTagResult> Invoke(GetRegistryImageTagInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRegistryImageTagResult>("scaleway:index/getRegistryImageTag:getRegistryImageTag", args ?? new GetRegistryImageTagInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about a specific tag of a Container Registry image.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myImageTag = Scaleway.GetRegistryImageTag.Invoke(new()
+        ///     {
+        ///         ImageId = "22222222-2222-2222-2222-222222222222",
+        ///         Name = "my-tag-name",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetRegistryImageTagResult> Invoke(GetRegistryImageTagInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetRegistryImageTagResult>("scaleway:index/getRegistryImageTag:getRegistryImageTag", args ?? new GetRegistryImageTagInvokeArgs(), options.WithDefaults());
     }
 
 

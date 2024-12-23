@@ -34,7 +34,7 @@ export interface GetBillingConsumptionsResult {
     readonly projectId: string;
     readonly updatedAt: string;
 }
-export function getBillingConsumptionsOutput(args?: GetBillingConsumptionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBillingConsumptionsResult> {
+export function getBillingConsumptionsOutput(args?: GetBillingConsumptionsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBillingConsumptionsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getBillingConsumptions:getBillingConsumptions", {

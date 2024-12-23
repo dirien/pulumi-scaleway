@@ -341,12 +341,12 @@ class IamApiKey(pulumi.CustomResource):
         ```python
         import pulumi
         import ediri_scaleway as scaleway
-        import pulumiverse_time as time
+        import pulumi_time as time
 
-        rotate_after_a_year = time.Rotating("rotateAfterAYear", rotation_years=1)
+        rotate_after_a_year = time.index.Time_rotating("rotateAfterAYear", rotation_years=1)
         main = scaleway.IamApiKey("main",
             application_id=scaleway_iam_application["main"]["id"],
-            expires_at=rotate_after_a_year.rotation_rfc3339)
+            expires_at=rotate_after_a_year["rotationRfc3339"])
         ```
 
         ## Import
@@ -409,12 +409,12 @@ class IamApiKey(pulumi.CustomResource):
         ```python
         import pulumi
         import ediri_scaleway as scaleway
-        import pulumiverse_time as time
+        import pulumi_time as time
 
-        rotate_after_a_year = time.Rotating("rotateAfterAYear", rotation_years=1)
+        rotate_after_a_year = time.index.Time_rotating("rotateAfterAYear", rotation_years=1)
         main = scaleway.IamApiKey("main",
             application_id=scaleway_iam_application["main"]["id"],
-            expires_at=rotate_after_a_year.rotation_rfc3339)
+            expires_at=rotate_after_a_year["rotationRfc3339"])
         ```
 
         ## Import

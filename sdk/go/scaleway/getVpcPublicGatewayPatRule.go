@@ -155,21 +155,11 @@ type LookupVpcPublicGatewayPatRuleResult struct {
 }
 
 func LookupVpcPublicGatewayPatRuleOutput(ctx *pulumi.Context, args LookupVpcPublicGatewayPatRuleOutputArgs, opts ...pulumi.InvokeOption) LookupVpcPublicGatewayPatRuleResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupVpcPublicGatewayPatRuleResultOutput, error) {
 			args := v.(LookupVpcPublicGatewayPatRuleArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupVpcPublicGatewayPatRuleResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getVpcPublicGatewayPatRule:getVpcPublicGatewayPatRule", args, &rv, "", opts...)
-			if err != nil {
-				return LookupVpcPublicGatewayPatRuleResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupVpcPublicGatewayPatRuleResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupVpcPublicGatewayPatRuleResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getVpcPublicGatewayPatRule:getVpcPublicGatewayPatRule", args, LookupVpcPublicGatewayPatRuleResultOutput{}, options).(LookupVpcPublicGatewayPatRuleResultOutput), nil
 		}).(LookupVpcPublicGatewayPatRuleResultOutput)
 }
 

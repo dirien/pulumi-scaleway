@@ -80,21 +80,11 @@ type GetWebhostingOfferResult struct {
 }
 
 func GetWebhostingOfferOutput(ctx *pulumi.Context, args GetWebhostingOfferOutputArgs, opts ...pulumi.InvokeOption) GetWebhostingOfferResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetWebhostingOfferResultOutput, error) {
 			args := v.(GetWebhostingOfferArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetWebhostingOfferResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getWebhostingOffer:getWebhostingOffer", args, &rv, "", opts...)
-			if err != nil {
-				return GetWebhostingOfferResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetWebhostingOfferResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetWebhostingOfferResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getWebhostingOffer:getWebhostingOffer", args, GetWebhostingOfferResultOutput{}, options).(GetWebhostingOfferResultOutput), nil
 		}).(GetWebhostingOfferResultOutput)
 }
 

@@ -76,7 +76,7 @@ export interface GetMnqSnsResult {
  * });
  * ```
  */
-export function getMnqSnsOutput(args?: GetMnqSnsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMnqSnsResult> {
+export function getMnqSnsOutput(args?: GetMnqSnsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetMnqSnsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getMnqSns:getMnqSns", {

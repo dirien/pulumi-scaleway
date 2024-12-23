@@ -145,6 +145,73 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetFlexibleIpsResult> Invoke(GetFlexibleIpsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFlexibleIpsResult>("scaleway:index/getFlexibleIps:getFlexibleIps", args ?? new GetFlexibleIpsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about multiple Flexible IPs.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = ediri.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var fipsByTags = Scaleway.GetFlexibleIps.Invoke(new()
+        ///     {
+        ///         Tags = new[]
+        ///         {
+        ///             "a tag",
+        ///         },
+        ///     });
+        /// 
+        ///     var myOffer = Scaleway.GetBaremetalOffer.Invoke(new()
+        ///     {
+        ///         Name = "EM-B112X-SSD",
+        ///     });
+        /// 
+        ///     var @base = new Scaleway.BaremetalServer("base", new()
+        ///     {
+        ///         Offer = myOffer.Apply(getBaremetalOfferResult =&gt; getBaremetalOfferResult.OfferId),
+        ///         InstallConfigAfterward = true,
+        ///     });
+        /// 
+        ///     var first = new Scaleway.FlexibleIp("first", new()
+        ///     {
+        ///         ServerId = @base.Id,
+        ///         Tags = new[]
+        ///         {
+        ///             "foo",
+        ///             "first",
+        ///         },
+        ///     });
+        /// 
+        ///     var second = new Scaleway.FlexibleIp("second", new()
+        ///     {
+        ///         ServerId = @base.Id,
+        ///         Tags = new[]
+        ///         {
+        ///             "foo",
+        ///             "second",
+        ///         },
+        ///     });
+        /// 
+        ///     var fipsByServerId = Scaleway.GetFlexibleIps.Invoke(new()
+        ///     {
+        ///         ServerIds = new[]
+        ///         {
+        ///             @base.Id,
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetFlexibleIpsResult> Invoke(GetFlexibleIpsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetFlexibleIpsResult>("scaleway:index/getFlexibleIps:getFlexibleIps", args ?? new GetFlexibleIpsInvokeArgs(), options.WithDefaults());
     }
 
 

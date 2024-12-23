@@ -72,21 +72,11 @@ type LookupMongodbInstanceResult struct {
 }
 
 func LookupMongodbInstanceOutput(ctx *pulumi.Context, args LookupMongodbInstanceOutputArgs, opts ...pulumi.InvokeOption) LookupMongodbInstanceResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupMongodbInstanceResultOutput, error) {
 			args := v.(LookupMongodbInstanceArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupMongodbInstanceResult
-			secret, err := ctx.InvokePackageRaw("scaleway:index/getMongodbInstance:getMongodbInstance", args, &rv, "", opts...)
-			if err != nil {
-				return LookupMongodbInstanceResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupMongodbInstanceResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupMongodbInstanceResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("scaleway:index/getMongodbInstance:getMongodbInstance", args, LookupMongodbInstanceResultOutput{}, options).(LookupMongodbInstanceResultOutput), nil
 		}).(LookupMongodbInstanceResultOutput)
 }
 

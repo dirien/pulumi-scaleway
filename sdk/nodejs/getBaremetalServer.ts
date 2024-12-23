@@ -78,6 +78,7 @@ export interface GetBaremetalServerResult {
     readonly organizationId: string;
     readonly os: string;
     readonly osName: string;
+    readonly partitioning: string;
     readonly password: string;
     readonly privateNetworks: outputs.GetBaremetalServerPrivateNetwork[];
     readonly projectId?: string;
@@ -109,7 +110,7 @@ export interface GetBaremetalServerResult {
  * });
  * ```
  */
-export function getBaremetalServerOutput(args?: GetBaremetalServerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBaremetalServerResult> {
+export function getBaremetalServerOutput(args?: GetBaremetalServerOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBaremetalServerResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getBaremetalServer:getBaremetalServer", {

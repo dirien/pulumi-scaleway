@@ -153,7 +153,7 @@ def get_webhosting_offer(name: Optional[str] = None,
 def get_webhosting_offer_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                                 offer_id: Optional[pulumi.Input[Optional[str]]] = None,
                                 region: Optional[pulumi.Input[Optional[str]]] = None,
-                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetWebhostingOfferResult]:
+                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetWebhostingOfferResult]:
     """
     Gets information about a webhosting offer.
 
@@ -176,7 +176,7 @@ def get_webhosting_offer_output(name: Optional[pulumi.Input[Optional[str]]] = No
     __args__['name'] = name
     __args__['offerId'] = offer_id
     __args__['region'] = region
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getWebhostingOffer:getWebhostingOffer', __args__, opts=opts, typ=GetWebhostingOfferResult)
     return __ret__.apply(lambda __response__: GetWebhostingOfferResult(
         billing_operation_path=pulumi.get(__response__, 'billing_operation_path'),

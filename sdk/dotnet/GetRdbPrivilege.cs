@@ -63,6 +63,32 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetRdbPrivilegeResult> Invoke(GetRdbPrivilegeInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRdbPrivilegeResult>("scaleway:index/getRdbPrivilege:getRdbPrivilege", args ?? new GetRdbPrivilegeInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Gets information about the privileges in a database.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = Scaleway.GetRdbPrivilege.Invoke(new()
+        ///     {
+        ///         DatabaseName = "my-database",
+        ///         InstanceId = "11111111-1111-111111111111",
+        ///         UserName = "my-user",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetRdbPrivilegeResult> Invoke(GetRdbPrivilegeInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetRdbPrivilegeResult>("scaleway:index/getRdbPrivilege:getRdbPrivilege", args ?? new GetRdbPrivilegeInvokeArgs(), options.WithDefaults());
     }
 
 

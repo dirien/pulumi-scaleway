@@ -73,6 +73,37 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetBlockVolumeResult> Invoke(GetBlockVolumeInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBlockVolumeResult>("scaleway:index/getBlockVolume:getBlockVolume", args ?? new GetBlockVolumeInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The `scaleway.BlockVolume` data source is used to retrieve information about a Block Storage volume.
+        /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/storage/block/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+        /// 
+        /// ## Retrieve a Block Storage volume
+        /// 
+        /// The following commands allow you to:
+        /// 
+        /// - retrieve a Block Storage volume specified by its name
+        /// - retrieve a Block Storage volume specified by its ID
+        /// 
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myVolume = Scaleway.GetBlockVolume.Invoke(new()
+        ///     {
+        ///         VolumeId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetBlockVolumeResult> Invoke(GetBlockVolumeInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetBlockVolumeResult>("scaleway:index/getBlockVolume:getBlockVolume", args ?? new GetBlockVolumeInvokeArgs(), options.WithDefaults());
     }
 
 

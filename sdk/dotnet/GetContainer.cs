@@ -131,6 +131,66 @@ namespace ediri.Scaleway
         /// </summary>
         public static Output<GetContainerResult> Invoke(GetContainerInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetContainerResult>("scaleway:index/getContainer:getContainer", args ?? new GetContainerInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The `scaleway.Container` data source is used to retrieve information about a Serverless Container.
+        /// 
+        /// Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
+        /// 
+        /// For more information on the limitations of Serverless Containers, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/containers/reference-content/containers-limitations/).
+        /// 
+        /// ## Retrieve a Serverless Container
+        /// 
+        /// The following commands allow you to:
+        /// 
+        /// - retrieve a container by its name
+        /// - retrieve a container by its ID
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = ediri.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var mainContainerNamespace = new Scaleway.ContainerNamespace("mainContainerNamespace");
+        /// 
+        ///     var mainContainer = new Scaleway.Container("mainContainer", new()
+        ///     {
+        ///         NamespaceId = mainContainerNamespace.Id,
+        ///     });
+        /// 
+        ///     var byName = Scaleway.GetContainer.Invoke(new()
+        ///     {
+        ///         NamespaceId = mainContainerNamespace.Id,
+        ///         Name = mainContainer.Name,
+        ///     });
+        /// 
+        ///     var byId = Scaleway.GetContainer.Invoke(new()
+        ///     {
+        ///         NamespaceId = mainContainerNamespace.Id,
+        ///         ContainerId = mainContainer.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Arguments reference
+        /// 
+        /// This section lists the arguments that you can provide to the `scaleway.Container` data source to filter and retrieve the desired namespace. Each argument has a specific purpose:
+        /// 
+        /// - `name` - (Required) The unique name of the container.
+        /// 
+        /// - `namespace_id` - (Required) The container namespace ID of the container.
+        /// 
+        /// - `project_id` - (Optional) The unique identifier of the project with which the container is associated.
+        /// 
+        /// &gt; **Important** Updating the `name` argument will recreate the container.
+        /// </summary>
+        public static Output<GetContainerResult> Invoke(GetContainerInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetContainerResult>("scaleway:index/getContainer:getContainer", args ?? new GetContainerInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -17,6 +17,9 @@ namespace ediri.Scaleway
 
         public static Output<GetBlockSnapshotResult> Invoke(GetBlockSnapshotInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBlockSnapshotResult>("scaleway:index/getBlockSnapshot:getBlockSnapshot", args ?? new GetBlockSnapshotInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetBlockSnapshotResult> Invoke(GetBlockSnapshotInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetBlockSnapshotResult>("scaleway:index/getBlockSnapshot:getBlockSnapshot", args ?? new GetBlockSnapshotInvokeArgs(), options.WithDefaults());
     }
 
 

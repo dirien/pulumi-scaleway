@@ -107,7 +107,7 @@ export interface GetMongodbInstanceResult {
  *
  * For further information refer to the Managed Databases for MongoDB® [API documentation](https://developers.scaleway.com/en/products/mongodb/api/)
  */
-export function getMongodbInstanceOutput(args?: GetMongodbInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMongodbInstanceResult> {
+export function getMongodbInstanceOutput(args?: GetMongodbInstanceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetMongodbInstanceResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getMongodbInstance:getMongodbInstance", {
