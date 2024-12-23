@@ -19,6 +19,25 @@ import * as utilities from "./utilities";
  * const mainIotDevice = new scaleway.IotDevice("mainIotDevice", {hubId: mainIotHub.id});
  * ```
  *
+ * ### With custom certificate
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as local from "@pulumi/local";
+ * import * as scaleway from "@ediri/scaleway";
+ *
+ * const mainIotHub = new scaleway.IotHub("mainIotHub", {productPlan: "plan_shared"});
+ * const deviceCert = local.getFile({
+ *     filename: "device-certificate.pem",
+ * });
+ * const mainIotDevice = new scaleway.IotDevice("mainIotDevice", {
+ *     hubId: mainIotHub.id,
+ *     certificate: {
+ *         crt: deviceCert.then(deviceCert => deviceCert.content),
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * IoT devices can be imported using the `{region}/{id}`, e.g.

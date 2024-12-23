@@ -40,9 +40,9 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@ediri/scaleway";
- * import * as time from "@pulumi/time";
+ * import * as time from "@pulumiverse/time";
  *
- * const rotateAfterAYear = new time.index.Time_rotating("rotateAfterAYear", {rotationYears: 1});
+ * const rotateAfterAYear = new time.Rotating("rotateAfterAYear", {rotationYears: 1});
  * const main = new scaleway.IamApiKey("main", {
  *     applicationId: scaleway_iam_application.main.id,
  *     expiresAt: rotateAfterAYear.rotationRfc3339,

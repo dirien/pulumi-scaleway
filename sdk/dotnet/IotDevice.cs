@@ -36,6 +36,39 @@ namespace ediri.Scaleway
     /// });
     /// ```
     /// 
+    /// ### With custom certificate
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Local = Pulumi.Local;
+    /// using Scaleway = ediri.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var mainIotHub = new Scaleway.IotHub("mainIotHub", new()
+    ///     {
+    ///         ProductPlan = "plan_shared",
+    ///     });
+    /// 
+    ///     var deviceCert = Local.GetFile.Invoke(new()
+    ///     {
+    ///         Filename = "device-certificate.pem",
+    ///     });
+    /// 
+    ///     var mainIotDevice = new Scaleway.IotDevice("mainIotDevice", new()
+    ///     {
+    ///         HubId = mainIotHub.Id,
+    ///         Certificate = new Scaleway.Inputs.IotDeviceCertificateArgs
+    ///         {
+    ///             Crt = deviceCert.Apply(getFileResult =&gt; getFileResult.Content),
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// IoT devices can be imported using the `{region}/{id}`, e.g.
