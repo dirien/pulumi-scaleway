@@ -119,6 +119,41 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Example with AWS provider
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as scaleway from "@ediri/scaleway";
+ * import * as scaleway from "@pulumi/scaleway";
+ *
+ * const default = scaleway.getAccountProject({
+ *     name: "default",
+ * });
+ * // Object storage configuration
+ * const bucket = new scaleway.ObjectBucket("bucket", {});
+ * const policy = aws.iam.getPolicyDocumentOutput({
+ *     version: "2012-10-17",
+ *     statements: [{
+ *         sid: "Delegate access",
+ *         effect: "Allow",
+ *         principals: [{
+ *             type: "SCW",
+ *             identifiers: [_default.then(_default => `project_id:${_default.id}`)],
+ *         }],
+ *         actions: ["s3:ListBucket"],
+ *         resources: [
+ *             bucket.name,
+ *             pulumi.interpolate`${bucket.name}/*`,
+ *         ],
+ *     }],
+ * });
+ * const main = new scaleway.ObjectBucketPolicy("main", {
+ *     bucket: bucket.id,
+ *     policy: policy.apply(policy => policy.json),
+ * });
+ * ```
+ *
  * ### Example with deprecated version 2012-10-17
  *
  * ```typescript

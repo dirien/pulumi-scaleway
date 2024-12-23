@@ -87,15 +87,15 @@ import (
 // import (
 //
 //	"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway"
-//	"github.com/pulumi/pulumi-time/sdk/go/time"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-time/sdk/go/time"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			rotateAfterAYear, err := time.NewTime_rotating(ctx, "rotateAfterAYear", &time.Time_rotatingArgs{
-//				RotationYears: 1,
+//			rotateAfterAYear, err := time.NewRotating(ctx, "rotateAfterAYear", &time.RotatingArgs{
+//				RotationYears: pulumi.Int(1),
 //			})
 //			if err != nil {
 //				return err

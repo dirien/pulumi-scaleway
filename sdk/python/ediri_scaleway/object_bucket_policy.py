@@ -270,6 +270,36 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         bucket = scaleway.get_object_bucket(name="some-unique-name")
         ```
 
+        ### Example with AWS provider
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+        import pulumi_aws as aws
+        import pulumi_scaleway as scaleway
+
+        default = scaleway.get_account_project(name="default")
+        # Object storage configuration
+        bucket = scaleway.ObjectBucket("bucket")
+        policy = aws.iam.get_policy_document_output(version="2012-10-17",
+            statements=[{
+                "sid": "Delegate access",
+                "effect": "Allow",
+                "principals": [{
+                    "type": "SCW",
+                    "identifiers": [f"project_id:{default.id}"],
+                }],
+                "actions": ["s3:ListBucket"],
+                "resources": [
+                    bucket.name,
+                    bucket.name.apply(lambda name: f"{name}/*"),
+                ],
+            }])
+        main = scaleway.ObjectBucketPolicy("main",
+            bucket=bucket.id,
+            policy=policy.json)
+        ```
+
         ### Example with deprecated version 2012-10-17
 
         ```python
@@ -437,6 +467,36 @@ class ObjectBucketPolicy(pulumi.CustomResource):
             access_key=reading_api_key.access_key,
             secret_key=reading_api_key.secret_key)
         bucket = scaleway.get_object_bucket(name="some-unique-name")
+        ```
+
+        ### Example with AWS provider
+
+        ```python
+        import pulumi
+        import ediri_scaleway as scaleway
+        import pulumi_aws as aws
+        import pulumi_scaleway as scaleway
+
+        default = scaleway.get_account_project(name="default")
+        # Object storage configuration
+        bucket = scaleway.ObjectBucket("bucket")
+        policy = aws.iam.get_policy_document_output(version="2012-10-17",
+            statements=[{
+                "sid": "Delegate access",
+                "effect": "Allow",
+                "principals": [{
+                    "type": "SCW",
+                    "identifiers": [f"project_id:{default.id}"],
+                }],
+                "actions": ["s3:ListBucket"],
+                "resources": [
+                    bucket.name,
+                    bucket.name.apply(lambda name: f"{name}/*"),
+                ],
+            }])
+        main = scaleway.ObjectBucketPolicy("main",
+            bucket=bucket.id,
+            policy=policy.json)
         ```
 
         ### Example with deprecated version 2012-10-17
