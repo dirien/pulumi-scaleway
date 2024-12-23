@@ -282,7 +282,7 @@ def get_mongodb_instance_output(instance_id: Optional[pulumi.Input[Optional[str]
                                 name: Optional[pulumi.Input[Optional[str]]] = None,
                                 project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                 region: Optional[pulumi.Input[Optional[str]]] = None,
-                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetMongodbInstanceResult]:
+                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMongodbInstanceResult]:
     """
     Gets information about a MongoDB® Instance.
 
@@ -301,7 +301,7 @@ def get_mongodb_instance_output(instance_id: Optional[pulumi.Input[Optional[str]
     __args__['name'] = name
     __args__['projectId'] = project_id
     __args__['region'] = region
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getMongodbInstance:getMongodbInstance', __args__, opts=opts, typ=GetMongodbInstanceResult)
     return __ret__.apply(lambda __response__: GetMongodbInstanceResult(
         created_at=pulumi.get(__response__, 'created_at'),

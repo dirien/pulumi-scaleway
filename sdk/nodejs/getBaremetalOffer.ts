@@ -112,7 +112,7 @@ export interface GetBaremetalOfferResult {
  * });
  * ```
  */
-export function getBaremetalOfferOutput(args?: GetBaremetalOfferOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBaremetalOfferResult> {
+export function getBaremetalOfferOutput(args?: GetBaremetalOfferOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBaremetalOfferResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getBaremetalOffer:getBaremetalOffer", {

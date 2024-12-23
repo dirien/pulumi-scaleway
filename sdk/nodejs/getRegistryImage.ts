@@ -113,7 +113,7 @@ export interface GetRegistryImageResult {
  * });
  * ```
  */
-export function getRegistryImageOutput(args?: GetRegistryImageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRegistryImageResult> {
+export function getRegistryImageOutput(args?: GetRegistryImageOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRegistryImageResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getRegistryImage:getRegistryImage", {

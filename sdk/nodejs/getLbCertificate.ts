@@ -74,7 +74,7 @@ export interface GetLbCertificateResult {
  *
  * ## Examples
  */
-export function getLbCertificateOutput(args?: GetLbCertificateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbCertificateResult> {
+export function getLbCertificateOutput(args?: GetLbCertificateOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLbCertificateResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLbCertificate:getLbCertificate", {

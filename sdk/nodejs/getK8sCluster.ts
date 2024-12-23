@@ -154,7 +154,7 @@ export interface GetK8sClusterResult {
  * });
  * ```
  */
-export function getK8sClusterOutput(args?: GetK8sClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetK8sClusterResult> {
+export function getK8sClusterOutput(args?: GetK8sClusterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetK8sClusterResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getK8sCluster:getK8sCluster", {

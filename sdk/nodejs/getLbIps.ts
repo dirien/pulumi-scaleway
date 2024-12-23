@@ -114,7 +114,7 @@ export interface GetLbIpsResult {
  * });
  * ```
  */
-export function getLbIpsOutput(args?: GetLbIpsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbIpsResult> {
+export function getLbIpsOutput(args?: GetLbIpsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLbIpsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLbIps:getLbIps", {

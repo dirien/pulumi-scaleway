@@ -90,7 +90,7 @@ export interface GetInstanceIpResult {
  * });
  * ```
  */
-export function getInstanceIpOutput(args?: GetInstanceIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceIpResult> {
+export function getInstanceIpOutput(args?: GetInstanceIpOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetInstanceIpResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getInstanceIp:getInstanceIp", {

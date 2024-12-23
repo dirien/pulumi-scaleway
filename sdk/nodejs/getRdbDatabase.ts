@@ -82,7 +82,7 @@ export interface GetRdbDatabaseResult {
  * });
  * ```
  */
-export function getRdbDatabaseOutput(args: GetRdbDatabaseOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRdbDatabaseResult> {
+export function getRdbDatabaseOutput(args: GetRdbDatabaseOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRdbDatabaseResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getRdbDatabase:getRdbDatabase", {
         "instanceId": args.instanceId,

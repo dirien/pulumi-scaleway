@@ -142,7 +142,7 @@ export interface GetRedisClusterResult {
  * });
  * ```
  */
-export function getRedisClusterOutput(args?: GetRedisClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRedisClusterResult> {
+export function getRedisClusterOutput(args?: GetRedisClusterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRedisClusterResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getRedisCluster:getRedisCluster", {

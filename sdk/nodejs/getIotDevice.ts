@@ -92,7 +92,7 @@ export interface GetIotDeviceResult {
  * });
  * ```
  */
-export function getIotDeviceOutput(args?: GetIotDeviceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIotDeviceResult> {
+export function getIotDeviceOutput(args?: GetIotDeviceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIotDeviceResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getIotDevice:getIotDevice", {

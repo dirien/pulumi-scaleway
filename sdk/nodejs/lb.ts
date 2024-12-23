@@ -56,97 +56,6 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Multiple configurations
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@ediri/scaleway";
- *
- * //## IP for Public Gateway
- * const mainVpcPublicGatewayIp = new scaleway.VpcPublicGatewayIp("mainVpcPublicGatewayIp", {});
- * //## Scaleway Private Network
- * const mainVpcPrivateNetwork = new scaleway.VpcPrivateNetwork("mainVpcPrivateNetwork", {});
- * //## VPC Public Gateway Network
- * const mainVpcPublicGateway = new scaleway.VpcPublicGateway("mainVpcPublicGateway", {
- *     type: "VPC-GW-S",
- *     ipId: mainVpcPublicGatewayIp.id,
- * });
- * //## VPC Public Gateway Network DHCP config
- * const mainVpcPublicGatewayDhcp = new scaleway.VpcPublicGatewayDhcp("mainVpcPublicGatewayDhcp", {subnet: "10.0.0.0/24"});
- * //## VPC Gateway Network
- * const mainVpcGatewayNetwork = new scaleway.VpcGatewayNetwork("mainVpcGatewayNetwork", {
- *     gatewayId: mainVpcPublicGateway.id,
- *     privateNetworkId: mainVpcPrivateNetwork.id,
- *     dhcpId: mainVpcPublicGatewayDhcp.id,
- *     cleanupDhcp: true,
- *     enableMasquerade: true,
- * });
- * //## Scaleway Instance
- * const mainInstanceServer = new scaleway.InstanceServer("mainInstanceServer", {
- *     type: "DEV1-S",
- *     image: "debian_bullseye",
- *     enableIpv6: false,
- *     privateNetworks: [{
- *         pnId: mainVpcPrivateNetwork.id,
- *     }],
- * });
- * //## IP for LB IP
- * const mainLbIp = new scaleway.LbIp("mainLbIp", {});
- * //## Scaleway Private Network
- * const mainIndex_vpcPrivateNetworkVpcPrivateNetwork = new scaleway.VpcPrivateNetwork("mainIndex/vpcPrivateNetworkVpcPrivateNetwork", {});
- * //## Scaleway Load Balancer
- * const mainLb = new scaleway.Lb("mainLb", {
- *     ipId: mainLbIp.id,
- *     type: "LB-S",
- *     privateNetworks: [{
- *         privateNetworkId: mainVpcPrivateNetwork.id,
- *         dhcpConfig: true,
- *     }],
- * }, {
- *     dependsOn: [mainVpcPublicGateway],
- * });
- * ```
- *
- * ## Migration
- *
- * In order to migrate to other Load Balancer types, you can check upwards or downwards migration via our CLI `scw lb lb-types list`.
- * This change will not recreate your Load Balancer.
- *
- * Please check our [documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-migrate-a-load-balancer) for further details
- *
- * ## IP ID
- *
- * Since v1.15.0, `ipId` is a required field. This means that now a separate `scaleway.LbIp` is required.
- * When importing, the IP needs to be imported as well as the Load Balancer.
- * When upgrading to v1.15.0, you will need to create a new `scaleway.LbIp` resource and import it.
- *
- * For instance, if you had the following:
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@ediri/scaleway";
- *
- * const main = new scaleway.Lb("main", {
- *     type: "LB-S",
- *     zone: "fr-par-1",
- * });
- * ```
- *
- * You will need to update it to:
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@ediri/scaleway";
- *
- * const mainLbIp = new scaleway.LbIp("mainLbIp", {});
- * const mainLb = new scaleway.Lb("mainLb", {
- *     ipId: mainLbIp.id,
- *     zone: "fr-par-1",
- *     type: "LB-S",
- *     releaseIp: false,
- * });
- * ```
- *
  * ## Import
  *
  * Load Balancers can be imported using `{zone}/{id}`, e.g.
@@ -204,7 +113,7 @@ export class Lb extends pulumi.CustomResource {
      */
     public /*out*/ readonly ipAddress!: pulumi.Output<string>;
     /**
-     * The ID of the associated Load Balancer IP. See below.
+     * Please use `ipIds`. The ID of the associated Load Balancer IP. See below.
      *
      * > **Important:** Updates to `ipId` will recreate the Load Balancer.
      *
@@ -213,6 +122,8 @@ export class Lb extends pulumi.CustomResource {
     public readonly ipId!: pulumi.Output<string>;
     /**
      * The List of IP IDs to attach to the Load Balancer.
+     *
+     * > **Important:** Make sure to use a `scaleway.LbIp` resource to create the IPs.
      */
     public readonly ipIds!: pulumi.Output<string[]>;
     /**
@@ -228,7 +139,7 @@ export class Lb extends pulumi.CustomResource {
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * List of private network to connect with your load balancer
+     * List of private network to connect with your load balancer.
      */
     public readonly privateNetworks!: pulumi.Output<outputs.LbPrivateNetwork[] | undefined>;
     /**
@@ -341,7 +252,7 @@ export interface LbState {
      */
     ipAddress?: pulumi.Input<string>;
     /**
-     * The ID of the associated Load Balancer IP. See below.
+     * Please use `ipIds`. The ID of the associated Load Balancer IP. See below.
      *
      * > **Important:** Updates to `ipId` will recreate the Load Balancer.
      *
@@ -350,6 +261,8 @@ export interface LbState {
     ipId?: pulumi.Input<string>;
     /**
      * The List of IP IDs to attach to the Load Balancer.
+     *
+     * > **Important:** Make sure to use a `scaleway.LbIp` resource to create the IPs.
      */
     ipIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -365,7 +278,7 @@ export interface LbState {
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * List of private network to connect with your load balancer
+     * List of private network to connect with your load balancer.
      */
     privateNetworks?: pulumi.Input<pulumi.Input<inputs.LbPrivateNetwork>[]>;
     /**
@@ -417,7 +330,7 @@ export interface LbArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The ID of the associated Load Balancer IP. See below.
+     * Please use `ipIds`. The ID of the associated Load Balancer IP. See below.
      *
      * > **Important:** Updates to `ipId` will recreate the Load Balancer.
      *
@@ -426,6 +339,8 @@ export interface LbArgs {
     ipId?: pulumi.Input<string>;
     /**
      * The List of IP IDs to attach to the Load Balancer.
+     *
+     * > **Important:** Make sure to use a `scaleway.LbIp` resource to create the IPs.
      */
     ipIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -433,7 +348,7 @@ export interface LbArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * List of private network to connect with your load balancer
+     * List of private network to connect with your load balancer.
      */
     privateNetworks?: pulumi.Input<pulumi.Input<inputs.LbPrivateNetwork>[]>;
     /**

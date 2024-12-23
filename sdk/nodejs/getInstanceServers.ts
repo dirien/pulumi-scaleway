@@ -106,7 +106,7 @@ export interface GetInstanceServersResult {
  * });
  * ```
  */
-export function getInstanceServersOutput(args?: GetInstanceServersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceServersResult> {
+export function getInstanceServersOutput(args?: GetInstanceServersOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetInstanceServersResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getInstanceServers:getInstanceServers", {

@@ -115,7 +115,7 @@ export interface GetLbResult {
  * });
  * ```
  */
-export function getLbOutput(args?: GetLbOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbResult> {
+export function getLbOutput(args?: GetLbOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLbResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLb:getLb", {

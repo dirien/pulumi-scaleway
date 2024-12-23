@@ -89,7 +89,7 @@ export interface GetInstanceVolumeResult {
  * });
  * ```
  */
-export function getInstanceVolumeOutput(args?: GetInstanceVolumeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceVolumeResult> {
+export function getInstanceVolumeOutput(args?: GetInstanceVolumeOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetInstanceVolumeResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getInstanceVolume:getInstanceVolume", {

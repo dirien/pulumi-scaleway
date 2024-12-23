@@ -27,6 +27,7 @@ export function getLbIp(args?: GetLbIpArgs, opts?: pulumi.InvokeOptions): Promis
         "ipAddress": args.ipAddress,
         "ipId": args.ipId,
         "projectId": args.projectId,
+        "zone": args.zone,
     }, opts);
 }
 
@@ -48,6 +49,10 @@ export interface GetLbIpArgs {
      * The ID of the Project the Load Balancer IP is associated with.
      */
     projectId?: string;
+    /**
+     * `zone`) The zone in which the IP was reserved.
+     */
+    zone?: string;
 }
 
 /**
@@ -69,7 +74,7 @@ export interface GetLbIpResult {
      * (Defaults to provider `organizationId`) The ID of the Organization the Load Balancer IP is associated with.
      */
     readonly organizationId: string;
-    readonly projectId: string;
+    readonly projectId?: string;
     readonly region: string;
     /**
      * The reverse domain associated with this IP.
@@ -79,7 +84,7 @@ export interface GetLbIpResult {
      * The tags associated with this IP.
      */
     readonly tags: string[];
-    readonly zone: string;
+    readonly zone?: string;
 }
 /**
  * Gets information about a Load Balancer IP address.
@@ -97,13 +102,14 @@ export interface GetLbIpResult {
  * });
  * ```
  */
-export function getLbIpOutput(args?: GetLbIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLbIpResult> {
+export function getLbIpOutput(args?: GetLbIpOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLbIpResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLbIp:getLbIp", {
         "ipAddress": args.ipAddress,
         "ipId": args.ipId,
         "projectId": args.projectId,
+        "zone": args.zone,
     }, opts);
 }
 
@@ -125,4 +131,8 @@ export interface GetLbIpOutputArgs {
      * The ID of the Project the Load Balancer IP is associated with.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * `zone`) The zone in which the IP was reserved.
+     */
+    zone?: pulumi.Input<string>;
 }

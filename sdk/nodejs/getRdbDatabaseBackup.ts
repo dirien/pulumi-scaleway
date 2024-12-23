@@ -106,7 +106,7 @@ export interface GetRdbDatabaseBackupResult {
  * });
  * ```
  */
-export function getRdbDatabaseBackupOutput(args?: GetRdbDatabaseBackupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRdbDatabaseBackupResult> {
+export function getRdbDatabaseBackupOutput(args?: GetRdbDatabaseBackupOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRdbDatabaseBackupResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getRdbDatabaseBackup:getRdbDatabaseBackup", {

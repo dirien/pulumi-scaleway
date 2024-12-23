@@ -152,7 +152,7 @@ export interface GetK8sPoolResult {
  * });
  * ```
  */
-export function getK8sPoolOutput(args?: GetK8sPoolOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetK8sPoolResult> {
+export function getK8sPoolOutput(args?: GetK8sPoolOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetK8sPoolResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getK8sPool:getK8sPool", {

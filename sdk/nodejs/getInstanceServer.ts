@@ -169,7 +169,7 @@ export interface GetInstanceServerResult {
  * });
  * ```
  */
-export function getInstanceServerOutput(args?: GetInstanceServerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceServerResult> {
+export function getInstanceServerOutput(args?: GetInstanceServerOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetInstanceServerResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getInstanceServer:getInstanceServer", {

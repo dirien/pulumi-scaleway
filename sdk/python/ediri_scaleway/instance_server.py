@@ -88,7 +88,7 @@ class InstanceServerArgs:
         :param pulumi.Input[bool] routed_ip_enabled: If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
                
                > **Important:** Enabling routed ip will restart the server
-        :param pulumi.Input[str] security_group_id: The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+        :param pulumi.Input[str] security_group_id: The security group the server is attached to
         :param pulumi.Input[str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] user_data: The user data associated with the server.
@@ -401,7 +401,7 @@ class InstanceServerArgs:
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+        The security group the server is attached to
         """
         return pulumi.get(self, "security_group_id")
 
@@ -544,7 +544,7 @@ class _InstanceServerState:
         :param pulumi.Input[bool] routed_ip_enabled: If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
                
                > **Important:** Enabling routed ip will restart the server
-        :param pulumi.Input[str] security_group_id: The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+        :param pulumi.Input[str] security_group_id: The security group the server is attached to
         :param pulumi.Input[str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
         :param pulumi.Input[str] type: The commercial type of the server.
@@ -964,7 +964,7 @@ class _InstanceServerState:
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+        The security group the server is attached to
         """
         return pulumi.get(self, "security_group_id")
 
@@ -1255,10 +1255,8 @@ class InstanceServer(pulumi.CustomResource):
         - `status` The private NIC state.
         - `zone` - (Defaults to provider `zone`) The zone in which the server must be created.
 
-        > **Important:**
-
-        - You can only attach an instance in the same zone as a private network.
-        - Instance supports maximum 8 different private networks.
+        > **Important:** You can only attach an instance in the same zone as a private network.
+        **Important:** Instance supports a maximum of 8 different private networks.
 
         ## Import
 
@@ -1308,7 +1306,7 @@ class InstanceServer(pulumi.CustomResource):
         :param pulumi.Input[bool] routed_ip_enabled: If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
                
                > **Important:** Enabling routed ip will restart the server
-        :param pulumi.Input[str] security_group_id: The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+        :param pulumi.Input[str] security_group_id: The security group the server is attached to
         :param pulumi.Input[str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
         :param pulumi.Input[str] type: The commercial type of the server.
@@ -1514,10 +1512,8 @@ class InstanceServer(pulumi.CustomResource):
         - `status` The private NIC state.
         - `zone` - (Defaults to provider `zone`) The zone in which the server must be created.
 
-        > **Important:**
-
-        - You can only attach an instance in the same zone as a private network.
-        - Instance supports maximum 8 different private networks.
+        > **Important:** You can only attach an instance in the same zone as a private network.
+        **Important:** Instance supports a maximum of 8 different private networks.
 
         ## Import
 
@@ -1701,7 +1697,7 @@ class InstanceServer(pulumi.CustomResource):
         :param pulumi.Input[bool] routed_ip_enabled: If true, the server will support routed ips only. Changing it to true will migrate the server and its IP to routed type.
                
                > **Important:** Enabling routed ip will restart the server
-        :param pulumi.Input[str] security_group_id: The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+        :param pulumi.Input[str] security_group_id: The security group the server is attached to
         :param pulumi.Input[str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the server.
         :param pulumi.Input[str] type: The commercial type of the server.
@@ -1979,7 +1975,7 @@ class InstanceServer(pulumi.CustomResource):
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> pulumi.Output[str]:
         """
-        The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
+        The security group the server is attached to
         """
         return pulumi.get(self, "security_group_id")
 
