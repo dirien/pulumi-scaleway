@@ -64,6 +64,8 @@ import (
 type CockpitGrafanaUser struct {
 	pulumi.CustomResourceState
 
+	// URL for Grafana.
+	GrafanaUrl pulumi.StringOutput `pulumi:"grafanaUrl"`
 	// The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
 	Login pulumi.StringOutput `pulumi:"login"`
 	// The password of the Grafana user.
@@ -114,6 +116,8 @@ func GetCockpitGrafanaUser(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CockpitGrafanaUser resources.
 type cockpitGrafanaUserState struct {
+	// URL for Grafana.
+	GrafanaUrl *string `pulumi:"grafanaUrl"`
 	// The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
 	Login *string `pulumi:"login"`
 	// The password of the Grafana user.
@@ -125,6 +129,8 @@ type cockpitGrafanaUserState struct {
 }
 
 type CockpitGrafanaUserState struct {
+	// URL for Grafana.
+	GrafanaUrl pulumi.StringPtrInput
 	// The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
 	Login pulumi.StringPtrInput
 	// The password of the Grafana user.
@@ -243,6 +249,11 @@ func (o CockpitGrafanaUserOutput) ToCockpitGrafanaUserOutput() CockpitGrafanaUse
 
 func (o CockpitGrafanaUserOutput) ToCockpitGrafanaUserOutputWithContext(ctx context.Context) CockpitGrafanaUserOutput {
 	return o
+}
+
+// URL for Grafana.
+func (o CockpitGrafanaUserOutput) GrafanaUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *CockpitGrafanaUser) pulumi.StringOutput { return v.GrafanaUrl }).(pulumi.StringOutput)
 }
 
 // The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.

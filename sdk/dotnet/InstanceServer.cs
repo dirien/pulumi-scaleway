@@ -436,7 +436,7 @@ namespace ediri.Scaleway
         public Output<bool> PlacementGroupPolicyRespected { get; private set; } = null!;
 
         /// <summary>
-        /// The Scaleway internal IP address of the server.
+        /// The Scaleway internal IP address of the server (Deprecated use ipam_ip datasource instead).
         /// </summary>
         [Output("privateIp")]
         public Output<string> PrivateIp { get; private set; } = null!;
@@ -918,7 +918,7 @@ namespace ediri.Scaleway
         public Input<bool>? PlacementGroupPolicyRespected { get; set; }
 
         /// <summary>
-        /// The Scaleway internal IP address of the server.
+        /// The Scaleway internal IP address of the server (Deprecated use ipam_ip datasource instead).
         /// </summary>
         [Input("privateIp")]
         public Input<string>? PrivateIp { get; set; }

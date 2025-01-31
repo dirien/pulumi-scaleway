@@ -245,7 +245,7 @@ type VpcGatewayNetwork struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The ID of the Public Gateway DHCP configuration. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	DhcpId pulumi.StringPtrOutput `pulumi:"dhcpId"`
-	// WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+	// Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
 	EnableDhcp pulumi.BoolPtrOutput `pulumi:"enableDhcp"`
 	// Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
 	EnableMasquerade pulumi.BoolPtrOutput `pulumi:"enableMasquerade"`
@@ -309,7 +309,7 @@ type vpcGatewayNetworkState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// The ID of the Public Gateway DHCP configuration. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	DhcpId *string `pulumi:"dhcpId"`
-	// WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+	// Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
 	EnableDhcp *bool `pulumi:"enableDhcp"`
 	// Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
 	EnableMasquerade *bool `pulumi:"enableMasquerade"`
@@ -338,7 +338,7 @@ type VpcGatewayNetworkState struct {
 	CreatedAt pulumi.StringPtrInput
 	// The ID of the Public Gateway DHCP configuration. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	DhcpId pulumi.StringPtrInput
-	// WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+	// Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
 	EnableDhcp pulumi.BoolPtrInput
 	// Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
 	EnableMasquerade pulumi.BoolPtrInput
@@ -369,7 +369,7 @@ type vpcGatewayNetworkArgs struct {
 	CleanupDhcp *bool `pulumi:"cleanupDhcp"`
 	// The ID of the Public Gateway DHCP configuration. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	DhcpId *string `pulumi:"dhcpId"`
-	// WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+	// Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
 	EnableDhcp *bool `pulumi:"enableDhcp"`
 	// Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
 	EnableMasquerade *bool `pulumi:"enableMasquerade"`
@@ -391,7 +391,7 @@ type VpcGatewayNetworkArgs struct {
 	CleanupDhcp pulumi.BoolPtrInput
 	// The ID of the Public Gateway DHCP configuration. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	DhcpId pulumi.StringPtrInput
-	// WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+	// Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
 	EnableDhcp pulumi.BoolPtrInput
 	// Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
 	EnableMasquerade pulumi.BoolPtrInput
@@ -509,7 +509,7 @@ func (o VpcGatewayNetworkOutput) DhcpId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcGatewayNetwork) pulumi.StringPtrOutput { return v.DhcpId }).(pulumi.StringPtrOutput)
 }
 
-// WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+// Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
 func (o VpcGatewayNetworkOutput) EnableDhcp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *VpcGatewayNetwork) pulumi.BoolPtrOutput { return v.EnableDhcp }).(pulumi.BoolPtrOutput)
 }
