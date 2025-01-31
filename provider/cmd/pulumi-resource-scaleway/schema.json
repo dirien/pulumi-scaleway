@@ -1057,8 +1057,7 @@
                 },
                 "sizeInGb": {
                     "type": "integer",
-                    "description": "Size of the root volume in gigabytes.\nTo find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and\ncheck the `volumes_constraint.{min|max}_size` (in bytes) for your `commercial_type`.\nUpdates to this field will recreate a new resource.\n",
-                    "willReplaceOnChanges": true
+                    "description": "Size of the root volume in gigabytes.\nTo find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and\ncheck the `volumes_constraint.{min|max}_size` (in bytes) for your `commercial_type`.\nDepending on `volume_type`, updates to this field may recreate a new resource.\n"
                 },
                 "volumeId": {
                     "type": "string",
@@ -6626,7 +6625,7 @@
             }
         },
         "scaleway:index/baremetalServer:BaremetalServer": {
-            "description": "Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).\n\n## Example Usage\n\n### Basic\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst main = scaleway.getIamSshKey({\n    name: \"main\",\n});\nconst base = new scaleway.BaremetalServer(\"base\", {\n    zone: \"fr-par-2\",\n    offer: \"GP-BM1-S\",\n    os: \"d17d6872-0412-45d9-a198-af82c34d3c5c\",\n    sshKeyIds: [data.scaleway_account_ssh_key.main.id],\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\nimport pulumi_scaleway as scaleway\n\nmain = scaleway.get_iam_ssh_key(name=\"main\")\nbase = scaleway.BaremetalServer(\"base\",\n    zone=\"fr-par-2\",\n    offer=\"GP-BM1-S\",\n    os=\"d17d6872-0412-45d9-a198-af82c34d3c5c\",\n    ssh_key_ids=[data[\"scaleway_account_ssh_key\"][\"main\"][\"id\"]])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = Scaleway.GetIamSshKey.Invoke(new()\n    {\n        Name = \"main\",\n    });\n\n    var @base = new Scaleway.BaremetalServer(\"base\", new()\n    {\n        Zone = \"fr-par-2\",\n        Offer = \"GP-BM1-S\",\n        Os = \"d17d6872-0412-45d9-a198-af82c34d3c5c\",\n        SshKeyIds = new[]\n        {\n            data.Scaleway_account_ssh_key.Main.Id,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.LookupIamSshKey(ctx, \u0026scaleway.LookupIamSshKeyArgs{\n\t\t\tName: pulumi.StringRef(\"main\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewBaremetalServer(ctx, \"base\", \u0026scaleway.BaremetalServerArgs{\n\t\t\tZone:  pulumi.String(\"fr-par-2\"),\n\t\t\tOffer: pulumi.String(\"GP-BM1-S\"),\n\t\t\tOs:    pulumi.String(\"d17d6872-0412-45d9-a198-af82c34d3c5c\"),\n\t\t\tSshKeyIds: pulumi.StringArray{\n\t\t\t\tdata.Scaleway_account_ssh_key.Main.Id,\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetIamSshKeyArgs;\nimport com.pulumi.scaleway.BaremetalServer;\nimport com.pulumi.scaleway.BaremetalServerArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var main = ScalewayFunctions.getIamSshKey(GetIamSshKeyArgs.builder()\n            .name(\"main\")\n            .build());\n\n        var base = new BaremetalServer(\"base\", BaremetalServerArgs.builder()\n            .zone(\"fr-par-2\")\n            .offer(\"GP-BM1-S\")\n            .os(\"d17d6872-0412-45d9-a198-af82c34d3c5c\")\n            .sshKeyIds(data.scaleway_account_ssh_key().main().id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  base:\n    type: scaleway:BaremetalServer\n    properties:\n      zone: fr-par-2\n      offer: GP-BM1-S\n      os: d17d6872-0412-45d9-a198-af82c34d3c5c\n      sshKeyIds:\n        - ${data.scaleway_account_ssh_key.main.id}\nvariables:\n  main:\n    fn::invoke:\n      function: scaleway:getIamSshKey\n      arguments:\n        name: main\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Without install config\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst myOffer = scaleway.getBaremetalOffer({\n    zone: \"fr-par-2\",\n    name: \"EM-B112X-SSD\",\n});\nconst base = new scaleway.BaremetalServer(\"base\", {\n    zone: \"fr-par-2\",\n    offer: myOffer.then(myOffer =\u003e myOffer.offerId),\n    installConfigAfterward: true,\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\nimport pulumi_scaleway as scaleway\n\nmy_offer = scaleway.get_baremetal_offer(zone=\"fr-par-2\",\n    name=\"EM-B112X-SSD\")\nbase = scaleway.BaremetalServer(\"base\",\n    zone=\"fr-par-2\",\n    offer=my_offer.offer_id,\n    install_config_afterward=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myOffer = Scaleway.GetBaremetalOffer.Invoke(new()\n    {\n        Zone = \"fr-par-2\",\n        Name = \"EM-B112X-SSD\",\n    });\n\n    var @base = new Scaleway.BaremetalServer(\"base\", new()\n    {\n        Zone = \"fr-par-2\",\n        Offer = myOffer.Apply(getBaremetalOfferResult =\u003e getBaremetalOfferResult.OfferId),\n        InstallConfigAfterward = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmyOffer, err := scaleway.GetBaremetalOffer(ctx, \u0026scaleway.GetBaremetalOfferArgs{\n\t\t\tZone: pulumi.StringRef(\"fr-par-2\"),\n\t\t\tName: pulumi.StringRef(\"EM-B112X-SSD\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewBaremetalServer(ctx, \"base\", \u0026scaleway.BaremetalServerArgs{\n\t\t\tZone:                   pulumi.String(\"fr-par-2\"),\n\t\t\tOffer:                  pulumi.String(myOffer.OfferId),\n\t\t\tInstallConfigAfterward: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetBaremetalOfferArgs;\nimport com.pulumi.scaleway.BaremetalServer;\nimport com.pulumi.scaleway.BaremetalServerArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myOffer = ScalewayFunctions.getBaremetalOffer(GetBaremetalOfferArgs.builder()\n            .zone(\"fr-par-2\")\n            .name(\"EM-B112X-SSD\")\n            .build());\n\n        var base = new BaremetalServer(\"base\", BaremetalServerArgs.builder()\n            .zone(\"fr-par-2\")\n            .offer(myOffer.applyValue(getBaremetalOfferResult -\u003e getBaremetalOfferResult.offerId()))\n            .installConfigAfterward(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  base:\n    type: scaleway:BaremetalServer\n    properties:\n      zone: fr-par-2\n      offer: ${myOffer.offerId}\n      installConfigAfterward: true\nvariables:\n  myOffer:\n    fn::invoke:\n      function: scaleway:getBaremetalOffer\n      arguments:\n        zone: fr-par-2\n        name: EM-B112X-SSD\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nBaremetal servers can be imported using the `{zone}/{id}`, e.g.\n\nbash\n\n```sh\n$ pulumi import scaleway:index/baremetalServer:BaremetalServer web fr-par-2/11111111-1111-1111-1111-111111111111\n```\n\n",
+            "description": "Creates and manages Scaleway Compute Baremetal servers. For more information, see [the documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).\n\n## Example Usage\n\n### Basic\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst main = scaleway.getIamSshKey({\n    name: \"main\",\n});\nconst base = new scaleway.BaremetalServer(\"base\", {\n    zone: \"fr-par-2\",\n    offer: \"GP-BM1-S\",\n    os: \"d17d6872-0412-45d9-a198-af82c34d3c5c\",\n    sshKeyIds: [data.scaleway_account_ssh_key.main.id],\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\nimport pulumi_scaleway as scaleway\n\nmain = scaleway.get_iam_ssh_key(name=\"main\")\nbase = scaleway.BaremetalServer(\"base\",\n    zone=\"fr-par-2\",\n    offer=\"GP-BM1-S\",\n    os=\"d17d6872-0412-45d9-a198-af82c34d3c5c\",\n    ssh_key_ids=[data[\"scaleway_account_ssh_key\"][\"main\"][\"id\"]])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = Scaleway.GetIamSshKey.Invoke(new()\n    {\n        Name = \"main\",\n    });\n\n    var @base = new Scaleway.BaremetalServer(\"base\", new()\n    {\n        Zone = \"fr-par-2\",\n        Offer = \"GP-BM1-S\",\n        Os = \"d17d6872-0412-45d9-a198-af82c34d3c5c\",\n        SshKeyIds = new[]\n        {\n            data.Scaleway_account_ssh_key.Main.Id,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.LookupIamSshKey(ctx, \u0026scaleway.LookupIamSshKeyArgs{\n\t\t\tName: pulumi.StringRef(\"main\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewBaremetalServer(ctx, \"base\", \u0026scaleway.BaremetalServerArgs{\n\t\t\tZone:  pulumi.String(\"fr-par-2\"),\n\t\t\tOffer: pulumi.String(\"GP-BM1-S\"),\n\t\t\tOs:    pulumi.String(\"d17d6872-0412-45d9-a198-af82c34d3c5c\"),\n\t\t\tSshKeyIds: pulumi.StringArray{\n\t\t\t\tdata.Scaleway_account_ssh_key.Main.Id,\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetIamSshKeyArgs;\nimport com.pulumi.scaleway.BaremetalServer;\nimport com.pulumi.scaleway.BaremetalServerArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var main = ScalewayFunctions.getIamSshKey(GetIamSshKeyArgs.builder()\n            .name(\"main\")\n            .build());\n\n        var base = new BaremetalServer(\"base\", BaremetalServerArgs.builder()\n            .zone(\"fr-par-2\")\n            .offer(\"GP-BM1-S\")\n            .os(\"d17d6872-0412-45d9-a198-af82c34d3c5c\")\n            .sshKeyIds(data.scaleway_account_ssh_key().main().id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  base:\n    type: scaleway:BaremetalServer\n    properties:\n      zone: fr-par-2\n      offer: GP-BM1-S\n      os: d17d6872-0412-45d9-a198-af82c34d3c5c\n      sshKeyIds:\n        - ${data.scaleway_account_ssh_key.main.id}\nvariables:\n  main:\n    fn::invoke:\n      function: scaleway:getIamSshKey\n      arguments:\n        name: main\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Without install config\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst myOffer = scaleway.getBaremetalOffer({\n    zone: \"fr-par-2\",\n    name: \"EM-B112X-SSD\",\n});\nconst base = new scaleway.BaremetalServer(\"base\", {\n    zone: \"fr-par-2\",\n    offer: myOffer.then(myOffer =\u003e myOffer.offerId),\n    installConfigAfterward: true,\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\nimport pulumi_scaleway as scaleway\n\nmy_offer = scaleway.get_baremetal_offer(zone=\"fr-par-2\",\n    name=\"EM-B112X-SSD\")\nbase = scaleway.BaremetalServer(\"base\",\n    zone=\"fr-par-2\",\n    offer=my_offer.offer_id,\n    install_config_afterward=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myOffer = Scaleway.GetBaremetalOffer.Invoke(new()\n    {\n        Zone = \"fr-par-2\",\n        Name = \"EM-B112X-SSD\",\n    });\n\n    var @base = new Scaleway.BaremetalServer(\"base\", new()\n    {\n        Zone = \"fr-par-2\",\n        Offer = myOffer.Apply(getBaremetalOfferResult =\u003e getBaremetalOfferResult.OfferId),\n        InstallConfigAfterward = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmyOffer, err := scaleway.GetBaremetalOffer(ctx, \u0026scaleway.GetBaremetalOfferArgs{\n\t\t\tZone: pulumi.StringRef(\"fr-par-2\"),\n\t\t\tName: pulumi.StringRef(\"EM-B112X-SSD\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewBaremetalServer(ctx, \"base\", \u0026scaleway.BaremetalServerArgs{\n\t\t\tZone:                   pulumi.String(\"fr-par-2\"),\n\t\t\tOffer:                  pulumi.String(myOffer.OfferId),\n\t\t\tInstallConfigAfterward: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetBaremetalOfferArgs;\nimport com.pulumi.scaleway.BaremetalServer;\nimport com.pulumi.scaleway.BaremetalServerArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myOffer = ScalewayFunctions.getBaremetalOffer(GetBaremetalOfferArgs.builder()\n            .zone(\"fr-par-2\")\n            .name(\"EM-B112X-SSD\")\n            .build());\n\n        var base = new BaremetalServer(\"base\", BaremetalServerArgs.builder()\n            .zone(\"fr-par-2\")\n            .offer(myOffer.applyValue(getBaremetalOfferResult -\u003e getBaremetalOfferResult.offerId()))\n            .installConfigAfterward(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  base:\n    type: scaleway:BaremetalServer\n    properties:\n      zone: fr-par-2\n      offer: ${myOffer.offerId}\n      installConfigAfterward: true\nvariables:\n  myOffer:\n    fn::invoke:\n      function: scaleway:getBaremetalOffer\n      arguments:\n        zone: fr-par-2\n        name: EM-B112X-SSD\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### With custom partitioning\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst config = new pulumi.Config();\nconst configCustomPartitioning = config.get(\"configCustomPartitioning\") || \"{\\\"disks\\\":[{\\\"device\\\":\\\"/dev/nvme0n1\\\",\\\"partitions\\\":[{\\\"label\\\":\\\"uefi\\\",\\\"number\\\":1,\\\"size\\\":536870912},{\\\"label\\\":\\\"swap\\\",\\\"number\\\":2,\\\"size\\\":4294967296},{\\\"label\\\":\\\"boot\\\",\\\"number\\\":3,\\\"size\\\":1073741824},{\\\"label\\\":\\\"root\\\",\\\"number\\\":4,\\\"size\\\":1017827045376}]},{\\\"device\\\":\\\"/dev/nvme1n1\\\",\\\"partitions\\\":[{\\\"label\\\":\\\"swap\\\",\\\"number\\\":1,\\\"size\\\":4294967296},{\\\"label\\\":\\\"boot\\\",\\\"number\\\":2,\\\"size\\\":1073741824},{\\\"label\\\":\\\"root\\\",\\\"number\\\":3,\\\"size\\\":1017827045376}]}],\\\"filesystems\\\":[{\\\"device\\\":\\\"/dev/nvme0n1p1\\\",\\\"format\\\":\\\"fat32\\\",\\\"mountpoint\\\":\\\"/boot/efi\\\"},{\\\"device\\\":\\\"/dev/md0\\\",\\\"format\\\":\\\"ext4\\\",\\\"mountpoint\\\":\\\"/boot\\\"},{\\\"device\\\":\\\"/dev/md1\\\",\\\"format\\\":\\\"ext4\\\",\\\"mountpoint\\\":\\\"/\\\"}],\\\"raids\\\":[{\\\"devices\\\":[\\\"/dev/nvme0n1p3\\\",\\\"/dev/nvme1n1p2\\\"],\\\"level\\\":\\\"raid_level_1\\\",\\\"name\\\":\\\"/dev/md0\\\"},{\\\"devices\\\":[\\\"/dev/nvme0n1p4\\\",\\\"/dev/nvme1n1p3\\\"],\\\"level\\\":\\\"raid_level_1\\\",\\\"name\\\":\\\"/dev/md1\\\"}],\\\"zfs\\\":{\\\"pools\\\":[]}}\";\nconst myOs = scaleway.getBaremetalOs({\n    zone: \"fr-par-1\",\n    name: \"Ubuntu\",\n    version: \"22.04 LTS (Jammy Jellyfish)\",\n});\nconst main = new scaleway.IamSshKey(\"main\", {});\nconst base = new scaleway.BaremetalServer(\"base\", {\n    zone: \"fr-par-1\",\n    description: \"test a description\",\n    offer: \"EM-B220E-NVME\",\n    os: myOs.then(myOs =\u003e myOs.osId),\n    partitioning: configCustomPartitioning,\n    tags: [\n        \"terraform-test\",\n        \"scaleway_baremetal_server\",\n        \"minimal\",\n    ],\n    sshKeyIds: [main.id],\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\nimport pulumi_scaleway as scaleway\n\nconfig = pulumi.Config()\nconfig_custom_partitioning = config.get(\"configCustomPartitioning\")\nif config_custom_partitioning is None:\n    config_custom_partitioning = \"{\\\"disks\\\":[{\\\"device\\\":\\\"/dev/nvme0n1\\\",\\\"partitions\\\":[{\\\"label\\\":\\\"uefi\\\",\\\"number\\\":1,\\\"size\\\":536870912},{\\\"label\\\":\\\"swap\\\",\\\"number\\\":2,\\\"size\\\":4294967296},{\\\"label\\\":\\\"boot\\\",\\\"number\\\":3,\\\"size\\\":1073741824},{\\\"label\\\":\\\"root\\\",\\\"number\\\":4,\\\"size\\\":1017827045376}]},{\\\"device\\\":\\\"/dev/nvme1n1\\\",\\\"partitions\\\":[{\\\"label\\\":\\\"swap\\\",\\\"number\\\":1,\\\"size\\\":4294967296},{\\\"label\\\":\\\"boot\\\",\\\"number\\\":2,\\\"size\\\":1073741824},{\\\"label\\\":\\\"root\\\",\\\"number\\\":3,\\\"size\\\":1017827045376}]}],\\\"filesystems\\\":[{\\\"device\\\":\\\"/dev/nvme0n1p1\\\",\\\"format\\\":\\\"fat32\\\",\\\"mountpoint\\\":\\\"/boot/efi\\\"},{\\\"device\\\":\\\"/dev/md0\\\",\\\"format\\\":\\\"ext4\\\",\\\"mountpoint\\\":\\\"/boot\\\"},{\\\"device\\\":\\\"/dev/md1\\\",\\\"format\\\":\\\"ext4\\\",\\\"mountpoint\\\":\\\"/\\\"}],\\\"raids\\\":[{\\\"devices\\\":[\\\"/dev/nvme0n1p3\\\",\\\"/dev/nvme1n1p2\\\"],\\\"level\\\":\\\"raid_level_1\\\",\\\"name\\\":\\\"/dev/md0\\\"},{\\\"devices\\\":[\\\"/dev/nvme0n1p4\\\",\\\"/dev/nvme1n1p3\\\"],\\\"level\\\":\\\"raid_level_1\\\",\\\"name\\\":\\\"/dev/md1\\\"}],\\\"zfs\\\":{\\\"pools\\\":[]}}\"\nmy_os = scaleway.get_baremetal_os(zone=\"fr-par-1\",\n    name=\"Ubuntu\",\n    version=\"22.04 LTS (Jammy Jellyfish)\")\nmain = scaleway.IamSshKey(\"main\")\nbase = scaleway.BaremetalServer(\"base\",\n    zone=\"fr-par-1\",\n    description=\"test a description\",\n    offer=\"EM-B220E-NVME\",\n    os=my_os.os_id,\n    partitioning=config_custom_partitioning,\n    tags=[\n        \"terraform-test\",\n        \"scaleway_baremetal_server\",\n        \"minimal\",\n    ],\n    ssh_key_ids=[main.id])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    var configCustomPartitioning = config.Get(\"configCustomPartitioning\") ?? \"{\\\"disks\\\":[{\\\"device\\\":\\\"/dev/nvme0n1\\\",\\\"partitions\\\":[{\\\"label\\\":\\\"uefi\\\",\\\"number\\\":1,\\\"size\\\":536870912},{\\\"label\\\":\\\"swap\\\",\\\"number\\\":2,\\\"size\\\":4294967296},{\\\"label\\\":\\\"boot\\\",\\\"number\\\":3,\\\"size\\\":1073741824},{\\\"label\\\":\\\"root\\\",\\\"number\\\":4,\\\"size\\\":1017827045376}]},{\\\"device\\\":\\\"/dev/nvme1n1\\\",\\\"partitions\\\":[{\\\"label\\\":\\\"swap\\\",\\\"number\\\":1,\\\"size\\\":4294967296},{\\\"label\\\":\\\"boot\\\",\\\"number\\\":2,\\\"size\\\":1073741824},{\\\"label\\\":\\\"root\\\",\\\"number\\\":3,\\\"size\\\":1017827045376}]}],\\\"filesystems\\\":[{\\\"device\\\":\\\"/dev/nvme0n1p1\\\",\\\"format\\\":\\\"fat32\\\",\\\"mountpoint\\\":\\\"/boot/efi\\\"},{\\\"device\\\":\\\"/dev/md0\\\",\\\"format\\\":\\\"ext4\\\",\\\"mountpoint\\\":\\\"/boot\\\"},{\\\"device\\\":\\\"/dev/md1\\\",\\\"format\\\":\\\"ext4\\\",\\\"mountpoint\\\":\\\"/\\\"}],\\\"raids\\\":[{\\\"devices\\\":[\\\"/dev/nvme0n1p3\\\",\\\"/dev/nvme1n1p2\\\"],\\\"level\\\":\\\"raid_level_1\\\",\\\"name\\\":\\\"/dev/md0\\\"},{\\\"devices\\\":[\\\"/dev/nvme0n1p4\\\",\\\"/dev/nvme1n1p3\\\"],\\\"level\\\":\\\"raid_level_1\\\",\\\"name\\\":\\\"/dev/md1\\\"}],\\\"zfs\\\":{\\\"pools\\\":[]}}\";\n    var myOs = Scaleway.GetBaremetalOs.Invoke(new()\n    {\n        Zone = \"fr-par-1\",\n        Name = \"Ubuntu\",\n        Version = \"22.04 LTS (Jammy Jellyfish)\",\n    });\n\n    var main = new Scaleway.IamSshKey(\"main\");\n\n    var @base = new Scaleway.BaremetalServer(\"base\", new()\n    {\n        Zone = \"fr-par-1\",\n        Description = \"test a description\",\n        Offer = \"EM-B220E-NVME\",\n        Os = myOs.Apply(getBaremetalOsResult =\u003e getBaremetalOsResult.OsId),\n        Partitioning = configCustomPartitioning,\n        Tags = new[]\n        {\n            \"terraform-test\",\n            \"scaleway_baremetal_server\",\n            \"minimal\",\n        },\n        SshKeyIds = new[]\n        {\n            main.Id,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\tconfigCustomPartitioning := \"{\\\"disks\\\":[{\\\"device\\\":\\\"/dev/nvme0n1\\\",\\\"partitions\\\":[{\\\"label\\\":\\\"uefi\\\",\\\"number\\\":1,\\\"size\\\":536870912},{\\\"label\\\":\\\"swap\\\",\\\"number\\\":2,\\\"size\\\":4294967296},{\\\"label\\\":\\\"boot\\\",\\\"number\\\":3,\\\"size\\\":1073741824},{\\\"label\\\":\\\"root\\\",\\\"number\\\":4,\\\"size\\\":1017827045376}]},{\\\"device\\\":\\\"/dev/nvme1n1\\\",\\\"partitions\\\":[{\\\"label\\\":\\\"swap\\\",\\\"number\\\":1,\\\"size\\\":4294967296},{\\\"label\\\":\\\"boot\\\",\\\"number\\\":2,\\\"size\\\":1073741824},{\\\"label\\\":\\\"root\\\",\\\"number\\\":3,\\\"size\\\":1017827045376}]}],\\\"filesystems\\\":[{\\\"device\\\":\\\"/dev/nvme0n1p1\\\",\\\"format\\\":\\\"fat32\\\",\\\"mountpoint\\\":\\\"/boot/efi\\\"},{\\\"device\\\":\\\"/dev/md0\\\",\\\"format\\\":\\\"ext4\\\",\\\"mountpoint\\\":\\\"/boot\\\"},{\\\"device\\\":\\\"/dev/md1\\\",\\\"format\\\":\\\"ext4\\\",\\\"mountpoint\\\":\\\"/\\\"}],\\\"raids\\\":[{\\\"devices\\\":[\\\"/dev/nvme0n1p3\\\",\\\"/dev/nvme1n1p2\\\"],\\\"level\\\":\\\"raid_level_1\\\",\\\"name\\\":\\\"/dev/md0\\\"},{\\\"devices\\\":[\\\"/dev/nvme0n1p4\\\",\\\"/dev/nvme1n1p3\\\"],\\\"level\\\":\\\"raid_level_1\\\",\\\"name\\\":\\\"/dev/md1\\\"}],\\\"zfs\\\":{\\\"pools\\\":[]}}\"\n\t\tif param := cfg.Get(\"configCustomPartitioning\"); param != \"\" {\n\t\t\tconfigCustomPartitioning = param\n\t\t}\n\t\tmyOs, err := scaleway.GetBaremetalOs(ctx, \u0026scaleway.GetBaremetalOsArgs{\n\t\t\tZone:    pulumi.StringRef(\"fr-par-1\"),\n\t\t\tName:    pulumi.StringRef(\"Ubuntu\"),\n\t\t\tVersion: pulumi.StringRef(\"22.04 LTS (Jammy Jellyfish)\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmain, err := scaleway.NewIamSshKey(ctx, \"main\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewBaremetalServer(ctx, \"base\", \u0026scaleway.BaremetalServerArgs{\n\t\t\tZone:         pulumi.String(\"fr-par-1\"),\n\t\t\tDescription:  pulumi.String(\"test a description\"),\n\t\t\tOffer:        pulumi.String(\"EM-B220E-NVME\"),\n\t\t\tOs:           pulumi.String(myOs.OsId),\n\t\t\tPartitioning: pulumi.String(configCustomPartitioning),\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"terraform-test\"),\n\t\t\t\tpulumi.String(\"scaleway_baremetal_server\"),\n\t\t\t\tpulumi.String(\"minimal\"),\n\t\t\t},\n\t\t\tSshKeyIds: pulumi.StringArray{\n\t\t\t\tmain.ID(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetBaremetalOsArgs;\nimport com.pulumi.scaleway.IamSshKey;\nimport com.pulumi.scaleway.BaremetalServer;\nimport com.pulumi.scaleway.BaremetalServerArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var configCustomPartitioning = config.get(\"configCustomPartitioning\").orElse(\"{\\\"disks\\\":[{\\\"device\\\":\\\"/dev/nvme0n1\\\",\\\"partitions\\\":[{\\\"label\\\":\\\"uefi\\\",\\\"number\\\":1,\\\"size\\\":536870912},{\\\"label\\\":\\\"swap\\\",\\\"number\\\":2,\\\"size\\\":4294967296},{\\\"label\\\":\\\"boot\\\",\\\"number\\\":3,\\\"size\\\":1073741824},{\\\"label\\\":\\\"root\\\",\\\"number\\\":4,\\\"size\\\":1017827045376}]},{\\\"device\\\":\\\"/dev/nvme1n1\\\",\\\"partitions\\\":[{\\\"label\\\":\\\"swap\\\",\\\"number\\\":1,\\\"size\\\":4294967296},{\\\"label\\\":\\\"boot\\\",\\\"number\\\":2,\\\"size\\\":1073741824},{\\\"label\\\":\\\"root\\\",\\\"number\\\":3,\\\"size\\\":1017827045376}]}],\\\"filesystems\\\":[{\\\"device\\\":\\\"/dev/nvme0n1p1\\\",\\\"format\\\":\\\"fat32\\\",\\\"mountpoint\\\":\\\"/boot/efi\\\"},{\\\"device\\\":\\\"/dev/md0\\\",\\\"format\\\":\\\"ext4\\\",\\\"mountpoint\\\":\\\"/boot\\\"},{\\\"device\\\":\\\"/dev/md1\\\",\\\"format\\\":\\\"ext4\\\",\\\"mountpoint\\\":\\\"/\\\"}],\\\"raids\\\":[{\\\"devices\\\":[\\\"/dev/nvme0n1p3\\\",\\\"/dev/nvme1n1p2\\\"],\\\"level\\\":\\\"raid_level_1\\\",\\\"name\\\":\\\"/dev/md0\\\"},{\\\"devices\\\":[\\\"/dev/nvme0n1p4\\\",\\\"/dev/nvme1n1p3\\\"],\\\"level\\\":\\\"raid_level_1\\\",\\\"name\\\":\\\"/dev/md1\\\"}],\\\"zfs\\\":{\\\"pools\\\":[]}}\");\n        final var myOs = ScalewayFunctions.getBaremetalOs(GetBaremetalOsArgs.builder()\n            .zone(\"fr-par-1\")\n            .name(\"Ubuntu\")\n            .version(\"22.04 LTS (Jammy Jellyfish)\")\n            .build());\n\n        var main = new IamSshKey(\"main\");\n\n        var base = new BaremetalServer(\"base\", BaremetalServerArgs.builder()\n            .zone(\"fr-par-1\")\n            .description(\"test a description\")\n            .offer(\"EM-B220E-NVME\")\n            .os(myOs.applyValue(getBaremetalOsResult -\u003e getBaremetalOsResult.osId()))\n            .partitioning(configCustomPartitioning)\n            .tags(            \n                \"terraform-test\",\n                \"scaleway_baremetal_server\",\n                \"minimal\")\n            .sshKeyIds(main.id())\n            .build());\n\n    }\n}\n```\n```yaml\nconfiguration:\n  configCustomPartitioning:\n    type: string\n    default: '{\"disks\":[{\"device\":\"/dev/nvme0n1\",\"partitions\":[{\"label\":\"uefi\",\"number\":1,\"size\":536870912},{\"label\":\"swap\",\"number\":2,\"size\":4294967296},{\"label\":\"boot\",\"number\":3,\"size\":1073741824},{\"label\":\"root\",\"number\":4,\"size\":1017827045376}]},{\"device\":\"/dev/nvme1n1\",\"partitions\":[{\"label\":\"swap\",\"number\":1,\"size\":4294967296},{\"label\":\"boot\",\"number\":2,\"size\":1073741824},{\"label\":\"root\",\"number\":3,\"size\":1017827045376}]}],\"filesystems\":[{\"device\":\"/dev/nvme0n1p1\",\"format\":\"fat32\",\"mountpoint\":\"/boot/efi\"},{\"device\":\"/dev/md0\",\"format\":\"ext4\",\"mountpoint\":\"/boot\"},{\"device\":\"/dev/md1\",\"format\":\"ext4\",\"mountpoint\":\"/\"}],\"raids\":[{\"devices\":[\"/dev/nvme0n1p3\",\"/dev/nvme1n1p2\"],\"level\":\"raid_level_1\",\"name\":\"/dev/md0\"},{\"devices\":[\"/dev/nvme0n1p4\",\"/dev/nvme1n1p3\"],\"level\":\"raid_level_1\",\"name\":\"/dev/md1\"}],\"zfs\":{\"pools\":[]}}'\nresources:\n  main:\n    type: scaleway:IamSshKey\n  base:\n    type: scaleway:BaremetalServer\n    properties:\n      zone: fr-par-1\n      description: test a description\n      offer: EM-B220E-NVME\n      os: ${myOs.osId}\n      partitioning: ${configCustomPartitioning}\n      tags:\n        - terraform-test\n        - scaleway_baremetal_server\n        - minimal\n      sshKeyIds:\n        - ${main.id}\nvariables:\n  myOs:\n    fn::invoke:\n      function: scaleway:getBaremetalOs\n      arguments:\n        zone: fr-par-1\n        name: Ubuntu\n        version: 22.04 LTS (Jammy Jellyfish)\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nBaremetal servers can be imported using the `{zone}/{id}`, e.g.\n\nbash\n\n```sh\n$ pulumi import scaleway:index/baremetalServer:BaremetalServer web fr-par-2/11111111-1111-1111-1111-111111111111\n```\n\n",
             "properties": {
                 "description": {
                     "type": "string",
@@ -6702,7 +6701,7 @@
                 },
                 "partitioning": {
                     "type": "string",
-                    "description": "The partitioning schema in json format\n"
+                    "description": "The partitioning schema in JSON format\n"
                 },
                 "password": {
                     "type": "string",
@@ -6808,7 +6807,7 @@
                 },
                 "partitioning": {
                     "type": "string",
-                    "description": "The partitioning schema in json format\n"
+                    "description": "The partitioning schema in JSON format\n"
                 },
                 "password": {
                     "type": "string",
@@ -6945,7 +6944,7 @@
                     },
                     "partitioning": {
                         "type": "string",
-                        "description": "The partitioning schema in json format\n"
+                        "description": "The partitioning schema in JSON format\n"
                     },
                     "password": {
                         "type": "string",
@@ -7400,6 +7399,10 @@
         "scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser": {
             "description": "The `scaleway.CockpitGrafanaUser` resource allows you to create and manage [Grafana users](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users) in Scaleway Cockpit.\n\nRefer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.\n\n## Example Usage\n\n### Create a Grafana user\n\nThe following command allows you to create a Grafana user within a specific Scaleway Project.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst project = new scaleway.AccountProject(\"project\", {});\nconst main = new scaleway.CockpitGrafanaUser(\"main\", {\n    projectId: project.id,\n    login: \"my-awesome-user\",\n    role: \"editor\",\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nproject = scaleway.AccountProject(\"project\")\nmain = scaleway.CockpitGrafanaUser(\"main\",\n    project_id=project.id,\n    login=\"my-awesome-user\",\n    role=\"editor\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var project = new Scaleway.AccountProject(\"project\");\n\n    var main = new Scaleway.CockpitGrafanaUser(\"main\", new()\n    {\n        ProjectId = project.Id,\n        Login = \"my-awesome-user\",\n        Role = \"editor\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tproject, err := scaleway.NewAccountProject(ctx, \"project\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewCockpitGrafanaUser(ctx, \"main\", \u0026scaleway.CockpitGrafanaUserArgs{\n\t\t\tProjectId: project.ID(),\n\t\t\tLogin:     pulumi.String(\"my-awesome-user\"),\n\t\t\tRole:      pulumi.String(\"editor\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.AccountProject;\nimport com.pulumi.scaleway.CockpitGrafanaUser;\nimport com.pulumi.scaleway.CockpitGrafanaUserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var project = new AccountProject(\"project\");\n\n        var main = new CockpitGrafanaUser(\"main\", CockpitGrafanaUserArgs.builder()\n            .projectId(project.id())\n            .login(\"my-awesome-user\")\n            .role(\"editor\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  project:\n    type: scaleway:AccountProject\n  main:\n    type: scaleway:CockpitGrafanaUser\n    properties:\n      projectId: ${project.id}\n      login: my-awesome-user\n      role: editor\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThis section explains how to import Grafana users using the ID of the Project associated with Cockpit, and the Grafana user ID in the `{project_id}/{grafana_user_id}` format.\n\nbash\n\n```sh\n$ pulumi import scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser main 11111111-1111-1111-1111-111111111111/2\n```\n\n",
             "properties": {
+                "grafanaUrl": {
+                    "type": "string",
+                    "description": "URL for Grafana.\n"
+                },
                 "login": {
                     "type": "string",
                     "description": "The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.\n"
@@ -7419,6 +7422,7 @@
                 }
             },
             "required": [
+                "grafanaUrl",
                 "login",
                 "password",
                 "projectId",
@@ -7448,6 +7452,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering CockpitGrafanaUser resources.\n",
                 "properties": {
+                    "grafanaUrl": {
+                        "type": "string",
+                        "description": "URL for Grafana.\n"
+                    },
                     "login": {
                         "type": "string",
                         "description": "The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.\n",
@@ -7473,7 +7481,7 @@
             }
         },
         "scaleway:index/cockpitSource:CockpitSource": {
-            "description": "The `scaleway.CockpitSource` resource allows you to create and manage [data sources](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.\n\nRefer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.\n\n## Example Usage\n\n### Create a data source\n\nThe following command allows you to create a [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) data source named `my-data-source` in a given Project.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst project = new scaleway.AccountProject(\"project\", {});\nconst main = new scaleway.CockpitSource(\"main\", {\n    projectId: project.id,\n    type: \"metrics\",\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nproject = scaleway.AccountProject(\"project\")\nmain = scaleway.CockpitSource(\"main\",\n    project_id=project.id,\n    type=\"metrics\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var project = new Scaleway.AccountProject(\"project\");\n\n    var main = new Scaleway.CockpitSource(\"main\", new()\n    {\n        ProjectId = project.Id,\n        Type = \"metrics\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tproject, err := scaleway.NewAccountProject(ctx, \"project\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewCockpitSource(ctx, \"main\", \u0026scaleway.CockpitSourceArgs{\n\t\t\tProjectId: project.ID(),\n\t\t\tType:      pulumi.String(\"metrics\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.AccountProject;\nimport com.pulumi.scaleway.CockpitSource;\nimport com.pulumi.scaleway.CockpitSourceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var project = new AccountProject(\"project\");\n\n        var main = new CockpitSource(\"main\", CockpitSourceArgs.builder()\n            .projectId(project.id())\n            .type(\"metrics\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  project:\n    type: scaleway:AccountProject\n  main:\n    type: scaleway:CockpitSource\n    properties:\n      projectId: ${project.id}\n      type: metrics\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThis section explains how to import a data source using the ID of the region it is located in, in the `{region}/{id}` format.\n\nbash\n\n```sh\n$ pulumi import scaleway:index/cockpitSource:CockpitSource main fr-par/11111111-1111-1111-1111-111111111111\n```\n\n",
+            "description": "The `scaleway.CockpitSource` resource allows you to create and manage [data sources](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.\n\nRefer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.\n\n## Example Usage\n\n### Create a data source\n\nThe following command allows you to create a [metrics](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#metric) data source named `my-data-source` in a given Project.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@ediri/scaleway\";\n\nconst project = new scaleway.AccountProject(\"project\", {});\nconst main = new scaleway.CockpitSource(\"main\", {\n    projectId: project.id,\n    type: \"metrics\",\n    retentionDays: 6,\n});\n```\n```python\nimport pulumi\nimport ediri_scaleway as scaleway\n\nproject = scaleway.AccountProject(\"project\")\nmain = scaleway.CockpitSource(\"main\",\n    project_id=project.id,\n    type=\"metrics\",\n    retention_days=6)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = ediri.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var project = new Scaleway.AccountProject(\"project\");\n\n    var main = new Scaleway.CockpitSource(\"main\", new()\n    {\n        ProjectId = project.Id,\n        Type = \"metrics\",\n        RetentionDays = 6,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tproject, err := scaleway.NewAccountProject(ctx, \"project\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = scaleway.NewCockpitSource(ctx, \"main\", \u0026scaleway.CockpitSourceArgs{\n\t\t\tProjectId:     project.ID(),\n\t\t\tType:          pulumi.String(\"metrics\"),\n\t\t\tRetentionDays: pulumi.Int(6),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.AccountProject;\nimport com.pulumi.scaleway.CockpitSource;\nimport com.pulumi.scaleway.CockpitSourceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var project = new AccountProject(\"project\");\n\n        var main = new CockpitSource(\"main\", CockpitSourceArgs.builder()\n            .projectId(project.id())\n            .type(\"metrics\")\n            .retentionDays(6)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  project:\n    type: scaleway:AccountProject\n  main:\n    type: scaleway:CockpitSource\n    properties:\n      projectId: ${project.id}\n      type: metrics\n      retentionDays: 6\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThis section explains how to import a data source using the ID of the region it is located in, in the `{region}/{id}` format.\n\nbash\n\n```sh\n$ pulumi import scaleway:index/cockpitSource:CockpitSource main fr-par/11111111-1111-1111-1111-111111111111\n```\n\n",
             "properties": {
                 "createdAt": {
                     "type": "string",
@@ -7499,6 +7507,10 @@
                     "type": "string",
                     "description": ") The region where the data source is located.\n"
                 },
+                "retentionDays": {
+                    "type": "integer",
+                    "description": "The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.\n"
+                },
                 "synchronizedWithGrafana": {
                     "type": "boolean",
                     "description": "Indicates whether the data source is synchronized with Grafana.\n"
@@ -7523,6 +7535,7 @@
                 "projectId",
                 "pushUrl",
                 "region",
+                "retentionDays",
                 "synchronizedWithGrafana",
                 "updatedAt",
                 "url"
@@ -7543,12 +7556,19 @@
                     "description": ") The region where the data source is located.\n",
                     "willReplaceOnChanges": true
                 },
+                "retentionDays": {
+                    "type": "integer",
+                    "description": "The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.\n"
+                },
                 "type": {
                     "type": "string",
                     "description": "The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.\n",
                     "willReplaceOnChanges": true
                 }
             },
+            "requiredInputs": [
+                "retentionDays"
+            ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering CockpitSource resources.\n",
                 "properties": {
@@ -7578,6 +7598,10 @@
                         "type": "string",
                         "description": ") The region where the data source is located.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "retentionDays": {
+                        "type": "integer",
+                        "description": "The number of days to retain data in the data source. Must be a value between 1 and 365. Changes to this field will force the creation of a new resource.\n"
                     },
                     "synchronizedWithGrafana": {
                         "type": "boolean",
@@ -12130,7 +12154,8 @@
                 },
                 "privateIp": {
                     "type": "string",
-                    "description": "The Scaleway internal IP address of the server.\n"
+                    "description": "The Scaleway internal IP address of the server (Deprecated use ipam_ip datasource instead).\n",
+                    "deprecationMessage": "Use ipam_ip datasource instead to fetch your server's IP in your private network."
                 },
                 "privateNetworks": {
                     "type": "array",
@@ -12419,7 +12444,8 @@
                     },
                     "privateIp": {
                         "type": "string",
-                        "description": "The Scaleway internal IP address of the server.\n"
+                        "description": "The Scaleway internal IP address of the server (Deprecated use ipam_ip datasource instead).\n",
+                        "deprecationMessage": "Use ipam_ip datasource instead to fetch your server's IP in your private network."
                     },
                     "privateNetworks": {
                         "type": "array",
@@ -17345,6 +17371,7 @@
             },
             "required": [
                 "apiEndpoint",
+                "corsRules",
                 "endpoint",
                 "name",
                 "projectId",
@@ -17877,6 +17904,11 @@
                     "type": "string",
                     "description": "The Scaleway region the bucket resides in.\n"
                 },
+                "sseCustomerKey": {
+                    "type": "string",
+                    "description": "Customer's encryption keys to encrypt data (SSE-C)\n",
+                    "secret": true
+                },
                 "storageClass": {
                     "type": "string",
                     "description": "Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.\n"
@@ -17942,6 +17974,11 @@
                     "description": "The Scaleway region the bucket resides in.\n",
                     "willReplaceOnChanges": true
                 },
+                "sseCustomerKey": {
+                    "type": "string",
+                    "description": "Customer's encryption keys to encrypt data (SSE-C)\n",
+                    "secret": true
+                },
                 "storageClass": {
                     "type": "string",
                     "description": "Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/storage/object/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.\n"
@@ -18005,6 +18042,11 @@
                         "type": "string",
                         "description": "The Scaleway region the bucket resides in.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "sseCustomerKey": {
+                        "type": "string",
+                        "description": "Customer's encryption keys to encrypt data (SSE-C)\n",
+                        "secret": true
                     },
                     "storageClass": {
                         "type": "string",
@@ -18981,7 +19023,7 @@
                 },
                 "clusterSize": {
                     "type": "integer",
-                    "description": "The number of nodes in the Redis™ cluster.\n\n\u003e **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or cluster mode\nwhich is minimum 3 (1 main node + 2 secondary nodes)\n\n\u003e **Important:** If you are using the cluster mode (\u003e=3 nodes), you can set a bigger `cluster_size` than you initially\ndid, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller\n`cluster_size` will destroy and recreate your cluster.\n\n\u003e **Important:** If you are using the Standalone mode (1 node), setting a bigger `cluster_size` will destroy and\nrecreate your cluster as you will be switching to the cluster mode.\n"
+                    "description": "The number of nodes in the Redis™ cluster.\n\n\u003e **Important:**\n\n- Cluster_size = 1 for Standalone mode (single node).\n\n- Cluster_size = 2 for High Availability (HA) mode, with 1 main node and 1 standby node.\n\n- Cluster_size \u003e= 3 for Cluster mode, which requires a minimum of 1 main node and 2 secondary nodes.\n\n\u003e **Important:** If you are using the cluster mode (\u003e=3 nodes), you can set a bigger `cluster_size` than you initially\ndid, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller\n`cluster_size` will destroy and recreate your cluster.\n\n\u003e **Important:** If you are using the Standalone mode (1 node), setting a bigger `cluster_size` will destroy and\nrecreate your cluster as you will be switching to the cluster mode.\n"
                 },
                 "createdAt": {
                     "type": "string",
@@ -19074,7 +19116,7 @@
                 },
                 "clusterSize": {
                     "type": "integer",
-                    "description": "The number of nodes in the Redis™ cluster.\n\n\u003e **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or cluster mode\nwhich is minimum 3 (1 main node + 2 secondary nodes)\n\n\u003e **Important:** If you are using the cluster mode (\u003e=3 nodes), you can set a bigger `cluster_size` than you initially\ndid, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller\n`cluster_size` will destroy and recreate your cluster.\n\n\u003e **Important:** If you are using the Standalone mode (1 node), setting a bigger `cluster_size` will destroy and\nrecreate your cluster as you will be switching to the cluster mode.\n"
+                    "description": "The number of nodes in the Redis™ cluster.\n\n\u003e **Important:**\n\n- Cluster_size = 1 for Standalone mode (single node).\n\n- Cluster_size = 2 for High Availability (HA) mode, with 1 main node and 1 standby node.\n\n- Cluster_size \u003e= 3 for Cluster mode, which requires a minimum of 1 main node and 2 secondary nodes.\n\n\u003e **Important:** If you are using the cluster mode (\u003e=3 nodes), you can set a bigger `cluster_size` than you initially\ndid, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller\n`cluster_size` will destroy and recreate your cluster.\n\n\u003e **Important:** If you are using the Standalone mode (1 node), setting a bigger `cluster_size` will destroy and\nrecreate your cluster as you will be switching to the cluster mode.\n"
                 },
                 "name": {
                     "type": "string",
@@ -19160,7 +19202,7 @@
                     },
                     "clusterSize": {
                         "type": "integer",
-                        "description": "The number of nodes in the Redis™ cluster.\n\n\u003e **Important:** You cannot set `cluster_size` to 2, you either have to choose Standalone mode (1 node) or cluster mode\nwhich is minimum 3 (1 main node + 2 secondary nodes)\n\n\u003e **Important:** If you are using the cluster mode (\u003e=3 nodes), you can set a bigger `cluster_size` than you initially\ndid, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller\n`cluster_size` will destroy and recreate your cluster.\n\n\u003e **Important:** If you are using the Standalone mode (1 node), setting a bigger `cluster_size` will destroy and\nrecreate your cluster as you will be switching to the cluster mode.\n"
+                        "description": "The number of nodes in the Redis™ cluster.\n\n\u003e **Important:**\n\n- Cluster_size = 1 for Standalone mode (single node).\n\n- Cluster_size = 2 for High Availability (HA) mode, with 1 main node and 1 standby node.\n\n- Cluster_size \u003e= 3 for Cluster mode, which requires a minimum of 1 main node and 2 secondary nodes.\n\n\u003e **Important:** If you are using the cluster mode (\u003e=3 nodes), you can set a bigger `cluster_size` than you initially\ndid, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller\n`cluster_size` will destroy and recreate your cluster.\n\n\u003e **Important:** If you are using the Standalone mode (1 node), setting a bigger `cluster_size` will destroy and\nrecreate your cluster as you will be switching to the cluster mode.\n"
                     },
                     "createdAt": {
                         "type": "string",
@@ -20354,7 +20396,7 @@
                 },
                 "enableDhcp": {
                     "type": "boolean",
-                    "description": "WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.\n"
+                    "description": "Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.\n"
                 },
                 "enableMasquerade": {
                     "type": "boolean",
@@ -20418,7 +20460,7 @@
                 },
                 "enableDhcp": {
                     "type": "boolean",
-                    "description": "WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.\n"
+                    "description": "Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.\n"
                 },
                 "enableMasquerade": {
                     "type": "boolean",
@@ -20472,7 +20514,7 @@
                     },
                     "enableDhcp": {
                         "type": "boolean",
-                        "description": "WWhether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.\n"
+                        "description": "Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.\n"
                     },
                     "enableMasquerade": {
                         "type": "boolean",
@@ -22816,6 +22858,95 @@
                 "required": [
                     "name",
                     "id"
+                ]
+            }
+        },
+        "scaleway:index/getCockpitSource:getCockpitSource": {
+            "description": "The `scaleway.CockpitSource` data source allows you to retrieve information about a specific [data source](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.\n\nRefer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.\n\n## Example Usage\n\n### Retrieve a specific data source by ID\n\nThe following example retrieves a Cockpit data source by its unique ID.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumi/scaleway\";\n\nconst example = scaleway.getCockpitSource({\n    id: \"fr-par/11111111-1111-1111-1111-111111111111\",\n});\n```\n```python\nimport pulumi\nimport pulumi_scaleway as scaleway\n\nexample = scaleway.get_cockpit_source(id=\"fr-par/11111111-1111-1111-1111-111111111111\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumi.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Scaleway.GetCockpitSource.Invoke(new()\n    {\n        Id = \"fr-par/11111111-1111-1111-1111-111111111111\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/dirien/pulumi-scaleway/sdk/v2/go/scaleway\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := scaleway.LookupCockpitSource(ctx, \u0026scaleway.LookupCockpitSourceArgs{\n\t\t\tId: pulumi.StringRef(\"fr-par/11111111-1111-1111-1111-111111111111\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetCockpitSourceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = ScalewayFunctions.getCockpitSource(GetCockpitSourceArgs.builder()\n            .id(\"fr-par/11111111-1111-1111-1111-111111111111\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: scaleway:getCockpitSource\n      arguments:\n        id: fr-par/11111111-1111-1111-1111-111111111111\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Retrieve a data source by filters\n\nYou can also retrieve a data source by specifying filtering criteria such as `name`, `type`, and `origin`.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.ScalewayFunctions;\nimport com.pulumi.scaleway.inputs.GetCockpitSourceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var filtered = ScalewayFunctions.getCockpitSource(GetCockpitSourceArgs.builder()\n            .name(\"my-data-source\")\n            .projectId(\"11111111-1111-1111-1111-111111111111\")\n            .region(\"fr-par\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  filtered:\n    fn::invoke:\n      function: scaleway:getCockpitSource\n      arguments:\n        name: my-data-source\n        projectId: 11111111-1111-1111-1111-111111111111\n        region: fr-par\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getCockpitSource.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The unique identifier of the Cockpit data source in the `{region}/{id}` format. If specified, other filters are ignored.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the data source.\n"
+                    },
+                    "origin": {
+                        "type": "string",
+                        "description": "The origin of the data source. Possible values are:\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the Project the data source is associated with. Defaults to the Project ID specified in the provider configuration.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getCockpitSource.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The date and time the data source was created (in RFC 3339 format).\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The unique identifier of the data source in the `{region}/{id}` format.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "origin": {
+                        "type": "string",
+                        "description": "The origin of the data source.\n"
+                    },
+                    "projectId": {
+                        "type": "string"
+                    },
+                    "region": {
+                        "type": "string"
+                    },
+                    "retentionDays": {
+                        "type": "integer",
+                        "description": "The number of days the data is retained in the data source.\n"
+                    },
+                    "synchronizedWithGrafana": {
+                        "type": "boolean",
+                        "description": "Indicates whether the data source is synchronized with Grafana.\n"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "The date and time the data source was last updated (in RFC 3339 format).\n"
+                    },
+                    "url": {
+                        "type": "string",
+                        "description": "The URL of the Cockpit data source.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "createdAt",
+                    "id",
+                    "name",
+                    "origin",
+                    "projectId",
+                    "region",
+                    "retentionDays",
+                    "synchronizedWithGrafana",
+                    "type",
+                    "updatedAt",
+                    "url"
                 ]
             }
         },
